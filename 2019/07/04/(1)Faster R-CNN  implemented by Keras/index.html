@@ -775,7 +775,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-07-05 16:09:14'>2019-07-04 18:44</time>
+        创建时间:<time class="date" title='更新时间: 2019-12-26 17:26:52'>2019-07-04 18:44</time>
         
     </div>
     <div class="article-meta">
@@ -817,79 +817,242 @@
 <p><img src="%5Cimages%5Cobject-detection%5Copen-image-files.jpg" alt=""></p>
 <hr>
 <p><strong>数据集预览</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> shutil <span class="keyword">import</span> copyfile</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">base_path = <span class="string">'D:/data/open-image-v4'</span><span class="comment">#数据集下载的主目录</span></span><br><span class="line">images_boxable_fname = <span class="string">'train-images-boxable.csv'</span></span><br><span class="line">annotations_bbox_fname = <span class="string">'train-annotations-bbox.csv'</span></span><br><span class="line">class_descriptions_fname = <span class="string">'class-descriptions-boxable.csv'</span></span><br></pre></td></tr></table></figure>
+<pre><code class="python">import numpy as np
+import time
+import sys
+import os
+import random
+from skimage import io
+import pandas as pd
+from matplotlib import pyplot as plt
+from shutil import copyfile
+import cv2
+import tensorflow as tf
 
+base_path = &#39;D:/data/open-image-v4&#39;#数据集下载的主目录
+images_boxable_fname = &#39;train-images-boxable.csv&#39;
+annotations_bbox_fname = &#39;train-annotations-bbox.csv&#39;
+class_descriptions_fname = &#39;class-descriptions-boxable.csv&#39;</code></pre>
 <p>原始图片预览</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">images_boxable = pd.read_csv(os.path.join(base_path, images_boxable_fname))</span><br><span class="line">images_boxable.head()</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">images_boxable = pd.read_csv(os.path.join(base_path, images_boxable_fname))
+images_boxable.head()</code></pre>
 <p><img src="%5Cimages%5Cobject-detection%5C1.jpg" alt=""></p>
 <p>图片标记数据预览</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">annotations_bbox = pd.read_csv(os.path.join(base_path, annotations_bbox_fname))</span><br><span class="line">annotations_bbox.head()</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">annotations_bbox = pd.read_csv(os.path.join(base_path, annotations_bbox_fname))
+annotations_bbox.head()</code></pre>
 <p><img src="%5Cimages%5Cobject-detection%5C2.jpg" alt=""></p>
 <p>类别预览</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class_descriptions = pd.read_csv(os.path.join(base_path, class_descriptions_fname))</span><br><span class="line">class_descriptions.head()</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">class_descriptions = pd.read_csv(os.path.join(base_path, class_descriptions_fname))
+class_descriptions.head()</code></pre>
 <p><img src="%5Cimages%5Cobject-detection%5C3.jpg" alt=""></p>
 <p>通过annotations_bbox将目标/类别在原图上标记出来</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">image_name = images_boxable[<span class="string">'image_name'</span>][<span class="number">5</span>]</span><br><span class="line">image_url = images_boxable[<span class="string">'image_url'</span>][<span class="number">5</span>]</span><br><span class="line">print(image_name,image_url)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">image_name = images_boxable[&#39;image_name&#39;][5]
+image_url = images_boxable[&#39;image_url&#39;][5]
+print(image_name,image_url)</code></pre>
 <p>e17acd05b631d330.jpg <a href="https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/e17acd05b631d330.jpg" target="_blank" rel="noopener">https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/e17acd05b631d330.jpg</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">img = io.imread(image_url) <span class="comment">#读取网络图片</span></span><br><span class="line">height, width, _ = img.shape</span><br><span class="line">print(img.shape)</span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">10</span>))</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">plt.title(<span class="string">'Original Image'</span>)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">img_id = image_name[:<span class="number">16</span>]</span><br><span class="line">bboxs = annotations_bbox[annotations_bbox[<span class="string">'ImageID'</span>]==img_id]</span><br><span class="line">img_bbox = img.copy()</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> bboxs.iterrows():</span><br><span class="line">    xmin = row[<span class="string">'XMin'</span>]</span><br><span class="line">    xmax = row[<span class="string">'XMax'</span>]</span><br><span class="line">    ymin = row[<span class="string">'YMin'</span>]</span><br><span class="line">    ymax = row[<span class="string">'YMax'</span>]</span><br><span class="line">    xmin = int(xmin*width)</span><br><span class="line">    xmax = int(xmax*width)</span><br><span class="line">    ymin = int(ymin*height)</span><br><span class="line">    ymax = int(ymax*height)</span><br><span class="line">    label_name = row[<span class="string">'LabelName'</span>]</span><br><span class="line">    class_series = class_descriptions[class_descriptions[<span class="string">'name'</span>]==label_name]</span><br><span class="line">    class_name = class_series[<span class="string">'class'</span>].values[<span class="number">0</span>]</span><br><span class="line">    cv2.rectangle(img_bbox,(xmin,ymin),(xmax,ymax),(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>),<span class="number">2</span>)</span><br><span class="line">    font = cv2.FONT_HERSHEY_SIMPLEX</span><br><span class="line">    cv2.putText(img_bbox,class_name,(xmin,ymin<span class="number">-10</span>), font, <span class="number">1</span>,(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>),<span class="number">2</span>)</span><br><span class="line">plt.subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">plt.title(<span class="string">'Image with Bounding Box'</span>)</span><br><span class="line">plt.imshow(img_bbox)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">img = io.imread(image_url) #读取网络图片
+height, width, _ = img.shape
+print(img.shape)
+plt.figure(figsize=(15,10))
+plt.subplot(1,2,1)
+plt.title(&#39;Original Image&#39;)
+plt.imshow(img)
+img_id = image_name[:16]
+bboxs = annotations_bbox[annotations_bbox[&#39;ImageID&#39;]==img_id]
+img_bbox = img.copy()
+for index, row in bboxs.iterrows():
+    xmin = row[&#39;XMin&#39;]
+    xmax = row[&#39;XMax&#39;]
+    ymin = row[&#39;YMin&#39;]
+    ymax = row[&#39;YMax&#39;]
+    xmin = int(xmin*width)
+    xmax = int(xmax*width)
+    ymin = int(ymin*height)
+    ymax = int(ymax*height)
+    label_name = row[&#39;LabelName&#39;]
+    class_series = class_descriptions[class_descriptions[&#39;name&#39;]==label_name]
+    class_name = class_series[&#39;class&#39;].values[0]
+    cv2.rectangle(img_bbox,(xmin,ymin),(xmax,ymax),(0,255,0),2)
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    cv2.putText(img_bbox,class_name,(xmin,ymin-10), font, 1,(0,255,0),2)
+plt.subplot(1,2,2)
+plt.title(&#39;Image with Bounding Box&#39;)
+plt.imshow(img_bbox)
+plt.show()</code></pre>
 <p><img src="%5Cimages%5Cobject-detection%5C4.jpg" alt=""></p>
 <hr>
 <p><strong>训练集构造(检测car、person)</strong></p>
 <p>抽取数据类别,Car,Person</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">car = class_descriptions[class_descriptions[<span class="string">'class'</span>]==<span class="string">'Car'</span>]</span><br><span class="line">person = class_descriptions[class_descriptions[<span class="string">'class'</span>]==<span class="string">'Person'</span>]</span><br><span class="line">print(car)</span><br><span class="line">print(person)</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">car = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Car&#39;]
+person = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Person&#39;]
+print(car)
+print(person)</code></pre>
 <p>570  /m/0k4j   Car<br>68  /m/01g317  Person</p>
 <p>抽取car、person原始图片下载地址和对应的标记框数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#car、person全部标记框数据</span></span><br><span class="line">car_bbox = annotations_bbox[annotations_bbox[<span class="string">'LabelName'</span>]==car[<span class="string">'name'</span>].values[<span class="number">0</span>]]</span><br><span class="line">person_bbox = annotations_bbox[annotations_bbox[<span class="string">'LabelName'</span>]==person[<span class="string">'name'</span>].values[<span class="number">0</span>]]</span><br><span class="line"></span><br><span class="line">car_ids = car_bbox[<span class="string">'ImageID'</span>]</span><br><span class="line">person_ids = person_bbox[<span class="string">'ImageID'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#一张图片包含多个标记框,去掉重复的原始图片id</span></span><br><span class="line">car_ids = np.unique(car_ids)</span><br><span class="line">person_ids = np.unique(person_ids)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'car_ids:'</span>+str(len(car_ids)),<span class="string">'person_ids:'</span>+str(len(person_ids)))</span><br></pre></td></tr></table></figure>
+<pre><code class="python">#car、person全部标记框数据
+car_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==car[&#39;name&#39;].values[0]]
+person_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==person[&#39;name&#39;].values[0]]
 
+car_ids = car_bbox[&#39;ImageID&#39;]
+person_ids = person_bbox[&#39;ImageID&#39;]
+
+#一张图片包含多个标记框,去掉重复的原始图片id
+car_ids = np.unique(car_ids)
+person_ids = np.unique(person_ids)
+
+print(&#39;car_ids:&#39;+str(len(car_ids)),&#39;person_ids:&#39;+str(len(person_ids)))</code></pre>
 <p>car_ids:89465 car_ids:248384</p>
 <p>随机选取1000张car和1000张person图片作为训练集</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打乱次序</span></span><br><span class="line">copy_car_ids = car_ids.copy()</span><br><span class="line">random.seed(<span class="number">1</span>)</span><br><span class="line">random.shuffle(car_ids)</span><br><span class="line"></span><br><span class="line">copy_person_ids = person_ids.copy()</span><br><span class="line">random.seed(<span class="number">1</span>)</span><br><span class="line">random.shuffle(person_ids)</span><br><span class="line"></span><br><span class="line">n = <span class="number">1000</span></span><br><span class="line">sub_car_ids = copy_car_ids[:n]</span><br><span class="line">sub_person_ids = copy_person_ids[:n]</span><br><span class="line"></span><br><span class="line">print(sub_car_ids[<span class="number">0</span>:<span class="number">10</span>],sub_person_ids[<span class="number">0</span>:<span class="number">10</span>])</span><br></pre></td></tr></table></figure>
+<pre><code class="python">#打乱次序
+copy_car_ids = car_ids.copy()
+random.seed(1)
+random.shuffle(car_ids)
 
+copy_person_ids = person_ids.copy()
+random.seed(1)
+random.shuffle(person_ids)
+
+n = 1000
+sub_car_ids = copy_car_ids[:n]
+sub_person_ids = copy_person_ids[:n]
+
+print(sub_car_ids[0:10],sub_person_ids[0:10])</code></pre>
 <p>[‘17729c78b866181e’ ‘7b77dbbc71105e1c’ ‘c9a719e92a035033’<br> ‘58539243ddf350d1’ ‘b4bd75496b4880d8’ ‘6b54b697b13d6573’<br> ‘1e8eab50c0f6ff3a’ ‘ec6ff911833016f3’ ‘a10c03baa942e135’<br> ‘81c73298cc8d5349’] [‘763f5e853b1895df’ ‘d469ba5b2e558fc7’ ‘5348a30462ad2308’<br> ‘751439461f7a5fd3’ ‘5734bee1abe8c58e’ ‘730c2135df540687’<br> ‘14920852dd7e8c93’ ‘6bce959fa9db8fbc’ ‘254dbd00353a1d22’<br> ‘f7b5eabe2c2713c8’]</p>
 <p>获取原始图片下载地址</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sub_car_urls = [images_boxable[images_boxable[<span class="string">'image_name'</span>]==name+<span class="string">'.jpg'</span>] <span class="keyword">for</span> name <span class="keyword">in</span> sub_car_ids]</span><br><span class="line">sub_person_urls = [images_boxable[images_boxable[<span class="string">'image_name'</span>]==name+<span class="string">'.jpg'</span>] <span class="keyword">for</span> name <span class="keyword">in</span> sub_person_ids]</span><br><span class="line"></span><br><span class="line">print(sub_car_urls[<span class="number">0</span>].values[<span class="number">0</span>][<span class="number">0</span>])  </span><br><span class="line">print(sub_car_urls[<span class="number">0</span>].values[<span class="number">0</span>][<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<pre><code class="python">sub_car_urls = [images_boxable[images_boxable[&#39;image_name&#39;]==name+&#39;.jpg&#39;] for name in sub_car_ids]
+sub_person_urls = [images_boxable[images_boxable[&#39;image_name&#39;]==name+&#39;.jpg&#39;] for name in sub_person_ids]
 
+print(sub_car_urls[0].values[0][0])  
+print(sub_car_urls[0].values[0][1])  </code></pre>
 <p>17729c78b866181e.jpg<br><a href="https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/17729c78b866181e.jpg" target="_blank" rel="noopener">https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/17729c78b866181e.jpg</a></p>
 <p>保存urls到磁盘供复用 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sub_car_urls_csv = pd.DataFrame()</span><br><span class="line">sub_person_urls_csv = pd.DataFrame()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1000</span>):</span><br><span class="line">    sub_car_urls_csv = sub_car_urls_csv.append(sub_car_urls[i], ignore_index = <span class="literal">True</span>)</span><br><span class="line">    sub_person_urls_csv = sub_person_urls_csv.append(sub_person_urls[i], ignore_index = <span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">sub_car_urls_csv.to_csv(os.path.join(<span class="string">'D:/data/open-image-v4'</span>,<span class="string">'sub_car_urls.csv'</span>),index=<span class="literal">False</span>)</span><br><span class="line">sub_person_urls_csv.to_csv(os.path.join(<span class="string">'D:/data/open-image-v4'</span>,<span class="string">'sub_person_urls.csv'</span>),index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">sub_car_urls_csv = pd.DataFrame()
+sub_person_urls_csv = pd.DataFrame()
+for i in range(1000):
+    sub_car_urls_csv = sub_car_urls_csv.append(sub_car_urls[i], ignore_index = True)
+    sub_person_urls_csv = sub_person_urls_csv.append(sub_person_urls[i], ignore_index = True)
 
+sub_car_urls_csv.to_csv(os.path.join(&#39;D:/data/open-image-v4&#39;,&#39;sub_car_urls.csv&#39;),index=False)
+sub_person_urls_csv.to_csv(os.path.join(&#39;D:/data/open-image-v4&#39;,&#39;sub_person_urls.csv&#39;),index=False)</code></pre>
 <p>下载图片到磁盘(D:/data/open-image-v4/下新建train-data和test-data文件夹,再分别在train-data和test-data下新建文件夹car和person)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">sub_car_pd = pd.read_csv(os.path.join(base_path, <span class="string">'sub_car_urls.csv'</span>))</span><br><span class="line">sub_person_pd = pd.read_csv(os.path.join(base_path, <span class="string">'sub_person_urls.csv'</span>))</span><br><span class="line"></span><br><span class="line">print(sub_car_pd[<span class="string">'image_name'</span>][<span class="number">0</span>])</span><br><span class="line">print(sub_car_pd[<span class="string">'image_url'</span>][<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#建议开启多线程下载</span></span><br><span class="line"><span class="comment">#训练图片</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">800</span>):</span><br><span class="line">    img_car = io.imread(sub_car_pd[<span class="string">'image_url'</span>][i])</span><br><span class="line">    car_saved_path = os.path.join(<span class="string">'D:/data/open-image-v4/train-data/car'</span>,sub_car_pd[<span class="string">'image_name'</span>][i])</span><br><span class="line">    io.imsave(car_saved_path, img_car)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">800</span>):</span><br><span class="line">    img_person = io.imread(sub_person_pd[<span class="string">'image_url'</span>][j])</span><br><span class="line">    person_saved_path = os.path.join(<span class="string">'D:/data/open-image-v4/train-data/person'</span>,sub_person_pd[<span class="string">'image_name'</span>][j])</span><br><span class="line">    io.imsave(person_saved_path, img_person)</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试图片</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">800</span>,<span class="number">1000</span>):</span><br><span class="line">    img_car = io.imread(sub_car_pd[<span class="string">'image_url'</span>][i])</span><br><span class="line">    car_saved_path = os.path.join(<span class="string">'D:/data/open-image-v4/test-data/car'</span>,sub_car_pd[<span class="string">'image_name'</span>][i])</span><br><span class="line">    io.imsave(car_saved_path, img_car)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">800</span>,<span class="number">1000</span>):</span><br><span class="line">    img_person = io.imread(sub_person_pd[<span class="string">'image_url'</span>][j])</span><br><span class="line">    person_saved_path = os.path.join(<span class="string">'D:/data/open-image-v4/test-data/person'</span>,sub_person_pd[<span class="string">'image_name'</span>][j])</span><br><span class="line">    io.imsave(person_saved_path, img_person)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">sub_car_pd = pd.read_csv(os.path.join(base_path, &#39;sub_car_urls.csv&#39;))
+sub_person_pd = pd.read_csv(os.path.join(base_path, &#39;sub_person_urls.csv&#39;))
 
+print(sub_car_pd[&#39;image_name&#39;][0])
+print(sub_car_pd[&#39;image_url&#39;][0])
+
+#建议开启多线程下载
+#训练图片
+for i in range(800):
+    img_car = io.imread(sub_car_pd[&#39;image_url&#39;][i])
+    car_saved_path = os.path.join(&#39;D:/data/open-image-v4/train-data/car&#39;,sub_car_pd[&#39;image_name&#39;][i])
+    io.imsave(car_saved_path, img_car)
+
+for j in range(800):
+    img_person = io.imread(sub_person_pd[&#39;image_url&#39;][j])
+    person_saved_path = os.path.join(&#39;D:/data/open-image-v4/train-data/person&#39;,sub_person_pd[&#39;image_name&#39;][j])
+    io.imsave(person_saved_path, img_person)
+
+#测试图片
+for i in range(800,1000):
+    img_car = io.imread(sub_car_pd[&#39;image_url&#39;][i])
+    car_saved_path = os.path.join(&#39;D:/data/open-image-v4/test-data/car&#39;,sub_car_pd[&#39;image_name&#39;][i])
+    io.imsave(car_saved_path, img_car)
+
+for j in range(800,1000):
+    img_person = io.imread(sub_person_pd[&#39;image_url&#39;][j])
+    person_saved_path = os.path.join(&#39;D:/data/open-image-v4/test-data/person&#39;,sub_person_pd[&#39;image_name&#39;][j])
+    io.imsave(person_saved_path, img_person)</code></pre>
 <p>0000048549557964.jpg<br><a href="https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/0000048549557964.jpg" target="_blank" rel="noopener">https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/0000048549557964.jpg</a></p>
 <p>下载完成后,如图所示</p>
 <p><img src="%5Cimages%5Cobject-detection%5C5.jpg" alt=""></p>
 <p><img src="%5Cimages%5Cobject-detection%5C6.jpg" alt=""></p>
 <p>将train-data/car、train-data/person合并到同一文件夹train-data/all下,train-test同理<br>note:由于一张图片可能同时包含car和person,因此合并时会将重复的图片剔除而只保留一张</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">file_names = [<span class="string">'car'</span>,<span class="string">'person'</span>]</span><br><span class="line">train_path = <span class="string">'D:/data/open-image-v4/train-data'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(file_names)):</span><br><span class="line">    train_images = os.listdir(os.path.join(train_path,file_names[i]))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(train_images)):</span><br><span class="line">        original_path = os.path.join(os.path.join(train_path, label_names[i]), train_images[j])</span><br><span class="line">        new_path = os.path.join(os.path.join(train_path, <span class="string">'all'</span>), train_images[j])</span><br><span class="line">        copyfile(original_path, new_path)</span><br><span class="line">print(<span class="string">'all_train_images'</span>,len(os.listdir(os.path.join(train_path, <span class="string">'all'</span>))))</span><br><span class="line">      </span><br><span class="line">test_path = <span class="string">'D:/data/open-image-v4/test-data'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(file_names)):</span><br><span class="line">    test_images = os.listdir(os.path.join(test_path,file_names[i]))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(test_images)):</span><br><span class="line">        original_path = os.path.join(os.path.join(test_path, label_names[i]), test_images[j])</span><br><span class="line">        new_path = os.path.join(os.path.join(test_path, <span class="string">'all'</span>), test_images[j])</span><br><span class="line">        copyfile(original_path, new_path)      </span><br><span class="line">print(<span class="string">'all_test_images'</span>,len(os.listdir(os.path.join(test_path, <span class="string">'all'</span>))))</span><br></pre></td></tr></table></figure>
+<pre><code class="python">file_names = [&#39;car&#39;,&#39;person&#39;]
+train_path = &#39;D:/data/open-image-v4/train-data&#39;
+for i in range(len(file_names)):
+    train_images = os.listdir(os.path.join(train_path,file_names[i]))
+    for j in range(len(train_images)):
+        original_path = os.path.join(os.path.join(train_path, label_names[i]), train_images[j])
+        new_path = os.path.join(os.path.join(train_path, &#39;all&#39;), train_images[j])
+        copyfile(original_path, new_path)
+print(&#39;all_train_images&#39;,len(os.listdir(os.path.join(train_path, &#39;all&#39;))))
 
+test_path = &#39;D:/data/open-image-v4/test-data&#39;
+for i in range(len(file_names)):
+    test_images = os.listdir(os.path.join(test_path,file_names[i]))
+    for j in range(len(test_images)):
+        original_path = os.path.join(os.path.join(test_path, label_names[i]), test_images[j])
+        new_path = os.path.join(os.path.join(test_path, &#39;all&#39;), test_images[j])
+        copyfile(original_path, new_path)      
+print(&#39;all_test_images&#39;,len(os.listdir(os.path.join(test_path, &#39;all&#39;)))) </code></pre>
 <p>all_train_images 1558<br>all_test_images 401</p>
 <p>构造包含了标记框的训练集和测试集 train.csv和test.csv</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class_descriptions = pd.read_csv(<span class="string">"D:/data/open-image-v4/class-descriptions-boxable.csv"</span>)</span><br><span class="line">car = class_descriptions[class_descriptions[<span class="string">'class'</span>]==<span class="string">'Car'</span>]</span><br><span class="line">person = class_descriptions[class_descriptions[<span class="string">'class'</span>]==<span class="string">'Person'</span>]</span><br><span class="line">print(car,<span class="string">'\n'</span>+car[<span class="string">'name'</span>].values[<span class="number">0</span>])</span><br><span class="line">print(person,<span class="string">'\n'</span>+person[<span class="string">'name'</span>].values[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">class_descriptions = pd.read_csv(&quot;D:/data/open-image-v4/class-descriptions-boxable.csv&quot;)
+car = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Car&#39;]
+person = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Person&#39;]
+print(car,&#39;\n&#39;+car[&#39;name&#39;].values[0])
+print(person,&#39;\n&#39;+person[&#39;name&#39;].values[0])</code></pre>
 <p>570  /m/0k4j   Car<br>/m/0k4j<br>68  /m/01g317  Person<br>/m/01g317</p>
 <p>抽取car、person的标记框数据</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">annotations_bbox = pd.read_csv(<span class="string">'D:/data/open-image-v4/train-annotations-bbox.csv'</span>)</span><br><span class="line">car_bbox = annotations_bbox[annotations_bbox[<span class="string">'LabelName'</span>]==car[<span class="string">'name'</span>].values[<span class="number">0</span>]]</span><br><span class="line">person_bbox = annotations_bbox[annotations_bbox[<span class="string">'LabelName'</span>]==person[<span class="string">'name'</span>].values[<span class="number">0</span>]]</span><br><span class="line">annotations_bbox = pd.concat([car_bbox,person_bbox])</span><br><span class="line"></span><br><span class="line">print(annotations_bbox.shape)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">annotations_bbox = pd.read_csv(&#39;D:/data/open-image-v4/train-annotations-bbox.csv&#39;)
+car_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==car[&#39;name&#39;].values[0]]
+person_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==person[&#39;name&#39;].values[0]]
+annotations_bbox = pd.concat([car_bbox,person_bbox])
 
+print(annotations_bbox.shape)</code></pre>
 <p>(1282796, 13)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">train_df = pd.DataFrame(columns=[<span class="string">'FileName'</span>, <span class="string">'XMin'</span>, <span class="string">'YMin'</span>, <span class="string">'XMax'</span>, <span class="string">'YMax'</span>, <span class="string">'ClassName'</span>])</span><br><span class="line">train_path = <span class="string">'D:/data/open-image-v4/train-data/all'</span></span><br><span class="line">train_images = os.listdir(train_path)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(train_images)):</span><br><span class="line">    sys.stdout.write(<span class="string">'Parse train_imgs '</span> + str(i+<span class="number">1</span>) + <span class="string">'; Number of boxes: '</span> + str(len(train_df)) + <span class="string">'\r'</span>)</span><br><span class="line">    sys.stdout.flush()</span><br><span class="line">    img_name = train_images[i]</span><br><span class="line">    img_id = img_name[<span class="number">0</span>:<span class="number">16</span>]</span><br><span class="line">    tmp_df = annotations_bbox[annotations_bbox[<span class="string">'ImageID'</span>]==img_id]</span><br><span class="line">    <span class="keyword">for</span> index, row <span class="keyword">in</span> tmp_df.iterrows():</span><br><span class="line">        labelName = row[<span class="string">'LabelName'</span>]</span><br><span class="line">        <span class="keyword">if</span> labelName == car[<span class="string">'name'</span>].values[<span class="number">0</span>]:</span><br><span class="line">            className = <span class="string">'car'</span></span><br><span class="line">        <span class="keyword">elif</span> labelName == person[<span class="string">'name'</span>].values[<span class="number">0</span>]:</span><br><span class="line">            className = <span class="string">'person'</span></span><br><span class="line">        train_df = train_df.append(&#123;<span class="string">'FileName'</span>: img_name, </span><br><span class="line">                                            <span class="string">'XMin'</span>: row[<span class="string">'XMin'</span>], </span><br><span class="line">                                            <span class="string">'YMin'</span>: row[<span class="string">'YMin'</span>], </span><br><span class="line">                                            <span class="string">'XMax'</span>: row[<span class="string">'XMax'</span>], </span><br><span class="line">                                            <span class="string">'YMax'</span>: row[<span class="string">'YMax'</span>], </span><br><span class="line">                                            <span class="string">'ClassName'</span>:className&#125;,ignore_index=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">train_df.to_csv(os.path.join(<span class="string">'D:/data/open-image-v4/train-data'</span>, <span class="string">'train.csv'</span>),index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">train_df = pd.DataFrame(columns=[&#39;FileName&#39;, &#39;XMin&#39;, &#39;YMin&#39;, &#39;XMax&#39;, &#39;YMax&#39;, &#39;ClassName&#39;])
+train_path = &#39;D:/data/open-image-v4/train-data/all&#39;
+train_images = os.listdir(train_path)
+for i in range(len(train_images)):
+    sys.stdout.write(&#39;Parse train_imgs &#39; + str(i+1) + &#39;; Number of boxes: &#39; + str(len(train_df)) + &#39;\r&#39;)
+    sys.stdout.flush()
+    img_name = train_images[i]
+    img_id = img_name[0:16]
+    tmp_df = annotations_bbox[annotations_bbox[&#39;ImageID&#39;]==img_id]
+    for index, row in tmp_df.iterrows():
+        labelName = row[&#39;LabelName&#39;]
+        if labelName == car[&#39;name&#39;].values[0]:
+            className = &#39;car&#39;
+        elif labelName == person[&#39;name&#39;].values[0]:
+            className = &#39;person&#39;
+        train_df = train_df.append({&#39;FileName&#39;: img_name, 
+                                            &#39;XMin&#39;: row[&#39;XMin&#39;], 
+                                            &#39;YMin&#39;: row[&#39;YMin&#39;], 
+                                            &#39;XMax&#39;: row[&#39;XMax&#39;], 
+                                            &#39;YMax&#39;: row[&#39;YMax&#39;], 
+                                            &#39;ClassName&#39;:className},ignore_index=True)
 
+train_df.to_csv(os.path.join(&#39;D:/data/open-image-v4/train-data&#39;, &#39;train.csv&#39;),index=False)</code></pre>
 <p>Parse train_imgs 1557; Number of boxes: 5722</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">test_df = pd.DataFrame(columns=[<span class="string">'FileName'</span>, <span class="string">'XMin'</span>, <span class="string">'YMin'</span>, <span class="string">'XMax'</span>, <span class="string">'YMax'</span>, <span class="string">'ClassName'</span>])</span><br><span class="line">test_path = <span class="string">'D:/data/open-image-v4/test-data/all'</span></span><br><span class="line">test_images = os.listdir(test_path)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(test_images)):</span><br><span class="line">    sys.stdout.write(<span class="string">'Parse train_imgs '</span> + str(i+<span class="number">1</span>) + <span class="string">'; Number of boxes: '</span> + str(len(test_df)) + <span class="string">'\r'</span>)</span><br><span class="line">    sys.stdout.flush()</span><br><span class="line">    img_name = test_images[i]</span><br><span class="line">    img_id = img_name[<span class="number">0</span>:<span class="number">16</span>]</span><br><span class="line">    tmp_df = annotations_bbox[annotations_bbox[<span class="string">'ImageID'</span>]==img_id]</span><br><span class="line">    <span class="keyword">for</span> index, row <span class="keyword">in</span> tmp_df.iterrows():</span><br><span class="line">        labelName = row[<span class="string">'LabelName'</span>]</span><br><span class="line">        <span class="keyword">if</span> labelName == car[<span class="string">'name'</span>].values[<span class="number">0</span>]:</span><br><span class="line">            className = <span class="string">'car'</span></span><br><span class="line">        <span class="keyword">elif</span> labelName == person[<span class="string">'name'</span>].values[<span class="number">0</span>]:</span><br><span class="line">            className = <span class="string">'person'</span></span><br><span class="line">        test_df = test_df.append(&#123;<span class="string">'FileName'</span>: img_name, </span><br><span class="line">                                            <span class="string">'XMin'</span>: row[<span class="string">'XMin'</span>], </span><br><span class="line">                                            <span class="string">'YMin'</span>: row[<span class="string">'YMin'</span>], </span><br><span class="line">                                            <span class="string">'XMax'</span>: row[<span class="string">'XMax'</span>], </span><br><span class="line">                                            <span class="string">'YMax'</span>: row[<span class="string">'YMax'</span>], </span><br><span class="line">                                            <span class="string">'ClassName'</span>:className&#125;,ignore_index=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">test_df.to_csv(os.path.join(<span class="string">'D:/data/open-image-v4/test-data'</span>, <span class="string">'test.csv'</span>),index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="python">test_df = pd.DataFrame(columns=[&#39;FileName&#39;, &#39;XMin&#39;, &#39;YMin&#39;, &#39;XMax&#39;, &#39;YMax&#39;, &#39;ClassName&#39;])
+test_path = &#39;D:/data/open-image-v4/test-data/all&#39;
+test_images = os.listdir(test_path)
+for i in range(len(test_images)):
+    sys.stdout.write(&#39;Parse train_imgs &#39; + str(i+1) + &#39;; Number of boxes: &#39; + str(len(test_df)) + &#39;\r&#39;)
+    sys.stdout.flush()
+    img_name = test_images[i]
+    img_id = img_name[0:16]
+    tmp_df = annotations_bbox[annotations_bbox[&#39;ImageID&#39;]==img_id]
+    for index, row in tmp_df.iterrows():
+        labelName = row[&#39;LabelName&#39;]
+        if labelName == car[&#39;name&#39;].values[0]:
+            className = &#39;car&#39;
+        elif labelName == person[&#39;name&#39;].values[0]:
+            className = &#39;person&#39;
+        test_df = test_df.append({&#39;FileName&#39;: img_name, 
+                                            &#39;XMin&#39;: row[&#39;XMin&#39;], 
+                                            &#39;YMin&#39;: row[&#39;YMin&#39;], 
+                                            &#39;XMax&#39;: row[&#39;XMax&#39;], 
+                                            &#39;YMax&#39;: row[&#39;YMax&#39;], 
+                                            &#39;ClassName&#39;:className},ignore_index=True)
 
+test_df.to_csv(os.path.join(&#39;D:/data/open-image-v4/test-data&#39;, &#39;test.csv&#39;),index=False)</code></pre>
 <p>Parse train_imgs 401; Number of boxes: 1413</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
-
+<pre><code class="python">train_df.head()</code></pre>
 <p><img src="%5Cimages%5Cobject-detection%5C7.jpg" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_df.head()</span><br></pre></td></tr></table></figure>
-
-<p><img src="%5Cimages%5Cobject-detection%5C8.jpg" alt=""></p>
+<pre><code>test_df.head()</code></pre><p><img src="%5Cimages%5Cobject-detection%5C8.jpg" alt=""></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
       
@@ -908,7 +1071,7 @@
     
     <p><span class="copy-title">本文作者:</span><a  title="JiaoPan">JiaoPan</a></p>
     <p><span class="copy-title">发布时间:</span>2019-07-04, 18:44:35</p>
-    <p><span class="copy-title">最后更新:</span>2019-07-05, 16:09:14</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-26, 17:26:52</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/" title="(1)Faster R-CNN implemented by Keras">https://jiaopaner.github.io/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
@@ -919,46 +1082,6 @@
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 
