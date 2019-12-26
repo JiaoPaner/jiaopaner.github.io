@@ -7,11 +7,11 @@
   <meta name="description" content="elasticsearch 教程 | 今天的风儿甚是喧嚣 JiaoPan">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="https://jiaopaner.github.io/about/index.html">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="https://jiaopaner.github.io/categories/index.html">
 <meta property="og:site_name" content="今天的风儿甚是喧嚣 JiaoPan">
-<meta property="article:published_time" content="2018-06-13T01:23:12.000Z">
-<meta property="article:modified_time" content="2018-06-13T01:23:12.000Z">
+<meta property="article:published_time" content="2018-07-05T00:53:45.000Z">
+<meta property="article:modified_time" content="2018-07-05T02:17:50.000Z">
 <meta property="article:author" content="JiaoPan">
 <meta property="article:tag" content="deep learning|computer vision">
 <meta name="twitter:card" content="summary">
@@ -20,6 +20,8 @@
 <link rel="icon" href="/img/avatar.jpg">
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -925,6 +927,20 @@
 
         /*高亮代码块行号*/
         
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
 
         /*访问数量*/
         
@@ -949,6 +965,38 @@
 </script>
 
 <!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
 
 <!--自定义样式设置-->
 <style>
