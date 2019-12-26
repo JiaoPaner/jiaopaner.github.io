@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数据结构(6) 查找 | 今天的风儿甚是喧嚣 JiaoPan</title>
+  <meta name="keywords" content=" 数据结构 ">
+  <meta name="description" content="数据结构(6) 查找 | 今天的风儿甚是喧嚣 JiaoPan">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="https://jiaopaner.github.io/2019/12/26/test/index.html">
+<meta property="og:site_name" content="今天的风儿甚是喧嚣 JiaoPan">
+<meta property="article:published_time" content="2019-12-26T07:37:04.000Z">
+<meta property="article:modified_time" content="2019-12-26T07:37:05.000Z">
+<meta property="article:author" content="JiaoPan">
+<meta property="article:tag" content="deep learning|computer vision">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>JiaoPan</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/jiaopaner" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jiaopan/posts" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:jiaopaner@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(51)</small></div></li>
+    
+        
+            
+            <li><div data-rel="深度学习">深度学习<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="C++">C++<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="目标检测">目标检测<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv samples">opencv samples<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记">笔记<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="大数据">大数据<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="leetcode">leetcode<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv3">opencv3<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="操作系统">操作系统<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数字图像处理">数字图像处理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数学">数学<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="51">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color2">神经网络模型</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">深度学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">opencv samples</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">make</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">hadoop</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">leetcode</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JNA</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mxnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">nginx</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">opencv3</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">操作系统</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">数字图像处理</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据结构</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">小贴士</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">数学</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">模型转换</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/12/26/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2019-12-26 14:04:22">2019/12/26</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/26/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="test">test</span>
+            <span class="post-date" title="2019-12-26 15:37:04">2019/12/26</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/06/28/Alexnet/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="Alexnet">Alexnet</span>
+            <span class="post-date" title="2019-06-28 18:32:23">2019/06/28</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(2) 面向对象编程">C++教程(2) 面向对象编程</span>
+            <span class="post-date" title="2018-07-05 15:37:22">2018/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(4) C++标准库">C++教程(4) C++标准库</span>
+            <span class="post-date" title="2018-07-09 15:45:11">2018/07/09</span>
+        </a>
+        
+        <a  class="目标检测 "
+           href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/"
+           data-tag="深度学习"
+           data-author="" >
+            <span class="post-title" title="(1)Faster R-CNN implemented by Keras">(1)Faster R-CNN implemented by Keras</span>
+            <span class="post-date" title="2019-07-04 18:44:35">2019/07/04</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(1) 基础">C++教程(1) 基础</span>
+            <span class="post-date" title="2018-07-05 15:30:07">2018/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(3) 模板和泛型编程">C++教程(3) 模板和泛型编程</span>
+            <span class="post-date" title="2018-07-06 17:40:47">2018/07/06</span>
+        </a>
+        
+        <a  class="opencv samples "
+           href="/2018/07/12/blob%20detect/"
+           data-tag="opencv samples"
+           data-author="" >
+            <span class="post-title" title="blob detect">blob detect</span>
+            <span class="post-date" title="2018-07-12 21:40:22">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/"
+           data-tag="make"
+           data-author="" >
+            <span class="post-title" title="cmake教程">cmake教程</span>
+            <span class="post-date" title="2019-08-07 11:38:10">2019/08/07</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/07/03/VGG16Net/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="VGG16Net">VGG16Net</span>
+            <span class="post-date" title="2019-07-03 21:14:18">2019/07/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/18/elasticsearch%20%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="elasticsearch 教程">elasticsearch 教程</span>
+            <span class="post-date" title="2019-12-18 10:28:11">2019/12/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2019/11/20/hadoop%20spark/"
+           data-tag="hadoop"
+           data-author="" >
+            <span class="post-title" title="hadoop spark">hadoop spark</span>
+            <span class="post-date" title="2019-11-20 21:14:18">2019/11/20</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="android使用opencv native方式环境搭建">android使用opencv native方式环境搭建</span>
+            <span class="post-date" title="2019-11-01 14:05:23">2019/11/01</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(1)%20Two-Sum/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(1) Two-Sum">leetcode(1) Two-Sum</span>
+            <span class="post-date" title="2018-07-06 10:41:12">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/"
+           data-tag="JNA"
+           data-author="" >
+            <span class="post-title" title="编译C/C++为dll供Java调用">编译C/C++为dll供Java调用</span>
+            <span class="post-date" title="2019-03-10 18:34:24">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(11) ReverseWordsInAStringIII">leetcode(11) ReverseWordsInAStringIII</span>
+            <span class="post-date" title="2018-07-26 09:09:35">2018/07/26</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker入门指南">Docker入门指南</span>
+            <span class="post-date" title="2018-06-13 15:30:33">2018/06/13</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(3) Jewels and Stones">leetcode(3) Jewels and Stones</span>
+            <span class="post-date" title="2018-07-08 00:54:31">2018/07/08</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(4)  uniqueMorseCodeWords">leetcode(4)  uniqueMorseCodeWords</span>
+            <span class="post-date" title="2018-07-10 08:36:27">2018/07/10</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo搭建GitHub博客">hexo搭建GitHub博客</span>
+            <span class="post-date" title="2019-03-10 15:40:00">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(6)  JudgeRouteCircle">leetcode(6)  JudgeRouteCircle</span>
+            <span class="post-date" title="2018-07-11 20:24:07">2018/07/11</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(10)%20Binary%20Gap/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(10) Binary Gap">leetcode(10) Binary Gap</span>
+            <span class="post-date" title="2018-07-18 10:20:35">2018/07/18</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(8) SelfDividingNumbers">leetcode(8) SelfDividingNumbers</span>
+            <span class="post-date" title="2018-07-16 17:30:10">2018/07/16</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(2)%20Reverse%20Integer/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(2) Reverse Integer">leetcode(2) Reverse Integer</span>
+            <span class="post-date" title="2018-07-06 14:28:17">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="jdk"
+           data-author="" >
+            <span class="post-title" title="linux下jdk安装">linux下jdk安装</span>
+            <span class="post-date" title="2019-03-06 14:02:29">2019/03/06</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(5)%20%20HammingDistance/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(5)  HammingDistance">leetcode(5)  HammingDistance</span>
+            <span class="post-date" title="2018-07-10 10:11:18">2018/07/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(7) PeakIndexInMountainArray">leetcode(7) PeakIndexInMountainArray</span>
+            <span class="post-date" title="2018-07-12 09:21:44">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/"
+           data-tag="mxnet"
+           data-author="" >
+            <span class="post-title" title="mxnet Windows编译安装CPU版 c++ api">mxnet Windows编译安装CPU版 c++ api</span>
+            <span class="post-date" title="2019-09-19 14:05:23">2019/09/19</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/"
+           data-tag="nginx"
+           data-author="" >
+            <span class="post-title" title="nginx-rtmp流媒体服务">nginx-rtmp流媒体服务</span>
+            <span class="post-date" title="2019-06-26 11:38:40">2019/06/26</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(9) Array Partition I">leetcode(9) Array Partition I</span>
+            <span class="post-date" title="2018-07-18 08:49:13">2018/07/18</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="linux下mysql的安装">linux下mysql的安装</span>
+            <span class="post-date" title="2019-03-06 16:00:26">2019/03/06</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(2) 图像载入-显示-输出">opencv3(2) 图像载入-显示-输出</span>
+            <span class="post-date" title="2018-07-10 14:24:06">2018/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(3) opencv数据类型">opencv3(3) opencv数据类型</span>
+            <span class="post-date" title="2018-07-10 14:44:51">2018/07/10</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(1) 概述">操作系统(1) 概述</span>
+            <span class="post-date" title="2019-06-06 14:05:23">2019/06/06</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(2) 进程管理">操作系统(2) 进程管理</span>
+            <span class="post-date" title="2019-06-07 20:50:53">2019/06/07</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(1-1)%20vs2015%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-1) vs2015配置opencv3开发环境">opencv3(1-1) vs2015配置opencv3开发环境</span>
+            <span class="post-date" title="2018-07-10 14:02:45">2018/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-2) linux配置opencv3开发环境">opencv3(1-2) linux配置opencv3开发环境</span>
+            <span class="post-date" title="2019-03-11 23:00:35">2019/03/11</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(2) 灰度变换与空间滤波">数字图像处理(2) 灰度变换与空间滤波</span>
+            <span class="post-date" title="2018-07-20 14:08:43">2018/07/20</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(1) 基本概念">数据结构(1) 基本概念</span>
+            <span class="post-date" title="2019-05-29 19:25:01">2019/05/29</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/15/%E5%B0%8F%E8%B4%B4%E5%A3%AB/"
+           data-tag="小贴士"
+           data-author="" >
+            <span class="post-title" title="小贴士">小贴士</span>
+            <span class="post-date" title="2019-03-15 16:06:23">2019/03/15</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(3) 内存管理">操作系统(3) 内存管理</span>
+            <span class="post-date" title="2019-06-30 15:42:06">2019/06/30</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(4) 树与二叉树">数据结构(4) 树与二叉树</span>
+            <span class="post-date" title="2019-06-17 15:11:45">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(6) 查找">数据结构(6) 查找</span>
+            <span class="post-date" title="2019-07-16 14:11:05">2019/07/16</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(2) 线性表">数据结构(2) 线性表</span>
+            <span class="post-date" title="2019-05-30 15:16:30">2019/05/30</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(1) 图像基础">数字图像处理(1) 图像基础</span>
+            <span class="post-date" title="2018-07-13 09:41:32">2018/07/13</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="线性代数">线性代数</span>
+            <span class="post-date" title="2019-04-26 09:17:54">2019/04/26</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="高等数学">高等数学</span>
+            <span class="post-date" title="2019-06-17 20:50:31">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(3) 栈和队列">数据结构(3) 栈和队列</span>
+            <span class="post-date" title="2019-06-10 14:28:59">2019/06/10</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(7) 排序">数据结构(7) 排序</span>
+            <span class="post-date" title="2019-07-19 14:09:11">2019/07/19</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
+           data-tag="模型转换"
+           data-author="" >
+            <span class="post-title" title="深度学习模型转换">深度学习模型转换</span>
+            <span class="post-date" title="2019-10-25 21:14:18">2019/10/25</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-数据结构(6) 查找" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">数据结构(6) 查找</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="数据结构">数据结构</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color5">数据结构</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-12-17 14:16:27'>2019-07-16 14:11</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#顺序查找"><span class="toc-text">顺序查找</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#折半查找"><span class="toc-text">折半查找</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B树和B-树"><span class="toc-text">B树和B+树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#散列-hash-表"><span class="toc-text">散列(hash)表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串模式匹配"><span class="toc-text">字符串模式匹配</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>1.一般线性表</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    ElemType *elem;<span class="comment">//0号单元留空</span></span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125;STable;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">search</span><span class="params">(STable table,ElemType key)</span></span>&#123;</span><br><span class="line">    table.elem[<span class="number">0</span>] = key;<span class="comment">//哨兵</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = table.length;table.elem[i] != key; --i);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(SeqList <span class="built_in">list</span>,ElemType key)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;high = <span class="built_in">list</span>.length<span class="number">-1</span>;mid;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)&#123;</span><br><span class="line">        mid = (low+high)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">list</span>.elem[mid] == key)</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">list</span>.elem[mid] &lt; key)</span><br><span class="line">            low = mid+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            high = mid<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;<span class="comment">//查找失败</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="B树和B-树"><a href="#B树和B-树" class="headerlink" title="B树和B+树"></a>B树和B+树</h1><p>$B$树中所有结点的子结点数的最大值称为$B$树的阶，一个 $m$ 阶的$B$树是一个有以下属性的树：</p>
+<p><strong>1</strong>.每一个结点最多有 $m $个子结点，即每个结点至多含有$m-1$个关键字<br>2.每一个非叶子结点（除根结点）最少有 $⌈m/2⌉$ 个子结点,即至少含有$[m/2]-1$个关键字<br>3.如果根结点不是叶子结点，那么它至少有两个子结点<br>4.有 $k$ 个子结点的非叶子结点拥有 $k − 1$ 个键<br>5.所有的叶子结点都在同一层</p>
+<p>非根内部结点的关键字个数$n$范围：$[m/2]-1 \leq n \leq m-1$,根结点关键字个数$n$范围：$1 \leq n\leq m-1$</p>
+<p>每一个内部结点的键将结点的子树分开。</p>
+<p>例如，如果一个内部结点有3个子结点（子树），那么它就必须有两个键： $a_1 $和 $a_2$ </p>
+<p>左边子树的所有值都必须小于 $a_1$ ，中间子树的所有值都必须在 $a_1$ 和$a_2$ 之间，右边子树的所有值都必须大于$ a_2$ </p>
+<p><img src="%5Cimages%5CdataStructure%5C44.jpg" alt=""></p>
+<p><strong>B树的查找</strong></p>
+<p>1.在$B$中找结点 (读入内存) 2.在结点内找关键字(通过顺序查找或折半查找查找等于key的关键字)</p>
+<p><strong>B树的插入</strong></p>
+<p>所有的插入都从根结点开始，要插入一个新的元素，首先搜索这棵树，找到新元素应该被添加到的叶子结点</p>
+<p>将新元素插入到这一结点中的步骤如下：</p>
+<p>如果结点拥有的元素数量小于最大值，那么有空间容纳新的元素，将新元素插入到这一结点，且保持结点中元素有序，否则这一结点已经满了，将它平均地分裂成两个结点：从叶子结点的元素和新的元素中选择出中位数；小于这一中位数的元素放入左边结点，大于这一中位数的元素放入右边结点，中位数作为分隔值.<br><strong>分隔值被插入到父结点中</strong>，这可能会造成父结点分裂，分裂父结点时可能又会使它的父结点分裂，以此类推.如果没有父结点（这一结点是根结点），就创建一个新的根结点（增加了树的高度）,即如果分裂一直上升到根节点，那么一个新的根节点会被创建，它有一个分隔值和两个子节点</p>
+<blockquote>
+<p>以5阶B树为例</p>
+</blockquote>
+<p>[]: <a href="https://www.cnblogs.com/nullzx/p/8729425.html" target="_blank" rel="noopener">https://www.cnblogs.com/nullzx/p/8729425.html</a></p>
+<p>1.空树中插入39</p>
+<p><img src="%5Cimages%5CdataStructure%5C45.png" alt=""></p>
+<p>2.继续插入22，97和41</p>
+<p><img src="%5Cimages%5CdataStructure%5C46.png" alt=""></p>
+<p>3.继续插入53</p>
+<p><img src="%5Cimages%5CdataStructure%5C47.png" alt=""></p>
+<p>插入后超过了最大允许的关键字个数4，需以中位数(41)为中心进行分裂</p>
+<p><img src="%5Cimages%5CdataStructure%5C48.png" alt=""></p>
+<p>4.依次插入13，21，40，同样会造成分裂，结果如下图</p>
+<p><img src="%5Cimages%5CdataStructure%5C49.png" alt=""></p>
+<p>5.依次插入30，27, 33 ；36，35，34 ；24，29</p>
+<p><img src="%5Cimages%5CdataStructure%5C50.png" alt=""></p>
+<p>6.插入key值为26的记录</p>
+<p><img src="%5Cimages%5CdataStructure%5C51.png" alt=""></p>
+<p>当前结点需要以27为中心分裂,并向父结点插入27</p>
+<p><img src="%5Cimages%5CdataStructure%5C52.png" alt=""></p>
+<p>插入后导致当前结点（即根结点）也需要分裂</p>
+<p><img src="%5Cimages%5CdataStructure%5C53.png" alt=""></p>
+<p><strong>B树的删除</strong></p>
+<p>删除时，需要判断结点中关键字的个数$\geqslant [m/2]-1$</p>
+<blockquote>
+<p>5阶B树为例，结点最多有4个key,最少有2个key</p>
+</blockquote>
+<p>[]: <a href="https://www.cnblogs.com/nullzx/p/8729425.html" target="_blank" rel="noopener">https://www.cnblogs.com/nullzx/p/8729425.html</a></p>
+<p><img src="%5Cimages%5CdataStructure%5C54.png" alt=""></p>
+<p>1.B树中删除21，删除后结点中的关键字个数仍然大于等2，删除结束</p>
+<p><img src="%5Cimages%5CdataStructure%5C55.png" alt=""></p>
+<p>2.删除27，27位于非叶子结点中，利用27的后继28替代</p>
+<p><img src="%5Cimages%5CdataStructure%5C56.png" alt=""></p>
+<p>删除后，当前叶子结点的关键字的个数小于2，而它的兄弟结点中有3个关键字，从兄弟结点中借取一个关键字</p>
+<p><img src="%5Cimages%5CdataStructure%5C57.png" alt=""></p>
+<p>3.删除32</p>
+<p><img src="%5Cimages%5CdataStructure%5C58.png" alt=""></p>
+<p>删除后，当前结点中只有一个关键字，而兄弟结点中也仅有2个关键字，只能让父结点中的30下移并和兄弟结点中的关键字合并，成为一个新的结点，当前结点的指针指向父结点</p>
+<p><img src="%5Cimages%5CdataStructure%5C59.png" alt=""></p>
+<p>4.删除40</p>
+<p><img src="%5Cimages%5CdataStructure%5C60.png" alt=""></p>
+<p>同理，当前结点的关键字数小于2，兄弟结点中没有多余关键字，所以父结点中的关键字下移，和兄弟结点(左右兄弟结点都可)的关键字合</p>
+<p><img src="%5Cimages%5CdataStructure%5C61.png" alt=""></p>
+<p>当前结点关键字个数小于2，继续合并</p>
+<p><img src="%5Cimages%5CdataStructure%5C62.png" alt=""></p>
+<p><strong>B+树</strong></p>
+<p>1.每个分支结点最多有$m$个子结点</p>
+<p>2.结点的子结点个数与关键字个数相等(或结点的子结点个数 = 关键字个数+1)</p>
+<p>3.所有叶结点包含全部关键字及指向记录的指针，且叶结点中关键字按大小顺序排列，所有相邻结点按大小顺序互相链接</p>
+<p>4.非根内部结点的关键字个数$n$范围：$[m/2] \leq n \leq m$,根结点关键字个数$n$范围：$1 \leq n\leq m$</p>
+<p><img src="%5Cimages%5CdataStructure%5C63.png" alt=""></p>
+<p><strong>B+树的插入</strong></p>
+<blockquote>
+<p>以5阶B树为例</p>
+</blockquote>
+<p>1.空树中插入5</p>
+<p><img src="%5Cimages%5CdataStructure%5C64.png" alt=""></p>
+<p>2.依次插入8，10，15</p>
+<p><img src="%5Cimages%5CdataStructure%5C65.png" alt=""></p>
+<p>3.插入16</p>
+<p>插入16后超过了关键字的个数限制，需进行分裂</p>
+<p><img src="%5Cimages%5CdataStructure%5C66.png" alt=""></p>
+<p>4.插入17</p>
+<p><img src="%5Cimages%5CdataStructure%5C67.png" alt=""></p>
+<p>5.插入18</p>
+<p><img src="%5Cimages%5CdataStructure%5C68.png" alt=""></p>
+<p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
+<p><img src="%5Cimages%5CdataStructure%5C69.png" alt=""></p>
+<p>6.插入若干数据</p>
+<p><img src="%5Cimages%5CdataStructure%5C70.png" alt=""></p>
+<p>7.插入7</p>
+<p><img src="%5Cimages%5CdataStructure%5C71.png" alt=""></p>
+<p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
+<p><img src="%5Cimages%5CdataStructure%5C72.png" alt=""></p>
+<p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
+<p><img src="%5Cimages%5CdataStructure%5C73.png" alt=""></p>
+<p><strong>B+树的删除</strong></p>
+<blockquote>
+<p>以5阶B树为例</p>
+</blockquote>
+<p><img src="%5Cimages%5CdataStructure%5C74.png" alt=""></p>
+<p>1.删除22</p>
+<p><img src="%5Cimages%5CdataStructure%5C75.png" alt=""></p>
+<p>2.删除15</p>
+<p><img src="%5Cimages%5CdataStructure%5C76.png" alt=""></p>
+<p>删除后当前结点只有一个关键字，不满足条件，而兄弟结点有三个关键字，从兄弟结点中借关键字为9,同时更新将父结点中的关键字由10变为9，删除结束</p>
+<p><img src="%5Cimages%5CdataStructure%5C77.png" alt=""></p>
+<p>3.删除7</p>
+<p><img src="%5Cimages%5CdataStructure%5C78.png" alt=""></p>
+<p><img src="%5Cimages%5CdataStructure%5C79.png" alt=""></p>
+<p><img src="%5Cimages%5CdataStructure%5C80.png" alt=""></p>
+<h1 id="散列-hash-表"><a href="#散列-hash-表" class="headerlink" title="散列(hash)表"></a>散列(hash)表</h1><p><strong>散列函数</strong></p>
+<p>一个把查找表中的关键字映射为该关键字对应的地址函数，记$Hash(key)=Address$</p>
+<p>1.直接定址法 $Hash(key)=a\times key+b$，($a,b$未常数)</p>
+<p>2.除留余数法 $Hash(key)=key%p$，($p$为质数)</p>
+<p>3.数字分析法 设关键字是$r$进制数，选取数码分布较为均匀的若干位作为散列地址</p>
+<p>4.平方取中法 取关键字的平方值的中间几位作为散列地址</p>
+<p>5.折叠法 将关键字分割成位数相同的块，取块的叠加和作为散列地址</p>
+<p><strong>冲突处理</strong></p>
+<p>散列函数可能会把两个或两个以上的的不同关键字映射到同一地址，这种情况称为”冲突”</p>
+<p>设散列函数为$Hash(key),H_i$表示发生冲突后第$i$次探测的散列地址</p>
+<p>1.开放定址法<br>$$<br>H_i=(Hash(key)+d_i)%m<br>$$<br>$m$表示散列表长度，$d_i$为增量序列</p>
+<p>$d_i$的选取方法：</p>
+<p>1) 线性探测法 $d_i=0,1,2,3,\cdots,m-1$</p>
+<p>2) 平方探测法 $d_i=0^2,1^2,-1^2,2^2,-2^2,\cdots ,k^2,-k^2(k\leqslant m/2)$</p>
+<p>3) 再散列法或双散列法 $d_i=Hash_2(key)$，即$H_i=(Hash(key)+i*Hash_2(key))%m$($i$为冲突次数)</p>
+<p>4) 伪随机序列法 $d_i=$伪随机数序列</p>
+<p>2.拉链法</p>
+<p>同义词存储在一个线性链表$L_i$中,散列地址为$i$的同义词链表$L_i$的头指针存放在散列表第$i$个单元中</p>
+<p><strong>散列查找过程</strong></p>
+<p>1.初始化：$address = Hash(key)$</p>
+<p>2.若$L[address]=NULL$,则查找失败；若$L[address]\neq NULL$且$L[address]\neq key$，则$H_1=(address+1)%m$,若$L[H_1]\neq NULL$且$L[H_1]\neq key$,则$H_2=(H_1+2)%m$,若$L[H_2]\neq NULL$且$L[H_1]\neq key$,则$H_3=\cdots$</p>
+<p>重复执行$H_{i+1}=(H_i+(i+1))%m$ ($i=1,2,3,\cdots,m-1$),直到$L[H_{i+1}]=key或L[H_{i+1}]=NULL$</p>
+<h1 id="字符串模式匹配"><a href="#字符串模式匹配" class="headerlink" title="字符串模式匹配"></a>字符串模式匹配</h1><p>1.简单的模式匹配算法</p>
+<p>从主串S的指定字符开始，和模式串的第一个字符比较，若相等则继续逐个比较后续字符，直到模式串中的每个字符依次和主串的一个连续字符序列相等，则匹配成功；若比较过程中有某对字符不相等，则从主串的下一个字符重新与模式串的第一个字符相比较。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">matching</span><span class="params">(<span class="keyword">String</span> target, <span class="keyword">String</span> pattern, <span class="keyword">int</span> <span class="built_in">begin</span>)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// i为目标串target的索引</span></span><br><span class="line">		<span class="keyword">int</span> i = <span class="built_in">begin</span>;</span><br><span class="line">		<span class="comment">// j为模式串pattern的索引</span></span><br><span class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (target == null || pattern == null || <span class="built_in">begin</span> &gt; target.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; target.length() &amp;&amp; j &lt; pattern.length())&#123;</span><br><span class="line">			<span class="keyword">if</span> (target[i] == pattern[j]) &#123;</span><br><span class="line">				i++;</span><br><span class="line">				j++;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				i = i - j + <span class="number">1</span>;</span><br><span class="line">				j = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 模式串是否存在于目标串</span></span><br><span class="line">		<span class="keyword">if</span> (j == pattern.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> i - pattern.length() ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.KMP模式匹配算法</p>
+<p>wait</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达,任何疑问邮件至 jiaopaner@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>数据结构(6) 查找</p>
+    
+    <p><span class="copy-title">本文作者:</span><a  title="JiaoPan">JiaoPan</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-07-16, 14:11:05</p>
+    <p><span class="copy-title">最后更新:</span>2019-12-17, 14:16:27</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/" title="数据结构(6) 查找">https://jiaopaner.github.io/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#神经网络模型','#C++','#深度学习','#opencv samples','#make','#hadoop','#opencv','#leetcode','#JNA','#docker','#hexo','#jdk','#mxnet','#nginx','#mysql','#opencv3','#操作系统','#数字图像处理','#数据结构','#小贴士','#数学','#模型转换',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

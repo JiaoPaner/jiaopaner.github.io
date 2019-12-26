@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>操作系统(2) 进程管理 | 今天的风儿甚是喧嚣 JiaoPan</title>
+  <meta name="keywords" content=" 操作系统 ">
+  <meta name="description" content="操作系统(2) 进程管理 | 今天的风儿甚是喧嚣 JiaoPan">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="https://jiaopaner.github.io/2019/12/26/test/index.html">
+<meta property="og:site_name" content="今天的风儿甚是喧嚣 JiaoPan">
+<meta property="article:published_time" content="2019-12-26T07:37:04.000Z">
+<meta property="article:modified_time" content="2019-12-26T07:37:05.000Z">
+<meta property="article:author" content="JiaoPan">
+<meta property="article:tag" content="deep learning|computer vision">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>JiaoPan</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/jiaopaner" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jiaopan/posts" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:jiaopaner@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(51)</small></div></li>
+    
+        
+            
+            <li><div data-rel="深度学习">深度学习<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="C++">C++<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="目标检测">目标检测<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv samples">opencv samples<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记">笔记<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="大数据">大数据<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="leetcode">leetcode<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv3">opencv3<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="操作系统">操作系统<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数字图像处理">数字图像处理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数学">数学<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="51">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color2">神经网络模型</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">深度学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">opencv samples</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">make</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">hadoop</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">leetcode</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JNA</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mxnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">nginx</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">opencv3</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">操作系统</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">数字图像处理</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据结构</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">小贴士</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">数学</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">模型转换</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/12/26/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2019-12-26 14:04:22">2019/12/26</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/26/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="test">test</span>
+            <span class="post-date" title="2019-12-26 15:37:04">2019/12/26</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/06/28/Alexnet/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="Alexnet">Alexnet</span>
+            <span class="post-date" title="2019-06-28 18:32:23">2019/06/28</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(2) 面向对象编程">C++教程(2) 面向对象编程</span>
+            <span class="post-date" title="2018-07-05 15:37:22">2018/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(4) C++标准库">C++教程(4) C++标准库</span>
+            <span class="post-date" title="2018-07-09 15:45:11">2018/07/09</span>
+        </a>
+        
+        <a  class="目标检测 "
+           href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/"
+           data-tag="深度学习"
+           data-author="" >
+            <span class="post-title" title="(1)Faster R-CNN implemented by Keras">(1)Faster R-CNN implemented by Keras</span>
+            <span class="post-date" title="2019-07-04 18:44:35">2019/07/04</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(1) 基础">C++教程(1) 基础</span>
+            <span class="post-date" title="2018-07-05 15:30:07">2018/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(3) 模板和泛型编程">C++教程(3) 模板和泛型编程</span>
+            <span class="post-date" title="2018-07-06 17:40:47">2018/07/06</span>
+        </a>
+        
+        <a  class="opencv samples "
+           href="/2018/07/12/blob%20detect/"
+           data-tag="opencv samples"
+           data-author="" >
+            <span class="post-title" title="blob detect">blob detect</span>
+            <span class="post-date" title="2018-07-12 21:40:22">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/"
+           data-tag="make"
+           data-author="" >
+            <span class="post-title" title="cmake教程">cmake教程</span>
+            <span class="post-date" title="2019-08-07 11:38:10">2019/08/07</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/07/03/VGG16Net/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="VGG16Net">VGG16Net</span>
+            <span class="post-date" title="2019-07-03 21:14:18">2019/07/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/18/elasticsearch%20%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="elasticsearch 教程">elasticsearch 教程</span>
+            <span class="post-date" title="2019-12-18 10:28:11">2019/12/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2019/11/20/hadoop%20spark/"
+           data-tag="hadoop"
+           data-author="" >
+            <span class="post-title" title="hadoop spark">hadoop spark</span>
+            <span class="post-date" title="2019-11-20 21:14:18">2019/11/20</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="android使用opencv native方式环境搭建">android使用opencv native方式环境搭建</span>
+            <span class="post-date" title="2019-11-01 14:05:23">2019/11/01</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(1)%20Two-Sum/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(1) Two-Sum">leetcode(1) Two-Sum</span>
+            <span class="post-date" title="2018-07-06 10:41:12">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/"
+           data-tag="JNA"
+           data-author="" >
+            <span class="post-title" title="编译C/C++为dll供Java调用">编译C/C++为dll供Java调用</span>
+            <span class="post-date" title="2019-03-10 18:34:24">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(11) ReverseWordsInAStringIII">leetcode(11) ReverseWordsInAStringIII</span>
+            <span class="post-date" title="2018-07-26 09:09:35">2018/07/26</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker入门指南">Docker入门指南</span>
+            <span class="post-date" title="2018-06-13 15:30:33">2018/06/13</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(3) Jewels and Stones">leetcode(3) Jewels and Stones</span>
+            <span class="post-date" title="2018-07-08 00:54:31">2018/07/08</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(4)  uniqueMorseCodeWords">leetcode(4)  uniqueMorseCodeWords</span>
+            <span class="post-date" title="2018-07-10 08:36:27">2018/07/10</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo搭建GitHub博客">hexo搭建GitHub博客</span>
+            <span class="post-date" title="2019-03-10 15:40:00">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(6)  JudgeRouteCircle">leetcode(6)  JudgeRouteCircle</span>
+            <span class="post-date" title="2018-07-11 20:24:07">2018/07/11</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(10)%20Binary%20Gap/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(10) Binary Gap">leetcode(10) Binary Gap</span>
+            <span class="post-date" title="2018-07-18 10:20:35">2018/07/18</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(8) SelfDividingNumbers">leetcode(8) SelfDividingNumbers</span>
+            <span class="post-date" title="2018-07-16 17:30:10">2018/07/16</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(2)%20Reverse%20Integer/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(2) Reverse Integer">leetcode(2) Reverse Integer</span>
+            <span class="post-date" title="2018-07-06 14:28:17">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="jdk"
+           data-author="" >
+            <span class="post-title" title="linux下jdk安装">linux下jdk安装</span>
+            <span class="post-date" title="2019-03-06 14:02:29">2019/03/06</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(5)%20%20HammingDistance/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(5)  HammingDistance">leetcode(5)  HammingDistance</span>
+            <span class="post-date" title="2018-07-10 10:11:18">2018/07/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(7) PeakIndexInMountainArray">leetcode(7) PeakIndexInMountainArray</span>
+            <span class="post-date" title="2018-07-12 09:21:44">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/"
+           data-tag="mxnet"
+           data-author="" >
+            <span class="post-title" title="mxnet Windows编译安装CPU版 c++ api">mxnet Windows编译安装CPU版 c++ api</span>
+            <span class="post-date" title="2019-09-19 14:05:23">2019/09/19</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/"
+           data-tag="nginx"
+           data-author="" >
+            <span class="post-title" title="nginx-rtmp流媒体服务">nginx-rtmp流媒体服务</span>
+            <span class="post-date" title="2019-06-26 11:38:40">2019/06/26</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(9) Array Partition I">leetcode(9) Array Partition I</span>
+            <span class="post-date" title="2018-07-18 08:49:13">2018/07/18</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="linux下mysql的安装">linux下mysql的安装</span>
+            <span class="post-date" title="2019-03-06 16:00:26">2019/03/06</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(2) 图像载入-显示-输出">opencv3(2) 图像载入-显示-输出</span>
+            <span class="post-date" title="2018-07-10 14:24:06">2018/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(3) opencv数据类型">opencv3(3) opencv数据类型</span>
+            <span class="post-date" title="2018-07-10 14:44:51">2018/07/10</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(1) 概述">操作系统(1) 概述</span>
+            <span class="post-date" title="2019-06-06 14:05:23">2019/06/06</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(2) 进程管理">操作系统(2) 进程管理</span>
+            <span class="post-date" title="2019-06-07 20:50:53">2019/06/07</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(1-1)%20vs2015%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-1) vs2015配置opencv3开发环境">opencv3(1-1) vs2015配置opencv3开发环境</span>
+            <span class="post-date" title="2018-07-10 14:02:45">2018/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-2) linux配置opencv3开发环境">opencv3(1-2) linux配置opencv3开发环境</span>
+            <span class="post-date" title="2019-03-11 23:00:35">2019/03/11</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(2) 灰度变换与空间滤波">数字图像处理(2) 灰度变换与空间滤波</span>
+            <span class="post-date" title="2018-07-20 14:08:43">2018/07/20</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(1) 基本概念">数据结构(1) 基本概念</span>
+            <span class="post-date" title="2019-05-29 19:25:01">2019/05/29</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/15/%E5%B0%8F%E8%B4%B4%E5%A3%AB/"
+           data-tag="小贴士"
+           data-author="" >
+            <span class="post-title" title="小贴士">小贴士</span>
+            <span class="post-date" title="2019-03-15 16:06:23">2019/03/15</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(3) 内存管理">操作系统(3) 内存管理</span>
+            <span class="post-date" title="2019-06-30 15:42:06">2019/06/30</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(4) 树与二叉树">数据结构(4) 树与二叉树</span>
+            <span class="post-date" title="2019-06-17 15:11:45">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(6) 查找">数据结构(6) 查找</span>
+            <span class="post-date" title="2019-07-16 14:11:05">2019/07/16</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(2) 线性表">数据结构(2) 线性表</span>
+            <span class="post-date" title="2019-05-30 15:16:30">2019/05/30</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(1) 图像基础">数字图像处理(1) 图像基础</span>
+            <span class="post-date" title="2018-07-13 09:41:32">2018/07/13</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="线性代数">线性代数</span>
+            <span class="post-date" title="2019-04-26 09:17:54">2019/04/26</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="高等数学">高等数学</span>
+            <span class="post-date" title="2019-06-17 20:50:31">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(3) 栈和队列">数据结构(3) 栈和队列</span>
+            <span class="post-date" title="2019-06-10 14:28:59">2019/06/10</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(7) 排序">数据结构(7) 排序</span>
+            <span class="post-date" title="2019-07-19 14:09:11">2019/07/19</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
+           data-tag="模型转换"
+           data-author="" >
+            <span class="post-title" title="深度学习模型转换">深度学习模型转换</span>
+            <span class="post-date" title="2019-10-25 21:14:18">2019/10/25</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-操作系统(2) 进程管理" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">操作系统(2) 进程管理</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="操作系统">操作系统</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color5">操作系统</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-06-29 17:49:44'>2019-06-07 20:50</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#进程概念"><span class="toc-text">进程概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#处理机调度"><span class="toc-text">处理机调度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#进程同步"><span class="toc-text">进程同步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#死锁"><span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#end-bmatrix-MAX"><span class="toc-text">\end{bmatrix}(MAX)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#end-bmatrix-Allocation"><span class="toc-text">\end{bmatrix}(Allocation)</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h1><p>在多道程序环境下，允许多个程序并发执行，因此失去封闭性并具有间断性和不可再现性的特征，为此引入进程，更好地描述和控制程序的并发执行，实现操作系统的并发性和共享性。</p>
+<p><strong>进程控制块(PCB)</strong>：描述进程的基本情况和运行状态，进而控制和管理进程。</p>
+<p>PCB是进程存在的唯一标志。创建进程实质是创建PCB，撤销进程实质是撤销PCB。</p>
+<p><strong>进程映像</strong>：由程序段、相关数据段、PCB组成。</p>
+<p><strong>进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位。</strong></p>
+<p><strong>特征</strong></p>
+<ul>
+<li>动态性：进程是程序的一次执行，具有生命周期。动态性是进程最基本的特征。</li>
+<li>并发性、独立性、异步性、结构性</li>
+</ul>
+<p><strong>进程的状态与转换</strong></p>
+<p><img src="%5Cimages%5Csystem%5C1.jpg" alt=""></p>
+<p><strong>进程创建过程</strong></p>
+<p>终端用户登录、作业调度、系统提供服务、用户程序的应用等请求都会引起进程的创建。</p>
+<ol>
+<li>为新进程分配唯一的进程标识号，申请空白的PCB；</li>
+<li>为进程分配资源，分配进程的程序、数据和用户栈必要的内存空间；</li>
+<li>初始化PCB，初始化标志信息、处理机状态信息、处理机控制信息、设置进程优先级；</li>
+<li>将新进程插入到就绪队列等待调度；</li>
+</ol>
+<p><strong>进程终止过程</strong></p>
+<p>正常结束、异常结束(存储区越界、保护错、非法指令、特权指令错、I/O故障)、外界干预等都会引起进程的终止。</p>
+<ol>
+<li>根据被终止进程标识符检索PCB，读取该进程的状态；</li>
+<li>若被终止的进程处于执行状态则立即终止，将处理机资源分配给其他进程；</li>
+<li>若有子进程，将其所有的子进程终止；</li>
+<li>释放该进程的所有资源；</li>
+<li>将PCB从所在队列中删除</li>
+</ol>
+<p>进程的创建、撤销以及要求系统设备完成的I/O操作都是利用系统调用而进入内核。</p>
+<p><strong>进程的切换</strong></p>
+<ol>
+<li>保存处理机上下文，包括程序计数器和其他寄存器；</li>
+<li>更新PCB信息；</li>
+<li>进程的PCB移入相应的队列，如就绪、阻塞；</li>
+<li>选择另一个进程，并更新其PCB；</li>
+<li>更新内存管理的数据结构；</li>
+<li>恢复处理机上下文；</li>
+</ol>
+<p><strong>进程的通信</strong></p>
+<ul>
+<li><p>共享存储</p>
+<p>通过对共享空间进行读写操作实现进程间的信息交换</p>
+</li>
+<li><p>消息传递</p>
+<p>进程间的数据交换以格式化的消息为单位</p>
+</li>
+<li><p>管道通信</p>
+<p>消息传递的特殊方式，所谓管道是指连接一个读进程和一个写进程以实现进程之间通信的一个共享文件。</p>
+<p>写进程以字符流的形式将大量的数据写入管道。</p>
+</li>
+</ul>
+<p><strong>线程</strong></p>
+<p>线程是基本的CPU执行单元，线程是进程中的一个实体，是被系统独立调度和分派的基本单位。线程不拥有系统资源，只拥有在运行中必不可少的资源，可与同属同一进程的其他线程共享进程所拥有的全部资源。同一进程中的多个线程可以并发执行。</p>
+<p>在传统操作系统中，拥有资源和独立调度的基本单位都是进程，引入多线程的操作系统中，线程是独立调度的基本单位，进程是拥有资源的基本单位。</p>
+<h1 id="处理机调度"><a href="#处理机调度" class="headerlink" title="处理机调度"></a>处理机调度</h1><p>处理及调度是对处理机进行分配，即从进程就绪队列中按照一定的算法选择进程并为其分配处理机，以实现进程并发执行。</p>
+<p><strong>调度层次</strong></p>
+<ul>
+<li>作业调度：只调入/调出一次；</li>
+<li>中级调度：内存调度，提高内存利用率和系统吞吐量，进程的挂起/就绪；</li>
+<li>进程调度：按照某种算法调度进程执行； </li>
+</ul>
+<p>进程调度和切换程序是操作系统的内核程序。</p>
+<p><strong>进程调度方式</strong></p>
+<ul>
+<li>非剥夺方式/非抢占方式：一旦将CPU分配给某个进程，只有当该进程执行完或转换到等待状态时才会进行进程的切换。实现简单、开销小，适用于大多数批处理系统，但不适用于实时和分时系统。</li>
+<li>剥夺调度方式/抢占方式：若有某个更紧迫的进程需要调度，则立即暂定正在运行的进程，将处理机分配给更为紧迫的进程。剥夺原则：优先权、短进程优先、时间片原则。</li>
+</ul>
+<p><strong>调度的基本原则</strong></p>
+<ol>
+<li><p>CPU利用率</p>
+</li>
+<li><p>系统吞吐量：单位时间内CPU完成的作业数量；</p>
+</li>
+<li><p>周转时间：作业提交到作业完成的时间；</p>
+<p>周转时间 = 作业完成时间 - 作业提交时间</p>
+<p>带权周转时间 = $\frac{作业周转时间}{作业实际运行时间}$</p>
+</li>
+<li><p>等待时间</p>
+</li>
+<li><p>响应时间</p>
+</li>
+</ol>
+<p><strong>调度算法</strong></p>
+<ul>
+<li><p>先来先服务(FCFS)调度算法：每次从就绪队列中选择最先进入该队列的进程进行执行，直到进程完成或因某种原因阻塞才释放处理机；算法简单、效率低，对长作业有利，利于CPU繁忙型作业、不利于I/O繁忙型作业。</p>
+</li>
+<li><p>短作业优先(SJF)调度算法：每次从就绪队列中选择一个估计运行时间最短的进程进行执行。对长作业不利、未考虑作业紧迫度，平均等待时间、平均周转时间最少。</p>
+</li>
+<li><p>优先级调度算法：每次从就绪队列中选择优先级最高的进程进行执行。</p>
+</li>
+<li><p>高响应比优先调度算法：同时考虑每个进程的等待时间和估计的运行时间，在进行进程调度前先计算就绪队列中每个进程的响应比，选择响应比最高的进程进行执行。</p>
+<p>响应比$R_p=\frac{等待时间+要求服务的时间}{要求服务的时间}$</p>
+</li>
+<li><p>时间片轮转调度算法：总是选择就绪队列中第一个进程进行执行(先来先服务)，但仅能运行一个时间片，时间片用完即使进程并未完成运行，也必须释放处理机给下一个就绪进程。被剥夺的进程则重新排队，等待调度。</p>
+</li>
+<li><p>多级反馈队列调度算法：</p>
+<ol>
+<li>设置多个队列，赋予每个队列不同的优先级，第1级队列优先级最高，依次降低;</li>
+<li>赋予每个队列不同的进程执行时间片，第1级队列时间片最短，依次递增；</li>
+<li>新进程首先进入第1级队列末尾排队，按照先来先服务调度算法等待调度，若该进程能在第1级的时间片内完成，则撤离系统，否则转入下一级队列末尾排队，依次类推。</li>
+<li>仅当第1级队列为空时才调度第2级队列的进程执行，依次类推。若处理正在执行第$i$级队列中的进程，当新进程进入优先级较高的$i-1$级别队列时，则新进程抢占处理机，当前第$i$级进程转入第$i$级末尾重新排队。</li>
+</ol>
+</li>
+</ul>
+<h1 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h1><p>协调进程之间互相制约的关系。</p>
+<ol>
+<li><p>临界资源：一次仅允许一个进程使用的资源称为临界资源。对临界资源的访问必须互斥进行。</p>
+</li>
+<li><p>同步：需要在某些位置上协调进程之间的<strong>工作次序</strong>而等待、传递信息所产生的制约关系。</p>
+</li>
+<li><p>互斥：当一个进程使用临界资源时，其他要求进入临界区的进程必须等待。</p>
+<p><strong>准则</strong>：</p>
+</li>
+</ol>
+<ul>
+<li>空闲让进：临界区空闲时，允许一个请求进入临界区的进程立即进入临界区</li>
+<li>忙则等待：当已有进程进入临界区，其他试图进入临界区的进程必须等待<ul>
+<li>有限等待：对访问请求的进程，应保证在有限时间内进入临界区</li>
+</ul>
+</li>
+<li>让权等待：当进程不能进入临界区时，应立即释放处理器，防止进程忙等待</li>
+</ul>
+<p><strong>互斥的基本方法</strong></p>
+<p>1.软件实现方法</p>
+<p><strong>单标志法</strong></p>
+<p>设置公用整型变量turn,用于指示被允许进入临界区的进程编号，进程必须交替进入临界区，否则违背空闲让进</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//P0进程</span></span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">turn</span>!=<span class="number">0</span>); <span class="comment">//等待</span></span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line"><span class="built_in">turn</span> = <span class="number">1</span>;</span><br><span class="line">remainder section;</span><br><span class="line"><span class="comment">//P1进程</span></span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">turn</span>!=<span class="number">1</span>); <span class="comment">//等待</span></span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line"><span class="built_in">turn</span> = <span class="number">0</span>;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p><strong>双标志法</strong></p>
+<p>设置$flag[k]$,进入临界区前先检查进程$P_k$是否进入临界区,进程之间不需要交替进入，缺点为进程$p_i和p_j$可能同时进入临界区，违背忙等待</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Pi进程</span></span><br><span class="line"><span class="keyword">while</span>(flag[j] == <span class="literal">true</span>); <span class="comment">//等待</span></span><br><span class="line">flag[i] = <span class="literal">true</span>;</span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">flag[i] = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br><span class="line"><span class="comment">//Pj进程</span></span><br><span class="line"><span class="keyword">while</span>(flag[i] == <span class="literal">true</span>); <span class="comment">//等待</span></span><br><span class="line">flag[j] = <span class="literal">true</span>;</span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">flag[j] = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p>设置$flag[k]$,进入临界区前先设置本身进程标志为true,再检查进程$P_k$是否进入临界区,缺点是由于进程互相“谦让”容易形成饥饿现象，即进程都无法进入临界区</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Pi进程</span></span><br><span class="line">flag[i] = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">while</span>(flag[j] == <span class="literal">true</span>); <span class="comment">//等待</span></span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">flag[i] = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br><span class="line"><span class="comment">//Pj进程</span></span><br><span class="line">flag[j] = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">while</span>(flag[i] == <span class="literal">true</span>); <span class="comment">//等待</span></span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">flag[j] = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Peterson 算法</strong></p>
+<p>进入临界区前先设置本身进程标志为true,再设置turn标志，最后检查进程$P_k$是否进入临界区</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Pi进程</span></span><br><span class="line">flag[i] = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">turn</span> = j;</span><br><span class="line"><span class="keyword">while</span>(flag[j] == <span class="literal">true</span> &amp;&amp; <span class="built_in">turn</span> == j); <span class="comment">//等待</span></span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">flag[i] = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br><span class="line"><span class="comment">//Pj进程</span></span><br><span class="line">flag[j] = <span class="literal">true</span>;</span><br><span class="line"><span class="built_in">turn</span> = i;</span><br><span class="line"><span class="keyword">while</span>(flag[i] == <span class="literal">true</span> &amp;&amp; <span class="built_in">turn</span> == i); <span class="comment">//等待</span></span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">flag[j] = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p>2.硬件实现方法</p>
+<p><strong>中断屏蔽</strong></p>
+<p>CPU只在发生中断时引起进程切换，屏蔽中断能够保证当前运行的进程将临界区的代码顺利执行完毕</p>
+<p><strong>硬件指令</strong></p>
+<p>TestAndSet指令(原子操作)，为每个临界资源设置共享布尔变量lock,true表示资源正被占用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">TestAndSet</span><span class="params">(<span class="keyword">bool</span> *lock)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> old;</span><br><span class="line">    old = *lock;</span><br><span class="line">    *lock = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> old;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//进程</span></span><br><span class="line"><span class="keyword">while</span>(TestAndSet(&amp;lock)) <span class="comment">//等待</span></span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">lock = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Swap指令</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Swap(<span class="keyword">bool</span> *x,<span class="keyword">bool</span> *y)&#123;</span><br><span class="line">    <span class="keyword">bool</span> temp;</span><br><span class="line">    temp = *x;</span><br><span class="line">    *x = *y;</span><br><span class="line">    *y = temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//进程</span></span><br><span class="line">key = <span class="literal">true</span>;<span class="comment">//为每个进程设置局部布尔变量</span></span><br><span class="line"><span class="keyword">while</span>(key != <span class="literal">false</span>) <span class="comment">//等待</span></span><br><span class="line">    Swap(*lock,&amp;key)</span><br><span class="line">critical section;<span class="comment">//临界区</span></span><br><span class="line">lock = <span class="literal">false</span>;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>信号量</strong></p>
+<p>1.整型信号量：定义为表示资源数目的整型量$S$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//申请资源</span></span><br><span class="line">wait(S)&#123;</span><br><span class="line">    <span class="keyword">while</span>(S &lt;= <span class="number">0</span>);</span><br><span class="line">    S = S<span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line">signal(S)&#123;</span><br><span class="line">    S = S+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.记录型信号量：定义为表示资源数目的整型量$value$和进程链表$L$(用于链接等待该资源的进程)</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">process</span> *<span class="title">L</span>;</span></span><br><span class="line">&#125;semaphore;</span><br><span class="line"></span><br><span class="line"><span class="comment">//申请资源</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">wait</span><span class="params">(semaphore S)</span></span>&#123;</span><br><span class="line">    S.value--;</span><br><span class="line">    <span class="keyword">if</span>(S.value &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        add <span class="keyword">this</span> <span class="built_in">process</span> to S.L;</span><br><span class="line">        block(S.L);<span class="comment">//进程阻塞，放弃处理机</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//释放资源</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">signal</span><span class="params">(semaphore S)</span></span>&#123;</span><br><span class="line">    S.value++;</span><br><span class="line">    <span class="keyword">if</span>(S.value &lt;= <span class="number">0</span>)&#123;<span class="comment">//仍有进程等待</span></span><br><span class="line">        <span class="built_in">remove</span> a <span class="built_in">process</span> P from S.L;</span><br><span class="line">        wakeup(P);<span class="comment">//唤醒进程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用信号量实现进程同步</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//进程Py中的y语句需要使用进程Px中x语句的运行结果</span></span><br><span class="line">semaphore S = <span class="number">0</span>；</span><br><span class="line">Px()&#123;</span><br><span class="line">	...</span><br><span class="line">	x；</span><br><span class="line">	singal(S);<span class="comment">//通知进程Py,语句x已完成</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">Py()&#123;</span><br><span class="line">	...</span><br><span class="line">	wait(S);<span class="comment">//检查语句x是否已完成</span></span><br><span class="line">	y；</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用信号量实现进程互斥</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">semaphore S = <span class="number">1</span>;<span class="comment">//初始化信号量 资源数量</span></span><br><span class="line">Px()&#123;</span><br><span class="line">	...</span><br><span class="line">    wait(S);<span class="comment">//访问资源，加锁</span></span><br><span class="line">	x；<span class="comment">//临界区</span></span><br><span class="line">	singal(S);<span class="comment">//访问结束，解锁</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">Py()&#123;</span><br><span class="line">	...</span><br><span class="line">	wait(S);<span class="comment">//访问资源，加锁</span></span><br><span class="line">	y；<span class="comment">//临界区</span></span><br><span class="line">	singal(S);<span class="comment">//访问结束，解锁</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用信号量实现前驱关系</p>
+<p><img src="%5Cimages%5Csystem%5C2.jpg" alt=""></p>
+<p>$a:S1 \rightarrow S2,b:S1\rightarrow S3;c:S2 \rightarrow S4,d:S2\rightarrow S5;$</p>
+<p>$e:S3 \rightarrow S6,f:S4\rightarrow S6,g:S5 \rightarrow S6$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">semaphore a=b=c=d=e=f=g=<span class="number">0</span>;<span class="comment">//</span></span><br><span class="line">S1()&#123;</span><br><span class="line">	...</span><br><span class="line">	singal(a);singal(b);<span class="comment">//S1完成</span></span><br><span class="line">&#125;</span><br><span class="line">S2()&#123;</span><br><span class="line">	...</span><br><span class="line">	wait(a);</span><br><span class="line">	...</span><br><span class="line">	singal(c);singal(d);<span class="comment">//S2完成</span></span><br><span class="line">&#125;</span><br><span class="line">S3()&#123;</span><br><span class="line">	...</span><br><span class="line">	wait(b);</span><br><span class="line">	...</span><br><span class="line">	singal(e);<span class="comment">//S3完成</span></span><br><span class="line">&#125;</span><br><span class="line">S4()&#123;</span><br><span class="line">	...</span><br><span class="line">	wait(c);</span><br><span class="line">	...</span><br><span class="line">	singal(f);<span class="comment">//S4完成</span></span><br><span class="line">&#125;</span><br><span class="line">S5()&#123;</span><br><span class="line">	...</span><br><span class="line">	wait(d);</span><br><span class="line">	...</span><br><span class="line">	singal(g);<span class="comment">//S5完成</span></span><br><span class="line">&#125;</span><br><span class="line">S6()&#123;</span><br><span class="line">	wait(e);</span><br><span class="line">    wait(f);</span><br><span class="line">    wait(g);</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>经典同步问题</strong></p>
+<ol>
+<li><p>生产消费者问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span>;<span class="comment">//临界区互斥信号量</span></span><br><span class="line">semaphore empty = n;<span class="comment">//空闲缓冲区数</span></span><br><span class="line">semaphore full = <span class="number">0</span>;<span class="comment">//满缓冲区数</span></span><br><span class="line"><span class="comment">//生产者进程</span></span><br><span class="line">producer()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        produce an item in nextp;</span><br><span class="line">        wait(empty);<span class="comment">//获取空缓冲区单元</span></span><br><span class="line">        wait(mutex);<span class="comment">//进入临界区</span></span><br><span class="line">        add nextp ti <span class="built_in">buffer</span>;<span class="comment">//将数据放入缓冲区</span></span><br><span class="line">        singal(mutex);</span><br><span class="line">        singal(full);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//消费者进程</span></span><br><span class="line">consumer()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(full);</span><br><span class="line">        wait(mutex);</span><br><span class="line">        <span class="built_in">remove</span> an item from <span class="built_in">buffer</span>;</span><br><span class="line">        singal(mutex);</span><br><span class="line">        singal(empty);</span><br><span class="line">        consume the item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//empty和full的wait操作必须在mutex前</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>读者-写者问题</p>
+<ul>
+<li>允许多个读者同时对共享文件进行读操作</li>
+<li>只允许一个写者向共享文件写数据</li>
+<li>写者完成写操作之前不允许其他读者进行读操作</li>
+<li>写者执行写操作之前，应让已有读者和写者全部退出</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读进程优先</span></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//当前读者数量</span></span><br><span class="line">semaphore mutex = <span class="number">1</span>;<span class="comment">//用于更新count时的互斥</span></span><br><span class="line">semaphore rw = <span class="number">1</span>;<span class="comment">//互斥访问共享文件</span></span><br><span class="line"><span class="comment">//写者进程</span></span><br><span class="line">writer()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(rw);</span><br><span class="line">        writing;</span><br><span class="line">        signal(rw);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//读者进程</span></span><br><span class="line">reader()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(mutex);</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)<span class="comment">//第一个读者读取时</span></span><br><span class="line">            wait(rw);<span class="comment">//阻止写进程写操作</span></span><br><span class="line">        count++;</span><br><span class="line">        signal(mutex);</span><br><span class="line">        reading;</span><br><span class="line">        wait(mutex);<span class="comment">//读取完毕</span></span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)<span class="comment">//当最后一个读进程读取完毕</span></span><br><span class="line">            signal(rw)</span><br><span class="line">        signal(mutex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写进程优先</span></span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;<span class="comment">//当前读者数量</span></span><br><span class="line">semaphore mutex = <span class="number">1</span>;<span class="comment">//用于更新count时的互斥</span></span><br><span class="line">semaphore rw = <span class="number">1</span>;<span class="comment">//互斥访问共享文件</span></span><br><span class="line">semaphore w = <span class="number">1</span>;<span class="comment">//用于实现写优先</span></span><br><span class="line"><span class="comment">//写者进程</span></span><br><span class="line">writer()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(w)</span><br><span class="line">        wait(rw);</span><br><span class="line">        writing;</span><br><span class="line">        signal(rw);</span><br><span class="line">        signal(w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//读者进程</span></span><br><span class="line">reader()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(w);<span class="comment">//无写进程时进入</span></span><br><span class="line">        wait(mutex);</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)<span class="comment">//第一个读者读取时</span></span><br><span class="line">            wait(rw);<span class="comment">//阻止写进程写操作</span></span><br><span class="line">        count++;</span><br><span class="line">        signal(mutex);</span><br><span class="line">        signal(w);</span><br><span class="line">        reading;</span><br><span class="line">        wait(mutex);<span class="comment">//读取完毕</span></span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">if</span>(count == <span class="number">0</span>)<span class="comment">//当最后一个读进程读取完毕</span></span><br><span class="line">            signal(rw)</span><br><span class="line">        signal(mutex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>哲学家进餐问题</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">semaphore chopstick[<span class="number">5</span>]=&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;<span class="comment">//五根筷子</span></span><br><span class="line">semaphore mutex =  <span class="number">1</span>;<span class="comment">//设置取筷子的信号量</span></span><br><span class="line"><span class="comment">//i号哲学家进程</span></span><br><span class="line">Pi()&#123;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        wait(mutex);</span><br><span class="line">        wait(chopstick[i]);<span class="comment">//取左边筷子</span></span><br><span class="line">        wait(chopstick[(i+<span class="number">1</span>]%<span class="number">5</span>);<span class="comment">//取右边筷子</span></span><br><span class="line">        signal(mutex);</span><br><span class="line">        eat;</span><br><span class="line">        signal(chopstick[i]);</span><br><span class="line">        signal(chopstick[(i+<span class="number">1</span>]%<span class="number">5</span>);</span><br><span class="line">        think;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>吸烟者问题w</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> <span class="built_in">random</span>;</span><br><span class="line">semaphore offerTobaccoAndPaper;<span class="comment">//烟草和纸</span></span><br><span class="line">semaphore offerTobaccoAndGlue;<span class="comment">//烟草和胶水</span></span><br><span class="line">semaphore offerPaperAndGlue;<span class="comment">//纸和胶水</span></span><br><span class="line">semaphore finish = <span class="number">0</span>;<span class="comment">//记录抽烟完成</span></span><br><span class="line"><span class="comment">//供应者进程</span></span><br><span class="line">provider()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="built_in">random</span> = rand.<span class="built_in">random</span>(<span class="number">3</span>);<span class="comment">//1-3的整数随机数</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">random</span> == <span class="number">1</span>)&#123;</span><br><span class="line">            signal(offerTobaccoAndPaper);<span class="comment">//提供烟草和纸</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">random</span> == <span class="number">1</span>)&#123;</span><br><span class="line">            signal(offerTobaccoAndGlue);<span class="comment">//提供烟草和胶水</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            signal(offerPaperAndGlue);<span class="comment">//提供纸和胶水</span></span><br><span class="line">        &#125;</span><br><span class="line">        wait(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//拥有烟草者进程</span></span><br><span class="line"><span class="built_in">process</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(offerPaperAndGlue);</span><br><span class="line">        ...</span><br><span class="line">        signal(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//拥有纸者进程</span></span><br><span class="line"><span class="built_in">process</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(offerTobaccoAndGlue);</span><br><span class="line">        ...</span><br><span class="line">        signal(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//拥有胶水者进程</span></span><br><span class="line"><span class="built_in">process</span>()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        wait(offerTobaccoAndPaper);</span><br><span class="line">        ...</span><br><span class="line">        signal(finish);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>定义：多个进程因竞争不可剥夺资源而造成的互相等待，若无外力作用，进程都将无法向前推进。</p>
+<p>产生死锁的必要条件(同时满足)</p>
+<ul>
+<li>互斥条件：某资源仅由一个进程占有</li>
+<li>不剥夺条件：进程所获得资源在未使用完毕前，不可直接剥夺</li>
+<li>请求和保持条件：进程已获得资源A，同时提出对资源B的请求，单资源B被其他进程占有，此失请求进程被阻塞，但对其资源A保持不放</li>
+<li>循环等待条件：$p_i$等待的资源被$p_{i+1}$占有,$\dots$,$p_n$等待的资源被$p_0$占有</li>
+</ul>
+<p>死锁处理策略</p>
+<ol>
+<li>预防死锁：设置限制条件，破环产生死锁的必要条件</li>
+<li>避免死锁：资源动态分配中，用某种方法防止系统进入不安全状态</li>
+<li>死锁检测及解除：允许死锁发生，通过系统检测及时地解除死锁</li>
+</ol>
+<p><strong>银行家算法</strong></p>
+<p>可利用资源矢量Available：每类资源可用的数目</p>
+<p>最大需求矩阵Max：每个进程对每类资源的最大需求</p>
+<p>分配矩阵Allocation：每个进程已分配到每类资源数目</p>
+<p>需求矩阵Need：每个进程尚需的每类资源数目 $Need = Max - Allocation$</p>
+<p>假设系统中有5个进程$p_0,p_1,p_2,p_3,p_4$和三类资源${A,B,C}$,各类资源数目分别为$10、5、7$,在$t_0$时刻资源分配情况如下表，求资源分配安全序列。</p>
+<p><img src="%5Cimages%5Csystem%5C3.jpg" alt=""></p>
+<ol>
+<li><p>求出Need矩阵<br>$$<br>\begin{bmatrix}<br>7 &amp; 5 &amp; 3\<br>3 &amp; 2 &amp; 2\<br>9 &amp; 0 &amp; 2\<br>2 &amp; 2 &amp; 2\<br>4 &amp; 3 &amp; 3</p>
+<h2 id="end-bmatrix-MAX"><a href="#end-bmatrix-MAX" class="headerlink" title="\end{bmatrix}(MAX)"></a>\end{bmatrix}(MAX)</h2><p>\begin{bmatrix}<br>0 &amp; 1 &amp; 0\<br>2 &amp; 0 &amp; 0\<br>3 &amp; 0 &amp; 2\<br>2 &amp; 1 &amp; 1\<br>0 &amp; 0 &amp; 2</p>
+<h1 id="end-bmatrix-Allocation"><a href="#end-bmatrix-Allocation" class="headerlink" title="\end{bmatrix}(Allocation)"></a>\end{bmatrix}(Allocation)</h1><p>\begin{bmatrix}<br>7 &amp; 4 &amp; 3\<br>1 &amp; 2 &amp; 2\<br>6 &amp; 0 &amp; 0\<br>0 &amp; 1 &amp; 1\<br>4 &amp; 3 &amp; 1<br>\end{bmatrix}(Need)<br>$$</p>
+</li>
+<li><p>Available向量与Need矩阵各行进行比较，找出比Available向量小的行，如$$<br>$$<br>p_1(1,2,2)&lt;(3,2,2)\p_3(0,1,1)&lt;(3,2,2)<br>$$<br>选择$p_1$(或$p_3$)加入安全序列</p>
+</li>
+<li><p>释放$p_1$所占有的资源，即把$p_1$的Allocation与Available向量相加,等到新的Available向量<br>$$<br>(2,0,0)+(3,3,2)=(5,3,2)=Available(new)<br>$$</p>
+</li>
+<li><p>再用更新后的Available向量和Need向量矩阵重复步骤2</p>
+</li>
+</ol>
+<p>安全序列：$[p_1,p_3,p_4,p_2,p_0]$</p>
+<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达,任何疑问邮件至 jiaopaner@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>操作系统(2) 进程管理</p>
+    
+    <p><span class="copy-title">本文作者:</span><a  title="JiaoPan">JiaoPan</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-06-07, 20:50:53</p>
+    <p><span class="copy-title">最后更新:</span>2019-06-29, 17:49:44</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" title="操作系统(2) 进程管理">https://jiaopaner.github.io/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#神经网络模型','#C++','#深度学习','#opencv samples','#make','#hadoop','#opencv','#leetcode','#JNA','#docker','#hexo','#jdk','#mxnet','#nginx','#mysql','#opencv3','#操作系统','#数字图像处理','#数据结构','#小贴士','#数学','#模型转换',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

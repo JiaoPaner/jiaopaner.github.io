@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>高等数学 | 今天的风儿甚是喧嚣 JiaoPan</title>
+  <meta name="keywords" content=" 数学 ">
+  <meta name="description" content="高等数学 | 今天的风儿甚是喧嚣 JiaoPan">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="https://jiaopaner.github.io/2019/12/26/test/index.html">
+<meta property="og:site_name" content="今天的风儿甚是喧嚣 JiaoPan">
+<meta property="article:published_time" content="2019-12-26T07:37:04.000Z">
+<meta property="article:modified_time" content="2019-12-26T07:37:05.000Z">
+<meta property="article:author" content="JiaoPan">
+<meta property="article:tag" content="deep learning|computer vision">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>JiaoPan</span>
+</div>
+
+<div class="icon">
+    
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="github" href="https://github.com/jiaopaner" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jiaopan/posts" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:jiaopaner@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li><div class="all active">全部文章<small>(51)</small></div></li>
+    
+        
+            
+            <li><div data-rel="深度学习">深度学习<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="C++">C++<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="目标检测">目标检测<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv samples">opencv samples<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记">笔记<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="大数据">大数据<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="leetcode">leetcode<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv3">opencv3<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="操作系统">操作系统<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数字图像处理">数字图像处理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数学">数学<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    </div>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="51">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a class="color2">神经网络模型</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">深度学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">opencv samples</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">make</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">hadoop</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">leetcode</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JNA</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mxnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">nginx</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">opencv3</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">操作系统</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">数字图像处理</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据结构</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">小贴士</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">数学</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">模型转换</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        <a  class=""
+           href="/2019/12/26/hello-world/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hello World">Hello World</span>
+            <span class="post-date" title="2019-12-26 14:04:22">2019/12/26</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/26/test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="test">test</span>
+            <span class="post-date" title="2019-12-26 15:37:04">2019/12/26</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/06/28/Alexnet/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="Alexnet">Alexnet</span>
+            <span class="post-date" title="2019-06-28 18:32:23">2019/06/28</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(2) 面向对象编程">C++教程(2) 面向对象编程</span>
+            <span class="post-date" title="2018-07-05 15:37:22">2018/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(4) C++标准库">C++教程(4) C++标准库</span>
+            <span class="post-date" title="2018-07-09 15:45:11">2018/07/09</span>
+        </a>
+        
+        <a  class="目标检测 "
+           href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/"
+           data-tag="深度学习"
+           data-author="" >
+            <span class="post-title" title="(1)Faster R-CNN implemented by Keras">(1)Faster R-CNN implemented by Keras</span>
+            <span class="post-date" title="2019-07-04 18:44:35">2019/07/04</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(1) 基础">C++教程(1) 基础</span>
+            <span class="post-date" title="2018-07-05 15:30:07">2018/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2018/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(3) 模板和泛型编程">C++教程(3) 模板和泛型编程</span>
+            <span class="post-date" title="2018-07-06 17:40:47">2018/07/06</span>
+        </a>
+        
+        <a  class="opencv samples "
+           href="/2018/07/12/blob%20detect/"
+           data-tag="opencv samples"
+           data-author="" >
+            <span class="post-title" title="blob detect">blob detect</span>
+            <span class="post-date" title="2018-07-12 21:40:22">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/"
+           data-tag="make"
+           data-author="" >
+            <span class="post-title" title="cmake教程">cmake教程</span>
+            <span class="post-date" title="2019-08-07 11:38:10">2019/08/07</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/07/03/VGG16Net/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="VGG16Net">VGG16Net</span>
+            <span class="post-date" title="2019-07-03 21:14:18">2019/07/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/18/elasticsearch%20%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="elasticsearch 教程">elasticsearch 教程</span>
+            <span class="post-date" title="2019-12-18 10:28:11">2019/12/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2019/11/20/hadoop%20spark/"
+           data-tag="hadoop"
+           data-author="" >
+            <span class="post-title" title="hadoop spark">hadoop spark</span>
+            <span class="post-date" title="2019-11-20 21:14:18">2019/11/20</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="android使用opencv native方式环境搭建">android使用opencv native方式环境搭建</span>
+            <span class="post-date" title="2019-11-01 14:05:23">2019/11/01</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(1)%20Two-Sum/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(1) Two-Sum">leetcode(1) Two-Sum</span>
+            <span class="post-date" title="2018-07-06 10:41:12">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/"
+           data-tag="JNA"
+           data-author="" >
+            <span class="post-title" title="编译C/C++为dll供Java调用">编译C/C++为dll供Java调用</span>
+            <span class="post-date" title="2019-03-10 18:34:24">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(11) ReverseWordsInAStringIII">leetcode(11) ReverseWordsInAStringIII</span>
+            <span class="post-date" title="2018-07-26 09:09:35">2018/07/26</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker入门指南">Docker入门指南</span>
+            <span class="post-date" title="2018-06-13 15:30:33">2018/06/13</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(3) Jewels and Stones">leetcode(3) Jewels and Stones</span>
+            <span class="post-date" title="2018-07-08 00:54:31">2018/07/08</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(4)  uniqueMorseCodeWords">leetcode(4)  uniqueMorseCodeWords</span>
+            <span class="post-date" title="2018-07-10 08:36:27">2018/07/10</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo搭建GitHub博客">hexo搭建GitHub博客</span>
+            <span class="post-date" title="2019-03-10 15:40:00">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(6)  JudgeRouteCircle">leetcode(6)  JudgeRouteCircle</span>
+            <span class="post-date" title="2018-07-11 20:24:07">2018/07/11</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(10)%20Binary%20Gap/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(10) Binary Gap">leetcode(10) Binary Gap</span>
+            <span class="post-date" title="2018-07-18 10:20:35">2018/07/18</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(8) SelfDividingNumbers">leetcode(8) SelfDividingNumbers</span>
+            <span class="post-date" title="2018-07-16 17:30:10">2018/07/16</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(2)%20Reverse%20Integer/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(2) Reverse Integer">leetcode(2) Reverse Integer</span>
+            <span class="post-date" title="2018-07-06 14:28:17">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="jdk"
+           data-author="" >
+            <span class="post-title" title="linux下jdk安装">linux下jdk安装</span>
+            <span class="post-date" title="2019-03-06 14:02:29">2019/03/06</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(5)%20%20HammingDistance/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(5)  HammingDistance">leetcode(5)  HammingDistance</span>
+            <span class="post-date" title="2018-07-10 10:11:18">2018/07/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(7) PeakIndexInMountainArray">leetcode(7) PeakIndexInMountainArray</span>
+            <span class="post-date" title="2018-07-12 09:21:44">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/"
+           data-tag="mxnet"
+           data-author="" >
+            <span class="post-title" title="mxnet Windows编译安装CPU版 c++ api">mxnet Windows编译安装CPU版 c++ api</span>
+            <span class="post-date" title="2019-09-19 14:05:23">2019/09/19</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/"
+           data-tag="nginx"
+           data-author="" >
+            <span class="post-title" title="nginx-rtmp流媒体服务">nginx-rtmp流媒体服务</span>
+            <span class="post-date" title="2019-06-26 11:38:40">2019/06/26</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(9) Array Partition I">leetcode(9) Array Partition I</span>
+            <span class="post-date" title="2018-07-18 08:49:13">2018/07/18</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="linux下mysql的安装">linux下mysql的安装</span>
+            <span class="post-date" title="2019-03-06 16:00:26">2019/03/06</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(2) 图像载入-显示-输出">opencv3(2) 图像载入-显示-输出</span>
+            <span class="post-date" title="2018-07-10 14:24:06">2018/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(3) opencv数据类型">opencv3(3) opencv数据类型</span>
+            <span class="post-date" title="2018-07-10 14:44:51">2018/07/10</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(1) 概述">操作系统(1) 概述</span>
+            <span class="post-date" title="2019-06-06 14:05:23">2019/06/06</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(2) 进程管理">操作系统(2) 进程管理</span>
+            <span class="post-date" title="2019-06-07 20:50:53">2019/06/07</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(1-1)%20vs2015%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-1) vs2015配置opencv3开发环境">opencv3(1-1) vs2015配置opencv3开发环境</span>
+            <span class="post-date" title="2018-07-10 14:02:45">2018/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-2) linux配置opencv3开发环境">opencv3(1-2) linux配置opencv3开发环境</span>
+            <span class="post-date" title="2019-03-11 23:00:35">2019/03/11</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(2) 灰度变换与空间滤波">数字图像处理(2) 灰度变换与空间滤波</span>
+            <span class="post-date" title="2018-07-20 14:08:43">2018/07/20</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(1) 基本概念">数据结构(1) 基本概念</span>
+            <span class="post-date" title="2019-05-29 19:25:01">2019/05/29</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/15/%E5%B0%8F%E8%B4%B4%E5%A3%AB/"
+           data-tag="小贴士"
+           data-author="" >
+            <span class="post-title" title="小贴士">小贴士</span>
+            <span class="post-date" title="2019-03-15 16:06:23">2019/03/15</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(3) 内存管理">操作系统(3) 内存管理</span>
+            <span class="post-date" title="2019-06-30 15:42:06">2019/06/30</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(4) 树与二叉树">数据结构(4) 树与二叉树</span>
+            <span class="post-date" title="2019-06-17 15:11:45">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(6) 查找">数据结构(6) 查找</span>
+            <span class="post-date" title="2019-07-16 14:11:05">2019/07/16</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(2) 线性表">数据结构(2) 线性表</span>
+            <span class="post-date" title="2019-05-30 15:16:30">2019/05/30</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(1) 图像基础">数字图像处理(1) 图像基础</span>
+            <span class="post-date" title="2018-07-13 09:41:32">2018/07/13</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="线性代数">线性代数</span>
+            <span class="post-date" title="2019-04-26 09:17:54">2019/04/26</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="高等数学">高等数学</span>
+            <span class="post-date" title="2019-06-17 20:50:31">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(3) 栈和队列">数据结构(3) 栈和队列</span>
+            <span class="post-date" title="2019-06-10 14:28:59">2019/06/10</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(7) 排序">数据结构(7) 排序</span>
+            <span class="post-date" title="2019-07-19 14:09:11">2019/07/19</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
+           data-tag="模型转换"
+           data-author="" >
+            <span class="post-title" title="深度学习模型转换">深度学习模型转换</span>
+            <span class="post-date" title="2019-10-25 21:14:18">2019/10/25</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-高等数学" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">高等数学</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            
+                <a  data-rel="数学">数学</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            
+            <a class="color3">数学</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+        创建时间:<time class="date" title='更新时间: 2019-08-08 16:16:04'>2019-06-17 20:50</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读:<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#极限"><span class="toc-text">极限</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#导数与微分"><span class="toc-text">导数与微分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一元函数微分学"><span class="toc-text">一元函数微分学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不定积分"><span class="toc-text">不定积分</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="极限"><a href="#极限" class="headerlink" title="极限"></a>极限</h1><p><strong>定义</strong></p>
+<ol>
+<li><p>数列极限定义：若对任意的$\varepsilon &gt;0$,存在$N&gt;0$,当$n&gt;N$时,有$|a_n - A|&lt;\varepsilon $,称$A$为数列${a_n}$的极限，</p>
+<p>记作$\lim{a_n}=A(n\rightarrow \infty)$</p>
+</li>
+<li><p>函数极限：</p>
+<ul>
+<li><p>自变量趋于有限值</p>
+<p>若对任意的$\varepsilon &gt;0$,存在$\delta &gt;0$,当$0&lt;|x-a|&lt;\delta$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x\rightarrow a$时的极限，</p>
+<p>记作$\lim(x)=A(x\rightarrow a)$</p>
+<p>若对任意的$\varepsilon &gt;0$,存在$\delta &gt;0$,当$x\in (a-\delta,a)$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x= a$处的左极限，</p>
+<p>记作$f(a-0)=A$</p>
+<p>若对任意的$\varepsilon &gt;0$,存在$\delta &gt;0$,当$x\in (a,a+\delta)$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x=a$时的右极限，</p>
+<p>记作$f(a+0)=A$</p>
+</li>
+<li><p>自变量趋于无穷大</p>
+<p>若对任意的$\varepsilon &gt;0$,存在$ X&gt;0$,当$x&gt;X$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x\rightarrow +\infty$时的极限，</p>
+<p>记作$\lim(x)=A(x\rightarrow +\infty)$</p>
+<p>若对任意的$\varepsilon &gt;0$,存在$ X&gt;0$,当$x&gt;-X$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x\rightarrow -\infty$时的极限，</p>
+<p>记作$\lim(x)=A(x\rightarrow -\infty)$</p>
+<p>若对任意的$\varepsilon &gt;0$,存在$ X&gt;0$,当$|x|&gt;X$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x\rightarrow \infty$时的极限，</p>
+<p>记作$\lim(x)=A(x\rightarrow \infty)$</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Note</strong></p>
+<ul>
+<li>$x \rightarrow a:\left{\begin{matrix}<br>x \neq a\x \rightarrow a^-,x \rightarrow a^+<br>\end{matrix}\right.$</li>
+<li>函数在一点处的极限与函数在该点处的定义无关</li>
+<li>$\lim(x)(x\rightarrow a)$存在的充分必要条件是$f(a+0),f(a-0)$存在且相等</li>
+<li>分段函数在分界点的极限，含有绝对值的函数，$f(x)$含有$a^{\frac{\varphi (x)}{x-b}}$或$a^{\frac{\varphi (x)}{b-x}}$等求极限时需考虑左右极限</li>
+<li><strong>以零为极限的函数称为无穷小</strong></li>
+</ul>
+<p><strong>极限性质</strong></p>
+<ol>
+<li><p>极限存在必唯一</p>
+</li>
+<li><p>设$\lim(x)=A &gt;0(&lt;0)(x\rightarrow a)$,则存在$\delta &gt;0$,当$0&lt;|x-a|&lt;\delta$时,$f(x)&gt;0(&lt;0)$</p>
+<p>函数极限正，则去心邻域正；函数极限负，则去心邻域负</p>
+</li>
+<li><p>设$f(x)\geqslant 0(\leqslant 0),且\lim f(x)=A$,则$A\geqslant 0(\leqslant 0)$</p>
+<p>函数不负，极限不负；函数不正，极限不正</p>
+</li>
+<li><p>设$f(x)\geqslant g(x),且\lim f(x)=A,\lim g(x)=B$,则$A\geqslant $B</p>
+</li>
+<li><p>数列收敛(存在极限),则数列一定有界，反之不对(如数列 $(1,-1,1,-1)$有界但不收敛)</p>
+</li>
+<li><p>若$\lim\frac{f(x)}{g(x)}$存在且$\lim g(x)=0$，则$\lim f(x)=0$</p>
+</li>
+<li><p>若$\lim\frac{f(x)}{g(x)}=A \neq 0$,若$\lim g(x)=0$，则$\lim f(x)=0$</p>
+</li>
+</ol>
+<p><strong>极限存在准则</strong></p>
+<ol>
+<li><p>夹逼定理</p>
+<ol>
+<li>设$\left{\begin{matrix}<br>a_n \leqslant b_n \leqslant c_n\<br>\lim a_n = \lim c_n = A(n \to \infty )<br>\end{matrix}\right.<br>则 \lim b_n = A$</li>
+<li>设$\left{\begin{matrix}<br>f(x) \leqslant g(x) \leqslant h(x)\<br>\lim f(x) = \lim h(x) = A<br>\end{matrix}\right.<br>则 \lim g(x) = A$</li>
+</ol>
+<p>​    一般地，$\lim (a^n+b^n+c^n)^ \frac{1}{n} =max(a,b,c)$</p>
+</li>
+<li><p>`<strong>单调有界数列必有极限</strong></p>
+</li>
+</ol>
+<p><strong>常用等价无穷小</strong>($x \to 0$)</p>
+<p>$x \sim sinx \sim tanx \sim arcsinx \sim arctanx \sim ln(1+x) \sim e^x -1$</p>
+<p>$1-cosx \sim \frac{x^2}{2},1-cos^ax \sim \frac{a}{2}x^2$</p>
+<p>$(1+x)^a - 1 \sim ax$</p>
+<p><strong>常见麦克劳林公式</strong>($x \to 0 $)</p>
+<p>$e^x = 1+x+\frac{x^2}{2!}+\dots+\frac{x^n}{n!}+o(x^n)$</p>
+<p>$sinx=x-\frac{x^3}{3!}+\frac{x^5}{5!}+\dots+\frac{(-1)^n}{(2n+1)!}x^{2n+1}+o(x^{2n+1})$</p>
+<p>$cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}+\dots+\frac{(-1)^n}{(2n)!}x^{2n}+o(x^{2n})$</p>
+<p>$\frac{1}{1-x}=1+x+\dots+x^n+o(x^n)$</p>
+<p>$\frac{1}{1+x}=1-x+x^2+\dots+(-1)^nx^n+o(x^n)$</p>
+<p>$ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+\frac{(-1)^{n-1}}{n}x^n+o(x^n)$</p>
+<p>$(1+x)^a = 1+ax+\frac{a(a-1)}{2!}x^2+\dots+\frac{a(a-1)\dots(a-n+1)}{n!}x^n+o(x^n)$</p>
+<p><strong>两个重要极限</strong></p>
+<p>$\lim \frac{sin\Delta}{\Delta}=1;\lim(1+\Delta)^{\frac{1}{\Delta}}=e (\Delta \to 0)$</p>
+<p><strong>连续与间断</strong></p>
+<p>1.$f(x)$在$x=a$处连续的定义：若$\lim f(x)(x \to a)=f(a)$，称$f(x)$在$x=a$处连续</p>
+<p>($f(x)$在$x=a$处连续的充分必要条件是$f(a-0)=f(a+0)=f(a)$）</p>
+<p>2.$f(x)$在$[a,b]$上连续的定义：(1)$f(x)$在$(a,b)$内点点连续；(2)$f(a-0)=f(a+0)=f(a)$，称$f(x)$在$[a,b]$上连续</p>
+<p>3.间断点</p>
+<p>设$f(x)$在$x=a$处间断，则</p>
+<p>(1)若$f(a-0),f(a+0)$都存在，称$x=a$为$f(x)$的第一类间断点，其中</p>
+<p>​    $f(a-0)=f(a+0)\neq f(a)$，称$x=a$为可去间断点</p>
+<p>​    $f(a-0) \neq f(a+0)$，称$x=a$为跳跃间断点</p>
+<p>(2)若$f(a-0),f(a+0)$其中一个不存在，称$x=a$为$f(x)$的第二类间断点</p>
+<p><strong>闭区间连续函数的性质</strong></p>
+<ul>
+<li>最值定理：若$f(x) \in C[a,b],$则$f(x)$在$[a,b]$上一定存在最小值$m$和最大值$M$</li>
+<li>有界定理：若$f(x) \in C[a,b],$则$f(x)$在$[a,b]$上一定有界</li>
+<li>零点定理：若$f(x) \in C[a,b],$且$f(a)f(b)&lt;0$,则存在$\xi \in(a,b)$,使得$f(\xi)=0$</li>
+<li>介值定理：若$f(x) \in C[a,b],$对于任意的$\eta \in [m,M]$,存在$\xi \in[a,b]$,使得$f(\xi)=\eta$</li>
+</ul>
+<p><strong>不定型极限的计算</strong></p>
+<ol>
+<li>$\frac{0}{0}$型:等价无穷小替代、洛必达法则、麦克劳林公式</li>
+<li>$u(x)^{v(x)} \to e^{v(x)ln(u(x))}$</li>
+<li>$x,sinx,tanx,arcsinx,arctanx$中任意两个函数之差为三阶无穷小</li>
+<li>$1^\infty$:凑$(1+\Delta)^{\frac{1}{\Delta}}$</li>
+<li>$\Delta-1:e^\varphi - 1 \sim \varphi,(1+\varphi)^a-1 \sim a\varphi$</li>
+</ol>
+<p><strong>Note</strong></p>
+<ol>
+<li>当 $0&lt;x&lt;\frac{\pi}{2}$ 时，$sinx&lt;x&lt;tanx$</li>
+<li>当$x&gt;0$ 时，$\frac{x}{1+x}&lt;ln(1+x)&lt;x$</li>
+</ol>
+<h1 id="导数与微分"><a href="#导数与微分" class="headerlink" title="导数与微分"></a>导数与微分</h1><p><strong>导数定义</strong><br>$$<br>f^{‘}(x_0)=\lim\frac{f(x)-f(x_0)}{x-x_0}(x\to x_0)\<br>记\lim\frac{\Delta y}{\Delta x}=\lim\frac{f(x)-f(x_0)}{x-x_0}=f^{‘}<em>{\</em>}(x_0)(x\to x^{-}<em>0),称f^{‘}</em>{_}(x_0)为y=f(x)在x=x_0的左导数\<br>记\lim\frac{\Delta y}{\Delta x}=\lim\frac{f(x)-f(x_0)}{x-x_0}=f^{‘}<em>{+}(x_0)(x\to x^{+}_0),称f^{‘}</em>{+}(x_0)为y=f(x)在x=x_0的右导数\<br>y=f(x)在x=x_0可导的充分必要条件是f^{‘}<em>{\</em>}(x_0)=f^{‘}_{+}(x_0)存在且相等<br>$$</p>
+<p><strong>性质</strong></p>
+<p>设$f(x)$连续，若$\lim\frac{f(x)-b}{x-a}=A$,则$f(a)=b,f’(a)=A$</p>
+<p>$f(x)$在$x=a$处可导$\to f(x)$在$x=a$处连续</p>
+<p>若$f(x)$为可导的偶函数，则$f’(x)$为奇函数，且$f’(0)=0$；若$f(x)$为可导的奇函数，则$f’(x)$为偶函数；</p>
+<p>设$f(x)$在$x=a$处可导，$|f(x)|$在$x=a$处的可导性如下：</p>
+<ul>
+<li>$f(a)\neq 0$,则$|f(x)|$在$x=a$处可导</li>
+<li>$f(a) =  0$且$f’(a)=0$时,$|f(x)|$在$x=a$处可导；</li>
+</ul>
+<p><strong>求导公式</strong></p>
+<p>$tan’x=sec^2x$</p>
+<p>$cot’x=-csc^2x$</p>
+<p>$sec’x=secxtanx$</p>
+<p>$csc’x=-csccotx$</p>
+<p>$arcsin’x=\frac{1}{\sqrt{1-x^2}}$</p>
+<p>$arccos’x=-\frac{1}{\sqrt{1-x^2}}$</p>
+<p>$arctan’x=\frac{1}{1+x^2}$</p>
+<p>$arccot’x=-\frac{1}{1+x^2}$</p>
+<p>$(\log{_a}{x})’=\frac{1}{xlna}$</p>
+<p>$(a^x)=a^xlna$</p>
+<p><strong>参数方程确定的函数求导</strong></p>
+<p>设$y=y(x)$由$\left{\begin{matrix}<br>x=\varphi(t) \<br>y=\psi(t)<br>\end{matrix}\right.$确定的函数，其中$\varphi(t) ,\psi(t)$可导且$\varphi(x)\neq0$</p>
+<p>$\frac{dy}{dx}= \frac{dy/dt}{dx/dt}=\frac{\psi’(t)}{\varphi’(t)}$</p>
+<p>若二阶可导，$\frac{d^2y}{dx^2}=\frac{\psi’’(t)\varphi’(t)-\psi’(t)\varphi’’(t)}{\varphi’^3(t)}$</p>
+<p><strong>可微</strong></p>
+<p>$\Delta y=f(x_0+\Delta x)-f(x_0)$,若$\Delta y=A\Delta x+o(\Delta x)$,称$y=f(x)$在$x=x_0$处可微，其中$A\Delta x$为$y=f(x)$在$x=x_0$处的微分，记作$dy|<em>{x=x_0}=A\Delta x $或$dy|</em>{x=x_0}=Adx $</p>
+<ul>
+<li>$y=f(x)$在$x=x_0$处可导与可微等价</li>
+<li>$A = f’(x)$</li>
+<li>设$y=f(x)$处处可微,则$dy=df(x)=f’(x)dx$为$y=f(x)$的微分</li>
+</ul>
+<h1 id="一元函数微分学"><a href="#一元函数微分学" class="headerlink" title="一元函数微分学"></a>一元函数微分学</h1><p><strong>中值定理</strong></p>
+<ol>
+<li><p>罗尔中值定理</p>
+<p>设$f(x) \in C[a,b]$,在$(a,b)$内可导，$f(a)=f(b)$,则存在 $\xi \in(a,b)$,使得$f’(\xi)=0$</p>
+</li>
+<li><p>拉格朗日中值定理</p>
+<p>设$f(x) \in C[a,b]$,在$(a,b)$内可导，则存在 $\xi \in(a,b)$,使得$f’(\xi)=\frac{f(b)-f(a)}{b-a}$</p>
+<p>等价形式：$f(b)-f(a)=f’(\xi)(b-a),f(b)-f(a)=f’<a href="b-a">a+(b-a)\theta</a>(0&lt;\theta&lt;1)$</p>
+</li>
+<li><p>柯西中值定理</p>
+<p>设$f(x) ，g(x)\in C[a,b]$,在$(a,b)$内可导，且$g’(x)\neq0(a&lt;x&lt;b)$,则存在 $\xi \in(a,b)$,使得$\frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f’(\xi)}{g’(\xi)}$</p>
+</li>
+<li><p>泰勒中值定理</p>
+<p>设$f(x)$在$x=x_0$的领域内$n+1$阶可导，则<br>$$<br>f(x)=f(x_0)+f’(x_0)(x-x_0)+\dots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}<br>$$<br>当$x_o=0$时，为麦克劳林公式</p>
+</li>
+<li><p>导数零点定理</p>
+<p>设$f(x)$在$[a,b]$上连续，在$(a,b)$内可导，且$f’<em>{+}(a)f’</em>{-}(b)&lt;0$,则存在 $\xi \in(a,b)$,使得$f’(\xi)=0$</p>
+</li>
+</ol>
+<p><strong>极值点判别步骤及方法</strong></p>
+<ol>
+<li>若存在$\delta&gt;0$,当$x\in(x_0-\delta,x_0)$时有$f’(x)&gt;0$,当$x\in(x_0,x_0+\delta)$时有$f’(x)&lt;0$,则$x=x_0$为$f(x)$的极大值点；当$x\in(x_0-\delta,x_0)$时有$f’(x)&lt;0$,当$x\in(x_0,x_0+\delta)$时有$f’(x)&gt;0$,则$x=x_0$为$f(x)$的极小值点；</li>
+<li>设函数$f(x)$在$x=x_0$处二阶可导，且$f’(x_0)=0$,则<ul>
+<li>当$f’’(x_0)&gt;0$ 时，$x=x_0$为$f(x)$的极小值点</li>
+<li>当$f’’(x_0)&lt;0$ 时，$x=x_0$为$f(x)$的极大值点</li>
+</ul>
+</li>
+<li>设$f(x)$具有$n$阶导数($n$为偶数)，且$f^{k}(x_0)=0(k=1,2,\dots,n-1)$,则<ul>
+<li>当$f^{n}(x_0)&gt;0$ 时，$x=x_0$为$f(x)$的极小值点</li>
+<li>当$f^{n}(x_0)&lt;0$ 时，$x=x_0$为$f(x)$的极大值点</li>
+</ul>
+</li>
+</ol>
+<p><strong>凹凸性和拐点</strong></p>
+<p>设$y=f(x)$定义于区间$I$上，若对任意的$x_1,x_2\in I$ 且$x_1\neq x_2$ 有$f(\frac{x_1+x_2}{2})&gt;\frac{f(x_1)+f(x_2)}{2}$,称$f(x)$为凸函数</p>
+<p>设$y=f(x)$定义于区间$I$上，若对任意的$x_1,x_2\in I$ 且$x_1\neq x_2$ 有$f(\frac{x_1+x_2}{2})&lt;\frac{f(x_1)+f(x_2)}{2}$,称$f(x)$为凹函数</p>
+<p>设$y=f(x)$定义于区间$I$上，若$f(x)$在$x=x_0$两侧的凹凸性不同，称$(x_0,f(x_0))$为曲线$y=f(x)$的拐点</p>
+<p>凹凸性和拐点判别</p>
+<ol>
+<li>若当$x\in I$ 时，$f’’(x)&gt;0$(个别点除外)，则$y=f(x)$在$I$内为凹函数；若当$x\in I$ 时，$f’’(x)&lt;0$(个别点除外)，则$y=f(x)$在$I$内为凸函数；</li>
+<li>设$f(x)$三阶可导，且$f’’(x_0)=0$,但$f’’’(x_0)\neq0$,则$(x_0,f(x_0))$为曲线$y=f(x)$的拐点</li>
+</ol>
+<p><strong>渐近线</strong></p>
+<ol>
+<li><p>水平渐近线</p>
+<p>若$\lim f(x)=A(x \to\infty)$,称$y=A$为$L$:$y=f(x)$的水平渐近线</p>
+</li>
+<li><p>铅直渐近线</p>
+<p>若$\lim f(x)=\infty(x \to a)$,称$x=a$为$L$:$y=f(x)$的铅直渐近线</p>
+</li>
+<li><p>斜渐近线</p>
+<p>若$\lim \frac{f(x)}{x}=a(\neq0,\neq\infty,x\to\infty),\lim[f(x)-ax]=b(x\to\infty)$,称$y=ax+b$为$L$:$y=f(x)$的斜渐近线</p>
+</li>
+</ol>
+<p><strong>弧微分</strong></p>
+<p>$(ds)^2=(dx)^2+(dy)^2$</p>
+<ol>
+<li>设$L:y=f(x)$,则$ds=\sqrt{1+f’^2(x)}dx$</li>
+<li>设$L：\left{\begin{matrix}<br>x=\varphi(t) \<br>y=\psi(t)<br>\end{matrix}\right.$,则$ds=\sqrt{\varphi’^2(t)+\psi’^2(t)}dt$</li>
+<li>设$L：r=r(\theta)$,则$ds=\sqrt{r^2(\theta)+r’^2(\theta)}d\theta$</li>
+</ol>
+<p><strong>曲率与曲率半径</strong></p>
+<p>曲率计算公式：$k=\frac{|y’’|}{(1+y’^2)^{\frac{3}{2}}}$</p>
+<p>曲率半径计算公式：$R=\frac{1}{k}$</p>
+<p><strong>中值定理证明</strong></p>
+<ol>
+<li><p>证明$f’(\xi)+f^2(\xi)=0$</p>
+<p>构造辅助函数，</p>
+<p>$f’(\xi)+f^2(\xi)=0 \to f’(x)+f^2(x)=0 \to \frac{f’(x)}{f(x)}+f(x)=0 \to [lnf(x)]’+[\int_{0}^{x}f(t)dt]’=0或[lnf(x)]’+[\ln e^{\int_{0}^{x}f(t)dt}]’=0$</p>
+<p>辅助函数$\varphi=f(x)e^{\int_{0}^{x}f(t)dt}$</p>
+</li>
+<li><p>证明$f’(\xi)+2f(\xi)=0$</p>
+<p>构造辅助函数</p>
+<p>$f’(\xi)+2f(\xi)=0 \to f’(x)+2f(x)=0 \to \frac{f’(x)}{f(x)}+2=0 \to [lnf(x)]’+[2x]’=0或[lnf(x)]’+[\ln e^{2x}]’=0$</p>
+<p>辅助函数$\varphi=e^{2x}f(x)$</p>
+</li>
+<li><p>证明$f’(\xi)-f(\xi)+2\xi=2$</p>
+<p>构造辅助函数</p>
+<p>$f’(\xi)-f(\xi)+2\xi=2 \to f’(x)-f(x)+2x=2 \to [f(x)-2x]’-[f(x)-2x]$</p>
+<p>辅助函数$\varphi=e^{-x}[f(x)-2x]$</p>
+</li>
+<li><p>证明$f’’(\xi)-f(\xi)=0$</p>
+<p>构造辅助函数</p>
+<p>$f’’(\xi)-f(\xi)=0 \to f’’(x)-f(x)=0 \to f’’(x)-f’(x)+f’(x)-f(x)=0 \to [f’(x)-f(x)]’+[f’(x)-f(x)]$</p>
+<p>辅助函数$\varphi=e^{-x}[f’(x)+f(x)]$</p>
+</li>
+<li><p>证明$f’’(\xi)+f’(\xi)=2$</p>
+<p>构造辅助函数</p>
+<p>$f’’(\xi)+f’(\xi)=2 \to f’’(x)+f’(x)=2 \to [f’(x)-2]’+[f’(x)-2]$</p>
+<p>辅助函数$\varphi=e^{x}[f’(x)-2]$</p>
+</li>
+<li><p>证明式子中同时含有$\xi,\eta$</p>
+<p>使用两次拉格朗日中值定理</p>
+</li>
+<li><p>证明式子中含有$a,b,\xi$</p>
+<p>拆分、移项，再使用拉个格朗日或柯西中值定理</p>
+</li>
+</ol>
+<h1 id="不定积分"><a href="#不定积分" class="headerlink" title="不定积分"></a>不定积分</h1><p>定义：设$F(x)$为$f(x)$的一个原函数，则$f(x)$的所有原函数$F(x)+C$称为$f(x)$的不定积分，记作<br>$$<br>\int f(x)dx=F(x)+C<br>$$<br>基本性质：</p>
+<ol>
+<li>$\int[f(x)\pm g(x)]dx=\int f(x)dx \pm \int g(x)dx $</li>
+<li>$\int kf(x)dx=k\int f(x)dx$</li>
+</ol>
+<p><strong>不定积分基本公式</strong></p>
+<p>$\int kdx=kx+C$</p>
+<p>$\int x^adx=\frac{1}{a+1}x^{a+1}+C$</p>
+<p>$\int a^xdx=\frac{a^x}{lna}+C$</p>
+<p>$\int \frac{1}{x}dx=ln|x|+C$</p>
+<p>$\int e^xdx=e^x+C$</p>
+<p>$\int sinxdx=-cosx+C$</p>
+<p>$\int cosxdx=sinx+C$</p>
+<p>$\int tanxdx=-ln|cosx|+C$</p>
+<p>$\int cotxdx=ln|sinx|+C$</p>
+<p>$\int secxdx=ln|secx+tanx|+C$</p>
+<p>$\int cscxdx=ln|cscx-cotx|+C$</p>
+<p>$\int sec^2xdx=tanx+C$</p>
+<p>$\int csc^2dx=-cotx+C$</p>
+<p>$\int secxtanxdx=secx+C$</p>
+<p>$\int cscxcotxdx=-cscx+C$</p>
+<p>$\int \frac{1}{\sqrt{a^2-x^2}} dx=arcsin \frac{x}{a}+C$</p>
+<p>$\int \frac{1}{\sqrt{x^2+a^2}} dx=ln(x+\sqrt{x^2+a^2})+C$</p>
+<p>$\int \frac{1}{\sqrt{x^2-a^2}} dx=ln|x+\sqrt{x^2-a^2}|+C$</p>
+<p>$\int \frac{1}{x^2+a^2}dx=\frac{1}{a}arctan\frac{x}{a}+C$</p>
+<p>$\int \frac{1}{x^2-a^2}dx=\frac{1}{2a}ln\frac{x-a}{x+a}+C$</p>
+<p>$\int \sqrt{a^2-x^2}dx=\frac{a^2}{2}arcsin\frac{x}{a}+\frac{x}{2}\sqrt{a^2-x^2}+C$</p>
+<p><strong>不定积分积分法</strong></p>
+<ol>
+<li><p>换元积分法</p>
+<p>1）$\int f[\varphi(x)]\varphi’(x)dx=\int f[\varphi(x)]d\varphi(x)\overset{u=\varphi(x)}{=}\int f(u)du=F(u)+C=F[\varphi(x)]+C$</p>
+<p>常用公式</p>
+<p>$\int f(ax^n+b)x^{n-1}=\frac{1}{na}\int f(ax^n+b)d(ax^n+b)$</p>
+<p>$\int \frac{f{\sqrt{x}}}{2\sqrt{x}}dx=\int f(\sqrt{x})d(\sqrt{x})$</p>
+<p>$\int \frac{1}{x^2}f(\frac{1}{x})dx=-\int f(\frac{1}{x})d(\frac{1}{x})$</p>
+<p>$\int e^xf(e^x)dx=\int f(e^x)d(e^x)$</p>
+<p>$\int \frac{f(lnx)}{x}dx=\int f(lnx)d(lnx)$</p>
+<p>$\int (1+lnx)f(xlnx)dx=\int f(xlnx)d(xlnx)$</p>
+<p>2）$\int f(x)dx \overset{x=\varphi(x)}{=}\int f[\varphi(x)]\varphi’(x)dx=\int g(t)dt=G(t)+C=G[\varphi^{-1}(x)]+C$</p>
+<p>常用情形：</p>
+<p>将被积函数从无理函数转化为有理函数</p>
+<p>被积函数含平方和或平方差</p>
+<p>$a^2-x^2 \to $ 令$x=asint$,则$a^2-x^2=a^2cos^2t$</p>
+<p>$x^2+a^2 \to $ 令$x=atant$,则$x^2+a^2=a^2sec^2t$</p>
+<p>$x^2-a^2 \to $ 令$x=asect$,则$x^2-a^2=a^2tan^2t$</p>
+<p>倒数变换 令$x=\frac{1}{t}$</p>
+</li>
+<li><p>分部积分法</p>
+<p>$\int udv=uv-\int vdu$</p>
+<p>常用情形</p>
+<p>$\int x^ne^xdx,\int x^nlnxdx$</p>
+<p>被积函数为幂函数与三角函数之积</p>
+<p>被积函数为幂函数与反三角函数之积</p>
+<p>被积函数为指数函数与三角函数之积</p>
+<p>被积函数为$sec^nx,csc^nx$($n$为奇数)</p>
+</li>
+</ol>
+<hr>
+<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎指出任何有错误或不够清晰的表达,任何疑问邮件至 jiaopaner@163.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+<div class="article_copyright">
+    <p><span class="copy-title">文章标题:</span>高等数学</p>
+    
+    <p><span class="copy-title">本文作者:</span><a  title="JiaoPan">JiaoPan</a></p>
+    <p><span class="copy-title">发布时间:</span>2019-06-17, 20:50:31</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-08, 16:16:04</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" title="高等数学">https://jiaopaner.github.io/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/</a>
+    <p>
+        <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+    </p>
+</div>
+
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#神经网络模型','#C++','#深度学习','#opencv samples','#make','#hadoop','#opencv','#leetcode','#JNA','#docker','#hexo','#jdk','#mxnet','#nginx','#mysql','#opencv3','#操作系统','#数字图像处理','#数据结构','#小贴士','#数学','#模型转换',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
