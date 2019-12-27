@@ -2,753 +2,1041 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-
-  
   <title>今天的风儿甚是喧嚣 JiaoPan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="今天的风儿甚是喧嚣 JiaoPan">
-<meta property="og:url" content="https://jiaopaner.github.io/page/5/index.html">
+  <meta name="keywords" content="">
+  <meta name="description" content="今天的风儿甚是喧嚣 JiaoPan">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="https://jiaopaner.github.io/categories/index.html">
 <meta property="og:site_name" content="今天的风儿甚是喧嚣 JiaoPan">
+<meta property="article:published_time" content="2018-07-05T00:53:45.000Z">
+<meta property="article:modified_time" content="2018-07-05T02:17:50.000Z">
 <meta property="article:author" content="JiaoPan">
 <meta property="article:tag" content="deep learning|computer vision">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="今天的风儿甚是喧嚣 JiaoPan" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
 
 <meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">今天的风儿甚是喧嚣 JiaoPan</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jiaopaner.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-leetcode(7) PeakIndexInMountainArray" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/" class="article-date">
-  <time datetime="2018-07-12T01:21:44.000Z" itemprop="datePublished">2018-07-12</time>
+<aside class="nav mobile">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
+<div class="author">
+    <span>JiaoPan</span>
+</div>
 
-  </div>
-  <div class="article-inner">
+<div class="icon">
     
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/">leetcode(7) PeakIndexInMountainArray</a>
-    </h1>
-  
-
-      </header>
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #852<br>Let’s call an array A a mountain if the following properties hold:</p>
+        
+        <a title="github" href="https://github.com/jiaopaner" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jiaopan/posts" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="email" href="mailto:jiaopaner@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+</div>
+
+
+
+
 <ul>
-<li>A.length &gt;= 3</li>
-<li>There exists some 0 &lt; i &lt; A.length - 1 such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1]<br>Given an array that is definitely a mountain, return any i such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1].</li>
+    <li><div class="all active">全部文章<small>(49)</small></div></li>
+    
+        
+            
+            <li><div data-rel="深度学习">深度学习<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="C++">C++<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="目标检测">目标检测<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记">笔记<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="大数据">大数据<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="leetcode">leetcode<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv3">opencv3<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="操作系统">操作系统<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数字图像处理">数字图像处理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数学">数学<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Example <span class="number">1</span>:</span><br><span class="line">Input: [<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">Output: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">Example <span class="number">2</span>:</span><br><span class="line">Input: [<span class="number">0</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>]</span><br><span class="line">Output: <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>Note:<br>3 &lt;= A.length &lt;= 10000<br>0 &lt;= A[i] &lt;= 10^6<br>A is a mountain, as defined above.</p>
-<p><strong>解法一:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> start = (A.size() - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span> (start != <span class="number">0</span> || start != A.size() - <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (A[start - <span class="number">1</span>] &lt; A[start] &amp;&amp; A[start] &lt; A[start + <span class="number">1</span>])</span><br><span class="line">			start++;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (A[start - <span class="number">1</span>] &gt; A[start] &amp;&amp; A[start] &gt; A[start + <span class="number">1</span>])</span><br><span class="line">			start--;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (A[start - <span class="number">1</span>] &lt;= A[start] &amp;&amp; A[start] &gt;= A[start + <span class="number">1</span>])</span><br><span class="line">			<span class="keyword">return</span> start;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解法二(二分查找):</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">peakIndexInMountainArray</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; A)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> start = <span class="number">0</span>, end = A.size() - <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (start &lt; end)&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = start +(end-start) / <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span> (A[mid] &lt; A[mid + <span class="number">1</span>])</span><br><span class="line">			start = mid + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			end = mid;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
+<div class="left-bottom">
+    <div class="menus">
+    
+    
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/" data-id="ck4mhjkcv0021w6zw5b6qcgvb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="49">
 
-    </footer>
-  </div>
-  
-</article>
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
 
-
-  
-    <article id="post-leetcode(6)  JudgeRouteCircle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/" class="article-date">
-  <time datetime="2018-07-11T12:24:07.000Z" itemprop="datePublished">2018-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/">leetcode(6)  JudgeRouteCircle</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #657<br>Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.</p>
-<p>The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down). The output should be true or false representing whether the robot makes a circle.</p>
-<p>Example 1:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="string">"UD"</span></span><br><span class="line">Output: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="string">"LL"</span></span><br><span class="line">Output: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p><strong>解法一：</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judgeCircle</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> moves)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; action = &#123; &#123;<span class="string">'R'</span>,<span class="number">0</span>&#125;,&#123;<span class="string">'L'</span>,<span class="number">0</span>&#125;,&#123;<span class="string">'U'</span>,<span class="number">0</span>&#125;,&#123;<span class="string">'D'</span>,<span class="number">0</span>&#125; &#125;;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; moves.size(); i++) &#123;</span><br><span class="line">		action[moves[i]]++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> action[<span class="string">'R'</span>] == action[<span class="string">'L'</span>] &amp;&amp; action[<span class="string">'U'</span>] == action[<span class="string">'D'</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解法二：</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judgeCircle</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> moves)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">char</span> move:moves) &#123;</span><br><span class="line">		<span class="keyword">if</span> (move == <span class="string">'U'</span>) y--;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (move == <span class="string">'D'</span>) y++;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (move == <span class="string">'R'</span>) x--;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (move == <span class="string">'L'</span>) x++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> x == <span class="number">0</span> &amp;&amp; y == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/" data-id="ck4mhjkcn001hw6zwavnd9ll7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-opencv3(3) opencv数据类型" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
-  <time datetime="2018-07-10T06:44:51.000Z" itemprop="datePublished">2018-07-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/opencv3/">opencv3</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">opencv3(3) opencv数据类型</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="基础数据类型"><a href="#基础数据类型" class="headerlink" title="基础数据类型"></a>基础数据类型</h3><ul>
-<li>Point 坐标类<br>Point有两种,2维Point和3维Point，Point可以转换为其他数据类型,比如vector或者matrix<br><img src="/images/opencv3/22.jpg" alt="&quot;opencv&quot;"></li>
-<li>Scala<br>Scalar继承于vector<br>Scalar(b, g, r) ：b-&gt;蓝色分量 g-&gt;绿色分量 r-&gt;红色分量<br>Scalar(0, 0, 255) -&gt; 红色像素点<br><img src="/images/opencv3/23.jpg" alt="&quot;opencv&quot;"></li>
-<li>Size 大小类<br>Size和Point类似,两者可以互相转换,不同之处在于Point的数据成员名为x和y,Size的数据成员名为width和height<br><img src="/images/opencv3/24.jpg" alt="&quot;opencv&quot;"></li>
-<li>Rect 矩形类<br>Rect成员包含Point类型的x,y和Size类型的width,height<br><img src="/images/opencv3/25.jpg" alt="&quot;opencv&quot;"></li>
-<li>RotatedRect 旋转矩形类<br>RotatedRect包含中心点(Point),大小(Size),旋转角度<br><img src="/images/opencv3/26.jpg" alt="&quot;opencv&quot;"></li>
-<li>InputArray OutputArray<br>InputArray和OutputArray区别在于 InputArray为只读,上述基础数据类型都可转换为 InputArray或OutputArray,以此保持函数的简洁性<h3 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h3><img src="/images/opencv3/27.jpg" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/28.jpg" alt="&quot;opencv&quot;"></li>
-<li>cv::alignPtr() 指针对齐<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Return aligned pointer of type T*</span></span><br><span class="line"><span class="keyword">template</span>&lt;T&gt; T* cv::alignPtr( T* ptr, <span class="comment">// pointer, unaligned</span></span><br><span class="line">                                                 <span class="keyword">int</span> n = <span class="keyword">sizeof</span>(T)); <span class="comment">// align to block size, a power of 2</span></span><br></pre></td></tr></table></figure></li>
-<li>cv::allocate() 分配具有T类型的对象数组(C风格）<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Return pointer to allocated buffer</span></span><br><span class="line"><span class="keyword">template</span>&lt;T&gt; T* cv::allocate( <span class="keyword">size_t</span> sz); <span class="comment">// buffer size, multiples of sizeof(T)</span></span><br></pre></td></tr></table></figure></li>
-<li>cv::fastAtan2() 计算向量方向 x(向量的x坐标) y(向量的y坐标)<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> cv::fastAtan2(<span class="keyword">float</span> y, <span class="keyword">float</span> x );</span><br></pre></td></tr></table></figure></li>
-<li>cvCeil() 返回不小于x的最小整数值<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cvCeil</span><span class="params">(<span class="keyword">float</span> x)</span></span>;</span><br></pre></td></tr></table></figure></li>
-<li>cvRound() 返回与x最接近的整数值<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cvRound</span><span class="params">( <span class="keyword">double</span> x )</span></span>;</span><br></pre></td></tr></table></figure></li>
-<li>cvFloor() 返回不大于x的最大整数值<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cvFloor</span><span class="params">( <span class="keyword">float</span> x&#125;;</span></span></span><br></pre></td></tr></table></figure></li>
-<li>cv::cubeRoot() 计算x的立方根<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> cv::cubeRoot( <span class="keyword">float</span> x);</span><br></pre></td></tr></table></figure></li>
-<li>cv::format() 格式化输出<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> cv::format(<span class="keyword">const</span> <span class="keyword">char</span>* fmt, ... );</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h3 id="帮助类"><a href="#帮助类" class="headerlink" title="帮助类"></a>帮助类</h3><ul>
-<li>TermCriteria 算法终止条件类<br>TermCriteria( int type, int maxCount, double epsilon) 类型 迭代次数 超参数</li>
-<li>Range 整数序列<br>Range(0,4) —&gt; 0,1,2,3</li>
-</ul>
-<hr>
-<h3 id="Mat-N维稠密矩阵"><a href="#Mat-N维稠密矩阵" class="headerlink" title="Mat N维稠密矩阵"></a>Mat N维稠密矩阵</h3><h4 id="构造矩阵"><a href="#构造矩阵" class="headerlink" title="构造矩阵"></a>构造矩阵</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Mat();</span><br><span class="line">Mat(<span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">int</span> type);</span><br><span class="line">Mat(Size size, <span class="keyword">int</span> type);</span><br><span class="line">Mat(<span class="keyword">int</span> rows, <span class="keyword">int</span> cols, <span class="keyword">int</span> type, <span class="keyword">const</span> Scalar&amp; s);</span><br><span class="line">Mat(Size size, <span class="keyword">int</span> type, <span class="keyword">const</span> Scalar&amp; s);</span><br><span class="line">Mat(<span class="keyword">int</span> ndims, <span class="keyword">const</span> <span class="keyword">int</span>* sizes, <span class="keyword">int</span> type);</span><br><span class="line">Mat(<span class="keyword">int</span> ndims, <span class="keyword">const</span> <span class="keyword">int</span>* sizes, <span class="keyword">int</span> type, <span class="keyword">const</span> Scalar&amp; s);</span><br><span class="line">Mat(<span class="keyword">const</span> Mat&amp; m);</span><br><span class="line">Mat(<span class="keyword">const</span> Mat&amp; m, <span class="keyword">const</span> Rect&amp; roi);</span><br><span class="line">Mat(<span class="keyword">const</span> Mat&amp; m, <span class="keyword">const</span> Range* ranges);</span><br></pre></td></tr></table></figure>
-<p>int rows, int cols:二维矩阵的行列数 -&gt;图像分辨率<br>int type：存储元素的数据类型和通道数 CV_[位数][是否带符号][类型前缀]C[通道数]<br>const Scalar&amp; s:矩阵每个元素以s向量(颜色)填充 向量维度由通道数决定</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Mat <span class="title">matrix</span><span class="params">(<span class="number">2</span>, <span class="number">2</span>, CV_8UC3, Scalar(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>))</span></span>;</span><br><span class="line"><span class="function">Mat <span class="title">matrix</span><span class="params">(<span class="number">2</span>, <span class="number">2</span>, CV_8UC2, Scalar(<span class="number">1</span>,<span class="number">2</span>))</span></span>;</span><br></pre></td></tr></table></figure>
-<p>matrix = [  0,   0, 255,   0,   0, 255 ;  0,   0, 255,   0,   0, 255]<br>matrix = [  1,   2,   1,   2 ; 1,   2,   1,   2]</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mat m；</span><br><span class="line">m.create(<span class="number">3</span>,<span class="number">10</span>,CV_32FC3)</span><br><span class="line">m.setTo(Scalar(<span class="number">1.0f</span>,<span class="number">1.0f</span>,<span class="number">1.0f</span>));<span class="comment">//设置第一个通道的值</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mat matrix = Mat::eye(<span class="number">4</span>, <span class="number">4</span>, CV_64F);</span><br><span class="line">Mat matrix = Mat::ones(<span class="number">4</span>, <span class="number">4</span>, CV_32F);</span><br><span class="line">Mat matrix = Mat::zeros(<span class="number">3</span>, <span class="number">3</span>, CV_8SC1);</span><br></pre></td></tr></table></figure>
-<p>[1, 0, 0, 0;<br> 0, 1, 0, 0;<br> 0, 0, 1, 0;<br> 0, 0, 0, 1]<br>[1, 1, 1, 1;<br> 1, 1, 1, 1;<br> 1, 1, 1, 1;<br> 1, 1, 1, 1]<br>[  0,   0,   0;<br>0,   0,   0;<br>0,   0,   0]</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mat matrix = (Mat_&lt;<span class="keyword">double</span>&gt;(<span class="number">3</span>, <span class="number">3</span>) &lt;&lt; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>);</span><br></pre></td></tr></table></figure>
-<p>[1, 2, 3;<br> 4, 5, 6;<br> 7, 8, 9]</p>
-<p>利用clone() 或者 copyTo()</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mat RowClone = matrix.row(<span class="number">1</span>).clone();</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"RowClone = "</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">" "</span> &lt;&lt; RowClone &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-<h4 id="获取矩阵元素"><a href="#获取矩阵元素" class="headerlink" title="获取矩阵元素"></a>获取矩阵元素</h4><p><img src="/images/opencv3/29.jpg" alt=""><br><img src="/images/opencv3/30.jpg" alt=""></p>
-<h4 id="矩阵运算"><a href="#矩阵运算" class="headerlink" title="矩阵运算"></a>矩阵运算</h4><p><img src="/images/opencv3/31.jpg" alt=""></p>
-<h4 id="矩阵操作"><a href="#矩阵操作" class="headerlink" title="矩阵操作"></a>矩阵操作</h4><p><img src="/images/opencv3/32.jpg" alt=""><br><img src="/images/opencv3/33.jpg" alt=""></p>
-<h4 id="打印矩阵"><a href="#打印矩阵" class="headerlink" title="打印矩阵"></a>打印矩阵</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Mat <span class="title">matrix</span><span class="params">(<span class="number">2</span>,<span class="number">2</span>, CV_8UC3, Scalar(<span class="number">0</span>,<span class="number">0</span>,<span class="number">255</span>))</span></span>;</span><br></pre></td></tr></table></figure>
-<p>默认风格</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; matrix &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-<p>[  0,   0, 255,   0,   0, 255;<br>   0,   0, 255,   0,   0, 255]</p>
-<p>Python风格</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; format(matrix,Formatter::FMT_PYTHON) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-<p>[[[  0,   0, 255],<br>  [  0,   0, 255]],<br> [[  0,   0, 255],<br>  [  0,   0, 255]]]</p>
-<p>Numpy风格</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; format(matrix, Formatter::FMT_NUMPY) &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-<p>array([[[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]],<br>       [[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]],<br>       [[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]]], dtype=’uint8’)</p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="ck4mhjkd2002ow6zw9s720y7j" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv3/" rel="tag">opencv3</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(5)  HammingDistance" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/10/leetcode(5)%20%20HammingDistance/" class="article-date">
-  <time datetime="2018-07-10T02:11:18.000Z" itemprop="datePublished">2018-07-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/10/leetcode(5)%20%20HammingDistance/">leetcode(5)  HammingDistance</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #461</p>
-<p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
-<p>Given two integers x and y, calculate the Hamming distance.</p>
-<p>Example:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: x = <span class="number">1</span>, y = <span class="number">4</span></span><br><span class="line">Output: <span class="number">2</span></span><br><span class="line">Explanation:</span><br><span class="line"><span class="number">1</span>   (<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span>)</span><br><span class="line"><span class="number">4</span>   (<span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span>)</span><br><span class="line">       ↑    ↑</span><br></pre></td></tr></table></figure>
-<p>The above arrows point to positions where the corresponding bits are different.<br><strong>解法一</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res = <span class="number">0</span>, exc = x ^ y;</span><br><span class="line">	<span class="keyword">while</span> (exc)&#123;</span><br><span class="line">		++res;</span><br><span class="line">		exc &amp;= (exc - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解法二</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递归法</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> ((x ^ y) == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> (x ^ y) % <span class="number">2</span> + hammingDistance(x / <span class="number">2</span>, y / <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解法三</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hammingDistance</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> result = x ^ y;</span><br><span class="line">	<span class="keyword">int</span> binary = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (result) &#123;</span><br><span class="line">		binary += result % <span class="number">2</span>;</span><br><span class="line">		result = result / <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> binary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/10/leetcode(5)%20%20HammingDistance/" data-id="ck4mhjkcv001zw6zwhq3h12n8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(4)  uniqueMorseCodeWords" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/" class="article-date">
-  <time datetime="2018-07-10T00:36:27.000Z" itemprop="datePublished">2018-07-10</time>
-</a>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
+    <li class="article-tag-list-item">
+        <a class="color2">神经网络模型</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">深度学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">opencv samples</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">make</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">hadoop</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">leetcode</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JNA</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mxnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">nginx</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">opencv3</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">操作系统</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">数字图像处理</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据结构</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">小贴士</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">数学</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">模型转换</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
 
-  </div>
-  <div class="article-inner">
     
-    
-      <header class="article-header">
+    <nav id="title-list-nav">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/">leetcode(4)  uniqueMorseCodeWords</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #804</p>
-<p>International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows: “a” maps to “.-“, “b” maps to “-…”, “c” maps to “-.-.”, and so on.</p>
-<p>For convenience, the full table for the 26 letters of the English alphabet is given below:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">".-"</span>,<span class="string">"-..."</span>,<span class="string">"-.-."</span>,<span class="string">"-.."</span>,<span class="string">"."</span>,<span class="string">"..-."</span>,<span class="string">"--."</span>,<span class="string">"...."</span>,<span class="string">".."</span>,<span class="string">".---"</span>,<span class="string">"-.-"</span>,<span class="string">".-.."</span>,<span class="string">"--"</span>,<span class="string">"-."</span>,<span class="string">"---"</span>,<span class="string">".--."</span>,<span class="string">"--.-"</span>,<span class="string">".-."</span>,<span class="string">"..."</span>,<span class="string">"-"</span>,<span class="string">"..-"</span>,<span class="string">"...-"</span>,<span class="string">".--"</span>,<span class="string">"-..-"</span>,<span class="string">"-.--"</span>,<span class="string">"--.."</span>]</span><br></pre></td></tr></table></figure>
-<p>Now, given a list of words, each word can be written as a concatenation of the Morse code of each letter. For example, “cab” can be written as “-.-.-….-“, (which is the concatenation “-.-.” + “-…” + “.-“). We’ll call such a concatenation, the transformation of a word.</p>
-<p>Return the number of different transformations among all words we have.<br><strong>Example:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: words = [<span class="string">"gin"</span>, <span class="string">"zen"</span>, <span class="string">"gig"</span>, <span class="string">"msg"</span>]</span><br><span class="line">Output: <span class="number">2</span></span><br><span class="line">Explanation: </span><br><span class="line">The transformation of each word is:</span><br><span class="line"><span class="string">"gin"</span> -&gt; <span class="string">"--...-."</span></span><br><span class="line"><span class="string">"zen"</span> -&gt; <span class="string">"--...-."</span></span><br><span class="line"><span class="string">"gig"</span> -&gt; <span class="string">"--...--."</span></span><br><span class="line"><span class="string">"msg"</span> -&gt; <span class="string">"--...--."</span></span><br></pre></td></tr></table></figure>
-<p>There are 2 different transformations, “–…-.” and “–…–.”.<br><strong>Note:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The length of words will be at most <span class="number">100.</span></span><br><span class="line">Each words[i] will have length in range [<span class="number">1</span>, <span class="number">12</span>].</span><br><span class="line">words[i] will only consist of lowercase letters.</span><br></pre></td></tr></table></figure>
-<p><strong>解法1:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uniqueMorseRepresentations</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; morse = &#123; <span class="string">".-"</span>,<span class="string">"-..."</span>,<span class="string">"-.-."</span>,<span class="string">"-.."</span>,<span class="string">"."</span>,<span class="string">"..-."</span>,<span class="string">"--."</span>,<span class="string">"...."</span>,<span class="string">".."</span>,<span class="string">".---"</span>,<span class="string">"-.-"</span>,<span class="string">".-.."</span>,<span class="string">"--"</span>,<span class="string">"-."</span>,<span class="string">"---"</span>,<span class="string">".--."</span>,<span class="string">"--.-"</span>,<span class="string">".-."</span>,<span class="string">"..."</span>,<span class="string">"-"</span>,<span class="string">"..-"</span>,<span class="string">"...-"</span>,<span class="string">".--"</span>,<span class="string">"-..-"</span>,<span class="string">"-.--"</span>,<span class="string">"--.."</span> &#125;;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; seen;</span><br><span class="line">	<span class="keyword">for</span>(<span class="built_in">std</span>::<span class="built_in">string</span> word:words)&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">string</span> code;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">char</span> c : word)&#123;</span><br><span class="line">			code.append(morse[c - <span class="string">'a'</span>]);<span class="comment">//'a'-&gt;97</span></span><br><span class="line">		&#125;</span><br><span class="line">		seen.insert(code);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> seen.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解法2：</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">uniqueMorseRepresentations</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">string</span> alpha = <span class="string">"abcdefghijklmnopqrstuvwxyz"</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; morse = &#123; <span class="string">".-"</span>,<span class="string">"-..."</span>,<span class="string">"-.-."</span>,<span class="string">"-.."</span>,<span class="string">"."</span>,<span class="string">"..-."</span>,<span class="string">"--."</span>,<span class="string">"...."</span>,<span class="string">".."</span>,<span class="string">".---"</span>,<span class="string">"-.-"</span>,<span class="string">".-.."</span>,<span class="string">"--"</span>,<span class="string">"-."</span>,<span class="string">"---"</span>,<span class="string">".--."</span>,<span class="string">"--.-"</span>,<span class="string">".-."</span>,<span class="string">"..."</span>,<span class="string">"-"</span>,<span class="string">"..-"</span>,<span class="string">"...-"</span>,<span class="string">".--"</span>,<span class="string">"-..-"</span>,<span class="string">"-.--"</span>,<span class="string">"--.."</span> &#125;;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="built_in">std</span>::<span class="built_in">string</span>&gt; alpha_code;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i = alpha.begin(); i &lt; alpha.end(); i++) &#123;</span><br><span class="line">		alpha_code[*i] = morse[index++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">set</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; seen;</span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">std</span>::<span class="built_in">string</span> str : words) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">string</span> str_code;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">char</span> c : str) &#123;</span><br><span class="line">			str_code += alpha_code[c];</span><br><span class="line">		&#125;</span><br><span class="line">		seen.insert(str_code);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> seen.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
+        <a  class="深度学习 "
+           href="/2019/06/28/Alexnet/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="Alexnet">Alexnet</span>
+            <span class="post-date" title="2019-06-28 18:32:23">2019/06/28</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(2) 面向对象编程">C++教程(2) 面向对象编程</span>
+            <span class="post-date" title="2019-07-05 15:37:22">2019/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(4) C++标准库">C++教程(4) C++标准库</span>
+            <span class="post-date" title="2019-07-09 15:45:11">2019/07/09</span>
+        </a>
+        
+        <a  class="目标检测 "
+           href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/"
+           data-tag="深度学习"
+           data-author="" >
+            <span class="post-title" title="(1)Faster R-CNN implemented by Keras">(1)Faster R-CNN implemented by Keras</span>
+            <span class="post-date" title="2019-07-04 18:44:35">2019/07/04</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(1) 基础">C++教程(1) 基础</span>
+            <span class="post-date" title="2019-07-05 15:30:07">2019/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(3) 模板和泛型编程">C++教程(3) 模板和泛型编程</span>
+            <span class="post-date" title="2019-07-06 17:40:47">2019/07/06</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/12/blob%20detect/"
+           data-tag="opencv samples"
+           data-author="" >
+            <span class="post-title" title="blob detect">blob detect</span>
+            <span class="post-date" title="2018-07-12 21:40:22">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/"
+           data-tag="make"
+           data-author="" >
+            <span class="post-title" title="cmake教程">cmake教程</span>
+            <span class="post-date" title="2019-08-07 11:38:10">2019/08/07</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/07/03/VGG16Net/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="VGG16Net">VGG16Net</span>
+            <span class="post-date" title="2019-07-03 21:14:18">2019/07/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/18/elasticsearch%20%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="elasticsearch 教程">elasticsearch 教程</span>
+            <span class="post-date" title="2019-12-18 10:28:11">2019/12/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2019/11/20/hadoop%20spark/"
+           data-tag="hadoop"
+           data-author="" >
+            <span class="post-title" title="hadoop spark">hadoop spark</span>
+            <span class="post-date" title="2019-11-20 21:14:18">2019/11/20</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="android使用opencv native方式环境搭建">android使用opencv native方式环境搭建</span>
+            <span class="post-date" title="2019-11-01 14:05:23">2019/11/01</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(1)%20Two-Sum/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(1) Two-Sum">leetcode(1) Two-Sum</span>
+            <span class="post-date" title="2018-07-06 10:41:12">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/"
+           data-tag="JNA"
+           data-author="" >
+            <span class="post-title" title="编译C/C++为dll供Java调用">编译C/C++为dll供Java调用</span>
+            <span class="post-date" title="2019-03-10 18:34:24">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(11) ReverseWordsInAStringIII">leetcode(11) ReverseWordsInAStringIII</span>
+            <span class="post-date" title="2018-07-26 09:09:35">2018/07/26</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker入门指南">Docker入门指南</span>
+            <span class="post-date" title="2018-06-13 15:30:33">2018/06/13</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(3) Jewels and Stones">leetcode(3) Jewels and Stones</span>
+            <span class="post-date" title="2018-07-08 00:54:31">2018/07/08</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(4)  uniqueMorseCodeWords">leetcode(4)  uniqueMorseCodeWords</span>
+            <span class="post-date" title="2018-07-10 08:36:27">2018/07/10</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo搭建GitHub博客">hexo搭建GitHub博客</span>
+            <span class="post-date" title="2019-03-10 15:40:00">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(6)  JudgeRouteCircle">leetcode(6)  JudgeRouteCircle</span>
+            <span class="post-date" title="2018-07-11 20:24:07">2018/07/11</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(10)%20Binary%20Gap/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(10) Binary Gap">leetcode(10) Binary Gap</span>
+            <span class="post-date" title="2018-07-18 10:20:35">2018/07/18</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(8) SelfDividingNumbers">leetcode(8) SelfDividingNumbers</span>
+            <span class="post-date" title="2018-07-16 17:30:10">2018/07/16</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(2)%20Reverse%20Integer/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(2) Reverse Integer">leetcode(2) Reverse Integer</span>
+            <span class="post-date" title="2018-07-06 14:28:17">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="jdk"
+           data-author="" >
+            <span class="post-title" title="linux下jdk安装">linux下jdk安装</span>
+            <span class="post-date" title="2019-03-06 14:02:29">2019/03/06</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(5)%20%20HammingDistance/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(5)  HammingDistance">leetcode(5)  HammingDistance</span>
+            <span class="post-date" title="2018-07-10 10:11:18">2018/07/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(7) PeakIndexInMountainArray">leetcode(7) PeakIndexInMountainArray</span>
+            <span class="post-date" title="2018-07-12 09:21:44">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/"
+           data-tag="mxnet"
+           data-author="" >
+            <span class="post-title" title="mxnet Windows编译安装CPU版 c++ api">mxnet Windows编译安装CPU版 c++ api</span>
+            <span class="post-date" title="2019-09-19 14:05:23">2019/09/19</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/"
+           data-tag="nginx"
+           data-author="" >
+            <span class="post-title" title="nginx-rtmp流媒体服务">nginx-rtmp流媒体服务</span>
+            <span class="post-date" title="2019-06-26 11:38:40">2019/06/26</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(9) Array Partition I">leetcode(9) Array Partition I</span>
+            <span class="post-date" title="2018-07-18 08:49:13">2018/07/18</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="linux下mysql的安装">linux下mysql的安装</span>
+            <span class="post-date" title="2019-03-06 16:00:26">2019/03/06</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(2) 图像载入-显示-输出">opencv3(2) 图像载入-显示-输出</span>
+            <span class="post-date" title="2019-07-10 14:24:06">2019/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(3) opencv数据类型">opencv3(3) opencv数据类型</span>
+            <span class="post-date" title="2018-07-10 14:44:51">2018/07/10</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(1) 概述">操作系统(1) 概述</span>
+            <span class="post-date" title="2019-06-06 14:05:23">2019/06/06</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(2) 进程管理">操作系统(2) 进程管理</span>
+            <span class="post-date" title="2019-06-07 20:50:53">2019/06/07</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/07/10/opencv3(1-1)%20vs2015%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-1) vs2015配置opencv3开发环境">opencv3(1-1) vs2015配置opencv3开发环境</span>
+            <span class="post-date" title="2019-07-10 14:02:45">2019/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-2) linux配置opencv3开发环境">opencv3(1-2) linux配置opencv3开发环境</span>
+            <span class="post-date" title="2019-03-11 23:00:35">2019/03/11</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(2) 灰度变换与空间滤波">数字图像处理(2) 灰度变换与空间滤波</span>
+            <span class="post-date" title="2018-07-20 14:08:43">2018/07/20</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(1) 基本概念">数据结构(1) 基本概念</span>
+            <span class="post-date" title="2019-05-29 19:25:01">2019/05/29</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/15/%E5%B0%8F%E8%B4%B4%E5%A3%AB/"
+           data-tag="小贴士"
+           data-author="" >
+            <span class="post-title" title="小贴士">小贴士</span>
+            <span class="post-date" title="2019-03-15 16:06:23">2019/03/15</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(3) 内存管理">操作系统(3) 内存管理</span>
+            <span class="post-date" title="2019-06-30 15:42:06">2019/06/30</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(4) 树与二叉树">数据结构(4) 树与二叉树</span>
+            <span class="post-date" title="2019-06-17 15:11:45">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(6) 查找">数据结构(6) 查找</span>
+            <span class="post-date" title="2019-07-16 14:11:05">2019/07/16</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(2) 线性表">数据结构(2) 线性表</span>
+            <span class="post-date" title="2019-05-30 15:16:30">2019/05/30</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(1) 图像基础">数字图像处理(1) 图像基础</span>
+            <span class="post-date" title="2018-07-13 09:41:32">2018/07/13</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="线性代数">线性代数</span>
+            <span class="post-date" title="2019-04-26 09:17:54">2019/04/26</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="高等数学">高等数学</span>
+            <span class="post-date" title="2019-06-17 20:50:31">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(3) 栈和队列">数据结构(3) 栈和队列</span>
+            <span class="post-date" title="2019-06-10 14:28:59">2019/06/10</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(7) 排序">数据结构(7) 排序</span>
+            <span class="post-date" title="2019-07-19 14:09:11">2019/07/19</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
+           data-tag="模型转换"
+           data-author="" >
+            <span class="post-title" title="深度学习模型转换">深度学习模型转换</span>
+            <span class="post-date" title="2019-10-25 21:14:18">2019/10/25</span>
+        </a>
+        
+    </nav>
+</div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/" data-id="ck4mhjkcl001cw6zw6ku556e4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(3) Jewels and Stones" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/" class="article-date">
-  <time datetime="2018-07-07T16:54:31.000Z" itemprop="datePublished">2018-07-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/">leetcode(3) Jewels and Stones</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #771</p>
-<p>You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
-<p>The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so “a” is considered a different type of stone from “A”.<br>Example 1:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: J = <span class="string">"aA"</span>, S = <span class="string">"aAAbbbb"</span></span><br><span class="line">Output: <span class="number">3</span></span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: J = <span class="string">"z"</span>, S = <span class="string">"ZZ"</span></span><br><span class="line">Output: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>Note:<br>S and J will consist of letters and have length at most 50.<br>The characters in J are distinct.</p>
-<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">string</span> J, <span class="built_in">std</span>::<span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">auto</span> i = S.begin(); i &lt; S.end(); i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (J.find(*i) != <span class="built_in">std</span>::<span class="built_in">string</span>::npos)</span><br><span class="line">			num++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/" data-id="ck4mhjkcl001aw6zw4nmag00f" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(2) Reverse Integer" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/06/leetcode(2)%20Reverse%20Integer/" class="article-date">
-  <time datetime="2018-07-06T06:28:17.000Z" itemprop="datePublished">2018-07-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/06/leetcode(2)%20Reverse%20Integer/">leetcode(2) Reverse Integer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #728<br>Given a 32-bit signed integer, reverse digits of an integer.<br>Example 1:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">123</span></span><br><span class="line">Output: <span class="number">321</span></span><br></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">-123</span></span><br><span class="line">Output: <span class="number">-321</span></span><br></pre></td></tr></table></figure>
-<p>Example 3:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">120</span></span><br><span class="line">Output: <span class="number">21</span></span><br></pre></td></tr></table></figure>
-<p>Note:<br>Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−$2^{31}$ , $2^{31}$ − 1]. For the purpose of this problem, assume that your function returns 0 when the reversed integer overflows.</p>
-<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (x != <span class="number">0</span> ) &#123;</span><br><span class="line">		<span class="keyword">int</span> num = x % <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">if</span> (result &gt; INT_MAX / <span class="number">10</span> || (result == INT_MAX / <span class="number">10</span> &amp;&amp; num &gt; <span class="number">7</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span> (result &lt; INT_MIN / <span class="number">10</span> || (result == INT_MIN / <span class="number">10</span> &amp;&amp; num &lt; <span class="number">-8</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		x = x / <span class="number">10</span>;</span><br><span class="line">		result = result * <span class="number">10</span> + num;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/06/leetcode(2)%20Reverse%20Integer/" data-id="ck4mhjkcs001rw6zwhvi1ajsj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(1) Two-Sum" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/06/leetcode(1)%20Two-Sum/" class="article-date">
-  <time datetime="2018-07-06T02:41:12.000Z" itemprop="datePublished">2018-07-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/06/leetcode(1)%20Two-Sum/">leetcode(1) Two-Sum</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #1<br>Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>You may assume that each input would have exactly one solution, and you may not use the same element twice.<br>Example:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</span><br><span class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</span><br><span class="line"><span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>].</span><br></pre></td></tr></table></figure>
-<h3 id="解法1-暴力法"><a href="#解法1-暴力法" class="headerlink" title="解法1 暴力法"></a>解法1 暴力法</h3><p>时间复杂度 O($$n^2$$)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sum::twoSum(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)&#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</span><br><span class="line">	  <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.size(); j++) &#123;</span><br><span class="line">		<span class="keyword">int</span> sum = nums[i] + nums[j];</span><br><span class="line">		<span class="keyword">if</span> (sum == target) &#123;</span><br><span class="line">		  result.push_back(i);</span><br><span class="line">		  result.push_back(j);</span><br><span class="line">		&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="解法2-HashMap"><a href="#解法2-HashMap" class="headerlink" title="解法2 HashMap"></a>解法2 HashMap</h3><p>时间复杂度 O($$n$$)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; nums_map;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)&#123;</span><br><span class="line">		nums_map[nums[i]] = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> value = target - nums[i];</span><br><span class="line">		<span class="keyword">if</span> (nums_map.find(value) != nums_map.end() &amp;&amp; nums_map[value] != i) &#123;</span><br><span class="line">			result.push_back(i);</span><br><span class="line">			result.push_back(nums_map[value]);</span><br><span class="line">			<span class="keyword">return</span> result;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/06/leetcode(1)%20Two-Sum/" data-id="ck4mhjkcg000yw6zwhxc5cor8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Docker入门指南" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2018-06-13T07:30:33.000Z" itemprop="datePublished">2018-06-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/docker/">docker</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">Docker入门指南</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/images/docker.jpg" alt="&quot;docker&quot;">  </p>
-<p><strong>1.Docker简介</strong></p>
-<p>问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?</p>
-<p>Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源.容器是完全使用沙箱机制，相互之间不会有任何接口(类似iPhone的 app)，更重要的是容器性能开销极低.[来源网络]</p>
-<p>通过上述定义可以知道，Docker似乎类似于虚拟机，可以在Docker中打包安装任何应用并运行，比如tomcat、Java、mysql等.但它并不等同于虚拟机，为了区分Docker和虚拟机，我们先来了解虚拟机的运行机制，如下图所示：</p>
-<p><img src="/images/docker3.png" alt="virtualbox"></p>
-<blockquote>
-<p>基础设施（Infrastructure):个人电脑，数据中心的服务器，或者是云主机</p>
-</blockquote>
-<blockquote>
-<p>操作系统（Host Operating System）：MacOS，Windows或者Linux发行版</p>
-</blockquote>
-<blockquote>
-<p>虚拟机管理系统（Hypervisor)：virtualBox,VMWare</p>
-</blockquote>
-<blockquote>
-<p>从操作系统（Guest Operating System）:运行在virtualBox,VMWare中的虚拟机</p>
-</blockquote>
-<blockquote>
-<p>依赖(bins/libs)：安装python，mysql等需要的依赖项</p>
-</blockquote>
-<blockquote>
-<p>应用(APP)：Web 应用、后台应用、数据库应用等</p>
-</blockquote>
-<p>可以看出若隔离不同的应用，需要安装并启动不同的虚拟机，虚拟机的启动速度慢而且开销极大.Docker容器运行的应用不仅处于隔离状态，而且启动速度极快(毫秒级)，而且开销极小.下图为Docker的运行机制:</p>
-<p><img src="/images/docker1.png" alt="docker"></p>
-<blockquote>
-<p>基础设施（Infrastructure):个人电脑，数据中心的服务器，或者是云主机</p>
-</blockquote>
-<blockquote>
-<p>操作系统（Host Operating System）：Linux</p>
-</blockquote>
-<blockquote>
-<p>Docker守护进程（Docker Daemon）：Docker守护进程取代了Hypervisor，运行在操作系统之上的后台进程，负责管理Docker容器,等同于virtualBox,VMWare</p>
-</blockquote>
-<blockquote>
-<p>依赖(bins/libs)：应用的所有依赖都打包在Docker镜像中，Docker容器是基于Docker镜像创建的</p>
-</blockquote>
-<blockquote>
-<p>应用(APP)：应用的源代码及其依赖都打包在Docker镜像中，不同的应用需要不同的Docker镜像.不同的应用运行在不同的Docker容器中，它们是相互隔离的</p>
-</blockquote>
-<p>Docker守护进程可以直接与主操作系统进行通信，为各个Docker容器分配资源,它还可以将容器与主操作系统隔离，并将各个容器互相隔离。<br>虚拟机启动需要数分钟，而Docker容器可以在数毫秒内启动,由于没有臃肿的从操作系统,Docker可以节省大量的磁盘空间以及其他系统资源。</p>
-<hr>
-<p><strong>2.Docker安装(基于Ubuntu)</strong></p>
-<p>在创建Docker容器前需要先安装Docker容器引擎，类似于虚拟机的virtualBox或VMWare.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看内核版本 docker安装需要大于3.1</span></span><br><span class="line">$ uname -r</span><br><span class="line">4.13.0-36-generic</span><br><span class="line"><span class="comment">#更新软件源</span></span><br><span class="line">$ sudo apt-get update</span><br><span class="line"><span class="comment">#安装docker</span></span><br><span class="line">sudo apt-get install docker.io </span><br><span class="line"><span class="comment">#查看安装的docker版本(无错则安装成功)</span></span><br><span class="line">$ docker --version</span><br><span class="line">Docker version 1.13.1, build 092cba3</span><br><span class="line"></span><br><span class="line"><span class="comment">#运行hello-wolrd实例(该命令运行时会从镜像仓库中拉取docker镜像)</span></span><br><span class="line">$ sudo docker run hello-world</span><br><span class="line">latest: Pulling from library/hello-world</span><br><span class="line">9bb5a5d4561a: Pull complete </span><br><span class="line">Digest: sha256:f5233545e43561214ca4891fd1157e1c3c563316ed8e237750d59bde73361e77</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> hello-world:latest</span><br><span class="line"></span><br><span class="line">Hello from Docker!</span><br><span class="line">This message shows that your installation appears to be working correctly.</span><br><span class="line">....</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看已有的镜像</span></span><br><span class="line">$ sudo docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">hello-world         latest              e38bc07ac18e        2 months ago        1.85 kB</span><br><span class="line"><span class="comment">#hello-world即从镜像仓库中拉取的镜像 docker run hello-world:latest 启动容器</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<p><strong>3.容器和镜像</strong><br>如下图所示，容器是由镜像实例化而来，类似于面向对象的概念，镜像看作类，容器则为类实例化后的对象.一个Docker镜像可以构建于另一个Docker镜像之上,好比类的继承机制.<br><img src="http://upload-images.jianshu.io/upload_images/2156466-b4341e9da2e6e170.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" alt="images"><br>docker的镜像概念类似虚拟机的镜像,是一个只读的模板,一个独立的文件系统,包括运行容器所需的数据，且可以用来创建新的容器(docker create &lt;image -id &gt;)，为指定的镜像添加一个可读写层.例如：一个镜像可以包含一个完整的ubuntu操作系统环境,类似于虚拟机的.iso文件.<br>docker利用容器来运行应用,docker容器是由docker镜像创建的运行实例,docker容器类似利用.iso文件安装后的虚拟机，可以执行各种读写操作,每个容器间是相互隔离的，容器中会运行特定的运用，包含特定应用的代码及所需的依赖文件,可以把容器看作一个简易版的linux环境.可以用同一个镜像启动多个Docker容器.</p>
-<hr>
-<p><strong>4.docker命令</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看已有的镜像</span></span><br><span class="line">$ sudo docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">hello-world         latest              e38bc07ac18e        2 months ago        1.85 kB</span><br><span class="line"><span class="comment">#启动容器 </span></span><br><span class="line">$ docker run hello-world <span class="comment">#run 创建基于该镜像的容器并启动</span></span><br><span class="line"><span class="comment">#启动指定版本容器</span></span><br><span class="line">$ docker run hello-world:latest</span><br><span class="line"><span class="comment">#查看已启动的容器</span></span><br><span class="line">$ docker ps  </span><br><span class="line"><span class="comment">#查看存在的容器</span></span><br><span class="line">$ docker ps -a </span><br><span class="line"><span class="comment">#启动已存在的容器</span></span><br><span class="line">$ docker start 容器ID</span><br><span class="line"><span class="comment">#启动容器(守护方式/后台启动)</span></span><br><span class="line">$ docker run -d 容器ID</span><br><span class="line">$ docker start -d 容器ID</span><br><span class="line"><span class="comment">#重新进入容器</span></span><br><span class="line">$ docker attach 容器ID</span><br><span class="line"><span class="comment">#运行的容器种启动新进程</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -i -t 容器ID /bin/bash</span><br><span class="line"><span class="comment">#停止守护容器</span></span><br><span class="line">$ docker stop 容器ID <span class="comment">#等待容器停止</span></span><br><span class="line">$ docker <span class="built_in">kill</span> 容器ID <span class="comment">#立即停止容器</span></span><br><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">$ docker rm 容器ID</span><br><span class="line"><span class="comment">#容器端口映射</span></span><br><span class="line">docker -P / docker --publish-all=<span class="literal">true</span>|<span class="literal">false</span> <span class="comment">#映射所有端口</span></span><br><span class="line">$ docker run -P -i -t ubuntu <span class="comment">#宿主机端口随机</span></span><br><span class="line">docker -p <span class="comment">#映射指定端口</span></span><br><span class="line">$ docker run -p 80 -i -t ubuntu  <span class="comment">#宿主机端口随机</span></span><br><span class="line">$ docker run -p 8080:80 -i -t ubuntu  <span class="comment">#宿主机端口:容器端口</span></span><br><span class="line">$ docker run -p 0.0.0.0:80 -i -t ubuntu  <span class="comment">#宿主机ip:容器端口</span></span><br><span class="line">$ docker run -p 0.0.0.0:8080:80 -i -t ubuntu  <span class="comment">#宿主机ip:宿主机端口:容器端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#根据当前容器状态 创建新的镜像</span></span><br><span class="line">docker commit -m=<span class="string">'ssh install'</span> -a=<span class="string">'jiaopan'</span> cb57c338f1c9 kyleson/jpos</span><br><span class="line"><span class="comment">#-m 说明文字</span></span><br><span class="line"><span class="comment">#-a 作者</span></span><br><span class="line"><span class="comment">#cb57c338f1c9 容器ID</span></span><br><span class="line"><span class="comment">#kyleson/jpos 镜像名称</span></span><br><span class="line"><span class="comment">#-p 提交时暂停容器</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#上传镜像到docker hub</span></span><br><span class="line">$ sudo docker login</span><br><span class="line">$ sudo docker push kyleson/jpos</span><br></pre></td></tr></table></figure>
-
-<p><strong>5.docker实例</strong><br>#远程登陆docker容器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1.创建并启动docker容器 </span></span><br><span class="line">$ docker run -p 2222:22 -i -t ubuntu:latest /bin/bash <span class="comment">#避免重复创建容器 启动已有容器时使用start命令</span></span><br><span class="line"><span class="comment">#2.安装ssh</span></span><br><span class="line">$ apt-get install openssh-server</span><br><span class="line"><span class="comment">#3.修改ssh_config </span></span><br><span class="line">$ vim /etc/ssh/sshd_config </span><br><span class="line">PermitRootLogin yes <span class="comment">#允许root用户以任何认证方式登录</span></span><br><span class="line">PasswordAuthentication yes</span><br><span class="line"></span><br><span class="line"><span class="comment">#notes:</span></span><br><span class="line"><span class="comment">#PermitRootLogin without-password #只允许root用公钥认证方式登录</span></span><br><span class="line"><span class="comment">#PermitRootLogin no #不允许root用户以任何认证方式登录</span></span><br><span class="line"><span class="comment">#4.启动ssh</span></span><br><span class="line">$ service ssh restart <span class="comment">#</span></span><br><span class="line"><span class="comment">#5.#修改root密码</span></span><br><span class="line">$ passwd root</span><br><span class="line"><span class="comment">#6.查看容器ip</span></span><br><span class="line">$ ifconfig</span><br><span class="line"><span class="comment">#7.返回宿主机且保持容器的运行</span></span><br><span class="line">ctrl+p ctrl+q </span><br><span class="line"><span class="comment">#8.宿主机测试ssh登陆容器</span></span><br><span class="line">$ ssh -p root@容器ip </span><br><span class="line"><span class="comment">#9.远程登陆容器</span></span><br><span class="line">$ ssh -p 2222 root@容器宿主机ip <span class="comment">#宿主机2222端口以映射到容器的22端口</span></span><br></pre></td></tr></table></figure>
-<p>至此,便可像登陆虚拟机一样玩转容器</p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" data-id="ck4mhjkck0018w6zw1ksv2ue7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/opencv3/">opencv3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">数字图像处理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">目标检测</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNA/" rel="tag">JNA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/" rel="tag">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/" rel="tag">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mxnet/" rel="tag">mxnet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv-samples/" rel="tag">opencv samples</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv3/" rel="tag">opencv3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" rel="tag">小贴士</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">数字图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="tag">模型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" rel="tag">神经网络模型</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 16px;">C++</a> <a href="/tags/JNA/" style="font-size: 10px;">JNA</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/mxnet/" style="font-size: 10px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/opencv-samples/" style="font-size: 10px;">opencv samples</a> <a href="/tags/opencv3/" style="font-size: 16px;">opencv3</a> <a href="/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" style="font-size: 10px;">小贴士</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 12px;">数字图像处理</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 12px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/" style="font-size: 10px;">模型转换</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" style="font-size: 12px;">神经网络模型</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/12/18/elasticsearch%20%E6%95%99%E7%A8%8B/">elasticsearch 教程</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/20/hadoop%20spark/">hadoop spark</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">android使用opencv native方式环境搭建</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/">深度学习模型转换</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/">mxnet Windows编译安装CPU版 c++ api</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
 </aside>
+<div class="post index">
+    <div class="pjax">
+        <article class="index">
+            <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#今夜的风儿甚是喧嚣"><span class="toc-text">今夜的风儿甚是喧嚣</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于jiaopan"><span class="toc-text">关于jiaopan</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+            <h1 id="今夜的风儿甚是喧嚣"><a href="#今夜的风儿甚是喧嚣" class="headerlink" title="今夜的风儿甚是喧嚣"></a>今夜的风儿甚是喧嚣</h1><h2 id="关于jiaopan"><a href="#关于jiaopan" class="headerlink" title="关于jiaopan"></a>关于jiaopan</h2><p><strong>jiaopan</strong> 焦攀的博客站。</p>
+<p><code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+
+        </article>
         
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 JiaoPan<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        <p>
+            <a  class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
     </div>
-  </div>
-</footer>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2019 jiaopaner</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#神经网络模型','#C++','#深度学习','#opencv samples','#make','#hadoop','#opencv','#leetcode','#JNA','#docker','#hexo','#jdk','#mxnet','#nginx','#mysql','#opencv3','#操作系统','#数字图像处理','#数据结构','#小贴士','#数学','#模型转换',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
 
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    /*引用块样式*/
+    
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
 
 
 
 
-<script src="/js/script.js"></script>
 
 
 
-
-  </div>
-</body>
 </html>

@@ -2,822 +2,1041 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-
-  
   <title>今天的风儿甚是喧嚣 JiaoPan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="今天的风儿甚是喧嚣 JiaoPan">
-<meta property="og:url" content="https://jiaopaner.github.io/page/4/index.html">
+  <meta name="keywords" content="">
+  <meta name="description" content="今天的风儿甚是喧嚣 JiaoPan">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="分类">
+<meta property="og:url" content="https://jiaopaner.github.io/categories/index.html">
 <meta property="og:site_name" content="今天的风儿甚是喧嚣 JiaoPan">
+<meta property="article:published_time" content="2018-07-05T00:53:45.000Z">
+<meta property="article:modified_time" content="2018-07-05T02:17:50.000Z">
 <meta property="article:author" content="JiaoPan">
 <meta property="article:tag" content="deep learning|computer vision">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="今天的风儿甚是喧嚣 JiaoPan" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.0.1" ></script>
 
 <meta name="generator" content="Hexo 4.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
 
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">今天的风儿甚是喧嚣 JiaoPan</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jiaopaner.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hexo搭建GitHub博客" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time datetime="2019-03-10T07:40:00.000Z" itemprop="datePublished">2019-03-10</time>
+<aside class="nav mobile">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
 </a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-  </div>
+<div class="author">
+    <span>JiaoPan</span>
+</div>
 
-  </div>
-  <div class="article-inner">
+<div class="icon">
     
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">hexo搭建GitHub博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前提环境:Node.js、Git已安装</p>
-<h1 id="通过github创建repository-格式-博客名称-github-io"><a href="#通过github创建repository-格式-博客名称-github-io" class="headerlink" title="通过github创建repository 格式:博客名称.github.io"></a>通过github创建repository 格式:博客名称.github.io</h1><p><img src="/images/github/1.jpg" alt=""></p>
-<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><ul>
-<li><p>新建blog文件夹,并打开git bash<br><img src="/images/github/2.jpg" alt=""></p>
-</li>
-<li><p>执行命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g <span class="comment">#安装hexo命令</span></span><br><span class="line">hexo -v <span class="comment">#检查是否安装成功</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/github/3.jpg" alt=""></p>
-</li>
-<li><p>初始化hexo</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo init <span class="comment">#初始化blog文件夹</span></span><br><span class="line">npm install <span class="comment">#安装必要组件</span></span><br><span class="line"><span class="comment">#执行如下命令 开启本地体验</span></span><br><span class="line">hexo g</span><br><span class="line">hexo s  </span><br><span class="line"><span class="comment">#访问http://localhost:4000 即可看到默认博客页面</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="关联hexo-github"><a href="#关联hexo-github" class="headerlink" title="关联hexo - github"></a>关联hexo - github</h1><ul>
-<li>设置git的username和email<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">'jiaopan'</span> <span class="comment">#设置用户名</span></span><br><span class="line">git config --global user.email <span class="string">'807854982@qq.com'</span> <span class="comment">#设置邮箱</span></span><br></pre></td></tr></table></figure></li>
-<li>生成公钥<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C “807854982@qq.com”<span class="comment">#连续按三次回车键</span></span><br></pre></td></tr></table></figure>
-红框处为密钥保存的路径<br><img src="/images/github/4.jpg" alt=""><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.ssh <span class="comment">#cd到密钥目录</span></span><br><span class="line"><span class="comment">#添加密钥到ssh-agent</span></span><br><span class="line"><span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure></li>
-<li>配置github SSH<br>登录github,在settings里添加SSH<br><img src="/images/github/5.jpg" alt=""><br><img src="/images/github/6.jpg" alt=""><br>将生成的id_rsa.pub内容复制到SSH key里 点击add SSH 即可<br><img src="/images/github/7.jpg" alt=""><br><img src="/images/github/8.jpg" alt=""><br>测试是否可连 出现用户名则成功<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<img src="/images/github/9.jpg" alt=""></li>
-<li>配置_config.yml<br><img src="/images/github/10.jpg" alt=""><br>更改如下配置:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url:  https://jiaopaner.github.io <span class="comment">#  repository </span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:JiaoPaner/jiaopaner.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h1 id="文章发布"><a href="#文章发布" class="headerlink" title="文章发布"></a>文章发布</h1><ul>
-<li>安装扩展<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
-<li>创建文章<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post <span class="string">'文章名'</span> <span class="comment">#在blog/source/post</span></span><br></pre></td></tr></table></figure>
-在blog目录下的 source/_posts将会生成对应的MD文件.打开MD文件进行文章编辑即可<br><img src="/images/github/11.jpg" alt=""></li>
-<li>发布文章<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-成功后,访问博客地址 <a href="https://jiaopaner.github.io">https://jiaopaner.github.io</a> 即可看到</li>
-</ul>
-<h1 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h1><ul>
-<li><p>通过<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> 主题目录下载主题 </p>
-</li>
-<li><p>主题内有下载地址和安装方法,一般为github地址,下载其压缩包或git clone到本地</p>
-</li>
-<li><p>复制到blog目录下的themes内(本博客为next主题)<br><img src="/images/github/12.jpg" alt=""></p>
-</li>
-<li><p>修改_config.yml  theme值为themes下主题目录名<br><img src="/images/github/13.jpg" alt=""></p>
-</li>
-<li><p>更新即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" data-id="ck4mhjkcn001gw6zwemc6a5dx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux下mysql的安装" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" class="article-date">
-  <time datetime="2019-03-06T08:00:26.000Z" itemprop="datePublished">2019-03-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">linux下mysql的安装</a>
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#linux下mysql安装步骤<br>1.ubuntu系统</p>
-<p>1) 输入如下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>安装好软件包后,会弹出设置root账户密码的提示</p>
-</blockquote>
-<p>2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
-<p><img src="/images/note/6.jpg" alt=""></p>
-<p>3) 登陆mysql</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -uroot -p <span class="comment">#执行命令后再输入密码</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/note/7.jpg" alt=""></p>
-<blockquote>
-<p>登陆成功</p>
-</blockquote>
-<p><img src="/images/note/8.jpg" alt=""></p>
-<p>4) 设置mysql可远程连接</p>
-<blockquote>
-<p>修改配置文件</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注释bind-address</p>
-</blockquote>
-<p><img src="/images/note/9.jpg" alt=""></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -uroot -p <span class="comment">#登陆mysql</span></span><br><span class="line">mysql&gt; show databases <span class="comment">#查看已有的数据库</span></span><br><span class="line">mysql&gt; use mysql; <span class="comment">#跳转到名为mysql的数据库</span></span><br><span class="line">mysql&gt; update user <span class="built_in">set</span> host=<span class="string">'%'</span> <span class="built_in">where</span> user=<span class="string">'root'</span>;<span class="comment"># %:任意主机</span></span><br><span class="line"><span class="comment">#给予root账户在任意主机下可访问数据库的权限</span></span><br><span class="line">mysql&gt; grant all privileges on *.* to <span class="string">'root'</span>@<span class="string">'%'</span> identified by <span class="string">'设置的密码'</span> with grant option;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt;<span class="built_in">exit</span>;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/note/10.jpg" alt=""></p>
-<blockquote>
-<p>重启mysql</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysql</span><br></pre></td></tr></table></figure>
-
-<p>2.Centos7(待更新)</p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" data-id="ck4mhjkd0002hw6zw42mrerrx" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-linux下jdk的安装" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/" class="article-date">
-  <time datetime="2019-03-06T06:02:29.000Z" itemprop="datePublished">2019-03-06</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/">linux下jdk安装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#linux下JDK安装步骤<br>1.检查是否已安装JDK</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~] java -version</span><br></pre></td></tr></table></figure>
-<p><img src="/images/note/1.jpg" alt=""></p>
-<blockquote>
-<p>若默认已安装openjdk，将其卸载</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~] yum remove *openjdk*</span><br></pre></td></tr></table></figure>
-<p><img src="/images/note/2.jpg" alt=""></p>
-<p>2.安装oracle JDK1.8</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># cd /usr/local #跳转到local目录</span></span><br><span class="line">[root@localhost <span class="built_in">local</span>]<span class="comment"># mkdir jdk8 #创建jdk8目录</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>复制下载好的linux版JDK1.8到 /usr/local/jdk8目录</p>
-</blockquote>
-<p><img src="/images/note/3.jpg" alt=""></p>
-<blockquote>
-<p>解压</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost <span class="built_in">local</span>]<span class="comment"># cd jdk8</span></span><br><span class="line">[root@master jdk8]<span class="comment"># tar -zxvf jdk-8u151-linux-x64.tar.gz</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>配置jdk环境变量</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master jdk8]<span class="comment"># vim /etc/profile</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk8/jdk1.8.0_151</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JRE_HOME</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$JAVA_HOME</span>/bin</span><br></pre></td></tr></table></figure>
-<p><img src="/images/note/4.jpg" alt=""></p>
-<blockquote>
-<p>环境变量生效</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master jdk8]<span class="comment"># source /etc/profile</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>检查是否安装成功</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master jdk8]<span class="comment"># java -version</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/note/5.jpg" alt=""></p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/" data-id="ck4mhjkct001uw6zwee568emo" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk/" rel="tag">jdk</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(11) ReverseWordsInAStringIII" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/" class="article-date">
-  <time datetime="2018-07-26T01:09:35.000Z" itemprop="datePublished">2018-07-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <a title="github" href="https://github.com/jiaopaner" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/">leetcode(11) ReverseWordsInAStringIII</a>
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
         
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/" data-id="ck4mhjkci0014w6zwfd7n006n" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数字图像处理(2) 灰度变换与空间滤波" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/" class="article-date">
-  <time datetime="2018-07-20T06:08:43.000Z" itemprop="datePublished">2018-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">数字图像处理</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <a title="zhihu" href="https://www.zhihu.com/people/jiaopan/posts" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/">数字图像处理(2) 灰度变换与空间滤波</a>
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>空间域,即包含图像像素的平面,空间域技术直接在图像像素上操作,空间域处理可由下式表示:<br>g(x,y) = T[f(x,y)]<br>其中f(x,y)为输入图像,g(x,y)为处理后的图像,T是在点(x,y)的邻域上定义的关于f的一种算子</p>
-<h3 id="灰度变换"><a href="#灰度变换" class="headerlink" title="灰度变换"></a>灰度变换</h3><p>s = T(r)<br>s和r分别表示g和f在任意点(x,y)处的灰度</p>
-<h4 id="灰度变换函数"><a href="#灰度变换函数" class="headerlink" title="灰度变换函数"></a>灰度变换函数</h4><ul>
-<li>图像反转  (图像灰度级范围[0,L-1])<br>s = L - 1 -r<br>该式反转一幅图像的灰度级,可得到等效的照片底片,适用于增强嵌入在图像暗区域中的白色或灰色细节<br><img src="/images/cv/34.jpg" alt=""></li>
-<li>对数变换<br>s = clog(1+r) (c为常数)<br>该式将范围较窄的低灰度值映射为范围较宽的灰度值，适用于增强图像中的暗像素值<br><img src="/images/cv/35.jpg" alt=""></li>
-<li>幂律(伽马)变换<br>s = cr^γ (c和γ为正常数)<br>γ &lt; 1 提高灰度级，在正比函数上方，使图像变亮<br>γ &gt; 1 降低灰度级，在正比函数下方，使图像变暗<br><img src="/images/cv/36.png" alt=""><br>γ = 0.6,0.4,0.3 | c = 1<br><img src="/images/cv/37.jpg" alt=""><br>γ = 3,4,5 | c = 1<br><img src="/images/cv/38.jpg" alt=""></li>
-</ul>
-<h4 id="分段线性变换函数"><a href="#分段线性变换函数" class="headerlink" title="分段线性变换函数"></a>分段线性变换函数</h4><ul>
-<li><p>对比度拉伸 扩展低对比度图像灰度级动态范围<br>点(s1,r1)和点(s2,r2)的位置控制变换函数的形状<br>若r1=s1,r2=s2,则变换为线性函数,将产生无变化的灰度级<br>若r1=r2,s1=0,s2=L-1,则变换为阈值处理函数,将产生一幅二值图像<br>(s1,r1)和点(s2,r2)的中间值产生不同程度的灰度级扩展<br><img src="/images/cv/39.jpg" alt=""></p>
-</li>
-<li><p>灰度级分层 突出图像中指定灰度范围的亮度<br>将感兴趣范围内的所有灰度值显示为一个值(如白色),而其他值显示为另一个值(如黑色)<br><img src="/images/cv/40.jpg" alt=""><br><img src="/images/cv/41.jpg" alt=""></p>
-</li>
-<li><p>比特平面分层<br>像素由比特组成的数字,在256级灰度图像中,每个像素由8比特组成,通过突出特定比特来增强图像<br><img src="/images/cv/42.jpg" alt=""><br><img src="/images/cv/43.jpg" alt=""><br>存储4个高阶比特平面允许以接受的细节重建图像<br><img src="/images/cv/44.jpg" alt=""></p>
-</li>
-</ul>
-<h3 id="直方图处理"><a href="#直方图处理" class="headerlink" title="直方图处理"></a>直方图处理</h3><p>灰度级范围为[0，L-1]数字图像直方图是离散函数h(r_k) = n_k，其中r_k是第k个灰度级(灰度值),n_k是图像中灰度级为r_k的像素个数,归一化的直方图为p(r_k) = n_k / (MN)<br><img src="/images/cv/45.jpg" alt=""><br><img src="/images/cv/46.jpg" alt=""><br>暗图像的直方图的分量集中在灰度级的低端,亮图像的直方图分量则倾向于灰度级的高端<br>高对比度图像直方图分量覆盖很宽的灰度级范围,且像素分布均匀,反之,低对比度图像直方图的分量覆盖较窄的灰度级范围,且像素分布不均匀<br>结论:若一幅图像倾向于占据整个可能的灰度级且分布均匀,则图像具有高对比度且灰色调具有较大变化</p>
-<h4 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a>直方图均衡化</h4><p>作用:使得图像的像素占有全部可能的灰度级且分布均匀,能够具有高对比度<br>方法:灰度级变换  s = T(r)<br>T(r)满足下列两个条件：<br>（1）T(r)在区间0 ≤ r ≤ L-1中为单值且单调递增<br>（2）当 0 ≤ r ≤ L-1时,0 ≤ T(r)  ≤  L-1<br>条件(1)保证原图各灰度级在变换后仍保持从黑到白(或从白到黑)的排列次序<br>条件(2)保证变换前后灰度值动态范围的一致性<br><img src="/images/cv/51.jpg" alt=""><br>图像的灰度级可看成是区间[0,L-1]内的随机变量,随机变量的基本描绘是其概率密度函数<br>令p_r(r)为r的概率密度函数,p_s(s)是s的概率密度函数,p_r(r)和T(r)已知,在感兴趣的值域上T(r)是连续可微的,则<br><img src="/images/cv/50.jpg" alt=""><br>有如下变换函数T(r)<br><img src="/images/cv/47.jpg" alt=""><br>莱布尼茨准则可得<br><img src="/images/cv/48.jpg" alt=""><br><img src="/images/cv/49.jpg" alt=""><br>p_s(s)为均匀概率密度函数，即证明经上述灰度变换函数T(r),得到随机变量s由均匀概率密度函数表征<br><img src="/images/cv/52.jpg" alt=""><br>对于离散值,处理其概率(直方图值)与求和代替处理概率密度函数与积分<br>一幅数字图像中灰度级r_k出现的概率近视为<br><img src="/images/cv/53.jpg" alt=""><br>变换函数为<br><img src="/images/cv/54.jpg" alt=""></p>
-<p><strong>例子</strong><br><img src="/images/cv/55.jpg" alt=""><br><img src="/images/cv/56.jpg" alt=""><br>均衡后的图像中有790个像素取s0=1值,同理有1023个像素取s1=3值,….<br><img src="/images/cv/57.jpg" alt=""></p>
-<h4 id="直方图规定化"><a href="#直方图规定化" class="headerlink" title="直方图规定化"></a>直方图规定化</h4><p>直方图规定化是指经过处理后的图像具有规定的直方图形状<br>令p_r(r)为输入图像估计,p_z(z)为图像所具有的指定概率密度函数<br>有如下变换函数T(r)<br><img src="/images/cv/47.jpg" alt=""><br>定义有如下特性的随机变量z<br><img src="/images/cv/58.jpg" alt=""><br>由G(z) = T(r)，z必须满足如下条件<br><img src="/images/cv/59.jpg" alt=""><br>由一幅给定图像得到一幅其灰度级具有指定概率密度函数图像的步骤:<br>1.有输入图像得到p_r(r)，并由T(r)求得s值<br>2.由指定的PDF求得G(z)<br>3.求得G(z)的反函数z = G^{-1}(s)<br>4.利用T(r)对输入图像进行均衡得到输出图像,对均衡后的图像中具有s值的每个像素<br>   执行反函数z = G^{-1}(s)<br>对于离散值:<br><img src="/images/cv/54.jpg" alt=""><br><img src="/images/cv/60.jpg" alt=""><br>对一个q值:<br><img src="/images/cv/61.jpg" alt=""><br>反函数为:<br><img src="/images/cv/62.jpg" alt=""></p>
-<p><strong>例子</strong><br><img src="/images/cv/55.jpg" alt=""><br><img src="/images/cv/63.jpg" alt=""><br><img src="/images/cv/64.jpg" alt=""><br><img src="/images/cv/65.jpg" alt=""><br><img src="/images/cv/66.jpg" alt=""><br><img src="/images/cv/67.jpg" alt=""></p>
-<h3 id="空间滤波"><a href="#空间滤波" class="headerlink" title="空间滤波"></a>空间滤波</h3><p>空间滤波器由一个邻域(较小的矩形)和对该邻域包围的图像像素执行预定义操作组成,滤波产生一个新像素,新像素的坐标等于邻域中心的坐标,像素值是滤波操作的结果.滤波器在图像上执行的是线性操作则称为线性空间滤波器,否则称为非线性空间滤波器.<br>例如,如下3 x 3领域的线性空间滤波器的处理机理，在图像中任意一点(x,y),滤波器的响应g(x,y)是滤波器系数与该滤波器包围的图像像素的乘积之和:<br><img src="/images/cv/68.jpg" alt=""><br><img src="/images/cv/69.jpg" alt=""></p>
-<h4 id="空间相关与卷积"><a href="#空间相关与卷积" class="headerlink" title="空间相关与卷积"></a>空间相关与卷积</h4><p>相关是滤波器模板移过图像并计算每个位置乘积之和的处理,卷积的机理类似,但其滤波器首先要旋转180°<br>如下,显示了一个一维图像函数和一个一维滤波器,执行操作时,存在未覆盖的的部分函数,若滤波器的尺寸为m，则在需要在f的一侧补m-1个0<br><img src="/images/cv/70.jpg" alt=""><br>二维图像函数和二维滤波器<br><img src="/images/cv/71.jpg" alt=""><br><strong>总结</strong><br>大小为m x n的滤波器和一幅图像f(x,y)做相关操作,可表示为:<br>a = (m-1)/2,b = (n-1)/2 ，为表示方便,假设m和n是奇整数<br><img src="/images/cv/72.jpg" alt=""><br>类似地，卷积表示为:<br><img src="/images/cv/73.jpg" alt=""></p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/" data-id="ck4mhjkd70036w6zw4h0kcm54" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">数字图像处理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(10) Binary Gap" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/18/leetcode(10)%20Binary%20Gap/" class="article-date">
-  <time datetime="2018-07-18T02:20:35.000Z" itemprop="datePublished">2018-07-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/leetcode(10)%20Binary%20Gap/">leetcode(10) Binary Gap</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #868<br>Given a positive integer N, find and return the longest distance between two consecutive 1’s in the binary representation of N.<br>If there aren’t two consecutive 1’s, return 0.</p>
-<p>Example 1:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">22</span></span><br><span class="line">Output: <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>Explanation:<br>22 in binary is 0b10110.<br>In the binary representation of 22, there are three ones, and two consecutive pairs of 1’s.<br>The first consecutive pair of 1’s have distance 2.<br>The second consecutive pair of 1’s have distance 1.<br>The answer is the largest of these two distances, which is 2.</p>
-<p>Example 2:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">5</span></span><br><span class="line">Output: <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>Explanation:<br>5 in binary is 0b101.</p>
-<p>Example 3:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">6</span></span><br><span class="line">Output: <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>Explanation:<br>6 in binary is 0b110.</p>
-<p>Example 4:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: <span class="number">8</span></span><br><span class="line">Output: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>Explanation:<br>8 in binary is 0b1000.<br>There aren’t any consecutive pairs of 1’s in the binary representation of 8, so we return 0.<br>Note:1 &lt;= N &lt;= 10^9</p>
-<p><strong>解法一:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binaryGap</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> distance = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; index;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; N != <span class="number">0</span>;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (N % <span class="number">2</span> != <span class="number">0</span>)</span><br><span class="line">			index.push_back(i);</span><br><span class="line">		N = N &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; index.size()<span class="number">-1</span>;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> max = index[i + <span class="number">1</span>] - index[i];</span><br><span class="line">		<span class="keyword">if</span> (max &gt; distance)</span><br><span class="line">			distance = max;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> distance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解法二:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binaryGap</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> last = <span class="number">-1</span>,distance = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; N != <span class="number">0</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (N % <span class="number">2</span> != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (last &gt; <span class="number">0</span>)</span><br><span class="line">				distance = (i - last) &gt; distance ? (i - last) : distance;</span><br><span class="line">			last = i;</span><br><span class="line">		&#125;</span><br><span class="line">		N = N &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> distance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/18/leetcode(10)%20Binary%20Gap/" data-id="ck4mhjkcq001lw6zwghk7d3ws" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-leetcode(9) Array Partition I" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/" class="article-date">
-  <time datetime="2018-07-18T00:49:13.000Z" itemprop="datePublished">2018-07-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <a title="email" href="mailto:jiaopaner@163.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/">leetcode(9) Array Partition I</a>
-    </h1>
-  
-
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #561<br>Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), …, (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.</p>
-<p>Example 1:<br>Input: [1,4,3,2]</p>
-<p>Output: 4<br>Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).<br>Note:<br>n is a positive integer, which is in the range of [1, 10000].<br>All the integers in the array will be in the range of [-10000, 10000].</p>
-<p><strong>解法:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; <span class="built_in">array</span>, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">arrayPairSum</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">	quicksort(nums, <span class="number">0</span>, nums.size() - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i += <span class="number">2</span>) &#123;</span><br><span class="line">		result += nums[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp; <span class="built_in">array</span>, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i, j, t, temp;</span><br><span class="line">	<span class="keyword">if</span> (left &gt; right)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	temp = <span class="built_in">array</span>[left];</span><br><span class="line">	i = left;</span><br><span class="line">	j = right;</span><br><span class="line">	<span class="keyword">while</span> (i != j)&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (<span class="built_in">array</span>[j] &gt;= temp &amp;&amp; i &lt; j)</span><br><span class="line">			j--;</span><br><span class="line">		<span class="keyword">while</span> (<span class="built_in">array</span>[i] &lt;= temp &amp;&amp; i &lt; j)</span><br><span class="line">			i++;</span><br><span class="line">		<span class="keyword">if</span> (i&lt;j) &#123;</span><br><span class="line">			t = <span class="built_in">array</span>[i];</span><br><span class="line">			<span class="built_in">array</span>[i] = <span class="built_in">array</span>[j];</span><br><span class="line">			<span class="built_in">array</span>[j] = t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">array</span>[left] = <span class="built_in">array</span>[i];</span><br><span class="line">	<span class="built_in">array</span>[i] = temp;</span><br><span class="line">	quicksort(<span class="built_in">array</span>, left, i - <span class="number">1</span>);</span><br><span class="line">	quicksort(<span class="built_in">array</span>, i + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/18/leetcode(9)%20Array%20Partition%20I/" data-id="ck4mhjkcz002dw6zw4ni6aooy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-leetcode(8) SelfDividingNumbers" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/" class="article-date">
-  <time datetime="2018-07-16T09:30:10.000Z" itemprop="datePublished">2018-07-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/">leetcode(8) SelfDividingNumbers</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>difficult：easy #728<br>A self-dividing number is a number that is divisible by every digit it contains.<br>For example, 128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, and 128 % 8 == 0.<br>Also, a self-dividing number is not allowed to contain the digit zero.<br>Given a lower and upper number bound, output a list of every possible self dividing number, including the bounds if possible.</p>
-<p>Example :</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: </span><br><span class="line">left = <span class="number">1</span>, right = <span class="number">22</span></span><br><span class="line">Output: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">15</span>, <span class="number">22</span>]</span><br></pre></td></tr></table></figure>
-<p>Note:<br>The boundaries of each input argument are 1 &lt;= left &lt;= right &lt;= 10000</p>
-<p><strong>解法一：</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; selfDividingNumbers(<span class="keyword">int</span> left, <span class="keyword">int</span> right) &#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= right)&#123;</span><br><span class="line">		<span class="keyword">int</span> x = left;</span><br><span class="line">		<span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">while</span> (x != <span class="number">0</span> &amp;&amp; flag)&#123;</span><br><span class="line">			<span class="keyword">int</span> pos = x % <span class="number">10</span>;</span><br><span class="line">			<span class="keyword">if</span> (pos == <span class="number">0</span>)&#123;</span><br><span class="line">				flag = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (left % pos != <span class="number">0</span>) &#123;</span><br><span class="line">				flag = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			x = x / <span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (flag)</span><br><span class="line">			result.push_back(left);</span><br><span class="line">		left++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>解法二:</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; selfDividingNumbers(<span class="keyword">int</span> left, <span class="keyword">int</span> right) &#123;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; result;</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">string</span> str;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">stringstream</span> buf;</span><br><span class="line">		buf &lt;&lt; left;</span><br><span class="line">		buf &gt;&gt; str;</span><br><span class="line">		<span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">char</span> c : str)&#123;</span><br><span class="line">			<span class="keyword">if</span> (c == <span class="string">'0'</span> || left % (c - <span class="string">'0'</span>) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">				flag = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (flag)&#123;</span><br><span class="line">			result.push_back(left);</span><br><span class="line">		&#125;</span><br><span class="line">		left++;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/16/leetcode(8)%20SelfDividingNumbers/" data-id="ck4mhjkcr001nw6zwhruk10p2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
 
 
-  
-    <article id="post-数字图像处理(1) 图像基础" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/" class="article-date">
-  <time datetime="2018-07-13T01:41:32.000Z" itemprop="datePublished">2018-07-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">数字图像处理</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/">数字图像处理(1) 图像基础</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="图像采样和量化"><a href="#图像采样和量化" class="headerlink" title="图像采样和量化"></a>图像采样和量化</h3><p><img src="/images/cv/6.jpg" alt=""></p>
-<h4 id="图像采样"><a href="#图像采样" class="headerlink" title="图像采样"></a>图像采样</h4><p>数字化坐标值称为采样,对二维空间中连续的图像在水平和垂直方向上等间距地分割成矩形网状结构，所形成的微小方格称为像素点,小方格中的值由灰度值(方格区域亮度的平均值)表示,采样的实质就是用多少个像素点来描述一幅图像.<br>采样时，若横向的像素数(列数)为M,纵向的像素数(行数)为N,则图像总像素数为M*N个像素；</p>
-<p>采样间隔越大，即行列数少,则图像像素数越少，空间分辨率低，质量差，严重时出现马赛克效应；<br>采样间隔越小，即行列数大,则图像像素数越多，空间分辨率高，图像质量好，数据量大；<br>如下图,上述采样点分别为a:1024x1024 , b:512x512 , c:256x256 , d:128x128 , e:64x64, f:32x32<br><img src="/images/cv/1.png" alt=""></p>
-<p>采样过程:<br><img src="/images/cv/2.jpg" alt=""><br><img src="/images/cv/4.jpg" alt=""></p>
-<h4 id="图像量化"><a href="#图像量化" class="headerlink" title="图像量化"></a>图像量化</h4><p>采样后所得各像素的灰度模拟量到离散量的转换为图像灰度量化<br>像素灰度级/灰度值/灰度:表示像素明暗程度的整数<br>灰度级数:数字图像中不同灰度值的个数(G）<br>若连续的灰度值用$$z$$表示,则满足于z_{i} &lt; z &lt; z_{i+1} 的z值都量化为整数值z_{i}，z_{i}称为像素灰度值<br>量化后的的灰度值用比特位数(g:存储图像灰度值所需的比特位数)表示,即$G=2^{g}$,如黑-灰-白的连续变化灰度值,用8位比特量化则为0~255个灰度值,代表相应的浓淡程度<br><img src="/images/cv/5.jpg" alt=""><br>图像的数据量 = M x N x G bit</p>
-<p>数字图像根据灰度级数的差异可分为黑白图像、灰度图像、彩色图像</p>
 <ul>
-<li>黑白图像<br>图像的每个灰度值/像素只能是黑或白,无中间值的过渡,故称二值图,灰度级数为2,灰度值为0或1<br><img src="/images/cv/7.jpg" alt=""></li>
-<li>灰度图像<br>图像的灰度级数大于2,但不包含彩色信息<br><img src="/images/cv/8.jpg" alt=""></li>
-<li>彩色图像<br>每个灰度值由R、G、B分量构成,其中R、G、B由不同的灰度值来描述<br><img src="/images/cv/9.jpg" alt=""></li>
+    <li><div class="all active">全部文章<small>(49)</small></div></li>
+    
+        
+            
+            <li><div data-rel="深度学习">深度学习<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="C++">C++<small>(4)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="目标检测">目标检测<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="笔记">笔记<small>(9)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="大数据">大数据<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="leetcode">leetcode<small>(11)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="docker">docker<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="opencv3">opencv3<small>(5)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="操作系统">操作系统<small>(3)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数字图像处理">数字图像处理<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数据结构">数据结构<small>(6)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
+            <li><div data-rel="数学">数学<small>(2)</small></div>
+                
+            </li>
+            
+        
+    
 </ul>
-<p>量化等级越高,图像层次越丰富图像质量越好,反之图像质量差,如下图,量化等级依次递减所得的图像<br><img src="/images/cv/11.jpg" alt=""></p>
-<hr>
-<h3 id="数字图像表示"><a href="#数字图像表示" class="headerlink" title="数字图像表示"></a>数字图像表示</h3><p>一幅M×N的图像可以表示为矩阵,矩阵中的每个元素为图像的灰度值(像素值)<br><img src="/images/cv/10.jpg" alt=""></p>
-<h3 id="空间和灰度分辨率"><a href="#空间和灰度分辨率" class="headerlink" title="空间和灰度分辨率"></a>空间和灰度分辨率</h3><p>空间分辨率是图像中可辨别最小细节的度量,其中每单位距离线对数和每单位距离点数(像素数)是最通用的度量 —— 采样程度<br>灰度分辨率是指在灰度级中可分辨的最小变化 —— 量化程度</p>
-<h3 id="图像内插"><a href="#图像内插" class="headerlink" title="图像内插"></a>图像内插</h3><p>图像内插是在诸如放大、收缩、旋转和几何校正等任务中广泛应用的工具<br>从根本上看,内插是用已知数据来估计未知位置数值的处理<br>源图像大小为M * N,目标图像为A * B,则两幅图像的边长比分别为:M/A和N/B,目标图像(i,j)像素可通过边长比对应回源图像,其对应坐标为(i * M / A,j * N / B)，显然,对应的坐标一般不是整数，而非整数的坐标无法在图像上使用.</p>
-<h4 id="最近邻内插法"><a href="#最近邻内插法" class="headerlink" title="最近邻内插法"></a>最近邻内插法</h4><p>假设一幅500x500的图像放大1.5倍到750x750，创建一个750x750的网格,其与原图有相同的间隔,然后将其收缩,使它准确地与原图匹配,显然收缩后的750x750网格的像素间隔小于原图的像素间隔,为了覆盖的每一个点赋以灰度值,因此在原图中寻找最接近的像素,并把该像素的灰度值赋给750x750网格中的新像素,完成像素的赋值后,再将图像扩展到规定的大小.<br>蓝色为原图网格,红色为放大后的网格<br><img src="/images/cv/12.jpg" alt=""><br>取最近的像素灰度值赋值给新像素<br><img src="/images/cv/13.jpg" alt=""></p>
-<p>C++代码实现</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;opencv2\opencv.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Mat src = imread(<span class="string">"D:/learn/jiaopan/source/images/opencv3/blob.jpg"</span>);<span class="comment">//原图</span></span><br><span class="line">	imshow(<span class="string">"src"</span>, src);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; src.rows;</span><br><span class="line">	<span class="comment">//创建网格矩阵</span></span><br><span class="line">	Mat dst = Mat::zeros(Size(<span class="number">750</span>, <span class="number">750</span>), CV_8UC3);</span><br><span class="line">	<span class="comment">//放大比例</span></span><br><span class="line">	<span class="keyword">double</span> fRows = <span class="number">750</span> / (<span class="keyword">float</span>)src.rows;</span><br><span class="line">	<span class="keyword">double</span> fCols = <span class="number">750</span> / (<span class="keyword">float</span>)src.cols;</span><br><span class="line">	<span class="keyword">int</span> primaryX = <span class="number">0</span>, primaryY = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//最近邻内插法</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != dst.rows; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j != dst.cols; j++)&#123;</span><br><span class="line">			primaryX = cvRound(i / (<span class="keyword">double</span>)fRows);</span><br><span class="line">			primaryY = cvRound(j / (<span class="keyword">double</span>)fCols);</span><br><span class="line">			<span class="keyword">if</span> (primaryX &lt; src.rows &amp;&amp; primaryX &gt;= <span class="number">0</span> &amp;&amp; primaryY &gt;= <span class="number">0</span> &amp;&amp; primaryY &lt; src.cols)&#123;</span><br><span class="line">				dst.at&lt;cv::Vec3b&gt;(i, j)[<span class="number">0</span>] = src.at&lt;cv::Vec3b&gt;(primaryX, primaryY)[<span class="number">0</span>];</span><br><span class="line">				dst.at&lt;cv::Vec3b&gt;(i, j)[<span class="number">1</span>] = src.at&lt;cv::Vec3b&gt;(primaryX, primaryY)[<span class="number">1</span>];</span><br><span class="line">				dst.at&lt;cv::Vec3b&gt;(i, j)[<span class="number">2</span>] = src.at&lt;cv::Vec3b&gt;(primaryX, primaryY)[<span class="number">2</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	imshow(<span class="string">"dst"</span>, dst);</span><br><span class="line"></span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/cv/14.jpg" alt=""></p>
-<h4 id="双线性插值"><a href="#双线性插值" class="headerlink" title="双线性插值"></a>双线性插值</h4><p>双线性插值通过寻找距离对应坐标最近的四个像素点计算该点灰度值或者RGB值,如对应坐标是(2.5,4.5)，则最近的四个像素为 (2,4) , (2,5) , (3,4) , (3,5).<br>如图，已知Q11  (x1, y1), Q12  (x1, y2), Q21 (x2, y1),  Q22  (x2, y2)，插值的点为P点<br><img src="/images/cv/15.png" alt=""><br>X方向<br><img src="/images/cv/16.svg" alt=""><br>Y方向<br><img src="/images/cv/18.svg" alt=""><br>先在 x 方向插值，再在 y 方向插值，其结果与按照上述顺序双线性插值的结果一致<br>若四个已知点坐标分别为 (0, 0)、(0, 1)、(1, 0) 和 (1, 1)，插值公式可化简为<br><img src="/images/cv/19.svg" alt=""><br>其矩阵运算公式为<br><img src="/images/cv/20.svg" alt=""></p>
-<p>双线性插值的结果不是线性的，它是两个线性函数的积，在单位正方形上，双线性插值可以记作<br><img src="/images/cv/22.svg" alt=""><br><img src="/images/cv/23.jpg" alt=""><br>一般情况:<br><img src="/images/cv/21.png" alt=""></p>
-<p>代码实现</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;opencv2\opencv.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Mat src = imread(<span class="string">"D:/learn/jiaopan/source/images/opencv3/blob.jpg"</span>);<span class="comment">//原图</span></span><br><span class="line">	imshow(<span class="string">"src"</span>, src);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//创建网格矩阵</span></span><br><span class="line">	Mat dst = Mat::zeros(Size(<span class="number">750</span>, <span class="number">750</span>), CV_8UC3);</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//放大比例</span></span><br><span class="line">	<span class="keyword">double</span> fRows = <span class="number">750</span> / (<span class="keyword">float</span>)src.rows;</span><br><span class="line">	<span class="keyword">double</span> fCols = <span class="number">750</span> / (<span class="keyword">float</span>)src.cols;</span><br><span class="line">	<span class="keyword">int</span> primaryX = <span class="number">0</span>, primaryY = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//双线性插值</span></span><br><span class="line">	<span class="keyword">float</span> m = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">float</span> n = <span class="number">0</span>;</span><br><span class="line">	CvScalar a, b, c, d;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != dst.rows; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j != dst.rows; j++) &#123;</span><br><span class="line">			m = cvRound(i / (<span class="keyword">double</span>)fRows);</span><br><span class="line">			n = cvRound(j / (<span class="keyword">double</span>)fCols);</span><br><span class="line">			<span class="keyword">double</span> ux = m - (<span class="keyword">int</span>)m;</span><br><span class="line">			<span class="keyword">double</span> uy = n - (<span class="keyword">int</span>)n;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span> (m &gt;= <span class="number">0</span> &amp;&amp; m &lt;= src.rows - <span class="number">1</span> &amp;&amp; n &gt;= <span class="number">0</span> &amp;&amp; n &lt;= src.cols - <span class="number">1</span>) &#123;</span><br><span class="line">				a = src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m, (<span class="keyword">int</span>)n);</span><br><span class="line">				b = src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m, (<span class="keyword">int</span>)n + <span class="number">1</span>) - src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m, (<span class="keyword">int</span>)n);</span><br><span class="line">				c = src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m + <span class="number">1</span>, (<span class="keyword">int</span>)n) - src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m, (<span class="keyword">int</span>)n);</span><br><span class="line">				d = src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m + <span class="number">1</span>, (<span class="keyword">int</span>)n + <span class="number">1</span>) - src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m + <span class="number">1</span>, (<span class="keyword">int</span>)n) - src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m, (<span class="keyword">int</span>)n + <span class="number">1</span>) + src.at&lt;cv::Vec3b&gt;((<span class="keyword">int</span>)m, (<span class="keyword">int</span>)n);</span><br><span class="line"></span><br><span class="line">				b.val[<span class="number">0</span>] = b.val[<span class="number">0</span>] * uy;</span><br><span class="line">				b.val[<span class="number">1</span>] = b.val[<span class="number">1</span>] * uy;</span><br><span class="line">				b.val[<span class="number">2</span>] = b.val[<span class="number">2</span>] * uy;</span><br><span class="line">				c.val[<span class="number">0</span>] = c.val[<span class="number">0</span>] * ux;</span><br><span class="line">				c.val[<span class="number">1</span>] = c.val[<span class="number">1</span>] * ux;</span><br><span class="line">				c.val[<span class="number">2</span>] = c.val[<span class="number">2</span>] * ux;</span><br><span class="line">				d.val[<span class="number">0</span>] = d.val[<span class="number">0</span>] * ux*uy;</span><br><span class="line">				d.val[<span class="number">1</span>] = d.val[<span class="number">1</span>] * ux*uy;</span><br><span class="line">				d.val[<span class="number">2</span>] = d.val[<span class="number">2</span>] * ux*uy;</span><br><span class="line">			&#125;</span><br><span class="line">			dst.at&lt;cv::Vec3b&gt;(i, j)[<span class="number">0</span>] = (<span class="keyword">int</span>)(a.val[<span class="number">0</span>] + b.val[<span class="number">0</span>] + c.val[<span class="number">0</span>] + d.val[<span class="number">0</span>]);</span><br><span class="line">			dst.at&lt;cv::Vec3b&gt;(i, j)[<span class="number">1</span>] = (<span class="keyword">int</span>)(a.val[<span class="number">1</span>] + b.val[<span class="number">1</span>] + c.val[<span class="number">1</span>] + d.val[<span class="number">1</span>]);</span><br><span class="line">			dst.at&lt;cv::Vec3b&gt;(i, j)[<span class="number">2</span>] = (<span class="keyword">int</span>)(a.val[<span class="number">2</span>] + b.val[<span class="number">2</span>] + c.val[<span class="number">2</span>] + d.val[<span class="number">2</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	imshow(<span class="string">"dst"</span>, dst);</span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/cv/24.jpg" alt=""></p>
-<h4 id="双三次内插"><a href="#双三次内插" class="headerlink" title="双三次内插"></a>双三次内插</h4><p>双三次内插包括16个最近邻点,在保持细节方面比双线性内插更好<br><img src="/images/cv/27.png" alt=""><br><a href="https://en.wikipedia.org/wiki/Bicubic_interpolation" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Bicubic_interpolation</a></p>
-<h3 id="像素间的基本关系"><a href="#像素间的基本关系" class="headerlink" title="像素间的基本关系"></a>像素间的基本关系</h3><h4 id="相邻像素"><a href="#相邻像素" class="headerlink" title="相邻像素"></a>相邻像素</h4><p>位于坐标(x,y)处的像素p有4个水平和垂直的相邻像素(4邻域 N4(p)),其坐标公式如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x+<span class="number">1</span>,y),(x<span class="number">-1</span>,y),(x,y+<span class="number">1</span>),(x,y<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
-<p>p的4个对角相邻像素(对角邻域)的坐标公式如下:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x+<span class="number">1</span>,y+<span class="number">1</span>),(x+<span class="number">1</span>,y<span class="number">-1</span>),(x<span class="number">-1</span>,y+<span class="number">1</span>),(x<span class="number">-1</span>,y<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="邻接性"><a href="#邻接性" class="headerlink" title="邻接性"></a>邻接性</h4><p>令V是用于定义邻接性的灰度值集合,在二值图像中,把具有1值的像素归为邻接像素,则V = {1}<br><img src="/images/cv/28.png" alt=""><br>4邻接:若q在集合N4(p)中，则具有V中数值(1)的两个像素p和q是4邻接<br>8邻接:若q在集合N8(p)中，则具有V中数值(1)的两个像素p和q是8邻接(8邻域=4邻域+对角邻域）<br>m邻接:若q在N4(p)中，或者在ND(p)中，且集合N4(p) ∩ N4(q) 没有V中数值(1)的像素，则具有V中数值的两个像素p和q是m邻接的</p>
-<h4 id="距离度量"><a href="#距离度量" class="headerlink" title="距离度量"></a>距离度量</h4><p>对于像素p、q和z，分别具有坐标(x,y)，(s,t)和(u,v)，若<br>(1) D(p,q) ≥ 0 (D(p,q)=0，当且仅当p =q)<br>(2) D(p,q) = D(q,p)<br>(3) D(p,z) ≤ D(p,q) + D(q,z)<br>则称D是距离函数或度量</p>
-<h5 id="欧式距离"><a href="#欧式距离" class="headerlink" title="欧式距离"></a>欧式距离</h5><p><img src="/images/cv/29.jpg" alt=""><br>距离点(x,y)的距离小于或等于某个值r的像素点是在圆心为(x,y)且半径为r的圆平面内</p>
-<h5 id="城市距离"><a href="#城市距离" class="headerlink" title="城市距离"></a>城市距离</h5><p><img src="/images/cv/30.jpg" alt=""><br>距离点(x,y)的距离小于或等于某个值r的像素点形成一个中心为(x,y)的菱形<br>如图,与点(x,y)的距离小于或等于2的像素<br><img src="/images/cv/31.jpg" alt=""></p>
-<h5 id="棋盘距离"><a href="#棋盘距离" class="headerlink" title="棋盘距离"></a>棋盘距离</h5><p><img src="/images/cv/32.jpg" alt=""><br>距离点(x,y)的距离小于或等于某个值r的像素点形成一个中心为(x,y)的方形<br>如图,与点(x,y)的距离小于或等于2的像素<br><img src="/images/cv/33.jpg" alt=""></p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
+<div class="left-bottom">
+    <div class="menus">
+    
+    
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/" data-id="ck4mhjkde003uw6zw6w09cgez" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">数字图像处理</a></li></ul>
+    <div></div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="49">
 
-    </footer>
-  </div>
-  
-</article>
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
 
-
-  
-    <article id="post-blob detect" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/12/blob%20detect/" class="article-date">
-  <time datetime="2018-07-12T13:40:22.000Z" itemprop="datePublished">2018-07-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/opencv3/">opencv3</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/12/blob%20detect/">blob detect</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="斑点检测"><a href="#斑点检测" class="headerlink" title="斑点检测"></a>斑点检测</h3><p>斑点:与周围区域存在颜色差异或灰度差异的区域<br>斑点检测的主要思路是检测出图像中比周围像素灰度大或者比周围区域灰度值小的区域<br>　　1.基于求导的微分方法<br>　　2.基于局部极值的分水岭算法,基于此OPENCV中提供simpleBlobDetector特征检测器</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;opencv2\opencv.hpp&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Mat im = imread(<span class="string">"D:/learn/jiaopan/source/images/opencv3/blob.jpg"</span>,IMREAD_GRAYSCALE);</span><br><span class="line">	imshow(<span class="string">"im"</span>, im);</span><br><span class="line">	Ptr&lt;SimpleBlobDetector&gt; detector = SimpleBlobDetector::create();</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">vector</span>&lt;KeyPoint&gt; keypoints;</span><br><span class="line">	detector-&gt;detect(im, keypoints);</span><br><span class="line">	Mat im_with_keypoints;</span><br><span class="line">	drawKeypoints(im, keypoints, im_with_keypoints, Scalar(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);</span><br><span class="line">	imshow(<span class="string">"keypoints"</span>, im_with_keypoints);</span><br><span class="line">	waitKey(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>原图<br><img src="/images/opencv3/blob.jpg" alt=""><br>灰度图<br><img src="/images/opencv3/blob2.jpg" alt=""><br>斑点检测图<br><img src="/images/opencv3/blob3.jpg" alt=""></p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
-
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jiaopaner.github.io/2018/07/12/blob%20detect/" data-id="ck4mhjkc7000cw6zw319l5qtr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opencv-samples/" rel="tag">opencv samples</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/opencv3/">opencv3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">数字图像处理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6/">数学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">目标检测</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></li></ul>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
     </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JNA/" rel="tag">JNA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/" rel="tag">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/" rel="tag">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mxnet/" rel="tag">mxnet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv-samples/" rel="tag">opencv samples</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv3/" rel="tag">opencv3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" rel="tag">小贴士</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag">数字图像处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag">数学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="tag">模型转换</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" rel="tag">神经网络模型</a></li></ul>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
     </div>
-  </div>
-
-
-  
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/C/" style="font-size: 16px;">C++</a> <a href="/tags/JNA/" style="font-size: 10px;">JNA</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/hadoop/" style="font-size: 10px;">hadoop</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/jdk/" style="font-size: 10px;">jdk</a> <a href="/tags/leetcode/" style="font-size: 20px;">leetcode</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/mxnet/" style="font-size: 10px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/opencv-samples/" style="font-size: 10px;">opencv samples</a> <a href="/tags/opencv3/" style="font-size: 16px;">opencv3</a> <a href="/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" style="font-size: 10px;">小贴士</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 14px;">操作系统</a> <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" style="font-size: 12px;">数字图像处理</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 12px;">数学</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a> <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/" style="font-size: 10px;">模型转换</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">深度学习</a> <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B/" style="font-size: 12px;">神经网络模型</a>
-    </div>
-  </div>
-
-  
+    <li class="article-tag-list-item">
+        <a class="color2">神经网络模型</a>
+    </li>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
+    <li class="article-tag-list-item">
+        <a class="color4">C++</a>
+    </li>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/12/18/elasticsearch%20%E6%95%99%E7%A8%8B/">elasticsearch 教程</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/20/hadoop%20spark/">hadoop spark</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">android使用opencv native方式环境搭建</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/">深度学习模型转换</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/">mxnet Windows编译安装CPU版 c++ api</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    <li class="article-tag-list-item">
+        <a class="color5">深度学习</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">opencv samples</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">make</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">hadoop</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">opencv</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">leetcode</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">JNA</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">docker</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">hexo</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">jdk</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mxnet</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">nginx</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color1">mysql</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">opencv3</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">操作系统</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color2">数字图像处理</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">数据结构</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color4">小贴士</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color3">数学</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a class="color5">模型转换</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
 
-  
+    
+    <nav id="title-list-nav">
+        
+        <a  class="深度学习 "
+           href="/2019/06/28/Alexnet/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="Alexnet">Alexnet</span>
+            <span class="post-date" title="2019-06-28 18:32:23">2019/06/28</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(2) 面向对象编程">C++教程(2) 面向对象编程</span>
+            <span class="post-date" title="2019-07-05 15:37:22">2019/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(4) C++标准库">C++教程(4) C++标准库</span>
+            <span class="post-date" title="2019-07-09 15:45:11">2019/07/09</span>
+        </a>
+        
+        <a  class="目标检测 "
+           href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/"
+           data-tag="深度学习"
+           data-author="" >
+            <span class="post-title" title="(1)Faster R-CNN implemented by Keras">(1)Faster R-CNN implemented by Keras</span>
+            <span class="post-date" title="2019-07-04 18:44:35">2019/07/04</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(1) 基础">C++教程(1) 基础</span>
+            <span class="post-date" title="2019-07-05 15:30:07">2019/07/05</span>
+        </a>
+        
+        <a  class="C++ "
+           href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/"
+           data-tag="C++"
+           data-author="" >
+            <span class="post-title" title="C++教程(3) 模板和泛型编程">C++教程(3) 模板和泛型编程</span>
+            <span class="post-date" title="2019-07-06 17:40:47">2019/07/06</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/12/blob%20detect/"
+           data-tag="opencv samples"
+           data-author="" >
+            <span class="post-title" title="blob detect">blob detect</span>
+            <span class="post-date" title="2018-07-12 21:40:22">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/"
+           data-tag="make"
+           data-author="" >
+            <span class="post-title" title="cmake教程">cmake教程</span>
+            <span class="post-date" title="2019-08-07 11:38:10">2019/08/07</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/07/03/VGG16Net/"
+           data-tag="神经网络模型"
+           data-author="" >
+            <span class="post-title" title="VGG16Net">VGG16Net</span>
+            <span class="post-date" title="2019-07-03 21:14:18">2019/07/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/12/18/elasticsearch%20%E6%95%99%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="elasticsearch 教程">elasticsearch 教程</span>
+            <span class="post-date" title="2019-12-18 10:28:11">2019/12/18</span>
+        </a>
+        
+        <a  class="大数据 "
+           href="/2019/11/20/hadoop%20spark/"
+           data-tag="hadoop"
+           data-author="" >
+            <span class="post-title" title="hadoop spark">hadoop spark</span>
+            <span class="post-date" title="2019-11-20 21:14:18">2019/11/20</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"
+           data-tag="opencv"
+           data-author="" >
+            <span class="post-title" title="android使用opencv native方式环境搭建">android使用opencv native方式环境搭建</span>
+            <span class="post-date" title="2019-11-01 14:05:23">2019/11/01</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(1)%20Two-Sum/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(1) Two-Sum">leetcode(1) Two-Sum</span>
+            <span class="post-date" title="2018-07-06 10:41:12">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/"
+           data-tag="JNA"
+           data-author="" >
+            <span class="post-title" title="编译C/C++为dll供Java调用">编译C/C++为dll供Java调用</span>
+            <span class="post-date" title="2019-03-10 18:34:24">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(11) ReverseWordsInAStringIII">leetcode(11) ReverseWordsInAStringIII</span>
+            <span class="post-date" title="2018-07-26 09:09:35">2018/07/26</span>
+        </a>
+        
+        <a  class="docker "
+           href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/"
+           data-tag="docker"
+           data-author="" >
+            <span class="post-title" title="Docker入门指南">Docker入门指南</span>
+            <span class="post-date" title="2018-06-13 15:30:33">2018/06/13</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(3) Jewels and Stones">leetcode(3) Jewels and Stones</span>
+            <span class="post-date" title="2018-07-08 00:54:31">2018/07/08</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(4)  uniqueMorseCodeWords">leetcode(4)  uniqueMorseCodeWords</span>
+            <span class="post-date" title="2018-07-10 08:36:27">2018/07/10</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo"
+           data-author="" >
+            <span class="post-title" title="hexo搭建GitHub博客">hexo搭建GitHub博客</span>
+            <span class="post-date" title="2019-03-10 15:40:00">2019/03/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(6)  JudgeRouteCircle">leetcode(6)  JudgeRouteCircle</span>
+            <span class="post-date" title="2018-07-11 20:24:07">2018/07/11</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(10)%20Binary%20Gap/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(10) Binary Gap">leetcode(10) Binary Gap</span>
+            <span class="post-date" title="2018-07-18 10:20:35">2018/07/18</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(8) SelfDividingNumbers">leetcode(8) SelfDividingNumbers</span>
+            <span class="post-date" title="2018-07-16 17:30:10">2018/07/16</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/06/leetcode(2)%20Reverse%20Integer/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(2) Reverse Integer">leetcode(2) Reverse Integer</span>
+            <span class="post-date" title="2018-07-06 14:28:17">2018/07/06</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="jdk"
+           data-author="" >
+            <span class="post-title" title="linux下jdk安装">linux下jdk安装</span>
+            <span class="post-date" title="2019-03-06 14:02:29">2019/03/06</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/10/leetcode(5)%20%20HammingDistance/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(5)  HammingDistance">leetcode(5)  HammingDistance</span>
+            <span class="post-date" title="2018-07-10 10:11:18">2018/07/10</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(7) PeakIndexInMountainArray">leetcode(7) PeakIndexInMountainArray</span>
+            <span class="post-date" title="2018-07-12 09:21:44">2018/07/12</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/"
+           data-tag="mxnet"
+           data-author="" >
+            <span class="post-title" title="mxnet Windows编译安装CPU版 c++ api">mxnet Windows编译安装CPU版 c++ api</span>
+            <span class="post-date" title="2019-09-19 14:05:23">2019/09/19</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/"
+           data-tag="nginx"
+           data-author="" >
+            <span class="post-title" title="nginx-rtmp流媒体服务">nginx-rtmp流媒体服务</span>
+            <span class="post-date" title="2019-06-26 11:38:40">2019/06/26</span>
+        </a>
+        
+        <a  class="leetcode "
+           href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/"
+           data-tag="leetcode"
+           data-author="" >
+            <span class="post-title" title="leetcode(9) Array Partition I">leetcode(9) Array Partition I</span>
+            <span class="post-date" title="2018-07-18 08:49:13">2018/07/18</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/"
+           data-tag="mysql"
+           data-author="" >
+            <span class="post-title" title="linux下mysql的安装">linux下mysql的安装</span>
+            <span class="post-date" title="2019-03-06 16:00:26">2019/03/06</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(2) 图像载入-显示-输出">opencv3(2) 图像载入-显示-输出</span>
+            <span class="post-date" title="2019-07-10 14:24:06">2019/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(3) opencv数据类型">opencv3(3) opencv数据类型</span>
+            <span class="post-date" title="2018-07-10 14:44:51">2018/07/10</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(1) 概述">操作系统(1) 概述</span>
+            <span class="post-date" title="2019-06-06 14:05:23">2019/06/06</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(2) 进程管理">操作系统(2) 进程管理</span>
+            <span class="post-date" title="2019-06-07 20:50:53">2019/06/07</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/07/10/opencv3(1-1)%20vs2015%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-1) vs2015配置opencv3开发环境">opencv3(1-1) vs2015配置opencv3开发环境</span>
+            <span class="post-date" title="2019-07-10 14:02:45">2019/07/10</span>
+        </a>
+        
+        <a  class="opencv3 "
+           href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"
+           data-tag="opencv3"
+           data-author="" >
+            <span class="post-title" title="opencv3(1-2) linux配置opencv3开发环境">opencv3(1-2) linux配置opencv3开发环境</span>
+            <span class="post-date" title="2019-03-11 23:00:35">2019/03/11</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(2) 灰度变换与空间滤波">数字图像处理(2) 灰度变换与空间滤波</span>
+            <span class="post-date" title="2018-07-20 14:08:43">2018/07/20</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(1) 基本概念">数据结构(1) 基本概念</span>
+            <span class="post-date" title="2019-05-29 19:25:01">2019/05/29</span>
+        </a>
+        
+        <a  class="笔记 "
+           href="/2019/03/15/%E5%B0%8F%E8%B4%B4%E5%A3%AB/"
+           data-tag="小贴士"
+           data-author="" >
+            <span class="post-title" title="小贴士">小贴士</span>
+            <span class="post-date" title="2019-03-15 16:06:23">2019/03/15</span>
+        </a>
+        
+        <a  class="操作系统 "
+           href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"
+           data-tag="操作系统"
+           data-author="" >
+            <span class="post-title" title="操作系统(3) 内存管理">操作系统(3) 内存管理</span>
+            <span class="post-date" title="2019-06-30 15:42:06">2019/06/30</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(4) 树与二叉树">数据结构(4) 树与二叉树</span>
+            <span class="post-date" title="2019-06-17 15:11:45">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(6) 查找">数据结构(6) 查找</span>
+            <span class="post-date" title="2019-07-16 14:11:05">2019/07/16</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(2) 线性表">数据结构(2) 线性表</span>
+            <span class="post-date" title="2019-05-30 15:16:30">2019/05/30</span>
+        </a>
+        
+        <a  class="数字图像处理 "
+           href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/"
+           data-tag="数字图像处理"
+           data-author="" >
+            <span class="post-title" title="数字图像处理(1) 图像基础">数字图像处理(1) 图像基础</span>
+            <span class="post-date" title="2018-07-13 09:41:32">2018/07/13</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="线性代数">线性代数</span>
+            <span class="post-date" title="2019-04-26 09:17:54">2019/04/26</span>
+        </a>
+        
+        <a  class="数学 "
+           href="/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+           data-tag="数学"
+           data-author="" >
+            <span class="post-title" title="高等数学">高等数学</span>
+            <span class="post-date" title="2019-06-17 20:50:31">2019/06/17</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(3) 栈和队列">数据结构(3) 栈和队列</span>
+            <span class="post-date" title="2019-06-10 14:28:59">2019/06/10</span>
+        </a>
+        
+        <a  class="数据结构 "
+           href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/"
+           data-tag="数据结构"
+           data-author="" >
+            <span class="post-title" title="数据结构(7) 排序">数据结构(7) 排序</span>
+            <span class="post-date" title="2019-07-19 14:09:11">2019/07/19</span>
+        </a>
+        
+        <a  class="深度学习 "
+           href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/"
+           data-tag="模型转换"
+           data-author="" >
+            <span class="post-title" title="深度学习模型转换">深度学习模型转换</span>
+            <span class="post-date" title="2019-10-25 21:14:18">2019/10/25</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
 </aside>
+<div class="post index">
+    <div class="pjax">
+        <article class="index">
+            <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#今夜的风儿甚是喧嚣"><span class="toc-text">今夜的风儿甚是喧嚣</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于jiaopan"><span class="toc-text">关于jiaopan</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+            <h1 id="今夜的风儿甚是喧嚣"><a href="#今夜的风儿甚是喧嚣" class="headerlink" title="今夜的风儿甚是喧嚣"></a>今夜的风儿甚是喧嚣</h1><h2 id="关于jiaopan"><a href="#关于jiaopan" class="headerlink" title="关于jiaopan"></a>关于jiaopan</h2><p><strong>jiaopan</strong> 焦攀的博客站。</p>
+<p><code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+
+        </article>
         
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 JiaoPan<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        <p>
+            <a  class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
     </div>
-  </div>
-</footer>
+    <div class="copyright">
+        <p class="footer-entry">©2017-2019 jiaopaner</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.0.1" ></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#神经网络模型','#C++','#深度学习','#opencv samples','#make','#hadoop','#opencv','#leetcode','#JNA','#docker','#hexo','#jdk','#mxnet','#nginx','#mysql','#opencv3','#操作系统','#数字图像处理','#数据结构','#小贴士','#数学','#模型转换',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
 
 
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    /*引用块样式*/
+    
 
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
 
 
 
 
-<script src="/js/script.js"></script>
 
 
 
-
-  </div>
-</body>
 </html>
