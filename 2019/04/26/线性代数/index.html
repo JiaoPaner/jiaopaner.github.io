@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    6k 字
+                    5.9k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      29 分钟
+                      28 分钟
                   </span>&nbsp;
                 
 
@@ -167,50 +167,52 @@
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
             <h1 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h1><p><strong>概念：行列式是一个数，是取自不同行不同列的n个元素的乘积的代数和</strong></p>
-<p>二阶行列式：$\begin{vmatrix}<br>a &amp; b\<br>c &amp; d<br>\end{vmatrix}=ad-bc$</p>
-<p>三阶行列式：$\begin{vmatrix}<br>a<em>{1} &amp; a</em>{2} &amp; a<em>{3}\<br>b</em>{1} &amp; b<em>{2} &amp; b</em>{3}\<br>c<em>{1} &amp; c</em>{2} &amp; c<em>{3}<br>\end{vmatrix}=a</em>{1}b<em>{2}c</em>{3}+a<em>{2}b</em>{3}c<em>{1}+a</em>{3}b<em>{1}c</em>{2}-a<em>{3}b</em>{2}c<em>{1}-a</em>{2}b<em>{1}c</em>{3}-a<em>{1}b</em>{3}c_{2}$(对角线法则)</p>
-<p>n阶乘行列式：$\begin{vmatrix}<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>\vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>a<em>{n1} &amp; a</em>{n2} &amp; … &amp; a<em>{nn}<br>\end{vmatrix}=\sum</em>{j<em>{1}j</em>{2}…j<em>{n}}(-1)^{r(j</em>{1}j<em>{2}…j</em>{n})}a<em>{1j</em>{1}}a<em>{2j</em>{2}}…a<em>{nj</em>{n}}$(完全展开式)</p>
-<p>$r(j<em>{1}j</em>{2}…j<em>{n})$为排列$j</em>{1}j<em>{2}…j</em>{n}$的逆序数</p>
-<p><strong>性质</strong></p>
-<ol>
-<li><p>经转置行列式的值不变. $\left | A^{T} \right |=\left | A \right |$</p>
-</li>
-<li><p>两行或两列互换的行列式变号. $\begin{vmatrix}<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>\vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>a<em>{n1} &amp; a</em>{n2} &amp; … &amp; a<em>{nn}<br>\end{vmatrix}=-\begin{vmatrix}<br>a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>\vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>a</em>{n1} &amp; a<em>{n2} &amp; … &amp; a</em>{nn}<br>\end{vmatrix}$</p>
-</li>
-<li><p>某行或某列有公因数k,可把k提取到行列式外.</p>
+<p>二阶行列式：</p>
 <script type="math/tex; mode=display">
 \begin{vmatrix}
-ka_{11} & ka_{12} & ... & ka_{1n}\\ 
-a_{21} & a_{22} & ... & a_{2n}\\
-\vdots &\vdots & &\vdots &\\
-a_{n1} & a_{n2} & ... & a_{nn}
-\end{vmatrix}
-=k
-\begin{vmatrix}
-a_{11} & a_{12} & ... & a_{1n}\\ 
-a_{21} & a_{22} & ... & a_{2n}\\
-\vdots &\vdots & &\vdots &\\
-a_{n1} & a_{n2} & ... & a_{nn}
-\end{vmatrix}</script></li>
-<li><p>某行或某列所有元素都为两个数之和，则可写成两个行列式之和.</p>
+a & b\\
+c & d
+\end{vmatrix}=ad-bc</script><p>三阶行列式：</p>
 <script type="math/tex; mode=display">
 \begin{vmatrix}
-a_{1} & a_{2}+a_{4} & a_{3}\\ 
-b_{1} & b_{2}+b_{4} & b_{3}\\
-c_{1} & c_{2}+c_{4} & c_{3}
-\end{vmatrix}
-=
-\begin{vmatrix}
-a_{1} & a_{2}& a_{3}\\ 
-b_{1} & b_{2}& b_{3}\\
-c_{1} & c_{2}& c_{3}
-\end{vmatrix}
-+
-\begin{vmatrix}
-a_{1} & a_{4} & a_{3}\\ 
-b_{1} & b_{4} & b_{3}\\
-c_{1} & c_{4} & c_{3}
-\end{vmatrix}</script></li>
+a_{1} & a_{2} & a_{3}\\ 
+b_{1} & b_{2} & b_{3}\\
+c_{1} & c_{2} & c_{3}
+\end{vmatrix}=a_{1}b_{2}c_{3}+a_{2}b_{3}c_{1}+a_{3}b_{1}c_{2}-a_{3}b_{2}c_{1}-a_{2}b_{1}c_{3}-a_{1}b_{3}c_{2}
+$$(对角线法则)
+
+n阶乘行列式：</script><p>\begin{vmatrix}<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>\vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>a<em>{n1} &amp; a</em>{n2} &amp; … &amp; a<em>{nn}<br>\end{vmatrix}=\sum</em>{j<em>{1}j</em>{2}…j<em>{n}}(-1)^{r(j</em>{1}j<em>{2}…j</em>{n})}a<em>{1j</em>{1}}a<em>{2j</em>{2}}…a<em>{nj</em>{n}}</p>
+<script type="math/tex; mode=display">(完全展开式)
+
+$r(j_{1}j_{2}...j_{n})$ 为排列 $j_{1}j_{2}...j_{n}$ 的逆序数
+
+**性质**
+
+1. 经转置行列式的值不变. $\left | A^{T} \right |=\left | A \right |$
+
+2. 两行或两列互换的行列式变号. 
+3.</script><p>   \begin{vmatrix}<br>   a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>   a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>   \vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>   a<em>{n1} &amp; a</em>{n2} &amp; … &amp; a<em>{nn}<br>   \end{vmatrix}=-\begin{vmatrix}<br>   a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>   a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>   \vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>   a</em>{n1} &amp; a<em>{n2} &amp; … &amp; a</em>{nn}<br>   \end{vmatrix}</p>
+<script type="math/tex; mode=display">
+
+4. 某行或某列有公因数k,可把k提取到行列式外.</script><p>   \begin{vmatrix}<br>   ka<em>{11} &amp; ka</em>{12} &amp; … &amp; ka<em>{1n}\<br>   a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>   \vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>   a<em>{n1} &amp; a</em>{n2} &amp; … &amp; a<em>{nn}<br>   \end{vmatrix}=k<br>   \begin{vmatrix}<br>   a</em>{11} &amp; a<em>{12} &amp; … &amp; a</em>{1n}\<br>   a<em>{21} &amp; a</em>{22} &amp; … &amp; a<em>{2n}\<br>   \vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>   a</em>{n1} &amp; a<em>{n2} &amp; … &amp; a</em>{nn}<br>   \end{vmatrix}</p>
+<script type="math/tex; mode=display">
+
+5. 某行或某列所有元素都为两个数之和，则可写成两个行列式之和.
+   $$\begin{vmatrix}
+   a_{1} & a_{2}+a_{4} & a_{3}\\ 
+   b_{1} & b_{2}+b_{4} & b_{3}\\
+   c_{1} & c_{2}+c_{4} & c_{3}
+   \end{vmatrix}=
+   \begin{vmatrix}
+   a_{1} & a_{2}& a_{3}\\ 
+   b_{1} & b_{2}& b_{3}\\
+   c_{1} & c_{2}& c_{3}
+   \end{vmatrix}+
+   \begin{vmatrix}
+   a_{1} & a_{4} & a_{3}\\ 
+   b_{1} & b_{4} & b_{3}\\
+   c_{1} & c_{4} & c_{3}
+   \end{vmatrix}</script><ol>
 <li><p>某行或某列的k倍加至某行或某列，行列式不变.</p>
 <script type="math/tex; mode=display">
 \begin{vmatrix}
@@ -218,8 +220,7 @@ a_{11} & a_{12} & ... & a_{1n}\\
 a_{21} & a_{22} & ... & a_{2n}\\
 \vdots &\vdots & &\vdots &\\
 a_{n1} & a_{n2} & ... & a_{nn}
-\end{vmatrix}
-=
+\end{vmatrix}=
 \begin{vmatrix}
 a_{11} & a_{12} & ... & a_{1n}\\ 
 a_{21}+ka_{11} & a_{22}+ka_{12} & ... & a_{2n}+ka_{1n}\\
@@ -237,19 +238,58 @@ a_{n1} & a_{n2} & ... & a_{nn}
 </li>
 </ol>
 <p><strong>余子式和代数余子式</strong></p>
-<p>余子式：在$n$阶行列式中，划去元素$a<em>{ij}$所在的第$i$行与第$j$列的所有元素剩下的元素(不改变原来的顺序)所构成的$n-1$阶行列式称为$a</em>{ij}$的余子式,记为$M_{ij}$</p>
-<p>代数余子式：$a<em>{ij}$的代数余子式$A</em>{ij}=(-1)^{i+j}M_{ij}$</p>
-<p>行列式$\begin{vmatrix}<br>a<em>{11} &amp; a</em>{12} &amp; a<em>{13}\<br>a</em>{21} &amp; a<em>{22} &amp; a</em>{23}\<br>a<em>{31} &amp; a</em>{32} &amp; a<em>{33}<br>\end{vmatrix}，<br>a</em>{22}的余子式M<em>{22} =<br>\begin{vmatrix}<br>a</em>{11} &amp;  a<em>{13}\<br>a</em>{31} &amp;  a<em>{33}<br>\end{vmatrix}，<br>a</em>{22}的代数余子式A<em>{22}=<br>(-1)^{(2+2)}\begin{vmatrix}<br>a</em>{11} &amp;  a<em>{13}\<br>a</em>{31} &amp;  a_{33}<br>\end{vmatrix}$</p>
-<p>行列式等于它任意一行(列)的各元素与其对应的代数式余子式乘积之和</p>
+<p>余子式：在$n$阶行列式中，划去元素 $a<em>{ij}$ 所在的第 $i$ 行与第 $j$ 列的所有元素剩下的元素(不改变原来的顺序)所构成的 $n-1$ 阶行列式称为 $a</em>{ij}$ 的余子式,记为$M_{ij}$</p>
+<p>代数余子式：$a<em>{ij}$ 的代数余子式 $A</em>{ij}=(-1)^{i+j}M_{ij}$</p>
+<p>行列式</p>
+<script type="math/tex; mode=display">
+\begin{vmatrix}
+a_{11} & a_{12} & a_{13}\\ 
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}，
+a_{22}的余子式M_{22} = 
+\begin{vmatrix}
+a_{11} &  a_{13}\\ 
+a_{31} &  a_{33}
+\end{vmatrix}，
+a_{22}的代数余子式A_{22}=
+(-1)^{(2+2)}\begin{vmatrix}
+a_{11} &  a_{13}\\ 
+a_{31} &  a_{33}
+\end{vmatrix}</script><p>行列式等于它任意一行(列)的各元素与其对应的代数式余子式乘积之和</p>
 <script type="math/tex; mode=display">
 |A| = a_{i1}A_{i1}+a_{i2}A_{i2}+...+a_{in}A_{in}(按i行展开)
 \\
 |A| = a_{1j}A_{1j}+a_{2j}A_{2j}+...+a_{nj}A_{nj}(按j行展开)</script><p><strong>行列式的计算</strong></p>
 <ol>
 <li><p>三角化</p>
-<p>$\begin{vmatrix}<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>0 &amp; a</em>{22} &amp; … &amp; a<em>{2n}\<br>\vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>0 &amp; 0 &amp; … &amp; a</em>{nn}<br>\end{vmatrix}<br>=<br>\begin{vmatrix}<br>a<em>{11} &amp; 0 &amp; … &amp; 0\<br>a</em>{21} &amp; a<em>{22} &amp; … &amp; 0\<br>\vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>a</em>{n1} &amp; a<em>{n2} &amp; … &amp; a</em>{nn}<br>\end{vmatrix}<br>=a<em>{11}a</em>{22}…a_{nn}$</p>
-<p>$\begin{vmatrix}<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>a</em>{21} &amp; … &amp; a<em>{2n-1} &amp; 0\<br>\vdots &amp; &amp;\vdots &amp;\<br>a</em>{n1} &amp; 0 &amp; … &amp; 0<br>\end{vmatrix}<br>=<br>\begin{vmatrix}<br>0 &amp; … &amp; 0 &amp; a<em>{1n}\<br>0 &amp; … &amp; a</em>{2n-1} &amp; a<em>{2n}\<br>\vdots &amp;  &amp;\vdots &amp;\vdots\<br>a</em>{n1} &amp; a<em>{n2} &amp; … &amp; a</em>{nn}<br>\end{vmatrix}<br>=(-1)^{\frac{n(n-1)}{2}}a<em>{1n}a</em>{2n-1}…a_{n1}$</p>
-</li>
+<script type="math/tex; mode=display">
+\begin{vmatrix}
+a_{11} & a_{12} & ... & a_{1n}\\ 
+0 & a_{22} & ... & a_{2n}\\
+\vdots &\vdots & &\vdots &\\
+0 & 0 & ... & a_{nn}
+\end{vmatrix}=
+\begin{vmatrix}
+a_{11} & 0 & ... & 0\\ 
+a_{21} & a_{22} & ... & 0\\
+\vdots &\vdots & &\vdots &\\
+a_{n1} & a_{n2} & ... & a_{nn}
+\end{vmatrix}
+=a_{11}a_{22}...a_{nn}</script><script type="math/tex; mode=display">
+\begin{vmatrix}
+a_{11} & a_{12} & ... & a_{1n}\\ 
+a_{21} & ... & a_{2n-1} & 0\\
+\vdots & &\vdots &\\
+a_{n1} & 0 & ... & 0
+\end{vmatrix}=
+\begin{vmatrix}
+0 & ... & 0 & a_{1n}\\ 
+0 & ... & a_{2n-1} & a_{2n}\\
+\vdots &  &\vdots &\vdots\\
+a_{n1} & a_{n2} & ... & a_{nn}
+\end{vmatrix}
+=(-1)^{\frac{n(n-1)}{2}}a_{1n}a_{2n-1}...a_{n1}</script></li>
 <li><p>公式法(代数余子式) 、递推法 、利用行列式性质、利用矩阵性质</p>
 </li>
 <li><p>利用特征值. $|A| = \prod \lambda_{i}$</p>
@@ -259,8 +299,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
 \begin{vmatrix}
 \mathbf{A} & \mathbf{*} \\ 
 \mathbf{O} & \mathbf{B}
-\end{vmatrix}
-=
+\end{vmatrix}=
 \begin{vmatrix}
 \mathbf{A} & \mathbf{O} \\ 
 \mathbf{*} & \mathbf{B}
@@ -269,8 +308,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
 ，\begin{vmatrix}
 \mathbf{O} & \mathbf{A} \\ 
 \mathbf{B} & \mathbf{*}
-\end{vmatrix}
-=
+\end{vmatrix}=
 \begin{vmatrix}
 \mathbf{*} & \mathbf{A} \\ 
 \mathbf{B} & \mathbf{O}
@@ -302,73 +340,151 @@ a_{n1} & a_{n2} & ... & a_{nn}
 <p>升阶法、递推法、化为上下三角形法、拆项</p>
 <hr>
 <h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><p><strong>概念：$m$x$n$个数排成的$m$行$n$列的集合</strong></p>
-<p>$\begin{bmatrix}<br>a<em>{11} &amp; a</em>{12} &amp; … &amp; a<em>{1n}\<br>a</em>{21} &amp; a<em>{22} &amp; … &amp; a</em>{2n}\<br>\vdots &amp;\vdots &amp; &amp;\vdots &amp;\<br>a<em>{m1} &amp; a</em>{m2} &amp; … &amp; a_{mn}<br>\end{bmatrix}$称为$m$x$n$矩阵，当$m= n$,矩阵称为$n$阶矩阵或$n$阶方阵</p>
-<p><sup><a href="#fn_行列式是方阵，仅方阵才有行列式" id="reffn_行列式是方阵，仅方阵才有行列式">行列式是方阵，仅方阵才有行列式</a></sup>: </p>
-<p><strong>矩阵运算</strong></p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+a_{11} & a_{12} & ... & a_{1n}\\ 
+a_{21} & a_{22} & ... & a_{2n}\\
+\vdots &\vdots & &\vdots &\\
+a_{m1} & a_{m2} & ... & a_{mn}
+\end{bmatrix}$$称为$m$x$n$矩阵，当$m= n$,矩阵称为$n$阶矩阵或$n$阶方阵
+
+[^行列式是方阵，仅方阵才有行列式]: 
+
+**矩阵运算**
+
+1. $A+B=[a_{ij}+b_{ij}]$ 对应元素相加
+
+2. $kA=[ka_{ij}]$ 所有元素都乘以$k$
+
+3. $m$x$n$矩阵$A$，$n$x$s$矩阵$B$，$AB=C(m,s),c_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}$
+
+   $\begin{bmatrix}
+    &  & \\ 
+   (i)\cdots&\cdots&\cdots  \\ 
+    &  & 
+   \end{bmatrix}
+   \begin{bmatrix}
+    & (j)  & \\ 
+    & \vdots  & \\ 
+    & \vdots  &  \\ 
+    & \vdots  &
+   \end{bmatrix}=
+   \begin{bmatrix}
+    & & \\ 
+    & c_{ij} &  \\ 
+    & &
+   \end{bmatrix}$
+
+例:$\begin{bmatrix}
+2 & 1 & 1 \\ 
+1 & 2 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\ 
+0 & 2 \\
+3 & 1 
+\end{bmatrix}=\begin{bmatrix}
+2\cdot1+1\cdot0+1\cdot3 & 2\cdot0+1\cdot2+1\cdot1\\ 
+1\cdot1+2\cdot0+1\cdot3 & 1\cdot0+2\cdot2+1\cdot1
+\end{bmatrix}=
+\begin{bmatrix}
+5 & 3\\ 
+4 & 5
+\end{bmatrix}$
+
+[^乘法条件:A的列数=B的行数]: 
+
+矩阵乘法法则:
+
+$A(BC)=(AB)C;\\A(B+C)=AB+AC,(A+B)C=AC+BC;\\ (kA)(lB)=klAB;\\ AE=A,EA=A \\ (A+E)^2=A^2+2A+E$
+
+$(A+B)^2=(A+B)(A+B)=A^2+AB+BA+B^2\neq  A^2+2AB+B^2$
+
+> 注意:$AB\neq  BA$
+
+**矩阵转置**
+
+矩阵$A$的行换成同序数的列得到的新矩阵为矩阵$A$的转置矩阵，记为$A^T$
+
+$A=\begin{bmatrix}
+1& 2 & 3 \\ 
+4& 5& 6
+\end{bmatrix},A^T=\begin{bmatrix}
+1 & 4 \\ 
+2 & 5 \\
+3 & 6 \end{bmatrix}$(横取竖放)
+
+**伴随矩阵**
+
+$A$是$n$阶矩阵，行列式$|A|$的每个元素$a_{ij}$的代数余子式$A_{ij}$所构成的矩阵为$A$的伴随矩阵,记为$A^*$
+
+$$A=\begin{bmatrix}
+a_{11}& a_{12}  \\ 
+a_{21}& a_{22} \end{bmatrix}，A^*=\begin{bmatrix}
+A_{11}& A_{21}  \\ 
+A_{12}& A_{22} \end{bmatrix}$$(横取竖放)
+
+> 二阶矩阵的伴随矩阵:主对角线元素互换,副对角线元素变号
+
+**逆矩阵**
+
+$A$是**$n$阶矩阵**，若存在**$n$阶矩阵B**使得$AB=BA=E$,则称A是可逆矩阵或非奇异矩阵，$B$是$A$的逆矩阵,记为$A^{-1}=B$,且$A$的逆矩阵唯一
+
+$A$可逆$\Leftrightarrow |A|\neq 0$
+
+​           $\Leftrightarrow r(A)=n$
+
+​           $\Leftrightarrow $A的列(行)向量组线性无关
+
+​           $\Leftrightarrow A=P_1P_2\cdots P_s,P_i$是初等矩阵
+
+​           $\Leftrightarrow A$与单位矩阵等价
+
+​           $\Leftrightarrow 0$不是A的特征值
+
+矩阵$A$与矩阵$B$等价的充分必要条件是存在可逆矩阵$P$与$Q$，使得$PAQ=B$
+
+- $A^{-1}=P_t\cdots P_2P_1$ 
+
+  $P_t\cdots P_2P_1A=E$
+
+  $P_t\cdots P_2P_1E=A^{-1} \rightarrow (A|E)\rightarrow \cdots\rightarrow(E|A^{-1})$
+
+- $P_t\cdots P_2P_1A=B$
+
+  $P_t\cdots P_2P_1E=P$ ($P=P_t\cdots P_2P_1$)
+
+  $(A|E)\rightarrow \cdots\rightarrow(B|P)$
+
+**正交矩阵**
+
+$n$阶矩阵$A$，若满足$AA^T=A^TA=E$，则$A$为正交矩阵
+
+**行阶梯矩阵、行最简矩阵**
+
+**矩阵的初等变换**
+
+$E_{i,j}A$：对调$A$的$i,j$行 
+
+$AE_{i,j}$：对调$A$的$i,j$列
+
+
+**公式**
+
+1. 转置
+
+   $(A^T)^T=A ;(A+B)^T=A^T+B^T \\ (kA)^T=kA^T \\ (AB)^T=B^TA^T$
+
+2. 可逆
+
+   $(A^{-1})^{-1}=A;(kA)^{-1}=\frac{1}{k}A^{-1}  (k\neq 0) \\ (AB)^{-1}=B^{-1}A^{-1};(A^n)^{-1}=(A^{-1})^n$
+
+   $(A^{-1})^T=(A^T)^{-1};|A^{-1}|=\frac{1}{|A|}\\A^{-1}=\frac{1}{|A|}A^*$
+
+3. 伴随
+
+   $$AA^*=A^*A=|A|E</script><script type="math/tex; mode=display">A^*=|A|A^{-1};|A^*|=|A|^{n-1}</script><script type="math/tex; mode=display">(A^*)^{-1}=(A^{-1})^*=\frac{1}{|A|}A\\(A^*)^T=(A^T)^*;(kA)^*= k^{n-1}A^* ;(A^*)^*=|A|^{n-2}A</script><script type="math/tex; mode=display">(AB)^*=B^*A^*</script><p>   $r(A^*)=\begin{cases}<br>    n&amp; \text{ 如果 } r(A)=n \<br>    1&amp; \text{ 如果 } r(A)=n-1 \<br> 0&amp; \text{ 如果 } r(A)&lt;n-1<br>   \end{cases}$</p>
 <ol>
-<li><p>$A+B=[a<em>{ij}+b</em>{ij}]$ 对应元素相加</p>
-</li>
-<li><p>$kA=[ka_{ij}]$ 所有元素都乘以$k$</p>
-</li>
-<li><p>$m$x$n$矩阵$A$，$n$x$s$矩阵$B$，$AB=C(m,s),c<em>{ij}=\sum</em>{k=1}^{n}a<em>{ik}b</em>{kj}$</p>
-<p>$\begin{bmatrix}<br> &amp;  &amp; \<br>(i)\cdots&amp;\cdots&amp;\cdots  \<br> &amp;  &amp;<br>\end{bmatrix}<br>\begin{bmatrix}<br> &amp; (j)  &amp; \<br> &amp; \vdots  &amp; \<br> &amp; \vdots  &amp;  \<br> &amp; \vdots  &amp;<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br> &amp; &amp; \<br> &amp; c_{ij} &amp;  \<br> &amp; &amp;<br>\end{bmatrix}$</p>
-</li>
-</ol>
-<p>例:$\begin{bmatrix}<br>2 &amp; 1 &amp; 1 \<br>1 &amp; 2 &amp; 1<br>\end{bmatrix}<br>\begin{bmatrix}<br>1 &amp; 0 \<br>0 &amp; 2 \<br>3 &amp; 1<br>\end{bmatrix}<br>=\begin{bmatrix}<br>2\cdot1+1\cdot0+1\cdot3 &amp; 2\cdot0+1\cdot2+1\cdot1\<br>1\cdot1+2\cdot0+1\cdot3 &amp; 1\cdot0+2\cdot2+1\cdot1<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>5 &amp; 3\<br>4 &amp; 5<br>\end{bmatrix}$</p>
-<p><sup><a href="#fn_乘法条件:A的列数=B的行数" id="reffn_乘法条件:A的列数=B的行数">乘法条件:A的列数=B的行数</a></sup>: </p>
-<p>矩阵乘法法则:</p>
-<p>$A(BC)=(AB)C;\A(B+C)=AB+AC,(A+B)C=AC+BC;\ (kA)(lB)=klAB;\ AE=A,EA=A \ (A+E)^2=A^2+2A+E$</p>
-<p>$(A+B)^2=(A+B)(A+B)=A^2+AB+BA+B^2\neq  A^2+2AB+B^2$</p>
-<blockquote>
-<p>注意:$AB\neq  BA$</p>
-</blockquote>
-<p><strong>矩阵转置</strong></p>
-<p>矩阵$A$的行换成同序数的列得到的新矩阵为矩阵$A$的转置矩阵，记为$A^T$</p>
-<p>$A=\begin{bmatrix}<br>1&amp; 2 &amp; 3 \<br>4&amp; 5&amp; 6<br>\end{bmatrix},A^T=\begin{bmatrix}<br>1 &amp; 4 \<br>2 &amp; 5 \<br>3 &amp; 6 \end{bmatrix}$(横取竖放)</p>
-<p><strong>伴随矩阵</strong></p>
-<p>$A$是$n$阶矩阵，行列式$|A|$的每个元素$a<em>{ij}$的代数余子式$A</em>{ij}$所构成的矩阵为$A$的伴随矩阵,记为$A^*$</p>
-<p>$A=\begin{bmatrix}<br>a<em>{11}&amp; a</em>{12}  \<br>a<em>{21}&amp; a</em>{22} \end{bmatrix}，A^*=\begin{bmatrix}<br>A<em>{11}&amp; A</em>{21}  \<br>A<em>{12}&amp; A</em>{22} \end{bmatrix}$(横取竖放)</p>
-<blockquote>
-<p>二阶矩阵的伴随矩阵:主对角线元素互换,副对角线元素变号</p>
-</blockquote>
-<p><strong>逆矩阵</strong></p>
-<p>$A$是<strong>$n$阶矩阵</strong>，若存在<strong>$n$阶矩阵B</strong>使得$AB=BA=E$,则称A是可逆矩阵或非奇异矩阵，$B$是$A$的逆矩阵,记为$A^{-1}=B$,且$A$的逆矩阵唯一</p>
-<p>$A$可逆$\Leftrightarrow |A|\neq 0$</p>
-<p>​           $\Leftrightarrow r(A)=n$</p>
-<p>​           $\Leftrightarrow $A的列(行)向量组线性无关</p>
-<p>​           $\Leftrightarrow A=P_1P_2\cdots P_s,P_i$是初等矩阵</p>
-<p>​           $\Leftrightarrow A$与单位矩阵等价</p>
-<p>​           $\Leftrightarrow 0$不是A的特征值</p>
-<p>矩阵$A$与矩阵$B$等价的充分必要条件是存在可逆矩阵$P$与$Q$，使得$PAQ=B$</p>
-<ul>
-<li><p>$A^{-1}=P_t\cdots P_2P_1$ </p>
-<p>$P_t\cdots P_2P_1A=E$</p>
-<p>$P_t\cdots P_2P_1E=A^{-1} \rightarrow (A|E)\rightarrow \cdots\rightarrow(E|A^{-1})$</p>
-</li>
-<li><p>$P_t\cdots P_2P_1A=B$</p>
-<p>$P_t\cdots P_2P_1E=P$ ($P=P_t\cdots P_2P_1$)</p>
-<p>$(A|E)\rightarrow \cdots\rightarrow(B|P)$</p>
-</li>
-</ul>
-<p><strong>正交矩阵</strong></p>
-<p>$n$阶矩阵$A$，若满足$AA^T=A^TA=E$，则$A$为正交矩阵</p>
-<p><strong>行阶梯矩阵、行最简矩阵</strong></p>
-<p><strong>矩阵的初等变换</strong></p>
-<p>$E_{i,j}A$：对调$A$的$i,j$行 </p>
-<p>$AE_{i,j}$：对调$A$的$i,j$列</p>
-<p>$E_{i,j}$</p>
-<p><strong>公式</strong></p>
-<ol>
-<li><p>转置</p>
-<p>$(A^T)^T=A ;(A+B)^T=A^T+B^T \ (kA)^T=kA^T \ (AB)^T=B^TA^T$</p>
-</li>
-<li><p>可逆</p>
-<p>$(A^{-1})^{-1}=A;(kA)^{-1}=\frac{1}{k}A^{-1}  (k\neq 0) \ (AB)^{-1}=B^{-1}A^{-1};(A^n)^{-1}=(A^{-1})^n$</p>
-<p>$(A^{-1})^T=(A^T)^{-1};|A^{-1}|=\frac{1}{|A|}\A^{-1}=\frac{1}{|A|}A^*$</p>
-</li>
-<li><p>伴随</p>
-<script type="math/tex; mode=display">AA^*=A^*A=|A|E</script><script type="math/tex; mode=display">A^*=|A|A^{-1};|A^*|=|A|^{n-1}</script><script type="math/tex; mode=display">(A^*)^{-1}=(A^{-1})^*=\frac{1}{|A|}A\\(A^*)^T=(A^T)^*;(kA)^*= k^{n-1}A^* ;(A^*)^*=|A|^{n-2}A</script><script type="math/tex; mode=display">(AB)^*=B^*A^*</script><p>$r(A^*)=\begin{cases}<br> n&amp; \text{ 如果 } r(A)=n \<br> 1&amp; \text{ 如果 } r(A)=n-1 \<br>0&amp; \text{ 如果 } r(A)&lt;n-1<br>\end{cases}$</p>
-</li>
 <li><p>秩</p>
 <p>$r(A)=r(A^T)=r(A^TA)\r(kA)=r(A),k\neq  0 \r(A+B)\leqslant r(A)+r(B)\r(AB)\leqslant min(r(A),r(B))$</p>
 <p>若$A$可逆，则$r(AB)=r(B),r(BA)=r(B)$</p>
@@ -381,16 +497,16 @@ a_{n1} & a_{n2} & ... & a_{nn}
 <p>(满秩=矩阵列向量的个数)</p>
 </li>
 <li><p>分块矩阵</p>
-<p>$\begin{bmatrix}<br>A_1 &amp; A_2\<br>A_3 &amp; A_4<br>\end{bmatrix}<br>+\begin{bmatrix}<br>B_1 &amp; B_2\<br>B_3 &amp; B_4<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>A_1+B_1  &amp; A_2+B_2 \<br>A_3+B_3  &amp; A_4+B_4<br>\end{bmatrix}$</p>
-<p>$\begin{bmatrix}<br>A &amp; B\<br>C &amp; D<br>\end{bmatrix}<br>\begin{bmatrix}<br>X &amp; Y\<br>Z &amp; W<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>AX+BZ  &amp; AY+BW \<br>CX+DZ  &amp; CY+DW<br>\end{bmatrix}$</p>
-<p>$\begin{bmatrix}<br>A &amp; B\<br>C &amp; D<br>\end{bmatrix}^T<br>=<br>\begin{bmatrix}<br>A^T &amp; C^T\<br>B^T &amp; D^T<br>\end{bmatrix}$</p>
-<p>若$B,C$分别是$m$阶与$s$阶矩阵，则$\begin{bmatrix}<br>B &amp; O\<br>O &amp; C<br>\end{bmatrix}^n<br>=<br>\begin{bmatrix}<br>B^n &amp; O\<br>O &amp; C^n<br>\end{bmatrix}$</p>
-<p>若$B,C$分别是$m$阶与$s$阶可逆矩阵，则$\begin{bmatrix}<br>B &amp; O\<br>O &amp; C<br>\end{bmatrix}^{-1}<br>=<br>\begin{bmatrix}<br>B^{-1} &amp; O\<br>O &amp; C^{-1}<br>\end{bmatrix}，\begin{bmatrix}<br>O &amp; B\<br>C &amp; O<br>\end{bmatrix}^{-1}<br>=\begin{bmatrix}<br>O &amp; C^{-1}\<br>B^{-1} &amp; O<br>\end{bmatrix}$</p>
+<p>$\begin{bmatrix}<br>A_1 &amp; A_2\<br>A_3 &amp; A_4<br>\end{bmatrix}<br>+\begin{bmatrix}<br>B_1 &amp; B_2\<br>B_3 &amp; B_4<br>\end{bmatrix}=<br>\begin{bmatrix}<br>A_1+B_1  &amp; A_2+B_2 \<br>A_3+B_3  &amp; A_4+B_4<br>\end{bmatrix}$</p>
+<p>$\begin{bmatrix}<br>A &amp; B\<br>C &amp; D<br>\end{bmatrix}<br>\begin{bmatrix}<br>X &amp; Y\<br>Z &amp; W<br>\end{bmatrix}=<br>\begin{bmatrix}<br>AX+BZ  &amp; AY+BW \<br>CX+DZ  &amp; CY+DW<br>\end{bmatrix}$</p>
+<p>$\begin{bmatrix}<br>A &amp; B\<br>C &amp; D<br>\end{bmatrix}^T=<br>\begin{bmatrix}<br>A^T &amp; C^T\<br>B^T &amp; D^T<br>\end{bmatrix}$</p>
+<p>若$B,C$分别是$m$阶与$s$阶矩阵，则$\begin{bmatrix}<br>B &amp; O\<br>O &amp; C<br>\end{bmatrix}^n =<br>\begin{bmatrix}<br>B^n &amp; O\<br>O &amp; C^n<br>\end{bmatrix}$</p>
+<p>若$B,C$分别是$m$阶与$s$阶可逆矩阵，则$\begin{bmatrix}<br>B &amp; O\<br>O &amp; C<br>\end{bmatrix}^{-1}=<br>\begin{bmatrix}<br>B^{-1} &amp; O\<br>O &amp; C^{-1}<br>\end{bmatrix}，\begin{bmatrix}<br>O &amp; B\<br>C &amp; O<br>\end{bmatrix}^{-1}=\begin{bmatrix}<br>O &amp; C^{-1}\<br>B^{-1} &amp; O<br>\end{bmatrix}$</p>
 </li>
 <li><p>对角矩阵</p>
-<p>$\begin{bmatrix}<br>a_1 &amp;  &amp; \<br> &amp;  a_2&amp; \<br> &amp;  &amp; a_3<br>\end{bmatrix}<br>\begin{bmatrix}<br>b_1 &amp;  &amp; \<br> &amp;  b_2&amp; \<br> &amp;  &amp; b_3<br>\end{bmatrix}<br>=<br>\begin{bmatrix}<br>a_1b_1 &amp;  &amp; \<br> &amp;  a_2b_2&amp; \<br> &amp;  &amp; a_3b_3<br>\end{bmatrix}$</p>
-<p>$\begin{bmatrix}<br>a_1 &amp;  &amp; \<br> &amp;  a_2&amp; \<br> &amp;  &amp; a_3<br>\end{bmatrix}^n<br>=<br>\begin{bmatrix}<br>a_1^n &amp;  &amp; \<br> &amp;  a_2^n&amp; \<br> &amp;  &amp; a_3^n<br>\end{bmatrix}$</p>
-<p>$\begin{bmatrix}<br>a_1 &amp;  &amp; \<br> &amp;  a_2&amp; \<br> &amp;  &amp; a_3<br>\end{bmatrix}^{-1}<br>=<br>\begin{bmatrix}<br>\frac{1}{a_1} &amp;  &amp; \<br> &amp;  \frac{1}{a_2} &amp; \<br> &amp;  &amp; \frac{1}{a_3}<br>\end{bmatrix}$</p>
+<p>$\begin{bmatrix}<br>a_1 &amp;  &amp; \<br> &amp;  a_2&amp; \<br> &amp;  &amp; a_3<br>\end{bmatrix}<br>\begin{bmatrix}<br>b_1 &amp;  &amp; \<br> &amp;  b_2&amp; \<br> &amp;  &amp; b_3<br>\end{bmatrix}=<br>\begin{bmatrix}<br>a_1b_1 &amp;  &amp; \<br> &amp;  a_2b_2&amp; \<br> &amp;  &amp; a_3b_3<br>\end{bmatrix}$</p>
+<p>$\begin{bmatrix}<br>a_1 &amp;  &amp; \<br> &amp;  a_2&amp; \<br> &amp;  &amp; a_3<br>\end{bmatrix}^n=<br>\begin{bmatrix}<br>a_1^n &amp;  &amp; \<br> &amp;  a_2^n&amp; \<br> &amp;  &amp; a_3^n<br>\end{bmatrix}$</p>
+<p>$\begin{bmatrix}<br>a_1 &amp;  &amp; \<br> &amp;  a_2&amp; \<br> &amp;  &amp; a_3<br>\end{bmatrix}^{-1}=<br>\begin{bmatrix}<br>\frac{1}{a_1} &amp;  &amp; \<br> &amp;  \frac{1}{a_2} &amp; \<br> &amp;  &amp; \frac{1}{a_3}<br>\end{bmatrix}$</p>
 </li>
 </ol>
 <hr>
@@ -493,7 +609,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
 <p>设$A$为$n$阶矩阵，且$A\alpha=\lambda_0\alpha$,$f(x)=a_nx^n+\cdots+a_1x+a_0$,令$f(A)=a_nA^n+\cdots+a_1A+a_0E$,则</p>
 <ol>
 <li>若$A$可逆，则$A^{-1}\alpha=\frac{1}{\lambda_0}\alpha$,即$\frac{1}{\lambda_0}$为$A^{-1}$的特征值，$\alpha$为$A^{-1}$的特征向量</li>
-<li>若$A$可逆，则<script type="math/tex">A^*\alpha=\frac{|A|}{\lambda_0}\alpha</script>,即<script type="math/tex">\frac{|A|}{\lambda_0}</script>为<script type="math/tex">A^*</script>的特征值，$\alpha$为$A^*$的特征向量</li>
+<li>若$A$可逆，则$$A^<em>\alpha=\frac{|A|}{\lambda_0}\alpha$b,即a$\frac{|A|}{\lambda_0}$}为{$A^</em>$b的特征值，$\alpha$为$A^*$的特征向量</li>
 <li>$f(A)\alpha=f(\lambda_0)\alpha$,即$f(\lambda_0)$为$f(A)$的特征值，$\alpha$为 $f(A)$的特征向量</li>
 </ol>
 <p>$A$可逆时，$A^{-1},A^*,A$的特征向量相同</p>
@@ -503,8 +619,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
 <p>设$\alpha_1,\alpha_2,\cdots,\alpha_n$线性无关，</p>
 <ol>
 <li><p>正交化</p>
-<p>令$\beta_1=\alpha_1,\beta_2=\alpha_2-\frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1,\cdots$</p>
-<p>$\beta<em>n=\alpha_n-\frac{(\alpha_n,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\alpha_n,\beta_2)}{(\beta_2,\beta_2)}\beta_2-\cdots-\frac{(\alpha_n,\beta</em>{n-1})}{(\beta<em>{n-1},\beta</em>{n-1})}\beta_{n-1}$</p>
+<p>令$\beta<em>1=\alpha_1,\beta_2=\alpha_2-\frac{(\alpha_2,\beta_1)}{(\beta_1,\beta_1)}\beta_1,\cdots$<br>t   $\beta_n=\alpha_n-\frac{(\alpha_n,\beta_1)}{(\beta_1,\beta_1)}\beta_1-\frac{(\alpha_n,\beta_2)}{(\beta_2,\beta_2)}\beta_2-\cdots-\frac{(\alpha_n,\beta</em>{n-1})}{(\beta<em>{n-1},\beta</em>{n-1})}\beta_{n-1}$</p>
 <p>则$\beta_1,\beta_2,\cdots,\beta_n$两两正交</p>
 </li>
 <li><p>规范化</p>
@@ -558,10 +673,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
 <hr>
 <h1 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h1><p><strong>定义1</strong></p>
 <p>含有$n$个变量$x_1,x_2,\cdots,x_n$的二次齐次函数</p>
-<p>$f(x<em>1,x_2,\cdots,x_n)=a</em>{11}x<em>1^2+a</em>{22}x<em>2^2+\cdots+a</em>{nn}x_n^2$</p>
-<p>​                                    $+2a<em>{12}x_1x_2+2a</em>{13}x<em>1x_3+\cdots+2a</em>{1n}x_1x_n$</p>
-<p>​                                    $+2a<em>{23}x_2x_3+\cdots+2a</em>{2n}x_2x_n$</p>
-<p>​                                    $+\cdots+2a<em>{n-1,n}x</em>{n-1}x_n$ </p>
+<p>$f(x<em>1,x_2,\cdots,x_n)=a</em>{11}x<em>1^2+a</em>{22}x<em>2^2+\cdots+a</em>{nn}x<em>n^2+2a</em>{12}x<em>1x_2+2a</em>{13}x<em>1x_3+\cdots+2a</em>{1n}x<em>1x_n+2a</em>{23}x<em>2x_3+\cdots+2a</em>{2n}x<em>2x_n+\cdots+2a</em>{n-1,n}x_{n-1}x_n$ </p>
 <p>称为$n$元二次型.若规定$a<em>{ij}=a</em>{ji}$，则二次型有矩阵表示$f(x_1,x_2,\cdots,x_n)=x^TAx$,</p>
 <p>其中$x=[x<em>1,x_2,\cdots,x_n]^T,A=[a</em>{ij}]$且$A^T=A$,称$A$为二次型的矩阵</p>
 <p>例如：$f(x_1,x_2)=x_1^2+5x_2^2+6x_1x_2$，有</p>
@@ -578,9 +690,18 @@ a_{n1} & a_{n2} & ... & a_{nn}
 <li>标准形中，正平方项的个数$p$称为二次型的正惯性指数，负平方项的个数$q$称为二次型的负惯性指数，系数不为0的个数为二次型的秩</li>
 </ul>
 <p><strong>定义2</strong></p>
-<p>若$\left{\begin{matrix}<br>x<em>1=c</em>{11}y<em>1+c</em>{12}y<em>2+c</em>{13}y<em>3\<br>x_2=c</em>{21}y<em>1+c</em>{22}y<em>2+c</em>{23}y<em>3\<br>x_3=c</em>{31}y<em>1+c</em>{32}y<em>2+c</em>{33}y<em>3<br>\end{matrix}\right.$满足$|C|=\begin{bmatrix}<br>c</em>{11} &amp; c<em>{12} &amp; c</em>{13}\<br>c<em>{21} &amp; c</em>{22} &amp; c<em>{23}\<br>c</em>{31} &amp; c<em>{32} &amp; c</em>{33}<br>\end{bmatrix} \neq0$ 称$x=[x_1,x_2,x_3]^T到y=[y_1,y_2,y_3]$的</p>
-<p>坐标变换，即$\begin{bmatrix}<br>x<em>1\<br>x_2\<br>x_3<br>\end{bmatrix}=\begin{bmatrix}<br>c</em>{11} &amp; c<em>{12} &amp; c</em>{13}\<br>c<em>{21} &amp; c</em>{22} &amp; c<em>{23}\<br>c</em>{31} &amp; c<em>{32} &amp; c</em>{33}<br>\end{bmatrix}\begin{bmatrix}<br>y_1\<br>y_2\<br>y_3<br>\end{bmatrix}$,或$x=Cy$</p>
-<p>两个$n$阶矩阵$A$和$B$，如果存在可逆矩阵$C$使得$C^TAC=B$则称矩阵$A$和$B$合同，并称$A$到$B$的变换为合同变换，$C$为合同变换矩阵</p>
+<p>若</p>
+<script type="math/tex; mode=display">
+\left\{\begin{matrix}
+x_1=c_{11}y_1+c_{12}y_2+c_{13}y_3\\ 
+x_2=c_{21}y_1+c_{22}y_2+c_{23}y_3\\ 
+x_3=c_{31}y_1+c_{32}y_2+c_{33}y_3
+\end{matrix}\right.满足|C|=\begin{bmatrix}
+c_{11} & c_{12} & c_{13}\\
+c_{21} & c_{22} & c_{23}\\ 
+c_{31} & c_{32} & c_{33}
+\end{bmatrix} \neq0
+$$ 称$x=[x_1,x_2,x_3]^T到y=[y_1,y_2,y_3]$的坐标变换，即</script><p>\begin{bmatrix}<br>x<em>1\<br>x_2\<br>x_3<br>\end{bmatrix}=\begin{bmatrix}<br>c</em>{11} &amp; c<em>{12} &amp; c</em>{13}\<br>c<em>{21} &amp; c</em>{22} &amp; c<em>{23}\<br>c</em>{31} &amp; c<em>{32} &amp; c</em>{33}<br>\end{bmatrix}\begin{bmatrix}<br>y_1\<br>y_2\<br>y_3<br>\end{bmatrix} 或x=Cy$$<br>两个$n$阶矩阵$A$和$B$，如果存在可逆矩阵$C$使得$C^TAC=B$则称矩阵$A$和$B$合同，并称$A$到$B$的变换为合同变换，$C$为合同变换矩阵</p>
 <p><strong>定理1</strong></p>
 <p>变量$x=[x_1,x_2,\dots,x_n]^T$的$n$元二次型$x^TAx$经坐标变换$x=Cy$后，化为变量$y=[y_1,y_2,\cdots,y_n]$的$n$元二次型$y^TBy$.</p>
 <p>$x^TAx=(Cy)^TA(Cy)=y^TC^TACy=y^TBy$,其中$B=C^TAC$</p>
@@ -632,7 +753,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
     <div id="tocbot"></div>
   </div>
 
@@ -681,7 +802,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -690,7 +811,7 @@ a_{n1} & a_{n2} & ... & a_{nn}
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
