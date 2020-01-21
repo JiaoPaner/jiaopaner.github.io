@@ -543,7 +543,7 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -561,26 +561,15 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
       <br><br>
       
       
-  <div id="gitalk-container"></div>
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.11.1/js/md5.min.js"></script>
-  <script type="text/javascript">
-    var gitalk = new Gitalk({
-      clientID: '64c301d538580886f1b7',
-      clientSecret: '03cb21ebd6546d84cac6015284cc1043330ef279',
-      repo: 'https://github.com/JiaoPaner/blog-talk.git',
-      owner: 'jiaopaner',
-      admin: 'jiaopaner',
-      id: md5(location.pathname),
-      language: 'zh-CN',
-      perPage: 15,
-      pagerDirection: 'last',
-      createIssueManually: 'true',
-      distractionFreeMode: 'false'
-    });
-
-    gitalk.render('gitalk-container')
+  <script defer src="https://utteranc.es/client.js"
+          repo="https://github.com/JiaoPaner/blog-talk.git"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
   </script>
 
 
@@ -603,7 +592,7 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -612,7 +601,7 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
