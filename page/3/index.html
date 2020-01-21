@@ -389,21 +389,9 @@ L.data = new ElemType(InitSize);//C++
         
         <div class="index-excerpt" >
           <div class="index-text mb-1">行列式概念：行列式是一个数，是取自不同行不同列的n个元素的乘积的代数和
-二阶行列式：
-
-\begin{vmatrix}
-a & b\\
-c & d
-\end{vmatrix}=ad-bc三阶行列式：
-
-\begin{vmatrix}
-a_{1} & a_{2} & a_{3}\\ 
-b_{1} & b_{2} & b_{3}\\
-c_{1} & c_{2} & c_{3}
-\end{vmatrix}=a_{1}b_{2}c_{3}+a_{2}b_{3}c_{1}+a_{3}b_{1}c_{2}-a_{3}b_{2}c_{1}-a_{2}b_{1}c_{3}-a_{1}b_{3}c_{2}
-$$(对角线法则)
-
-n阶乘行列式：\begin{vmatrix}a{11} &amp; a{12} &amp; … &amp; a{1n}\a{21} &amp; a{22} &amp; … &amp; a{2n}\\vdots &amp;\vdots &amp; &amp;\vdots &amp;\a{n1} &amp; a{n2} &amp; … &amp; a{nn}\end{vmatrix}</div>
+二阶行列式：$\begin{vmatrix}a &amp; b\ c &amp; d\end{vmatrix}=ad-bc$
+三阶行列式：$\begin{vmatrix}a{1} &amp; a{2} &amp; a{3}\ b{1} &amp; b{2} &amp; b{3}\c{1} &amp; c{2} &amp; c{3}\end{vmatrix}=a{1}b{2}c{3}+a{2}b{3}c{1}+a{3}b{1}c{2}-a{3}b{2}c{1}-a{2}b{1}c{3}-a{1}b{3}c_{2}$(对角线法则)
+n阶乘行列式：$\begin{vmatrix}a{11} &amp; a{12} &amp; … &amp; a{1n}\ a{21} &amp; a{22} &amp; … &amp; a{2n}\\vdots &amp;\vdots &amp; &amp;\vdots &amp;\a{n1} &amp; a{n2} &amp; … &amp; a{nn}\end{vmatrix}=\su</div>
         </div>
       </a>
 
@@ -771,7 +759,7 @@ mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -780,7 +768,7 @@ mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
