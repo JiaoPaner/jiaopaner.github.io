@@ -558,6 +558,33 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
 <div class="col-lg-7 mx-auto nopadding-md">
   <div class="container comments mx-auto" id="comments">
     
+      <br><br>
+      
+      
+  <div id="gitalk-container"></div>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.11.1/js/md5.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '9bb5fbf93f220b7c9268',
+      clientSecret: 'bb34863d276762aa84ffe4e6b28c7c3ea21c4f94',
+      repo: 'https://github.com/JiaoPaner/blog-talk.git',
+      owner: 'jiaopaner',
+      admin: 'jiaopaner',
+      id: md5(location.pathname),
+      language: 'zh-CN',
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: 'true',
+      distractionFreeMode: 'false'
+    });
+
+    gitalk.render('gitalk-container')
+  </script>
+
+
+    
   </div>
 </div>
 
@@ -649,6 +676,8 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
 
 
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 <!-- Plugins -->
