@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -60,7 +60,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/">主页</a>
           </li>
         
           
@@ -68,7 +68,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/archives/">Archives</a>
+            <a class="nav-link" href="/archives/">归档</a>
           </li>
         
           
@@ -76,7 +76,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/categories/">Categories</a>
+            <a class="nav-link" href="/categories/">分类</a>
           </li>
         
           
@@ -84,17 +84,11 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/tags/">Tags</a>
+            <a class="nav-link" href="/tags/">标签</a>
           </li>
         
           
           
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">About</a>
-          </li>
-        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -144,134 +138,11 @@
   <div class="row mb-4 mx-auto">
     
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
-        <p class="h4 index-header">hexo搭建GitHub博客</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">前提环境:Node.js、Git已安装
-通过github创建repository 格式:博客名称.github.io
-安装hexo
-新建blog文件夹,并打开git bash
-执行命令
-npm install hexo -g #安装hexo命令
-hexo -v #检查是否安装成功
-
-
-
-初始化hexo
-hexo init #初始化blog文件夹
-npm install #安装必要组件
-#执行如下命令 开启本地体验
-hexo g
-hexo s  
-#访问http://localhost:4000 即可看到默认博客页面
-
-
-
-关联hexo - github
-设置git的username和emailgit config --global user.name &#39;jiaopan&#39; #设置用户名
-git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
-
-
-生成公钥ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
-
-红框处为密钥保存的路径cd ~/.ssh #cd到</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/hexo">hexo</a>&nbsp;
-          
-        
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
+          <img src="/images/note/1.jpg" srcset="/img/loading.gif" alt="linux下jdk安装" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
       </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">
-        <p class="h4 index-header">linux下mysql的安装</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">linux下mysql安装步骤1.ubuntu系统1) 输入如下命令
-sudo apt-get update
-sudo apt-get install mysql-server
-
-
-安装好软件包后,会弹出设置root账户密码的提示
-
-2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)
-sudo netstat -tap | grep mysql
-
-
-3) 登陆mysql
-sudo mysql -uroot -p #执行命令后再输入密码
-
-
-
-登陆成功
-
-
-4) 设置mysql可远程连接
-
-修改配置文件
-
-sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
-
-
-注释bind-address
-
-
-sudo mysql -uroot -p #登陆mysql
-mysql&gt; show databases #查看已有的数据库
-mysql&gt; use mysql; #跳转到名为mysql的数据库
-mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-06&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/mysql">mysql</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/">
@@ -338,6 +209,12 @@ expo</div>
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(11) ReverseWordsInAStringIII" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/">
         <p class="h4 index-header">leetcode(11) ReverseWordsInAStringIII</p>
@@ -372,6 +249,12 @@ expo</div>
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/" target="_self">
+          <img src="/images/cv/34.jpg" srcset="/img/loading.gif" alt="数字图像处理(2) 灰度变换与空间滤波" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2018/07/20/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(2)%20%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2%E4%B8%8E%E7%A9%BA%E9%97%B4%E6%BB%A4%E6%B3%A2/">
@@ -416,6 +299,12 @@ expo</div>
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/18/leetcode(10)%20Binary%20Gap/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(10) Binary Gap" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2018/07/18/leetcode(10)%20Binary%20Gap/">
         <p class="h4 index-header">leetcode(10) Binary Gap</p>
@@ -456,6 +345,12 @@ Explanation:22 in binary is 0b10110.In the binary representation of 22, there ar
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(9) Array Partition I" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/">
         <p class="h4 index-header">leetcode(9) Array Partition I</p>
@@ -494,6 +389,12 @@ Output: 4Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + mi
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(8) SelfDividingNumbers" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2018/07/16/leetcode(8)%20SelfDividingNumbers/">
@@ -536,6 +437,12 @@ Note:The boundari</div>
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/" target="_self">
+          <img src="/images/cv/6.jpg" srcset="/img/loading.gif" alt="数字图像处理(1) 图像基础" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/">
         <p class="h4 index-header">数字图像处理(1) 图像基础</p>
@@ -575,6 +482,12 @@ Note:The boundari</div>
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/12/blob%20detect/" target="_self">
+          <img src="/images/opencv3/blob.jpg" srcset="/img/loading.gif" alt="blob detect" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2018/07/12/blob%20detect/">
         <p class="h4 index-header">blob detect</p>
@@ -611,6 +524,108 @@ int main() {
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(7) PeakIndexInMountainArray" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/">
+        <p class="h4 index-header">leetcode(7) PeakIndexInMountainArray</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">difficult：easy #852Let’s call an array A a mountain if the following properties hold:
+
+A.length &gt;= 3
+There exists some 0 &lt; i &lt; A.length - 1 such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1]Given an array that is definitely a mountain, return any i such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1].
+
+Example 1:
+Input: [0,1,0]
+Output: 1
+
+Example 2:
+Input: [0,2,1,0]
+Output: 1
+
+Note:3 &lt;= A.length &lt;= 100000 &l</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/leetcode">leetcode</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/leetcode">leetcode</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(6)  JudgeRouteCircle" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/">
+        <p class="h4 index-header">leetcode(6)  JudgeRouteCircle</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">difficult：easy #657Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.
+The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down). The output should be true or false representing whether the robot makes a circle.
+Example 1:
+Input: &quot;UD&quot;
+Output: true
+
+Example 2:
+Input: &quot;LL&quot</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-11&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/leetcode">leetcode</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/leetcode">leetcode</a>&nbsp;
           
         
       </div>
@@ -722,8 +737,6 @@ int main() {
 
 
 
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
 
 <!-- Plugins -->
 
@@ -756,9 +769,9 @@ int main() {
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "今天的风儿甚是喧嚣 JiaoPan&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });

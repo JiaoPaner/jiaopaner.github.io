@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -60,7 +60,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/">主页</a>
           </li>
         
           
@@ -68,7 +68,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/archives/">Archives</a>
+            <a class="nav-link" href="/archives/">归档</a>
           </li>
         
           
@@ -76,7 +76,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/categories/">Categories</a>
+            <a class="nav-link" href="/categories/">分类</a>
           </li>
         
           
@@ -84,17 +84,11 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/tags/">Tags</a>
+            <a class="nav-link" href="/tags/">标签</a>
           </li>
         
           
           
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">About</a>
-          </li>
-        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -144,59 +138,11 @@
   <div class="row mb-4 mx-auto">
     
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/">
-        <p class="h4 index-header">C++教程(4) C++标准库</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">PairClass Pair将两个value视为一个单元
-namespace std{
-    template&lt;typename T,typename U&gt;
-    struct pair{
-        T first;
-        U second;
-        ...
-    };
-}
-
-
-Tupletuple可拥有任意类型任意数量的元素
-std::tuple&lt;int, double, char,std::string&gt; tuple(1, 2.3, &#39;y&#39;, &quot;hello wolrd&quot;);
-
-tuple不允许迭代,运行时传入索引值将报错
-std::get&lt;i&gt;(tuple);//错误
-
-Smart Pointer(智能指针)Smart Pointer能够得知本身是否为指向某个对象的最后一个指针,当其为指向某个对象的最后一个指针且被删除时即会销毁所指对象
-shared_ptr共享式拥有 多个smart pointer指向同一对象,对象和资源在最后一个smart pointer销毁时被释放
-#incl</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-09&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/C++">C++</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/C++">C++</a>&nbsp;
-          
-        
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="C++教程(3) 模板和泛型编程" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
       </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/">
@@ -246,6 +192,12 @@ int main() {
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="C++教程(2) 面向对象编程" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
@@ -310,6 +262,12 @@ vo</div>
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="C++教程(1) 基础" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/">
         <p class="h4 index-header">C++教程(1) 基础</p>
@@ -361,6 +319,12 @@ std::cout &lt;&lt; 变量 &lt;&lt; std::endl; 添加换行
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/" target="_self">
+          <img src="\images\object-detection\open-image-files.jpg" srcset="/img/loading.gif" alt="(1)Faster R-CNN implemented by Keras" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/">
         <p class="h4 index-header">(1)Faster R-CNN implemented by Keras</p>
@@ -406,6 +370,12 @@ from matplotlib import pyplot as plt</div>
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/03/VGG16Net/" target="_self">
+          <img src="\images\dp-net\VGG16_Summary_Table.jpg" srcset="/img/loading.gif" alt="VGG16Net" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/07/03/VGG16Net/">
@@ -456,6 +426,12 @@ model.add</div>
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_self">
+          <img src="\images\system\4.jpg" srcset="/img/loading.gif" alt="操作系统(3) 内存管理" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
@@ -525,6 +501,12 @@ wait….
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/28/Alexnet/" target="_self">
+          <img src="\images\dp-net\AlexNet_Summary_Table.jpg" srcset="/img/loading.gif" alt="Alexnet" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/06/28/Alexnet/">
         <p class="h4 index-header">Alexnet</p>
@@ -572,6 +554,12 @@ model.add(layers.Conv2D(filters=256,kernel_size=[5,5],strides=(1,1),padding=&#39
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="nginx-rtmp流媒体服务" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/">
@@ -624,27 +612,39 @@ sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresa
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+          <img src="\images\dataStructure\2.jpg" srcset="/img/loading.gif" alt="数据结构(4) 树与二叉树" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/">
-        <p class="h4 index-header">高等数学</p>
+      <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
+        <p class="h4 index-header">数据结构(4) 树与二叉树</p>
         
         
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">极限定义
+          <div class="index-text mb-1">基本概念树的定义:树是$N(N\geqslant 0)$个结点的有限集合。特别的，当$N=0$时，称为空树。
+任意非空树满足的条件：
 
-数列极限定义：若对任意的$\varepsilon &gt;0$,存在$N&gt;0$,当$n&gt;N$时,有$|a_n - A|&lt;\varepsilon $,称$A$为数列${a_n}$的极限，
-记作$\lim{a_n}=A(n\rightarrow \infty)$
+有且仅有一个特定的称为根的结点
+当$N&gt;1$时，其余结点可分为$m$个互不相交的有限集合$T_1,T_2,\dots,T_m$,其中每个集合本身又是一棵树，并且称为根结点的子树
 
-函数极限：
+树是一种递归的数据结构
 
-自变量趋于有限值
-若对任意的$\varepsilon &gt;0$,存在$\delta &gt;0$,当$0&lt;|x-a|&lt;\delta$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x\rightarrow a$时的极限，
-记作$\lim(x)=A(x\rightarrow a)$
-若对任意的$\varepsilon &gt;0$,存在$\delta &gt;0$,当$x\in (a-\delta,a)$时,有$|f(x) - A|&lt;\varepsilon $,称$A$为$f(x)$当$x= a$处的左极限，
-记作$f(a-0)=A$
-若对任意的$\varepsilon &gt;0$,存在$\delta &gt;0$,当$x</div>
+根结点无前驱结点，除根结点外的其余所有结点有且仅有一个前驱结点
+树中所有结点可以有零个或多个后继结点
+
+基本术语
+
+
+结点$K$,结点$A,B,E$为到结点$K$的唯一路径上的结点，$A,B$为$K$的祖先结点，$K$为$A,B$的子孙结点；$E$为$K$的双亲结点，$K$为$E$的孩子结点，有相同双亲的结点为兄弟结点，如$K$和$L$互为兄弟节点；
+树中一个子结点的个数称为该结点的度，树中结点的最大度数称为树的度；
+度大于$0$的结点称为分支结点,如$B,C,D$,度为$0$的结点称为叶子结点，如$K,L,M$；
+树的深度为树中结点的最大层数，如图的树形结构深度为4
+两个结点之间的路径为两个结点之间所经过的结点序列，路径长度为路径上经过的边的</div>
         </div>
       </a>
 
@@ -655,13 +655,82 @@ sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresa
         
           <i class="iconfont icon-inbox"></i>
           
-            <a href="/categories/%E6%95%B0%E5%AD%A6">数学</a>&nbsp;
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
           &nbsp;
         
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/%E6%95%B0%E5%AD%A6">数学</a>&nbsp;
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(3) 栈和队列" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
+        <p class="h4 index-header">数据结构(3) 栈和队列</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">栈栈：只允许在一端进行插入或删除操作的线性表。
+栈顶：允许插入和删除的一端。栈底：固定的，不允许插入和删除的一端。
+特性：先进后出。
+栈的顺序存储结构#define MaxSize 50
+typedef struct{
+    ElemType data[MaxSize];//存放栈中元素
+    int top;//栈顶指针 空栈 top=-1
+} Stack;
+
+#初始化
+void initStack(Stack &amp;s){
+    s.top = -1;
+}
+#判断栈空
+bool stackEmpty(Stack &amp;s){
+    if(s.top == -1)
+        return true;
+    else
+        return false;
+}
+#进栈
+bool push(Stack &amp;s,ElemType x){
+    if(s.top == MaxSize-1)
+        return false;
+    s.data[++s.top] = x;
+    return true;
+}
+#出栈
+bool pop(Stack</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
           
         
       </div>
@@ -773,8 +842,6 @@ sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresa
 
 
 
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
 
 <!-- Plugins -->
 
@@ -807,9 +874,9 @@ sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresa
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "今天的风儿甚是喧嚣 JiaoPan&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });

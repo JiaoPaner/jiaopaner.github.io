@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -60,7 +60,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/">主页</a>
           </li>
         
           
@@ -68,7 +68,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/archives/">Archives</a>
+            <a class="nav-link" href="/archives/">归档</a>
           </li>
         
           
@@ -76,7 +76,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/categories/">Categories</a>
+            <a class="nav-link" href="/categories/">分类</a>
           </li>
         
           
@@ -84,17 +84,11 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="/tags/">Tags</a>
+            <a class="nav-link" href="/tags/">标签</a>
           </li>
         
           
           
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">About</a>
-          </li>
-        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
@@ -144,121 +138,11 @@
   <div class="row mb-4 mx-auto">
     
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
-        <p class="h4 index-header">数据结构(4) 树与二叉树</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">基本概念树的定义:树是$N(N\geqslant 0)$个结点的有限集合。特别的，当$N=0$时，称为空树。
-任意非空树满足的条件：
-
-有且仅有一个特定的称为根的结点
-当$N&gt;1$时，其余结点可分为$m$个互不相交的有限集合$T_1,T_2,\dots,T_m$,其中每个集合本身又是一棵树，并且称为根结点的子树
-
-树是一种递归的数据结构
-
-根结点无前驱结点，除根结点外的其余所有结点有且仅有一个前驱结点
-树中所有结点可以有零个或多个后继结点
-
-基本术语
-
-
-结点$K$,结点$A,B,E$为到结点$K$的唯一路径上的结点，$A,B$为$K$的祖先结点，$K$为$A,B$的子孙结点；$E$为$K$的双亲结点，$K$为$E$的孩子结点，有相同双亲的结点为兄弟结点，如$K$和$L$互为兄弟节点；
-树中一个子结点的个数称为该结点的度，树中结点的最大度数称为树的度；
-度大于$0$的结点称为分支结点,如$B,C,D$,度为$0$的结点称为叶子结点，如$K,L,M$；
-树的深度为树中结点的最大层数，如图的树形结构深度为4
-两个结点之间的路径为两个结点之间所经过的结点序列，路径长度为路径上经过的边的</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-17&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
+          <img src="\images\system\1.jpg" srcset="/img/loading.gif" alt="操作系统(2) 进程管理" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
       </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
-        <p class="h4 index-header">数据结构(3) 栈和队列</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">栈栈：只允许在一端进行插入或删除操作的线性表。
-栈顶：允许插入和删除的一端。栈底：固定的，不允许插入和删除的一端。
-特性：先进后出。
-栈的顺序存储结构#define MaxSize 50
-typedef struct{
-    ElemType data[MaxSize];//存放栈中元素
-    int top;//栈顶指针 空栈 top=-1
-} Stack;
-
-#初始化
-void initStack(Stack &amp;s){
-    s.top = -1;
-}
-#判断栈空
-bool stackEmpty(Stack &amp;s){
-    if(s.top == -1)
-        return true;
-    else
-        return false;
-}
-#进栈
-bool push(Stack &amp;s,ElemType x){
-    if(s.top == MaxSize-1)
-        return false;
-    s.data[++s.top] = x;
-    return true;
-}
-#出栈
-bool pop(Stack</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
@@ -316,6 +200,12 @@ PCB是进程存在的唯一标志。创建进程实质是创建PCB，撤销进�
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/" target="_self">
+          <img src="\images\cover.jpeg" srcset="/img/loading.gif" alt="操作系统(1) 概述" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/">
         <p class="h4 index-header">操作系统(1) 概述</p>
@@ -367,6 +257,12 @@ PCB是进程存在的唯一标志。创建进程实质是创建PCB，撤销进�
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(2) 线性表" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/">
@@ -421,6 +317,12 @@ L.data = new ElemType(InitSize);//C++
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(1) 基本概念" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
         <p class="h4 index-header">数据结构(1) 基本概念</p>
@@ -445,7 +347,6 @@ L.data = new ElemType(InitSize);//C++
 线性结构：结构中的数据元素只存在一对一的关系(线性表、栈和队列、串、数组、广义表)
 非线性结构：结构中数据元素存在一对多的关系(树)、多对多的关系(图)
 存储结构：顺序存储、链式存储、索引存储、散列存储
-版权声明：原创,转载请注明来源,否则律师函警告
 </div>
         </div>
       </a>
@@ -472,6 +373,12 @@ L.data = new ElemType(InitSize);//C++
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="线性代数" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
@@ -510,6 +417,12 @@ n阶乘行列式：$\begin{vmatrix}a{11} &amp; a{12} &amp; … &amp; a{1n}\a{21}
 
   <div class="row mb-4 mx-auto">
     
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/15/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="小贴士" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/03/15/%E5%B0%8F%E8%B4%B4%E5%A3%AB/">
@@ -565,6 +478,12 @@ d</div>
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" target="_self">
+          <img src="/images/opencv3/2-1.png" srcset="/img/loading.gif" alt="opencv3(1-2) linux配置opencv3开发环境" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
         <p class="h4 index-header">opencv3(1-2) linux配置opencv3开发环境</p>
@@ -611,6 +530,12 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
   <div class="row mb-4 mx-auto">
     
     
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/" target="_self">
+          <img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt="编译C/C++为dll供Java调用" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
     <div class="col-12 col-md-8 m-auto">
       <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">
         <p class="h4 index-header">编译C/C++为dll供Java调用</p>
@@ -651,6 +576,147 @@ eclipse新建项目
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/JNA">JNA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" target="_self">
+          <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
+        <p class="h4 index-header">hexo搭建GitHub博客</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">前提环境:Node.js、Git已安装
+通过github创建repository 格式:博客名称.github.io
+安装hexo
+新建blog文件夹,并打开git bash
+执行命令
+npm install hexo -g #安装hexo命令
+hexo -v #检查是否安装成功
+
+
+
+初始化hexo
+hexo init #初始化blog文件夹
+npm install #安装必要组件
+#执行如下命令 开启本地体验
+hexo g
+hexo s  
+#访问http://localhost:4000 即可看到默认博客页面
+
+
+
+关联hexo - github
+设置git的username和emailgit config --global user.name &#39;jiaopan&#39; #设置用户名
+git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
+
+
+生成公钥ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
+
+红框处为密钥保存的路径cd ~/.ssh #cd到</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/hexo">hexo</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
+          <img src="/images/note/6.jpg" srcset="/img/loading.gif" alt="linux下mysql的安装" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">
+        <p class="h4 index-header">linux下mysql的安装</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">linux下mysql安装步骤1.ubuntu系统1) 输入如下命令
+sudo apt-get update
+sudo apt-get install mysql-server
+
+
+安装好软件包后,会弹出设置root账户密码的提示
+
+2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)
+sudo netstat -tap | grep mysql
+
+
+3) 登陆mysql
+sudo mysql -uroot -p #执行命令后再输入密码
+
+
+
+登陆成功
+
+
+4) 设置mysql可远程连接
+
+修改配置文件
+
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+注释bind-address
+
+
+sudo mysql -uroot -p #登陆mysql
+mysql&gt; show databases #查看已有的数据库
+mysql&gt; use mysql; #跳转到名为mysql的数据库
+mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-06&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/mysql">mysql</a>&nbsp;
           
         
       </div>
@@ -762,8 +828,6 @@ eclipse新建项目
 
 
 
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
 
 <!-- Plugins -->
 
@@ -796,9 +860,9 @@ eclipse新建项目
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "今天的风儿甚是喧嚣 JiaoPan&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
