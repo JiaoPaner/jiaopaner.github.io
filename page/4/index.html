@@ -139,6 +139,79 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
+          <img src="/images/note/6.jpg" srcset="/img/loading.gif" alt="linux下mysql的安装" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">
+        <p class="h4 index-header">linux下mysql的安装</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">linux下mysql安装步骤1.ubuntu系统1) 输入如下命令
+sudo apt-get update
+sudo apt-get install mysql-server
+
+
+安装好软件包后,会弹出设置root账户密码的提示
+
+2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)
+sudo netstat -tap | grep mysql
+
+
+3) 登陆mysql
+sudo mysql -uroot -p #执行命令后再输入密码
+
+
+
+登陆成功
+
+
+4) 设置mysql可远程连接
+
+修改配置文件
+
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+注释bind-address
+
+
+sudo mysql -uroot -p #登陆mysql
+mysql&gt; show databases #查看已有的数据库
+mysql&gt; use mysql; #跳转到名为mysql的数据库
+mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-06&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/mysql">mysql</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
           <img src="/images/note/1.jpg" srcset="/img/loading.gif" alt="linux下jdk安装" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -567,54 +640,6 @@ Note:3 &lt;= A.length &lt;= 100000 &l</div>
       <div>
         
           <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/leetcode">leetcode</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/leetcode">leetcode</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(6)  JudgeRouteCircle" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/">
-        <p class="h4 index-header">leetcode(6)  JudgeRouteCircle</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">difficult：easy #657Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.
-The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down). The output should be true or false representing whether the robot makes a circle.
-Example 1:
-Input: &quot;UD&quot;
-Output: true
-
-Example 2:
-Input: &quot;LL&quot</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-11&nbsp;&nbsp;
         
         
           <i class="iconfont icon-inbox"></i>

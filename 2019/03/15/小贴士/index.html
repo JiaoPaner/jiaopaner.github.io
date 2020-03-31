@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    1.8k 字
+                    1.9k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      9 分钟
+                      10 分钟
                   </span>&nbsp;
                 
 
@@ -427,6 +427,27 @@ public class WebLogAspect {
 <pre><code>&lt;properties&gt;
      &lt;javadocExecutable&gt;/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/bin/javadoc&lt;/javadocExecutable&gt;
 &lt;/properties&gt;
+</code></pre><p>Q：maven引入本地依赖</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;com.oracle&lt;/groupId&gt;
+    &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;
+    &lt;scope&gt;system&lt;/scope&gt;
+    &lt;version&gt;1.0&lt;/version&gt;
+    &lt;systemPath&gt;${basedir}/lib/ojdbc6-11.2.0.1.0.jar&lt;/systemPath&gt;
+&lt;/dependency&gt;
+
+&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+            &lt;configuration&gt;
+                &lt;includeSystemScope&gt;true&lt;/includeSystemScope&gt;
+                &lt;mainClass&gt;mainclass&lt;/mainClass&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
 </code></pre><hr>
 <h1 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h1><p>Q：利用nginx共享文件夹</p>
 <p>nginx.conf添加如下配置</p>
