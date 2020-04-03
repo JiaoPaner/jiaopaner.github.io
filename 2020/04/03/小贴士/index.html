@@ -116,7 +116,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Friday, March 15th 2019, 4:06 pm
+                  Friday, April 3rd 2020, 2:06 pm
                 </p>
               
 
@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    1.9k 字
+                    2k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      10 分钟
+                      11 分钟
                   </span>&nbsp;
                 
 
@@ -166,24 +166,24 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1><p>Q： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s instead<br>A：工程属性 —&gt;C/C++ —&gt; 预处理器 —&gt; 预处理器定义,添加宏定义</p>
+            <h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1><p><strong>Q</strong>： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s instead<br>A：工程属性 —&gt;C/C++ —&gt; 预处理器 —&gt; 预处理器定义,添加宏定义</p>
 <pre><code class="lang-cpp">_CRT_SECURE_NO_WARNINGS
 </code></pre>
 <hr>
-<p>Q： pthread.h中报错：C2011“timespec”:“struct”类型重定义<br>A：tim.h已定义，pthread.h添加如下代码：</p>
+<p><strong>Q</strong>： pthread.h中报错：C2011“timespec”:“struct”类型重定义<br>A：tim.h已定义，pthread.h添加如下代码：</p>
 <pre><code class="lang-cpp">#if !defined( PTHREAD_H )
 #define PTHREAD_H
 #define HAVE_STRUCT_TIMESPEC
 </code></pre>
 <hr>
-<p>Q：Visual Studio 工程编译dll,接口的定义<br>A：接口的头文件应如下声明：</p>
+<p><strong>Q</strong>：Visual Studio 工程编译dll,接口的定义<br>A：接口的头文件应如下声明：</p>
 <pre><code class="lang-cpp">#define LIB_API __declspec(dllexport) //导出函数
 extern &quot;C&quot; {
     LIB_API char*   say();
 }
 </code></pre>
 <hr>
-<p>Q：C++调用DLL</p>
+<p><strong>Q</strong>：C++调用DLL</p>
 <ul>
 <li><p>dll的创建</p>
 <pre><code class="lang-c++">//test.h
@@ -220,7 +220,7 @@ int main(int argc, char *argv[]){
 </li>
 </ul>
 <hr>
-<p>Q:cmake 简单编译命令</p>
+<p><strong>Q</strong>:cmake 简单编译命令</p>
 <pre><code class="lang-bash">sudo tar -zxvf test
 cd test
 sudo mkdir build
@@ -232,7 +232,7 @@ sudo make install #安装
 sudo ldconfig #更新软连接
 </code></pre>
 <hr>
-<p>Q: mac安装LLVM</p>
+<p><strong>Q</strong>: mac安装LLVM</p>
 <pre><code class="lang-bash">$ cd where-you-want-llvm-to-live
 $ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
 
@@ -253,7 +253,7 @@ $ make
 $ make install
 </code></pre>
 <hr>
-<p>Q:cJSON的使用</p>
+<p><strong>Q</strong>:cJSON的使用</p>
 <pre><code class="lang-c++">#include &quot;cJSON.h&quot;
 cJSON  *root = cJSON_CreateObject();
 cJSON  *bboxs = cJSON_CreateArray();
@@ -275,7 +275,7 @@ for (int i = 0; i &lt; 2; i++){
 resultJson = cJSON_PrintUnformatted(result);
 </code></pre>
 <hr>
-<p>Q:c#调用dll</p>
+<p><strong>Q</strong>:c#调用dll</p>
 <p>note:若dll为X64,则c#应编译x64,否则报错</p>
 <pre><code class="lang-c#">using System;
 using System.Collections.Generic;
@@ -300,7 +300,7 @@ namespace test
 }
 </code></pre>
 <hr>
-<p>Q：opencv Mat和byte互转</p>
+<p><strong>Q</strong>：opencv Mat和byte互转</p>
 <pre><code class="lang-c++">unsigned char* matToBytes(Mat image){
    int size = image.total() * image.elemSize();
      unsigned char* bytes = new unsigned char[size];  // you will have to delete[] that later
@@ -313,7 +313,7 @@ Mat bytesToMat(unsigned char* bytes,int width,int height){
 }
 </code></pre>
 <hr>
-<p>Q:opencv Mat 转std::vector std::vector转std::string</p>
+<p><strong>Q</strong>:opencv Mat 转std::vector std::vector转std::string</p>
 <pre><code class="lang-c++">cv::Mat output = output.reshape(1, 1);
 std::vector&lt;double&gt; vetor = (std::vector&lt;double&gt;)output;
 std::stringstream ss;
@@ -340,12 +340,12 @@ fs &lt;&lt; &quot;features&quot; &lt;&lt; output;
 fs.release();
 </code></pre>
 <hr>
-<p>Q: opencv 截取图片的矩形区域</p>
+<p><strong>Q</strong>: opencv 截取图片的矩形区域</p>
 <pre><code class="lang-c++">rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
 Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
 </code></pre>
 <hr>
-<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p>Q：python打包发布</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q</strong>：python打包发布</p>
 <p>1.项目根目录新建setup.py</p>
 <pre><code class="lang-python">from distutils.core import setup
 setup(
@@ -361,7 +361,7 @@ numpy==1.16.4
 scikit-image==0.15.0
 </code></pre>
 <p>或者 conda list -e &gt; requirements.txt</p>
-<pre><code class="lang-tex">numpy=1.16.4
+<pre><code class="lang-text">numpy=1.16.4
 opencv=3.4.2
 scikit-image=0.15.0
 </code></pre>
@@ -376,21 +376,38 @@ sudo python setup.py install
 <p>4.使用</p>
 <p>import test<br>test.sayHello();//#调用模块的sayHello方法</p>
 <hr>
-<p>Q:jupyter notebook 运行于指定的conda环境上</p>
+<p><strong>Q</strong>:jupyter notebook 运行于指定的conda环境上</p>
 <pre><code class="lang-bash">conda install nb_conda
 </code></pre>
-<p>重启jupyter notebook 选择kernel即可</p>
-<blockquote>
-<blockquote>
+<h2 id="重启jupyter-notebook-选择kernel即可"><a href="#重启jupyter-notebook-选择kernel即可" class="headerlink" title="重启jupyter notebook 选择kernel即可"></a>重启jupyter notebook 选择kernel即可</h2><p><strong>Q</strong>:设置jupyter notebook可远程访问</p>
+<pre><code class="lang-bash">$ jupyter notebook --generate-config
+Writing default config to: /home/adminpc/.jupyter/jupyter_notebook_config.py
+
+$ jupyter notebook password
+Enter password: 
+Verify password: 
+[NotebookPasswordApp] Wrote hashed password to /home/adminpc/.jupyter/jupyter_notebook_config.json
+
+$ vim /home/adminpc/.jupyter/jupyter_notebook_config.py
+c.NotebookApp.ip=&#39;*&#39;
+# 密钥位于adminpc/.jupyter/jupyter_notebook_config.json
+c.NotebookApp.password = &#39;sha1:0f0fe326cb63:0e48570b0b0952dfe72fefb7bd012934968ea428&#39;
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =8888 
+
+$ jupyter notebook 
+[I 14:14:05.933 NotebookApp] Serving notebooks from local directory: /home/adminpc/jiaopan/projects
+[I 14:14:05.933 NotebookApp] The Jupyter Notebook is running at:
+[I 14:14:05.933 NotebookApp] http://admin-pc:8888/
+[I 14:14:05.933 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+</code></pre>
 <hr>
-<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><p>Q：iframe父/子页面互相调用方法</p>
-</blockquote>
-</blockquote>
+<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><p><strong>Q</strong>：iframe父/子页面互相调用方法</p>
 <pre><code class="lang-html">document.getElementById(&quot;iframeId&quot;).contentWindow.childMethod()/childVariable;
 parent.parentMethod()/parentVariable
 </code></pre>
 <hr>
-<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p>Q：springboot切面编程实例</p>
+<h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p><strong>Q</strong>：springboot切面编程实例</p>
 <pre><code class="lang-java">@Aspect
 @Component
 @Slf4j
@@ -422,12 +439,12 @@ public class WebLogAspect {
 
 }
 </code></pre>
-<p>Q：Mac，MavenReportException: Error while creating archive: Unable to find javadoc command: The environment variable JAVA_HOME is not correctly set</p>
+<p><strong>Q</strong>：Mac，MavenReportException: Error while creating archive: Unable to find javadoc command: The environment variable JAVA_HOME is not correctly set</p>
 <p>在pom.xml文件中添加javadoc命令的位置</p>
 <pre><code>&lt;properties&gt;
      &lt;javadocExecutable&gt;/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/bin/javadoc&lt;/javadocExecutable&gt;
 &lt;/properties&gt;
-</code></pre><p>Q：maven引入本地依赖</p>
+</code></pre><p><strong>Q</strong>：maven引入本地依赖</p>
 <pre><code>&lt;dependency&gt;
     &lt;groupId&gt;com.oracle&lt;/groupId&gt;
     &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;
@@ -449,7 +466,7 @@ public class WebLogAspect {
     &lt;/plugins&gt;
 &lt;/build&gt;
 </code></pre><hr>
-<h1 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h1><p>Q：利用nginx共享文件夹</p>
+<h1 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h1><p><strong>Q</strong>：利用nginx共享文件夹</p>
 <p>nginx.conf添加如下配置</p>
 <pre><code>server {
     listen       8000;
@@ -466,7 +483,7 @@ public class WebLogAspect {
     #index  index.html index.htm;
   }
 }
-</code></pre><p>Q:更改ubuntu源为阿里云源</p>
+</code></pre><p><strong>Q</strong>:更改ubuntu源为阿里云源</p>
 <pre><code class="lang-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
 sudo vim /etc/apt/source.list
@@ -500,7 +517,7 @@ echo &quot;deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main n
 
 apt-get update
 </code></pre>
-<p>Q:oracle导入dmp备份文件</p>
+<p><strong>Q</strong>:oracle导入dmp备份文件</p>
 <pre><code>[root@centos ～]# su - oracle
 [oracle@centos ～]# sqlplus 
 请输入用户名:  sys as sysdba
@@ -518,7 +535,6 @@ SQL&gt; CONNECT 用户@orcl #新用户测试登陆
 [oracle@centos ～]imp 用户名/密码@orcl file=/home/*.dmp ignore=y full=y;
  Import terminated successfully with warnings.(成功)
 </code></pre><hr>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             <hr>
           </div>
