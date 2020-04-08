@@ -139,6 +139,63 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="nginx-rtmp流媒体服务" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/">
+        <p class="h4 index-header">nginx-rtmp流媒体服务</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+安装ffmpeg
+#安装h264视频编解码库
+sudo apt-get update
+sudo apt-get install libx264-dev
+
+#安装ffmpeg
+#通过源安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+sudo add-apt-repository ppa:djcj/hybrid #添加源
+sudo apt-get update
+sudo apt-get install ffmpeg
+sudo ffmpeg -version #验证是否安装成功
+#源码安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+wget http://ffmpeg.org/releases/ffmpeg-3.0.9.tar.bz2
+sudo tar jxvf ffmpeg-3.0.9.tar.bz2
+cd ffmpeg-3.0.9/
+sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresample $ --enable-libx264 --</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-26&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/nginx">nginx</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
           <img src="\images\dataStructure\2.jpg" srcset="/img/loading.gif" alt="数据结构(4) 树与二叉树" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -644,74 +701,6 @@ eclipse新建项目
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/JNA">JNA</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" target="_self">
-          <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
-        <p class="h4 index-header">hexo搭建GitHub博客</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">前提环境:Node.js、Git已安装
-通过github创建repository 格式:博客名称.github.io
-安装hexo
-新建blog文件夹,并打开git bash
-执行命令
-npm install hexo -g #安装hexo命令
-hexo -v #检查是否安装成功
-
-
-
-初始化hexo
-hexo init #初始化blog文件夹
-npm install #安装必要组件
-#执行如下命令 开启本地体验
-hexo g
-hexo s  
-#访问http://localhost:4000 即可看到默认博客页面
-
-
-
-关联hexo - github
-设置git的username和emailgit config --global user.name &#39;jiaopan&#39; #设置用户名
-git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
-
-
-生成公钥ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
-
-红框处为密钥保存的路径cd ~/.ssh #cd到</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/hexo">hexo</a>&nbsp;
           
         
       </div>

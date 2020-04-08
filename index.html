@@ -139,6 +139,59 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/" target="_self">
+          <img src="\images\dp-net\pytorch.jpg" srcset="/img/loading.gif" alt="pytorch 自定义数据集/训练/模型保存和加载" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/">
+        <p class="h4 index-header">pytorch 自定义数据集/训练/模型保存和加载</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">数据准备1.第一种方式torchvision.datasets.ImageFolder数据集文件需如下结构：rootdir/cat/xxx.pngroot_dir/cat/xxy.jpeg…root_dir/dog/nsdf3.pngroot_dir/dog/asd932.png
+import torch
+import torchvision
+from torchvision import transforms,datasets
+import os
+os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE&quot;
+
+transform = transforms.Compose([
+    transforms.Resize([224,224]),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+])
+dataset = datasets.ImageFolder(root=&quot;/Volumes/sto</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-08&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="小贴士" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -610,54 +663,6 @@ int search(STable table,ElemType key){
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/" target="_self">
-          <img src="/images/opencv3/18.jpg" srcset="/img/loading.gif" alt="opencv3(2) 图像载入-显示-输出" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/">
-        <p class="h4 index-header">opencv3(2) 图像载入-显示-输出</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">
-载入函数
-
-Mat imread( const String&amp; filename, int flags = IMREAD_COLOR );
-IMREAD_UNCHANGED   = -1, //!&lt; If set, return the loaded image as is (with alpha channel, otherwise it gets cropped).
-IMREAD_GRAYSCALE   = 0,  //!&lt; If set, always convert image to the single channel grayscale image.
-IMREAD_COLOR       = 1,  //!&lt; If set, always convert image to the 3 channel BGR color image.
-IMREAD_ANYDEPTH    = 2,  //!&lt; If set, return 16-bit/32-bit image when the input has the corresponding dep</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/opencv3">opencv3</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv3">opencv3</a>&nbsp;
           
         
       </div>

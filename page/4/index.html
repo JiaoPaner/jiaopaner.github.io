@@ -139,6 +139,74 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" target="_self">
+          <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
+        <p class="h4 index-header">hexo搭建GitHub博客</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">前提环境:Node.js、Git已安装
+通过github创建repository 格式:博客名称.github.io
+安装hexo
+新建blog文件夹,并打开git bash
+执行命令
+npm install hexo -g #安装hexo命令
+hexo -v #检查是否安装成功
+
+
+
+初始化hexo
+hexo init #初始化blog文件夹
+npm install #安装必要组件
+#执行如下命令 开启本地体验
+hexo g
+hexo s  
+#访问http://localhost:4000 即可看到默认博客页面
+
+
+
+关联hexo - github
+设置git的username和emailgit config --global user.name &#39;jiaopan&#39; #设置用户名
+git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
+
+
+生成公钥ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
+
+红框处为密钥保存的路径cd ~/.ssh #cd到</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/hexo">hexo</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
           <img src="/images/note/6.jpg" srcset="/img/loading.gif" alt="linux下mysql的安装" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -597,60 +665,6 @@ int main() {
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(7) PeakIndexInMountainArray" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/">
-        <p class="h4 index-header">leetcode(7) PeakIndexInMountainArray</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">difficult：easy #852Let’s call an array A a mountain if the following properties hold:
-
-A.length &gt;= 3
-There exists some 0 &lt; i &lt; A.length - 1 such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1]Given an array that is definitely a mountain, return any i such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1].
-
-Example 1:
-Input: [0,1,0]
-Output: 1
-
-Example 2:
-Input: [0,2,1,0]
-Output: 1
-
-Note:3 &lt;= A.length &lt;= 100000 &l</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/leetcode">leetcode</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/leetcode">leetcode</a>&nbsp;
           
         
       </div>
