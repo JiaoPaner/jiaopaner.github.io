@@ -166,7 +166,7 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h1><p><strong>1.第一种方式</strong><br><br>torchvision.datasets.ImageFolder<br><br><br><br>数据集文件需如下结构：<br><br>root<em>dir/cat/xxx.png<br><br>root_dir/cat/xxy.jpeg<br><br>…<br><br>root_dir/dog/nsdf3.png<br><br>root_dir/dog/asd932</em>.png<br></p>
+            <h1 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h1><p><strong>1.第一种方式</strong><br><br>torchvision.datasets.ImageFolder<br><br><br>数据集文件需如下结构：<br><br>root<em>dir/cat/xxx.png<br><br>root_dir/cat/xxy.jpeg<br><br>…<br><br>root_dir/dog/nsdf3.png<br><br>root_dir/dog/asd932</em>.png<br></p>
 <pre><code class="lang-python">import torch
 import torchvision
 from torchvision import transforms,datasets
@@ -203,9 +203,9 @@ plt.show()
 print(&#39; &#39;.join(&#39;%5s&#39; % label_dict[labels[j].item()] for j in range(4)))
 </code></pre>
 <p><img src="\images\dp-net\output_4_0.png" srcset="/img/loading.gif" alt="png"></p>
-<pre><code>  dog   cat   dog   cat
-</code></pre><hr>
-<p><strong>第二种方式(继承torch.utils.data.Dataset)</strong><br><br>实现：<br><br><strong>__len__(self):</strong> 返回数据集的大小<br><br><strong>__getitem__(self,index):</strong> 支持索引，获取第index个样本的数据和标签<br><br><br>假设数据集文件如下结构：<br><br>root_dir/cat.0.png<br><br>root_dir/cat.1.jpeg<br><br>…<br><br>root_dir/dog/dog.0.jpg<br><br>root_dir/dog/dog.1.png<br><br><br><br><strong>note:transform的输入图片格式:PIL.Image</strong></p>
+<p>dog   cat   dog   cat</p>
+<hr>
+<p><strong>第二种方式(继承torch.utils.data.Dataset)</strong><br><br>实现：<br><br><strong>__len__(self):</strong> 返回数据集的大小<br><br><strong>__getitem__(self,index):</strong> 支持索引，获取第index个样本的数据和标签<br><br><br>假设数据集文件如下结构：<br><br>root_dir/cat.0.png<br><br>root_dir/cat.1.jpeg<br><br>…<br><br>root_dir/dog.0.jpg<br><br>root_dir/dog.1.png<br><br><br><br><strong>note:transform的输入图片格式:PIL.Image</strong></p>
 <pre><code class="lang-python">import torch
 import os
 from PIL import Image
@@ -270,8 +270,8 @@ plt.show()
 print(&#39; &#39;.join(&#39;%5s&#39; % label_dict[labels[j].item()] for j in range(8)))
 </code></pre>
 <p><img src="\images\dp-net\output_10_0.png" srcset="/img/loading.gif" alt="png"></p>
-<pre><code>  cat   cat   dog   dog   dog   dog   dog   cat
-</code></pre><hr>
+<p>cat   cat   dog   dog   dog   dog   dog   cat</p>
+<hr>
 <h1 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h1><pre><code class="lang-python">import torch
 import torch.nn as nn
 </code></pre>
