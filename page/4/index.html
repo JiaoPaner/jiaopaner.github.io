@@ -139,6 +139,61 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/" target="_self">
+          <img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt="编译C/C++为dll供Java调用" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">
+        <p class="h4 index-header">编译C/C++为dll供Java调用</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">开发环境准备
+下载 Eclipse IDE for C/C++地址:https://www.eclipse.org/downloads/packages/
+安装mingw64地址:http://www.mingw-w64.org/doku.php/download1）配置mingw64环境变量C_INCLUDE_PATH : mingw64安装目录\includeLIBRARY_PATH :mingw64安装目录\lib2）系统变量的path变量中添加 mingw64安装目录\bin注意:以防万一,本文也将include和lib目录也加入了path变量中3）测试 cmd里执行如下命令gcc -v
+
+输出版本信息则安装成功
+
+编译C/C++为dlleclipse环境下
+
+eclipse新建项目
+新建源代码文件
+编写方法
+右键项目 properties 配置1）Tool Chain Editor的配置2）settings的配置-Wl,--add-stdcall-alias -static-libgcc -static-libstdc++ -shared
+
+
+右键项目 build proje</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JNA">JNA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" target="_self">
           <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -614,57 +669,6 @@ Note:The boundari</div>
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86">数字图像处理</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/07/12/blob%20detect/" target="_self">
-          <img src="/images/opencv3/blob.jpg" srcset="/img/loading.gif" alt="blob detect" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/07/12/blob%20detect/">
-        <p class="h4 index-header">blob detect</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">斑点检测斑点:与周围区域存在颜色差异或灰度差异的区域斑点检测的主要思路是检测出图像中比周围像素灰度大或者比周围区域灰度值小的区域　　1.基于求导的微分方法　　2.基于局部极值的分水岭算法,基于此OPENCV中提供simpleBlobDetector特征检测器
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;opencv2\opencv.hpp&gt;
-using namespace cv;
-int main() {
-    Mat im = imread(&quot;D:/learn/jiaopan/source/images/opencv3/blob.jpg&quot;,IMREAD_GRAYSCALE);
-    imshow(&quot;im&quot;, im);
-    Ptr&lt;SimpleBlobDetector&gt; detector = SimpleBlobDetector::create();
-    std::vector&lt;KeyPoint&gt; keypoints;
-    d</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/opencv3">opencv3</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
           
         
       </div>

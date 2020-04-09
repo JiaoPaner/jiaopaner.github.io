@@ -139,6 +139,57 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/12/blob%20detect/" target="_self">
+          <img src="/images/opencv3/blob.jpg" srcset="/img/loading.gif" alt="blob detect" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/12/blob%20detect/">
+        <p class="h4 index-header">blob detect</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">斑点检测斑点:与周围区域存在颜色差异或灰度差异的区域斑点检测的主要思路是检测出图像中比周围像素灰度大或者比周围区域灰度值小的区域　　1.基于求导的微分方法　　2.基于局部极值的分水岭算法,基于此OPENCV中提供simpleBlobDetector特征检测器
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;opencv2\opencv.hpp&gt;
+using namespace cv;
+int main() {
+    Mat im = imread(&quot;D:/learn/jiaopan/source/images/opencv3/blob.jpg&quot;,IMREAD_GRAYSCALE);
+    imshow(&quot;im&quot;, im);
+    Ptr&lt;SimpleBlobDetector&gt; detector = SimpleBlobDetector::create();
+    std::vector&lt;KeyPoint&gt; keypoints;
+    d</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/opencv3">opencv3</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(7) PeakIndexInMountainArray" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>

@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>Archives ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>001.spark教程 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -112,6 +112,41 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Thursday, April 9th 2020, 9:14 pm
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    676 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      3 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -122,71 +157,183 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">50 posts in total.</p>
-  <hr>
-  
-    
       
-      <p class="h5">2018</p>
-    
-    <a href="/2018/07/10/leetcode(5)%20%20HammingDistance/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">leetcode(5)  HammingDistance</span>
-      <span style="float: right;">07-10</span>
-    </a>
-  
-    
-    <a href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">leetcode(4)  uniqueMorseCodeWords</span>
-      <span style="float: right;">07-10</span>
-    </a>
-  
-    
-    <a href="/2018/07/08/leetcode(3)%20Jewels%20and%20Stones/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">leetcode(3) Jewels and Stones</span>
-      <span style="float: right;">07-08</span>
-    </a>
-  
-    
-    <a href="/2018/07/06/leetcode(2)%20Reverse%20Integer/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">leetcode(2) Reverse Integer</span>
-      <span style="float: right;">07-06</span>
-    </a>
-  
-    
-    <a href="/2018/07/06/leetcode(1)%20Two-Sum/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">leetcode(1) Two-Sum</span>
-      <span style="float: right;">07-06</span>
-    </a>
-  
-</div>
 
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2018/07/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/archives/2018/07/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
-      ele.href += '#board';
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="spark-hello-world"><a href="#spark-hello-world" class="headerlink" title="spark-hello world"></a>spark-hello world</h1><p>1.创建maven项目spark-note,添加Spark依赖,新建TestSpark.java类<br><br>2.引入依赖和打包插件</p>
+<pre><code class="lang-text">&lt;dependencies&gt;
+          &lt;dependency&gt;
+      &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
+      &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
+      &lt;version&gt;2.11.8&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+      &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
+      &lt;version&gt;2.3.3&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.apache.hadoop&lt;/groupId&gt;
+      &lt;artifactId&gt;hadoop-client&lt;/artifactId&gt;
+      &lt;version&gt;2.7.7&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;3.8.1&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+&lt;build&gt;  
+    &lt;plugins&gt;  
+     &lt;plugin&gt;
+         &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+         &lt;version&gt;2.3.2&lt;/version&gt;
+         &lt;configuration&gt;
+             &lt;source&gt;1.8&lt;/source&gt;
+             &lt;target&gt;1.8&lt;/target&gt;
+         &lt;/configuration&gt;
+     &lt;/plugin&gt;
+     &lt;plugin&gt;
+        &lt;artifactId&gt; maven-assembly-plugin &lt;/artifactId&gt;
+            &lt;configuration&gt;
+             &lt;descriptorRefs&gt;
+                 &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+             &lt;/descriptorRefs&gt;
+             &lt;archive&gt;
+                  &lt;manifest&gt;
+                       &lt;mainClass&gt;jiaopaner.spark.learning.App&lt;/mainClass&gt;
+                  &lt;/manifest&gt;
+             &lt;/archive&gt;
+                &lt;/configuration&gt;
+        &lt;executions&gt;
+             &lt;execution&gt;
+                  &lt;id&gt;make-assembly&lt;/id&gt;
+                  &lt;phase&gt;package&lt;/phase&gt;
+                  &lt;goals&gt;
+                       &lt;goal&gt;single&lt;/goal&gt;
+                  &lt;/goals&gt;
+             &lt;/execution&gt;
+        &lt;/executions&gt;
+       &lt;/plugin&gt;
+    &lt;/plugins&gt;  
+&lt;/build&gt;
+</code></pre>
+<p>3.创建word.txt</p>
+<pre><code class="lang-text">spark spark
+hive hive hive hello
+mysql jiaopan jiaopan
+</code></pre>
+<p>4.编写处理程序</p>
+<pre><code class="lang-java">public class App {
+    public static void main( String[] args ){
+        SparkConf conf = new SparkConf().setAppName(&quot;wordCount&quot;).setMaster(&quot;local[*]&quot;);//local[*]本地模式
+        JavaSparkContext sc = new JavaSparkContext(conf);
+        JavaRDD&lt;String&gt; lines = sc.textFile(&quot;/Volumes/storage/learn/bigdata/data/words.txt&quot;);
+        JavaRDD&lt;String&gt; words = lines.flatMap(line-&gt;Arrays.asList(line.split(&quot; &quot;)).iterator());
+        JavaPairRDD&lt;String, Integer&gt; wordAndOne = words.mapToPair(word-&gt;Tuple2.apply(word,1));
+        JavaPairRDD&lt;String, Integer&gt; reduced = wordAndOne.reduceByKey((a,b)-&gt;a+b);
+        JavaPairRDD&lt;Integer,String&gt; swapped = reduced.mapToPair(reduce-&gt;reduce.swap());
+        JavaPairRDD&lt;Integer,String&gt; sorted = swapped.sortByKey(false);
+        JavaPairRDD&lt;String, Integer&gt; result = sorted.mapToPair(sort-&gt;sort.swap());
+        result.saveAsTextFile(&quot;/Volumes/storage/learn/bigdata/data/out.txt&quot;);
+        sc.close();
     }
-  </script>
+}
+</code></pre>
+<p>5.执行结果</p>
+<p><img src="\images\bigdata\2.png" srcset="/img/loading.gif" alt=""></p>
+<p>其中part-00000和part-00001分别保存了结果，内容如下</p>
+<pre><code class="lang-text">(hive,3)
 
+(jiaopan,2)
+(spark,2)
+(mysql,1)
+(hello,1)
+</code></pre>
+<p>6.提交到集群执行</p>
+<p>将words.txt上传HDFS系统，修改部分代码</p>
+<pre><code class="lang-java">SparkConf conf = new SparkConf()
+         .setAppName(&quot;WordCount&quot;);
+          //.setMaster(&quot;local&quot;);//注释掉
+JavaSparkContext sc = new JavaSparkContext(conf);
+JavaRDD&lt;String&gt; lines = sc.textFile(&quot;hdfs://node:8020/words.txt&quot;);//读取HDFS文件
+result.saveAsTextFile(&quot;/home/data/out.txt&quot;);
+// hdfs://node:8020  -&gt;登陆ambari查看HDFS core-site配置可知
+</code></pre>
+<p>7.打包程序并上传到集群</p>
+<p>上传spark-note-0.0.1-SNAPSHOT-jar-with-dependencies.jar到spark集群主机节点上</p>
+<p>8.提交任务执行</p>
+<pre><code class="lang-bash">[root@node spark]# spark-submit --class jiaopaner.spark.learning.App --num-executors 1  --executor-cores 1 /home/spark/spark-note-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+</code></pre>
+<p>9.可通过master:4040可查看任务执行进度</p>
 
-              </div>
-            </div>
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/spark">spark</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -265,6 +412,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -305,7 +457,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "001.spark教程&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

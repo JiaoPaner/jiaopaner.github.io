@@ -139,6 +139,60 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/28/Alexnet/" target="_self">
+          <img src="\images\dp-net\AlexNet_Summary_Table.jpg" srcset="/img/loading.gif" alt="Alexnet" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/28/Alexnet/">
+        <p class="h4 index-header">Alexnet</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+#模型
+model = keras.Sequential()
+
+# 1st Convolutional Layer
+model.add(layers.Conv2D(input_shape=(227,227,3),filters=96,kernel_size=[11,11],strides=(4,4),padding=&#39;valid&#39;,activation=&#39;relu&#39;))
+model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;valid&#39;))
+
+# 2nd Convolutional Layer
+model.add(layers.Conv2D(filters=256,kernel_size=[5,5],strides=(1,1),padding=&#39;same&#39;,activ</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-28&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B">神经网络模型</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="nginx-rtmp流媒体服务" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -646,61 +700,6 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/opencv3">opencv3</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/" target="_self">
-          <img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt="编译C/C++为dll供Java调用" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">
-        <p class="h4 index-header">编译C/C++为dll供Java调用</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">开发环境准备
-下载 Eclipse IDE for C/C++地址:https://www.eclipse.org/downloads/packages/
-安装mingw64地址:http://www.mingw-w64.org/doku.php/download1）配置mingw64环境变量C_INCLUDE_PATH : mingw64安装目录\includeLIBRARY_PATH :mingw64安装目录\lib2）系统变量的path变量中添加 mingw64安装目录\bin注意:以防万一,本文也将include和lib目录也加入了path变量中3）测试 cmd里执行如下命令gcc -v
-
-输出版本信息则安装成功
-
-编译C/C++为dlleclipse环境下
-
-eclipse新建项目
-新建源代码文件
-编写方法
-右键项目 properties 配置1）Tool Chain Editor的配置2）settings的配置-Wl,--add-stdcall-alias -static-libgcc -static-libstdc++ -shared
-
-
-右键项目 build proje</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/JNA">JNA</a>&nbsp;
           
         
       </div>
