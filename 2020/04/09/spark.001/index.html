@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    676 字
+                    2.6k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      3 分钟
+                      14 分钟
                   </span>&nbsp;
                 
 
@@ -273,6 +273,240 @@ result.saveAsTextFile(&quot;/home/data/out.txt&quot;);
 <pre><code class="lang-bash">[root@node spark]# spark-submit --class jiaopaner.spark.learning.App --num-executors 1  --executor-cores 1 /home/spark/spark-note-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 </code></pre>
 <p>9.可通过master:4040可查看任务执行进度</p>
+<h1 id="transform算子"><a href="#transform算子" class="headerlink" title="transform算子"></a>transform算子</h1><ul>
+<li>map(func)：返回一个新的RDD，每个数据项通过map中的函数func转换</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;Integer&gt; nums = sc.parallelize(Arrays.asList(1,2,3,4));
+JavaRDD&lt;Integer&gt; newNums =  nums.map(num-&gt;num*2);
+System.out.println(newNums.collect());
+
+[2, 4, 6, 8]
+</code></pre>
+<ul>
+<li>flatMap(func):返回一个新的RDD,将旧RDD中的每个元素通过函数func转换为新的元素，并将生成的RDD的每个集合中的元素合并为一个集合</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;String&gt; lines = sc.parallelize(Arrays.asList(&quot;hello java&quot;,&quot;hello hive&quot;));
+JavaRDD&lt;String&gt; words= lines.flatMap(line-&gt;Arrays.asList(line.split(&quot; &quot;)).iterator());
+System.out.println(words.collect());
+
+[hello, java, hello, hive]
+
+JavaRDD&lt;List&lt;String&gt;&gt; lists = sc.parallelize(Arrays.asList(Arrays.asList(&quot;a b&quot;,&quot;c d&quot;),Arrays.asList(&quot;e f&quot;,&quot;g h&quot;)));
+JavaRDD&lt;String&gt; items = lists.flatMap(list-&gt;list.stream().flatMap(item-&gt;Arrays.asList(item.split(&quot; &quot;)).stream()).iterator());
+System.out.println(items.collect());
+
+[a, b, c, d, e, f, g, h]
+</code></pre>
+<ul>
+<li>filter(func)：返回一个新的RDD，经过func函数后返回值为true的元素保留</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;Integer&gt; numbers = sc.parallelize(Arrays.asList(1,2,3,4));
+JavaRDD&lt;Integer&gt; newNumbers = numbers.filter(num-&gt;num &gt; 2);
+System.out.println(newNumbers.collect());
+
+[3,4]
+</code></pre>
+<ul>
+<li>mapPartitions(func):返回一个新的RDD,分区处理数据，func的函数类型为Iterator[T] =&gt; Iterator[U]</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;Integer&gt; numbers = sc.parallelize(Arrays.asList(1,2,3,4,5,6,7,8,9),3);
+JavaRDD&lt;Integer&gt; newNumbers = numbers.mapPartitions(it-&gt;{
+    List&lt;Integer&gt; nums = new ArrayList&lt;Integer&gt;();
+    while(it.hasNext()) {
+        nums.add(it.next() * 2);
+    }
+    return nums.iterator();
+});
+System.out.println(newNumbers.collect());
+
+[2, 4, 6, 8, 10, 12, 14, 16, 18]
+</code></pre>
+<ul>
+<li>mapPartitionsWithIndex(func):返回一个新的RDD,分区处理数据,func带有一个整数参数表示分区的索引值,func的函数类型是(Int, Interator[T]) =&gt; Iterator[U]</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;Integer&gt; numbers = sc.parallelize(Arrays.asList(1,2,3,4,5,6,7,8,9),3);
+numbers.mapPartitionsWithIndex((index,it)-&gt;{
+    while(it.hasNext()) {
+        System.out.println(index+&quot;:&quot;+it.next());
+    }
+    return it;
+},true).count();
+
+1:4
+1:5
+1:6
+0:1
+2:7
+0:2
+2:8
+0:3
+2:9
+</code></pre>
+<ul>
+<li>union(otherDataset):合并两个RDD</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;Integer&gt; numbers = sc.parallelize(Arrays.asList(1,2,3,4,5,6,7,8,9));
+JavaRDD&lt;Integer&gt; union = numbers.union(sc.parallelize(Arrays.asList(10,11)));
+System.out.println(union.collect());
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+</code></pre>
+<ul>
+<li>intersection(otherDataset):返回两个RDD的交集</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;Integer&gt; numbers = sc.parallelize(Arrays.asList(1,2,3,4,5,6,7,8,9));
+JavaRDD&lt;Integer&gt; intersection = numbers.intersection(sc.parallelize(Arrays.asList(1,7,8,10)));
+System.out.println(intersection.collect());
+
+[1,7,8]
+</code></pre>
+<ul>
+<li>subtract(otherDataset):返回两个RDD的差集</li>
+</ul>
+<pre><code class="lang-java">JavaRDD&lt;Integer&gt; numbers = sc.parallelize(Arrays.asList(1,2,3,4,5,6,7,8,9));
+JavaRDD&lt;Integer&gt; subtract = numbers.subtract(sc.parallelize(Arrays.asList(7,8)));
+System.out.println(subtract.collect());
+[1, 2, 3, 4, 5, 6, 9]
+</code></pre>
+<ul>
+<li>sortByKey([ascending], [numTasks]):(K,V)类型的RDD上调用，返回按照key进行排序的(K,V)RDD</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;Integer, String&gt;&gt; list = new ArrayList&lt;Tuple2&lt;Integer,String&gt;&gt;();
+list.add(new Tuple2&lt;Integer,String&gt;(1,&quot;java&quot;));
+list.add(new Tuple2&lt;Integer,String&gt;(9,&quot;spark&quot;));
+list.add(new Tuple2&lt;Integer,String&gt;(6,&quot;hive&quot;));
+JavaPairRDD&lt;Integer,String&gt; tuples = sc.parallelize(list).mapToPair(t-&gt;t);
+JavaPairRDD&lt;Integer,String&gt; sorted = tuples.sortByKey(false);//倒序
+System.out.println(sorted.collect());
+
+[(9,spark), (6,hive), (1,java)]
+</code></pre>
+<ul>
+<li>sortBy(func,[ascending], [numTasks]):灵活,可指定排序字段</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;String,Integer&gt;&gt; list = new ArrayList&lt;Tuple2&lt;String,Integer&gt;&gt;();
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;java&quot;,1));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,9));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,6));
+JavaRDD&lt;Tuple2&lt;String,Integer&gt;&gt; tuples = sc.parallelize(list);
+
+JavaRDD&lt;Tuple2&lt;String,Integer&gt;&gt; sorted = tuples.sortBy(tuple-&gt;tuple._2,true,3);
+System.out.println(sorted.collect());
+
+[(java,1), (hive,6), (spark,9)]
+</code></pre>
+<ul>
+<li>groupByKey([numTasks]):(K,V)类型的RDD上调用，返回按照key进行分组的(K, Iterator[V])的RDD</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;String,Integer&gt;&gt; list = new ArrayList&lt;Tuple2&lt;String,Integer&gt;&gt;();
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;java&quot;,1));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,9));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,6));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,19));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,10));
+JavaPairRDD&lt;String,Integer&gt; tuples = sc.parallelize(list).mapToPair(item-&gt;item);
+
+JavaPairRDD&lt;String,Iterable&lt;Integer&gt;&gt; grouped = tuples.groupByKey();
+System.out.println(grouped.collect());
+
+[(spark,[9, 19]), (hive,[6, 10]), (java,[1])]
+</code></pre>
+<ul>
+<li>groupBy(func,[numTasks]):灵活,可指定按分组字段</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;String,Integer&gt;&gt; list = new ArrayList&lt;Tuple2&lt;String,Integer&gt;&gt;();
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;java&quot;,1));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,9));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,6));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,19));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,10));
+JavaRDD&lt;Tuple2&lt;String,Integer&gt;&gt; tuples = sc.parallelize(list);
+
+JavaPairRDD&lt;Object,Iterable&lt;Tuple2&lt;String,Integer&gt;&gt;&gt; grouped = tuples.groupBy(item-&gt;item._1);
+System.out.println(grouped.collect());
+
+[(spark,[(spark,9), (spark,19)]), (hive,[(hive,6), (hive,10)]), (java,[(java,1)])]
+</code></pre>
+<ul>
+<li>reduceByKey(func, [numTasks])：(K,V)类型的RDD上调用，使用指定的func函数，将相同key的值聚合</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;String,Integer&gt;&gt; list = new ArrayList&lt;Tuple2&lt;String,Integer&gt;&gt;();
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;java&quot;,1));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,9));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,6));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,19));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,10));
+JavaPairRDD&lt;String,Integer&gt; tuples = sc.parallelize(list).mapToPair(item-&gt;item);
+
+JavaPairRDD&lt;String,Integer&gt; reduced = tuples.reduceByKey((a,b)-&gt;a+b);
+System.out.println(reduced.collect());
+
+[(spark,28), (hive,16), (java,1)]
+</code></pre>
+<ul>
+<li>join(otherDataset, [numTasks]):类型为(K,V)和(K,W)的RDD上调用，返回相同key对应的所有元素对(K,(V,W))的RDD</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;String,String&gt;&gt; one = new ArrayList&lt;Tuple2&lt;String,String&gt;&gt;();
+one.add(new Tuple2&lt;String,String&gt;(&quot;java&quot;,&quot;java-001&quot;));
+one.add(new Tuple2&lt;String,String&gt;(&quot;spark&quot;,&quot;spark-001&quot;));
+one.add(new Tuple2&lt;String,String&gt;(&quot;hive&quot;,&quot;hive-001&quot;));
+JavaPairRDD&lt;String,String&gt; oneRdd = sc.parallelize(one).mapToPair(item-&gt;item);
+
+List&lt;Tuple2&lt;String,Integer&gt;&gt; two = new ArrayList&lt;Tuple2&lt;String,Integer&gt;&gt;();
+two.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,1));
+two.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,2));
+JavaPairRDD&lt;String,Integer&gt; twoRdd = sc.parallelize(two).mapToPair(item-&gt;item);
+
+JavaPairRDD&lt;String,Tuple2&lt;String,Integer&gt;&gt; joined = oneRdd.join(twoRdd);
+System.out.println(joined.collect());
+
+[(spark,(spark-001,1)), (hive,(hive-001,2))]
+</code></pre>
+<ul>
+<li>cogroup(otherDataset, [numTasks])：类型(K,V)和(K,W)的RDD上调用，返回(K,(Iterable,Iterable))类型的RDD</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;String,Object&gt;&gt; one = new ArrayList&lt;Tuple2&lt;String,Object&gt;&gt;();
+one.add(new Tuple2&lt;String,Object&gt;(&quot;java&quot;,&quot;java-001&quot;));
+one.add(new Tuple2&lt;String,Object&gt;(&quot;spark&quot;,&quot;spark-001&quot;));
+one.add(new Tuple2&lt;String,Object&gt;(&quot;hive&quot;,&quot;hive-001&quot;));
+JavaPairRDD&lt;String,Object&gt; oneRdd = sc.parallelize(one).mapToPair(item-&gt;item);
+
+List&lt;Tuple2&lt;String,Object&gt;&gt; two = new ArrayList&lt;Tuple2&lt;String,Object&gt;&gt;();
+two.add(new Tuple2&lt;String,Object&gt;(&quot;spark&quot;,&quot;spark-002&quot;));
+two.add(new Tuple2&lt;String,Object&gt;(&quot;hive&quot;,&quot;hive-002&quot;));
+JavaPairRDD&lt;String,Object&gt; twoRdd = sc.parallelize(two).mapToPair(item-&gt;item);
+
+JavaPairRDD&lt;String, Tuple2&lt;Iterable&lt;Object&gt;, Iterable&lt;Object&gt;&gt;&gt; cogrouped = oneRdd.cogroup(twoRdd);
+System.out.println(cogrouped.collect());
+
+[(spark,([spark-001],[spark-002])), (hive,([hive-001],[hive-002])), (java,([java-001],[]))]
+</code></pre>
+<h1 id="action算子"><a href="#action算子" class="headerlink" title="action算子"></a>action算子</h1><ul>
+<li>collect()：以数组的形式返回数据集所有元素</li>
+<li>count()：返回RDD的元素个数</li>
+<li>first():返回RDD的第一个元素</li>
+<li>take(n):返回一个由数据集前n个元素组成的数组</li>
+<li>saveAsTextFile(path):将数据集的元素以textfile的形式保存到HDFS文件系统或者其他支持的文件系统中</li>
+<li>foreachPartition(func)：在数据集的每一个分区上，运行函数func</li>
+<li>reduce(func, [numTasks])：全量聚合</li>
+</ul>
+<pre><code class="lang-java">List&lt;Tuple2&lt;String,Integer&gt;&gt; list = new ArrayList&lt;Tuple2&lt;String,Integer&gt;&gt;();
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;java&quot;,1));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,9));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,6));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;spark&quot;,19));
+list.add(new Tuple2&lt;String,Integer&gt;(&quot;hive&quot;,10));
+JavaRDD&lt;Tuple2&lt;String,Integer&gt;&gt; tuples = sc.parallelize(list);
+
+Tuple2&lt;String,Integer&gt; reduced = tuples.reduce((a,b)-&gt;new Tuple2&lt;String,Integer&gt;(&quot;count&quot;, a._2+b._2));
+System.out.println(reduced);
+
+(count,45)
+</code></pre>
+<h1 id="控制算子"><a href="#控制算子" class="headerlink" title="控制算子"></a>控制算子</h1><ul>
+<li>cache：将数据缓存在内存</li>
+<li>persist(newLevel:StorageLevel):缓存操作,StorageLevel枚举类型，代表存储模式</li>
+</ul>
 
             <hr>
           </div>
