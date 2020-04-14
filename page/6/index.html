@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>Archives ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 100vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -115,6 +115,10 @@
           </div>
 
           
+            <div class="scroll-down-bar">
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
+            </div>
+          
         </div>
       </div>
     </div>
@@ -130,44 +134,70 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">51 posts in total.</p>
-  <hr>
-  
+
+  <div class="row mb-4 mx-auto">
     
-      
-      <p class="h5">2020</p>
     
-    <a href="/2020/04/12/spark.002/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">002.spark sql</span>
-      <span style="float: right;">04-12</span>
-    </a>
-  
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/" target="_self">
+          <img src="/images/docker.jpg" srcset="/img/loading.gif" alt="Docker入门指南" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
     
-    <a href="/2020/04/09/spark.001/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">001.spark教程</span>
-      <span style="float: right;">04-09</span>
-    </a>
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/06/13/Docker%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/">
+        <p class="h4 index-header">Docker入门指南</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">  
+1.Docker简介
+问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?
+Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源.容器是完全使用沙箱机制，相互之间不会有任何接口(类似iPhone的 app)，更重要的是容器性能开销极低.[来源网络]
+通过上述定义可以知道，Docker似乎类似于虚拟机，可以在Docker中打包安装任何应用并运行，比如tomcat、Java、mysql等.但它并不等同于虚拟机，为了区分Docker和虚拟机，我们先来了解虚拟机的运行机制，如下图所示：
+
+
+基础设施（Infrastructure):个人电脑，数据中心的服务器，或者是云主机
+操作系统（Ho</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-06-13&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/docker">docker</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/docker">docker</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    </span>
+  </nav>
   
-    
-    <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">pytorch 自定义数据集/训练/模型保存和加载</span>
-      <span style="float: right;">04-08</span>
-    </a>
-  
-    
-    <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">小贴士</span>
-      <span style="float: right;">04-03</span>
-    </a>
-  
-    
-    <a href="/2020/03/31/convolution/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">卷积操作汇总</span>
-      <span style="float: right;">03-31</span>
-    </a>
-  
-</div>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
+
 
 
               </div>
@@ -293,7 +323,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Archive&nbsp;",
+        "今天的风儿甚是喧嚣 JiaoPan&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

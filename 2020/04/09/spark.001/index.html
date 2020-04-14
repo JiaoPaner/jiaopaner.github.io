@@ -167,30 +167,29 @@
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
             <h1 id="spark-hello-world"><a href="#spark-hello-world" class="headerlink" title="spark-hello world"></a>spark-hello world</h1><p>1.创建maven项目spark-note,添加Spark依赖,新建TestSpark.java类<br><br>2.引入依赖和打包插件</p>
-<pre><code class="lang-text">&lt;dependencies&gt;
-          &lt;dependency&gt;
-      &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
-      &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
-      &lt;version&gt;2.11.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-      &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
-      &lt;version&gt;2.3.3&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;org.apache.hadoop&lt;/groupId&gt;
-      &lt;artifactId&gt;hadoop-client&lt;/artifactId&gt;
-      &lt;version&gt;2.7.7&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;junit&lt;/groupId&gt;
-      &lt;artifactId&gt;junit&lt;/artifactId&gt;
-      &lt;version&gt;3.8.1&lt;/version&gt;
-      &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;
-&lt;build&gt;  
+<pre><code class="lang-text">&lt;dependency&gt;
+  &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
+  &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
+  &lt;version&gt;2.11.8&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.3.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.hadoop&lt;/groupId&gt;
+  &lt;artifactId&gt;hadoop-client&lt;/artifactId&gt;
+  &lt;version&gt;2.7.7&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;junit&lt;/groupId&gt;
+  &lt;artifactId&gt;junit&lt;/artifactId&gt;
+  &lt;version&gt;3.8.1&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<pre><code class="lang-text">&lt;build&gt;  
     &lt;plugins&gt;  
      &lt;plugin&gt;
          &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
@@ -270,7 +269,7 @@ result.saveAsTextFile(&quot;/home/data/out.txt&quot;);
 <p>7.打包程序并上传到集群</p>
 <p>上传spark-note-0.0.1-SNAPSHOT-jar-with-dependencies.jar到spark集群主机节点上</p>
 <p>8.提交任务执行</p>
-<pre><code class="lang-bash">[root@node spark]# spark-submit --class jiaopaner.spark.learning.App --num-executors 1  --executor-cores 1 /home/spark/spark-note-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+<pre><code class="lang-bash">[root@node spark]# spark-submit --class jiaopaner.spark.learning.App --master spark://master:7077 --num-executors 1  --executor-cores 1 /home/spark/spark-note-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 </code></pre>
 <p>9.可通过master:4040可查看任务执行进度</p>
 <h1 id="transform算子"><a href="#transform算子" class="headerlink" title="transform算子"></a>transform算子</h1><ul>

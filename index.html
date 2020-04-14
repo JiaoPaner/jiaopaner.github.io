@@ -139,6 +139,58 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/12/spark.002/" target="_self">
+          <img src="\images\spark.jpg" srcset="/img/loading.gif" alt="002.spark sql" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/12/spark.002/">
+        <p class="h4 index-header">002.spark sql</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">spark sql-hello world1.引入依赖
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-sql_2.11&lt;/artifactId&gt;
+    &lt;version&gt;2.3.3&lt;/version&gt;
+&lt;/dependency&gt;
+
+2.exmple程序
+ public class Man implements Serializable{
+        private static final long serialVersionUID = 1L;
+        private String name;
+        private String age;
+        Man(String name,String age){
+            this.name = name;
+            this.age = age;
+        }
+        pu</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-12&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/09/spark.001/" target="_self">
           <img src="\images\spark.jpg" srcset="/img/loading.gif" alt="001.spark教程" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -153,17 +205,18 @@
         
         <div class="index-excerpt" >
           <div class="index-text mb-1">spark-hello world1.创建maven项目spark-note,添加Spark依赖,新建TestSpark.java类2.引入依赖和打包插件
-&lt;dependencies&gt;
-          &lt;dependency&gt;
-      &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
-      &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
-      &lt;version&gt;2.11.8&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-      &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-      &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
-      &lt;version&gt;2.3.3&lt;/version&gt;
-    &lt;/depende</div>
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
+  &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
+  &lt;version&gt;2.11.8&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.3.3&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.hadoop&lt;/g</div>
         </div>
       </a>
 
@@ -600,67 +653,11 @@ Note:
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(7) 排序" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/">
-        <p class="h4 index-header">数据结构(7) 排序</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">插入排序直接插入排序
-把$n$个待排序的元素假设为一个有序表和一个无序表，开始时有序表中只包含1个元素，无序表中包含有n-1个元素，排序过程中每次从无序表中取出第一个元素，将它插入到有序表中的适当位置，使之成为新的有序表，重复n-1次即可完成排序过程
-void insertSort(int array[],int n) {
-    int i, j, key;
-    for (i = 1; i &lt; n; i++) {
-        if (array[i] &lt; array[i - 1]) {
-            key = array[i];//设置为哨兵
-            //找到合适的插入位置并将比key大的元素后移
-            for (j = i - 1; key &lt; array[j] &amp;&amp; j &gt;= 0; --j)
-                array[j + 1] = array[j];
-            array[j + 1] = key;//插入
-        }
-    }
-}
-
-折半插</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-19&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
