@@ -139,6 +139,67 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="cmake教程" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/">
+        <p class="h4 index-header">cmake教程</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1.hello world 
+main.cpp
+int main(){
+  std::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;
+  return 0;
+}
+
+CMakeLists.txt
+cmake_minimum_required(VERSION 3.14) #最低cmake版本
+project(test) #定义项目名称
+set(CMAKE_CXX_STANDARD 11) #设置c++编译标准版本
+add_executable(test main.cpp)
+
+构建
+cmake . #.代表本目录
+make
+
+Note:
+1.project(name)会同时隐式定义NAME_BINARY_DIR 以及NAME_SOURCE_DIR变量
+2.SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]]) 定义变量:set( SRC_LIST main.cpp test.cpp)
+3.ADD_EXECUTABLE(test ${SRC_LIST}) 生成名为test的可执行文件</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-08-07&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/make">make</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(7) 排序" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -655,62 +716,6 @@ from matplotlib import pyplot as plt</div>
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/07/03/VGG16Net/" target="_self">
-          <img src="\images\dp-net\VGG16_Summary_Table.jpg" srcset="/img/loading.gif" alt="VGG16Net" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/03/VGG16Net/">
-        <p class="h4 index-header">VGG16Net</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">
-
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
-
-#模型
-model = keras.Sequential()
-
-# 1st Layer
-model.add(layers.Conv2D(input_shape=(224,224,3),filters=64,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=64,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;same&#39;))
-
-# 2nd Layer
-model.add</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-03&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B">神经网络模型</a>&nbsp;
           
         
       </div>

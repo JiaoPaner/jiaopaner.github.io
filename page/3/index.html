@@ -139,6 +139,62 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/03/VGG16Net/" target="_self">
+          <img src="\images\dp-net\VGG16_Summary_Table.jpg" srcset="/img/loading.gif" alt="VGG16Net" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/07/03/VGG16Net/">
+        <p class="h4 index-header">VGG16Net</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+#模型
+model = keras.Sequential()
+
+# 1st Layer
+model.add(layers.Conv2D(input_shape=(224,224,3),filters=64,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
+model.add(layers.Conv2D(filters=64,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
+model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;same&#39;))
+
+# 2nd Layer
+model.add</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-03&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B">神经网络模型</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_self">
           <img src="\images\system\4.jpg" srcset="/img/loading.gif" alt="操作系统(3) 内存管理" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -678,50 +734,6 @@ L.data = new ElemType(InitSize);//C++
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="线性代数" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-        <p class="h4 index-header">线性代数</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">行列式概念：行列式是一个数，是取自不同行不同列的n个元素的乘积的代数和
-二阶行列式：$\begin{vmatrix}a &amp; b\ c &amp; d\end{vmatrix}=ad-bc$
-三阶行列式：$\begin{vmatrix}a{1} &amp; a{2} &amp; a{3}\ b{1} &amp; b{2} &amp; b{3}\c{1} &amp; c{2} &amp; c{3}\end{vmatrix}=a{1}b{2}c{3}+a{2}b{3}c{1}+a{3}b{1}c{2}-a{3}b{2}c{1}-a{2}b{1}c{3}-a{1}b{3}c_{2}$(对角线法则)
-n阶乘行列式：$\begin{vmatrix}a{11} &amp; a{12} &amp; … &amp; a{1n}\ a{21} &amp; a{22} &amp; … &amp; a{2n}\\vdots &amp;\vdots &amp; &amp;\vdots &amp;\a{n1} &amp; a{n2} &amp; … &amp; a{nn}\end{vmatrix}=\su</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-04-26&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E5%AD%A6">数学</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E5%AD%A6">数学</a>&nbsp;
           
         
       </div>
