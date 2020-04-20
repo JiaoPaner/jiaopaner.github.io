@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>Categories - 笔记 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>カテゴリー - 笔记 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -131,12 +131,18 @@
                 
 
 <div class="list-group">
-<!--  <p class="h4">10 posts in total.</p>-->
+<!--  <p class="h4">合計 10 件のポスト</p>-->
   <hr>
   
     
       
       <p class="h5">2020</p>
+    
+    <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">设计模型-Java</span>
+      <span style="float: right;">04-20</span>
+    </a>
+  
     
     <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" class="list-group-item list-group-item-action">
       <span class="archive-post-title">小贴士</span>
@@ -194,13 +200,19 @@
       <span style="float: right;">03-06</span>
     </a>
   
-    
-    <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">linux下jdk安装</span>
-      <span style="float: right;">03-06</span>
-    </a>
-  
 </div>
+
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/categories/%E7%AC%94%E8%AE%B0/page/2/">2</a><a class="extend next" rel="next" href="/categories/%E7%AC%94%E8%AE%B0/page/2/"><i class="fas fa-angle-double-right"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 
@@ -224,7 +236,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -233,7 +245,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -327,7 +339,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Category - 笔记&nbsp;",
+        "カテゴリー - 笔记&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

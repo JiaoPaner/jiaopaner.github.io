@@ -139,6 +139,121 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/" target="_self">
+          <img src="\images\note\19.jpg" srcset="/img/loading.gif" alt="设计模型-Java" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/">
+        <p class="h4 index-header">设计模型-Java</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">单例模式
+饿汉式
+
+#1
+class Singleton{
+    private final static Singleton instance = new Singleton();
+    public static Singleton getInstance(){
+        return instance;
+    }
+}
+#2
+public class Singleton{
+    private static Singleton instance;
+    static {
+        instance = new Singleton();
+    }
+    public static Singleton getInstance(){
+        return instance;
+    }
+}
+
+
+懒汉式
+
+#1 线程不安全
+public class Singleton{
+    private static Singleton instance;
+    public static Singleton getInstance(){
+        if(i</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-20&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/15/spark.004/" target="_self">
+          <img src="\images\bigdata\4.jpeg" srcset="/img/loading.gif" alt="002.Spark Machine Learning" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/15/spark.004/">
+        <p class="h4 index-header">002.Spark Machine Learning</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Spark Machine Learning
+引入依赖
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-streaming_2.11&lt;/artifactId&gt;
+    &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
+
+相关系数矩阵相关系数矩阵(i行，j列)的元素是原矩阵i列与j列的相关系数
+#身高与体重的相关系数矩阵
+SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+List&lt;Row&gt; data = Arrays.asList(
+          RowFactory.create(Vector</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-15&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/15/spark.003/" target="_self">
           <img src="\images\bigdata\streaming-arch.png" srcset="/img/loading.gif" alt="002.Spark Streaming" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -552,103 +667,6 @@ CMakeLists.txt
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="深度学习模型转换" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
-        <p class="h4 index-header">深度学习模型转换</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">mxnet模型转tensorflow模型requirements：pip install mxnet tensorflow
-1.安装mmdnnpip install -U git+https://github.com/Microsoft/MMdnn.git@master
-2.模型下载https://pan.baidu.com/s/1If28BkHde4fiuweJrbicVA
-3.mxnet模型转IRpython -m mmdnn.conversion._script.convertToIR -f mxnet -n model-symbol.json -w model-0000.params -d tf_model --inputShape 3,112,112 
-#info:
-IR network structure is saved as [tf_model.json].#可视化文件
-IR network structure is saved as [tf_model.pb].#网络结构
-IR weights are saved as [tf_model.npy].#权重参数
-
-若报</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-25&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2">模型转换</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/" target="_self">
-          <img src="/images/note/11.jpg" srcset="/img/loading.gif" alt="mxnet Windows编译安装CPU版 c++ api" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/">
-        <p class="h4 index-header">mxnet Windows编译安装CPU版 c++ api</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">编译环境win10 x64 、Visual Studio 2015、cmake 3.0+、python2.7 (环境变量需配置)
-依赖1.OpenBLAS-v0.2.14-Win64-int64 下载地址：https://sourceforge.net/projects/openblas/files/v0.2.14/
-解压安装后，添加环境变量OpenBLAS_HOME 值为openblas的目录，即：your_dir/openblas
-2.OpenCV 3.0+ 下载地址：https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.3.1/opencv-3.3.1-vc14.exe/download
-安装后，添加环境变量OpenCV_DIR 值为your_dir\opencv3.3.1\build,并在path环境变量中添加your_dir\opencv3.3.1\build\x64\vc14\bin
-源码编译1.git clone项目到本地 （版本1.5.1）
-git clone --recursive http</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-19&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/mxnet">mxnet</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -685,7 +703,7 @@ git clone --recursive http</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -694,7 +712,7 @@ git clone --recursive http</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
