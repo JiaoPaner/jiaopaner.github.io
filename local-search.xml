@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>设计模型-Java</title>
+    <title>设计模式-Java</title>
     <link href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/"/>
     <url>/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/</url>
     
@@ -23,7 +23,7 @@
   
   
   <entry>
-    <title>002.Spark Machine Learning</title>
+    <title>004.Spark Machine Learning</title>
     <link href="/2020/04/15/spark.004/"/>
     <url>/2020/04/15/spark.004/</url>
     
@@ -42,7 +42,7 @@
   
   
   <entry>
-    <title>002.Spark Streaming</title>
+    <title>003.Spark Streaming</title>
     <link href="/2020/04/15/spark.003/"/>
     <url>/2020/04/15/spark.003/</url>
     
