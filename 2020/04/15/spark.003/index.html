@@ -256,7 +256,7 @@ Time: 1586933770000 ms
 {&quot;opType&quot;:0,&quot;token&quot;:&quot;interface_6b&quot;,&quot;content&quot;:[{&quot;id&quot;:&quot;5bcfc4f9&quot;,&quot;user_id&quot;:140050,&quot;in_time&quot;:&quot;2020-04-07 09:35:04&quot;,&quot;act_code&quot;:&quot;order&quot;,&quot;act_value&quot;:4}]}
 {&quot;opType&quot;:0,&quot;token&quot;:&quot;interface_c6&quot;,&quot;content&quot;:[{&quot;id&quot;:&quot;dcb14f5a&quot;,&quot;user_id&quot;:0,&quot;in_time&quot;:&quot;2020-04-07 21:46:48&quot;,&quot;act_code&quot;:&quot;&quot;,&quot;act_value&quot;:0}]}
 </code></pre>
-<h1 id="Structured-Streaming"><a href="#Structured-Streaming" class="headerlink" title="Structured Streaming"></a>Structured Streaming</h1><p><em>note</em>:<em>note</em>:<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html</a></p>
+<h1 id="Structured-Streaming"><a href="#Structured-Streaming" class="headerlink" title="Structured Streaming"></a>Structured Streaming</h1><p><em>note</em>:<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html</a></p>
 <pre><code class="lang-java">SparkSession spark = SparkSession
                 .builder()
                 .master(&quot;local[*]&quot;)
@@ -476,7 +476,7 @@ df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -525,7 +525,7 @@ df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -534,7 +534,7 @@ df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

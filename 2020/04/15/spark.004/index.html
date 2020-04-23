@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    1k 字
+                    2.1k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      5 分钟
+                      12 分钟
                   </span>&nbsp;
                 
 
@@ -216,8 +216,189 @@ Spearman correlation matrix:
 [1.0                 0.9999999999999981  
 0.9999999999999981  1.0                 ]
 </code></pre>
-<h1 id="Extracting-transforming-and-selecting-features"><a href="#Extracting-transforming-and-selecting-features" class="headerlink" title="Extracting, transforming and selecting features"></a>Extracting, transforming and selecting features</h1><p><strong>TF-IDF</strong></p>
-<ul>
+<h1 id="Extracting-transforming-and-selecting-features"><a href="#Extracting-transforming-and-selecting-features" class="headerlink" title="Extracting, transforming and selecting features"></a>Extracting, transforming and selecting features</h1><h2 id="Tokenizer-分词"><a href="#Tokenizer-分词" class="headerlink" title="Tokenizer 分词"></a>Tokenizer 分词</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+List&lt;Row&gt; data = Arrays.asList(
+                RowFactory.create(0, &quot;Hi I heard about Spark&quot;),
+                RowFactory.create(1, &quot;I wish Java could use case classes&quot;),
+                RowFactory.create(2, &quot;Logistic,regression,models,are,neat&quot;)
+        );
+
+StructType schema = new StructType(new StructField[]{
+        new StructField(&quot;id&quot;, DataTypes.IntegerType, false, Metadata.empty()),
+        new StructField(&quot;sentence&quot;, DataTypes.StringType, false, Metadata.empty())
+});
+
+Dataset&lt;Row&gt; sentenceDataFrame = spark.createDataFrame(data, schema);
+
+Tokenizer tokenizer = new Tokenizer().setInputCol(&quot;sentence&quot;).setOutputCol(&quot;words&quot;);
+Dataset&lt;Row&gt; tokenized = tokenizer.transform(sentenceDataFrame);
+tokenized.show(false);
+
+//正则
+RegexTokenizer regexTokenizer = new RegexTokenizer()
+        .setInputCol(&quot;sentence&quot;)
+        .setOutputCol(&quot;words&quot;)
+        .setPattern(&quot;\\W&quot;);  // alternatively .setPattern(&quot;\\w+&quot;).setGaps(false);
+Dataset&lt;Row&gt; regexTokenized = regexTokenizer.transform(sentenceDataFrame);
+regexTokenized.show(false);
+
++---+-----------------------------------+------------------------------------------+
+|id |sentence                           |words                                     |
++---+-----------------------------------+------------------------------------------+
+|0  |Hi I heard about Spark             |[hi, i, heard, about, spark]              |
+|1  |I wish Java could use case classes |[i, wish, java, could, use, case, classes]|
+|2  |Logistic,regression,models,are,neat|[logistic,regression,models,are,neat]     |
++---+-----------------------------------+------------------------------------------+
+
++---+-----------------------------------+------------------------------------------+
+|id |sentence                           |words                                     |
++---+-----------------------------------+------------------------------------------+
+|0  |Hi I heard about Spark             |[hi, i, heard, about, spark]              |
+|1  |I wish Java could use case classes |[i, wish, java, could, use, case, classes]|
+|2  |Logistic,regression,models,are,neat|[logistic, regression, models, are, neat] |
++---+-----------------------------------+------------------------------------------+
+</code></pre>
+<h2 id="StopWordsRemover-停止词"><a href="#StopWordsRemover-停止词" class="headerlink" title="StopWordsRemover 停止词"></a>StopWordsRemover 停止词</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+StopWordsRemover remover = new StopWordsRemover()
+                .setInputCol(&quot;raw&quot;)
+                .setOutputCol(&quot;filtered&quot;);
+
+List&lt;Row&gt; data = Arrays.asList(
+        RowFactory.create(Arrays.asList(&quot;I&quot;, &quot;saw&quot;, &quot;the&quot;, &quot;red&quot;, &quot;balloon&quot;)),
+        RowFactory.create(Arrays.asList(&quot;Mary&quot;, &quot;had&quot;, &quot;a&quot;, &quot;little&quot;, &quot;lamb&quot;))
+);
+
+StructType schema = new StructType(new StructField[]{
+        new StructField(&quot;raw&quot;, DataTypes.createArrayType(DataTypes.StringType), false, Metadata.empty())
+});
+
+Dataset&lt;Row&gt; dataset = spark.createDataFrame(data, schema);
+remover.transform(dataset).show(false);
+
++----------------------------+--------------------+
+|raw                         |filtered            |
++----------------------------+--------------------+
+|[I, saw, the, red, balloon] |[saw, red, balloon] |
+|[Mary, had, a, little, lamb]|[Mary, little, lamb]|
++----------------------------+--------------------+
+</code></pre>
+<h2 id="n-gram"><a href="#n-gram" class="headerlink" title="$n$ -gram"></a>$n$ -gram</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+
+List&lt;Row&gt; data = Arrays.asList(
+        RowFactory.create(0, Arrays.asList(&quot;Hi&quot;, &quot;I&quot;, &quot;heard&quot;, &quot;about&quot;, &quot;Spark&quot;)),
+        RowFactory.create(1, Arrays.asList(&quot;I&quot;, &quot;wish&quot;, &quot;Java&quot;, &quot;could&quot;, &quot;use&quot;, &quot;case&quot;, &quot;classes&quot;)),
+        RowFactory.create(2, Arrays.asList(&quot;Logistic&quot;, &quot;regression&quot;, &quot;models&quot;, &quot;are&quot;, &quot;neat&quot;))
+);
+
+StructType schema = new StructType(new StructField[]{
+        new StructField(&quot;id&quot;, DataTypes.IntegerType, false, Metadata.empty()),
+        new StructField(
+                &quot;words&quot;, DataTypes.createArrayType(DataTypes.StringType), false, Metadata.empty())
+});
+
+Dataset&lt;Row&gt; wordDataFrame = spark.createDataFrame(data, schema);
+
+NGram ngramTransformer = new NGram().setN(2).setInputCol(&quot;words&quot;).setOutputCol(&quot;ngrams&quot;);
+
+Dataset&lt;Row&gt; ngramDataFrame = ngramTransformer.transform(wordDataFrame);
+ngramDataFrame.select(&quot;ngrams&quot;).show(false);
+</code></pre>
+<h2 id="Binarization-二值化"><a href="#Binarization-二值化" class="headerlink" title="Binarization 二值化"></a>Binarization 二值化</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+List&lt;Row&gt; data = Arrays.asList(
+        RowFactory.create(0, 0.1),
+        RowFactory.create(1, 0.8),
+        RowFactory.create(2, 0.2)
+);
+StructType schema = new StructType(new StructField[]{
+        new StructField(&quot;id&quot;, DataTypes.IntegerType, false, Metadata.empty()),
+        new StructField(&quot;feature&quot;, DataTypes.DoubleType, false, Metadata.empty())
+});
+Dataset&lt;Row&gt; continuousDataFrame = spark.createDataFrame(data, schema);
+
+Binarizer binarizer = new Binarizer()
+        .setInputCol(&quot;feature&quot;)
+        .setOutputCol(&quot;binarized_feature&quot;)
+        .setThreshold(0.5);
+
+Dataset&lt;Row&gt; binarizedDataFrame = binarizer.transform(continuousDataFrame);
+
+System.out.println(&quot;Binarizer output with Threshold = &quot; + binarizer.getThreshold());
+binarizedDataFrame.show();
+
++---+-------+-----------------+
+| id|feature|binarized_feature|
++---+-------+-----------------+
+|  0|    0.1|              0.0|
+|  1|    0.8|              1.0|
+|  2|    0.2|              0.0|
++---+-------+-----------------+
+</code></pre>
+<h2 id="PCA-主成成分分析"><a href="#PCA-主成成分分析" class="headerlink" title="PCA 主成成分分析"></a>PCA 主成成分分析</h2><pre><code>SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+List&lt;Row&gt; data = Arrays.asList(
+        RowFactory.create(Vectors.sparse(5, new int[]{1, 3}, new double[]{1.0, 7.0})),
+        RowFactory.create(Vectors.dense(2.0, 0.0, 3.0, 4.0, 5.0)),
+        RowFactory.create(Vectors.dense(4.0, 0.0, 0.0, 6.0, 7.0))
+);
+
+StructType schema = new StructType(new StructField[]{
+        new StructField(&quot;features&quot;, new VectorUDT(), false, Metadata.empty()),
+});
+
+Dataset&lt;Row&gt; df = spark.createDataFrame(data, schema);
+
+PCAModel pca = new PCA()
+        .setInputCol(&quot;features&quot;)
+        .setOutputCol(&quot;pcaFeatures&quot;)
+        .setK(3)
+        .fit(df);
+
+Dataset&lt;Row&gt; result = pca.transform(df).select(&quot;pcaFeatures&quot;);
+result.show(false);
+
++-----------------------------------------------------------+
+|pcaFeatures                                                |
++-----------------------------------------------------------+
+|[1.6485728230883807,-4.013282700516296,-5.524543751369388] |
+|[-4.645104331781534,-1.1167972663619026,-5.524543751369387]|
+|[-6.428880535676489,-5.337951427775355,-5.524543751369389] |
++-----------------------------------------------------------+
+</code></pre><h2 id="PolynomialExpansion-多项式转化"><a href="#PolynomialExpansion-多项式转化" class="headerlink" title="PolynomialExpansion 多项式转化"></a>PolynomialExpansion 多项式转化</h2><pre><code class="lang-java">PolynomialExpansion polyExpansion = new PolynomialExpansion()
+                .setInputCol(&quot;features&quot;)
+                .setOutputCol(&quot;polyFeatures&quot;)
+                .setDegree(2);
+
+List&lt;Row&gt; data = Arrays.asList(
+        RowFactory.create(Vectors.dense(2.0, 1.0)),
+        RowFactory.create(Vectors.dense(0.0, 0.0)),
+        RowFactory.create(Vectors.dense(3.0, -1.0))
+);
+StructType schema = new StructType(new StructField[]{
+        new StructField(&quot;features&quot;, new VectorUDT(), false, Metadata.empty()),
+});
+Dataset&lt;Row&gt; df = spark.createDataFrame(data, schema);
+
+Dataset&lt;Row&gt; polyDF = polyExpansion.transform(df);
+polyDF.show(false);
+
++----------+-----------------------+
+|features  |polyFeatures           |
++----------+-----------------------+
+|[2.0,1.0] |[2.0,4.0,1.0,2.0,1.0]  |
+|[0.0,0.0] |[0.0,0.0,0.0,0.0,0.0]  |
+|[3.0,-1.0]|[3.0,9.0,-1.0,-3.0,1.0]|
++----------+-----------------------+
+</code></pre>
+<h2 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h2><ul>
 <li>TF:词频，词条在<strong>给定文档</strong>中所出现的频率,值越大则词条在该文档中重要性越大</li>
 </ul>
 <p>词条 $i$ 的TF： $TF_i$ = $\frac{N_i}{N}$  ( $N$ ：给定文档的总词条数)</p>
@@ -291,7 +472,7 @@ rescaledData.show();
 |  2.0|I love C++ C++ is...|[i, love, c++, c+...|(20,[0,1,3,9,10,1...|(20,[0,1,3,9,10,1...|
 +-----+--------------------+--------------------+--------------------+--------------------+
 </code></pre>
-<pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+<h2 id="CountVectorizer"><a href="#CountVectorizer" class="headerlink" title="CountVectorizer"></a>CountVectorizer</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
                  .master(&quot;local[*]&quot;)
                  .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
@@ -344,6 +525,39 @@ cvModel.transform(wordsData).show(false);
 |I love C++ C++ is the best |[i, love, c++, c++, is, the, best] |(10,[0,2,3,5,6,8],[1.0,1.0,2.0,1.0,1.0,1.0])|
 +---------------------------+-----------------------------------+--------------------------------------------+
 </code></pre>
+<h2 id="FeatureHasher"><a href="#FeatureHasher" class="headerlink" title="FeatureHasher"></a>FeatureHasher</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+List&lt;Row&gt; data = Arrays.asList(
+                RowFactory.create(2.2, true, &quot;1&quot;, &quot;foo&quot;),
+                RowFactory.create(3.3, false, &quot;2&quot;, &quot;bar&quot;),
+                RowFactory.create(4.4, false, &quot;3&quot;, &quot;baz&quot;),
+                RowFactory.create(5.5, false, &quot;4&quot;, &quot;foo&quot;)
+        );
+StructType schema = new StructType(new StructField[]{
+        new StructField(&quot;real&quot;, DataTypes.DoubleType, false, Metadata.empty()),
+        new StructField(&quot;bool&quot;, DataTypes.BooleanType, false, Metadata.empty()),
+        new StructField(&quot;stringNum&quot;, DataTypes.StringType, false, Metadata.empty()),
+        new StructField(&quot;string&quot;, DataTypes.StringType, false, Metadata.empty())
+});
+Dataset&lt;Row&gt; dataset = spark.createDataFrame(data, schema);
+FeatureHasher hasher = new FeatureHasher()
+        .setInputCols(new String[]{&quot;real&quot;, &quot;bool&quot;, &quot;stringNum&quot;, &quot;string&quot;})
+        .setOutputCol(&quot;features&quot;);
+
+Dataset&lt;Row&gt; featurized = hasher.transform(dataset);
+
+featurized.show(false);
+
++----+-----+---------+-------------------+
+|real|bool |stringNum|features           |
++----+-----+---------+-------------------+
+|2.2 |true |1        |(2,[0,1],[2.0,2.2])|
+|3.3 |false|2        |(2,[0,1],[1.0,4.3])|
+|4.4 |false|3        |(2,[0,1],[2.0,4.4])|
+|5.5 |false|4        |(2,[0,1],[1.0,6.5])|
++----+-----+---------+-------------------+
+</code></pre>
 
             <hr>
           </div>
@@ -371,7 +585,7 @@ cvModel.transform(wordsData).show(false);
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -420,7 +634,7 @@ cvModel.transform(wordsData).show(false);
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -429,7 +643,7 @@ cvModel.transform(wordsData).show(false);
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
