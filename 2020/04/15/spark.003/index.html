@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>003.Spark Streaming ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>003.Spark Streaming/Structured Streaming ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    458 字
+                    1.5k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      9 分钟
                   </span>&nbsp;
                 
 
@@ -166,7 +166,8 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="spark-streaming-hello-world"><a href="#spark-streaming-hello-world" class="headerlink" title="spark streaming-hello world"></a>spark streaming-hello world</h1><ul>
+            <h1 id="spark-streaming-hello-world"><a href="#spark-streaming-hello-world" class="headerlink" title="spark streaming-hello world"></a>spark streaming-hello world</h1><p><em>note</em>:<a href="http://spark.apache.org/docs/latest/streaming-programming-guide.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/streaming-programming-guide.html</a></p>
+<ul>
 <li>引入依赖</li>
 </ul>
 <pre><code class="lang-text">&lt;dependency&gt;
@@ -213,7 +214,7 @@ Time: 1586927760000 ms
 Time: 1586927710000 ms
 -------------------------------------------
 (hive,2)
-</code></pre><h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><ul>
+</code></pre><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><ul>
 <li>引入依赖</li>
 </ul>
 <pre><code class="lang-text">&lt;dependency&gt;
@@ -254,7 +255,199 @@ Time: 1586933770000 ms
 -------------------------------------------
 {&quot;opType&quot;:0,&quot;token&quot;:&quot;interface_6b&quot;,&quot;content&quot;:[{&quot;id&quot;:&quot;5bcfc4f9&quot;,&quot;user_id&quot;:140050,&quot;in_time&quot;:&quot;2020-04-07 09:35:04&quot;,&quot;act_code&quot;:&quot;order&quot;,&quot;act_value&quot;:4}]}
 {&quot;opType&quot;:0,&quot;token&quot;:&quot;interface_c6&quot;,&quot;content&quot;:[{&quot;id&quot;:&quot;dcb14f5a&quot;,&quot;user_id&quot;:0,&quot;in_time&quot;:&quot;2020-04-07 21:46:48&quot;,&quot;act_code&quot;:&quot;&quot;,&quot;act_value&quot;:0}]}
+</code></pre>
+<h1 id="Structured-Streaming"><a href="#Structured-Streaming" class="headerlink" title="Structured Streaming"></a>Structured Streaming</h1><p><em>note</em>:<em>note</em>:<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html</a></p>
+<pre><code class="lang-java">SparkSession spark = SparkSession
+                .builder()
+                .master(&quot;local[*]&quot;)
+                .appName(&quot;JavaStructuredNetworkWordCount&quot;)
+                .getOrCreate();
+Dataset&lt;Row&gt; lines = spark.readStream().format(&quot;socket&quot;).option(&quot;host&quot;, &quot;localhost&quot;).option(&quot;port&quot;, 9999).load();
+StreamingQuery query = lines.writeStream().format(&quot;console&quot;).outputMode(OutputMode.Append()).start();
+query.awaitTermination();
+
+(base) jiaopandeMacBook-Pro:~ jiaopan$ nc -lk 9999
+spark i love 
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++------------+
+|       value|
++------------+
+|spark i love|
++------------+
+</code></pre>
+<pre><code>SparkSession spark = SparkSession
+                .builder()
+                .master(&quot;local[*]&quot;)
+                .appName(&quot;JavaStructuredNetworkWordCount&quot;)
+                .getOrCreate();
+Dataset&lt;Row&gt; lines = spark.readStream().format(&quot;socket&quot;).option(&quot;host&quot;, &quot;localhost&quot;).option(&quot;port&quot;, 9999).load();
+Dataset&lt;String&gt; words = lines.as(Encoders.STRING()).flatMap(line -&gt; Arrays.asList(line.split(&quot; &quot;)).iterator(), Encoders.STRING());
+Dataset&lt;Row&gt; wordCount = words.groupBy(&quot;value&quot;).count();
+StreamingQuery query = wordCount.writeStream().outputMode(OutputMode.Complete()).format(&quot;console&quot;).start();
+query.awaitTermination();
+
+(base) jiaopandeMacBook-Pro:~ jiaopan$ nc -lk 9999
+cat dog
+
++-----+-----+
+|value|count|
++-----+-----+
+|  dog|    1|
+|  cat|    1|
++-----+-----+
+
+(base) jiaopandeMacBook-Pro:~ jiaopan$ nc -lk 9999
 ...
+cat dog owl
++-----+-----+
+|value|count|
++-----+-----+
+|  dog|    2|
+|  cat|    2|
+|  owl|    1|
++-----+-----+
+</code></pre><p><img src="http://spark.apache.org/docs/latest/img/structured-streaming-example-model.png" srcset="/img/loading.gif" alt=""></p>
+<h2 id="Window-Operations-on-Event-Time"><a href="#Window-Operations-on-Event-Time" class="headerlink" title="Window Operations on Event Time"></a>Window Operations on Event Time</h2><pre><code class="lang-java">SparkSession spark = SparkSession
+                .builder()
+                .master(&quot;local[*]&quot;)
+                .appName(&quot;JavaStructuredNetworkWordCount&quot;)
+                .getOrCreate();
+spark.sparkContext().setLogLevel(&quot;WARN&quot;);
+Dataset&lt;Row&gt; lines = spark.readStream().format(&quot;socket&quot;)
+                .option(&quot;host&quot;, &quot;localhost&quot;).option(&quot;port&quot;, 9999)
+                .option(&quot;includeTimestamp&quot;,true).load();
+Dataset&lt;Row&gt; words = lines.as(Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())).flatMap(
+        (FlatMapFunction&lt;Tuple2&lt;String, Timestamp&gt;, Tuple2&lt;String, Timestamp&gt;&gt;) item -&gt; {
+            List&lt;Tuple2&lt;String, Timestamp&gt;&gt; result = new ArrayList&lt;&gt;();
+            for (String word : item._1.split(&quot; &quot;)) {
+                result.add(new Tuple2&lt;&gt;(word, item._2));
+            }
+            return result.iterator();
+        }, Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())).toDF(&quot;word&quot;, &quot;timestamp&quot;);
+Dataset&lt;Row&gt; windowedCounts = words.groupBy(
+        //&lt;window duration&gt; 计算window duration时间范围内的数据
+        //&lt;slide duration&gt; 数据更新周期,
+        functions.window(words.col(&quot;timestamp&quot;), &quot;20 seconds&quot;, &quot;10 seconds&quot;),
+        words.col(&quot;word&quot;)
+).count().orderBy(&quot;window&quot;);
+StreamingQuery query = windowedCounts.writeStream()
+        .outputMode(OutputMode.Complete())
+        .option(&quot;truncate&quot;, &quot;false&quot;)
+        .format(&quot;console&quot;).start();
+query.awaitTermination();
+
+-------------------------------------------
+Batch: 1
+-------------------------------------------
++------------------------------------------+----+-----+
+|window                                    |word|count|
++------------------------------------------+----+-----+
+|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|cat |1    |
+|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|dog |1    |
+|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|dog |1    |
+|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|cat |1    |
++------------------------------------------+----+-----+
+
+-------------------------------------------
+Batch: 2
+-------------------------------------------
++------------------------------------------+----+-----+
+|window                                    |word|count|
++------------------------------------------+----+-----+
+|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|cat |1    |
+|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|dog |1    |
+|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|dog |1    |
+|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|cat |1    |
+|[2020-04-23 11:02:20, 2020-04-23 11:02:40]|cat |1    |
+|[2020-04-23 11:02:20, 2020-04-23 11:02:40]|dog |2    |
+|[2020-04-23 11:02:30, 2020-04-23 11:02:50]|dog |2    |
+|[2020-04-23 11:02:30, 2020-04-23 11:02:50]|cat |1    |
++------------------------------------------+----+-----+
+</code></pre>
+<p><img src="http://spark.apache.org/docs/latest/img/structured-streaming-window.png" srcset="/img/loading.gif" alt=""></p>
+<h2 id="Output-Sinks"><a href="#Output-Sinks" class="headerlink" title="Output Sinks"></a>Output Sinks</h2><pre><code class="lang-java">writeStream
+    .format(&quot;parquet&quot;)        // can be &quot;orc&quot;, &quot;json&quot;, &quot;csv&quot;, etc.
+    .option(&quot;path&quot;, &quot;path/to/destination/dir&quot;)
+    .start()
+
+writeStream
+    .format(&quot;kafka&quot;)
+    .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
+    .option(&quot;topic&quot;, &quot;updates&quot;)
+    .start()
+
+writeStream
+    .foreach(...)
+    .start()
+
+writeStream
+    .format(&quot;console&quot;)
+    .start()
+
+writeStream
+    .format(&quot;memory&quot;)
+    .queryName(&quot;tableName&quot;)
+    .start()
+</code></pre>
+<h2 id="Kafka-1"><a href="#Kafka-1" class="headerlink" title="Kafka"></a>Kafka</h2><p><em>note</em>:<a href="http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html</a></p>
+<pre><code class="lang-java">Dataset&lt;Row&gt; df = spark
+  .readStream()
+  .format(&quot;kafka&quot;)
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
+  .option(&quot;subscribe&quot;, &quot;topic1&quot;)
+  .load()
+df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)
+
+// Subscribe to multiple topics
+Dataset&lt;Row&gt; df = spark
+  .readStream()
+  .format(&quot;kafka&quot;)
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
+  .option(&quot;subscribe&quot;, &quot;topic1,topic2&quot;)
+  .load()
+df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)
+
+// Subscribe to a pattern
+Dataset&lt;Row&gt; df = spark
+  .readStream()
+  .format(&quot;kafka&quot;)
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
+  .option(&quot;subscribePattern&quot;, &quot;topic.*&quot;)
+  .load()
+df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)
+</code></pre>
+<pre><code class="lang-java">Dataset&lt;Row&gt; df = spark
+  .read()
+  .format(&quot;kafka&quot;)
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
+  .option(&quot;subscribe&quot;, &quot;topic1&quot;)
+  .load();
+df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;);
+
+// Subscribe to multiple topics, specifying explicit Kafka offsets
+Dataset&lt;Row&gt; df = spark
+  .read()
+  .format(&quot;kafka&quot;)
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
+  .option(&quot;subscribe&quot;, &quot;topic1,topic2&quot;)
+  .option(&quot;startingOffsets&quot;, &quot;{\&quot;topic1\&quot;:{\&quot;0\&quot;:23,\&quot;1\&quot;:-2},\&quot;topic2\&quot;:{\&quot;0\&quot;:-2}}&quot;)
+  .option(&quot;endingOffsets&quot;, &quot;{\&quot;topic1\&quot;:{\&quot;0\&quot;:50,\&quot;1\&quot;:-1},\&quot;topic2\&quot;:{\&quot;0\&quot;:-1}}&quot;)
+  .load();
+df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;);
+
+// Subscribe to a pattern, at the earliest and latest offsets
+Dataset&lt;Row&gt; df = spark
+  .read()
+  .format(&quot;kafka&quot;)
+  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
+  .option(&quot;subscribePattern&quot;, &quot;topic.*&quot;)
+  .option(&quot;startingOffsets&quot;, &quot;earliest&quot;)
+  .option(&quot;endingOffsets&quot;, &quot;latest&quot;)
+  .load();
+df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;);
 </code></pre>
 
             <hr>
@@ -283,7 +476,7 @@ Time: 1586933770000 ms
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
     <div id="tocbot"></div>
   </div>
 
@@ -332,7 +525,7 @@ Time: 1586933770000 ms
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -341,7 +534,7 @@ Time: 1586933770000 ms
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -440,7 +633,7 @@ Time: 1586933770000 ms
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "003.Spark Streaming&nbsp;",
+        "003.Spark Streaming/Structured Streaming&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>linux下mysql的安装 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>000.Spark Basement ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -116,7 +116,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Wednesday, March 6th 2019, 4:00 pm
+                  Wednesday, April 8th 2020, 9:14 pm
                 </p>
               
 
@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    256 字
+                    271 字
                   </span>&nbsp;
                 
 
@@ -166,52 +166,43 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h1 id="linux下mysql安装步骤"><a href="#linux下mysql安装步骤" class="headerlink" title="linux下mysql安装步骤"></a>linux下mysql安装步骤</h1><p>1.ubuntu系统<br>1) 输入如下命令</p>
-<pre><code class="lang-bash">sudo apt-get update
-sudo apt-get install mysql-server
+            <h1 id="Launching-Applications-with-spark-submit"><a href="#Launching-Applications-with-spark-submit" class="headerlink" title="Launching Applications with spark-submit"></a>Launching Applications with spark-submit</h1><pre><code class="lang-bash">./bin/spark-submit \
+  --class &lt;main-class&gt; \
+  --master &lt;master-url&gt; \
+  --deploy-mode &lt;deploy-mode&gt; \
+  --conf &lt;key&gt;=&lt;value&gt; \
+  ... # other options
+  &lt;application-jar&gt; \
+  [application-arguments]
+
+./bin/spark-submit \ 
+  --name &quot;My app&quot; \ 
+  --master local[4] \  
+  --conf spark.eventLog.enabled=false \ 
+  --conf &quot;spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps&quot; \ 
+  --conf spark.hadoop.abc.def=xyz \ 
+  myApp.jar
 </code></pre>
-<blockquote>
-<p>安装好软件包后,会弹出设置root账户密码的提示</p>
-</blockquote>
-<p>2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)</p>
-<pre><code class="lang-bash">sudo netstat -tap | grep mysql
-</code></pre>
-<p><img src="/images/note/6.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>3) 登陆mysql</p>
-<pre><code class="lang-bash">sudo mysql -uroot -p #执行命令后再输入密码
-</code></pre>
-<p><img src="/images/note/7.jpg" srcset="/img/loading.gif" alt=""></p>
-<blockquote>
-<p>登陆成功</p>
-</blockquote>
-<p><img src="/images/note/8.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>4) 设置mysql可远程连接</p>
-<blockquote>
-<p>修改配置文件</p>
-</blockquote>
-<pre><code class="lang-bash">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
-</code></pre>
-<blockquote>
-<p>注释bind-address</p>
-</blockquote>
-<p><img src="/images/note/9.jpg" srcset="/img/loading.gif" alt=""></p>
-<pre><code class="lang-bash">sudo mysql -uroot -p #登陆mysql
-mysql&gt; show databases #查看已有的数据库
-mysql&gt; use mysql; #跳转到名为mysql的数据库
-mysql&gt; update user set host=&#39;%&#39; where user=&#39;root&#39;;# %:任意主机
-#给予root账户在任意主机下可访问数据库的权限
-mysql&gt; grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;设置的密码&#39; with grant option;
-mysql&gt; flush privileges;
-mysql&gt;exit;
-</code></pre>
-<p><img src="/images/note/10.jpg" srcset="/img/loading.gif" alt=""></p>
-<blockquote>
-<p>重启mysql</p>
-</blockquote>
-<pre><code class="lang-bash">sudo service mysql
-</code></pre>
-<p>2.Centos7(待更新)</p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
+<ul>
+<li>—class: Main方法 (e.g. org.apache.spark.examples.SparkPi)</li>
+<li>—master: 集群master地址 (e.g. spark://23.195.26.187:7077)</li>
+<li>—deploy-mode: driver on the worker nodes (cluster) or locally as an external client (client) (default: client) †</li>
+<li>—conf: Spark配置：key=value. <strong>more</strong>:<a href="http://spark.apache.org/docs/latest/configuration.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/configuration.html</a></li>
+<li>application-jar: jar包路径.(hdfs:// , file://,local)</li>
+<li>application-arguments: Main方法的参数</li>
+<li><strong>more options: ./bin/spark-submit —help</strong></li>
+</ul>
+<p><strong>master urls</strong></p>
+<ul>
+<li>local：本地单线程运行.</li>
+<li>local[K]    ：本地K个线程运行，k=1,2,3,4,$…$ .</li>
+<li>local[*]：    本地多线程运行，线程数基于当前CPU.</li>
+<li>spark://HOST:PORT：    Spark standalone模式，port默认7077.<br>(<a href="http://spark.apache.org/docs/latest/spark-standalone.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/spark-standalone.html</a>)</li>
+<li>spark://HOST1:PORT1,HOST2:PORT2：Spark standalone模式    .</li>
+<li>mesos://HOST:PORT：Mesos 模式，port默认5050.(<a href="http://spark.apache.org/docs/latest/running-on-mesos.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/running-on-mesos.html</a>)</li>
+<li>yarn：    YARN模式.(<a href="http://spark.apache.org/docs/latest/running-on-yarn.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/running-on-yarn.html</a>)</li>
+<li>k8s://HOST:PORT：Kubernetes模式.(<a href="http://spark.apache.org/docs/latest/running-on-kubernetes.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/running-on-kubernetes.html</a>)</li>
+</ul>
 
             <hr>
           </div>
@@ -222,18 +213,11 @@ mysql&gt;exit;
               <span>
                 <i class="iconfont icon-inbox"></i>
                 
-                  <a class="hover-with-bg" href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>
+                  <a class="hover-with-bg" href="/categories/spark">spark</a>
                   &nbsp;
                 
               </span>&nbsp;&nbsp;
             
-            
-              <span>
-                <i class="iconfont icon-tag"></i>
-                
-                  <a class="hover-with-bg" href="/tags/mysql">mysql</a>
-                
-              </span>
             
             </p>
             
@@ -403,7 +387,7 @@ mysql&gt;exit;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "linux下mysql的安装&nbsp;",
+        "000.Spark Basement&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

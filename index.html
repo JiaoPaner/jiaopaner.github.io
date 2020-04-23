@@ -255,19 +255,20 @@ List&lt;Row&gt; data = Arrays.asList(
     
       <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/15/spark.003/" target="_self">
-          <img src="\images\bigdata\streaming-arch.png" srcset="/img/loading.gif" alt="003.Spark Streaming" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="\images\bigdata\streaming-arch.png" srcset="/img/loading.gif" alt="003.Spark Streaming/Structured Streaming" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
     <div class="col-12 col-md-8 m-auto">
       <a href="/2020/04/15/spark.003/">
-        <p class="h4 index-header">003.Spark Streaming</p>
+        <p class="h4 index-header">003.Spark Streaming/Structured Streaming</p>
         
         
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">spark streaming-hello world
+          <div class="index-text mb-1">spark streaming-hello worldnote:http://spark.apache.org/docs/latest/streaming-programming-guide.html
+
 引入依赖
 
 &lt;dependency&gt;
@@ -288,7 +289,7 @@ $ nc -lk 9999
 example
 
 SparkConf conf = new SparkConf().setAppName(&quot;spark streaming&quot;).setMaster(&quot;local[*]&quot;);
-JavaStreamingContext jsc = new JavaStreamingContext(conf,Durations.seconds(5));//5s处</div>
+JavaStream</div>
         </div>
       </a>
 
@@ -411,6 +412,56 @@ JavaStreamingContext jsc = new JavaStreamingContext(conf,Durations.seconds(5));/
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/08/spark.000/" target="_self">
+          <img src="\images\spark.jpg" srcset="/img/loading.gif" alt="000.Spark Basement" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/08/spark.000/">
+        <p class="h4 index-header">000.Spark Basement</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Launching Applications with spark-submit./bin/spark-submit \
+  --class &lt;main-class&gt; \
+  --master &lt;master-url&gt; \
+  --deploy-mode &lt;deploy-mode&gt; \
+  --conf &lt;key&gt;=&lt;value&gt; \
+  ... # other options
+  &lt;application-jar&gt; \
+  [application-arguments]
+
+./bin/spark-submit \ 
+  --name &quot;My app&quot; \ 
+  --master local[4] \  
+  --conf spark.eventLog.enabled=false \ 
+  --conf &quot;spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps&quot; \ 
+  --con</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-08&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/" target="_self">
           <img src="\images\dp-net\pytorch.jpg" srcset="/img/loading.gif" alt="pytorch 自定义数据集/训练/模型保存和加载" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -477,26 +528,27 @@ dataset = datasets.ImageFolder(root=&quot;/Volumes/sto</div>
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">C++Q： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s insteadA：工程属性 —&gt;C/C++ —&gt; 预处理器 —&gt; 预处理器定义,添加宏定义
+          <div class="index-text mb-1">C++Q： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s instead
+工程属性 —&gt;C/C++ —&gt; 预处理器 —&gt; 预处理器定义,添加宏定义
 _CRT_SECURE_NO_WARNINGS
 
 
-Q： pthread.h中报错：C2011“timespec”:“struct”类型重定义A：tim.h已定义，pthread.h添加如下代码：
+Q： pthread.h中报错：C2011“timespec”:“struct”类型重定义
+tim.h已定义，pthread.h添加如下代码：
 #if !defined( PTHREAD_H )
 #define PTHREAD_H
 #define HAVE_STRUCT_TIMESPEC
 
-
-Q：Visual Studio 工程编译dll,接口的定义A：接口的头文件应如下声明：
+Q：Visual Studio 工程编译dll,接口的定义
+A：接口的头文件应如下声明：
 #define LIB_API __declspec(dllexport) //导出函数
 extern &quot;C&quot; {
     LIB_API char*   say();
 }
 
-
 Q：C++调用DLL
 
-d</div>
+dll的</div>
         </div>
       </a>
 
@@ -613,60 +665,6 @@ d</div>
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" target="_self">
-          <img src="/images/opencv3/41.png" srcset="/img/loading.gif" alt="android使用opencv native方式环境搭建" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
-        <p class="h4 index-header">android使用opencv native方式环境搭建</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">1.opencv下载：https://opencv.org/releases/ 解压后为OpenCV-android-sdk
-
-2.创建初始Android项目
-
-3.在app/src/main目录下新建jniLibs目录，在app/src/main/cpp目录下新建include目录和src目录
-将OpenCV-android-sdk/sdk/native/libs下所有目录复制到jniLibs目录中
-将OpenCV-android-sdk/sdk/native/jni/include下的所有目录复制到app/src/main/cpp/include目录中
-移动app/src/main/cpp/CMakeLists.txt至app目录下 
-移动app/src/main/cpp/native-lib.cpp至app/src/main/cpp/src/native-lib.cpp
-
-4.配置文件修改
-CMakeLists.txt
-# For more information about using CMake with Android Studio, read the
-# document</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-01&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv">opencv</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -703,7 +701,7 @@ CMakeLists.txt
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -712,7 +710,7 @@ CMakeLists.txt
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
