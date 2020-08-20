@@ -139,6 +139,61 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="C++教程(3) 模板和泛型编程" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/">
+        <p class="h4 index-header">C++教程(3) 模板和泛型编程</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">模板函数模板通过 template 定义函数模板,T的类型由编译时根据模板函数的使用情况而定 即根据传入的实参推断T的类型.由此模板函数即可处理任何数据类型,而不用为每种数据类型编写重复的函数代码
+#include &lt;iostream&gt;
+using namespace std;
+template &lt;typename T&gt;
+int compare(const T &amp;a, const T &amp;b) {
+    if(a &lt; b) return -1;
+    if(a &gt; b) return 1;
+    return 0;
+}
+int main() {
+    int a = 1, b = 5;
+    double c = 2, d = -1;
+    string e = &quot;A&quot;, f = &quot;A&quot;;
+    std::cout &lt;&lt; compare(a, b) &lt;&lt; std::endl;
+    std::cout &lt;&lt; compare(c, d) &lt;&</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-06&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/C++">C++</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/C++">C++</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="C++教程(2) 面向对象编程" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -676,68 +731,6 @@ bool pop(Stack</div>
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
-          <img src="\images\system\1.jpg" srcset="/img/loading.gif" alt="操作系统(2) 进程管理" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
-        <p class="h4 index-header">操作系统(2) 进程管理</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">进程概念在多道程序环境下，允许多个程序并发执行，因此失去封闭性并具有间断性和不可再现性的特征，为此引入进程，更好地描述和控制程序的并发执行，实现操作系统的并发性和共享性。
-进程控制块(PCB)：描述进程的基本情况和运行状态，进而控制和管理进程。
-PCB是进程存在的唯一标志。创建进程实质是创建PCB，撤销进程实质是撤销PCB。
-进程映像：由程序段、相关数据段、PCB组成。
-进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位。
-特征
-
-动态性：进程是程序的一次执行，具有生命周期。动态性是进程最基本的特征。
-并发性、独立性、异步性、结构性
-
-进程的状态与转换
-
-进程创建过程
-终端用户登录、作业调度、系统提供服务、用户程序的应用等请求都会引起进程的创建。
-
-为新进程分配唯一的进程标识号，申请空白的PCB；
-为进程分配资源，分配进程的程序、数据和用户栈必要的内存空间；
-初始化PCB，初始化标志信息、处理机状态信息、处理机控制信息、设置进程优先级；
-将新进程插入到就绪队列等待调度；
-
-进程终止过程
-正常结束、异常结束(存储区越界、保护错、非法指令、特权指令错、I/O故障)、外界干预等</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-07&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
           
         
       </div>

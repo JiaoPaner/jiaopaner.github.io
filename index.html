@@ -139,6 +139,62 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/" target="_self">
+          <img src="\images\2019\4\18\assembly.jpg" srcset="/img/loading.gif" alt="汇编语言.001" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/">
+        <p class="h4 index-header">汇编语言.001</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">基础知识：汇编语言第三版-王爽汇编指令：机器码的助记符，有对应的机器码；伪指令：无对应的机器码，由编译器执行；其他符号：如+、-、*、/,由编译器识别，无对应机器码；
+寄存器通用寄存器：AX,BX,CX(循环计数寄存器),DX
+段寄存器CS(代码段寄存器)：IP(指令指针寄存器) - 提供CPU执行指令的地址DS(数据段寄存器)：偏移地址 - 提供数据的存储地址SS(栈顶段寄存器)：SP（栈顶指针寄存器）- 提供栈顶元素的存储地址ES(附加段寄存器)
+Start hello worldDSEG    SEGMENT
+MESS    DB   &#39;Hello,World!&#39; ,0DH,0AH,24H
+DSEG    ENDS
+
+SSEG    SEGMENT PARA STACK 
+        DW  256 DUP(?)
+SSEG    ENDS
+
+CSEG    SEGMENT
+        ASSUME  CS:CSEG,DS:DSEG
+BEGIN:  MOV AX,DSEG
+        MOV DS,AX
+        MOV DX,OFFSET MES</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-18&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80">汇编语言</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80">汇编语言</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/" target="_self">
           <img src="\images\note\19.jpg" srcset="/img/loading.gif" alt="设计模式-Java" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -220,9 +276,9 @@ public class Singleton{
 引入依赖
 
 &lt;dependency&gt;
-    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-    &lt;artifactId&gt;spark-streaming_2.11&lt;/artifactId&gt;
-    &lt;version&gt;2.4.5&lt;/version&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-mllib_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.4.5&lt;/version&gt;
 &lt;/dependency&gt;
 
 相关系数矩阵相关系数矩阵(i行，j列)的元素是原矩阵i列与j列的相关系数
@@ -231,7 +287,7 @@ SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
                  .master(&quot;local[*]&quot;)
                  .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-          RowFactory.create(Vector</div>
+          RowFactory.create(Vectors.dense(17</div>
         </div>
       </a>
 
@@ -611,55 +667,6 @@ dll的</div>
             <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
           &nbsp;
         
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/12/30/elasticsearch%20%E6%95%99%E7%A8%8B/" target="_self">
-          <img src="/images/elasticsearch/1.jpg" srcset="/img/loading.gif" alt="elasticsearch 教程" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/12/30/elasticsearch%20%E6%95%99%E7%A8%8B/">
-        <p class="h4 index-header">elasticsearch 教程</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">elasticsearch 教程
-安装、启动、测试elasticsearch下载地址:https://www.elastic.co/cn/downloads/elasticsearchkibana下载地址:https://www.elastic.co/cn/downloads/kibana启动1.elasticsearch./elasticsearch-7.5.1/bin/elasticsearch 默认端口：9200浏览器访问：localhost:9200
-{
-  &quot;name&quot; : &quot;jiaopandeMacBook-Pro.local&quot;,
-  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
-  &quot;cluster_uuid&quot; : &quot;5vku_94_SjevMGVYIo3RYg&quot;,
-  &quot;version&quot; : {
-    &quot;number&quot; : &quot;7.5.1&quot;,
-    &quot;buil</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-12-30&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/elasticsearch">elasticsearch</a>&nbsp;
-          
         
       </div>
     </div>

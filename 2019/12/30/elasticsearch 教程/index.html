@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    2.5k 字
+                    2.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      14 分钟
+                      16 分钟
                   </span>&nbsp;
                 
 
@@ -167,7 +167,11 @@
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
             <h1 id="elasticsearch-教程"><a href="#elasticsearch-教程" class="headerlink" title="elasticsearch 教程"></a>elasticsearch 教程</h1><p><img src="/images/elasticsearch/1.jpg" srcset="/img/loading.gif" alt=""></p>
-<h2 id="安装、启动、测试"><a href="#安装、启动、测试" class="headerlink" title="安装、启动、测试"></a>安装、启动、测试</h2><p>elasticsearch下载地址:<a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a><br>kibana下载地址:<a href="https://www.elastic.co/cn/downloads/kibana" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/kibana</a><br><strong>启动</strong><br>1.elasticsearch<br>./elasticsearch-7.5.1/bin/elasticsearch 默认端口：9200<br>浏览器访问：localhost:9200</p>
+<h2 id="安装、启动、测试"><a href="#安装、启动、测试" class="headerlink" title="安装、启动、测试"></a>安装、启动、测试</h2><p>elasticsearch下载地址:<a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a></p>
+<p>kibana下载地址:<a href="https://www.elastic.co/cn/downloads/kibana" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/kibana</a></p>
+<p><strong>启动</strong></p>
+<pre><code class="lang-bash">./elasticsearch-7.5.1/bin/elasticsearch #浏览器访问：localhost:9200
+</code></pre>
 <pre><code class="lang-bash">{
   &quot;name&quot; : &quot;jiaopandeMacBook-Pro.local&quot;,
   &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
@@ -186,206 +190,50 @@
   &quot;tagline&quot; : &quot;You Know, for Search&quot;
 }
 </code></pre>
-<p>2.kibana<br>配置kibana-7.5.1-darwin-x86_64/config/kibana.yml</p>
+<p>配置kibana-7.5.1-darwin-x86_64/config/kibana.yml</p>
 <pre><code class="lang-bash">server.host: &quot;localhost&quot;
 elasticsearch.hosts: [&quot;http://localhost:9200&quot;]
 </code></pre>
-<p>./kibana-7.5.1-darwin-x86_64/bin/kibana<br>浏览器访问：localhost:5601<br><img src="/images/elasticsearch/2.jpg" srcset="/img/loading.gif" alt=""></p>
-<p><strong>测试</strong><br>kibana Dev Tools<br><img src="/images/elasticsearch/3.jpg" srcset="/img/loading.gif" alt=""></p>
-<h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><p>创建索引:</p>
-<pre><code>PUT http://127.0.0.1:9200/test_index
-</code></pre><p>删除索引</p>
-<pre><code>DELETE http://127.0.0.1:9200/test_index
-</code></pre><h3 id="document"><a href="#document" class="headerlink" title="document"></a>document</h3><p>创建文档：</p>
-<pre><code>PUT http://127.0.0.1:9200/test_index/item/1
+<pre><code class="lang-bash">./kibana-7.5.1-darwin-x86_64/bin/kibana #浏览器访问：localhost:5601
+</code></pre>
+<p><img src="/images/elasticsearch/2.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><strong>测试</strong><br>kibana Dev Tools</p>
+<p><img src="/images/elasticsearch/3.jpg" srcset="/img/loading.gif" alt=""></p>
+<h2 id="index"><a href="#index" class="headerlink" title="index"></a>index</h2><p><strong>创建索引</strong></p>
+<pre><code class="lang-bash">PUT http://127.0.0.1:9200/test_index
+</code></pre>
+<p><strong>删除索引</strong></p>
+<pre><code class="lang-bash">DELETE http://127.0.0.1:9200/test_index
+</code></pre>
+<p><strong>索引别名</strong></p>
+<pre><code class="lang-bash">POST _aliases
 {
-&quot;name&quot;:&quot;jiaopan&quot;,
-&quot;age&quot;:25
-}
-</code></pre><p>查询文档：</p>
-<pre><code>GET http://127.0.0.1:9200/test_index/item/1
-</code></pre><p>更新文档</p>
-<pre><code>POST http://127.0.0.1:9200/test_index/item/1/_update
-{
-    &quot;doc&quot;:{
-        &quot;name&quot;:&quot;jp&quot;
-    }
-}
-</code></pre><p>删除文档</p>
-<pre><code>DELETE http://127.0.0.1:9200/test_index/item/1
-</code></pre><h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>1.query string search</p>
-<pre><code>GET http://127.0.0.1:9200/test_index/item/_search
-GET http://127.0.0.1:9200/test_index/item/_search?q=name:jp&amp;sort=age:desc
-</code></pre><p>2.query DSL</p>
-<pre><code>#查询所有
-GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;match_all&quot;:{} 
-    }
-}
-#条件查询
-GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;match&quot;:{&quot;name&quot;:&quot;jp&quot;} 
-    },
-    &quot;sort&quot;:[
-        {&quot;age&quot;:&quot;desc&quot;}
+    &quot;actions&quot;: [
+        { &quot;add&quot; : { &quot;index&quot; : &quot;test_index&quot;, &quot;alias&quot; : &quot;test&quot; } }
     ]
 }
-
-#分页查询
-GET http://127.0.0.1:9200/test_index/item/_search
+</code></pre>
+<p><strong>索引迁移</strong></p>
+<pre><code class="lang-bash">POST _reindex
 {
-    &quot;query&quot;:{
-        &quot;match_all&quot;:{} 
+    &quot;source&quot;: {
+        &quot;index&quot;: &quot;test_index&quot;
     },
-    &quot;from&quot;:1,
-    &quot;size&quot;:2
-}
-#指定结果的字段
-GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;match_all&quot;:{} 
-    },
-    &quot;_source“：[&quot;name&quot;]
-}
-</code></pre><p>3.query filter</p>
-<pre><code>GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;bool&quot;:{
-            &quot;must&quot;:{
-                &quot;name&quot;:&quot;jp&quot; #name必须包含jp
-            },
-            &quot;filter&quot;:{
-                &quot;range&quot;:{
-                    &quot;age&quot;:{&quot;gt&quot;:18} #年龄大于18
-                }
-            }
-        } 
+    &quot;dest&quot;: {
+        &quot;index&quot;: &quot;test_index_v2&quot;
     }
-}
-</code></pre><p>4.full-text search(全文检索)</p>
-<pre><code>GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;match&quot;:{
-            &quot;name&quot;:&quot;jp jiaopan&quot; #匹配jp/jiapan/jp或jiaopan
-        } 
-    }
-}
-</code></pre><p>5.phrase search(短语搜索)</p>
-<pre><code>GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;match_phrase&quot;:{
-            &quot;name&quot;:&quot;jp jiaopan&quot; #只匹配jp jiaopan
-        } 
-    }
-}
-</code></pre><p>6.highlight search(高亮搜索结果)</p>
-<pre><code>GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;match&quot;:{
-            &quot;name&quot;:&quot;jp&quot; 
-        } 
-    }，
-    “highlight“：{
-        &quot;fields&quot;:{
-            &quot;name&quot;:{} #高亮的字段
-        }
-    }
-}
-</code></pre><h3 id="mget-批量查询"><a href="#mget-批量查询" class="headerlink" title="mget-批量查询"></a>mget-批量查询</h3><h3 id="bulk"><a href="#bulk" class="headerlink" title="bulk"></a>bulk</h3><h3 id="multi-index，-all，scroll"><a href="#multi-index，-all，scroll" class="headerlink" title="multi-index，_all，scroll"></a>multi-index，_all，scroll</h3><h3 id="聚合分析"><a href="#聚合分析" class="headerlink" title="聚合分析"></a>聚合分析</h3><pre><code>#以&quot;tags&quot;字段分组
-GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;aggs&quot;:{
-        &quot;group_by_tags&quot;:{ //聚合名称(自定义)
-            &quot;terms&quot;:{
-                “field”：“tags” //分组字段
-            } 
-        } 
-    }
-}
-#先查询再分组
-GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;query&quot;:{
-        &quot;match&quot;:{
-            &quot;name&quot;:&quot;name&quot; 
-        } 
-    },
-    &quot;aggs&quot;:{
-        &quot;group_by_tags&quot;:{ //聚合名称(自定义)
-            &quot;terms&quot;:{
-                “field”：“tags” //分组字段
-            } 
-        } 
-    }
-}
-#分组数据再分析
-GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;aggs&quot;:{
-        &quot;group_by_tags&quot;:{ //聚合名称(自定义)
-            &quot;terms&quot;:{
-                “field”：“tags” //分组字段
-            },
-            &quot;aggs&quot;:{
-                &quot;avg_price&quot;:{&quot;field&quot;:&quot;price&quot;}
-            } 
-        } 
-    }
-}
-GET http://127.0.0.1:9200/test_index/item/_search
-{
-    &quot;aggs&quot;:{
-        &quot;group_by_tags&quot;:{ //聚合名称(自定义)
-            &quot;terms&quot;:{
-                “field”：“tags”, //分组字段
-                &quot;order&quot;:{&quot;avg_price&quot;:&quot;desc&quot;} //排序
-            },
-            &quot;aggs&quot;:{
-                &quot;avg_price&quot;:{&quot;field&quot;:&quot;price&quot;}
-            } 
-        } 
-    }
-}
-</code></pre><h3 id="mapping"><a href="#mapping" class="headerlink" title="mapping"></a>mapping</h3><h3 id="分词器"><a href="#分词器" class="headerlink" title="分词器"></a>分词器</h3><pre><code>GET /_analyze
-{
-    &quot;analyzer&quot;:&quot;standard&quot;,
-    &quot;text&quot;:&quot;text to analyze&quot;
-}
-</code></pre><p>备份资料：<br>1.索引-settings</p>
-<pre><code>PUT /test_index/
-{
-  &quot;settings&quot;: {
-    &quot;index&quot;:{
-      &quot;number_of_shards&quot;:1,
-      &quot;number_of_replicas&quot;:1
-    }
-  }
 }
 
+POST _aliases
 {
-  &quot;acknowledged&quot; : true,
-  &quot;shards_acknowledged&quot; : true,
-  &quot;index&quot; : &quot;test_index&quot;
+    &quot;actions&quot;: [
+        { &quot;remove&quot; : { &quot;index&quot; : &quot;test_index&quot;, &quot;alias&quot; : &quot;test&quot; } },
+        { &quot;add&quot; : { &quot;index&quot; : &quot;test_index_v2&quot;, &quot;alias&quot; : &quot;test_v2&quot; } }
+    ]
 }
-
-GET /test_index/_settings
-</code></pre><p>2.mget</p>
-<h1 id="note"><a href="#note" class="headerlink" title="note"></a>note</h1><pre><code class="lang-bash">安装中文分词
-./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.1/elasticsearch-analysis-ik-7.5.1.zip
-
-
-GET /test_index/_mapping
-DELETE /test_index
-PUT /test_index
+</code></pre>
+<p><strong>索引mapping设置</strong></p>
+<pre><code class="lang-bash">PUT /dyw_index_v2
 {
   &quot;settings&quot;: {
     &quot;analysis&quot;: {
@@ -398,139 +246,546 @@ PUT /test_index
   },
   &quot;mappings&quot;: {
     &quot;properties&quot;: {
-      &quot;title&quot;:{
-        &quot;type&quot;: &quot;text&quot;
-      },
-      &quot;content&quot;:{
-        &quot;type&quot;: &quot;text&quot;
-      },
       &quot;type&quot;:{
         &quot;type&quot;: &quot;keyword&quot;
       },
       &quot;tags&quot;:{
         &quot;type&quot;: &quot;text&quot; 
       },
-      &quot;location&quot;:{
-        &quot;type&quot;: &quot;geo_point&quot;
+      &quot;content&quot;:{
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;boost&quot;: 2
       },
-      &quot;userid&quot;:{
-        &quot;type&quot;: &quot;keyword&quot;
-      }
-    }
-  }
-}
-
-
-GET /_analyze
-{
-  &quot;analyzer&quot;: &quot;ik_max_word&quot;,
-  &quot;text&quot;: &quot;宾馆&quot;
-}
-
-GET /test_index/_search
-{
-  &quot;query&quot;: {&quot;match_all&quot;: {}},
-  &quot;from&quot;: 0, 
-  &quot;size&quot;: 20
-}
-
-POST /test_index/_bulk
-{&quot;index&quot;:{&quot;_id&quot;:1}}
-{&quot;title&quot;:&quot;五馅包&quot;,&quot;content&quot;:&quot;武隆县城包子店&quot;,&quot;type&quot;:&quot;delicious&quot;,&quot;location&quot;:&quot;29.3283854700,107.7670669000&quot;,&quot;tags&quot;:&quot;美食 吃&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:2}}
-{&quot;title&quot;:&quot;奇香手撕鸭&quot;,&quot;content&quot;:&quot;武隆县城手撕鸭、美味可口，可邮寄&quot;,&quot;type&quot;:&quot;delicious&quot;,&quot;location&quot;:&quot;29.3280674400,107.7671581000&quot;,&quot;tags&quot;:&quot;美食 吃&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:3}}
-{&quot;title&quot;:&quot;友家宾馆&quot;,&quot;content&quot;:&quot;打折,大床房，南北通透，有空调，有Wi-Fi&quot;,&quot;type&quot;:&quot;hotel&quot;,&quot;location&quot;:&quot;29.3277540900,107.7667235800&quot;,&quot;tags&quot;:&quot;住宿&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:4}}
-{&quot;title&quot;:&quot;仙童公寓&quot;,&quot;content&quot;:&quot;特价公寓房、胶囊房间&quot;,&quot;type&quot;:&quot;hotel&quot;,&quot;location&quot;:&quot;29.3279318100,107.7663695300&quot;,&quot;tags&quot;:&quot;住宿&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:5}}
-{&quot;title&quot;:&quot;凯迪酒店&quot;,&quot;content&quot;:&quot;高档酒店&quot;,&quot;type&quot;:&quot;hotel&quot;,&quot;location&quot;:&quot;29.3283307500,107.7663570600&quot;,&quot;tags&quot;:&quot;住宿&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:6}}
-{&quot;title&quot;:&quot;疯狂烤翅&quot;,&quot;content&quot;:&quot;吃出疯狂，吃出味道&quot;,&quot;type&quot;:&quot;delicious&quot;,&quot;location&quot;:&quot;29.3258286100,107.7662980600&quot;,&quot;tags&quot;:&quot;美食 吃&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:7}}
-{&quot;title&quot;:&quot;江辉宾馆&quot;,&quot;content&quot;:&quot;评价宾馆、评价住宿&quot;,&quot;type&quot;:&quot;hotel&quot;,&quot;location&quot;:&quot;29.3262214700,107.7646243600&quot;,&quot;tags&quot;:&quot;住宿 宾馆&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:8}}
-{&quot;title&quot;:&quot;农村饭&quot;,&quot;content&quot;:&quot;土家味道、家常菜&quot;,&quot;type&quot;:&quot;delicious&quot;,&quot;location&quot;:&quot;29.3316091700,107.7650535100&quot;,&quot;tags&quot;:&quot;美食 吃&quot;}
-{&quot;index&quot;:{&quot;_id&quot;:9}}
-{&quot;title&quot;:&quot;汉平美食城&quot;,&quot;content&quot;:&quot;汉平美食城,较偏远&quot;,&quot;type&quot;:&quot;delicious&quot;,&quot;location&quot;:&quot;29.3213433000,107.7405488500&quot;,&quot;tags&quot;:&quot;美食 吃&quot;}
-
-GET /test_index/_search
-{
-  &quot;query&quot;: {
-    &quot;term&quot;: {
-      &quot;title&quot;: {
-        &quot;value&quot;: &quot;住宿&quot;
-      }
-    }
-  }
-}
-GET /test_index/_search
-{
-  &quot;query&quot;: {
-    &quot;bool&quot;: {
-      &quot;should&quot;: [
-        {
-          &quot;term&quot;: {
-            &quot;title&quot;: {
-              &quot;value&quot;: &quot;美食&quot;
-            }
-          }
-        },
-        {
-          &quot;term&quot;: {
-            &quot;content&quot;: {
-              &quot;value&quot;: &quot;住宿&quot;
-            }
+      &quot;suggest&quot; : {
+        &quot;type&quot; : &quot;completion&quot;,
+        &quot;analyzer&quot;: &quot;ik_max_word&quot;
+      },
+      &quot;update_time&quot;:{
+            &quot;type&quot;: &quot;date&quot;,
+            &quot;format&quot;: [&quot;yyyy-MM-dd HH:mm:ss&quot;]
+      },
+      &quot;location&quot;:{
+            &quot;type&quot;: &quot;geo_point&quot;
+      },
+      &quot;join&quot;:{
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;id&quot;:{
+            &quot;type&quot;:&quot;keyword&quot;
+          },
+          &quot;content&quot;:{
+            &quot;type&quot;:&quot;text&quot;
           }
         }
-      ]
+      },
+      &quot;extra&quot;:{
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;scene&quot;:{
+            &quot;type&quot;: &quot;nested&quot;,
+            &quot;properties&quot;: {
+                &quot;id&quot;:{
+                  &quot;type&quot;: &quot;keyword&quot;
+                },
+                &quot;position&quot;:{
+                  &quot;type&quot;: &quot;integer&quot;
+                }
+             }
+          }
+        }
+      }
     }
   }
 }
+</code></pre>
+<h2 id="document"><a href="#document" class="headerlink" title="document"></a>document</h2><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
+<h2 id="安装中文分词"><a href="#安装中文分词" class="headerlink" title="安装中文分词"></a>安装中文分词</h2><pre><code class="lang-bash">./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.1/elasticsearch-analysis-ik-7.5.1.zip
+</code></pre>
+<h2 id="Java-API"><a href="#Java-API" class="headerlink" title="Java API"></a>Java API</h2><p><strong>pom依赖</strong></p>
+<pre><code class="lang-xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;
+    &lt;artifactId&gt;elasticsearch-rest-high-level-client&lt;/artifactId&gt;
+    &lt;version&gt;7.5.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;
+    &lt;artifactId&gt;elasticsearch-rest-client&lt;/artifactId&gt;
+    &lt;version&gt;7.5.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.elasticsearch&lt;/groupId&gt;
+    &lt;artifactId&gt;elasticsearch&lt;/artifactId&gt;
+    &lt;version&gt;7.5.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>客户端</strong></p>
+<pre><code class="lang-java">/** 
+* @author 作者 jiaopan: 
+* @version 创建时间：Feb 10, 2020 11:09:05 AM 
+* 类说明 
+*/
+public class ESClient {
+    private volatile static RestHighLevelClient client;
 
-GET /test_index/_search
-{
-  &quot;query&quot;: {
-    &quot;match&quot;: {
-      &quot;title&quot;:&quot;武隆&quot;
+    public static RestHighLevelClient instance(EsConfigValue config) {  
+        if (client == null) {  
+            synchronized (RestHighLevelClient.class) {  
+                if (client == null) {  
+                    final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+                    credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(config.getUsername(),config.getPassword()));
+                    client = new RestHighLevelClient(RestClient.builder(new HttpHost(config.getIp(),config.getPort(), &quot;http&quot;))
+                             .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
+                                    @Override
+                                    public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
+                                        httpClientBuilder.disableAuthCaching();
+                                        return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+                                    }
+                    }));
+                }  
+            }  
+        }  
+        return client;  
+    }      
+    /*
+    public static RestHighLevelClient instance(EsConfigValue config) {  
+        if (client == null) {  
+            synchronized (RestHighLevelClient.class) {  
+                if (client == null) {  
+                    client = new RestHighLevelClient(RestClient.builder(new HttpHost(config.getIp(),config.getPort(), &quot;http&quot;)));
+                }  
+            }  
+        }  
+        return client;  
+    } 
+    */
+}
+</code></pre>
+<p><strong> base apis</strong></p>
+<pre><code class="lang-java">public Boolean isExist(String index, String id,String routing) {
+    RestHighLevelClient client = ESClient.instance(esConfig);
+    GetRequest request = new GetRequest(index).id(id);
+    request.fetchSourceContext(new FetchSourceContext(false));
+    request.storedFields(&quot;_none_&quot;);
+    request.routing(routing);
+    try {
+        return client.exists(request, RequestOptions.DEFAULT);
+    } catch (IOException e) {
+        return false;
     }
-  }, 
-  &quot;from&quot;: 0, 
-  &quot;size&quot;: 20
 }
 
+public Map&lt;String, Object&gt; get(String index, String id,String routing) throws IOException {
+    RestHighLevelClient client = ESClient.instance(esConfig);
+    GetRequest request = new GetRequest(esConfig.getIndex(), id);
+    request.routing(routing);
+    GetResponse getResponse = client.get(request, RequestOptions.DEFAULT);
+    Map&lt;String, Object&gt; doc = new HashMap&lt;String, Object&gt;();
+    if(getResponse.isExists()) {
+        doc = getResponse.getSourceAsMap();
+        doc.put(&quot;id&quot;,getResponse.getId());
+    }
+    return doc;
+}
 
+public SearchResponse getByIds(List&lt;String&gt; ids) throws IOException {
+    RestHighLevelClient client = ESClient.instance(esConfig);
+    SearchRequest searchRequest = new SearchRequest(esConfig.getIndex()); 
+    SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); 
 
-GET /test_index/_search
-{
-  &quot;from&quot;:0,&quot;size&quot;:20,
-  &quot;query&quot;:{
-    &quot;bool&quot;:{
-      &quot;must&quot;:[{
-        &quot;dis_max&quot;:{&quot;tie_breaker&quot;:0.0,&quot;queries&quot;:[{
-          &quot;match&quot;:{&quot;title&quot;:{&quot;query&quot;:&quot;美食&quot;,&quot;operator&quot;:&quot;OR&quot;,&quot;prefix_length&quot;:0,&quot;max_expansions&quot;:50,&quot;fuzzy_transpositions&quot;:true,&quot;lenient&quot;:false,&quot;zero_terms_query&quot;:&quot;NONE&quot;,&quot;auto_generate_synonyms_phrase_query&quot;:true,&quot;boost&quot;:1.0}}},
-          {&quot;match&quot;:{&quot;content&quot;:{&quot;query&quot;:&quot;美食&quot;,&quot;operator&quot;:&quot;OR&quot;,&quot;prefix_length&quot;:0,&quot;max_expansions&quot;:50,&quot;fuzzy_transpositions&quot;:true,&quot;lenient&quot;:false,&quot;zero_terms_query&quot;:&quot;NONE&quot;,&quot;auto_generate_synonyms_phrase_query&quot;:true,&quot;boost&quot;:1.0}}},
-          {&quot;match&quot;:{&quot;tags&quot;:{&quot;query&quot;:&quot;美食&quot;,&quot;operator&quot;:&quot;OR&quot;,&quot;prefix_length&quot;:0,&quot;max_expansions&quot;:50,&quot;fuzzy_transpositions&quot;:true,&quot;lenient&quot;:false,&quot;zero_terms_query&quot;:&quot;NONE&quot;,&quot;auto_generate_synonyms_phrase_query&quot;:true,&quot;boost&quot;:1.0}}}],&quot;boost&quot;:1.0}},
-          {&quot;geo_distance&quot;:{&quot;location&quot;:[107.76677549,29.32815771],&quot;distance&quot;:300.0,&quot;distance_type&quot;:&quot;plane&quot;,&quot;validation_method&quot;:&quot;STRICT&quot;,&quot;ignore_unmapped&quot;:false,&quot;boost&quot;:1.0}}],
-    &quot;should&quot;:[{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;route&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;playing&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;travel&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;activity&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;scenery&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;hotel&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;delicious&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;live&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;ticket&quot;,&quot;boost&quot;:1.0}}},{&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;expert&quot;,&quot;boost&quot;:1.0}}}],&quot;adjust_pure_negative&quot;:true,&quot;boost&quot;:1.0}},
-    &quot;sort&quot;:[{&quot;_geo_distance&quot;:{&quot;location&quot;:[{&quot;lat&quot;:29.32815771,&quot;lon&quot;:107.76677549},{&quot;lat&quot;:29.32815771,&quot;lon&quot;:107.76677549}],&quot;unit&quot;:&quot;m&quot;,&quot;distance_type&quot;:&quot;arc&quot;,&quot;order&quot;:&quot;asc&quot;,&quot;validation_method&quot;:&quot;STRICT&quot;,&quot;ignore_unmapped&quot;:false}}]}
+    BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
+    IdsQueryBuilder idsQueryBuilder = QueryBuilders.idsQuery();
+    idsQueryBuilder.ids().addAll(ids);
 
+    booleanQueryBuilder.must(idsQueryBuilder);
+    /*构建查询*/
+    searchSourceBuilder.from(0);
+    searchSourceBuilder.size(ids.size());
+    searchSourceBuilder.query(booleanQueryBuilder); 
+    searchRequest.source(searchSourceBuilder);
+    SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+    return searchResponse;
+}
 
-{&quot;from&quot;:0,&quot;size&quot;:20,&quot;query&quot;:{&quot;bool&quot;:{&quot;must&quot;:[{&quot;geo_distance&quot;:{&quot;location&quot;:[107.76677549,29.32815771],&quot;distance&quot;:300.0,&quot;distance_type&quot;:&quot;plane&quot;,&quot;validation_method&quot;:&quot;STRICT&quot;,&quot;ignore_unmapped&quot;:false,&quot;boost&quot;:1.0}}],
-  &quot;should&quot;:[
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;route&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;playing&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;travel&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;activity&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;scenery&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;hotel&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;delicious&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;live&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;ticket&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;term&quot;:{&quot;type&quot;:{&quot;value&quot;:&quot;expert&quot;,&quot;boost&quot;:1.0}}},
-    {&quot;dis_max&quot;:{&quot;tie_breaker&quot;:0.0,&quot;queries&quot;:[{&quot;match&quot;:{&quot;title&quot;:{&quot;query&quot;:&quot;美食&quot;,&quot;operator&quot;:&quot;OR&quot;,&quot;prefix_length&quot;:0,&quot;max_expansions&quot;:50,&quot;fuzzy_transpositions&quot;:true,&quot;lenient&quot;:false,&quot;zero_terms_query&quot;:&quot;NONE&quot;,&quot;auto_generate_synonyms_phrase_query&quot;:true,&quot;boost&quot;:1.0}}},{&quot;match&quot;:{&quot;content&quot;:{&quot;query&quot;:&quot;美食&quot;,&quot;operator&quot;:&quot;OR&quot;,&quot;prefix_length&quot;:0,&quot;max_expansions&quot;:50,&quot;fuzzy_transpositions&quot;:true,&quot;lenient&quot;:false,&quot;zero_terms_query&quot;:&quot;NONE&quot;,&quot;auto_generate_synonyms_phrase_query&quot;:true,&quot;boost&quot;:1.0}}},{&quot;match&quot;:{&quot;tags&quot;:{&quot;query&quot;:&quot;美食&quot;,&quot;operator&quot;:&quot;OR&quot;,&quot;prefix_length&quot;:0,&quot;max_expansions&quot;:50,&quot;fuzzy_transpositions&quot;:true,&quot;lenient&quot;:false,&quot;zero_terms_query&quot;:&quot;NONE&quot;,&quot;auto_generate_synonyms_phrase_query&quot;:true,&quot;boost&quot;:1.0}}}],&quot;boost&quot;:1.0}}],&quot;adjust_pure_negative&quot;:true,&quot;boost&quot;:1.0}},&quot;sort&quot;:[{&quot;_geo_distance&quot;:{&quot;location&quot;:[{&quot;lat&quot;:29.32815771,&quot;lon&quot;:107.76677549},{&quot;lat&quot;:29.32815771,&quot;lon&quot;:107.76677549}],&quot;unit&quot;:&quot;m&quot;,&quot;distance_type&quot;:&quot;arc&quot;,&quot;order&quot;:&quot;asc&quot;,&quot;validation_method&quot;:&quot;STRICT&quot;,&quot;ignore_unmapped&quot;:false}}]}
+public void createOrUpdate(String index, String id,String routing,JSONObject item,Boolean bulk) throws IOException {
+
+    RestHighLevelClient client = ESClient.instance(esConfig);
+    GetRequest request = new GetRequest(esConfig.getIndex(), id);
+    request.routing(routing);
+    JSONObject doc = new JSONObject();
+    GetResponse getResponse = client.get(request, RequestOptions.DEFAULT);
+    if(getResponse.isExists()) {
+        Map&lt;String, Object&gt; source = getResponse.getSourceAsMap();
+        JSONObject content = JSONObject.parseObject(source.get(&quot;content&quot;).toString());
+        item.keySet().forEach(key-&gt;{
+            content.put(key,item.get(key));
+        });
+        doc = this.createDocSource(content,routing,true);
+    }
+    else
+        doc = this.createDocSource(item,routing,false);
+    if(bulk)
+        this.bulkUpdate(index, id, doc, true, routing);
+    else
+        this.update(index, id, doc, true,routing);
+}
+
+public void delete(String index, String id,String routing) {
+    RestHighLevelClient client = ESClient.instance(esConfig);
+    DeleteRequest request = new DeleteRequest(index, id);
+    request.routing(routing);
+    client.deleteAsync(request, RequestOptions.DEFAULT, new ActionListener&lt;DeleteResponse&gt;() {
+        @Override
+        public void onResponse(DeleteResponse response) {
+            if (response.getResult() == DocWriteResponse.Result.DELETED) {
+                logger.info(&quot;delete&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
+            }
+        }
+        @Override
+        public void onFailure(Exception e) {
+            logger.info(&quot;delete fail&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
+        }
+    });
+}
+
+public void update(String index, String id, JSONObject item,Boolean upsert,String routing) {
+    if(item == null) {
+        return;
+    }
+    RestHighLevelClient client = ESClient.instance(esConfig);
+    UpdateRequest request = new UpdateRequest(index,id).doc(item); 
+    request.docAsUpsert(upsert);
+    request.retryOnConflict(3);
+    request.routing(routing);
+    client.updateAsync(request, RequestOptions.DEFAULT, new ActionListener&lt;UpdateResponse&gt;() {
+        @Override
+        public void onResponse(UpdateResponse response) {
+            if (response.getResult() == DocWriteResponse.Result.CREATED) {
+                logger.info(&quot;created&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
+            }
+            else if (response.getResult() == DocWriteResponse.Result.UPDATED) {
+                logger.info(&quot;updated&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
+            }
+        }
+        @Override
+        public void onFailure(Exception e) {
+            logger.warn(&quot;not_store_record(&quot;+e.getMessage()+&quot;)&gt;&gt;&gt;&quot;+item.toJSONString());
+        }
+    });
+}
+
+public void bulkUpdate(String index, String id, JSONObject item,Boolean upsert,String routing) {
+    if(item == null) {
+        return;
+    }
+    UpdateRequest request = new UpdateRequest(index,id).doc(item); 
+    request.docAsUpsert(upsert);
+    request.retryOnConflict(3);
+    request.routing(routing);
+    queue.offer(request);
+}
+
+public void bulk(ConcurrentLinkedQueue&lt;UpdateRequest&gt; queue, RestHighLevelClient client) {
+    BulkRequest bulk = new BulkRequest();
+    for (int i = 0; i &lt; esConfig.getBulk(); i++) {
+        if(queue.isEmpty()) break;
+        bulk.add(queue.poll());
+    }
+    if(bulk.numberOfActions() == 0) return;
+    logger.info(DateUtils.getNowDate()+&quot;:starting handle doc queue,actions:&quot;+bulk.numberOfActions());
+    client.bulkAsync(bulk, RequestOptions.DEFAULT, new ActionListener&lt;BulkResponse&gt;() {
+        @Override
+        public void onResponse(BulkResponse response) {
+            if(response.hasFailures())
+                logger.info(response.buildFailureMessage());
+        }
+        @Override
+        public void onFailure(Exception e) {
+            logger.warn(&quot;bulk handle docs error:&quot;+e.getMessage());
+        }
+    });
+}
 </code></pre>
+<p><strong>Common apis</strong></p>
+<pre><code class="lang-java">
+public void locationSearch(SearchSourceBuilder searchSourceBuilder, BoolQueryBuilder booleanQueryBuilder,
+        String location,String lockey,Double distance,Boolean sort) throws FontFormatException {
+    String[] latlon = location.split(&quot;,&quot;);
+    if(latlon.length != 2) {
+        throw new NumberFormatException(&quot;经纬度参数不正确.location参数以英文逗号(,)连接的字符串.正确示例:“纬度(latitude),经度(longitude)\&quot;&quot;);
+    }
+    Double lat = Double.parseDouble(latlon[0]);
+    Double lon = Double.parseDouble(latlon[1]);
 
+    GeoDistanceQueryBuilder geoQueryBuilder = QueryBuilders.geoDistanceQuery(lockey).point(lat, lon)
+                                   .distance(distance == null?esConfig.getDistance():distance, DistanceUnit.KILOMETERS)
+                                   .geoDistance(GeoDistance.PLANE);
+    if(sort) {
+        GeoDistanceSortBuilder distanceSortBuilder = SortBuilders.geoDistanceSort(lockey,lat,lon);
+        distanceSortBuilder.order(SortOrder.ASC);
+        distanceSortBuilder.point(lat, lon);
+        searchSourceBuilder.sort(distanceSortBuilder);
+    }
+    booleanQueryBuilder.must(geoQueryBuilder);
+}
+
+public void fullTextSearch(BoolQueryBuilder booleanQueryBuilder, String keyword,List&lt;String&gt; fields,Boolean must) {
+    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+    fields.forEach(item-&gt;{
+        disMaxQueryBuilder.add(QueryBuilders.matchQuery(item,keyword));
+    });
+    if(must) booleanQueryBuilder.must(disMaxQueryBuilder);
+    else booleanQueryBuilder.should(disMaxQueryBuilder);
+}
+
+public void phraseTextSearch(BoolQueryBuilder booleanQueryBuilder, String keyword,List&lt;String&gt; fields,Boolean must) {
+    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+    List&lt;String&gt; words = Arrays.asList(keyword.split(&quot; &quot;));
+    fields.forEach(item-&gt;{
+        words.forEach(word-&gt;{
+            disMaxQueryBuilder.add(QueryBuilders.matchPhraseQuery(item,word));
+        });
+    });
+    if(must) booleanQueryBuilder.must(disMaxQueryBuilder);
+    else booleanQueryBuilder.should(disMaxQueryBuilder);
+}
+
+public void textSearch(BoolQueryBuilder booleanQueryBuilder, String keyword, List&lt;String&gt; fields, Boolean phrase,Boolean must) {
+    if(phrase) phraseTextSearch(booleanQueryBuilder, keyword, fields,must);
+    else fullTextSearch(booleanQueryBuilder, keyword, fields,must);
+}
+
+public void typeSearch(BoolQueryBuilder booleanQueryBuilder,String key,List&lt;String&gt; typeArray, List&lt;String&gt; mustNot) {
+    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+    for (int i = 0; i &lt; typeArray.size(); i++) {
+        disMaxQueryBuilder.add(QueryBuilders.termQuery(key,typeArray.get(i)));
+    }
+    booleanQueryBuilder.must(disMaxQueryBuilder);
+
+    List&lt;QueryBuilder&gt; mustNotQuerys = new ArrayList&lt;QueryBuilder&gt;();
+    for (int i = 0; i &lt; mustNot.size(); i++) {
+        QueryBuilder query = QueryBuilders.termQuery(key,mustNot.get(i));
+        mustNotQuerys.add(query);
+    }
+    booleanQueryBuilder.mustNot().addAll(mustNotQuerys);
+}
+
+public void typeSearch(BoolQueryBuilder booleanQueryBuilder,String key, List&lt;String&gt; typeArray) {
+    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+    for (int i = 0; i &lt; typeArray.size(); i++) {
+        disMaxQueryBuilder.add(QueryBuilders.termQuery(key,typeArray.get(i)));
+    }
+    booleanQueryBuilder.must(disMaxQueryBuilder);
+}
+
+public void createQuery(SearchRequest searchRequest, SearchSourceBuilder searchSourceBuilder,Integer from, Integer size, QueryBuilder queryBuilder) {
+    searchSourceBuilder.from(from == null?esConfig.getFrom():from);
+    searchSourceBuilder.size(size == null?esConfig.getSize():size);
+    searchSourceBuilder.query(queryBuilder); 
+    searchRequest.source(searchSourceBuilder);
+}
+
+public void createQuery(SearchRequest searchRequest, SearchSourceBuilder searchSourceBuilder,Integer from, Integer size, QueryBuilder queryBuilder, QueryBuilder postFilter) {
+    searchSourceBuilder.from(from == null?esConfig.getFrom():from);
+    searchSourceBuilder.size(size == null?esConfig.getSize():size);
+    searchSourceBuilder.query(queryBuilder); 
+    searchSourceBuilder.postFilter(postFilter);
+    searchRequest.source(searchSourceBuilder);
+}
+
+public void sort(SearchSourceBuilder searchSourceBuilder, int sortField) {
+    String field = dict.getSortField().get(sortField);
+    String order = dict.getSortType().get(field);
+    searchSourceBuilder.sort(new FieldSortBuilder(field).order(SortOrder.fromString(order)));
+}
+
+public void searchMustNot(BoolQueryBuilder booleanQueryBuilder,String field,String values) {
+    List&lt;String&gt; mustNot = Arrays.asList(values.split(&quot;,&quot;));
+    mustNot.forEach(item-&gt;{
+booleanQueryBuilder.mustNot(QueryBuilders.termQuery(field,item));
+    });
+}
+</code></pre>
+<p><strong>search</strong></p>
+<pre><code class="lang-java">public List&lt;Map&lt;String, Object&gt;&gt; search(String keyword,String scopes, Integer from, Integer size,String location, Double distance,Boolean matchPhrase,Boolean scoreSort) throws IOException, FontFormatException {
+
+    RestHighLevelClient client = ESClient.instance(esConfig);
+    SearchRequest searchRequest = new SearchRequest(esConfig.getIndex()); 
+    SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); 
+
+    BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
+
+    /*type检索*/
+    if(!StringUtils.equals(scopes,&quot;all&quot;)) {
+        List&lt;String&gt; scopeArray = new ArrayList&lt;String&gt;(); 
+        scopeArray = Arrays.asList(scopes.split(&quot;,&quot;)); 
+        engineBaseMethod.typeSearch(booleanQueryBuilder,&quot;type&quot;,scopeArray);
+    }
+
+    String notTypes = StringUtils.join(dict.getMustNot(), &quot;,&quot;);
+    engineBaseMethod.searchMustNot(booleanQueryBuilder, &quot;type&quot;,notTypes);
+    booleanQueryBuilder.must(QueryBuilders.termQuery(&quot;extra.up&quot;,&quot;1&quot;));
+
+    /*多字段检索*/
+    if(StringUtils.isNotBlank(keyword)) {
+        //List&lt;String&gt; fieldList = Arrays.asList(&quot;title,cn_name,suggest&quot;.split(&quot;,&quot;)); 
+        List&lt;String&gt; fieldList = dict.getSearchMatch();
+        engineBaseMethod.textSearch(booleanQueryBuilder, keyword, fieldList, matchPhrase,true);
+    }
+    /*排序*/
+    engineBaseMethod.sort(searchSourceBuilder,0);
+    engineBaseMethod.sort(searchSourceBuilder,1);
+
+    /*地理位置范围内搜索并就近排序*/
+    if(StringUtils.isNotBlank(location)) {
+        engineBaseMethod.locationSearch(searchSourceBuilder, booleanQueryBuilder, location,&quot;location&quot;,distance,true);
+    }
+
+    int index = 2 + (int)(Math.random() * ((3 - 2) + 1));
+    if(scoreSort) searchSourceBuilder.sort(new ScoreSortBuilder().order(SortOrder.DESC));
+    else engineBaseMethod.sort(searchSourceBuilder,index);
+
+
+    /*构建查询*/
+    engineBaseMethod.createQuery(searchRequest, searchSourceBuilder, from, size, booleanQueryBuilder);
+    SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+    /*解析结果并返回*/
+    List&lt;Map&lt;String, Object&gt;&gt; result = new ArrayList&lt;Map&lt;String,Object&gt;&gt;();
+    engineBaseMethod.searchResultAnalyse(result, searchResponse);
+    return result;
+}
+
+public List&lt;String&gt; searchTips(String keyword, String type) throws IOException, FontFormatException {
+    RestHighLevelClient client = ESClient.instance(esConfig);
+
+    //前缀搜索建议
+    SearchRequest searchRequest = new SearchRequest(esConfig.getIndex()); 
+    SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); 
+    CompletionSuggestionBuilder suggestionBuilder = new CompletionSuggestionBuilder(&quot;suggest&quot;);
+    suggestionBuilder.prefix(keyword);
+    suggestionBuilder.size(esConfig.getSize());
+    suggestionBuilder.skipDuplicates(true);
+    SuggestBuilder suggestBuilder = new SuggestBuilder();
+    suggestBuilder.addSuggestion(&quot;search_tips&quot;, suggestionBuilder);
+    searchSourceBuilder.suggest(suggestBuilder);
+    searchRequest.source(searchSourceBuilder);
+    SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+
+    //匹配搜索建议
+    SearchSourceBuilder querySourceBuilder = new SearchSourceBuilder(); 
+    SearchRequest queryRequest = new SearchRequest(esConfig.getIndex()); 
+    BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
+    if(StringUtils.isNotBlank(keyword)) booleanQueryBuilder.should(QueryBuilders.matchQuery(&quot;title&quot;,keyword));
+    String notTypes = StringUtils.join(dict.getMustNot(), &quot;,&quot;);
+    engineBaseMethod.searchMustNot(booleanQueryBuilder, &quot;type&quot;,notTypes);
+    querySourceBuilder.query(booleanQueryBuilder);
+    queryRequest.source(querySourceBuilder);
+    SearchResponse queryResponse = client.search(queryRequest, RequestOptions.DEFAULT);
+
+    /*解析结果并返回*/
+    List&lt;String&gt; result = new ArrayList&lt;String&gt;();
+    Suggest suggest = searchResponse.getSuggest();
+    CompletionSuggestion completionSuggestion = suggest.getSuggestion(&quot;search_tips&quot;);
+    for(CompletionSuggestion.Entry entry : completionSuggestion.getEntries()) { 
+        for (CompletionSuggestion.Entry.Option option : entry) { 
+            String optionType = option.getHit().getSourceAsMap().get(&quot;type&quot;).toString();
+            if(StringUtils.equals(type, &quot;all&quot;) || StringUtils.equals(type,optionType)) result.add(option.getText().string());
+        }
+    }
+    for(SearchHit hit:queryResponse.getHits()) {
+        String text = (String) hit.getSourceAsMap().get(&quot;title&quot;);
+        if(!result.contains(text)) result.add(text);
+    }
+    return result;
+}
+</code></pre>
+<h2 id="集群安装"><a href="#集群安装" class="headerlink" title="集群安装"></a>集群安装</h2><p><strong>master 配置</strong></p>
+<pre><code class="lang-bash"># ---------------------------------- Cluster -----------------------------------
+cluster.name: es-cluster
+
+# ------------------------------------ Node ------------------------------------
+node.name: node1-rec
+node.master: true
+node.data: false 
+
+# ----------------------------------- Paths ------------------------------------
+path.data: /data/es/data
+path.logs: /data/es/logs
+
+# ----------------------------------- Memory -----------------------------------
+bootstrap.memory_lock: false
+
+# ---------------------------------- Network -----------------------------------
+network.host: 0.0.0.0
+network.publish_host: 10.2.64.110
+http.port: 9200
+
+# --------------------------------- Discovery ----------------------------------
+
+discovery.seed_hosts: [&quot;10.2.64.110&quot;, &quot;10.2.64.111&quot;, &quot;10.2.64.112&quot;]
+
+cluster.initial_master_nodes: [&quot;10.2.64.110&quot;]
+discovery.zen.fd.ping_timeout: 1m
+discovery.zen.fd.ping_retries: 5
+http.cors.allow-origin: &quot;*&quot; 
+http.cors.enabled: true
+bootstrap.system_call_filter: false
+
+xpack.license.self_generated.type: basic
+</code></pre>
+<p><strong>node 配置</strong></p>
+<pre><code class="lang-bash">cluster.name: es-cluster
+# ------------------------------------ Node ------------------------------------
+node.name: node2-rec
+node.master: false
+node.data: true 
+# ----------------------------------- Paths ------------------------------------
+path.data: /data/es/data
+path.logs: /data/es/logs
+# ----------------------------------- Memory -----------------------------------
+bootstrap.memory_lock: false
+# ---------------------------------- Network -----------------------------------
+network.host: 0.0.0.0
+network.publish_host: 10.2.64.111
+http.port: 9200
+# --------------------------------- Discovery ----------------------------------
+discovery.seed_hosts: [&quot;10.2.64.110&quot;, &quot;10.2.64.111&quot;, &quot;10.2.64.112&quot;]
+
+cluster.initial_master_nodes: [&quot;10.2.64.110&quot;]
+discovery.zen.fd.ping_timeout: 1m
+discovery.zen.fd.ping_retries: 5
+http.cors.allow-origin: &quot;*&quot; 
+http.cors.enabled: true
+bootstrap.system_call_filter: false
+#
+xpack.license.self_generated.type: basic
+</code></pre>
+<p><strong>master kibana 配置</strong></p>
+<pre><code class="lang-bash">server.port: 5601
+server.host: &quot;0.0.0.0&quot;
+server.name: &quot;node1-rec&quot;
+elasticsearch.hosts: [&quot;http://10.2.64.110:9200&quot;,&quot;http://10.2.64.111:9200&quot;,&quot;http://10.2.64.112:9200&quot;]
+</code></pre>
+<p><strong>Kibana查看集群状态</strong></p>
+<pre><code>GET _cluster/health?pretty
+
+{
+  &quot;cluster_name&quot; : &quot;es-cluster&quot;,
+  &quot;status&quot; : &quot;green&quot;,
+  &quot;timed_out&quot; : false,
+  &quot;number_of_nodes&quot; : 3,
+  &quot;number_of_data_nodes&quot; : 2,
+  &quot;active_primary_shards&quot; : 7,
+  &quot;active_shards&quot; : 14,
+  &quot;relocating_shards&quot; : 0,
+  &quot;initializing_shards&quot; : 0,
+  &quot;unassigned_shards&quot; : 0,
+  &quot;delayed_unassigned_shards&quot; : 0,
+  &quot;number_of_pending_tasks&quot; : 0,
+  &quot;number_of_in_flight_fetch&quot; : 0,
+  &quot;task_max_waiting_in_queue_millis&quot; : 0,
+  &quot;active_shards_percent_as_number&quot; : 100.0
+}
+</code></pre>
             <hr>
           </div>
           <br>

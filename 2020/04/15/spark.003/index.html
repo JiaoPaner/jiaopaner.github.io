@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    1.5k 字
+                    1.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      9 分钟
+                      10 分钟
                   </span>&nbsp;
                 
 
@@ -393,6 +393,49 @@ writeStream
     .start()
 </code></pre>
 <h2 id="Kafka-1"><a href="#Kafka-1" class="headerlink" title="Kafka"></a>Kafka</h2><p><em>note</em>:<a href="http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html</a></p>
+<ul>
+<li>引入依赖</li>
+</ul>
+<pre><code class="lang-text">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-sql-kafka-0-10_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<ul>
+<li>example</li>
+</ul>
+<pre><code class="lang-java">SparkSession session = SparkSession
+        .builder()
+        .master(&quot;local[*]&quot;)
+        .appName(&quot;JavaStructuredNetworkWordCount&quot;)
+        .getOrCreate();
+session.sparkContext().setLogLevel(&quot;WARN&quot;);
+Dataset&lt;Row&gt; dataset = session.readStream().format(&quot;kafka&quot;)
+        .option(&quot;kafka.bootstrap.servers&quot;, &quot;localhost:6667&quot;)
+        .option(&quot;startingOffsets&quot;, &quot;earliest&quot;)
+        .option(&quot;subscribe&quot;,&quot;test_topic&quot;)
+        .option(&quot;group.id&quot;, &quot;group.demo.sys&quot;).load()
+        .selectExpr(&quot;CAST(value AS STRING)&quot;);
+StreamingQuery query = dataset.writeStream().format(&quot;console&quot;).start();
+query.awaitTermination();
+
+-------------------------------------------
+Batch: 0
+-------------------------------------------
++--------------------+
+|               value|
++--------------------+
+|{&quot;content&quot;:[{&quot;all...|
+|{&quot;content&quot;:[{&quot;all...|
+|{&quot;url&quot;:&quot;wlztk_sh_...|
+|{&quot;url&quot;:&quot;wlztk_sh_...|
+|{&quot;url&quot;:&quot;wlztk_sh_...|
+|{&quot;content&quot;:[{&quot;all...|
+|{&quot;url&quot;:&quot;wlztk_sh_...|
++--------------------+
+only showing top 20 rows
+</code></pre>
 <pre><code class="lang-java">Dataset&lt;Row&gt; df = spark
   .readStream()
   .format(&quot;kafka&quot;)

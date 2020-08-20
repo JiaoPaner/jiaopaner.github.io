@@ -634,6 +634,13 @@ scp root@远程服务器ip:/usr/local/src/test.json /root/
 #目录
 scp -r root@:远程服务器ip:/home/testdir /home/
 </code></pre>
+<p><strong>Q：Ubuntu增加swap交换空间</strong></p>
+<pre><code class="lang-bash">$ free -m #查看分区大小
+$ dd if=/dev/zero of=/swapfile bs=1M count=3k #创建count*bs大小的swap文件
+$ mkswap /swapfile #创建swap空间
+$ swapon /swapfile #设置分区有效 ,swapoff 设置分区无效
+$ vim /etc/fstab #开启启动：添加/swapfile swap swap defaults 0 0
+</code></pre>
 
             <hr>
           </div>
