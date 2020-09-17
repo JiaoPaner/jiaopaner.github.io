@@ -208,51 +208,41 @@
             <h1 style="display: none">linux下jdk安装</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="linux下JDK安装步骤"><a href="#linux下JDK安装步骤" class="headerlink" title="linux下JDK安装步骤"></a>linux下JDK安装步骤</h1><p>1.检查是否已安装JDK</p>
-<pre><code class="lang-bash">[root@localhost ~] java -version
-</code></pre>
-<p><img src="/images/note/1.jpg" srcset="/img/loading.gif" alt=""></p>
+              <h1 id="linux下JDK安装步骤"><a href="#linux下JDK安装步骤" class="headerlink" title="linux下JDK安装步骤"></a>linux下JDK安装步骤</h1><p>1.检查是否已安装JDK<br><pre><code class="hljs bash">[root@localhost ~] java -version</code></pre><br><img src="/images/note/1.jpg" srcset="/images/loading.gif" alt=""></p>
 <blockquote>
 <p>若默认已安装openjdk，将其卸载</p>
 </blockquote>
-<pre><code class="lang-bash">[root@localhost ~] yum remove *openjdk*
-</code></pre>
-<p><img src="/images/note/2.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>2.安装oracle JDK1.8</p>
-<pre><code class="lang-bash">[root@localhost ~]# cd /usr/local #跳转到local目录
-[root@localhost local]# mkdir jdk8 #创建jdk8目录
-</code></pre>
+<pre><code class="hljs bash">[root@localhost ~] yum remove *openjdk*</code></pre>
+<p><img src="/images/note/2.jpg" srcset="/images/loading.gif" alt=""></p>
+<p>2.安装oracle JDK1.8<br><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># cd /usr/local #跳转到local目录</span>
+[root@localhost <span class="hljs-built_in">local</span>]<span class="hljs-comment"># mkdir jdk8 #创建jdk8目录</span></code></pre></p>
 <blockquote>
 <p>复制下载好的linux版JDK1.8到 /usr/local/jdk8目录</p>
 </blockquote>
-<p><img src="/images/note/3.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="/images/note/3.jpg" srcset="/images/loading.gif" alt=""></p>
 <blockquote>
 <p>解压</p>
 </blockquote>
-<pre><code class="lang-bash">[root@localhost local]# cd jdk8
-[root@master jdk8]# tar -zxvf jdk-8u151-linux-x64.tar.gz
-</code></pre>
+<pre><code class="hljs bash">[root@localhost <span class="hljs-built_in">local</span>]<span class="hljs-comment"># cd jdk8</span>
+[root@master jdk8]<span class="hljs-comment"># tar -zxvf jdk-8u151-linux-x64.tar.gz</span></code></pre>
 <blockquote>
 <p>配置jdk环境变量</p>
 </blockquote>
-<pre><code class="lang-bash">[root@master jdk8]# vim /etc/profile
-export JAVA_HOME=/usr/local/jdk8/jdk1.8.0_151
-export JRE_HOME=$JAVA_HOME/jre
-export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
-export PATH=$PATH:$JAVA_HOME/bin
-</code></pre>
-<p><img src="/images/note/4.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs bash">[root@master jdk8]<span class="hljs-comment"># vim /etc/profile</span>
+<span class="hljs-built_in">export</span> JAVA_HOME=/usr/<span class="hljs-built_in">local</span>/jdk8/jdk1.8.0_151
+<span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$JAVA_HOME</span>/jre
+<span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$JAVA_HOME</span>/lib:<span class="hljs-variable">$JRE_HOME</span>/lib
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$JAVA_HOME</span>/bin</code></pre>
+<p><img src="/images/note/4.jpg" srcset="/images/loading.gif" alt=""></p>
 <blockquote>
 <p>环境变量生效</p>
 </blockquote>
-<pre><code class="lang-bash">[root@master jdk8]# source /etc/profile
-</code></pre>
+<pre><code class="hljs bash">[root@master jdk8]<span class="hljs-comment"># source /etc/profile</span></code></pre>
 <blockquote>
 <p>检查是否安装成功</p>
 </blockquote>
-<pre><code class="lang-bash">[root@master jdk8]# java -version
-</code></pre>
-<p><img src="/images/note/5.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs bash">[root@master jdk8]<span class="hljs-comment"># java -version</span></code></pre>
+<p><img src="/images/note/5.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

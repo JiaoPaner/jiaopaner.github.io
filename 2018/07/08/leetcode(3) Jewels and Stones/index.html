@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      182 字
+      176 字
     </span>
   
 
@@ -210,25 +210,18 @@
             <div class="markdown-body" id="post-body">
               <p>difficult：easy #771</p>
 <p>You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
-<p>The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so “a” is considered a different type of stone from “A”.<br>Example 1:</p>
-<pre><code class="lang-cpp">Input: J = &quot;aA&quot;, S = &quot;aAAbbbb&quot;
-Output: 3
-</code></pre>
-<p>Example 2:</p>
-<pre><code class="lang-cpp">Input: J = &quot;z&quot;, S = &quot;ZZ&quot;
-Output: 0
-</code></pre>
-<p>Note:<br>S and J will consist of letters and have length at most 50.<br>The characters in J are distinct.</p>
-<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><pre><code class="lang-cpp">#include&lt;string&gt;
-int numJewelsInStones(std::string J, std::string S) {
-    int num = 0;
-    for (auto i = S.begin(); i &lt; S.end(); i++) {
-        if (J.find(*i) != std::string::npos)
-            num++;
-    }
-    return num;
-}
-</code></pre>
+<p>The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so “a” is considered a different type of stone from “A”.<br>Example 1:<br><pre><code class="hljs cpp">Input: J = <span class="hljs-string">"aA"</span>, S = <span class="hljs-string">"aAAbbbb"</span>
+Output: <span class="hljs-number">3</span></code></pre><br>Example 2:<br><pre><code class="hljs cpp">Input: J = <span class="hljs-string">"z"</span>, S = <span class="hljs-string">"ZZ"</span>
+Output: <span class="hljs-number">0</span></code></pre><br>Note:<br>S and J will consist of letters and have length at most 50.<br>The characters in J are distinct.</p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">numJewelsInStones</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> J, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> S)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> num = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i = S.begin(); i &lt; S.end(); i++) &#123;
+		<span class="hljs-keyword">if</span> (J.find(*i) != <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>::npos)
+			num++;
+	&#125;
+	<span class="hljs-keyword">return</span> num;
+&#125;</code></pre>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

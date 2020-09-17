@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      272 字
+      280 字
     </span>
   
 
@@ -213,42 +213,36 @@
 <li>A.length &gt;= 3</li>
 <li>There exists some 0 &lt; i &lt; A.length - 1 such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1]<br>Given an array that is definitely a mountain, return any i such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1].</li>
 </ul>
-<pre><code class="lang-cpp">Example 1:
-Input: [0,1,0]
-Output: 1
+<pre><code class="hljs cpp">Example <span class="hljs-number">1</span>:
+Input: [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+Output: <span class="hljs-number">1</span>
 
-Example 2:
-Input: [0,2,1,0]
-Output: 1
-</code></pre>
+Example <span class="hljs-number">2</span>:
+Input: [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]
+Output: <span class="hljs-number">1</span></code></pre>
 <p>Note:<br>3 &lt;= A.length &lt;= 10000<br>0 &lt;= A[i] &lt;= 10^6<br>A is a mountain, as defined above.</p>
-<p><strong>解法一:</strong></p>
-<pre><code class="lang-cpp">#include&lt;vector&gt;
-int peakIndexInMountainArray(std::vector&lt;int&gt;&amp; A) {
-    int start = (A.size() - 1) / 2;
-    while (start != 0 || start != A.size() - 1) {
-        if (A[start - 1] &lt; A[start] &amp;&amp; A[start] &lt; A[start + 1])
-            start++;
-        else if (A[start - 1] &gt; A[start] &amp;&amp; A[start] &gt; A[start + 1])
-            start--;
-        else if (A[start - 1] &lt;= A[start] &amp;&amp; A[start] &gt;= A[start + 1])
-            return start;
-    }
-}
-</code></pre>
-<p><strong>解法二(二分查找):</strong></p>
-<pre><code class="lang-cpp">int peakIndexInMountainArray(std::vector&lt;int&gt;&amp; A) {
-    int start = 0, end = A.size() - 1;
-    while (start &lt; end){
-        int mid = start +(end-start) / 2;
-        if (A[mid] &lt; A[mid + 1])
-            start = mid + 1;
-        else
-            end = mid;
-    }
-    return start;
-}
-</code></pre>
+<p><strong>解法一:</strong><br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">peakIndexInMountainArray</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; A)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> start = (A.size() - <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;
+	<span class="hljs-keyword">while</span> (start != <span class="hljs-number">0</span> || start != A.size() - <span class="hljs-number">1</span>) &#123;
+		<span class="hljs-keyword">if</span> (A[start - <span class="hljs-number">1</span>] &lt; A[start] &amp;&amp; A[start] &lt; A[start + <span class="hljs-number">1</span>])
+			start++;
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (A[start - <span class="hljs-number">1</span>] &gt; A[start] &amp;&amp; A[start] &gt; A[start + <span class="hljs-number">1</span>])
+			start--;
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (A[start - <span class="hljs-number">1</span>] &lt;= A[start] &amp;&amp; A[start] &gt;= A[start + <span class="hljs-number">1</span>])
+			<span class="hljs-keyword">return</span> start;
+	&#125;
+&#125;</code></pre><br><strong>解法二(二分查找):</strong><br><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">peakIndexInMountainArray</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; A)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> start = <span class="hljs-number">0</span>, end = A.size() - <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (start &lt; end)&#123;
+		<span class="hljs-keyword">int</span> mid = start +(end-start) / <span class="hljs-number">2</span>;
+		<span class="hljs-keyword">if</span> (A[mid] &lt; A[mid + <span class="hljs-number">1</span>])
+			start = mid + <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">else</span>
+			end = mid;
+	&#125;
+	<span class="hljs-keyword">return</span> start;
+&#125;</code></pre></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

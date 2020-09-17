@@ -214,39 +214,36 @@
 <p>2.OpenCV 3.0+ 下载地址：<a href="https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.3.1/opencv-3.3.1-vc14.exe/download" target="_blank" rel="noopener">https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.3.1/opencv-3.3.1-vc14.exe/download</a></p>
 <p>安装后，添加环境变量<strong>OpenCV_DIR</strong> 值为<strong>your_dir\opencv3.3.1\build</strong>,并在<strong>path</strong>环境变量中添加<strong>your_dir\opencv3.3.1\build\x64\vc14\bin</strong></p>
 <h1 id="源码编译"><a href="#源码编译" class="headerlink" title="源码编译"></a>源码编译</h1><p>1.git clone项目到本地 <strong>（版本1.5.1）</strong></p>
-<pre><code class="lang-bash">git clone --recursive https://github.com/apache/incubator-mxnet mxnet
-</code></pre>
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> --recursive https://github.com/apache/incubator-mxnet mxnet</code></pre>
 <p>2.在mxnet目录下创建build目录</p>
 <p>3.启动cmake-gui.exe进行mxnet.sln工程的生成</p>
 <p>设置mxnet源码路径和mxnet编译路径,点击configure,选择visual studio 2015 win64</p>
 <p>生成的配置中，仅仅勾选<strong>use_opencv,use_openmp,use_cpp_package</strong>即可，如图所示</p>
-<p><img src="/images/note/11.jpg" srcset="/img/loading.gif" alt="11"></p>
+<p><img src="/images/note/11.jpg" srcset="/images/loading.gif" alt="11"></p>
 <p>若提示找不到opencv路径，则手动设置opencv路径即可，如图所示</p>
-<p><img src="/images/note/12.jpg" srcset="/img/loading.gif" alt="11"></p>
+<p><img src="/images/note/12.jpg" srcset="/images/loading.gif" alt="11"></p>
 <p>重新点击configure,配置选项未显示红框且最终信息显示Configuring done，则配置成功</p>
 <p>若显示红框，则将显示红框的勾去掉，再重新configure（只保留<strong>use_opencv,use_openmp,use_cpp_package</strong>的勾选）</p>
 <p>点击generate,生成mxnet.sln，生成成功会在build目录下出现mxnet.sln工程，如图所示</p>
-<p><img src="/images/note/13.jpg" srcset="/img/loading.gif" alt="11"></p>
+<p><img src="/images/note/13.jpg" srcset="/images/loading.gif" alt="11"></p>
 <p>拷贝如下dll文件至mxnet\cpp-package\scripts目录下<br>libopenblas.dll<br>opencv_world331.dll opencv_ffmpeg331_64.dll<br>(来自opencv3.3.1安装目录)<br>libgcc_s_seh-1.dll libgfortran-3.dll libquadmath-0.dll<br>(来自mingw64_dll 下载地址：<a href="https://sourceforge.net/projects/openblas/files/v0.2.14/" target="_blank" rel="noopener">https://sourceforge.net/projects/openblas/files/v0.2.14/</a>)</p>
-<p><img src="/images/note/17.jpg" srcset="/img/loading.gif" alt="11"></p>
+<p><img src="/images/note/17.jpg" srcset="/images/loading.gif" alt="11"></p>
 <p>4.利用visual studio 2015 打开mxnet.sln 并执行编译</p>
-<p><img src="/images/note/14.jpg" srcset="/img/loading.gif" alt="11"></p>
+<p><img src="/images/note/14.jpg" srcset="/images/loading.gif" alt="11"></p>
 <p>右键ALL_BUILD,点击生成执行编译，编译成功后会在build/release生成mxnet.lib和mxnet.dll,同时会在mxnet\cpp-package\include\mxnet-cpp生成op.h头文件</p>
 <p>如图所示</p>
-<p><img src="/images/note/15.jpg" srcset="/img/loading.gif" alt="11"></p>
-<p><img src="/images/note/16.jpg" srcset="/img/loading.gif" alt="11"></p>
-<p><img src="/images/note/18.jpg" srcset="/img/loading.gif" alt="11"></p>
+<p><img src="/images/note/15.jpg" srcset="/images/loading.gif" alt="11"></p>
+<p><img src="/images/note/16.jpg" srcset="/images/loading.gif" alt="11"></p>
+<p><img src="/images/note/18.jpg" srcset="/images/loading.gif" alt="11"></p>
 <p>5.若自动生成op.h头文件失败，则手动生成c++ op.h头文件</p>
 <p>重新configure（只保留<strong>use_opencv,use_openmp</strong>的勾选）再点击generate,生成mxnet.sln 重新利用Visual Studio 2015编译</p>
 <p>拷贝如下dll文件至mxnet\cpp-package\scripts目录下</p>
 <p>mxnet.dll<br>libopenblas.dll<br>opencv_world331.dll opencv_ffmpeg331_64.dll<br>(来自opencv3.3.1安装目录)<br>libgcc_s_seh-1.dll libgfortran-3.dll libquadmath-0.dll<br>(来自mingw64_dll 下载地址：<a href="https://sourceforge.net/projects/openblas/files/v0.2.14/" target="_blank" rel="noopener">https://sourceforge.net/projects/openblas/files/v0.2.14/</a>)</p>
-<p><img src="/images/note/17.jpg" srcset="/img/loading.gif" alt="11"></p>
+<p><img src="/images/note/17.jpg" srcset="/images/loading.gif" alt="11"></p>
 <p>执行如下命令，生成op.h</p>
-<pre><code class="lang-bash">python OpWrapperGenerator.py mxnet.dll
-</code></pre>
-<p><strong>错误处理</strong><br>1.<a href="https://github.com/apache/incubator-mxnet/issues/14116" target="_blank" rel="noopener">https://github.com/apache/incubator-mxnet/issues/14116</a><br>···bash<br>Build config:<br>1&gt;——— Build started: Project: cpp_package_op_h, Configuration: Release x64 ———<br>1&gt;”Running: OpWrapperGenerator.py”<br>1&gt;D:/Projects/MXNet-versions/MxNet1-3-1/build/Release/libmxnet.dll<br>1&gt;argument “lrs” of operator “multi_sgd_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_sgd_update” has unknown type “, required”<br>1&gt;argument “lrs” of operator “multi_sgd_mom_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_sgd_mom_update” has unknown type “, required”<br>1&gt;argument “lrs” of operator “multi_mp_sgd_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_mp_sgd_update” has unknown type “, required”<br>1&gt;argument “lrs” of operator “multi_mp_sgd_mom_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_mp_sgd_mom_update” has unknown type “, required”<br>========== Build: 1 succeeded, 0 failed, 3 up-to-date, 0 skipped ==========</p>
-<pre><code>解决方案：https://github.com/apache/incubator-mxnet/pull/15144/files
-</code></pre>
+<pre><code class="hljs bash">python OpWrapperGenerator.py mxnet.dll</code></pre>
+<p><strong>错误处理</strong><br>1.<a href="https://github.com/apache/incubator-mxnet/issues/14116" target="_blank" rel="noopener">https://github.com/apache/incubator-mxnet/issues/14116</a><br>···bash<br>Build config:<br>1&gt;——— Build started: Project: cpp_package_op_h, Configuration: Release x64 ———<br>1&gt;”Running: OpWrapperGenerator.py”<br>1&gt;D:/Projects/MXNet-versions/MxNet1-3-1/build/Release/libmxnet.dll<br>1&gt;argument “lrs” of operator “multi_sgd_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_sgd_update” has unknown type “, required”<br>1&gt;argument “lrs” of operator “multi_sgd_mom_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_sgd_mom_update” has unknown type “, required”<br>1&gt;argument “lrs” of operator “multi_mp_sgd_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_mp_sgd_update” has unknown type “, required”<br>1&gt;argument “lrs” of operator “multi_mp_sgd_mom_update” has unknown type “, required”<br>1&gt;argument “wds” of operator “multi_mp_sgd_mom_update” has unknown type “, required”<br>========== Build: 1 succeeded, 0 failed, 3 up-to-date, 0 skipped ==========<br><pre><code class="hljs awk">解决方案：https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/apache/i</span>ncubator-mxnet<span class="hljs-regexp">/pull/</span><span class="hljs-number">15144</span><span class="hljs-regexp">/files</span></code></pre></p>
+
             </div>
             <hr>
             <div>

@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      425 字
+      431 字
     </span>
   
 
@@ -210,86 +210,81 @@
             <div class="markdown-body" id="post-body">
               <ol>
 <li><p>安装ffmpeg</p>
-<pre><code class="lang-bash">#安装h264视频编解码库
+<pre><code class="hljs bash"><span class="hljs-comment">#安装h264视频编解码库</span>
 sudo apt-get update
 sudo apt-get install libx264-dev
 
-#安装ffmpeg
-#通过源安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-sudo add-apt-repository ppa:djcj/hybrid #添加源
+<span class="hljs-comment">#安装ffmpeg</span>
+<span class="hljs-comment">#通过源安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+sudo add-apt-repository ppa:djcj/hybrid <span class="hljs-comment">#添加源</span>
 sudo apt-get update
 sudo apt-get install ffmpeg
-sudo ffmpeg -version #验证是否安装成功
-#源码安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+sudo ffmpeg -version <span class="hljs-comment">#验证是否安装成功</span>
+<span class="hljs-comment">#源码安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
 wget http://ffmpeg.org/releases/ffmpeg-3.0.9.tar.bz2
 sudo tar jxvf ffmpeg-3.0.9.tar.bz2
-cd ffmpeg-3.0.9/
-sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresample $ --enable-libx264 --enable-libtheora  --disable-yasm
+<span class="hljs-built_in">cd</span> ffmpeg-3.0.9/
+sudo ./configure --<span class="hljs-built_in">enable</span>-shared --<span class="hljs-built_in">enable</span>-pthreads --<span class="hljs-built_in">enable</span>-gpl  --<span class="hljs-built_in">enable</span>-avresample $ --<span class="hljs-built_in">enable</span>-libx264 --<span class="hljs-built_in">enable</span>-libtheora  --<span class="hljs-built_in">disable</span>-yasm
 sudo make   
-sudo make install
-</code></pre>
+sudo make install</code></pre>
 </li>
 <li><p>安装nginx</p>
-<pre><code class="lang-bash">#源码安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
-#安装依赖
+<pre><code class="hljs bash"><span class="hljs-comment">#源码安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+<span class="hljs-comment">#安装依赖</span>
 sudo apt-get install build-essential
 sudo apt-get install libtool
 sudo apt-get update
 sudo apt-get install libpcre3 libpcre3-dev
 sudo apt-get install zlib1g-dev
 sudo apt-get install openssl
-#安装
+<span class="hljs-comment">#安装</span>
 sudo mkdir nginx
-cd nginx
-git clone https://github.com/arut/nginx-rtmp-module.git
+<span class="hljs-built_in">cd</span> nginx
+git <span class="hljs-built_in">clone</span> https://github.com/arut/nginx-rtmp-module.git
 sudo wget http://nginx.org/download/nginx-1.12.0.tar.gz
 sudo tar -zxvf nginx-1.12.0.tar.gz
-cd nginx-1.12.0/
-sudo ./configure --prefix=/usr/local/nginx --with-http_ssl_module --add-module=../nginx-rtmp-module
+<span class="hljs-built_in">cd</span> nginx-1.12.0/
+sudo ./configure --prefix=/usr/<span class="hljs-built_in">local</span>/nginx --with-http_ssl_module --add-module=../nginx-rtmp-module
 sudo make
 sudo make install
-#启动：
-sudo /usr/local/nginx/sbin/nginx
-#or
-sudo /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
-</code></pre>
+<span class="hljs-comment">#启动：</span>
+sudo /usr/<span class="hljs-built_in">local</span>/nginx/sbin/nginx
+<span class="hljs-comment">#or</span>
+sudo /usr/<span class="hljs-built_in">local</span>/nginx/sbin/nginx -c /usr/<span class="hljs-built_in">local</span>/nginx/conf/nginx.conf</code></pre>
 </li>
 <li><p>配置Nginx流媒体服务器</p>
-<pre><code class="lang-bash">#停止
-sudo /usr/local/nginx/sbin/nginx -s stop 
-sudo vim /usr/local/nginx/conf/nginx.conf
-#添加
-rtmp {
-    server {
+<pre><code class="hljs bash"><span class="hljs-comment">#停止</span>
+sudo /usr/<span class="hljs-built_in">local</span>/nginx/sbin/nginx -s stop 
+sudo vim /usr/<span class="hljs-built_in">local</span>/nginx/conf/nginx.conf
+<span class="hljs-comment">#添加</span>
+rtmp &#123;
+    server &#123;
             listen 1935;
             chunk_size 4096;
-
-            application live {
+ 
+            application live &#123;
                     live on;
                     record on;
-                    }
-    }
-}
-#重新启动
-sudo /usr/local/nginx/sbin/nginx
-</code></pre>
+                    &#125;
+    &#125;
+&#125;
+<span class="hljs-comment">#重新启动</span>
+sudo /usr/<span class="hljs-built_in">local</span>/nginx/sbin/nginx</code></pre>
 </li>
 <li><p>ffmpeg 推流</p>
-<pre><code class="lang-bash">ffmpeg -re -i /home/test.mp4 -vcodec copy -acodec copy -b:v 800k -b:a 32k -f flv rtmp://localhost/live
-</code></pre>
+<pre><code class="hljs bash">ffmpeg -re -i /home/test.mp4 -vcodec copy -acodec copy -b:v 800k -b:a 32k -f flv rtmp://localhost/live</code></pre>
 </li>
 <li><p>客户端拉流</p>
 <p>使用vlc打开网络串流,输入流媒体服务器地址:rtmp://服务器IP:1935/live/ ,即可播放</p>
 </li>
 </ol>
 <p><strong>nginx的删除</strong></p>
-<pre><code class="lang-bash">$ sudo service nginx stop
+<pre><code class="hljs bash">$ sudo service nginx stop
 $ sudo apt-get --purge remove nginx
 $ sudo apt-get autoremove
 $ dpkg --get-selections|grep nginx
-#结果:nginx-common
-$ sudo apt-get --purge remove nginx-common
-</code></pre>
+<span class="hljs-comment">#结果:nginx-common</span>
+$ sudo apt-get --purge remove nginx-common</code></pre>
 <p><code>版权</code>声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

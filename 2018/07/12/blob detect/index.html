@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      205 字
+      201 字
     </span>
   
 
@@ -208,25 +208,22 @@
             <h1 style="display: none">blob detect</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="斑点检测"><a href="#斑点检测" class="headerlink" title="斑点检测"></a>斑点检测</h3><p>斑点:与周围区域存在颜色差异或灰度差异的区域<br>斑点检测的主要思路是检测出图像中比周围像素灰度大或者比周围区域灰度值小的区域<br>　　1.基于求导的微分方法<br>　　2.基于局部极值的分水岭算法,基于此OPENCV中提供simpleBlobDetector特征检测器</p>
-<pre><code class="lang-cpp">#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;opencv2\opencv.hpp&gt;
-using namespace cv;
-int main() {
-    Mat im = imread(&quot;D:/learn/jiaopan/source/images/opencv3/blob.jpg&quot;,IMREAD_GRAYSCALE);
-    imshow(&quot;im&quot;, im);
-    Ptr&lt;SimpleBlobDetector&gt; detector = SimpleBlobDetector::create();
-    std::vector&lt;KeyPoint&gt; keypoints;
-    detector-&gt;detect(im, keypoints);
-    Mat im_with_keypoints;
-    drawKeypoints(im, keypoints, im_with_keypoints, Scalar(0, 255, 0), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
-    imshow(&quot;keypoints&quot;, im_with_keypoints);
-    waitKey(0);
-    return 0;
-}
-</code></pre>
-<p>原图<br><img src="/images/opencv3/blob.jpg" srcset="/img/loading.gif" alt=""><br>灰度图<br><img src="/images/opencv3/blob2.jpg" srcset="/img/loading.gif" alt=""><br>斑点检测图<br><img src="/images/opencv3/blob3.jpg" srcset="/img/loading.gif" alt=""></p>
+              <h3 id="斑点检测"><a href="#斑点检测" class="headerlink" title="斑点检测"></a>斑点检测</h3><p>斑点:与周围区域存在颜色差异或灰度差异的区域<br>斑点检测的主要思路是检测出图像中比周围像素灰度大或者比周围区域灰度值小的区域<br>　　1.基于求导的微分方法<br>　　2.基于局部极值的分水岭算法,基于此OPENCV中提供simpleBlobDetector特征检测器<br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;opencv2\opencv.hpp&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> cv;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	Mat im = imread(<span class="hljs-string">"D:/learn/jiaopan/source/images/opencv3/blob.jpg"</span>,IMREAD_GRAYSCALE);
+	imshow(<span class="hljs-string">"im"</span>, im);
+	Ptr&lt;SimpleBlobDetector&gt; detector = SimpleBlobDetector::create();
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;KeyPoint&gt; keypoints;
+	detector-&gt;detect(im, keypoints);
+	Mat im_with_keypoints;
+	drawKeypoints(im, keypoints, im_with_keypoints, Scalar(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), DrawMatchesFlags::DRAW_RICH_KEYPOINTS);
+	imshow(<span class="hljs-string">"keypoints"</span>, im_with_keypoints);
+	waitKey(<span class="hljs-number">0</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre><br>原图<br><img src="/images/opencv3/blob.jpg" srcset="/images/loading.gif" alt=""><br>灰度图<br><img src="/images/opencv3/blob2.jpg" srcset="/images/loading.gif" alt=""><br>斑点检测图<br><img src="/images/opencv3/blob3.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

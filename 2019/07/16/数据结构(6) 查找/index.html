@@ -209,37 +209,35 @@
             
             <div class="markdown-body" id="post-body">
               <h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>1.一般线性表</p>
-<pre><code class="lang-c++">typedef struct{
-    ElemType *elem;//0号单元留空
-    int length;
-}STable;
-int search(STable table,ElemType key){
-    table.elem[0] = key;//哨兵
-    for(int i = table.length;table.elem[i] != key; --i);
-    return i;
-}
-</code></pre>
-<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><pre><code class="lang-c++">int binary_search(SeqList list,ElemType key){
-    int low = 0;high = list.length-1;mid;
-    while(low &lt;= high){
-        mid = (low+high)/2;
-        if(list.elem[mid] == key)
-            return mid;
-        else if(list.elem[mid] &lt; key)
-            low = mid+1;
-        else
-            high = mid-1;
-    }
-    return -1;//查找失败
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    ElemType *elem;<span class="hljs-comment">//0号单元留空</span>
+    <span class="hljs-keyword">int</span> length;
+&#125;STable;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(STable table,ElemType key)</span></span>&#123;
+    table.elem[<span class="hljs-number">0</span>] = key;<span class="hljs-comment">//哨兵</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = table.length;table.elem[i] != key; --i);
+    <span class="hljs-keyword">return</span> i;
+&#125;</code></pre>
+<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binary_search</span><span class="hljs-params">(SeqList <span class="hljs-built_in">list</span>,ElemType key)</span></span>&#123;
+    <span class="hljs-keyword">int</span> low = <span class="hljs-number">0</span>;high = <span class="hljs-built_in">list</span>.length<span class="hljs-number">-1</span>;mid;
+    <span class="hljs-keyword">while</span>(low &lt;= high)&#123;
+        mid = (low+high)/<span class="hljs-number">2</span>;
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">list</span>.elem[mid] == key)
+            <span class="hljs-keyword">return</span> mid;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">list</span>.elem[mid] &lt; key)
+            low = mid+<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span>
+            high = mid<span class="hljs-number">-1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<span class="hljs-comment">//查找失败</span>
+&#125;</code></pre>
 <h1 id="B树和B-树"><a href="#B树和B-树" class="headerlink" title="B树和B+树"></a>B树和B+树</h1><p>$B$树中所有结点的子结点数的最大值称为$B$树的阶，一个 $m$ 阶的$B$树是一个有以下属性的树：</p>
 <p><strong>1</strong>.每一个结点最多有 $m $个子结点，即每个结点至多含有$m-1$个关键字<br>2.每一个非叶子结点（除根结点）最少有 $⌈m/2⌉$ 个子结点,即至少含有$[m/2]-1$个关键字<br>3.如果根结点不是叶子结点，那么它至少有两个子结点<br>4.有 $k$ 个子结点的非叶子结点拥有 $k − 1$ 个键<br>5.所有的叶子结点都在同一层</p>
 <p>非根内部结点的关键字个数$n$范围：$[m/2]-1 \leq n \leq m-1$,根结点关键字个数$n$范围：$1 \leq n\leq m-1$</p>
 <p>每一个内部结点的键将结点的子树分开。</p>
 <p>例如，如果一个内部结点有3个子结点（子树），那么它就必须有两个键： $a_1 $和 $a_2$ </p>
 <p>左边子树的所有值都必须小于 $a_1$ ，中间子树的所有值都必须在 $a_1$ 和$a_2$ 之间，右边子树的所有值都必须大于$ a_2$ </p>
-<p><img src="\images\dataStructure\44.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\44.jpg" srcset="/images/loading.gif" alt=""></p>
 <p><strong>B树的查找</strong></p>
 <p>1.在$B$中找结点 (读入内存) 2.在结点内找关键字(通过顺序查找或折半查找查找等于key的关键字)</p>
 <p><strong>B树的插入</strong></p>
@@ -251,92 +249,92 @@ int search(STable table,ElemType key){
 </blockquote>
 <p>[]: <a href="https://www.cnblogs.com/nullzx/p/8729425.html" target="_blank" rel="noopener">https://www.cnblogs.com/nullzx/p/8729425.html</a></p>
 <p>1.空树中插入39</p>
-<p><img src="\images\dataStructure\45.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\45.png" srcset="/images/loading.gif" alt=""></p>
 <p>2.继续插入22，97和41</p>
-<p><img src="\images\dataStructure\46.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\46.png" srcset="/images/loading.gif" alt=""></p>
 <p>3.继续插入53</p>
-<p><img src="\images\dataStructure\47.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\47.png" srcset="/images/loading.gif" alt=""></p>
 <p>插入后超过了最大允许的关键字个数4，需以中位数(41)为中心进行分裂</p>
-<p><img src="\images\dataStructure\48.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\48.png" srcset="/images/loading.gif" alt=""></p>
 <p>4.依次插入13，21，40，同样会造成分裂，结果如下图</p>
-<p><img src="\images\dataStructure\49.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\49.png" srcset="/images/loading.gif" alt=""></p>
 <p>5.依次插入30，27, 33 ；36，35，34 ；24，29</p>
-<p><img src="\images\dataStructure\50.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\50.png" srcset="/images/loading.gif" alt=""></p>
 <p>6.插入key值为26的记录</p>
-<p><img src="\images\dataStructure\51.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\51.png" srcset="/images/loading.gif" alt=""></p>
 <p>当前结点需要以27为中心分裂,并向父结点插入27</p>
-<p><img src="\images\dataStructure\52.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\52.png" srcset="/images/loading.gif" alt=""></p>
 <p>插入后导致当前结点（即根结点）也需要分裂</p>
-<p><img src="\images\dataStructure\53.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\53.png" srcset="/images/loading.gif" alt=""></p>
 <p><strong>B树的删除</strong></p>
 <p>删除时，需要判断结点中关键字的个数$\geqslant [m/2]-1$</p>
 <blockquote>
 <p>5阶B树为例，结点最多有4个key,最少有2个key</p>
 </blockquote>
 <p>[]: <a href="https://www.cnblogs.com/nullzx/p/8729425.html" target="_blank" rel="noopener">https://www.cnblogs.com/nullzx/p/8729425.html</a></p>
-<p><img src="\images\dataStructure\54.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\54.png" srcset="/images/loading.gif" alt=""></p>
 <p>1.B树中删除21，删除后结点中的关键字个数仍然大于等2，删除结束</p>
-<p><img src="\images\dataStructure\55.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\55.png" srcset="/images/loading.gif" alt=""></p>
 <p>2.删除27，27位于非叶子结点中，利用27的后继28替代</p>
-<p><img src="\images\dataStructure\56.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\56.png" srcset="/images/loading.gif" alt=""></p>
 <p>删除后，当前叶子结点的关键字的个数小于2，而它的兄弟结点中有3个关键字，从兄弟结点中借取一个关键字</p>
-<p><img src="\images\dataStructure\57.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\57.png" srcset="/images/loading.gif" alt=""></p>
 <p>3.删除32</p>
-<p><img src="\images\dataStructure\58.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\58.png" srcset="/images/loading.gif" alt=""></p>
 <p>删除后，当前结点中只有一个关键字，而兄弟结点中也仅有2个关键字，只能让父结点中的30下移并和兄弟结点中的关键字合并，成为一个新的结点，当前结点的指针指向父结点</p>
-<p><img src="\images\dataStructure\59.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\59.png" srcset="/images/loading.gif" alt=""></p>
 <p>4.删除40</p>
-<p><img src="\images\dataStructure\60.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\60.png" srcset="/images/loading.gif" alt=""></p>
 <p>同理，当前结点的关键字数小于2，兄弟结点中没有多余关键字，所以父结点中的关键字下移，和兄弟结点(左右兄弟结点都可)的关键字合</p>
-<p><img src="\images\dataStructure\61.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\61.png" srcset="/images/loading.gif" alt=""></p>
 <p>当前结点关键字个数小于2，继续合并</p>
-<p><img src="\images\dataStructure\62.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\62.png" srcset="/images/loading.gif" alt=""></p>
 <p><strong>B+树</strong></p>
 <p>1.每个分支结点最多有$m$个子结点</p>
 <p>2.结点的子结点个数与关键字个数相等(或结点的子结点个数 = 关键字个数+1)</p>
 <p>3.所有叶结点包含全部关键字及指向记录的指针，且叶结点中关键字按大小顺序排列，所有相邻结点按大小顺序互相链接</p>
 <p>4.非根内部结点的关键字个数$n$范围：$[m/2] \leq n \leq m$,根结点关键字个数$n$范围：$1 \leq n\leq m$</p>
-<p><img src="\images\dataStructure\63.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\63.png" srcset="/images/loading.gif" alt=""></p>
 <p><strong>B+树的插入</strong></p>
 <blockquote>
 <p>以5阶B树为例</p>
 </blockquote>
 <p>1.空树中插入5</p>
-<p><img src="\images\dataStructure\64.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\64.png" srcset="/images/loading.gif" alt=""></p>
 <p>2.依次插入8，10，15</p>
-<p><img src="\images\dataStructure\65.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\65.png" srcset="/images/loading.gif" alt=""></p>
 <p>3.插入16</p>
 <p>插入16后超过了关键字的个数限制，需进行分裂</p>
-<p><img src="\images\dataStructure\66.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\66.png" srcset="/images/loading.gif" alt=""></p>
 <p>4.插入17</p>
-<p><img src="\images\dataStructure\67.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\67.png" srcset="/images/loading.gif" alt=""></p>
 <p>5.插入18</p>
-<p><img src="\images\dataStructure\68.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\68.png" srcset="/images/loading.gif" alt=""></p>
 <p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
-<p><img src="\images\dataStructure\69.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\69.png" srcset="/images/loading.gif" alt=""></p>
 <p>6.插入若干数据</p>
-<p><img src="\images\dataStructure\70.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\70.png" srcset="/images/loading.gif" alt=""></p>
 <p>7.插入7</p>
-<p><img src="\images\dataStructure\71.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\71.png" srcset="/images/loading.gif" alt=""></p>
 <p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
-<p><img src="\images\dataStructure\72.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\72.png" srcset="/images/loading.gif" alt=""></p>
 <p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
-<p><img src="\images\dataStructure\73.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\73.png" srcset="/images/loading.gif" alt=""></p>
 <p><strong>B+树的删除</strong></p>
 <blockquote>
 <p>以5阶B树为例</p>
 </blockquote>
-<p><img src="\images\dataStructure\74.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\74.png" srcset="/images/loading.gif" alt=""></p>
 <p>1.删除22</p>
-<p><img src="\images\dataStructure\75.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\75.png" srcset="/images/loading.gif" alt=""></p>
 <p>2.删除15</p>
-<p><img src="\images\dataStructure\76.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\76.png" srcset="/images/loading.gif" alt=""></p>
 <p>删除后当前结点只有一个关键字，不满足条件，而兄弟结点有三个关键字，从兄弟结点中借关键字为9,同时更新将父结点中的关键字由10变为9，删除结束</p>
-<p><img src="\images\dataStructure\77.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\77.png" srcset="/images/loading.gif" alt=""></p>
 <p>3.删除7</p>
-<p><img src="\images\dataStructure\78.png" srcset="/img/loading.gif" alt=""></p>
-<p><img src="\images\dataStructure\79.png" srcset="/img/loading.gif" alt=""></p>
-<p><img src="\images\dataStructure\80.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\78.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\79.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\80.png" srcset="/images/loading.gif" alt=""></p>
 <h1 id="散列-hash-表"><a href="#散列-hash-表" class="headerlink" title="散列(hash)表"></a>散列(hash)表</h1><p><strong>散列函数</strong></p>
 <p>一个把查找表中的关键字映射为该关键字对应的地址函数，记$Hash(key)=Address$</p>
 <p>1.直接定址法 $Hash(key)=a\times key+b$，($a,b$未常数)</p>
@@ -363,30 +361,29 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
 <p>重复执行$H<em>{i+1}=(H_i+(i+1))\%m$ ($i=1,2,3,\cdots,m-1$),直到$L[H</em>{i+1}]=key或L[H_{i+1}]=NULL$</p>
 <h1 id="字符串模式匹配"><a href="#字符串模式匹配" class="headerlink" title="字符串模式匹配"></a>字符串模式匹配</h1><p>1.简单的模式匹配算法</p>
 <p>从主串S的指定字符开始，和模式串的第一个字符比较，若相等则继续逐个比较后续字符，直到模式串中的每个字符依次和主串的一个连续字符序列相等，则匹配成功；若比较过程中有某对字符不相等，则从主串的下一个字符重新与模式串的第一个字符相比较。</p>
-<pre><code class="lang-c++">int matching(String target, String pattern, int begin) {
-        // i为目标串target的索引
-        int i = begin;
-        // j为模式串pattern的索引
-        int j = 0;
-        if (target == null || pattern == null || begin &gt; target.length()) {
-            return -1;
-        }
-        while (i &lt; target.length() &amp;&amp; j &lt; pattern.length()){
-            if (target[i] == pattern[j]) {
-                i++;
-                j++;
-            } else {
-                i = i - j + 1;
-                j = 0;
-            }
-        }
-        // 模式串是否存在于目标串
-        if (j == pattern.length()) {
-            return i - pattern.length() ;
-        }
-        return -1;
-    }
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">matching</span><span class="hljs-params">(<span class="hljs-keyword">String</span> target, <span class="hljs-keyword">String</span> pattern, <span class="hljs-keyword">int</span> <span class="hljs-built_in">begin</span>)</span> </span>&#123;
+		<span class="hljs-comment">// i为目标串target的索引</span>
+		<span class="hljs-keyword">int</span> i = <span class="hljs-built_in">begin</span>;
+		<span class="hljs-comment">// j为模式串pattern的索引</span>
+		<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">if</span> (target == null || pattern == null || <span class="hljs-built_in">begin</span> &gt; target.length()) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+		&#125;
+		<span class="hljs-keyword">while</span> (i &lt; target.length() &amp;&amp; j &lt; pattern.length())&#123;
+			<span class="hljs-keyword">if</span> (target[i] == pattern[j]) &#123;
+				i++;
+				j++;
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				i = i - j + <span class="hljs-number">1</span>;
+				j = <span class="hljs-number">0</span>;
+			&#125;
+		&#125;
+		<span class="hljs-comment">// 模式串是否存在于目标串</span>
+		<span class="hljs-keyword">if</span> (j == pattern.length()) &#123;
+			<span class="hljs-keyword">return</span> i - pattern.length() ;
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+	&#125;</code></pre>
 <p>2.KMP模式匹配算法</p>
 <p>wait</p>
 

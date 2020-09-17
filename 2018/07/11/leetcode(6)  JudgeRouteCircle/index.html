@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      242 字
+      231 字
     </span>
   
 
@@ -210,39 +210,28 @@
             <div class="markdown-body" id="post-body">
               <p>difficult：easy #657<br>Initially, there is a Robot at position (0, 0). Given a sequence of its moves, judge if this robot makes a circle, which means it moves back to the original place.</p>
 <p>The move sequence is represented by a string. And each move is represent by a character. The valid robot moves are R (Right), L (Left), U (Up) and D (down). The output should be true or false representing whether the robot makes a circle.</p>
-<p>Example 1:</p>
-<pre><code class="lang-cpp">Input: &quot;UD&quot;
-Output: true
-</code></pre>
-<p>Example 2:</p>
-<pre><code class="lang-cpp">Input: &quot;LL&quot;
-Output: false
-</code></pre>
-<p><strong>解法一：</strong></p>
-<pre><code class="lang-cpp">#include&lt;string&gt;
-#include&lt;map&gt;
-bool judgeCircle(std::string moves) {
-    std::map&lt;char, int&gt; action = { {&#39;R&#39;,0},{&#39;L&#39;,0},{&#39;U&#39;,0},{&#39;D&#39;,0} };
-    for (int i = 0; i &lt; moves.size(); i++) {
-        action[moves[i]]++;
-    }
-    return action[&#39;R&#39;] == action[&#39;L&#39;] &amp;&amp; action[&#39;U&#39;] == action[&#39;D&#39;];
-}
-</code></pre>
-<p><strong>解法二：</strong></p>
-<pre><code class="lang-cpp">#include&lt;string&gt;
-#include&lt;map&gt;
-bool judgeCircle(std::string moves) {
-    int x = 0, y = 0;
-    for (char move:moves) {
-        if (move == &#39;U&#39;) y--;
-        else if (move == &#39;D&#39;) y++;
-        else if (move == &#39;R&#39;) x--;
-        else if (move == &#39;L&#39;) x++;
-    }
-    return x == 0 &amp;&amp; y == 0;
-}
-</code></pre>
+<p>Example 1:<br><pre><code class="hljs cpp">Input: <span class="hljs-string">"UD"</span>
+Output: <span class="hljs-literal">true</span></code></pre><br>Example 2:<br><pre><code class="hljs cpp">Input: <span class="hljs-string">"LL"</span>
+Output: <span class="hljs-literal">false</span></code></pre><br><strong>解法一：</strong><br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">judgeCircle</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> moves)</span> </span>&#123;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">char</span>, <span class="hljs-keyword">int</span>&gt; action = &#123; &#123;<span class="hljs-string">'R'</span>,<span class="hljs-number">0</span>&#125;,&#123;<span class="hljs-string">'L'</span>,<span class="hljs-number">0</span>&#125;,&#123;<span class="hljs-string">'U'</span>,<span class="hljs-number">0</span>&#125;,&#123;<span class="hljs-string">'D'</span>,<span class="hljs-number">0</span>&#125; &#125;;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; moves.size(); i++) &#123;
+		action[moves[i]]++;
+	&#125;
+	<span class="hljs-keyword">return</span> action[<span class="hljs-string">'R'</span>] == action[<span class="hljs-string">'L'</span>] &amp;&amp; action[<span class="hljs-string">'U'</span>] == action[<span class="hljs-string">'D'</span>];
+&#125;</code></pre><br><strong>解法二：</strong><br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;map&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">judgeCircle</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> moves)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>, y = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> move:moves) &#123;
+		<span class="hljs-keyword">if</span> (move == <span class="hljs-string">'U'</span>) y--;
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (move == <span class="hljs-string">'D'</span>) y++;
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (move == <span class="hljs-string">'R'</span>) x--;
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (move == <span class="hljs-string">'L'</span>) x++;
+	&#125;
+	<span class="hljs-keyword">return</span> x == <span class="hljs-number">0</span> &amp;&amp; y == <span class="hljs-number">0</span>;
+&#125;</code></pre></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

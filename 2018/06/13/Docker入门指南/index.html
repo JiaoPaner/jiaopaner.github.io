@@ -208,12 +208,12 @@
             <h1 style="display: none">Docker入门指南</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><img src="/images/docker.jpg" srcset="/img/loading.gif" alt="&quot;docker&quot;">  </p>
+              <p><img src="/images/docker.jpg" srcset="/images/loading.gif" alt="&quot;docker&quot;">  </p>
 <p><strong>1.Docker简介</strong></p>
 <p>问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?</p>
 <p>Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源.容器是完全使用沙箱机制，相互之间不会有任何接口(类似iPhone的 app)，更重要的是容器性能开销极低.[来源网络]</p>
 <p>通过上述定义可以知道，Docker似乎类似于虚拟机，可以在Docker中打包安装任何应用并运行，比如tomcat、Java、mysql等.但它并不等同于虚拟机，为了区分Docker和虚拟机，我们先来了解虚拟机的运行机制，如下图所示：</p>
-<p><img src="/images/docker3.png" srcset="/img/loading.gif" alt="virtualbox"></p>
+<p><img src="/images/docker3.png" srcset="/images/loading.gif" alt="virtualbox"></p>
 <blockquote>
 <p>基础设施（Infrastructure):个人电脑，数据中心的服务器，或者是云主机</p>
 <p>操作系统（Host Operating System）：MacOS，Windows或者Linux发行版</p>
@@ -223,7 +223,7 @@
 <p>应用(APP)：Web 应用、后台应用、数据库应用等</p>
 </blockquote>
 <p>可以看出若隔离不同的应用，需要安装并启动不同的虚拟机，虚拟机的启动速度慢而且开销极大.Docker容器运行的应用不仅处于隔离状态，而且启动速度极快(毫秒级)，而且开销极小.下图为Docker的运行机制:</p>
-<p><img src="/images/docker1.png" srcset="/img/loading.gif" alt="docker"></p>
+<p><img src="/images/docker1.png" srcset="/images/loading.gif" alt="docker"></p>
 <blockquote>
 <p>基础设施（Infrastructure):个人电脑，数据中心的服务器，或者是云主机</p>
 <p>操作系统（Host Operating System）：Linux</p>
@@ -234,112 +234,107 @@
 <p>Docker守护进程可以直接与主操作系统进行通信，为各个Docker容器分配资源,它还可以将容器与主操作系统隔离，并将各个容器互相隔离。<br>虚拟机启动需要数分钟，而Docker容器可以在数毫秒内启动,由于没有臃肿的从操作系统,Docker可以节省大量的磁盘空间以及其他系统资源。</p>
 <hr>
 <p><strong>2.Docker安装(基于Ubuntu)</strong></p>
-<p>在创建Docker容器前需要先安装Docker容器引擎，类似于虚拟机的virtualBox或VMWare.</p>
-<pre><code class="lang-bash">#查看内核版本 docker安装需要大于3.1
+<p>在创建Docker容器前需要先安装Docker容器引擎，类似于虚拟机的virtualBox或VMWare.<br><pre><code class="hljs bash"><span class="hljs-comment">#查看内核版本 docker安装需要大于3.1</span>
 $ uname -r
 4.13.0-36-generic
-#更新软件源
+<span class="hljs-comment">#更新软件源</span>
 $ sudo apt-get update
-#安装docker
+<span class="hljs-comment">#安装docker</span>
 sudo apt-get install docker.io 
-#查看安装的docker版本(无错则安装成功)
+<span class="hljs-comment">#查看安装的docker版本(无错则安装成功)</span>
 $ docker --version
 Docker version 1.13.1, build 092cba3
 
-#运行hello-wolrd实例(该命令运行时会从镜像仓库中拉取docker镜像)
+<span class="hljs-comment">#运行hello-wolrd实例(该命令运行时会从镜像仓库中拉取docker镜像)</span>
 $ sudo docker run hello-world
 latest: Pulling from library/hello-world
 9bb5a5d4561a: Pull complete 
 Digest: sha256:f5233545e43561214ca4891fd1157e1c3c563316ed8e237750d59bde73361e77
-Status: Downloaded newer image for hello-world:latest
+Status: Downloaded newer image <span class="hljs-keyword">for</span> hello-world:latest
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ....
 
-#查看已有的镜像
+<span class="hljs-comment">#查看已有的镜像</span>
 $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 hello-world         latest              e38bc07ac18e        2 months ago        1.85 kB
-#hello-world即从镜像仓库中拉取的镜像 docker run hello-world:latest 启动容器
-</code></pre>
+<span class="hljs-comment">#hello-world即从镜像仓库中拉取的镜像 docker run hello-world:latest 启动容器</span></code></pre></p>
 <hr>
-<p><strong>3.容器和镜像</strong><br>如下图所示，容器是由镜像实例化而来，类似于面向对象的概念，镜像看作类，容器则为类实例化后的对象.一个Docker镜像可以构建于另一个Docker镜像之上,好比类的继承机制.<br><img src="http://upload-images.jianshu.io/upload_images/2156466-b4341e9da2e6e170.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" srcset="/img/loading.gif" alt="images"><br>docker的镜像概念类似虚拟机的镜像,是一个只读的模板,一个独立的文件系统,包括运行容器所需的数据，且可以用来创建新的容器(docker create <image -id >)，为指定的镜像添加一个可读写层.例如：一个镜像可以包含一个完整的ubuntu操作系统环境,类似于虚拟机的.iso文件.<br>docker利用容器来运行应用,docker容器是由docker镜像创建的运行实例,docker容器类似利用.iso文件安装后的虚拟机，可以执行各种读写操作,每个容器间是相互隔离的，容器中会运行特定的运用，包含特定应用的代码及所需的依赖文件,可以把容器看作一个简易版的linux环境.可以用同一个镜像启动多个Docker容器.</p>
+<p><strong>3.容器和镜像</strong><br>如下图所示，容器是由镜像实例化而来，类似于面向对象的概念，镜像看作类，容器则为类实例化后的对象.一个Docker镜像可以构建于另一个Docker镜像之上,好比类的继承机制.<br><img src="http://upload-images.jianshu.io/upload_images/2156466-b4341e9da2e6e170.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" srcset="/images/loading.gif" alt="images"><br>docker的镜像概念类似虚拟机的镜像,是一个只读的模板,一个独立的文件系统,包括运行容器所需的数据，且可以用来创建新的容器(docker create <image -id >)，为指定的镜像添加一个可读写层.例如：一个镜像可以包含一个完整的ubuntu操作系统环境,类似于虚拟机的.iso文件.<br>docker利用容器来运行应用,docker容器是由docker镜像创建的运行实例,docker容器类似利用.iso文件安装后的虚拟机，可以执行各种读写操作,每个容器间是相互隔离的，容器中会运行特定的运用，包含特定应用的代码及所需的依赖文件,可以把容器看作一个简易版的linux环境.可以用同一个镜像启动多个Docker容器.</p>
 <hr>
-<p><strong>4.docker命令</strong></p>
-<pre><code class="lang-bash">#查看已有的镜像
+<p><strong>4.docker命令</strong><br><pre><code class="hljs bash"><span class="hljs-comment">#查看已有的镜像</span>
 $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 hello-world         latest              e38bc07ac18e        2 months ago        1.85 kB
-#启动容器 
-$ docker run hello-world #run 创建基于该镜像的容器并启动
-#启动指定版本容器
+<span class="hljs-comment">#启动容器 </span>
+$ docker run hello-world <span class="hljs-comment">#run 创建基于该镜像的容器并启动</span>
+<span class="hljs-comment">#启动指定版本容器</span>
 $ docker run hello-world:latest
-#查看已启动的容器
+<span class="hljs-comment">#查看已启动的容器</span>
 $ docker ps  
-#查看存在的容器
+<span class="hljs-comment">#查看存在的容器</span>
 $ docker ps -a 
-#启动已存在的容器
+<span class="hljs-comment">#启动已存在的容器</span>
 $ docker start 容器ID
-#启动容器(守护方式/后台启动)
+<span class="hljs-comment">#启动容器(守护方式/后台启动)</span>
 $ docker run -d 容器ID
 $ docker start -d 容器ID
-#重新进入容器
+<span class="hljs-comment">#重新进入容器</span>
 $ docker attach 容器ID
-#运行的容器种启动新进程
-$ docker exec -i -t 容器ID /bin/bash
-#停止守护容器
-$ docker stop 容器ID #等待容器停止
-$ docker kill 容器ID #立即停止容器
-#删除容器
+<span class="hljs-comment">#运行的容器种启动新进程</span>
+$ docker <span class="hljs-built_in">exec</span> -i -t 容器ID /bin/bash
+<span class="hljs-comment">#停止守护容器</span>
+$ docker stop 容器ID <span class="hljs-comment">#等待容器停止</span>
+$ docker <span class="hljs-built_in">kill</span> 容器ID <span class="hljs-comment">#立即停止容器</span>
+<span class="hljs-comment">#删除容器</span>
 $ docker rm 容器ID
-#容器端口映射
-docker -P / docker --publish-all=true|false #映射所有端口
-$ docker run -P -i -t ubuntu #宿主机端口随机
-docker -p #映射指定端口
-$ docker run -p 80 -i -t ubuntu  #宿主机端口随机
-$ docker run -p 8080:80 -i -t ubuntu  #宿主机端口:容器端口
-$ docker run -p 0.0.0.0:80 -i -t ubuntu  #宿主机ip:容器端口
-$ docker run -p 0.0.0.0:8080:80 -i -t ubuntu  #宿主机ip:宿主机端口:容器端口
+<span class="hljs-comment">#容器端口映射</span>
+docker -P / docker --publish-all=<span class="hljs-literal">true</span>|<span class="hljs-literal">false</span> <span class="hljs-comment">#映射所有端口</span>
+$ docker run -P -i -t ubuntu <span class="hljs-comment">#宿主机端口随机</span>
+docker -p <span class="hljs-comment">#映射指定端口</span>
+$ docker run -p 80 -i -t ubuntu  <span class="hljs-comment">#宿主机端口随机</span>
+$ docker run -p 8080:80 -i -t ubuntu  <span class="hljs-comment">#宿主机端口:容器端口</span>
+$ docker run -p 0.0.0.0:80 -i -t ubuntu  <span class="hljs-comment">#宿主机ip:容器端口</span>
+$ docker run -p 0.0.0.0:8080:80 -i -t ubuntu  <span class="hljs-comment">#宿主机ip:宿主机端口:容器端口</span>
 
-#根据当前容器状态 创建新的镜像
-docker commit -m=&#39;ssh install&#39; -a=&#39;jiaopan&#39; cb57c338f1c9 kyleson/jpos
-#-m 说明文字
-#-a 作者
-#cb57c338f1c9 容器ID
-#kyleson/jpos 镜像名称
-#-p 提交时暂停容器
+<span class="hljs-comment">#根据当前容器状态 创建新的镜像</span>
+docker commit -m=<span class="hljs-string">'ssh install'</span> -a=<span class="hljs-string">'jiaopan'</span> cb57c338f1c9 kyleson/jpos
+<span class="hljs-comment">#-m 说明文字</span>
+<span class="hljs-comment">#-a 作者</span>
+<span class="hljs-comment">#cb57c338f1c9 容器ID</span>
+<span class="hljs-comment">#kyleson/jpos 镜像名称</span>
+<span class="hljs-comment">#-p 提交时暂停容器</span>
 
-#上传镜像到docker hub
+<span class="hljs-comment">#上传镜像到docker hub</span>
 $ sudo docker login
-$ sudo docker push kyleson/jpos
-</code></pre>
+$ sudo docker push kyleson/jpos</code></pre></p>
 <p><strong>5.docker实例</strong></p>
-<h1 id="远程登陆docker容器"><a href="#远程登陆docker容器" class="headerlink" title="远程登陆docker容器"></a>远程登陆docker容器</h1><pre><code class="lang-bash">#1.创建并启动docker容器 
-$ docker run -p 2222:22 -i -t ubuntu:latest /bin/bash #避免重复创建容器 启动已有容器时使用start命令
-#2.安装ssh
+<h1 id="远程登陆docker容器"><a href="#远程登陆docker容器" class="headerlink" title="远程登陆docker容器"></a>远程登陆docker容器</h1><pre><code class="hljs bash"><span class="hljs-comment">#1.创建并启动docker容器 </span>
+$ docker run -p 2222:22 -i -t ubuntu:latest /bin/bash <span class="hljs-comment">#避免重复创建容器 启动已有容器时使用start命令</span>
+<span class="hljs-comment">#2.安装ssh</span>
 $ apt-get install openssh-server
-#3.修改ssh_config 
+<span class="hljs-comment">#3.修改ssh_config </span>
 $ vim /etc/ssh/sshd_config 
-PermitRootLogin yes #允许root用户以任何认证方式登录
+PermitRootLogin yes <span class="hljs-comment">#允许root用户以任何认证方式登录</span>
 PasswordAuthentication yes
 
-#notes:
-#PermitRootLogin without-password #只允许root用公钥认证方式登录
-#PermitRootLogin no #不允许root用户以任何认证方式登录
-#4.启动ssh
-$ service ssh restart #
-#5.#修改root密码
+<span class="hljs-comment">#notes:</span>
+<span class="hljs-comment">#PermitRootLogin without-password #只允许root用公钥认证方式登录</span>
+<span class="hljs-comment">#PermitRootLogin no #不允许root用户以任何认证方式登录</span>
+<span class="hljs-comment">#4.启动ssh</span>
+$ service ssh restart <span class="hljs-comment">#</span>
+<span class="hljs-comment">#5.#修改root密码</span>
 $ passwd root
-#6.查看容器ip
+<span class="hljs-comment">#6.查看容器ip</span>
 $ ifconfig
-#7.返回宿主机且保持容器的运行
+<span class="hljs-comment">#7.返回宿主机且保持容器的运行</span>
 ctrl+p ctrl+q 
-#8.宿主机测试ssh登陆容器
+<span class="hljs-comment">#8.宿主机测试ssh登陆容器</span>
 $ ssh -p root@容器ip 
-#9.远程登陆容器
-$ ssh -p 2222 root@容器宿主机ip #宿主机2222端口以映射到容器的22端口
-</code></pre>
+<span class="hljs-comment">#9.远程登陆容器</span>
+$ ssh -p 2222 root@容器宿主机ip <span class="hljs-comment">#宿主机2222端口以映射到容器的22端口</span></code></pre>
 <p>至此,便可像登陆虚拟机一样玩转容器</p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 

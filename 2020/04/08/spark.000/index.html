@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      271 字
+      267 字
     </span>
   
 
@@ -208,23 +208,22 @@
             <h1 style="display: none">000.Spark Basement</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="Launching-Applications-with-spark-submit"><a href="#Launching-Applications-with-spark-submit" class="headerlink" title="Launching Applications with spark-submit"></a>Launching Applications with spark-submit</h1><pre><code class="lang-bash">./bin/spark-submit \
+              <h1 id="Launching-Applications-with-spark-submit"><a href="#Launching-Applications-with-spark-submit" class="headerlink" title="Launching Applications with spark-submit"></a>Launching Applications with spark-submit</h1><pre><code class="hljs bash">./bin/spark-submit \
   --class &lt;main-class&gt; \
   --master &lt;master-url&gt; \
   --deploy-mode &lt;deploy-mode&gt; \
   --conf &lt;key&gt;=&lt;value&gt; \
-  ... # other options
+  ... <span class="hljs-comment"># other options</span>
   &lt;application-jar&gt; \
   [application-arguments]
 
 ./bin/spark-submit \ 
-  --name &quot;My app&quot; \ 
-  --master local[4] \  
-  --conf spark.eventLog.enabled=false \ 
-  --conf &quot;spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps&quot; \ 
+  --name <span class="hljs-string">"My app"</span> \ 
+  --master <span class="hljs-built_in">local</span>[4] \  
+  --conf spark.eventLog.enabled=<span class="hljs-literal">false</span> \ 
+  --conf <span class="hljs-string">"spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps"</span> \ 
   --conf spark.hadoop.abc.def=xyz \ 
-  myApp.jar
-</code></pre>
+  myApp.jar</code></pre>
 <ul>
 <li>—class: Main方法 (e.g. org.apache.spark.examples.SparkPi)</li>
 <li>—master: 集群master地址 (e.g. spark://23.195.26.187:7077)</li>

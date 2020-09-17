@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.1k 字
     </span>
   
 
@@ -208,160 +208,132 @@
             <h1 style="display: none">C++教程(4) C++标准库</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="Pair"><a href="#Pair" class="headerlink" title="Pair"></a>Pair</h3><p>Class Pair将两个value视为一个单元</p>
-<pre><code class="lang-cpp">namespace std{
-    template&lt;typename T,typename U&gt;
-    struct pair{
-        T first;
-        U second;
-        ...
-    };
-}
-</code></pre>
-<p><img src="/images/pair.jpg" srcset="/img/loading.gif" alt=""></p>
-<h3 id="Tuple"><a href="#Tuple" class="headerlink" title="Tuple"></a>Tuple</h3><p>tuple可拥有任意类型任意数量的元素</p>
-<pre><code class="lang-cpp">std::tuple&lt;int, double, char,std::string&gt; tuple(1, 2.3, &#39;y&#39;, &quot;hello wolrd&quot;);
-</code></pre>
-<p><img src="/images/tuple.jpg" srcset="/img/loading.gif" alt=""><br>tuple不允许迭代,运行时传入索引值将报错</p>
-<pre><code class="lang-cpp">std::get&lt;i&gt;(tuple);//错误
-</code></pre>
+              <h3 id="Pair"><a href="#Pair" class="headerlink" title="Pair"></a>Pair</h3><p>Class Pair将两个value视为一个单元<br><pre><code class="hljs cpp"><span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>&#123;
+	<span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T,<span class="hljs-keyword">typename</span> U&gt;
+	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">pair</span>&#123;</span>
+		T first;
+		U second;
+		...
+	&#125;;
+&#125;</code></pre><br><img src="/images/pair.jpg" srcset="/images/loading.gif" alt=""></p>
+<h3 id="Tuple"><a href="#Tuple" class="headerlink" title="Tuple"></a>Tuple</h3><p>tuple可拥有任意类型任意数量的元素<br><pre><code class="hljs cpp"><span class="hljs-built_in">std</span>::tuple&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">double</span>, <span class="hljs-keyword">char</span>,<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt; tuple(<span class="hljs-number">1</span>, <span class="hljs-number">2.3</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">"hello wolrd"</span>);</code></pre><br><img src="/images/tuple.jpg" srcset="/images/loading.gif" alt=""><br>tuple不允许迭代,运行时传入索引值将报错<br><pre><code class="hljs cpp"><span class="hljs-built_in">std</span>::get&lt;i&gt;(tuple);<span class="hljs-comment">//错误</span></code></pre></p>
 <h3 id="Smart-Pointer-智能指针"><a href="#Smart-Pointer-智能指针" class="headerlink" title="Smart Pointer(智能指针)"></a>Smart Pointer(智能指针)</h3><p>Smart Pointer能够得知本身是否为指向某个对象的最后一个指针,当其为指向某个对象的最后一个指针且被删除时即会销毁所指对象</p>
-<h4 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h4><p>共享式拥有 多个smart pointer指向同一对象,对象和资源在最后一个smart pointer销毁时被释放</p>
-<pre><code class="lang-cpp">#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;memory&gt;
-using namespace std;
-int main() {
-    shared_ptr&lt;string&gt; x(new string(&quot;kyleson&quot;));
-    shared_ptr&lt;string&gt; y(new string(&quot;monica&quot;));
-    (*x)[0] = &#39;K&#39;;
-    y-&gt;replace(0, 1, &quot;J&quot;);
-    vector&lt;shared_ptr&lt;string&gt;&gt; person;
-    person.push_back(x);
-    person.push_back(y);
-    person.push_back(x);
-    person.push_back(y);
-    for (auto ptr : person)
-        cout &lt;&lt; *ptr &lt;&lt; &quot; &quot;;
-    cout &lt;&lt; endl;
-    *x = &quot;Nonica&quot;;
-    for (auto ptr : person)
-        cout &lt;&lt; *ptr &lt;&lt; &quot; &quot;;
-    cout &lt;&lt; endl;
-    cout &lt;&lt; &quot;use_count:&quot; &lt;&lt; person[0].use_count() &lt;&lt; endl;//所指对象当前拥有者(指针)数量
-    getchar();
-    return 0;
-}
+<h4 id="shared-ptr"><a href="#shared-ptr" class="headerlink" title="shared_ptr"></a>shared_ptr</h4><p>共享式拥有 多个smart pointer指向同一对象,对象和资源在最后一个smart pointer销毁时被释放<br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;memory&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-built_in">string</span>&gt; x(<span class="hljs-keyword">new</span> <span class="hljs-built_in">string</span>(<span class="hljs-string">"kyleson"</span>));
+	<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-built_in">string</span>&gt; y(<span class="hljs-keyword">new</span> <span class="hljs-built_in">string</span>(<span class="hljs-string">"monica"</span>));
+	(*x)[<span class="hljs-number">0</span>] = <span class="hljs-string">'K'</span>;
+	y-&gt;replace(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-string">"J"</span>);
+	<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-built_in">string</span>&gt;&gt; person;
+	person.push_back(x);
+	person.push_back(y);
+	person.push_back(x);
+	person.push_back(y);
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> ptr : person)
+		<span class="hljs-built_in">cout</span> &lt;&lt; *ptr &lt;&lt; <span class="hljs-string">" "</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	*x = <span class="hljs-string">"Nonica"</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> ptr : person)
+		<span class="hljs-built_in">cout</span> &lt;&lt; *ptr &lt;&lt; <span class="hljs-string">" "</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"use_count:"</span> &lt;&lt; person[<span class="hljs-number">0</span>].use_count() &lt;&lt; <span class="hljs-built_in">endl</span>;<span class="hljs-comment">//所指对象当前拥有者(指针)数量</span>
+	getchar();
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
 Kyleson Jonica Kyleson Jonica
 Nonica Jonica Nonica Jonica
-use_count:3
-</code></pre>
-<p>当string的最后一个拥有者shared_ptr被销毁,所指对象随即调用delete<br>对象的delete不一定发生在 程序终点 , 将nullptr赋值给x或者调整vector大小使其只含有y,则都会调用delete</p>
-<h4 id="自定义delete"><a href="#自定义delete" class="headerlink" title="自定义delete"></a>自定义delete</h4><pre><code class="lang-cpp">    shared_ptr&lt;string&gt; x(new string(&quot;kyleson&quot;), 
-                        [](string *p){
-                            cout &lt;&lt; &quot;delete&quot; &lt;&lt; *p;
-                            delete p;
-                        });
-</code></pre>
+use_count:<span class="hljs-number">3</span></code></pre><br>当string的最后一个拥有者shared_ptr被销毁,所指对象随即调用delete<br>对象的delete不一定发生在 程序终点 , 将nullptr赋值给x或者调整vector大小使其只含有y,则都会调用delete</p>
+<h4 id="自定义delete"><a href="#自定义delete" class="headerlink" title="自定义delete"></a>自定义delete</h4><pre><code class="hljs cpp"><span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-built_in">string</span>&gt; x(<span class="hljs-keyword">new</span> <span class="hljs-built_in">string</span>(<span class="hljs-string">"kyleson"</span>), 
+					[](<span class="hljs-built_in">string</span> *p)&#123;
+						<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"delete"</span> &lt;&lt; *p;
+						<span class="hljs-keyword">delete</span> p;
+					&#125;);</code></pre>
 <p>当最后一个拥有者被销毁时,将调用该lambda函数</p>
-<p>shared point的默认调用delete，而非delete [],当智能指针指向数组时需自定义delete</p>
-<pre><code class="lang-cpp">shared_ptr&lt;int&gt; p(new int[10], [](int *p) {delete[] p; });
-shared_ptr&lt;int&gt; p(new int[10],std::default_delete&lt;int[]&gt;());//利用unique_ptr提供的辅助函数
-</code></pre>
-<h4 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a>weak_ptr</h4><p>weak_ptr共享但不拥有某对象,一旦最末拥有该对象的shared_ptr失去拥有权,任何weak_ptr都会自动成空</p>
-<pre><code class="lang-cpp">#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;vector&gt;
-#include&lt;memory&gt;
-using namespace std;
-class Person {
-public:
-    string name;
-    shared_ptr&lt;Person&gt; mother;
-    shared_ptr&lt;Person&gt; father;
-    vector&lt;shared_ptr&lt;Person&gt;&gt; kids;
-    Person(const string &amp;name, 
-           shared_ptr&lt;Person&gt; m = nullptr, 
-           shared_ptr&lt;Person&gt; f = nullptr) :
-           name(name), mother(m), father(f) {};
-    ~Person(){
-        std::cout &lt;&lt; &quot;delete &quot; &lt;&lt; name &lt;&lt; endl;
-    }
-};
-shared_ptr&lt;Person&gt; initFamily(const string &amp;name) {
-    shared_ptr&lt;Person&gt; mom(new Person(name + &quot;&#39;s mom&quot;));
-    shared_ptr&lt;Person&gt; dad(new Person(name + &quot;&#39;s dad&quot;));
-    shared_ptr&lt;Person&gt; kid(new Person(name, mom, dad));
-    mom-&gt;kids.push_back(kid);
-    dad-&gt;kids.push_back(kid);
-    return kid;
-}
-int main() {
-    shared_ptr&lt;Person&gt; p = initFamily(&quot;kyleson&quot;);
-    cout &lt;&lt; &quot;kyleson&#39;s family exits&quot; &lt;&lt; endl;
-    cout &lt;&lt; &quot;- kyleson is shared &quot; &lt;&lt; p.use_count() &lt;&lt; &quot; times&quot; &lt;&lt; endl;
-    cout &lt;&lt; &quot;- name of 1st kid of kyleson&#39;s mom:&quot;
-        &lt;&lt; p-&gt;mother-&gt;kids[0]-&gt;name &lt;&lt; endl;
-    p = initFamily(&quot;Ninoca&quot;);
-    cout &lt;&lt; &quot;- Ninoca is shared &quot; &lt;&lt; p.use_count() &lt;&lt; &quot; times&quot; &lt;&lt; endl;
-    getchar();
-    return 0;
-}
-kyleson&#39;s family exits
-- kyleson is shared 3 times
-- name of 1st kid of kyleson&#39;s mom:kyleson
-- Ninoca is shared 3 times
-</code></pre>
-<p>程序结束时,并未打印”delete kyleon”或“delete Ninoca”，即未执行析构函数,Person内部存在循环指向,其对象在程序结束时仍至少被一个shared_ptr指向.</p>
-<pre><code class="lang-cpp">vector&lt;weak_ptr&lt;Person&gt;&gt; kids;
-cout &lt;&lt; &quot;- name of 1st kid of kyleson&#39;s mom:&quot;
-        &lt;&lt; p-&gt;mother-&gt;kids[0].lock()-&gt;name &lt;&lt; endl;
-
-kyleson&#39;s family exits
-- kyleson is shared 1 times
-- name of 1st kid of kyleson&#39;s mom:kyleson
-delete kyleson
-delete kyleson&#39;s dad
-delete kyleson&#39;s mom
-- Ninoca is shared 1 times
-...
-</code></pre>
-<p>使用weak_ptr将会解决循环指向问题,当改变p的指向后调用了析构函数,且当程序结束时”Ninoca”的析构函数也将被调用</p>
-<pre><code class="lang-cpp">int *x = new int;
-shared_ptr&lt;int&gt; sp1(x);
-shared_ptr&lt;int&gt; sp2(x);//错误
-shared_ptr&lt;int&gt; sp3 = sp1;//正确
-</code></pre>
-<p>问题出在sp1和sp2意味着”两个指向团队”,都会在丢失x的拥有权时释放资源，因此相应的资源会被释放两次而导致错误</p>
-<pre><code class="lang-cpp">class Person {
-public:
+<p>shared point的默认调用delete，而非delete [],当智能指针指向数组时需自定义delete<br><pre><code class="hljs cpp"><span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-keyword">int</span>&gt; p(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">10</span>], [](<span class="hljs-keyword">int</span> *p) &#123;<span class="hljs-keyword">delete</span>[] p; &#125;);
+<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-keyword">int</span>&gt; p(<span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">10</span>],<span class="hljs-built_in">std</span>::default_delete&lt;<span class="hljs-keyword">int</span>[]&gt;());<span class="hljs-comment">//利用unique_ptr提供的辅助函数</span></code></pre></p>
+<h4 id="weak-ptr"><a href="#weak-ptr" class="headerlink" title="weak_ptr"></a>weak_ptr</h4><p>weak_ptr共享但不拥有某对象,一旦最末拥有该对象的shared_ptr失去拥有权,任何weak_ptr都会自动成空<br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;memory&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &#123;</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-built_in">string</span> name;
+	<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; mother;
+	<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; father;
+	<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt;&gt; kids;
+	Person(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;name, 
+		   <span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; m = <span class="hljs-literal">nullptr</span>, 
+		   <span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; f = <span class="hljs-literal">nullptr</span>) :
+		   name(name), mother(m), father(f) &#123;&#125;;
+	~Person()&#123;
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"delete "</span> &lt;&lt; name &lt;&lt; <span class="hljs-built_in">endl</span>;
+	&#125;
+&#125;;
+<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; initFamily(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;name) &#123;
+	<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; mom(<span class="hljs-keyword">new</span> Person(name + <span class="hljs-string">"'s mom"</span>));
+	<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; dad(<span class="hljs-keyword">new</span> Person(name + <span class="hljs-string">"'s dad"</span>));
+	<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; kid(<span class="hljs-keyword">new</span> Person(name, mom, dad));
+	mom-&gt;kids.push_back(kid);
+	dad-&gt;kids.push_back(kid);
+	<span class="hljs-keyword">return</span> kid;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; p = initFamily(<span class="hljs-string">"kyleson"</span>);
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"kyleson's family exits"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"- kyleson is shared "</span> &lt;&lt; p.use_count() &lt;&lt; <span class="hljs-string">" times"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"- name of 1st kid of kyleson's mom:"</span>
+		&lt;&lt; p-&gt;mother-&gt;kids[<span class="hljs-number">0</span>]-&gt;name &lt;&lt; <span class="hljs-built_in">endl</span>;
+	p = initFamily(<span class="hljs-string">"Ninoca"</span>);
+	<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"- Ninoca is shared "</span> &lt;&lt; p.use_count() &lt;&lt; <span class="hljs-string">" times"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+	getchar();
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+kyleson<span class="hljs-number">'</span>s family exits
+- kyleson is shared <span class="hljs-number">3</span> times
+- name of <span class="hljs-number">1</span>st kid of kyleson<span class="hljs-number">'</span>s mom:kyleson
+- Ninoca is shared <span class="hljs-number">3</span> times</code></pre><br>程序结束时,并未打印”delete kyleon”或“delete Ninoca”，即未执行析构函数,Person内部存在循环指向,其对象在程序结束时仍至少被一个shared_ptr指向.<br><pre><code class="hljs cpp"><span class="hljs-built_in">vector</span>&lt;weak_ptr&lt;Person&gt;&gt; kids;
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"- name of 1st kid of kyleson's mom:"</span>
+		&lt;&lt; p-&gt;mother-&gt;kids[<span class="hljs-number">0</span>].lock()-&gt;name &lt;&lt; <span class="hljs-built_in">endl</span>;
+		
+kyleson<span class="hljs-number">'</span>s family exits
+- kyleson is shared <span class="hljs-number">1</span> times
+- name of <span class="hljs-number">1</span>st kid of kyleson<span class="hljs-number">'</span>s mom:kyleson
+<span class="hljs-keyword">delete</span> kyleson
+<span class="hljs-keyword">delete</span> kyleson<span class="hljs-number">'</span>s dad
+<span class="hljs-keyword">delete</span> kyleson<span class="hljs-number">'</span>s mom
+- Ninoca is shared <span class="hljs-number">1</span> times
+...</code></pre><br>使用weak_ptr将会解决循环指向问题,当改变p的指向后调用了析构函数,且当程序结束时”Ninoca”的析构函数也将被调用<br><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> *x = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>;
+<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-keyword">int</span>&gt; sp1(x);
+<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-keyword">int</span>&gt; sp2(x);<span class="hljs-comment">//错误</span>
+<span class="hljs-built_in">shared_ptr</span>&lt;<span class="hljs-keyword">int</span>&gt; sp3 = sp1;<span class="hljs-comment">//正确</span></code></pre><br>问题出在sp1和sp2意味着”两个指向团队”,都会在丢失x的拥有权时释放资源，因此相应的资源会被释放两次而导致错误<br><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> &#123;</span>
+<span class="hljs-keyword">public</span>:
     ...
-    void setParentAndTheirKids(shared_ptr&lt;Person&gt; m = nullptr, shared_ptr&lt;Person&gt; f = nullptr) {
-        mother = m;
-        father = f;
-        if (m != nullptr)
-            m-&gt;kids.push_back(shared_ptr&lt;Person&gt;(this));//错误 引入了新的指向团队
-        if (f != nullptr)
-            f-&gt;kids.push_back(shared_ptr&lt;Person&gt;(this));//错误 引入了新的指向团队
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setParentAndTheirKids</span><span class="hljs-params">(<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; m = <span class="hljs-literal">nullptr</span>, <span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; f = <span class="hljs-literal">nullptr</span>)</span> </span>&#123;
+		mother = m;
+		father = f;
+		<span class="hljs-keyword">if</span> (m != <span class="hljs-literal">nullptr</span>)
+			m-&gt;kids.push_back(<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt;(<span class="hljs-keyword">this</span>));<span class="hljs-comment">//错误 引入了新的指向团队</span>
+		<span class="hljs-keyword">if</span> (f != <span class="hljs-literal">nullptr</span>)
+			f-&gt;kids.push_back(<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt;(<span class="hljs-keyword">this</span>));<span class="hljs-comment">//错误 引入了新的指向团队</span>
 
-    }
-};
-</code></pre>
-<p>根据this建立的shared_ptr同样建立了新的”指向团队”</p>
-<pre><code class="lang-cpp">class Person :std::enable_shared_from_this&lt;Person&gt;{
-public:
+	&#125;
+&#125;;</code></pre><br>根据this建立的shared_ptr同样建立了新的”指向团队”<br><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> :</span><span class="hljs-built_in">std</span>::enable_shared_from_this&lt;Person&gt;&#123;
+<span class="hljs-keyword">public</span>:
     ...
-    void setParentAndTheirKids(shared_ptr&lt;Person&gt; m = nullptr, shared_ptr&lt;Person&gt; f = nullptr) {
-        mother = m;
-        father = f;
-        if (m != nullptr)
-            m-&gt;kids.push_back(shared_from_this());
-        if (f != nullptr)
-            f-&gt;kids.push_back(shared_from_this());
-    }
-};
-</code></pre>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setParentAndTheirKids</span><span class="hljs-params">(<span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; m = <span class="hljs-literal">nullptr</span>, <span class="hljs-built_in">shared_ptr</span>&lt;Person&gt; f = <span class="hljs-literal">nullptr</span>)</span> </span>&#123;
+		mother = m;
+		father = f;
+		<span class="hljs-keyword">if</span> (m != <span class="hljs-literal">nullptr</span>)
+			m-&gt;kids.push_back(shared_from_this());
+		<span class="hljs-keyword">if</span> (f != <span class="hljs-literal">nullptr</span>)
+			f-&gt;kids.push_back(shared_from_this());
+	&#125;
+&#125;;</code></pre></p>
 <h4 id="unique-ptr"><a href="#unique-ptr" class="headerlink" title="unique_ptr"></a>unique_ptr</h4><p>独占式拥有 同一时间只有一个smart pointer指向该对象</p>
 
             </div>

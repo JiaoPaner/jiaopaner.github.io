@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      592 字
+      590 字
     </span>
   
 
@@ -210,30 +210,28 @@
             <div class="markdown-body" id="post-body">
               <h2 id="vs2015配置opencv3开发环境"><a href="#vs2015配置opencv3开发环境" class="headerlink" title="vs2015配置opencv3开发环境"></a>vs2015配置opencv3开发环境</h2><p>官网地址:<a href="https://opencv.org/" target="_blank" rel="noopener">https://opencv.org/</a></p>
 <ul>
-<li><p>下载<br><img src="/images/opencv3/1.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/2.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></p>
+<li><p>下载<br><img src="/images/opencv3/1.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/2.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></p>
 </li>
-<li><p>下载完成后双击安装,并配置环境变量<br><img src="/images/opencv3/3.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></p>
+<li><p>下载完成后双击安装,并配置环境变量<br><img src="/images/opencv3/3.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></p>
 </li>
-<li>打开VS2015,新建项目<br><img src="/images/opencv3/4.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/5.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><strong>配置opencv</strong><br><img src="/images/opencv3/6.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>添加包含目录<br><img src="/images/opencv3/7.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/8.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>添加库目录<br><img src="/images/opencv3/9.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/10.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>添加附加依赖项 将vc14下的lib都添加进来,以d结尾的lib文件为调试使用<br><img src="/images/opencv3/11.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/12.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>测试<br><img src="/images/opencv3/13.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/14.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/core/core.hpp&gt;
-#include &lt;opencv2/highgui/highgui.hpp&gt;
-using namespace cv;
-int main() {
-  Mat img = imread(&quot;D:/learn/dota.jpg&quot;);
-  imshow(&quot;dota&quot;, img); 
-  waitKey(6000);
-}
-</code></pre>
-</li>
-<li>运行<br><img src="/images/opencv3/15.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>结果<br><img src="/images/opencv3/16.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>打开VS2015,新建项目<br><img src="/images/opencv3/4.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/5.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><strong>配置opencv</strong><br><img src="/images/opencv3/6.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>添加包含目录<br><img src="/images/opencv3/7.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/8.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>添加库目录<br><img src="/images/opencv3/9.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/10.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>添加附加依赖项 将vc14下的lib都添加进来,以d结尾的lib文件为调试使用<br><img src="/images/opencv3/11.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/12.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>测试<br><img src="/images/opencv3/13.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/14.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;opencv2/core/core.hpp&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> cv;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	Mat img = imread(<span class="hljs-string">"D:/learn/dota.jpg"</span>);
+	imshow(<span class="hljs-string">"dota"</span>, img); 
+	waitKey(<span class="hljs-number">6000</span>);
+&#125;</code></pre></li>
+<li>运行<br><img src="/images/opencv3/15.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>结果<br><img src="/images/opencv3/16.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
 </ul>
 <hr>
-<p><strong>opencv模块简介</strong><br><img src="/images/opencv3/17.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></p>
+<p><strong>opencv模块简介</strong><br><img src="/images/opencv3/17.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></p>
 <ul>
 <li>calib3d<br>相机校准和3维重建相关的内容,包括多视角几何算法、单个立体摄像头标定、物体姿态估计、立体相似性算法等</li>
 <li>core<br>核心功能模块,包含opencv基本数据结构、动态数据结构、绘图函数、数组操作、辅助函数/系统函数/宏、OpenGL互操作</li>

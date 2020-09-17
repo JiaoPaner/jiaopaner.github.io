@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      1.5k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      32
+      27
        分钟
     </span>
   
@@ -209,264 +209,246 @@
             
             <div class="markdown-body" id="post-body">
               <p><strong>训练数据</strong><br>训练数据集下载地址:<br>1.下载class-descriptions-boxable.csv 即 V4下的Metadata ClassNames (训练数据集的所有类别)<br><a href="https://storage.googleapis.com/openimages/web/download.html" target="_blank" rel="noopener">https://storage.googleapis.com/openimages/web/download.html</a><br>2.下载train-images-boxable.csv和train-annotations-bbox.csv (已标记的图片集)<br><a href="https://www.figure-eight.com/dataset/open-images-annotated-with-bounding-boxes/" target="_blank" rel="noopener">https://www.figure-eight.com/dataset/open-images-annotated-with-bounding-boxes/</a><br>note:原始训练集有600个类别,数据量庞大,只抽取其中两个类别的图片集作为训练数据集,如Car,Person</p>
-<p><img src="\images\object-detection\open-image-files.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\object-detection\open-image-files.jpg" srcset="/images/loading.gif" alt=""></p>
 <hr>
 <p><strong>数据集预览</strong></p>
-<pre><code class="lang-python">import numpy as np
-import time
-import sys
-import os
-import random
-from skimage import io
-import pandas as pd
-from matplotlib import pyplot as plt
-from shutil import copyfile
-import cv2
-import tensorflow as tf
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">from</span> skimage <span class="hljs-keyword">import</span> io
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">from</span> shutil <span class="hljs-keyword">import</span> copyfile
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
 
-base_path = &#39;D:/data/open-image-v4&#39;#数据集下载的主目录
-images_boxable_fname = &#39;train-images-boxable.csv&#39;
-annotations_bbox_fname = &#39;train-annotations-bbox.csv&#39;
-class_descriptions_fname = &#39;class-descriptions-boxable.csv&#39;
-</code></pre>
+base_path = <span class="hljs-string">'D:/data/open-image-v4'</span><span class="hljs-comment">#数据集下载的主目录</span>
+images_boxable_fname = <span class="hljs-string">'train-images-boxable.csv'</span>
+annotations_bbox_fname = <span class="hljs-string">'train-annotations-bbox.csv'</span>
+class_descriptions_fname = <span class="hljs-string">'class-descriptions-boxable.csv'</span></code></pre>
 <p>原始图片预览</p>
-<pre><code class="lang-python">images_boxable = pd.read_csv(os.path.join(base_path, images_boxable_fname))
-images_boxable.head()
-</code></pre>
-<p><img src="\images\object-detection\1.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs python">images_boxable = pd.read_csv(os.path.join(base_path, images_boxable_fname))
+images_boxable.head()</code></pre>
+<p><img src="\images\object-detection\1.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>图片标记数据预览</p>
-<pre><code class="lang-python">annotations_bbox = pd.read_csv(os.path.join(base_path, annotations_bbox_fname))
-annotations_bbox.head()
-</code></pre>
-<p><img src="\images\object-detection\2.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs python">annotations_bbox = pd.read_csv(os.path.join(base_path, annotations_bbox_fname))
+annotations_bbox.head()</code></pre>
+<p><img src="\images\object-detection\2.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>类别预览</p>
-<pre><code class="lang-python">class_descriptions = pd.read_csv(os.path.join(base_path, class_descriptions_fname))
-class_descriptions.head()
-</code></pre>
-<p><img src="\images\object-detection\3.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs python">class_descriptions = pd.read_csv(os.path.join(base_path, class_descriptions_fname))
+class_descriptions.head()</code></pre>
+<p><img src="\images\object-detection\3.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>通过annotations_bbox将目标/类别在原图上标记出来</p>
-<pre><code class="lang-python">image_name = images_boxable[&#39;image_name&#39;][5]
-image_url = images_boxable[&#39;image_url&#39;][5]
-print(image_name,image_url)
-</code></pre>
+<pre><code class="hljs python">image_name = images_boxable[<span class="hljs-string">'image_name'</span>][<span class="hljs-number">5</span>]
+image_url = images_boxable[<span class="hljs-string">'image_url'</span>][<span class="hljs-number">5</span>]
+print(image_name,image_url)</code></pre>
 <p>e17acd05b631d330.jpg <a href="https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/e17acd05b631d330.jpg" target="_blank" rel="noopener">https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/e17acd05b631d330.jpg</a></p>
-<pre><code class="lang-python">img = io.imread(image_url) #读取网络图片
+<pre><code class="hljs python">img = io.imread(image_url) <span class="hljs-comment">#读取网络图片</span>
 height, width, _ = img.shape
 print(img.shape)
-plt.figure(figsize=(15,10))
-plt.subplot(1,2,1)
-plt.title(&#39;Original Image&#39;)
+plt.figure(figsize=(<span class="hljs-number">15</span>,<span class="hljs-number">10</span>))
+plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>)
+plt.title(<span class="hljs-string">'Original Image'</span>)
 plt.imshow(img)
-img_id = image_name[:16]
-bboxs = annotations_bbox[annotations_bbox[&#39;ImageID&#39;]==img_id]
+img_id = image_name[:<span class="hljs-number">16</span>]
+bboxs = annotations_bbox[annotations_bbox[<span class="hljs-string">'ImageID'</span>]==img_id]
 img_bbox = img.copy()
-for index, row in bboxs.iterrows():
-    xmin = row[&#39;XMin&#39;]
-    xmax = row[&#39;XMax&#39;]
-    ymin = row[&#39;YMin&#39;]
-    ymax = row[&#39;YMax&#39;]
+<span class="hljs-keyword">for</span> index, row <span class="hljs-keyword">in</span> bboxs.iterrows():
+    xmin = row[<span class="hljs-string">'XMin'</span>]
+    xmax = row[<span class="hljs-string">'XMax'</span>]
+    ymin = row[<span class="hljs-string">'YMin'</span>]
+    ymax = row[<span class="hljs-string">'YMax'</span>]
     xmin = int(xmin*width)
     xmax = int(xmax*width)
     ymin = int(ymin*height)
     ymax = int(ymax*height)
-    label_name = row[&#39;LabelName&#39;]
-    class_series = class_descriptions[class_descriptions[&#39;name&#39;]==label_name]
-    class_name = class_series[&#39;class&#39;].values[0]
-    cv2.rectangle(img_bbox,(xmin,ymin),(xmax,ymax),(0,255,0),2)
+    label_name = row[<span class="hljs-string">'LabelName'</span>]
+    class_series = class_descriptions[class_descriptions[<span class="hljs-string">'name'</span>]==label_name]
+    class_name = class_series[<span class="hljs-string">'class'</span>].values[<span class="hljs-number">0</span>]
+    cv2.rectangle(img_bbox,(xmin,ymin),(xmax,ymax),(<span class="hljs-number">0</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>),<span class="hljs-number">2</span>)
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(img_bbox,class_name,(xmin,ymin-10), font, 1,(0,255,0),2)
-plt.subplot(1,2,2)
-plt.title(&#39;Image with Bounding Box&#39;)
+    cv2.putText(img_bbox,class_name,(xmin,ymin<span class="hljs-number">-10</span>), font, <span class="hljs-number">1</span>,(<span class="hljs-number">0</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>),<span class="hljs-number">2</span>)
+plt.subplot(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>)
+plt.title(<span class="hljs-string">'Image with Bounding Box'</span>)
 plt.imshow(img_bbox)
-plt.show()
-</code></pre>
-<p><img src="\images\object-detection\4.jpg" srcset="/img/loading.gif" alt=""></p>
+plt.show()</code></pre>
+<p><img src="\images\object-detection\4.jpg" srcset="/images/loading.gif" alt=""></p>
 <hr>
 <p><strong>训练集构造(检测car、person)</strong></p>
 <p>抽取数据类别,Car,Person</p>
-<pre><code class="lang-python">car = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Car&#39;]
-person = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Person&#39;]
+<pre><code class="hljs python">car = class_descriptions[class_descriptions[<span class="hljs-string">'class'</span>]==<span class="hljs-string">'Car'</span>]
+person = class_descriptions[class_descriptions[<span class="hljs-string">'class'</span>]==<span class="hljs-string">'Person'</span>]
 print(car)
-print(person)
-</code></pre>
+print(person)</code></pre>
 <p>570  /m/0k4j   Car<br>68  /m/01g317  Person</p>
 <p>抽取car、person原始图片下载地址和对应的标记框数据</p>
-<pre><code class="lang-python">#car、person全部标记框数据
-car_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==car[&#39;name&#39;].values[0]]
-person_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==person[&#39;name&#39;].values[0]]
+<pre><code class="hljs python"><span class="hljs-comment">#car、person全部标记框数据</span>
+car_bbox = annotations_bbox[annotations_bbox[<span class="hljs-string">'LabelName'</span>]==car[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]]
+person_bbox = annotations_bbox[annotations_bbox[<span class="hljs-string">'LabelName'</span>]==person[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]]
 
-car_ids = car_bbox[&#39;ImageID&#39;]
-person_ids = person_bbox[&#39;ImageID&#39;]
+car_ids = car_bbox[<span class="hljs-string">'ImageID'</span>]
+person_ids = person_bbox[<span class="hljs-string">'ImageID'</span>]
 
-#一张图片包含多个标记框,去掉重复的原始图片id
+<span class="hljs-comment">#一张图片包含多个标记框,去掉重复的原始图片id</span>
 car_ids = np.unique(car_ids)
 person_ids = np.unique(person_ids)
 
-print(&#39;car_ids:&#39;+str(len(car_ids)),&#39;person_ids:&#39;+str(len(person_ids)))
-</code></pre>
+print(<span class="hljs-string">'car_ids:'</span>+str(len(car_ids)),<span class="hljs-string">'person_ids:'</span>+str(len(person_ids)))</code></pre>
 <p>car_ids:89465 car_ids:248384</p>
 <p>随机选取1000张car和1000张person图片作为训练集</p>
-<pre><code class="lang-python">#打乱次序
+<pre><code class="hljs python"><span class="hljs-comment">#打乱次序</span>
 copy_car_ids = car_ids.copy()
-random.seed(1)
+random.seed(<span class="hljs-number">1</span>)
 random.shuffle(car_ids)
 
 copy_person_ids = person_ids.copy()
-random.seed(1)
+random.seed(<span class="hljs-number">1</span>)
 random.shuffle(person_ids)
 
-n = 1000
+n = <span class="hljs-number">1000</span>
 sub_car_ids = copy_car_ids[:n]
 sub_person_ids = copy_person_ids[:n]
 
-print(sub_car_ids[0:10],sub_person_ids[0:10])
-</code></pre>
+print(sub_car_ids[<span class="hljs-number">0</span>:<span class="hljs-number">10</span>],sub_person_ids[<span class="hljs-number">0</span>:<span class="hljs-number">10</span>])</code></pre>
 <p>[‘17729c78b866181e’ ‘7b77dbbc71105e1c’ ‘c9a719e92a035033’<br> ‘58539243ddf350d1’ ‘b4bd75496b4880d8’ ‘6b54b697b13d6573’<br> ‘1e8eab50c0f6ff3a’ ‘ec6ff911833016f3’ ‘a10c03baa942e135’<br> ‘81c73298cc8d5349’] [‘763f5e853b1895df’ ‘d469ba5b2e558fc7’ ‘5348a30462ad2308’<br> ‘751439461f7a5fd3’ ‘5734bee1abe8c58e’ ‘730c2135df540687’<br> ‘14920852dd7e8c93’ ‘6bce959fa9db8fbc’ ‘254dbd00353a1d22’<br> ‘f7b5eabe2c2713c8’]</p>
 <p>获取原始图片下载地址</p>
-<pre><code class="lang-python">sub_car_urls = [images_boxable[images_boxable[&#39;image_name&#39;]==name+&#39;.jpg&#39;] for name in sub_car_ids]
-sub_person_urls = [images_boxable[images_boxable[&#39;image_name&#39;]==name+&#39;.jpg&#39;] for name in sub_person_ids]
+<pre><code class="hljs python">sub_car_urls = [images_boxable[images_boxable[<span class="hljs-string">'image_name'</span>]==name+<span class="hljs-string">'.jpg'</span>] <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> sub_car_ids]
+sub_person_urls = [images_boxable[images_boxable[<span class="hljs-string">'image_name'</span>]==name+<span class="hljs-string">'.jpg'</span>] <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> sub_person_ids]
 
-print(sub_car_urls[0].values[0][0])  
-print(sub_car_urls[0].values[0][1])
-</code></pre>
+print(sub_car_urls[<span class="hljs-number">0</span>].values[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>])  
+print(sub_car_urls[<span class="hljs-number">0</span>].values[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>])</code></pre>
 <p>17729c78b866181e.jpg<br><a href="https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/17729c78b866181e.jpg" target="_blank" rel="noopener">https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/17729c78b866181e.jpg</a></p>
 <p>保存urls到磁盘供复用 </p>
-<pre><code class="lang-python">sub_car_urls_csv = pd.DataFrame()
+<pre><code class="hljs python">sub_car_urls_csv = pd.DataFrame()
 sub_person_urls_csv = pd.DataFrame()
-for i in range(1000):
-    sub_car_urls_csv = sub_car_urls_csv.append(sub_car_urls[i], ignore_index = True)
-    sub_person_urls_csv = sub_person_urls_csv.append(sub_person_urls[i], ignore_index = True)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1000</span>):
+    sub_car_urls_csv = sub_car_urls_csv.append(sub_car_urls[i], ignore_index = <span class="hljs-literal">True</span>)
+    sub_person_urls_csv = sub_person_urls_csv.append(sub_person_urls[i], ignore_index = <span class="hljs-literal">True</span>)
 
-sub_car_urls_csv.to_csv(os.path.join(&#39;D:/data/open-image-v4&#39;,&#39;sub_car_urls.csv&#39;),index=False)
-sub_person_urls_csv.to_csv(os.path.join(&#39;D:/data/open-image-v4&#39;,&#39;sub_person_urls.csv&#39;),index=False)
-</code></pre>
+sub_car_urls_csv.to_csv(os.path.join(<span class="hljs-string">'D:/data/open-image-v4'</span>,<span class="hljs-string">'sub_car_urls.csv'</span>),index=<span class="hljs-literal">False</span>)
+sub_person_urls_csv.to_csv(os.path.join(<span class="hljs-string">'D:/data/open-image-v4'</span>,<span class="hljs-string">'sub_person_urls.csv'</span>),index=<span class="hljs-literal">False</span>)</code></pre>
 <p>下载图片到磁盘(D:/data/open-image-v4/下新建train-data和test-data文件夹,再分别在train-data和test-data下新建文件夹car和person)</p>
-<pre><code class="lang-python">sub_car_pd = pd.read_csv(os.path.join(base_path, &#39;sub_car_urls.csv&#39;))
-sub_person_pd = pd.read_csv(os.path.join(base_path, &#39;sub_person_urls.csv&#39;))
+<pre><code class="hljs python">sub_car_pd = pd.read_csv(os.path.join(base_path, <span class="hljs-string">'sub_car_urls.csv'</span>))
+sub_person_pd = pd.read_csv(os.path.join(base_path, <span class="hljs-string">'sub_person_urls.csv'</span>))
 
-print(sub_car_pd[&#39;image_name&#39;][0])
-print(sub_car_pd[&#39;image_url&#39;][0])
+print(sub_car_pd[<span class="hljs-string">'image_name'</span>][<span class="hljs-number">0</span>])
+print(sub_car_pd[<span class="hljs-string">'image_url'</span>][<span class="hljs-number">0</span>])
 
-#建议开启多线程下载
-#训练图片
-for i in range(800):
-    img_car = io.imread(sub_car_pd[&#39;image_url&#39;][i])
-    car_saved_path = os.path.join(&#39;D:/data/open-image-v4/train-data/car&#39;,sub_car_pd[&#39;image_name&#39;][i])
+<span class="hljs-comment">#建议开启多线程下载</span>
+<span class="hljs-comment">#训练图片</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">800</span>):
+    img_car = io.imread(sub_car_pd[<span class="hljs-string">'image_url'</span>][i])
+    car_saved_path = os.path.join(<span class="hljs-string">'D:/data/open-image-v4/train-data/car'</span>,sub_car_pd[<span class="hljs-string">'image_name'</span>][i])
     io.imsave(car_saved_path, img_car)
-
-for j in range(800):
-    img_person = io.imread(sub_person_pd[&#39;image_url&#39;][j])
-    person_saved_path = os.path.join(&#39;D:/data/open-image-v4/train-data/person&#39;,sub_person_pd[&#39;image_name&#39;][j])
+    
+<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">800</span>):
+    img_person = io.imread(sub_person_pd[<span class="hljs-string">'image_url'</span>][j])
+    person_saved_path = os.path.join(<span class="hljs-string">'D:/data/open-image-v4/train-data/person'</span>,sub_person_pd[<span class="hljs-string">'image_name'</span>][j])
     io.imsave(person_saved_path, img_person)
 
-#测试图片
-for i in range(800,1000):
-    img_car = io.imread(sub_car_pd[&#39;image_url&#39;][i])
-    car_saved_path = os.path.join(&#39;D:/data/open-image-v4/test-data/car&#39;,sub_car_pd[&#39;image_name&#39;][i])
+<span class="hljs-comment">#测试图片</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">800</span>,<span class="hljs-number">1000</span>):
+    img_car = io.imread(sub_car_pd[<span class="hljs-string">'image_url'</span>][i])
+    car_saved_path = os.path.join(<span class="hljs-string">'D:/data/open-image-v4/test-data/car'</span>,sub_car_pd[<span class="hljs-string">'image_name'</span>][i])
     io.imsave(car_saved_path, img_car)
-
-for j in range(800,1000):
-    img_person = io.imread(sub_person_pd[&#39;image_url&#39;][j])
-    person_saved_path = os.path.join(&#39;D:/data/open-image-v4/test-data/person&#39;,sub_person_pd[&#39;image_name&#39;][j])
-    io.imsave(person_saved_path, img_person)
-</code></pre>
+    
+<span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">800</span>,<span class="hljs-number">1000</span>):
+    img_person = io.imread(sub_person_pd[<span class="hljs-string">'image_url'</span>][j])
+    person_saved_path = os.path.join(<span class="hljs-string">'D:/data/open-image-v4/test-data/person'</span>,sub_person_pd[<span class="hljs-string">'image_name'</span>][j])
+    io.imsave(person_saved_path, img_person)</code></pre>
 <p>0000048549557964.jpg<br><a href="https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/0000048549557964.jpg" target="_blank" rel="noopener">https://requestor-proxy.figure-eight.com/figure_eight_datasets/open-images/train/0000048549557964.jpg</a></p>
 <p>下载完成后,如图所示</p>
-<p><img src="\images\object-detection\5.jpg" srcset="/img/loading.gif" alt=""></p>
-<p><img src="\images\object-detection\6.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\object-detection\5.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\object-detection\6.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>将train-data/car、train-data/person合并到同一文件夹train-data/all下,train-test同理<br>note:由于一张图片可能同时包含car和person,因此合并时会将重复的图片剔除而只保留一张</p>
-<pre><code class="lang-python">file_names = [&#39;car&#39;,&#39;person&#39;]
-train_path = &#39;D:/data/open-image-v4/train-data&#39;
-for i in range(len(file_names)):
+<pre><code class="hljs python">file_names = [<span class="hljs-string">'car'</span>,<span class="hljs-string">'person'</span>]
+train_path = <span class="hljs-string">'D:/data/open-image-v4/train-data'</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(file_names)):
     train_images = os.listdir(os.path.join(train_path,file_names[i]))
-    for j in range(len(train_images)):
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(len(train_images)):
         original_path = os.path.join(os.path.join(train_path, label_names[i]), train_images[j])
-        new_path = os.path.join(os.path.join(train_path, &#39;all&#39;), train_images[j])
+        new_path = os.path.join(os.path.join(train_path, <span class="hljs-string">'all'</span>), train_images[j])
         copyfile(original_path, new_path)
-print(&#39;all_train_images&#39;,len(os.listdir(os.path.join(train_path, &#39;all&#39;))))
-
-test_path = &#39;D:/data/open-image-v4/test-data&#39;
-for i in range(len(file_names)):
+print(<span class="hljs-string">'all_train_images'</span>,len(os.listdir(os.path.join(train_path, <span class="hljs-string">'all'</span>))))
+      
+test_path = <span class="hljs-string">'D:/data/open-image-v4/test-data'</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(file_names)):
     test_images = os.listdir(os.path.join(test_path,file_names[i]))
-    for j in range(len(test_images)):
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(len(test_images)):
         original_path = os.path.join(os.path.join(test_path, label_names[i]), test_images[j])
-        new_path = os.path.join(os.path.join(test_path, &#39;all&#39;), test_images[j])
+        new_path = os.path.join(os.path.join(test_path, <span class="hljs-string">'all'</span>), test_images[j])
         copyfile(original_path, new_path)      
-print(&#39;all_test_images&#39;,len(os.listdir(os.path.join(test_path, &#39;all&#39;))))
-</code></pre>
+print(<span class="hljs-string">'all_test_images'</span>,len(os.listdir(os.path.join(test_path, <span class="hljs-string">'all'</span>))))</code></pre>
 <p>all_train_images 1558<br>all_test_images 401</p>
 <p>构造包含了标记框的训练集和测试集 train.csv和test.csv</p>
-<pre><code class="lang-python">class_descriptions = pd.read_csv(&quot;D:/data/open-image-v4/class-descriptions-boxable.csv&quot;)
-car = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Car&#39;]
-person = class_descriptions[class_descriptions[&#39;class&#39;]==&#39;Person&#39;]
-print(car,&#39;\n&#39;+car[&#39;name&#39;].values[0])
-print(person,&#39;\n&#39;+person[&#39;name&#39;].values[0])
-</code></pre>
+<pre><code class="hljs python">class_descriptions = pd.read_csv(<span class="hljs-string">"D:/data/open-image-v4/class-descriptions-boxable.csv"</span>)
+car = class_descriptions[class_descriptions[<span class="hljs-string">'class'</span>]==<span class="hljs-string">'Car'</span>]
+person = class_descriptions[class_descriptions[<span class="hljs-string">'class'</span>]==<span class="hljs-string">'Person'</span>]
+print(car,<span class="hljs-string">'\n'</span>+car[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>])
+print(person,<span class="hljs-string">'\n'</span>+person[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>])</code></pre>
 <p>570  /m/0k4j   Car<br>/m/0k4j<br>68  /m/01g317  Person<br>/m/01g317</p>
 <p>抽取car、person的标记框数据</p>
-<pre><code class="lang-python">annotations_bbox = pd.read_csv(&#39;D:/data/open-image-v4/train-annotations-bbox.csv&#39;)
-car_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==car[&#39;name&#39;].values[0]]
-person_bbox = annotations_bbox[annotations_bbox[&#39;LabelName&#39;]==person[&#39;name&#39;].values[0]]
+<pre><code class="hljs python">annotations_bbox = pd.read_csv(<span class="hljs-string">'D:/data/open-image-v4/train-annotations-bbox.csv'</span>)
+car_bbox = annotations_bbox[annotations_bbox[<span class="hljs-string">'LabelName'</span>]==car[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]]
+person_bbox = annotations_bbox[annotations_bbox[<span class="hljs-string">'LabelName'</span>]==person[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]]
 annotations_bbox = pd.concat([car_bbox,person_bbox])
 
-print(annotations_bbox.shape)
-</code></pre>
+print(annotations_bbox.shape)</code></pre>
 <p>(1282796, 13)</p>
-<pre><code class="lang-python">train_df = pd.DataFrame(columns=[&#39;FileName&#39;, &#39;XMin&#39;, &#39;YMin&#39;, &#39;XMax&#39;, &#39;YMax&#39;, &#39;ClassName&#39;])
-train_path = &#39;D:/data/open-image-v4/train-data/all&#39;
+<pre><code class="hljs python">train_df = pd.DataFrame(columns=[<span class="hljs-string">'FileName'</span>, <span class="hljs-string">'XMin'</span>, <span class="hljs-string">'YMin'</span>, <span class="hljs-string">'XMax'</span>, <span class="hljs-string">'YMax'</span>, <span class="hljs-string">'ClassName'</span>])
+train_path = <span class="hljs-string">'D:/data/open-image-v4/train-data/all'</span>
 train_images = os.listdir(train_path)
-for i in range(len(train_images)):
-    sys.stdout.write(&#39;Parse train_imgs &#39; + str(i+1) + &#39;; Number of boxes: &#39; + str(len(train_df)) + &#39;\r&#39;)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(train_images)):
+    sys.stdout.write(<span class="hljs-string">'Parse train_imgs '</span> + str(i+<span class="hljs-number">1</span>) + <span class="hljs-string">'; Number of boxes: '</span> + str(len(train_df)) + <span class="hljs-string">'\r'</span>)
     sys.stdout.flush()
     img_name = train_images[i]
-    img_id = img_name[0:16]
-    tmp_df = annotations_bbox[annotations_bbox[&#39;ImageID&#39;]==img_id]
-    for index, row in tmp_df.iterrows():
-        labelName = row[&#39;LabelName&#39;]
-        if labelName == car[&#39;name&#39;].values[0]:
-            className = &#39;car&#39;
-        elif labelName == person[&#39;name&#39;].values[0]:
-            className = &#39;person&#39;
-        train_df = train_df.append({&#39;FileName&#39;: img_name, 
-                                            &#39;XMin&#39;: row[&#39;XMin&#39;], 
-                                            &#39;YMin&#39;: row[&#39;YMin&#39;], 
-                                            &#39;XMax&#39;: row[&#39;XMax&#39;], 
-                                            &#39;YMax&#39;: row[&#39;YMax&#39;], 
-                                            &#39;ClassName&#39;:className},ignore_index=True)
+    img_id = img_name[<span class="hljs-number">0</span>:<span class="hljs-number">16</span>]
+    tmp_df = annotations_bbox[annotations_bbox[<span class="hljs-string">'ImageID'</span>]==img_id]
+    <span class="hljs-keyword">for</span> index, row <span class="hljs-keyword">in</span> tmp_df.iterrows():
+        labelName = row[<span class="hljs-string">'LabelName'</span>]
+        <span class="hljs-keyword">if</span> labelName == car[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]:
+            className = <span class="hljs-string">'car'</span>
+        <span class="hljs-keyword">elif</span> labelName == person[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]:
+            className = <span class="hljs-string">'person'</span>
+        train_df = train_df.append(&#123;<span class="hljs-string">'FileName'</span>: img_name, 
+                                            <span class="hljs-string">'XMin'</span>: row[<span class="hljs-string">'XMin'</span>], 
+                                            <span class="hljs-string">'YMin'</span>: row[<span class="hljs-string">'YMin'</span>], 
+                                            <span class="hljs-string">'XMax'</span>: row[<span class="hljs-string">'XMax'</span>], 
+                                            <span class="hljs-string">'YMax'</span>: row[<span class="hljs-string">'YMax'</span>], 
+                                            <span class="hljs-string">'ClassName'</span>:className&#125;,ignore_index=<span class="hljs-literal">True</span>)
 
-train_df.to_csv(os.path.join(&#39;D:/data/open-image-v4/train-data&#39;, &#39;train.csv&#39;),index=False)
-</code></pre>
+train_df.to_csv(os.path.join(<span class="hljs-string">'D:/data/open-image-v4/train-data'</span>, <span class="hljs-string">'train.csv'</span>),index=<span class="hljs-literal">False</span>)</code></pre>
 <p>Parse train_imgs 1557; Number of boxes: 5722</p>
-<pre><code class="lang-python">test_df = pd.DataFrame(columns=[&#39;FileName&#39;, &#39;XMin&#39;, &#39;YMin&#39;, &#39;XMax&#39;, &#39;YMax&#39;, &#39;ClassName&#39;])
-test_path = &#39;D:/data/open-image-v4/test-data/all&#39;
+<pre><code class="hljs python">test_df = pd.DataFrame(columns=[<span class="hljs-string">'FileName'</span>, <span class="hljs-string">'XMin'</span>, <span class="hljs-string">'YMin'</span>, <span class="hljs-string">'XMax'</span>, <span class="hljs-string">'YMax'</span>, <span class="hljs-string">'ClassName'</span>])
+test_path = <span class="hljs-string">'D:/data/open-image-v4/test-data/all'</span>
 test_images = os.listdir(test_path)
-for i in range(len(test_images)):
-    sys.stdout.write(&#39;Parse train_imgs &#39; + str(i+1) + &#39;; Number of boxes: &#39; + str(len(test_df)) + &#39;\r&#39;)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(test_images)):
+    sys.stdout.write(<span class="hljs-string">'Parse train_imgs '</span> + str(i+<span class="hljs-number">1</span>) + <span class="hljs-string">'; Number of boxes: '</span> + str(len(test_df)) + <span class="hljs-string">'\r'</span>)
     sys.stdout.flush()
     img_name = test_images[i]
-    img_id = img_name[0:16]
-    tmp_df = annotations_bbox[annotations_bbox[&#39;ImageID&#39;]==img_id]
-    for index, row in tmp_df.iterrows():
-        labelName = row[&#39;LabelName&#39;]
-        if labelName == car[&#39;name&#39;].values[0]:
-            className = &#39;car&#39;
-        elif labelName == person[&#39;name&#39;].values[0]:
-            className = &#39;person&#39;
-        test_df = test_df.append({&#39;FileName&#39;: img_name, 
-                                            &#39;XMin&#39;: row[&#39;XMin&#39;], 
-                                            &#39;YMin&#39;: row[&#39;YMin&#39;], 
-                                            &#39;XMax&#39;: row[&#39;XMax&#39;], 
-                                            &#39;YMax&#39;: row[&#39;YMax&#39;], 
-                                            &#39;ClassName&#39;:className},ignore_index=True)
+    img_id = img_name[<span class="hljs-number">0</span>:<span class="hljs-number">16</span>]
+    tmp_df = annotations_bbox[annotations_bbox[<span class="hljs-string">'ImageID'</span>]==img_id]
+    <span class="hljs-keyword">for</span> index, row <span class="hljs-keyword">in</span> tmp_df.iterrows():
+        labelName = row[<span class="hljs-string">'LabelName'</span>]
+        <span class="hljs-keyword">if</span> labelName == car[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]:
+            className = <span class="hljs-string">'car'</span>
+        <span class="hljs-keyword">elif</span> labelName == person[<span class="hljs-string">'name'</span>].values[<span class="hljs-number">0</span>]:
+            className = <span class="hljs-string">'person'</span>
+        test_df = test_df.append(&#123;<span class="hljs-string">'FileName'</span>: img_name, 
+                                            <span class="hljs-string">'XMin'</span>: row[<span class="hljs-string">'XMin'</span>], 
+                                            <span class="hljs-string">'YMin'</span>: row[<span class="hljs-string">'YMin'</span>], 
+                                            <span class="hljs-string">'XMax'</span>: row[<span class="hljs-string">'XMax'</span>], 
+                                            <span class="hljs-string">'YMax'</span>: row[<span class="hljs-string">'YMax'</span>], 
+                                            <span class="hljs-string">'ClassName'</span>:className&#125;,ignore_index=<span class="hljs-literal">True</span>)
 
-test_df.to_csv(os.path.join(&#39;D:/data/open-image-v4/test-data&#39;, &#39;test.csv&#39;),index=False)
-</code></pre>
+test_df.to_csv(os.path.join(<span class="hljs-string">'D:/data/open-image-v4/test-data'</span>, <span class="hljs-string">'test.csv'</span>),index=<span class="hljs-literal">False</span>)</code></pre>
 <p>Parse train_imgs 401; Number of boxes: 1413</p>
-<pre><code class="lang-python">train_df.head()
-</code></pre>
-<p><img src="\images\object-detection\7.jpg" srcset="/img/loading.gif" alt=""></p>
-<pre><code>test_df.head()
-</code></pre><p><img src="\images\object-detection\8.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs python">train_df.head()</code></pre>
+<p><img src="\images\object-detection\7.jpg" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">test_df</span><span class="hljs-selector-class">.head</span>()</code></pre>
+<p><img src="\images\object-detection\8.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

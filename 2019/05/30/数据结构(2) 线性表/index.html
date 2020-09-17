@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      945 字
+      980 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      14
        分钟
     </span>
   
@@ -210,142 +210,129 @@
             <div class="markdown-body" id="post-body">
               <h3 id="线性表的定义"><a href="#线性表的定义" class="headerlink" title="线性表的定义"></a>线性表的定义</h3><p>线性表是具有相同数据类型的$n$个数据元素的有限序列<br>除第一个元素,每个元素有且仅有一个直接前驱,除最后一个元素,每个元素有且仅有一个后继 </p>
 <h3 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h3><p>线性表的顺序存储称为顺序表,用一组地址连续的存储单元依次存储线性表中的数据元素，因此逻辑上相邻的两个元素在物理位置上也相邻</p>
-<p><strong>顺序表描述</strong></p>
-<pre><code class="lang-cpp">#define MaxSize 50
-typedef struct {
-    ElemType data[MaxSize];//顺序表元素 静态分配
-    int length;//当前长度
-}SqList;
+<p><strong>顺序表描述</strong><br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MaxSize 50</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
+	ElemType data[MaxSize];<span class="hljs-comment">//顺序表元素 静态分配</span>
+	<span class="hljs-keyword">int</span> length;<span class="hljs-comment">//当前长度</span>
+&#125;SqList;
 
-#define InitSize 100
-typedef struct {
-    ElemType *data;//顺序表元素 动态分配数组的指针
-    int MaxSize,length;//数组最大容量和当前元素个数
-}SqList;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> InitSize 100</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span>
+	ElemType *data;<span class="hljs-comment">//顺序表元素 动态分配数组的指针</span>
+	<span class="hljs-keyword">int</span> MaxSize,length;<span class="hljs-comment">//数组最大容量和当前元素个数</span>
+&#125;SqList;
 
-L.data = (ElemType *)malloc(sizeof(ElemType) * InitSize);//c
-L.data = new ElemType(InitSize);//C++
-</code></pre>
-<p>顺序表最主要的特点是随机访问,通过首地址和元素序号可在O(1)的时间复杂度内找到指定的元素</p>
+L.data = (ElemType *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(ElemType) * InitSize);<span class="hljs-comment">//c</span>
+L.data = <span class="hljs-keyword">new</span> ElemType(InitSize);<span class="hljs-comment">//C++</span></code></pre><br>顺序表最主要的特点是随机访问,通过首地址和元素序号可在O(1)的时间复杂度内找到指定的元素</p>
 <p><strong>插入操作</strong><br>在顺序表L的第i个位置插入新元素e</p>
-<pre><code class="lang-cpp">bool ListInsert(SqList &amp;L, int i, ElemType e) {
-    if (i &lt; 1 || i &gt; L.length+1)
-        return false;
-    if (L.length &gt; = MaxSize)
-        return false;
-    for (int index = L.length; index &gt;= i; index--)
-        L.data[index] = L.data[index - 1];
-    L.data[i-1] = e;
-    L.length++;
-    return true;
-}
-</code></pre>
-<p><strong>删除操作</strong><br>删除顺序表L中第i个位置的元素,删除的元素用引用变量e返回</p>
-<pre><code class="lang-cpp">bool ListDelete(SqList &amp;L, int i, ElemType &amp;e) {
-    if (i &lt; 1 || i &gt; L.length)
-        return false;
-    e = L.data[i - 1];
-    for (int index = i; index &lt; L.length; index++)
-        L.data[index-1] = L.data[index];
-    L.length--;
-    return true;
-}
-</code></pre>
-<p><strong>按值查找</strong><br>在顺序表L中查找一个元素值等于e的元素,并返回其位置(非索引)</p>
-<pre><code class="lang-cpp">int ListDelete(SqList L,ElemType e) {
-    int index;
-    for (index = 0; index &lt; L.length; index++)
-        if (L.data[index] == e)
-            return index + 1;
-    return 0;
-}
-</code></pre>
+<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ListInsert</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-keyword">int</span> i, ElemType e)</span> </span>&#123;
+	<span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span> || i &gt; L.length+<span class="hljs-number">1</span>)
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	<span class="hljs-keyword">if</span> (L.length &gt; = MaxSize)
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> index = L.length; index &gt;= i; index--)
+		L.data[index] = L.data[index - <span class="hljs-number">1</span>];
+	L.data[i<span class="hljs-number">-1</span>] = e;
+	L.length++;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
+<p><strong>删除操作</strong><br>删除顺序表L中第i个位置的元素,删除的元素用引用变量e返回<br><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ListDelete</span><span class="hljs-params">(SqList &amp;L, <span class="hljs-keyword">int</span> i, ElemType &amp;e)</span> </span>&#123;
+	<span class="hljs-keyword">if</span> (i &lt; <span class="hljs-number">1</span> || i &gt; L.length)
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	e = L.data[i - <span class="hljs-number">1</span>];
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> index = i; index &lt; L.length; index++)
+		L.data[index<span class="hljs-number">-1</span>] = L.data[index];
+	L.length--;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre><br><strong>按值查找</strong><br>在顺序表L中查找一个元素值等于e的元素,并返回其位置(非索引)</p>
+<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ListDelete</span><span class="hljs-params">(SqList L,ElemType e)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> index;
+	<span class="hljs-keyword">for</span> (index = <span class="hljs-number">0</span>; index &lt; L.length; index++)
+		<span class="hljs-keyword">if</span> (L.data[index] == e)
+			<span class="hljs-keyword">return</span> index + <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
 <p>1.长度为$n$的顺序表$L$,编写一个时间复杂度为<script type="math/tex">O(n)</script>、空间复杂度为<script type="math/tex">O(1)</script>的算法，该算法删除线性表中所以值为x的数据元素。</p>
-<pre><code class="lang-c++">void delX(Sqlist &amp;L,ElemType x){
-    int k = 0 ;
-    for(int i = 0;i &lt; L.length;i++){
-        if(L[i] != x){
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delX</span><span class="hljs-params">(Sqlist &amp;L,ElemType x)</span></span>&#123;
+    <span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span> ;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; L.length;i++)&#123;
+        <span class="hljs-keyword">if</span>(L[i] != x)&#123;
             L.data[k] = L.data[i];
             k++;
-        }
-    }
+        &#125;
+    &#125;
     L.length = k;
-}
-</code></pre>
+&#125;</code></pre>
 <p>2.从有序顺序表中删除所有其值重复的元素，使表中所有的值均不相同。</p>
-<pre><code class="lang-c++">bool delSame(Sqlist &amp;L){
-    if(L.length = 0)
-        return false;
-    int i,j;
-    for(i = 0,j = 1;j &lt; L.length;j++){
-        if(L.data[i] != L.data[j])
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">delSame</span><span class="hljs-params">(Sqlist &amp;L)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(L.length = <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">int</span> i,j;
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>,j = <span class="hljs-number">1</span>;j &lt; L.length;j++)&#123;
+        <span class="hljs-keyword">if</span>(L.data[i] != L.data[j])
             L.data[++i] = L.data[j];
-    }
+    &#125;
     L.length = i;
-    return true;
-}
-</code></pre>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
 <p>3.将两个有序顺序表合并成一个新的有序顺序表，并由函数返回其结果顺序表。</p>
-<pre><code class="lang-c++">bool merge(Sqlist A,Sqlist B,Sqlist &amp;C){
-    if(A.length + B.length &gt; C.maxSize)
-        return false;
-    int i = 0,j = 0,k = 0;
-    while(i &lt; A.length &amp;&amp; j &lt; B.length){
-        if(A.data[i] &lt;= B.data[j])
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">merge</span><span class="hljs-params">(Sqlist A,Sqlist B,Sqlist &amp;C)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(A.length + B.length &gt; C.maxSize)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>,j = <span class="hljs-number">0</span>,k = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(i &lt; A.length &amp;&amp; j &lt; B.length)&#123;
+        <span class="hljs-keyword">if</span>(A.data[i] &lt;= B.data[j])
             C.data[k++] = A.data[i++];
-        else
+        <span class="hljs-keyword">else</span>
             C.data[k++] = B.data[j++]
-    }
-    while(i &lt; A.length){
+    &#125;
+    <span class="hljs-keyword">while</span>(i &lt; A.length)&#123;
         C.data[k++] = A.data[i++];
-    }
-    while(j &gt; B.length){
+    &#125;
+    <span class="hljs-keyword">while</span>(j &gt; B.length)&#123;
         C.data[k++] = B.data[j++];
-    }
-    C.length = k+1;
-    return true;
-}
-</code></pre>
+    &#125;
+    C.length = k+<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
 <p>4.线性表<script type="math/tex">(a_1,a_2,...,a_n)</script>中的元素递增有序存储于计算机内，设计算法完成在最短的时间内在表中查找数值为x的元素，若存在则将其与后继元素交换，否则插入表中并使表中元素仍然递增有序。</p>
-<pre><code class="lang-c++">void searchExchangeInsert(Sqlist &amp;L,ElemType x){
-    int low = 0,high = n -1,mid;
-    while(low &lt;= high){
-        mid = (low + high) / 2;
-        if(L.data[mid] == x)
-            break;
-        else if(L.data[mid] &lt; x)
-            low = mid + 1;
-        else
-            high = mid - 1;
-    }
-    if(L.data[mid] == x &amp;&amp; mid != (n-1)){
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">searchExchangeInsert</span><span class="hljs-params">(Sqlist &amp;L,ElemType x)</span></span>&#123;
+    <span class="hljs-keyword">int</span> low = <span class="hljs-number">0</span>,high = n <span class="hljs-number">-1</span>,mid;
+    <span class="hljs-keyword">while</span>(low &lt;= high)&#123;
+        mid = (low + high) / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">if</span>(L.data[mid] == x)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(L.data[mid] &lt; x)
+            low = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span>
+            high = mid - <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">if</span>(L.data[mid] == x &amp;&amp; mid != (n<span class="hljs-number">-1</span>))&#123;
         ElemType temp = L.data[mid];
-        L.data[mid] = L.data[mid+1];
-        L.[mid+1] = temp;
-    }
-    if(low &gt; high){
-        for(int i = n- 1;i &gt; high;i--)
-            L.data[i+1] = L.data[i];
-        L.data[i+1] = x;
-    }
-}
-</code></pre>
+        L.data[mid] = L.data[mid+<span class="hljs-number">1</span>];
+        L.[mid+<span class="hljs-number">1</span>] = temp;
+    &#125;
+    <span class="hljs-keyword">if</span>(low &gt; high)&#123;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = n- <span class="hljs-number">1</span>;i &gt; high;i--)
+            L.data[i+<span class="hljs-number">1</span>] = L.data[i];
+        L.data[i+<span class="hljs-number">1</span>] = x;
+    &#125;
+&#125;</code></pre>
 <p>5.设将<script type="math/tex">n(n>1)</script>个整数存放到一维数组R中。设计一个高效的算法将R中保存的序列循环左移<script type="math/tex">p(0<p<n)</script>个位置，即将R中的数据由<script type="math/tex">(x_0,x_1,...,x_{n-1})</script>变换为<script type="math/tex">(x_p,x_{p+1},...,x_{n-1},x_0,x_1,...,x_{p-1})</script></p>
 <p>算法思想:</p>
 <p>令<script type="math/tex">A=(x_0,x_1,...,x_{p-1}),B=(x_p,x_{p+1},...,x_{n-1}),C=BA</script>,<script type="math/tex">A^{-1}=(x_{p-1},x_{p-2},...,x_1,x_0)</script></p>
-<script type="math/tex; mode=display">AB \rightarrow A^{-1}B\rightarrow A^{-1}B^{-1}\rightarrow (A^{-1}B^{-1})^{-1}\rightarrow BA</script><pre><code class="lang-c++">void Reverse(int R[],int from,int to){
-    for(int i = 0; i &lt; (to-from+1)/2;i++){
-        int temp = R[from+i];
+<script type="math/tex; mode=display">AB \rightarrow A^{-1}B\rightarrow A^{-1}B^{-1}\rightarrow (A^{-1}B^{-1})^{-1}\rightarrow BA</script><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Reverse</span><span class="hljs-params">(<span class="hljs-keyword">int</span> R[],<span class="hljs-keyword">int</span> from,<span class="hljs-keyword">int</span> to)</span></span>&#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; (to-from+<span class="hljs-number">1</span>)/<span class="hljs-number">2</span>;i++)&#123;
+        <span class="hljs-keyword">int</span> temp = R[from+i];
         R[from+i] = R[to-i];
         R[to-i] = temp;
-    }
-}
-void Converse(int R[],int n,int p){
-    Reverse(R,0,p-1);
-    Reverse(R,p,n-1);
-    Reverse(R,0,n-1);
-}
-</code></pre>
+    &#125;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Converse</span><span class="hljs-params">(<span class="hljs-keyword">int</span> R[],<span class="hljs-keyword">int</span> n,<span class="hljs-keyword">int</span> p)</span></span>&#123;
+    Reverse(R,<span class="hljs-number">0</span>,p<span class="hljs-number">-1</span>);
+    Reverse(R,p,n<span class="hljs-number">-1</span>);
+    Reverse(R,<span class="hljs-number">0</span>,n<span class="hljs-number">-1</span>);
+&#125;</code></pre>
 <p>6.长度为L的升序序列S，处在第[L/2]个位置的输称为S的中位数，两个序列的中位数是含它们所有元素升序序列的中位数，现有两个等长的升序序列A和B，设计算法找出序列A和序列B的中位数。</p>
 <p>算法思想：</p>
 <p>设<script type="math/tex">a</script>为A的中位数，<script type="math/tex">b</script>为B的中位数</p>
@@ -355,234 +342,203 @@ void Converse(int R[],int n,int p){
 <li>若<script type="math/tex">a>b</script>，舍弃序列A中较大的一半，同时舍弃序列B中较小的一半，两次舍弃的长度相等；</li>
 <li>在保留的两个升序序列中,重复1，2，3,直到两个序列只含有一个元素为止，较小者为所求中位数；</li>
 </ol>
-<pre><code class="lang-c++">int mediSearch(int A[],int B[],int n){
-    int sa=0,da=n-1,ma;
-    int sb=0,db=n-1,mb;
-    while(sa != da || sb != db){
-        ma = (sa+da)/2;
-        mb = (sb+db)/2;
-        if(A[ma] == B[mb]){
-            return A[ma];
-        }
-        if(A[ma] &lt; B[mb]){
-            if((sa+da)%2 == 0){//元素个数为奇数
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">mediSearch</span><span class="hljs-params">(<span class="hljs-keyword">int</span> A[],<span class="hljs-keyword">int</span> B[],<span class="hljs-keyword">int</span> n)</span></span>&#123;
+    <span class="hljs-keyword">int</span> sa=<span class="hljs-number">0</span>,da=n<span class="hljs-number">-1</span>,ma;
+    <span class="hljs-keyword">int</span> sb=<span class="hljs-number">0</span>,db=n<span class="hljs-number">-1</span>,mb;
+    <span class="hljs-keyword">while</span>(sa != da || sb != db)&#123;
+        ma = (sa+da)/<span class="hljs-number">2</span>;
+        mb = (sb+db)/<span class="hljs-number">2</span>;
+        <span class="hljs-keyword">if</span>(A[ma] == B[mb])&#123;
+            <span class="hljs-keyword">return</span> A[ma];
+        &#125;
+        <span class="hljs-keyword">if</span>(A[ma] &lt; B[mb])&#123;
+            <span class="hljs-keyword">if</span>((sa+da)%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//元素个数为奇数</span>
                 sa = ma;
                 db = mb;
-            }
-            else{
-                sa = ma + 1;
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
+                sa = ma + <span class="hljs-number">1</span>;
                 db = mb;
-            }
-        }
-        else{
-            if((sb+db)%2 == 0){//元素个数为奇数
+            &#125;
+        &#125;
+        <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">if</span>((sb+db)%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//元素个数为奇数</span>
                 da = ma;
                 sb = mb;
-            }
-            else{
+            &#125;
+            <span class="hljs-keyword">else</span>&#123;
                 da = ma;
-                sb = mb + 1;
-            }
-        }
-    }
-    return A[sa] &lt; B[sb]?A[sa]:B[sb];
-}
-</code></pre>
+                sb = mb + <span class="hljs-number">1</span>;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> A[sa] &lt; B[sb]?A[sa]:B[sb];
+&#125;</code></pre>
 <p>7.已知一个整数序列<script type="math/tex">A=(a_0,a_1,...a_{n-1})</script>，其中<script type="math/tex">0\leqslant a_{i}\leqslant n</script>,若存在<script type="math/tex">a_{p1}=a_{p2}=...a_{pm}=x</script>,且<script type="math/tex">m>n/2</script>,则称<script type="math/tex">x</script>为A的主元素。例如<script type="math/tex">A=(0,5,5,3,5,7,5,5)</script>，5为A的主元素，<script type="math/tex">B=(0,5,5,3,5,1,5,7)</script>,则B中没有主元素。设计算法找出A的主元素并输出，否则输出-1；</p>
-<pre><code class="lang-c++">int majority(int A[],int n){
-    int i,c,count = 1;//c保存候选主元素
-    c = A[0];
-    for(i = 1;i &lt; n;i++){
-        if(A[i] == c)
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">majority</span><span class="hljs-params">(<span class="hljs-keyword">int</span> A[],<span class="hljs-keyword">int</span> n)</span></span>&#123;
+    <span class="hljs-keyword">int</span> i,c,count = <span class="hljs-number">1</span>;<span class="hljs-comment">//c保存候选主元素</span>
+    c = A[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i &lt; n;i++)&#123;
+        <span class="hljs-keyword">if</span>(A[i] == c)
             count++;
-        else{
-            if(count &gt; 0)
+        <span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-keyword">if</span>(count &gt; <span class="hljs-number">0</span>)
                 count--;
-            else{
+            <span class="hljs-keyword">else</span>&#123;
                 c = A[i];
-                count = 1 ;
-            }
-        }
-    }
-    if(count &gt; 0)
-        for(i = count = 0;i &lt; n; i++){//统计候选主元素实际出现的次数
-            if(A[i] == c)
+                count = <span class="hljs-number">1</span> ;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">if</span>(count &gt; <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">for</span>(i = count = <span class="hljs-number">0</span>;i &lt; n; i++)&#123;<span class="hljs-comment">//统计候选主元素实际出现的次数</span>
+            <span class="hljs-keyword">if</span>(A[i] == c)
                 count++;
-        }
-    if(count &gt; (n/2))
-        return c；
-    else
-        return -1;
-}
-</code></pre>
+        &#125;
+    <span class="hljs-keyword">if</span>(count &gt; (n/<span class="hljs-number">2</span>))
+        <span class="hljs-keyword">return</span> c；
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+&#125;</code></pre>
 <h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>由于顺序表的插入、删除操作需要移动大量元素,影响运行效率,由此引入线性表的链式存储,链式存储不需要使用地址连续的存储单元,即逻辑上相邻的元素不要求在物理位置上也相邻</p>
 <p><strong>单链表</strong></p>
-<p>通过一组任意的存储单元来存储线性表中的数据元素,每个链表节点除了存放元素本身,还需要存放指向后继的指针,其是非随机存取结构</p>
-<pre><code class="lang-cpp">typedef struct Node{
-    ElemType data; //XX
-    struct Node *next;//指针域
-}Node,*LinkList;
-</code></pre>
-<p>通常用头指针来标识一个单链表,在单链表第一个节点前附加一个节点称为头节点,头节点的数据域不设任何信息<br><img src="/images/dataStructure/1.jpg" srcset="/img/loading.gif" alt=""><br>头指针和头节点：<br>1.不管带不带头节点,头指针始终指向链表的第一个节点<br>2.引入头节点,统一操作,统一空表和非空表的处理</p>
+<p>通过一组任意的存储单元来存储线性表中的数据元素,每个链表节点除了存放元素本身,还需要存放指向后继的指针,其是非随机存取结构<br><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>&#123;</span>
+	ElemType data; <span class="hljs-comment">//XX</span>
+	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">next</span>;</span><span class="hljs-comment">//指针域</span>
+&#125;Node,*LinkList;</code></pre><br>通常用头指针来标识一个单链表,在单链表第一个节点前附加一个节点称为头节点,头节点的数据域不设任何信息<br><img src="/images/dataStructure/1.jpg" srcset="/images/loading.gif" alt=""><br>头指针和头节点：<br>1.不管带不带头节点,头指针始终指向链表的第一个节点<br>2.引入头节点,统一操作,统一空表和非空表的处理</p>
 <p><strong>采用头插法建立单链表</strong></p>
-<pre><code class="lang-cpp">LinkList createList(LinkList &amp;L){
-    Node *node;
-    int x;
-    L = (LinkList)malloc(sizeof(Node));
-    L-&gt;next = null;
-    scanf(&quot;%d&quot;,&amp;x);
-    while(x != 10){
-        node = (Node*)malloc(sizeof(Node));
-        node-&gt;data = x;
-        node-&gt;next = L-&gt;next;
-        L-&gt;next = node;
-        scanf(&quot;%d&quot;,x);
-    }
-    return L;
-}
-</code></pre>
+<pre><code class="hljs cpp"><span class="hljs-function">LinkList <span class="hljs-title">createList</span><span class="hljs-params">(LinkList &amp;L)</span></span>&#123;
+	Node *node;
+	<span class="hljs-keyword">int</span> x;
+	L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));
+	L-&gt;next = null;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;x);
+	<span class="hljs-keyword">while</span>(x != <span class="hljs-number">10</span>)&#123;
+		node = (Node*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));
+		node-&gt;data = x;
+		node-&gt;next = L-&gt;next;
+		L-&gt;next = node;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,x);
+	&#125;
+	<span class="hljs-keyword">return</span> L;
+&#125;</code></pre>
 <p><strong>采用尾插法建立单链表</strong></p>
-<pre><code class="lang-cpp">LinkList createList(LinkList &amp;L){
-    int x;
-    L = (LinkList)malloc(sizeof(Node));
-    Node *node,*tail = L;
-    scanf(&quot;%d&quot;,&amp;x);
-    while(x != 10){
-        node = (Node*)malloc(sizeof(Node));
-        node-&gt;data = x;
-        tail-&gt;next = node;
-        tail = node;
-        scanf(&quot;%d&quot;,x);
-    }
-    tail-&gt;next = null;
-    return L;
-}
-</code></pre>
-<p><strong>按序号查找节点值</strong></p>
-<pre><code class="lang-cpp">Node* getElem(LinkList L，int i){
-    int j=1;
-    Node *p= L-&gt;next;//头节点
-    if(i == 0)
-        return L;
-    if(i &lt; 1)
-        return null;
-    while(p &amp;&amp; j &lt; i){ //从第一个节点开始查找
-        p = p-&gt;next;
-        j++
-    }
-    return p;
-}
-</code></pre>
-<p><strong>按值查找表节点</strong></p>
-<pre><code class="lang-cpp">Node* getElem(LinkList L，ElemType  e){
-    Node *p= L-&gt;next;//头节点
-    while(p &amp;&amp; p-&gt;data != e){ //从第一个节点开始查找
-        p = p-&gt;next;
-    }
-    return p;
-}
-</code></pre>
-<p><strong>插入节点操作</strong></p>
-<pre><code class="lang-cpp">p = getElem(L,i-1);//查找插入位置i的前驱节点
+<pre><code class="hljs cpp"><span class="hljs-function">LinkList <span class="hljs-title">createList</span><span class="hljs-params">(LinkList &amp;L)</span></span>&#123;
+	<span class="hljs-keyword">int</span> x;
+	L = (LinkList)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));
+	Node *node,*tail = L;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,&amp;x);
+	<span class="hljs-keyword">while</span>(x != <span class="hljs-number">10</span>)&#123;
+		node = (Node*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));
+		node-&gt;data = x;
+		tail-&gt;next = node;
+		tail = node;
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">"%d"</span>,x);
+	&#125;
+	tail-&gt;next = null;
+	<span class="hljs-keyword">return</span> L;
+&#125;</code></pre>
+<p><strong>按序号查找节点值</strong><br><pre><code class="hljs cpp"><span class="hljs-function">Node* <span class="hljs-title">getElem</span><span class="hljs-params">(LinkList L，<span class="hljs-keyword">int</span> i)</span></span>&#123;
+	<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;
+	Node *p= L-&gt;next;<span class="hljs-comment">//头节点</span>
+	<span class="hljs-keyword">if</span>(i == <span class="hljs-number">0</span>)
+		<span class="hljs-keyword">return</span> L;
+	<span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">1</span>)
+		<span class="hljs-keyword">return</span> null;
+	<span class="hljs-keyword">while</span>(p &amp;&amp; j &lt; i)&#123; <span class="hljs-comment">//从第一个节点开始查找</span>
+		p = p-&gt;next;
+		j++
+	&#125;
+	<span class="hljs-keyword">return</span> p;
+&#125;</code></pre><br><strong>按值查找表节点</strong><br><pre><code class="hljs cpp"><span class="hljs-function">Node* <span class="hljs-title">getElem</span><span class="hljs-params">(LinkList L，ElemType  e)</span></span>&#123;
+	Node *p= L-&gt;next;<span class="hljs-comment">//头节点</span>
+	<span class="hljs-keyword">while</span>(p &amp;&amp; p-&gt;data != e)&#123; <span class="hljs-comment">//从第一个节点开始查找</span>
+		p = p-&gt;next;
+	&#125;
+	<span class="hljs-keyword">return</span> p;
+&#125;</code></pre><br><strong>插入节点操作</strong><br><pre><code class="hljs cpp">p = getElem(L,i<span class="hljs-number">-1</span>);<span class="hljs-comment">//查找插入位置i的前驱节点</span>
 s-&gt;next = p-&gt;next;
-p-&gt;next = s;
-</code></pre>
-<p><strong>删除节点操作</strong></p>
-<pre><code class="lang-cpp">p = getElem(L,i-1);//查找删除位置i的前驱节点
+p-&gt;next = s;</code></pre><br><strong>删除节点操作</strong><br><pre><code class="hljs cpp">p = getElem(L,i<span class="hljs-number">-1</span>);<span class="hljs-comment">//查找删除位置i的前驱节点</span>
 q = p-next;
 p-&gt;next = q-&gt;next;
-free(q);
-</code></pre>
-<p><strong>双链表</strong></p>
-<p>双链表通过prior和next，分别指向前驱节点和后继节点<br>双链表的按值查找和按位查找操作和单链表相同</p>
-<pre><code class="lang-cpp">typedef struct Node{
-    ElemType data;
-    struct Node *prior;
-    struct Node *next;
-}Node,*DoubleList;
-</code></pre>
-<p><strong>插入节点操作</strong></p>
-<pre><code class="lang-cpp">p = getElem(L,i-1);//查找插入位置i的前驱节点
+<span class="hljs-built_in">free</span>(q);</code></pre><br><strong>双链表</strong></p>
+<p>双链表通过prior和next，分别指向前驱节点和后继节点<br>双链表的按值查找和按位查找操作和单链表相同<br><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>&#123;</span>
+	ElemType data;
+	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">prior</span>;</span>
+	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">next</span>;</span>
+&#125;Node,*DoubleList;</code></pre><br><strong>插入节点操作</strong></p>
+<pre><code class="hljs cpp">p = getElem(L,i<span class="hljs-number">-1</span>);<span class="hljs-comment">//查找插入位置i的前驱节点</span>
 s-&gt;next = p-&gt;next;
 p-&gt;next-prior = s;
 s-&gt;prior = p;
-p-&gt;next = s;
-</code></pre>
-<p><strong>删除节点操作</strong></p>
-<pre><code class="lang-cpp">p = getElem(L,i-1);//查找删除位置i的前驱节点
+p-&gt;next = s;</code></pre>
+<p><strong>删除节点操作</strong><br><pre><code class="hljs cpp">p = getElem(L,i<span class="hljs-number">-1</span>);<span class="hljs-comment">//查找删除位置i的前驱节点</span>
 q = p-next;
 p-&gt;next = q-&gt;next;
 p-&gt;next-&gt;prior = p;
-free(q);
-</code></pre>
-<h3 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h3><p>静态链表是由数组来描述线性表的链式存储结构,节点也有数据域data和指针域next</p>
-<pre><code class="lang-cpp">#define MaxSize 50
-typedef struct{
-    ElemType data;
-    int next ;//下一个元素的数组下标
-}StaticLinkList[MaxSize];
-</code></pre>
+<span class="hljs-built_in">free</span>(q);</code></pre></p>
+<h3 id="静态链表"><a href="#静态链表" class="headerlink" title="静态链表"></a>静态链表</h3><p>静态链表是由数组来描述线性表的链式存储结构,节点也有数据域data和指针域next<br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MaxSize 50</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+	ElemType data;
+	<span class="hljs-keyword">int</span> next ;<span class="hljs-comment">//下一个元素的数组下标</span>
+&#125;StaticLinkList[MaxSize];</code></pre></p>
 <ol>
 <li><p>在带头结点的单链表L中，删除所有值为x的结点，并释放其空间。</p>
-<pre><code class="lang-c++">void deleteX(LinkList &amp;L){
-    Node *p = L-&gt;next,*pre = L;*q;//pre为p的前驱结点
-    while(p != null){
-        if(p-&gt;data == x){
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">deleteX</span><span class="hljs-params">(LinkList &amp;L)</span></span>&#123;
+    Node *p = L-&gt;next,*pre = L;*q;<span class="hljs-comment">//pre为p的前驱结点</span>
+    <span class="hljs-keyword">while</span>(p != null)&#123;
+        <span class="hljs-keyword">if</span>(p-&gt;data == x)&#123;
             q = p;
             p = p-&gt;next;
             pre-&gt;next = p;
-            free(q);
-        }
-        else{
+            <span class="hljs-built_in">free</span>(q);
+        &#125;
+        <span class="hljs-keyword">else</span>&#123;
             pre = p;
             p = p-&gt;next;
-        }
-    }
-}
-</code></pre>
+        &#125;
+    &#125;
+&#125;</code></pre>
 </li>
 <li><p>设L为带头结点的单链表，编写算法实现从尾到头反向输出每个结点的值。</p>
-<pre><code class="lang-c++">//递归方法
-void reversePrint(LinkList &amp;L){
-    if(L-&gt;next != nulll){
+<pre><code class="hljs c++"><span class="hljs-comment">//递归方法</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reversePrint</span><span class="hljs-params">(LinkList &amp;L)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(L-&gt;next != nulll)&#123;
         reversePrint(L-next);
-    }
-    printf(L-&gt;data)
-}
-//借助栈
-</code></pre>
+    &#125;
+    <span class="hljs-built_in">printf</span>(L-&gt;data)
+&#125;
+<span class="hljs-comment">//借助栈</span></code></pre>
 </li>
 <li><p>编写在带头结点的单链表L中删除最小值结点的高效算法，假设最小值唯一。</p>
-<pre><code class="lang-c++">LinkList deleteMinNode(LinkList &amp;L){
-    Node *p = L-&gt;next,*pre = L;// pre为p的前驱结点
-    Node *minPre = pre,*min = p;//最小值的前驱和当前最小值
-    while(p!= null){
-        if(p-&gt;data &lt; min-&gt;data){
-            min = p;
+<pre><code class="hljs c++"><span class="hljs-function">LinkList <span class="hljs-title">deleteMinNode</span><span class="hljs-params">(LinkList &amp;L)</span></span>&#123;
+    Node *p = L-&gt;next,*pre = L;<span class="hljs-comment">// pre为p的前驱结点</span>
+    Node *minPre = pre,*<span class="hljs-built_in">min</span> = p;<span class="hljs-comment">//最小值的前驱和当前最小值</span>
+    <span class="hljs-keyword">while</span>(p!= null)&#123;
+        <span class="hljs-keyword">if</span>(p-&gt;data &lt; <span class="hljs-built_in">min</span>-&gt;data)&#123;
+            <span class="hljs-built_in">min</span> = p;
             minPre = pre;
-        }
+        &#125;
         pre = p;
         p = p-&gt;next;
-    }
-    minPre-&gt;next = min-&gt;next;
-    free(min);
-    return L;
-}
-</code></pre>
+    &#125;
+    minPre-&gt;next = <span class="hljs-built_in">min</span>-&gt;next;
+    <span class="hljs-built_in">free</span>(<span class="hljs-built_in">min</span>);
+    <span class="hljs-keyword">return</span> L;
+&#125;</code></pre>
 </li>
 <li><p>试编写算法将带头结点的链表逆置，且空间复杂度为$O(1)$</p>
-<pre><code class="lang-c++">LinkList reverse(LinkList L){
-    Node *p,*r;//p为工作指针，r为后继指针
+<pre><code class="hljs c++"><span class="hljs-function">LinkList <span class="hljs-title">reverse</span><span class="hljs-params">(LinkList L)</span></span>&#123;
+    Node *p,*r;<span class="hljs-comment">//p为工作指针，r为后继指针</span>
     p = L-&gt;next;
-    L-&gt;next = NULL;
-    while(p != NULL){
+    L-&gt;next = <span class="hljs-literal">NULL</span>;
+    <span class="hljs-keyword">while</span>(p != <span class="hljs-literal">NULL</span>)&#123;
         r = p-&gt;next;
         p-&gt;next = L-&gt;next;
         L-&gt;next = p;
         p = r;
-    }
-}
-</code></pre>
+    &#125;
+&#125;</code></pre>
 </li>
 </ol>
 

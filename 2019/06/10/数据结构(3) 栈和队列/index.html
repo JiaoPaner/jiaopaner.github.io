@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      538 字
+      574 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      9
        分钟
     </span>
   
@@ -211,129 +211,124 @@
               <h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><p><strong>栈</strong>：只允许在一端进行插入或删除操作的线性表。</p>
 <p>栈顶：允许插入和删除的一端。栈底：固定的，不允许插入和删除的一端。</p>
 <p>特性：先进后出。</p>
-<h2 id="栈的顺序存储结构"><a href="#栈的顺序存储结构" class="headerlink" title="栈的顺序存储结构"></a>栈的顺序存储结构</h2><pre><code class="lang-c++">#define MaxSize 50
-typedef struct{
-    ElemType data[MaxSize];//存放栈中元素
-    int top;//栈顶指针 空栈 top=-1
-} Stack;
+<h2 id="栈的顺序存储结构"><a href="#栈的顺序存储结构" class="headerlink" title="栈的顺序存储结构"></a>栈的顺序存储结构</h2><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MaxSize 50</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    ElemType data[MaxSize];<span class="hljs-comment">//存放栈中元素</span>
+    <span class="hljs-keyword">int</span> top;<span class="hljs-comment">//栈顶指针 空栈 top=-1</span>
+&#125; Stack;
 
 #初始化
-void initStack(Stack &amp;s){
-    s.top = -1;
-}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">initStack</span><span class="hljs-params">(Stack &amp;s)</span></span>&#123;
+    s.top = <span class="hljs-number">-1</span>;
+&#125;
 #判断栈空
-bool stackEmpty(Stack &amp;s){
-    if(s.top == -1)
-        return true;
-    else
-        return false;
-}
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">stackEmpty</span><span class="hljs-params">(Stack &amp;s)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(s.top == <span class="hljs-number">-1</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+&#125;
 #进栈
-bool push(Stack &amp;s,ElemType x){
-    if(s.top == MaxSize-1)
-        return false;
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">push</span><span class="hljs-params">(Stack &amp;s,ElemType x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(s.top == MaxSize<span class="hljs-number">-1</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     s.data[++s.top] = x;
-    return true;
-}
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;
 #出栈
-bool pop(Stack &amp;s,ElemType &amp;x){
-    if(s.top == -1)
-        return false;
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">pop</span><span class="hljs-params">(Stack &amp;s,ElemType &amp;x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(s.top == <span class="hljs-number">-1</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     x = s.data[s.top--];
-    return true;
-}
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;
 #读取栈顶元素
-bool getTop(Stack &amp;s,ElemType &amp;x){
-    if(s.top == -1)
-        return false;
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">getTop</span><span class="hljs-params">(Stack &amp;s,ElemType &amp;x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(s.top == <span class="hljs-number">-1</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     x = s.data[s.top];
-    return true;
-}
-</code></pre>
-<h2 id="栈的链式存储"><a href="#栈的链式存储" class="headerlink" title="栈的链式存储"></a>栈的链式存储</h2><pre><code class="lang-c++">typedef struct LinkNode{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
+<h2 id="栈的链式存储"><a href="#栈的链式存储" class="headerlink" title="栈的链式存储"></a>栈的链式存储</h2><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LinkNode</span>&#123;</span>
     ElemType data;
-    struct LinkNode *next;
-} *LinkStack;
-</code></pre>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LinkNode</span> *<span class="hljs-title">next</span>;</span>
+&#125; *LinkStack;</code></pre>
 <h1 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h1><p><strong>队列</strong>：只允许在表的一端进行插入，在表的另一端进行删除。</p>
 <p>队头：允许删除的一端。队尾：允许插入的一端。</p>
 <p>特性：先进先出</p>
-<h2 id="队列的顺序存储结构"><a href="#队列的顺序存储结构" class="headerlink" title="队列的顺序存储结构"></a>队列的顺序存储结构</h2><pre><code class="lang-c++">#define MaxSize 50
-typedef struct{
-    ElemType data[MaxSize];//存放队列元素
-    int front,rear;//队头指针、队尾指针
-}Queue;
-</code></pre>
+<h2 id="队列的顺序存储结构"><a href="#队列的顺序存储结构" class="headerlink" title="队列的顺序存储结构"></a>队列的顺序存储结构</h2><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MaxSize 50</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    ElemType data[MaxSize];<span class="hljs-comment">//存放队列元素</span>
+    <span class="hljs-keyword">int</span> front,rear;<span class="hljs-comment">//队头指针、队尾指针</span>
+&#125;Queue;</code></pre>
 <p><strong>循环队列</strong></p>
-<pre><code class="lang-c++">#初始化
-void InitQueue(Queue &amp;queue){
-    queue.rear = queue.front = 0;
-}
+<pre><code class="hljs c++">#初始化
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InitQueue</span><span class="hljs-params">(Queue &amp;<span class="hljs-built_in">queue</span>)</span></span>&#123;
+    <span class="hljs-built_in">queue</span>.rear = <span class="hljs-built_in">queue</span>.front = <span class="hljs-number">0</span>;
+&#125;
 #判断队列空
-bool isEmpty(Queue queue){
-    if(queue.rear == queue.front)
-        return true;
-    else
-        return false;
-}
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">(Queue <span class="hljs-built_in">queue</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">queue</span>.rear == <span class="hljs-built_in">queue</span>.front)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+&#125;
 #入队
-bool enQueue(Queue &amp;queue,ElemType x){
-    if((queue.rear+1)%MaxSize == queue.front)
-        return false;//队列满
-    queue.data[queue.rear] = x;
-    queue.rear = (queue.rear+1) % MaxSize;
-    return true;
-}
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">enQueue</span><span class="hljs-params">(Queue &amp;<span class="hljs-built_in">queue</span>,ElemType x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>((<span class="hljs-built_in">queue</span>.rear+<span class="hljs-number">1</span>)%MaxSize == <span class="hljs-built_in">queue</span>.front)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<span class="hljs-comment">//队列满</span>
+    <span class="hljs-built_in">queue</span>.data[<span class="hljs-built_in">queue</span>.rear] = x;
+    <span class="hljs-built_in">queue</span>.rear = (<span class="hljs-built_in">queue</span>.rear+<span class="hljs-number">1</span>) % MaxSize;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;
 #出队
-bool deQueue(Queue &amp;queue,ElemType &amp;x){
-    if(queue.rear+1 == queue.front)
-        return false;//队列空
-    x = queue.data[queue.font];
-    queue.front = (queue.front+1) % MaxSize;
-    return true;
-}
-</code></pre>
-<h2 id="队列的链式存储结构"><a href="#队列的链式存储结构" class="headerlink" title="队列的链式存储结构"></a>队列的链式存储结构</h2><pre><code class="lang-c++">typedef struct{
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">deQueue</span><span class="hljs-params">(Queue &amp;<span class="hljs-built_in">queue</span>,ElemType &amp;x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">queue</span>.rear+<span class="hljs-number">1</span> == <span class="hljs-built_in">queue</span>.front)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<span class="hljs-comment">//队列空</span>
+    x = <span class="hljs-built_in">queue</span>.data[<span class="hljs-built_in">queue</span>.font];
+    <span class="hljs-built_in">queue</span>.front = (<span class="hljs-built_in">queue</span>.front+<span class="hljs-number">1</span>) % MaxSize;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
+<h2 id="队列的链式存储结构"><a href="#队列的链式存储结构" class="headerlink" title="队列的链式存储结构"></a>队列的链式存储结构</h2><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
     ElemType data;
-    struct LinkNode *next
-}LinkNode;
-typedef struct{
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LinkNode</span> *<span class="hljs-title">next</span>
+&#125;<span class="hljs-title">LinkNode</span>;</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
     LinkNode *front,*rear;
-}LinkQueue;
+&#125;LinkQueue;
 
 #初始化
-void InitQueue(LinkQueue &amp;queue){
-    queue.front = queue.rear=(LinkNode*)malloc(sizeof(LinkNode));
-    queue.front.next = null;
-}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">InitQueue</span><span class="hljs-params">(LinkQueue &amp;<span class="hljs-built_in">queue</span>)</span></span>&#123;
+    <span class="hljs-built_in">queue</span>.front = <span class="hljs-built_in">queue</span>.rear=(LinkNode*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkNode));
+    <span class="hljs-built_in">queue</span>.front.next = null;
+&#125;
 #判断队列空
-bool isEmpty(LinkQueue queue){
-    if(queue.front == queue.rear)
-        return true;
-    else
-        return false;
-}
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isEmpty</span><span class="hljs-params">(LinkQueue <span class="hljs-built_in">queue</span>)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">queue</span>.front == <span class="hljs-built_in">queue</span>.rear)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+&#125;
 #入队
-void enQueue(LinkQueue &amp;queue,ElemType x){
-    s = (LinkNode *)malloc(sizeof(LinkNode));
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">enQueue</span><span class="hljs-params">(LinkQueue &amp;<span class="hljs-built_in">queue</span>,ElemType x)</span></span>&#123;
+    s = (LinkNode *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LinkNode));
     s-&gt;data = x;
     s-&gt;next = null;
-    queue.rear-&gt;next = s;
-    queue.rear = s;
-}
+    <span class="hljs-built_in">queue</span>.rear-&gt;next = s;
+    <span class="hljs-built_in">queue</span>.rear = s;
+&#125;
 #出队
-bool deQueue(LinkQueue &amp;queue,ElemType &amp;x){
-    if(queue.front == queue.rear)
-        return false;
-    p = queue.front-&gt;next;
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">deQueue</span><span class="hljs-params">(LinkQueue &amp;<span class="hljs-built_in">queue</span>,ElemType &amp;x)</span></span>&#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">queue</span>.front == <span class="hljs-built_in">queue</span>.rear)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    p = <span class="hljs-built_in">queue</span>.front-&gt;next;
     x = p-&gt;data;
-    queue.front-&gt;next = p-&gt;next;
-    if(queue.rear == p)
-        queue.rear = queue.front;
-    free(p);
-    return true;
-}
-</code></pre>
+    <span class="hljs-built_in">queue</span>.front-&gt;next = p-&gt;next;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">queue</span>.rear == p)
+        <span class="hljs-built_in">queue</span>.rear = <span class="hljs-built_in">queue</span>.front;
+    <span class="hljs-built_in">free</span>(p);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;</code></pre>
 <h1 id="栈和队列的应用"><a href="#栈和队列的应用" class="headerlink" title="栈和队列的应用"></a>栈和队列的应用</h1>
             </div>
             <hr>

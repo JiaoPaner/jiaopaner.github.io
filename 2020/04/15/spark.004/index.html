@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      1.9k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40
+      36
        分钟
     </span>
   
@@ -211,35 +211,34 @@
               <h1 id="Spark-Machine-Learning"><a href="#Spark-Machine-Learning" class="headerlink" title="Spark Machine Learning"></a>Spark Machine Learning</h1><ul>
 <li>引入依赖</li>
 </ul>
-<pre><code class="lang-text">&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-  &lt;artifactId&gt;spark-mllib_2.11&lt;/artifactId&gt;
-  &lt;version&gt;2.4.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="hljs text">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
+  &lt;artifactId&gt;spark-mllib_2.11&lt;&#x2F;artifactId&gt;
+  &lt;version&gt;2.4.5&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;</code></pre>
 <h1 id="相关系数矩阵"><a href="#相关系数矩阵" class="headerlink" title="相关系数矩阵"></a>相关系数矩阵</h1><p>相关系数矩阵(i行，j列)的元素是原矩阵i列与j列的相关系数</p>
-<pre><code class="lang-java">#身高与体重的相关系数矩阵
-SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
+<pre><code class="hljs java">#身高与体重的相关系数矩阵
+SparkSession spark = SparkSession.builder().appName("ml test")
+				 .master("local[*]")
+				 .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-          RowFactory.create(Vectors.dense(172, 60)),
-          RowFactory.create(Vectors.dense(175, 65)),
-          RowFactory.create(Vectors.dense(180, 70)),
-          RowFactory.create(Vectors.dense(190, 80))
+		  RowFactory.create(Vectors.dense(172, 60)),
+		  RowFactory.create(Vectors.dense(175, 65)),
+		  RowFactory.create(Vectors.dense(180, 70)),
+		  RowFactory.create(Vectors.dense(190, 80))
 );
 
-StructType schema = new StructType(new StructField[]{
-  new StructField(&quot;features&quot;, new VectorUDT(), false, Metadata.empty()),
-});
+StructType schema = new StructType(new StructField[]&#123;
+  new StructField("features", new VectorUDT(), false, Metadata.empty()),
+&#125;);
 
 Dataset&lt;Row&gt; df = spark.createDataFrame(data, schema);
 df.show();
-Row pearson = Correlation.corr(df, &quot;features&quot;).head();
-System.out.println(&quot;Pearson correlation matrix:\n&quot; + pearson);
+Row pearson = Correlation.corr(df, "features").head();
+System.out.println("Pearson correlation matrix:\n" + pearson);
 
-Row spearman = Correlation.corr(df, &quot;features&quot;, &quot;spearman&quot;).head();
-System.out.println(&quot;Spearman correlation matrix:\n&quot; + spearman);
+Row spearman = Correlation.corr(df, "features", "spearman").head();
+System.out.println("Spearman correlation matrix:\n" + spearman);
 
 +------------+
 |    features|
@@ -256,190 +255,184 @@ Pearson correlation matrix:
 
 Spearman correlation matrix:
 [1.0                 0.9999999999999981  
-0.9999999999999981  1.0                 ]
-</code></pre>
-<h1 id="Extracting-transforming-and-selecting-features"><a href="#Extracting-transforming-and-selecting-features" class="headerlink" title="Extracting, transforming and selecting features"></a>Extracting, transforming and selecting features</h1><h2 id="Tokenizer-分词"><a href="#Tokenizer-分词" class="headerlink" title="Tokenizer 分词"></a>Tokenizer 分词</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
+0.9999999999999981  1.0                 ]</code></pre>
+<h1 id="Extracting-transforming-and-selecting-features"><a href="#Extracting-transforming-and-selecting-features" class="headerlink" title="Extracting, transforming and selecting features"></a>Extracting, transforming and selecting features</h1><h2 id="Tokenizer-分词"><a href="#Tokenizer-分词" class="headerlink" title="Tokenizer 分词"></a>Tokenizer 分词</h2><pre><code class="hljs java">SparkSession spark = SparkSession.builder().appName(<span class="hljs-string">"ml test"</span>)
+				 .master(<span class="hljs-string">"local[*]"</span>)
+				 .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-                RowFactory.create(0, &quot;Hi I heard about Spark&quot;),
-                RowFactory.create(1, &quot;I wish Java could use case classes&quot;),
-                RowFactory.create(2, &quot;Logistic,regression,models,are,neat&quot;)
-        );
+				RowFactory.create(<span class="hljs-number">0</span>, <span class="hljs-string">"Hi I heard about Spark"</span>),
+				RowFactory.create(<span class="hljs-number">1</span>, <span class="hljs-string">"I wish Java could use case classes"</span>),
+				RowFactory.create(<span class="hljs-number">2</span>, <span class="hljs-string">"Logistic,regression,models,are,neat"</span>)
+		);
 
-StructType schema = new StructType(new StructField[]{
-        new StructField(&quot;id&quot;, DataTypes.IntegerType, false, Metadata.empty()),
-        new StructField(&quot;sentence&quot;, DataTypes.StringType, false, Metadata.empty())
-});
+StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[]&#123;
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"id"</span>, DataTypes.IntegerType, <span class="hljs-keyword">false</span>, Metadata.empty()),
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"sentence"</span>, DataTypes.StringType, <span class="hljs-keyword">false</span>, Metadata.empty())
+&#125;);
 
 Dataset&lt;Row&gt; sentenceDataFrame = spark.createDataFrame(data, schema);
 
-Tokenizer tokenizer = new Tokenizer().setInputCol(&quot;sentence&quot;).setOutputCol(&quot;words&quot;);
+Tokenizer tokenizer = <span class="hljs-keyword">new</span> Tokenizer().setInputCol(<span class="hljs-string">"sentence"</span>).setOutputCol(<span class="hljs-string">"words"</span>);
 Dataset&lt;Row&gt; tokenized = tokenizer.transform(sentenceDataFrame);
-tokenized.show(false);
+tokenized.show(<span class="hljs-keyword">false</span>);
 
-//正则
-RegexTokenizer regexTokenizer = new RegexTokenizer()
-        .setInputCol(&quot;sentence&quot;)
-        .setOutputCol(&quot;words&quot;)
-        .setPattern(&quot;\\W&quot;);  // alternatively .setPattern(&quot;\\w+&quot;).setGaps(false);
+<span class="hljs-comment">//正则</span>
+RegexTokenizer regexTokenizer = <span class="hljs-keyword">new</span> RegexTokenizer()
+		.setInputCol(<span class="hljs-string">"sentence"</span>)
+		.setOutputCol(<span class="hljs-string">"words"</span>)
+		.setPattern(<span class="hljs-string">"\\W"</span>);  <span class="hljs-comment">// alternatively .setPattern("\\w+").setGaps(false);</span>
 Dataset&lt;Row&gt; regexTokenized = regexTokenizer.transform(sentenceDataFrame);
-regexTokenized.show(false);
+regexTokenized.show(<span class="hljs-keyword">false</span>);
 
 +---+-----------------------------------+------------------------------------------+
 |id |sentence                           |words                                     |
 +---+-----------------------------------+------------------------------------------+
-|0  |Hi I heard about Spark             |[hi, i, heard, about, spark]              |
-|1  |I wish Java could use case classes |[i, wish, java, could, use, case, classes]|
-|2  |Logistic,regression,models,are,neat|[logistic,regression,models,are,neat]     |
+|<span class="hljs-number">0</span>  |Hi I heard about Spark             |[hi, i, heard, about, spark]              |
+|<span class="hljs-number">1</span>  |I wish Java could use <span class="hljs-keyword">case</span> classes |[i, wish, java, could, use, <span class="hljs-keyword">case</span>, classes]|
+|<span class="hljs-number">2</span>  |Logistic,regression,models,are,neat|[logistic,regression,models,are,neat]     |
 +---+-----------------------------------+------------------------------------------+
 
 +---+-----------------------------------+------------------------------------------+
 |id |sentence                           |words                                     |
 +---+-----------------------------------+------------------------------------------+
-|0  |Hi I heard about Spark             |[hi, i, heard, about, spark]              |
-|1  |I wish Java could use case classes |[i, wish, java, could, use, case, classes]|
-|2  |Logistic,regression,models,are,neat|[logistic, regression, models, are, neat] |
-+---+-----------------------------------+------------------------------------------+
-</code></pre>
-<h2 id="StopWordsRemover-停止词"><a href="#StopWordsRemover-停止词" class="headerlink" title="StopWordsRemover 停止词"></a>StopWordsRemover 停止词</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
-StopWordsRemover remover = new StopWordsRemover()
-                .setInputCol(&quot;raw&quot;)
-                .setOutputCol(&quot;filtered&quot;);
+|<span class="hljs-number">0</span>  |Hi I heard about Spark             |[hi, i, heard, about, spark]              |
+|<span class="hljs-number">1</span>  |I wish Java could use <span class="hljs-keyword">case</span> classes |[i, wish, java, could, use, <span class="hljs-keyword">case</span>, classes]|
+|<span class="hljs-number">2</span>  |Logistic,regression,models,are,neat|[logistic, regression, models, are, neat] |
++---+-----------------------------------+------------------------------------------+</code></pre>
+<h2 id="StopWordsRemover-停止词"><a href="#StopWordsRemover-停止词" class="headerlink" title="StopWordsRemover 停止词"></a>StopWordsRemover 停止词</h2><pre><code class="hljs java">SparkSession spark = SparkSession.builder().appName(<span class="hljs-string">"ml test"</span>)
+				 .master(<span class="hljs-string">"local[*]"</span>)
+				 .getOrCreate();
+StopWordsRemover remover = <span class="hljs-keyword">new</span> StopWordsRemover()
+				.setInputCol(<span class="hljs-string">"raw"</span>)
+				.setOutputCol(<span class="hljs-string">"filtered"</span>);
 
 List&lt;Row&gt; data = Arrays.asList(
-        RowFactory.create(Arrays.asList(&quot;I&quot;, &quot;saw&quot;, &quot;the&quot;, &quot;red&quot;, &quot;balloon&quot;)),
-        RowFactory.create(Arrays.asList(&quot;Mary&quot;, &quot;had&quot;, &quot;a&quot;, &quot;little&quot;, &quot;lamb&quot;))
+		RowFactory.create(Arrays.asList(<span class="hljs-string">"I"</span>, <span class="hljs-string">"saw"</span>, <span class="hljs-string">"the"</span>, <span class="hljs-string">"red"</span>, <span class="hljs-string">"balloon"</span>)),
+		RowFactory.create(Arrays.asList(<span class="hljs-string">"Mary"</span>, <span class="hljs-string">"had"</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"little"</span>, <span class="hljs-string">"lamb"</span>))
 );
 
-StructType schema = new StructType(new StructField[]{
-        new StructField(&quot;raw&quot;, DataTypes.createArrayType(DataTypes.StringType), false, Metadata.empty())
-});
+StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[]&#123;
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"raw"</span>, DataTypes.createArrayType(DataTypes.StringType), <span class="hljs-keyword">false</span>, Metadata.empty())
+&#125;);
 
 Dataset&lt;Row&gt; dataset = spark.createDataFrame(data, schema);
-remover.transform(dataset).show(false);
+remover.transform(dataset).show(<span class="hljs-keyword">false</span>);
 
 +----------------------------+--------------------+
 |raw                         |filtered            |
 +----------------------------+--------------------+
 |[I, saw, the, red, balloon] |[saw, red, balloon] |
 |[Mary, had, a, little, lamb]|[Mary, little, lamb]|
-+----------------------------+--------------------+
-</code></pre>
-<h2 id="n-gram"><a href="#n-gram" class="headerlink" title="$n$ -gram"></a>$n$ -gram</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
++----------------------------+--------------------+</code></pre>
+<h2 id="n-gram"><a href="#n-gram" class="headerlink" title="$n$ -gram"></a>$n$ -gram</h2><pre><code class="hljs java">SparkSession spark = SparkSession.builder().appName(<span class="hljs-string">"ml test"</span>)
+				 .master(<span class="hljs-string">"local[*]"</span>)
+				 .getOrCreate();
 
 List&lt;Row&gt; data = Arrays.asList(
-        RowFactory.create(0, Arrays.asList(&quot;Hi&quot;, &quot;I&quot;, &quot;heard&quot;, &quot;about&quot;, &quot;Spark&quot;)),
-        RowFactory.create(1, Arrays.asList(&quot;I&quot;, &quot;wish&quot;, &quot;Java&quot;, &quot;could&quot;, &quot;use&quot;, &quot;case&quot;, &quot;classes&quot;)),
-        RowFactory.create(2, Arrays.asList(&quot;Logistic&quot;, &quot;regression&quot;, &quot;models&quot;, &quot;are&quot;, &quot;neat&quot;))
+		RowFactory.create(<span class="hljs-number">0</span>, Arrays.asList(<span class="hljs-string">"Hi"</span>, <span class="hljs-string">"I"</span>, <span class="hljs-string">"heard"</span>, <span class="hljs-string">"about"</span>, <span class="hljs-string">"Spark"</span>)),
+		RowFactory.create(<span class="hljs-number">1</span>, Arrays.asList(<span class="hljs-string">"I"</span>, <span class="hljs-string">"wish"</span>, <span class="hljs-string">"Java"</span>, <span class="hljs-string">"could"</span>, <span class="hljs-string">"use"</span>, <span class="hljs-string">"case"</span>, <span class="hljs-string">"classes"</span>)),
+		RowFactory.create(<span class="hljs-number">2</span>, Arrays.asList(<span class="hljs-string">"Logistic"</span>, <span class="hljs-string">"regression"</span>, <span class="hljs-string">"models"</span>, <span class="hljs-string">"are"</span>, <span class="hljs-string">"neat"</span>))
 );
 
-StructType schema = new StructType(new StructField[]{
-        new StructField(&quot;id&quot;, DataTypes.IntegerType, false, Metadata.empty()),
-        new StructField(
-                &quot;words&quot;, DataTypes.createArrayType(DataTypes.StringType), false, Metadata.empty())
-});
+StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[]&#123;
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"id"</span>, DataTypes.IntegerType, <span class="hljs-keyword">false</span>, Metadata.empty()),
+		<span class="hljs-keyword">new</span> StructField(
+				<span class="hljs-string">"words"</span>, DataTypes.createArrayType(DataTypes.StringType), <span class="hljs-keyword">false</span>, Metadata.empty())
+&#125;);
 
 Dataset&lt;Row&gt; wordDataFrame = spark.createDataFrame(data, schema);
 
-NGram ngramTransformer = new NGram().setN(2).setInputCol(&quot;words&quot;).setOutputCol(&quot;ngrams&quot;);
+NGram ngramTransformer = <span class="hljs-keyword">new</span> NGram().setN(<span class="hljs-number">2</span>).setInputCol(<span class="hljs-string">"words"</span>).setOutputCol(<span class="hljs-string">"ngrams"</span>);
 
 Dataset&lt;Row&gt; ngramDataFrame = ngramTransformer.transform(wordDataFrame);
-ngramDataFrame.select(&quot;ngrams&quot;).show(false);
-</code></pre>
-<h2 id="Binarization-二值化"><a href="#Binarization-二值化" class="headerlink" title="Binarization 二值化"></a>Binarization 二值化</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
+ngramDataFrame.select(<span class="hljs-string">"ngrams"</span>).show(<span class="hljs-keyword">false</span>);</code></pre>
+<h2 id="Binarization-二值化"><a href="#Binarization-二值化" class="headerlink" title="Binarization 二值化"></a>Binarization 二值化</h2><pre><code class="hljs java">SparkSession spark = SparkSession.builder().appName(<span class="hljs-string">"ml test"</span>)
+				 .master(<span class="hljs-string">"local[*]"</span>)
+				 .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-        RowFactory.create(0, 0.1),
-        RowFactory.create(1, 0.8),
-        RowFactory.create(2, 0.2)
+		RowFactory.create(<span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>),
+		RowFactory.create(<span class="hljs-number">1</span>, <span class="hljs-number">0.8</span>),
+		RowFactory.create(<span class="hljs-number">2</span>, <span class="hljs-number">0.2</span>)
 );
-StructType schema = new StructType(new StructField[]{
-        new StructField(&quot;id&quot;, DataTypes.IntegerType, false, Metadata.empty()),
-        new StructField(&quot;feature&quot;, DataTypes.DoubleType, false, Metadata.empty())
-});
+StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[]&#123;
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"id"</span>, DataTypes.IntegerType, <span class="hljs-keyword">false</span>, Metadata.empty()),
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"feature"</span>, DataTypes.DoubleType, <span class="hljs-keyword">false</span>, Metadata.empty())
+&#125;);
 Dataset&lt;Row&gt; continuousDataFrame = spark.createDataFrame(data, schema);
 
-Binarizer binarizer = new Binarizer()
-        .setInputCol(&quot;feature&quot;)
-        .setOutputCol(&quot;binarized_feature&quot;)
-        .setThreshold(0.5);
+Binarizer binarizer = <span class="hljs-keyword">new</span> Binarizer()
+		.setInputCol(<span class="hljs-string">"feature"</span>)
+		.setOutputCol(<span class="hljs-string">"binarized_feature"</span>)
+		.setThreshold(<span class="hljs-number">0.5</span>);
 
 Dataset&lt;Row&gt; binarizedDataFrame = binarizer.transform(continuousDataFrame);
 
-System.out.println(&quot;Binarizer output with Threshold = &quot; + binarizer.getThreshold());
+System.out.println(<span class="hljs-string">"Binarizer output with Threshold = "</span> + binarizer.getThreshold());
 binarizedDataFrame.show();
 
 +---+-------+-----------------+
 | id|feature|binarized_feature|
 +---+-------+-----------------+
-|  0|    0.1|              0.0|
-|  1|    0.8|              1.0|
-|  2|    0.2|              0.0|
-+---+-------+-----------------+
-</code></pre>
-<h2 id="PCA-主成成分分析"><a href="#PCA-主成成分分析" class="headerlink" title="PCA 主成成分分析"></a>PCA 主成成分分析</h2><pre><code>SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
+|  <span class="hljs-number">0</span>|    <span class="hljs-number">0.1</span>|              <span class="hljs-number">0.0</span>|
+|  <span class="hljs-number">1</span>|    <span class="hljs-number">0.8</span>|              <span class="hljs-number">1.0</span>|
+|  <span class="hljs-number">2</span>|    <span class="hljs-number">0.2</span>|              <span class="hljs-number">0.0</span>|
++---+-------+-----------------+</code></pre>
+<h2 id="PCA-主成成分分析"><a href="#PCA-主成成分分析" class="headerlink" title="PCA 主成成分分析"></a>PCA 主成成分分析</h2><pre><code class="hljs lsl">SparkSession spark = SparkSession.builder().appName(<span class="hljs-string">"ml test"</span>)
+				 .master(<span class="hljs-string">"local[*]"</span>)
+				 .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-        RowFactory.create(Vectors.sparse(5, new int[]{1, 3}, new double[]{1.0, 7.0})),
-        RowFactory.create(Vectors.dense(2.0, 0.0, 3.0, 4.0, 5.0)),
-        RowFactory.create(Vectors.dense(4.0, 0.0, 0.0, 6.0, 7.0))
+		RowFactory.create(Vectors.sparse(<span class="hljs-number">5</span>, new int[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>&#125;, new double[]&#123;<span class="hljs-number">1.0</span>, <span class="hljs-number">7.0</span>&#125;)),
+		RowFactory.create(Vectors.dense(<span class="hljs-number">2.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>)),
+		RowFactory.create(Vectors.dense(<span class="hljs-number">4.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>))
 );
 
-StructType schema = new StructType(new StructField[]{
-        new StructField(&quot;features&quot;, new VectorUDT(), false, Metadata.empty()),
-});
+StructType schema = new StructType(new StructField[]&#123;
+		new StructField(<span class="hljs-string">"features"</span>, new VectorUDT(), false, Metadata.empty()),
+&#125;);
 
 Dataset&lt;Row&gt; df = spark.createDataFrame(data, schema);
 
 PCAModel pca = new PCA()
-        .setInputCol(&quot;features&quot;)
-        .setOutputCol(&quot;pcaFeatures&quot;)
-        .setK(3)
-        .fit(df);
+		.setInputCol(<span class="hljs-string">"features"</span>)
+		.setOutputCol(<span class="hljs-string">"pcaFeatures"</span>)
+		.setK(<span class="hljs-number">3</span>)
+		.fit(df);
 
-Dataset&lt;Row&gt; result = pca.transform(df).select(&quot;pcaFeatures&quot;);
+Dataset&lt;Row&gt; result = pca.transform(df).select(<span class="hljs-string">"pcaFeatures"</span>);
 result.show(false);
 
 +-----------------------------------------------------------+
 |pcaFeatures                                                |
 +-----------------------------------------------------------+
-|[1.6485728230883807,-4.013282700516296,-5.524543751369388] |
-|[-4.645104331781534,-1.1167972663619026,-5.524543751369387]|
-|[-6.428880535676489,-5.337951427775355,-5.524543751369389] |
-+-----------------------------------------------------------+
-</code></pre><h2 id="PolynomialExpansion-多项式转化"><a href="#PolynomialExpansion-多项式转化" class="headerlink" title="PolynomialExpansion 多项式转化"></a>PolynomialExpansion 多项式转化</h2><pre><code class="lang-java">PolynomialExpansion polyExpansion = new PolynomialExpansion()
-                .setInputCol(&quot;features&quot;)
-                .setOutputCol(&quot;polyFeatures&quot;)
-                .setDegree(2);
+|[<span class="hljs-number">1.6485728230883807</span>,<span class="hljs-number">-4.013282700516296</span>,<span class="hljs-number">-5.524543751369388</span>] |
+|[<span class="hljs-number">-4.645104331781534</span>,<span class="hljs-number">-1.1167972663619026</span>,<span class="hljs-number">-5.524543751369387</span>]|
+|[<span class="hljs-number">-6.428880535676489</span>,<span class="hljs-number">-5.337951427775355</span>,<span class="hljs-number">-5.524543751369389</span>] |
++-----------------------------------------------------------+</code></pre>
+<h2 id="PolynomialExpansion-多项式转化"><a href="#PolynomialExpansion-多项式转化" class="headerlink" title="PolynomialExpansion 多项式转化"></a>PolynomialExpansion 多项式转化</h2><pre><code class="hljs java">PolynomialExpansion polyExpansion = <span class="hljs-keyword">new</span> PolynomialExpansion()
+				.setInputCol(<span class="hljs-string">"features"</span>)
+				.setOutputCol(<span class="hljs-string">"polyFeatures"</span>)
+				.setDegree(<span class="hljs-number">2</span>);
 
 List&lt;Row&gt; data = Arrays.asList(
-        RowFactory.create(Vectors.dense(2.0, 1.0)),
-        RowFactory.create(Vectors.dense(0.0, 0.0)),
-        RowFactory.create(Vectors.dense(3.0, -1.0))
+		RowFactory.create(Vectors.dense(<span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>)),
+		RowFactory.create(Vectors.dense(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>)),
+		RowFactory.create(Vectors.dense(<span class="hljs-number">3.0</span>, -<span class="hljs-number">1.0</span>))
 );
-StructType schema = new StructType(new StructField[]{
-        new StructField(&quot;features&quot;, new VectorUDT(), false, Metadata.empty()),
-});
+StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[]&#123;
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"features"</span>, <span class="hljs-keyword">new</span> VectorUDT(), <span class="hljs-keyword">false</span>, Metadata.empty()),
+&#125;);
 Dataset&lt;Row&gt; df = spark.createDataFrame(data, schema);
 
 Dataset&lt;Row&gt; polyDF = polyExpansion.transform(df);
-polyDF.show(false);
+polyDF.show(<span class="hljs-keyword">false</span>);
 
 +----------+-----------------------+
 |features  |polyFeatures           |
 +----------+-----------------------+
-|[2.0,1.0] |[2.0,4.0,1.0,2.0,1.0]  |
-|[0.0,0.0] |[0.0,0.0,0.0,0.0,0.0]  |
-|[3.0,-1.0]|[3.0,9.0,-1.0,-3.0,1.0]|
-+----------+-----------------------+
-</code></pre>
+|[<span class="hljs-number">2.0</span>,<span class="hljs-number">1.0</span>] |[<span class="hljs-number">2.0</span>,<span class="hljs-number">4.0</span>,<span class="hljs-number">1.0</span>,<span class="hljs-number">2.0</span>,<span class="hljs-number">1.0</span>]  |
+|[<span class="hljs-number">0.0</span>,<span class="hljs-number">0.0</span>] |[<span class="hljs-number">0.0</span>,<span class="hljs-number">0.0</span>,<span class="hljs-number">0.0</span>,<span class="hljs-number">0.0</span>,<span class="hljs-number">0.0</span>]  |
+|[<span class="hljs-number">3.0</span>,-<span class="hljs-number">1.0</span>]|[<span class="hljs-number">3.0</span>,<span class="hljs-number">9.0</span>,-<span class="hljs-number">1.0</span>,-<span class="hljs-number">3.0</span>,<span class="hljs-number">1.0</span>]|
++----------+-----------------------+</code></pre>
 <h2 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h2><ul>
 <li>TF:词频，词条在<strong>给定文档</strong>中所出现的频率,值越大则词条在该文档中重要性越大</li>
 </ul>
@@ -449,32 +442,32 @@ polyDF.show(false);
 </ul>
 <p>词条 $i$ 的IDF： $IDF_i$ = $log(\frac{D}{D_i+1})$  ( $D$ :总文档数， $D_i$ :包含词条 $i$ 的文档数)</p>
 <p>TF-IDF $_i$ = $TF_i*IDF_i$  (词条 $i$ 的TF-IDF值)</p>
-<pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
+<pre><code class="hljs java">SparkSession spark = SparkSession.builder().appName("ml test")
+				 .master("local[*]")
+				 .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-                  RowFactory.create(0.0, &quot;I love spark spark spark&quot;),
-                  RowFactory.create(1.0, &quot;I love java java is my life&quot;),
-                  RowFactory.create(2.0, &quot;I love C++ C++ is the best&quot;)
-        );
-
-StructType schema = new StructType(new StructField[]{
-          new StructField(&quot;label&quot;, DataTypes.DoubleType, false, Metadata.empty()),
-          new StructField(&quot;sentence&quot;, DataTypes.StringType, false, Metadata.empty())
-});
+				  RowFactory.create(0.0, "I love spark spark spark"),
+				  RowFactory.create(1.0, "I love java java is my life"),
+				  RowFactory.create(2.0, "I love C++ C++ is the best")
+		);
+		
+StructType schema = new StructType(new StructField[]&#123;
+		  new StructField("label", DataTypes.DoubleType, false, Metadata.empty()),
+		  new StructField("sentence", DataTypes.StringType, false, Metadata.empty())
+&#125;);
 Dataset&lt;Row&gt; sentenceData = spark.createDataFrame(data, schema);
 sentenceData.show();
 
-Tokenizer tokenizer = new Tokenizer().setInputCol(&quot;sentence&quot;).setOutputCol(&quot;words&quot;); //分词
+Tokenizer tokenizer = new Tokenizer().setInputCol("sentence").setOutputCol("words"); //分词
 Dataset&lt;Row&gt; wordsData = tokenizer.transform(sentenceData);
 wordsData.show();
 
 int numFeatures = 20;
-HashingTF hashingTF = new HashingTF().setInputCol(&quot;words&quot;).setOutputCol(&quot;rawFeatures&quot;).setNumFeatures(numFeatures);
+HashingTF hashingTF = new HashingTF().setInputCol("words").setOutputCol("rawFeatures").setNumFeatures(numFeatures);
 Dataset&lt;Row&gt; featurizedData = hashingTF.transform(wordsData);
 featurizedData.show();
 
-IDF idf = new IDF().setInputCol(&quot;rawFeatures&quot;).setOutputCol(&quot;features&quot;);
+IDF idf = new IDF().setInputCol("rawFeatures").setOutputCol("features");
 IDFModel idfModel = idf.fit(featurizedData);
 
 
@@ -512,32 +505,31 @@ rescaledData.show();
 |  0.0|I love spark spar...|[i, love, spark, ...|(20,[0,5,9],[1.0,...|(20,[0,5,9],[0.0,...|
 |  1.0|I love java java ...|[i, love, java, j...|(20,[0,1,7,9,16,1...|(20,[0,1,7,9,16,1...|
 |  2.0|I love C++ C++ is...|[i, love, c++, c+...|(20,[0,1,3,9,10,1...|(20,[0,1,3,9,10,1...|
-+-----+--------------------+--------------------+--------------------+--------------------+
-</code></pre>
-<h2 id="CountVectorizer"><a href="#CountVectorizer" class="headerlink" title="CountVectorizer"></a>CountVectorizer</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
++-----+--------------------+--------------------+--------------------+--------------------+</code></pre>
+<h2 id="CountVectorizer"><a href="#CountVectorizer" class="headerlink" title="CountVectorizer"></a>CountVectorizer</h2><pre><code class="hljs java">SparkSession spark = SparkSession.builder().appName("ml test")
+                 .master("local[*]")
                  .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-                  RowFactory.create(&quot;I love spark spark spark&quot;),
-                  RowFactory.create(&quot;I love java java is my life&quot;),
-                  RowFactory.create(&quot;I love C++ C++ is the best&quot;)
-        );
-StructType schema = new StructType(new StructField[]{
-          new StructField(&quot;sentence&quot;, DataTypes.StringType, false, Metadata.empty())
-});
+				  RowFactory.create("I love spark spark spark"),
+				  RowFactory.create("I love java java is my life"),
+				  RowFactory.create("I love C++ C++ is the best")
+		);
+StructType schema = new StructType(new StructField[]&#123;
+		  new StructField("sentence", DataTypes.StringType, false, Metadata.empty())
+&#125;);
 Dataset&lt;Row&gt; sentenceData = spark.createDataFrame(data, schema);
 sentenceData.show();
 
-Tokenizer tokenizer = new Tokenizer().setInputCol(&quot;sentence&quot;).setOutputCol(&quot;words&quot;); //分词
+Tokenizer tokenizer = new Tokenizer().setInputCol("sentence").setOutputCol("words"); //分词
 Dataset&lt;Row&gt; wordsData = tokenizer.transform(sentenceData);
 wordsData.show();
 
 CountVectorizerModel cvModel = new CountVectorizer()
-                              .setInputCol(&quot;words&quot;)
-                              .setOutputCol(&quot;feature&quot;)
-                              //.setVocabSize(3)
-                              //.setMinDF(2)
-                              .fit(wordsData);
+							  .setInputCol("words")
+							  .setOutputCol("feature")
+							  //.setVocabSize(3)
+							  //.setMinDF(2)
+							  .fit(wordsData);
 System.out.println(Arrays.asList(cvModel.vocabulary()));
 cvModel.transform(wordsData).show(false);
 
@@ -565,41 +557,39 @@ cvModel.transform(wordsData).show(false);
 |I love spark spark spark   |[i, love, spark, spark, spark]     |(10,[0,1,2],[1.0,3.0,1.0])                  |
 |I love java java is my life|[i, love, java, java, is, my, life]|(10,[0,2,4,5,7,9],[1.0,1.0,2.0,1.0,1.0,1.0])|
 |I love C++ C++ is the best |[i, love, c++, c++, is, the, best] |(10,[0,2,3,5,6,8],[1.0,1.0,2.0,1.0,1.0,1.0])|
-+---------------------------+-----------------------------------+--------------------------------------------+
-</code></pre>
-<h2 id="FeatureHasher"><a href="#FeatureHasher" class="headerlink" title="FeatureHasher"></a>FeatureHasher</h2><pre><code class="lang-java">SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
-                 .master(&quot;local[*]&quot;)
-                 .getOrCreate();
++---------------------------+-----------------------------------+--------------------------------------------+</code></pre>
+<h2 id="FeatureHasher"><a href="#FeatureHasher" class="headerlink" title="FeatureHasher"></a>FeatureHasher</h2><pre><code class="hljs java">SparkSession spark = SparkSession.builder().appName(<span class="hljs-string">"ml test"</span>)
+				 .master(<span class="hljs-string">"local[*]"</span>)
+				 .getOrCreate();
 List&lt;Row&gt; data = Arrays.asList(
-                RowFactory.create(2.2, true, &quot;1&quot;, &quot;foo&quot;),
-                RowFactory.create(3.3, false, &quot;2&quot;, &quot;bar&quot;),
-                RowFactory.create(4.4, false, &quot;3&quot;, &quot;baz&quot;),
-                RowFactory.create(5.5, false, &quot;4&quot;, &quot;foo&quot;)
-        );
-StructType schema = new StructType(new StructField[]{
-        new StructField(&quot;real&quot;, DataTypes.DoubleType, false, Metadata.empty()),
-        new StructField(&quot;bool&quot;, DataTypes.BooleanType, false, Metadata.empty()),
-        new StructField(&quot;stringNum&quot;, DataTypes.StringType, false, Metadata.empty()),
-        new StructField(&quot;string&quot;, DataTypes.StringType, false, Metadata.empty())
-});
+				RowFactory.create(<span class="hljs-number">2.2</span>, <span class="hljs-keyword">true</span>, <span class="hljs-string">"1"</span>, <span class="hljs-string">"foo"</span>),
+				RowFactory.create(<span class="hljs-number">3.3</span>, <span class="hljs-keyword">false</span>, <span class="hljs-string">"2"</span>, <span class="hljs-string">"bar"</span>),
+				RowFactory.create(<span class="hljs-number">4.4</span>, <span class="hljs-keyword">false</span>, <span class="hljs-string">"3"</span>, <span class="hljs-string">"baz"</span>),
+				RowFactory.create(<span class="hljs-number">5.5</span>, <span class="hljs-keyword">false</span>, <span class="hljs-string">"4"</span>, <span class="hljs-string">"foo"</span>)
+		);
+StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[]&#123;
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"real"</span>, DataTypes.DoubleType, <span class="hljs-keyword">false</span>, Metadata.empty()),
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"bool"</span>, DataTypes.BooleanType, <span class="hljs-keyword">false</span>, Metadata.empty()),
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"stringNum"</span>, DataTypes.StringType, <span class="hljs-keyword">false</span>, Metadata.empty()),
+		<span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"string"</span>, DataTypes.StringType, <span class="hljs-keyword">false</span>, Metadata.empty())
+&#125;);
 Dataset&lt;Row&gt; dataset = spark.createDataFrame(data, schema);
-FeatureHasher hasher = new FeatureHasher()
-        .setInputCols(new String[]{&quot;real&quot;, &quot;bool&quot;, &quot;stringNum&quot;, &quot;string&quot;})
-        .setOutputCol(&quot;features&quot;);
+FeatureHasher hasher = <span class="hljs-keyword">new</span> FeatureHasher()
+		.setInputCols(<span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">"real"</span>, <span class="hljs-string">"bool"</span>, <span class="hljs-string">"stringNum"</span>, <span class="hljs-string">"string"</span>&#125;)
+		.setOutputCol(<span class="hljs-string">"features"</span>);
 
 Dataset&lt;Row&gt; featurized = hasher.transform(dataset);
 
-featurized.show(false);
+featurized.show(<span class="hljs-keyword">false</span>);
 
 +----+-----+---------+-------------------+
 |real|bool |stringNum|features           |
 +----+-----+---------+-------------------+
-|2.2 |true |1        |(2,[0,1],[2.0,2.2])|
-|3.3 |false|2        |(2,[0,1],[1.0,4.3])|
-|4.4 |false|3        |(2,[0,1],[2.0,4.4])|
-|5.5 |false|4        |(2,[0,1],[1.0,6.5])|
-+----+-----+---------+-------------------+
-</code></pre>
+|<span class="hljs-number">2.2</span> |<span class="hljs-keyword">true</span> |<span class="hljs-number">1</span>        |(<span class="hljs-number">2</span>,[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">2.0</span>,<span class="hljs-number">2.2</span>])|
+|<span class="hljs-number">3.3</span> |<span class="hljs-keyword">false</span>|<span class="hljs-number">2</span>        |(<span class="hljs-number">2</span>,[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">1.0</span>,<span class="hljs-number">4.3</span>])|
+|<span class="hljs-number">4.4</span> |<span class="hljs-keyword">false</span>|<span class="hljs-number">3</span>        |(<span class="hljs-number">2</span>,[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">2.0</span>,<span class="hljs-number">4.4</span>])|
+|<span class="hljs-number">5.5</span> |<span class="hljs-keyword">false</span>|<span class="hljs-number">4</span>        |(<span class="hljs-number">2</span>,[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">1.0</span>,<span class="hljs-number">6.5</span>])|
++----+-----+---------+-------------------+</code></pre>
 
             </div>
             <hr>

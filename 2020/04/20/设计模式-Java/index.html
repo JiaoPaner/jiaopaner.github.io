@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      409 字
+      485 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      9
        分钟
     </span>
   
@@ -211,170 +211,167 @@
               <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><ul>
 <li>饿汉式</li>
 </ul>
-<pre><code class="lang-java">#1
-class Singleton{
+<pre><code class="hljs java">#1
+class Singleton&#123;
     private final static Singleton instance = new Singleton();
-    public static Singleton getInstance(){
+    public static Singleton getInstance()&#123;
         return instance;
-    }
-}
+    &#125;
+&#125;
 #2
-public class Singleton{
+public class Singleton&#123;
     private static Singleton instance;
-    static {
+    static &#123;
         instance = new Singleton();
-    }
-    public static Singleton getInstance(){
+    &#125;
+    public static Singleton getInstance()&#123;
         return instance;
-    }
-}
-</code></pre>
+    &#125;
+&#125;</code></pre>
 <ul>
 <li>懒汉式</li>
 </ul>
-<pre><code class="lang-java">#1 线程不安全
-public class Singleton{
+<pre><code class="hljs java">#1 线程不安全
+public class Singleton&#123;
     private static Singleton instance;
-    public static Singleton getInstance(){
+    public static Singleton getInstance()&#123;
         if(instance == null)
             instance = new Singleton();
         return instance;
-    }
-}
+    &#125;
+&#125;
 #2 线程安全 效率低
-public class Singleton{
+public class Singleton&#123;
     private static Singleton instance;
 
-    public static synchronized Singleton getInstance(){
+    public static synchronized Singleton getInstance()&#123;
         if(instance == null)
             instance = new Singleton();
         return instance;
-    }
-}
+    &#125;
+&#125;
 #3 双重检测
-public class Singleton{
+public class Singleton&#123;
     private static volatile Singleton instance;
-    public static synchronized Singleton getInstance(){
-        if(instance == null){
-            synchronized (Singleton.class){
-                if(instance == null){
+    public static synchronized Singleton getInstance()&#123;
+        if(instance == null)&#123;
+            synchronized (Singleton.class)&#123;
+                if(instance == null)&#123;
                     instance = new Singleton();
-                }
-            }
-        }
+                &#125;
+            &#125;
+        &#125;
         return instance;
-    }
-}
+    &#125;
+&#125;
 #4 静态内部类
-class Singleton{
-   private static class SingletonInstance{
+class Singleton&#123;
+   private static class SingletonInstance&#123;
         private static final Singleton instance = new Singleton();
-    }
-    public static synchronized Singleton getInstance(){
+    &#125;
+    public static synchronized Singleton getInstance()&#123;
         return SingletonInstance.instance;
-    }
-}
-</code></pre>
-<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><pre><code class="lang-java">#简单工厂模式
-public interface Shape {
+    &#125;
+&#125;</code></pre>
+<h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><pre><code class="hljs java">#简单工厂模式
+public interface Shape &#123;
    void draw();
-}
-public class Rectangle implements Shape {
+&#125;
+public class Rectangle implements Shape &#123;
    @Override
-   public void draw() {
-      System.out.println(&quot;Inside Rectangle::draw() method.&quot;);
-   }
-}
-public class Circle implements Shape {
+   public void draw() &#123;
+      System.out.println("Inside Rectangle::draw() method.");
+   &#125;
+&#125;
+public class Circle implements Shape &#123;
    @Override
-   public void draw() {
-      System.out.println(&quot;Inside Circle::draw() method.&quot;);
-   }
-}
-public class ShapeFactory {
-   public Shape getShape(String shapeType){
-      if(shapeType == null){
+   public void draw() &#123;
+      System.out.println("Inside Circle::draw() method.");
+   &#125;
+&#125;
+public class ShapeFactory &#123;
+   public Shape getShape(String shapeType)&#123;
+      if(shapeType == null)&#123;
          return null;
-      }        
-      if(shapeType.equalsIgnoreCase(&quot;CIRCLE&quot;)){
+      &#125;        
+      if(shapeType.equalsIgnoreCase("CIRCLE"))&#123;
          return new Circle();
-      }else if(shapeType.equalsIgnoreCase(&quot;SQUARE&quot;)){
+      &#125;else if(shapeType.equalsIgnoreCase("SQUARE"))&#123;
          return new Square();
-      }
+      &#125;
       return null;
-   }
-}
+   &#125;
+&#125;
 
 #抽象工厂模式
-public interface Shape {
+public interface Shape &#123;
    void draw();
-}
-public class Rectangle implements Shape {
+&#125;
+public class Rectangle implements Shape &#123;
    @Override
-   public void draw() {
-      System.out.println(&quot;Inside Rectangle::draw() method.&quot;);
-   }
-}
+   public void draw() &#123;
+      System.out.println("Inside Rectangle::draw() method.");
+   &#125;
+&#125;
 
-public interface Color {
+public interface Color &#123;
    void fill();
-}
-public class Red implements Color {
+&#125;
+public class Red implements Color &#123;
    @Override
-   public void fill() {
-      System.out.println(&quot;Inside Red::fill() method.&quot;);
-   }
-}
-public abstract class AbstractFactory {
+   public void fill() &#123;
+      System.out.println("Inside Red::fill() method.");
+   &#125;
+&#125;
+public abstract class AbstractFactory &#123;
    public abstract Color getColor(String color);
    public abstract Shape getShape(String shape) ;
-}
+&#125;
 
-public class ShapeFactory extends AbstractFactory {
+public class ShapeFactory extends AbstractFactory &#123;
    @Override
-   public Shape getShape(String shapeType){
-      if(shapeType == null){
+   public Shape getShape(String shapeType)&#123;
+      if(shapeType == null)&#123;
          return null;
-      }        
-      if(shapeType.equalsIgnoreCase(&quot;Rectangle&quot;)){
+      &#125;        
+      if(shapeType.equalsIgnoreCase("Rectangle"))&#123;
          return new Rectangle();
-      } 
+      &#125; 
       return null;
-   }
+   &#125;
    @Override
-   public Color getColor(String color) {
+   public Color getColor(String color) &#123;
       return null;
-   }
-}
+   &#125;
+&#125;
 
-public class ColorFactory extends AbstractFactory {
+public class ColorFactory extends AbstractFactory &#123;
    @Override
-   public Shape getShape(String shapeType){
+   public Shape getShape(String shapeType)&#123;
       return null;
-   }
+   &#125;
    @Override
-   public Color getColor(String color) {
-      if(color == null){
+   public Color getColor(String color) &#123;
+      if(color == null)&#123;
          return null;
-      }        
-      if(color.equalsIgnoreCase(&quot;RED&quot;)){
+      &#125;        
+      if(color.equalsIgnoreCase("RED"))&#123;
          return new Red();
-      }
+      &#125;
       return null;
-   }
-}
+   &#125;
+&#125;
 
-public class FactoryProducer {
-   public static AbstractFactory getFactory(String choice){
-      if(choice.equalsIgnoreCase(&quot;SHAPE&quot;)){
+public class FactoryProducer &#123;
+   public static AbstractFactory getFactory(String choice)&#123;
+      if(choice.equalsIgnoreCase("SHAPE"))&#123;
          return new ShapeFactory();
-      } else if(choice.equalsIgnoreCase(&quot;COLOR&quot;)){
+      &#125; else if(choice.equalsIgnoreCase("COLOR"))&#123;
          return new ColorFactory();
-      }
+      &#125;
       return null;
-   }
-}
-</code></pre>
+   &#125;
+&#125;</code></pre>
 
             </div>
             <hr>

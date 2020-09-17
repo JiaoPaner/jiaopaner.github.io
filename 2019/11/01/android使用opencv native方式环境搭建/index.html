@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      452 字
+      442 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8
+      7
        分钟
     </span>
   
@@ -209,108 +209,106 @@
             
             <div class="markdown-body" id="post-body">
               <p>1.opencv下载：<a href="https://opencv.org/releases/" target="_blank" rel="noopener">https://opencv.org/releases/</a> 解压后为OpenCV-android-sdk</p>
-<p><img src="/images/opencv3/41.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="/images/opencv3/41.png" srcset="/images/loading.gif" alt=""></p>
 <p>2.创建初始Android项目</p>
-<p><img src="/images/opencv3/42.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="/images/opencv3/42.png" srcset="/images/loading.gif" alt=""></p>
 <p>3.在app/src/main目录下新建jniLibs目录，在app/src/main/cpp目录下新建include目录和src目录</p>
 <p>将OpenCV-android-sdk/sdk/native/libs下所有目录复制到jniLibs目录中</p>
 <p>将OpenCV-android-sdk/sdk/native/jni/include下的所有目录复制到app/src/main/cpp/include目录中</p>
 <p>移动app/src/main/cpp/CMakeLists.txt至app目录下 </p>
 <p>移动app/src/main/cpp/native-lib.cpp至app/src/main/cpp/src/native-lib.cpp</p>
-<p><img src="/images/opencv3/43.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="/images/opencv3/43.png" srcset="/images/loading.gif" alt=""></p>
 <p>4.配置文件修改</p>
 <p><strong>CMakeLists.txt</strong></p>
-<pre><code># For more information about using CMake with Android Studio, read the
-# documentation: https://d.android.com/studio/projects/add-native-code.html
+<pre><code class="hljs crystal"><span class="hljs-comment"># For more information about using CMake with Android Studio, read the</span>
+<span class="hljs-comment"># documentation: https://d.android.com/studio/projects/add-native-code.html</span>
 
-# Sets the minimum version of CMake required to build the native library.
+<span class="hljs-comment"># Sets the minimum version of CMake required to build the native library.</span>
 
-cmake_minimum_required(VERSION 3.4.1)
+cmake_minimum_required(VERSION <span class="hljs-number">3.4</span>.<span class="hljs-number">1</span>)
 
-include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/include)
+include_directories($&#123;CMAKE_SOURCE_DIR&#125;/src/main/cpp/<span class="hljs-keyword">include</span>)
 
-#opencv 4.0.1
+<span class="hljs-comment">#opencv 4.0.1</span>
 add_library(libopencv_java4 SHARED IMPORTED)
 set_target_properties(libopencv_java4 PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libopencv_java4.so)
+        $&#123;CMAKE_SOURCE_DIR&#125;/src/main/jniLibs/$&#123;ANDROID_ABI&#125;/libopencv_java4.so)
 
-#local
-add_library(native-lib SHARED src/main/cpp/src/native-lib.cpp)
-find_library(log-lib log )
+<span class="hljs-comment">#local</span>
+add_library(native-<span class="hljs-class"><span class="hljs-keyword">lib</span> <span class="hljs-title">SHARED</span> <span class="hljs-title">src</span>/<span class="hljs-title">main</span>/<span class="hljs-title">cpp</span>/<span class="hljs-title">src</span>/<span class="hljs-title">native</span>-<span class="hljs-title">lib</span>.<span class="hljs-title">cpp</span>)</span>
+find_library(log-<span class="hljs-class"><span class="hljs-keyword">lib</span> <span class="hljs-title">log</span> )</span>
 
-target_link_libraries(native-lib libopencv_java4 ${log-lib} )
-</code></pre><p><strong>app/build.gradle</strong></p>
-<pre><code class="lang-bash">apply plugin: &#39;com.android.application&#39;
+target_link_libraries(native-<span class="hljs-class"><span class="hljs-keyword">lib</span> <span class="hljs-title">libopencv_java4</span> $&#123;<span class="hljs-title">log</span>-<span class="hljs-title">lib</span>&#125; )</span></code></pre>
+<p><strong>app/build.gradle</strong></p>
+<pre><code class="hljs bash">apply plugin: <span class="hljs-string">'com.android.application'</span>
 
-android {
+android &#123;
     compileSdkVersion 29
-    buildToolsVersion &quot;29.0.2&quot;
-    defaultConfig {
-        applicationId &quot;com.wisesoft.wiseface&quot;
+    buildToolsVersion <span class="hljs-string">"29.0.2"</span>
+    defaultConfig &#123;
+        applicationId <span class="hljs-string">"com.wisesoft.wiseface"</span>
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName &quot;1.0&quot;
-        testInstrumentationRunner &quot;androidx.test.runner.AndroidJUnitRunner&quot;
-        externalNativeBuild {
-            cmake {
-                cppFlags &quot;-std=c++11 -frtti -fexceptions&quot;
-                abiFilters &#39;armeabi-v7a&#39;
-                arguments &quot;-DANDROID_STL=c++_shared&quot;
-            }
-        }
-        ndk{
-            abiFilters &#39;armeabi-v7a&#39;
-        }
-    }
-    sourceSets{
-        main{
-            jniLibs.srcDirs = [&#39;src/main/jniLibs&#39;]
+        versionName <span class="hljs-string">"1.0"</span>
+        testInstrumentationRunner <span class="hljs-string">"androidx.test.runner.AndroidJUnitRunner"</span>
+        externalNativeBuild &#123;
+            cmake &#123;
+                cppFlags <span class="hljs-string">"-std=c++11 -frtti -fexceptions"</span>
+                abiFilters <span class="hljs-string">'armeabi-v7a'</span>
+                arguments <span class="hljs-string">"-DANDROID_STL=c++_shared"</span>
+            &#125;
+        &#125;
+        ndk&#123;
+            abiFilters <span class="hljs-string">'armeabi-v7a'</span>
+        &#125;
+    &#125;
+    sourceSets&#123;
+        main&#123;
+            jniLibs.srcDirs = [<span class="hljs-string">'src/main/jniLibs'</span>]
             jni.srcDirs = []
-        }
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile(&#39;proguard-android-optimize.txt&#39;), &#39;proguard-rules.pro&#39;
-            ndk{
-                abiFilters &#39;armeabi-v7a&#39;
-            }
-        }
-    }
-    externalNativeBuild {
-        cmake {
-            path &quot;CMakeLists.txt&quot;
-        }
-    }
-}
+        &#125;
+    &#125;
+    buildTypes &#123;
+        release &#123;
+            minifyEnabled <span class="hljs-literal">false</span>
+            proguardFiles getDefaultProguardFile(<span class="hljs-string">'proguard-android-optimize.txt'</span>), <span class="hljs-string">'proguard-rules.pro'</span>
+            ndk&#123;
+                abiFilters <span class="hljs-string">'armeabi-v7a'</span>
+            &#125;
+        &#125;
+    &#125;
+    externalNativeBuild &#123;
+        cmake &#123;
+            path <span class="hljs-string">"CMakeLists.txt"</span>
+        &#125;
+    &#125;
+&#125;
 
-dependencies {
-    implementation fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
-    implementation &#39;androidx.appcompat:appcompat:1.1.0&#39;
-    implementation &#39;androidx.constraintlayout:constraintlayout:1.1.3&#39;
-    testImplementation &#39;junit:junit:4.12&#39;
-    androidTestImplementation &#39;androidx.test:runner:1.2.0&#39;
-    androidTestImplementation &#39;androidx.test.espresso:espresso-core:3.2.0&#39;
-}
-</code></pre>
+dependencies &#123;
+    implementation fileTree(dir: <span class="hljs-string">'libs'</span>, include: [<span class="hljs-string">'*.jar'</span>])
+    implementation <span class="hljs-string">'androidx.appcompat:appcompat:1.1.0'</span>
+    implementation <span class="hljs-string">'androidx.constraintlayout:constraintlayout:1.1.3'</span>
+    testImplementation <span class="hljs-string">'junit:junit:4.12'</span>
+    androidTestImplementation <span class="hljs-string">'androidx.test:runner:1.2.0'</span>
+    androidTestImplementation <span class="hljs-string">'androidx.test.espresso:espresso-core:3.2.0'</span>
+&#125;</code></pre>
 <p>5.刷新配置点击Sync Now并refresh c++</p>
-<p><img src="/images/opencv3/44.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="/images/opencv3/44.png" srcset="/images/loading.gif" alt=""></p>
 <p>6.使用原生opencv c++ 代码进行开发</p>
-<pre><code class="lang-c++">#include &lt;jni.h&gt;
-#include &lt;string&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-extern &quot;C&quot; JNIEXPORT jstring JNICALL
-Java_com_wisesoft_wiseface_MainActivity_stringFromJNI(
+<pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;jni.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;opencv2/opencv.hpp&gt;</span></span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> <span class="hljs-function">JNIEXPORT jstring JNICALL
+<span class="hljs-title">Java_com_wisesoft_wiseface_MainActivity_stringFromJNI</span><span class="hljs-params">(
         JNIEnv* env,
-        jobject /* this */) {
-    std::string hello = &quot;Hello from C++&quot;;
+        jobject <span class="hljs-comment">/* this */</span>)</span> </span>&#123;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> hello = <span class="hljs-string">"Hello from C++"</span>;
 
     cv::Mat mat;
 
-    return env-&gt;NewStringUTF(hello.c_str());
-}
-</code></pre>
+    <span class="hljs-keyword">return</span> env-&gt;NewStringUTF(hello.c_str());
+&#125;</code></pre>
 
             </div>
             <hr>

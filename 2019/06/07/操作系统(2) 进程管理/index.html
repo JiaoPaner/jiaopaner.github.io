@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.2k 字
+      4.3k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      49
+      51
        分钟
     </span>
   
@@ -219,7 +219,7 @@
 <li>并发性、独立性、异步性、结构性</li>
 </ul>
 <p><strong>进程的状态与转换</strong></p>
-<p><img src="\images\system\1.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\system\1.jpg" srcset="/images/loading.gif" alt=""></p>
 <p><strong>进程创建过程</strong></p>
 <p>终端用户登录、作业调度、系统提供服务、用户程序的应用等请求都会引起进程的创建。</p>
 <ol>
@@ -333,233 +333,221 @@
 <p>1.软件实现方法</p>
 <p><strong>单标志法</strong></p>
 <p>设置公用整型变量turn,用于指示被允许进入临界区的进程编号，进程必须交替进入临界区，否则违背空闲让进</p>
-<pre><code class="lang-c++">//P0进程
-while(turn!=0); //等待
-critical section;//临界区
-turn = 1;
+<pre><code class="hljs c++"><span class="hljs-comment">//P0进程</span>
+<span class="hljs-keyword">while</span>(<span class="hljs-built_in">turn</span>!=<span class="hljs-number">0</span>); <span class="hljs-comment">//等待</span>
+critical section;<span class="hljs-comment">//临界区</span>
+<span class="hljs-built_in">turn</span> = <span class="hljs-number">1</span>;
 remainder section;
-//P1进程
-while(turn!=1); //等待
-critical section;//临界区
-turn = 0;
-remainder section;
-</code></pre>
+<span class="hljs-comment">//P1进程</span>
+<span class="hljs-keyword">while</span>(<span class="hljs-built_in">turn</span>!=<span class="hljs-number">1</span>); <span class="hljs-comment">//等待</span>
+critical section;<span class="hljs-comment">//临界区</span>
+<span class="hljs-built_in">turn</span> = <span class="hljs-number">0</span>;
+remainder section;</code></pre>
 <p><strong>双标志法</strong></p>
 <p>设置$flag[k]$,进入临界区前先检查进程$P_k$是否进入临界区,进程之间不需要交替进入，缺点为进程$p_i和p_j$可能同时进入临界区，违背忙等待</p>
-<pre><code class="lang-c++">//Pi进程
-while(flag[j] == true); //等待
-flag[i] = true;
-critical section;//临界区
-flag[i] = false;
+<pre><code class="hljs c++"><span class="hljs-comment">//Pi进程</span>
+<span class="hljs-keyword">while</span>(flag[j] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
+flag[i] = <span class="hljs-literal">true</span>;
+critical section;<span class="hljs-comment">//临界区</span>
+flag[i] = <span class="hljs-literal">false</span>;
 remainder section;
-//Pj进程
-while(flag[i] == true); //等待
-flag[j] = true;
-critical section;//临界区
-flag[j] = false;
-remainder section;
-</code></pre>
+<span class="hljs-comment">//Pj进程</span>
+<span class="hljs-keyword">while</span>(flag[i] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
+flag[j] = <span class="hljs-literal">true</span>;
+critical section;<span class="hljs-comment">//临界区</span>
+flag[j] = <span class="hljs-literal">false</span>;
+remainder section;</code></pre>
 <p>设置$flag[k]$,进入临界区前先设置本身进程标志为true,再检查进程$P_k$是否进入临界区,缺点是由于进程互相“谦让”容易形成饥饿现象，即进程都无法进入临界区</p>
-<pre><code class="lang-c++">//Pi进程
-flag[i] = true;
-while(flag[j] == true); //等待
-critical section;//临界区
-flag[i] = false;
+<pre><code class="hljs c++"><span class="hljs-comment">//Pi进程</span>
+flag[i] = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">while</span>(flag[j] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
+critical section;<span class="hljs-comment">//临界区</span>
+flag[i] = <span class="hljs-literal">false</span>;
 remainder section;
-//Pj进程
-flag[j] = true;
-while(flag[i] == true); //等待
-critical section;//临界区
-flag[j] = false;
-remainder section;
-</code></pre>
+<span class="hljs-comment">//Pj进程</span>
+flag[j] = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">while</span>(flag[i] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
+critical section;<span class="hljs-comment">//临界区</span>
+flag[j] = <span class="hljs-literal">false</span>;
+remainder section;</code></pre>
 <p><strong>Peterson 算法</strong></p>
 <p>进入临界区前先设置本身进程标志为true,再设置turn标志，最后检查进程$P_k$是否进入临界区</p>
-<pre><code class="lang-c++">//Pi进程
-flag[i] = true;
-turn = j;
-while(flag[j] == true &amp;&amp; turn == j); //等待
-critical section;//临界区
-flag[i] = false;
+<pre><code class="hljs c++"><span class="hljs-comment">//Pi进程</span>
+flag[i] = <span class="hljs-literal">true</span>;
+<span class="hljs-built_in">turn</span> = j;
+<span class="hljs-keyword">while</span>(flag[j] == <span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-built_in">turn</span> == j); <span class="hljs-comment">//等待</span>
+critical section;<span class="hljs-comment">//临界区</span>
+flag[i] = <span class="hljs-literal">false</span>;
 remainder section;
-//Pj进程
-flag[j] = true;
-turn = i;
-while(flag[i] == true &amp;&amp; turn == i); //等待
-critical section;//临界区
-flag[j] = false;
-remainder section;
-</code></pre>
+<span class="hljs-comment">//Pj进程</span>
+flag[j] = <span class="hljs-literal">true</span>;
+<span class="hljs-built_in">turn</span> = i;
+<span class="hljs-keyword">while</span>(flag[i] == <span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-built_in">turn</span> == i); <span class="hljs-comment">//等待</span>
+critical section;<span class="hljs-comment">//临界区</span>
+flag[j] = <span class="hljs-literal">false</span>;
+remainder section;</code></pre>
 <p>2.硬件实现方法</p>
 <p><strong>中断屏蔽</strong></p>
 <p>CPU只在发生中断时引起进程切换，屏蔽中断能够保证当前运行的进程将临界区的代码顺利执行完毕</p>
 <p><strong>硬件指令</strong></p>
 <p>TestAndSet指令(原子操作)，为每个临界资源设置共享布尔变量lock,true表示资源正被占用</p>
-<pre><code class="lang-c++">bool TestAndSet(bool *lock){
-    bool old;
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">TestAndSet</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> *lock)</span></span>&#123;
+    <span class="hljs-keyword">bool</span> old;
     old = *lock;
-    *lock = true;
-    return old;
-}
-//进程
-while(TestAndSet(&amp;lock)) //等待
-critical section;//临界区
-lock = false;
-remainder section;
-</code></pre>
+    *lock = <span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">return</span> old;
+&#125;
+<span class="hljs-comment">//进程</span>
+<span class="hljs-keyword">while</span>(TestAndSet(&amp;lock)) <span class="hljs-comment">//等待</span>
+critical section;<span class="hljs-comment">//临界区</span>
+lock = <span class="hljs-literal">false</span>;
+remainder section;</code></pre>
 <p><strong>Swap指令</strong></p>
-<pre><code class="lang-c++">Swap(bool *x,bool *y){
-    bool temp;
+<pre><code class="hljs c++">Swap(<span class="hljs-keyword">bool</span> *x,<span class="hljs-keyword">bool</span> *y)&#123;
+    <span class="hljs-keyword">bool</span> temp;
     temp = *x;
     *x = *y;
     *y = temp;
-}
-//进程
-key = true;//为每个进程设置局部布尔变量
-while(key != false) //等待
+&#125;
+<span class="hljs-comment">//进程</span>
+key = <span class="hljs-literal">true</span>;<span class="hljs-comment">//为每个进程设置局部布尔变量</span>
+<span class="hljs-keyword">while</span>(key != <span class="hljs-literal">false</span>) <span class="hljs-comment">//等待</span>
     Swap(*lock,&amp;key)
-critical section;//临界区
-lock = false;
-remainder section;
-</code></pre>
+critical section;<span class="hljs-comment">//临界区</span>
+lock = <span class="hljs-literal">false</span>;
+remainder section;</code></pre>
 <p><strong>信号量</strong></p>
 <p>1.整型信号量：定义为表示资源数目的整型量$S$</p>
-<pre><code class="lang-c++">//申请资源
-wait(S){
-    while(S &lt;= 0);
-    S = S-1;
-}
-//释放资源
-signal(S){
-    S = S+1;
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-comment">//申请资源</span>
+wait(S)&#123;
+    <span class="hljs-keyword">while</span>(S &lt;= <span class="hljs-number">0</span>);
+    S = S<span class="hljs-number">-1</span>;
+&#125;
+<span class="hljs-comment">//释放资源</span>
+signal(S)&#123;
+    S = S+<span class="hljs-number">1</span>;
+&#125;</code></pre>
 <p>2.记录型信号量：定义为表示资源数目的整型量$value$和进程链表$L$(用于链接等待该资源的进程)</p>
-<pre><code class="lang-c++">typedef struct{
-    int value;
-    struct process *L;
-}semaphore;
+<pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+    <span class="hljs-keyword">int</span> value;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">process</span> *<span class="hljs-title">L</span>;</span>
+&#125;semaphore;
 
-//申请资源
-void wait(semaphore S){
+<span class="hljs-comment">//申请资源</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">(semaphore S)</span></span>&#123;
     S.value--;
-    if(S.value &lt; 0){
-        add this process to S.L;
-        block(S.L);//进程阻塞，放弃处理机
-    }
-}
-//释放资源
-void signal(semaphore S){
+    <span class="hljs-keyword">if</span>(S.value &lt; <span class="hljs-number">0</span>)&#123;
+        add <span class="hljs-keyword">this</span> <span class="hljs-built_in">process</span> to S.L;
+        block(S.L);<span class="hljs-comment">//进程阻塞，放弃处理机</span>
+    &#125;
+&#125;
+<span class="hljs-comment">//释放资源</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">signal</span><span class="hljs-params">(semaphore S)</span></span>&#123;
     S.value++;
-    if(S.value &lt;= 0){//仍有进程等待
-        remove a process P from S.L;
-        wakeup(P);//唤醒进程
-    }
-}
-</code></pre>
+    <span class="hljs-keyword">if</span>(S.value &lt;= <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//仍有进程等待</span>
+        <span class="hljs-built_in">remove</span> a <span class="hljs-built_in">process</span> P from S.L;
+        wakeup(P);<span class="hljs-comment">//唤醒进程</span>
+    &#125;
+&#125;</code></pre>
 <p>利用信号量实现进程同步</p>
-<pre><code class="lang-c++">//进程Py中的y语句需要使用进程Px中x语句的运行结果
-semaphore S = 0；
-Px(){
-    ...
-    x；
-    singal(S);//通知进程Py,语句x已完成
-    ...
-}
-Py(){
-    ...
-    wait(S);//检查语句x是否已完成
-    y；
-    ...
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-comment">//进程Py中的y语句需要使用进程Px中x语句的运行结果</span>
+semaphore S = <span class="hljs-number">0</span>；
+Px()&#123;
+	...
+	x；
+	singal(S);<span class="hljs-comment">//通知进程Py,语句x已完成</span>
+	...
+&#125;
+Py()&#123;
+	...
+	wait(S);<span class="hljs-comment">//检查语句x是否已完成</span>
+	y；
+	...
+&#125;</code></pre>
 <p>利用信号量实现进程互斥</p>
-<pre><code class="lang-c++">semaphore S = 1;//初始化信号量 资源数量
-Px(){
-    ...
-    wait(S);//访问资源，加锁
-    x；//临界区
-    singal(S);//访问结束，解锁
-    ...
-}
-Py(){
-    ...
-    wait(S);//访问资源，加锁
-    y；//临界区
-    singal(S);//访问结束，解锁
-    ...
-}
-</code></pre>
+<pre><code class="hljs c++">semaphore S = <span class="hljs-number">1</span>;<span class="hljs-comment">//初始化信号量 资源数量</span>
+Px()&#123;
+	...
+    wait(S);<span class="hljs-comment">//访问资源，加锁</span>
+	x；<span class="hljs-comment">//临界区</span>
+	singal(S);<span class="hljs-comment">//访问结束，解锁</span>
+	...
+&#125;
+Py()&#123;
+	...
+	wait(S);<span class="hljs-comment">//访问资源，加锁</span>
+	y；<span class="hljs-comment">//临界区</span>
+	singal(S);<span class="hljs-comment">//访问结束，解锁</span>
+	...
+&#125;</code></pre>
 <p>利用信号量实现前驱关系</p>
-<p><img src="\images\system\2.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\system\2.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>$a:S1 \rightarrow S2,b:S1\rightarrow S3;c:S2 \rightarrow S4,d:S2\rightarrow S5;$</p>
 <p>$e:S3 \rightarrow S6,f:S4\rightarrow S6,g:S5 \rightarrow S6$</p>
-<pre><code class="lang-c++">semaphore a=b=c=d=e=f=g=0;//
-S1(){
-    ...
-    singal(a);singal(b);//S1完成
-}
-S2(){
-    ...
-    wait(a);
-    ...
-    singal(c);singal(d);//S2完成
-}
-S3(){
-    ...
-    wait(b);
-    ...
-    singal(e);//S3完成
-}
-S4(){
-    ...
-    wait(c);
-    ...
-    singal(f);//S4完成
-}
-S5(){
-    ...
-    wait(d);
-    ...
-    singal(g);//S5完成
-}
-S6(){
-    wait(e);
+<pre><code class="hljs c++">semaphore a=b=c=d=e=f=g=<span class="hljs-number">0</span>;<span class="hljs-comment">//</span>
+S1()&#123;
+	...
+	singal(a);singal(b);<span class="hljs-comment">//S1完成</span>
+&#125;
+S2()&#123;
+	...
+	wait(a);
+	...
+	singal(c);singal(d);<span class="hljs-comment">//S2完成</span>
+&#125;
+S3()&#123;
+	...
+	wait(b);
+	...
+	singal(e);<span class="hljs-comment">//S3完成</span>
+&#125;
+S4()&#123;
+	...
+	wait(c);
+	...
+	singal(f);<span class="hljs-comment">//S4完成</span>
+&#125;
+S5()&#123;
+	...
+	wait(d);
+	...
+	singal(g);<span class="hljs-comment">//S5完成</span>
+&#125;
+S6()&#123;
+	wait(e);
     wait(f);
     wait(g);
-    ...
-}
-</code></pre>
+	...
+&#125;</code></pre>
 <p><strong>经典同步问题</strong></p>
 <ol>
 <li><p>生产消费者问题</p>
-<pre><code class="lang-c++">semaphore mutex = 1;//临界区互斥信号量
-semaphore empty = n;//空闲缓冲区数
-semaphore full = 0;//满缓冲区数
-//生产者进程
-producer(){
-    while(true){
+<pre><code class="hljs c++">semaphore mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//临界区互斥信号量</span>
+semaphore empty = n;<span class="hljs-comment">//空闲缓冲区数</span>
+semaphore full = <span class="hljs-number">0</span>;<span class="hljs-comment">//满缓冲区数</span>
+<span class="hljs-comment">//生产者进程</span>
+producer()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         produce an item in nextp;
-        wait(empty);//获取空缓冲区单元
-        wait(mutex);//进入临界区
-        add nextp ti buffer;//将数据放入缓冲区
+        wait(empty);<span class="hljs-comment">//获取空缓冲区单元</span>
+        wait(mutex);<span class="hljs-comment">//进入临界区</span>
+        add nextp ti <span class="hljs-built_in">buffer</span>;<span class="hljs-comment">//将数据放入缓冲区</span>
         singal(mutex);
         singal(full);
-    }
-}
-//消费者进程
-consumer(){
-    while(true){
+    &#125;
+&#125;
+<span class="hljs-comment">//消费者进程</span>
+consumer()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         wait(full);
         wait(mutex);
-        remove an item from buffer;
+        <span class="hljs-built_in">remove</span> an item from <span class="hljs-built_in">buffer</span>;
         singal(mutex);
         singal(empty);
         consume the item;
-    }
-}
-//empty和full的wait操作必须在mutex前
-</code></pre>
+    &#125;
+&#125;
+<span class="hljs-comment">//empty和full的wait操作必须在mutex前</span></code></pre>
 </li>
 </ol>
 <ol>
@@ -570,139 +558,135 @@ consumer(){
 <li>写者完成写操作之前不允许其他读者进行读操作</li>
 <li>写者执行写操作之前，应让已有读者和写者全部退出</li>
 </ul>
-<pre><code class="lang-c++">//读进程优先
-int count = 0;//当前读者数量
-semaphore mutex = 1;//用于更新count时的互斥
-semaphore rw = 1;//互斥访问共享文件
-//写者进程
-writer(){
-    while(true){
+<pre><code class="hljs c++"><span class="hljs-comment">//读进程优先</span>
+<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前读者数量</span>
+semaphore mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//用于更新count时的互斥</span>
+semaphore rw = <span class="hljs-number">1</span>;<span class="hljs-comment">//互斥访问共享文件</span>
+<span class="hljs-comment">//写者进程</span>
+writer()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         wait(rw);
         writing;
         signal(rw);
-    }
-}
-//读者进程
-reader(){
-    while(true){
+    &#125;
+&#125;
+<span class="hljs-comment">//读者进程</span>
+reader()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         wait(mutex);
-        if(count == 0)//第一个读者读取时
-            wait(rw);//阻止写进程写操作
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//第一个读者读取时</span>
+            wait(rw);<span class="hljs-comment">//阻止写进程写操作</span>
         count++;
         signal(mutex);
         reading;
-        wait(mutex);//读取完毕
+        wait(mutex);<span class="hljs-comment">//读取完毕</span>
         count--;
-        if(count == 0)//当最后一个读进程读取完毕
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//当最后一个读进程读取完毕</span>
             signal(rw)
         signal(mutex);
-    }
-}
-</code></pre>
-<pre><code class="lang-c++">//写进程优先
-int count = 0;//当前读者数量
-semaphore mutex = 1;//用于更新count时的互斥
-semaphore rw = 1;//互斥访问共享文件
-semaphore w = 1;//用于实现写优先
-//写者进程
-writer(){
-    while(true){
+    &#125;
+&#125;</code></pre>
+<pre><code class="hljs c++"><span class="hljs-comment">//写进程优先</span>
+<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前读者数量</span>
+semaphore mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//用于更新count时的互斥</span>
+semaphore rw = <span class="hljs-number">1</span>;<span class="hljs-comment">//互斥访问共享文件</span>
+semaphore w = <span class="hljs-number">1</span>;<span class="hljs-comment">//用于实现写优先</span>
+<span class="hljs-comment">//写者进程</span>
+writer()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         wait(w)
         wait(rw);
         writing;
         signal(rw);
         signal(w);
-    }
-}
-//读者进程
-reader(){
-    while(true){
-        wait(w);//无写进程时进入
+    &#125;
+&#125;
+<span class="hljs-comment">//读者进程</span>
+reader()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+        wait(w);<span class="hljs-comment">//无写进程时进入</span>
         wait(mutex);
-        if(count == 0)//第一个读者读取时
-            wait(rw);//阻止写进程写操作
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//第一个读者读取时</span>
+            wait(rw);<span class="hljs-comment">//阻止写进程写操作</span>
         count++;
         signal(mutex);
         signal(w);
         reading;
-        wait(mutex);//读取完毕
+        wait(mutex);<span class="hljs-comment">//读取完毕</span>
         count--;
-        if(count == 0)//当最后一个读进程读取完毕
+        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//当最后一个读进程读取完毕</span>
             signal(rw)
         signal(mutex);
-    }
-}
-</code></pre>
+    &#125;
+&#125;</code></pre>
 </li>
 </ol>
 <ol>
 <li><p>哲学家进餐问题</p>
-<pre><code class="lang-c++">semaphore chopstick[5]={1,1,1,1,1};//五根筷子
-semaphore mutex =  1;//设置取筷子的信号量
-//i号哲学家进程
-Pi(){
-    do{
+<pre><code class="hljs c++">semaphore chopstick[<span class="hljs-number">5</span>]=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>&#125;;<span class="hljs-comment">//五根筷子</span>
+semaphore mutex =  <span class="hljs-number">1</span>;<span class="hljs-comment">//设置取筷子的信号量</span>
+<span class="hljs-comment">//i号哲学家进程</span>
+Pi()&#123;
+    <span class="hljs-keyword">do</span>&#123;
         wait(mutex);
-        wait(chopstick[i]);//取左边筷子
-        wait(chopstick[(i+1]%5);//取右边筷子
+        wait(chopstick[i]);<span class="hljs-comment">//取左边筷子</span>
+        wait(chopstick[(i+<span class="hljs-number">1</span>]%<span class="hljs-number">5</span>);<span class="hljs-comment">//取右边筷子</span>
         signal(mutex);
         eat;
         signal(chopstick[i]);
-        signal(chopstick[(i+1]%5);
+        signal(chopstick[(i+<span class="hljs-number">1</span>]%<span class="hljs-number">5</span>);
         think;
-    }
-}
-</code></pre>
+    &#125;
+&#125;</code></pre>
 </li>
 </ol>
 <ol>
 <li><p>吸烟者问题w</p>
-<pre><code class="lang-c++">int random;
-semaphore offerTobaccoAndPaper;//烟草和纸
-semaphore offerTobaccoAndGlue;//烟草和胶水
-semaphore offerPaperAndGlue;//纸和胶水
-semaphore finish = 0;//记录抽烟完成
-//供应者进程
-provider(){
-    while(true){
-        random = rand.random(3);//1-3的整数随机数
-        if(random == 1){
-            signal(offerTobaccoAndPaper);//提供烟草和纸
-        }
-        else if(random == 1){
-            signal(offerTobaccoAndGlue);//提供烟草和胶水
-        }
-        else{
-            signal(offerPaperAndGlue);//提供纸和胶水
-        }
+<pre><code class="hljs c++"><span class="hljs-keyword">int</span> <span class="hljs-built_in">random</span>;
+semaphore offerTobaccoAndPaper;<span class="hljs-comment">//烟草和纸</span>
+semaphore offerTobaccoAndGlue;<span class="hljs-comment">//烟草和胶水</span>
+semaphore offerPaperAndGlue;<span class="hljs-comment">//纸和胶水</span>
+semaphore finish = <span class="hljs-number">0</span>;<span class="hljs-comment">//记录抽烟完成</span>
+<span class="hljs-comment">//供应者进程</span>
+provider()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+        <span class="hljs-built_in">random</span> = rand.<span class="hljs-built_in">random</span>(<span class="hljs-number">3</span>);<span class="hljs-comment">//1-3的整数随机数</span>
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">random</span> == <span class="hljs-number">1</span>)&#123;
+            signal(offerTobaccoAndPaper);<span class="hljs-comment">//提供烟草和纸</span>
+        &#125;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">random</span> == <span class="hljs-number">1</span>)&#123;
+            signal(offerTobaccoAndGlue);<span class="hljs-comment">//提供烟草和胶水</span>
+        &#125;
+        <span class="hljs-keyword">else</span>&#123;
+            signal(offerPaperAndGlue);<span class="hljs-comment">//提供纸和胶水</span>
+        &#125;
         wait(finish);
-    }
-}
-//拥有烟草者进程
-process(){
-    while(true){
+    &#125;
+&#125;
+<span class="hljs-comment">//拥有烟草者进程</span>
+<span class="hljs-built_in">process</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         wait(offerPaperAndGlue);
         ...
         signal(finish);
-    }
-}
-//拥有纸者进程
-process(){
-    while(true){
+    &#125;
+&#125;
+<span class="hljs-comment">//拥有纸者进程</span>
+<span class="hljs-built_in">process</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         wait(offerTobaccoAndGlue);
         ...
         signal(finish);
-    }
-}
-//拥有胶水者进程
-process(){
-    while(true){
+    &#125;
+&#125;
+<span class="hljs-comment">//拥有胶水者进程</span>
+<span class="hljs-built_in">process</span>()&#123;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
         wait(offerTobaccoAndPaper);
         ...
         signal(finish);
-    }
-}
-</code></pre>
+    &#125;
+&#125;</code></pre>
 </li>
 </ol>
 <h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>定义：多个进程因竞争不可剥夺资源而造成的互相等待，若无外力作用，进程都将无法向前推进。</p>
@@ -725,7 +709,7 @@ process(){
 <p>分配矩阵Allocation：每个进程已分配到每类资源数目</p>
 <p>需求矩阵Need：每个进程尚需的每类资源数目 $Need = Max - Allocation$</p>
 <p>假设系统中有5个进程$p_0,p_1,p_2,p_3,p_4$和三类资源${A,B,C}$,各类资源数目分别为$10、5、7$,在$t_0$时刻资源分配情况如下表，求资源分配安全序列。</p>
-<p><img src="\images\system\3.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\system\3.jpg" srcset="/images/loading.gif" alt=""></p>
 <ol>
 <li><p>求出Need矩阵</p>
 <script type="math/tex; mode=display">

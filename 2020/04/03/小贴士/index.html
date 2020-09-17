@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      46
+      45
        分钟
     </span>
   
@@ -210,214 +210,194 @@
             <div class="markdown-body" id="post-body">
               <h1 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h1><p><strong>Q： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s instead</strong></p>
 <p>工程属性 —&gt;C/C++ —&gt; 预处理器 —&gt; 预处理器定义,添加宏定义</p>
-<pre><code class="lang-cpp">_CRT_SECURE_NO_WARNINGS
-</code></pre>
+<pre><code class="hljs cpp">_CRT_SECURE_NO_WARNINGS</code></pre>
 <hr>
 <p><strong>Q： pthread.h中报错：C2011“timespec”:“struct”类型重定义</strong></p>
 <p>tim.h已定义，pthread.h添加如下代码：</p>
-<pre><code class="lang-cpp">#if !defined( PTHREAD_H )
-#define PTHREAD_H
-#define HAVE_STRUCT_TIMESPEC
-</code></pre>
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> !defined( PTHREAD_H )</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> PTHREAD_H</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> HAVE_STRUCT_TIMESPEC</span></code></pre>
 <p><strong>Q：Visual Studio 工程编译dll,接口的定义</strong></p>
 <p>A：接口的头文件应如下声明：</p>
-<pre><code class="lang-cpp">#define LIB_API __declspec(dllexport) //导出函数
-extern &quot;C&quot; {
-    LIB_API char*   say();
-}
-</code></pre>
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> LIB_API __declspec(dllexport) <span class="hljs-comment">//导出函数</span></span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> &#123;
+	<span class="hljs-function">LIB_API <span class="hljs-keyword">char</span>*   <span class="hljs-title">say</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
 <p><strong>Q：C++调用DLL</strong></p>
 <ul>
 <li><p>dll的创建</p>
-<pre><code class="lang-c++">//test.h
-#ifdef __cplusplus
-extern &quot;C&quot; {
-#endif
-__declspec(dllexport) int add(int a,int b);
-#ifdef __cplusplus
-}
-#endif  // __cplusplus
-</code></pre>
-<pre><code class="lang-c++">//test.cpp
-#include &quot;test.h&quot;
-int add(int a,int b) {
-    return a + b;
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-comment">//test.h</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> __cplusplus</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> &#123;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span>
+__declspec(dllexport) <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> __cplusplus</span>
+&#125;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span>  <span class="hljs-comment">// __cplusplus</span></span></code></pre>
+<pre><code class="hljs c++"><span class="hljs-comment">//test.cpp</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"test.h"</span></span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span> </span>&#123;
+	<span class="hljs-keyword">return</span> a + b;
+&#125;</code></pre>
 <p>编译上述工程为dll，即生成test.dll，并复制到调用该dll工程的编译目录</p>
 </li>
 <li><p>dll的使用</p>
-<pre><code class="lang-c++">#include&lt;Windows.h&gt;
-#includ&lt;iostream&gt;
-typedef int (*padd)(int,int);
-int main(int argc, char *argv[]){
-    HMODULE test = LoadLibrary(&quot;test.dll&quot;);
-    if (test != NULL){
-        padd add = (padd)GetProcAddress(test,&quot;add&quot;);
-        if (add != NULL){    
-            std::cout &lt;&lt; add(1,0) &lt;&lt; std::endl;
-        }
-    }
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
+<span class="hljs-meta">#includ<span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(*padd)</span><span class="hljs-params">(<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span></span>&#123;
+	HMODULE test = LoadLibrary(<span class="hljs-string">"test.dll"</span>);
+	<span class="hljs-keyword">if</span> (test != <span class="hljs-literal">NULL</span>)&#123;
+		padd add = (padd)GetProcAddress(test,<span class="hljs-string">"add"</span>);
+		<span class="hljs-keyword">if</span> (add != <span class="hljs-literal">NULL</span>)&#123;	
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; add(<span class="hljs-number">1</span>,<span class="hljs-number">0</span>) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+		&#125;
+	&#125;
+&#125;</code></pre>
 </li>
 </ul>
 <hr>
 <p><strong>Q:cmake 简单编译命令</strong></p>
-<pre><code class="lang-bash">sudo tar -zxvf test
-cd test
+<pre><code class="hljs bash">sudo tar -zxvf <span class="hljs-built_in">test</span>
+<span class="hljs-built_in">cd</span> <span class="hljs-built_in">test</span>
 sudo mkdir build
-cd build/
+<span class="hljs-built_in">cd</span> build/
 
-sudo cmake -DCMAKE_INSTALL_PREFIX=/home/test .. #安装目录
-sudo make -j4 #编译
-sudo make install #安装
-sudo ldconfig #更新软连接
-</code></pre>
+sudo cmake -DCMAKE_INSTALL_PREFIX=/home/<span class="hljs-built_in">test</span> .. <span class="hljs-comment">#安装目录</span>
+sudo make -j4 <span class="hljs-comment">#编译</span>
+sudo make install <span class="hljs-comment">#安装</span>
+sudo ldconfig <span class="hljs-comment">#更新软连接</span></code></pre>
 <p><strong>Q: mac安装LLVM</strong></p>
-<pre><code class="lang-bash">$ cd where-you-want-llvm-to-live
+<pre><code class="hljs bash">$ <span class="hljs-built_in">cd</span> <span class="hljs-built_in">where</span>-you-want-llvm-to-live
 $ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
 
-$ cd llvm/tools
+$ <span class="hljs-built_in">cd</span> llvm/tools
 $ svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
 
-$ cd llvm/tools/clang/tools
+$ <span class="hljs-built_in">cd</span> llvm/tools/clang/tools
 $ svn co http://llvm.org/svn/llvm-project/clang-tools-extra/trunk extra
 
-$ cd llvm/projects
+$ <span class="hljs-built_in">cd</span> llvm/projects
 $ svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
 
-$ cd llvm
+$ <span class="hljs-built_in">cd</span> llvm
 $ mkdir build
-$ cd build
-$ cmake -G &quot;Unix Makefiles&quot; ..
+$ <span class="hljs-built_in">cd</span> build
+$ cmake -G <span class="hljs-string">"Unix Makefiles"</span> ..
 $ make
-$ make install
-</code></pre>
+$ make install</code></pre>
 <p><strong>Q:cJSON的使用</strong></p>
-<pre><code class="lang-c++">#include &quot;cJSON.h&quot;
+<pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"cJSON.h"</span></span>
 cJSON  *root = cJSON_CreateObject();
 cJSON  *bboxs = cJSON_CreateArray();
-char *resultJson;
+<span class="hljs-keyword">char</span> *resultJson;
 
-cJSON_AddNumberToObject(root, &quot;status&quot;, 1);
-cJSON_AddStringToObject(root, &quot;msg&quot;, &quot;detect ok&quot;);
-cJSON_AddItemToObject(root, &quot;bboxs&quot;, bboxs);
+cJSON_AddNumberToObject(root, <span class="hljs-string">"status"</span>, <span class="hljs-number">1</span>);
+cJSON_AddStringToObject(root, <span class="hljs-string">"msg"</span>, <span class="hljs-string">"detect ok"</span>);
+cJSON_AddItemToObject(root, <span class="hljs-string">"bboxs"</span>, bboxs);
 
-for (int i = 0; i &lt; 2; i++){
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++)&#123;
   cJSON  *bbox;
   cJSON_AddItemToArray(bboxs, bbox = cJSON_CreateObject());
-  cJSON_AddNumberToObject(bbox, &quot;score&quot;, 99);
-  cJSON_AddNumberToObject(bbox, &quot;x&quot;, 1);
-  cJSON_AddNumberToObject(bbox, &quot;y&quot;, 2);
-  cJSON_AddNumberToObject(bbox, &quot;width&quot;, 3);
-  cJSON_AddNumberToObject(bbox, &quot;height&quot;, 4);
-}
-resultJson = cJSON_PrintUnformatted(result);
-</code></pre>
+  cJSON_AddNumberToObject(bbox, <span class="hljs-string">"score"</span>, <span class="hljs-number">99</span>);
+  cJSON_AddNumberToObject(bbox, <span class="hljs-string">"x"</span>, <span class="hljs-number">1</span>);
+  cJSON_AddNumberToObject(bbox, <span class="hljs-string">"y"</span>, <span class="hljs-number">2</span>);
+  cJSON_AddNumberToObject(bbox, <span class="hljs-string">"width"</span>, <span class="hljs-number">3</span>);
+  cJSON_AddNumberToObject(bbox, <span class="hljs-string">"height"</span>, <span class="hljs-number">4</span>);
+&#125;
+resultJson = cJSON_PrintUnformatted(result);</code></pre>
 <p><strong>Q:c#调用dll</strong></p>
 <p>note:若dll为X64,则c#应编译x64,否则报错</p>
-<pre><code class="lang-c#">using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+<pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> System.Linq;
+<span class="hljs-keyword">using</span> System.Runtime.InteropServices;
+<span class="hljs-keyword">using</span> System.Text;
+<span class="hljs-keyword">using</span> System.Threading.Tasks;
 
-namespace test
-{
-    class Program
-    {
-        [DllImport(@&quot;facedetection.dll&quot;, EntryPoint = &quot;facedetect&quot;)]
-        extern static string facedetect(string src);
-        static void Main(string[] args)
-        {
-            string result = facedetect(&quot;test.jpg&quot;);
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">test</span>
+&#123;
+    <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span>
+    &#123;
+        [<span class="hljs-meta">DllImport(@<span class="hljs-meta-string">"facedetection.dll"</span>, EntryPoint = <span class="hljs-meta-string">"facedetect"</span>)</span>]
+        <span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> <span class="hljs-title">facedetect</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> src</span>)</span>;
+        <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-keyword">string</span>[] args</span>)</span>
+        &#123;
+            <span class="hljs-keyword">string</span> result = facedetect(<span class="hljs-string">"test.jpg"</span>);
             Console.WriteLine(result);
             Console.ReadKey();
-        }
-    } 
-}
-</code></pre>
+        &#125;
+    &#125; 
+&#125;</code></pre>
 <p><strong>Q：opencv Mat和byte互转</strong></p>
-<pre><code class="lang-c++">unsigned char* matToBytes(Mat image){
-   int size = image.total() * image.elemSize();
-     unsigned char* bytes = new unsigned char[size];  // you will have to delete[] that later
-     std::memcpy(bytes, image.data, size * sizeof(unsigned char));
-     return bytes;
-}
-Mat bytesToMat(unsigned char* bytes,int width,int height){
-    Mat image = Mat(height,width,CV_8UC3,bytes).clone(); // make a copy
-    return image;
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>* <span class="hljs-title">matToBytes</span><span class="hljs-params">(Mat <span class="hljs-built_in">image</span>)</span></span>&#123;
+   <span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span> = <span class="hljs-built_in">image</span>.total() * <span class="hljs-built_in">image</span>.elemSize();
+	 <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>* bytes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>[<span class="hljs-built_in">size</span>];  <span class="hljs-comment">// you will have to delete[] that later</span>
+	 <span class="hljs-built_in">std</span>::<span class="hljs-built_in">memcpy</span>(bytes, <span class="hljs-built_in">image</span>.data, <span class="hljs-built_in">size</span> * <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>));
+	 <span class="hljs-keyword">return</span> bytes;
+&#125;
+<span class="hljs-function">Mat <span class="hljs-title">bytesToMat</span><span class="hljs-params">(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>* bytes,<span class="hljs-keyword">int</span> <span class="hljs-built_in">width</span>,<span class="hljs-keyword">int</span> <span class="hljs-built_in">height</span>)</span></span>&#123;
+    Mat <span class="hljs-built_in">image</span> = Mat(<span class="hljs-built_in">height</span>,<span class="hljs-built_in">width</span>,CV_8UC3,bytes).clone(); <span class="hljs-comment">// make a copy</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">image</span>;
+&#125;</code></pre>
 <p><strong>Q:opencv Mat 转std::vector std::vector转std::string</strong></p>
-<pre><code class="lang-c++">cv::Mat output = output.reshape(1, 1);
-std::vector&lt;double&gt; vetor = (std::vector&lt;double&gt;)output;
-std::stringstream ss;
-ss &lt;&lt; std::setprecision(16);//精度设置
-std::copy(vector.begin(), vector.end(), std::ostream_iterator&lt;double&gt;(ss, &quot;,&quot;));
-std::string values = ss.str();
-values.pop_back();//去掉末尾多余的分隔符
-std::cout &lt;&lt; values;
+<pre><code class="hljs c++">cv::Mat output = output.reshape(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; vetor = (<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt;)output;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> ss;
+ss &lt;&lt; <span class="hljs-built_in">std</span>::setprecision(<span class="hljs-number">16</span>);<span class="hljs-comment">//精度设置</span>
+<span class="hljs-built_in">std</span>::copy(<span class="hljs-built_in">vector</span>.<span class="hljs-built_in">begin</span>(), <span class="hljs-built_in">vector</span>.<span class="hljs-built_in">end</span>(), <span class="hljs-built_in">std</span>::ostream_iterator&lt;<span class="hljs-keyword">double</span>&gt;(ss, <span class="hljs-string">","</span>));
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> values = ss.str();
+values.pop_back();<span class="hljs-comment">//去掉末尾多余的分隔符</span>
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; values;
 
-Mat convertToMat(std::string str) {
-    std::vector&lt;double&gt; v;
-    std::stringstream ss(str);
-    ss &lt;&lt; std::setprecision(16);
-    std::string token;
-    while (std::getline(ss, token, &#39;,&#39;)) {
-        v.push_back(std::stod(token));
-    }
-    Mat output = cv::Mat(v, true).reshape(1, 1);
-    return output;
-}
+<span class="hljs-function">Mat <span class="hljs-title">convertToMat</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> str)</span> </span>&#123;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt; v;
+	<span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">stringstream</span> <span class="hljs-title">ss</span><span class="hljs-params">(str)</span></span>;
+	ss &lt;&lt; <span class="hljs-built_in">std</span>::setprecision(<span class="hljs-number">16</span>);
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> token;
+	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">std</span>::getline(ss, token, <span class="hljs-string">','</span>)) &#123;
+		v.push_back(<span class="hljs-built_in">std</span>::stod(token));
+	&#125;
+	Mat output = cv::Mat(v, <span class="hljs-literal">true</span>).reshape(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">return</span> output;
+&#125;
 
-cv::FileStorage fs(&quot;../features.xml&quot;, cv::FileStorage::WRITE);
-fs &lt;&lt; &quot;features&quot; &lt;&lt; output;
-fs.release();
-</code></pre>
+cv::<span class="hljs-function">FileStorage <span class="hljs-title">fs</span><span class="hljs-params">(<span class="hljs-string">"../features.xml"</span>, cv::FileStorage::WRITE)</span></span>;
+fs &lt;&lt; <span class="hljs-string">"features"</span> &lt;&lt; output;
+fs.<span class="hljs-built_in">release</span>();</code></pre>
 <p><strong>Q: opencv 截取图片的矩形区域</strong></p>
-<pre><code class="lang-c++">rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
-Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
-</code></pre>
+<pre><code class="hljs c++">rectangle(<span class="hljs-built_in">image</span>, Rect(x, y, w, h), Scalar(<span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), <span class="hljs-number">2</span>);
+Mat dst = <span class="hljs-built_in">image</span>(cv::Range(y,y+h),cv::Range(x,x+w));</code></pre>
 <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q：python打包发布</strong></p>
 <p>1.项目根目录新建setup.py</p>
-<pre><code class="lang-python">from distutils.core import setup
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> distutils.core <span class="hljs-keyword">import</span> setup
 setup(
- name=&#39;test&#39;,  #打包的输出文件名
- version=&#39;1.0.0&#39;,
- py_modules=[&#39;test&#39;] #打包的.py文件
-)
-</code></pre>
+ name=<span class="hljs-string">'test'</span>,  <span class="hljs-comment">#打包的输出文件名</span>
+ version=<span class="hljs-string">'1.0.0'</span>,
+ py_modules=[<span class="hljs-string">'test'</span>] <span class="hljs-comment">#打包的.py文件</span>
+)</code></pre>
 <p>依赖文件 requirements.txt生成</p>
 <p>pip freeze &gt; requirements.txt</p>
-<pre><code class="lang-text">opencv==3.4.2
-numpy==1.16.4
-scikit-image==0.15.0
-</code></pre>
+<pre><code class="hljs text">opencv&#x3D;&#x3D;3.4.2
+numpy&#x3D;&#x3D;1.16.4
+scikit-image&#x3D;&#x3D;0.15.0</code></pre>
 <p>或者 conda list -e &gt; requirements.txt</p>
-<pre><code class="lang-text">numpy=1.16.4
-opencv=3.4.2
-scikit-image=0.15.0
-</code></pre>
+<pre><code class="hljs text">numpy&#x3D;1.16.4
+opencv&#x3D;3.4.2
+scikit-image&#x3D;0.15.0</code></pre>
 <p>2.项目根目录下执行命令</p>
-<pre><code class="lang-bash">sudo python setup.py sdist
-</code></pre>
+<pre><code class="hljs bash">sudo python setup.py sdist</code></pre>
 <p>生成dist目录且包含test-1.0.0.tar.gz分发包</p>
 <p>3.安装：解压分发包并定位到解压目录后执行安装命令</p>
-<pre><code class="lang-bash">pip install -r requirements.txt #安装依赖 或者 conda install --yes --file requirements.txt
-sudo python setup.py install
-</code></pre>
+<pre><code class="hljs bash">pip install -r requirements.txt <span class="hljs-comment">#安装依赖 或者 conda install --yes --file requirements.txt</span>
+sudo python setup.py install</code></pre>
 <p>4.使用</p>
-<pre><code class="lang-python">import test
-test.sayHello();//#调用模块的sayHello方法
-</code></pre>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> test
+test.sayHello();//<span class="hljs-comment">#调用模块的sayHello方法</span></code></pre>
 <p><strong>Q:jupyter notebook 运行于指定的conda环境上</strong></p>
-<pre><code class="lang-bash">conda install nb_conda #重启jupyter notebook 选择kernel即可
-</code></pre>
+<pre><code class="hljs bash">conda install nb_conda <span class="hljs-comment">#重启jupyter notebook 选择kernel即可</span></code></pre>
 <p><strong>Q:设置jupyter notebook可远程访问</strong></p>
-<pre><code class="lang-bash">$ jupyter notebook --generate-config
+<pre><code class="hljs bash">$ jupyter notebook --generate-config
 Writing default config to: /home/adminpc/.jupyter/jupyter_notebook_config.py
 
 $ jupyter notebook password
@@ -426,82 +406,79 @@ Verify password:
 [NotebookPasswordApp] Wrote hashed password to /home/adminpc/.jupyter/jupyter_notebook_config.json
 
 $ vim /home/adminpc/.jupyter/jupyter_notebook_config.py
-c.NotebookApp.ip=&#39;*&#39;
-# 密钥位于adminpc/.jupyter/jupyter_notebook_config.json
-c.NotebookApp.password = &#39;sha1:0f0fe326cb63:0e48570b0b0952dfe72fefb7bd012934968ea428&#39;
+c.NotebookApp.ip=<span class="hljs-string">'*'</span>
+<span class="hljs-comment"># 密钥位于adminpc/.jupyter/jupyter_notebook_config.json</span>
+c.NotebookApp.password = <span class="hljs-string">'sha1:0f0fe326cb63:0e48570b0b0952dfe72fefb7bd012934968ea428'</span>
 c.NotebookApp.open_browser = False
 c.NotebookApp.port =8888 
 
 $ jupyter notebook 
-[I 14:14:05.933 NotebookApp] Serving notebooks from local directory: /home/adminpc/jiaopan/projects
+[I 14:14:05.933 NotebookApp] Serving notebooks from <span class="hljs-built_in">local</span> directory: /home/adminpc/jiaopan/projects
 [I 14:14:05.933 NotebookApp] The Jupyter Notebook is running at:
 [I 14:14:05.933 NotebookApp] http://admin-pc:8888/
-[I 14:14:05.933 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-</code></pre>
+[I 14:14:05.933 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</code></pre>
 <h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><p><strong>Q：iframe父/子页面互相调用方法</strong></p>
-<pre><code class="lang-html">document.getElementById(&quot;iframeId&quot;).contentWindow.childMethod()/childVariable;
-parent.parentMethod()/parentVariable
-</code></pre>
+<pre><code class="hljs html">document.getElementById("iframeId").contentWindow.childMethod()/childVariable;
+parent.parentMethod()/parentVariable</code></pre>
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p><strong>Q：springboot切面编程实例</strong></p>
-<pre><code class="lang-java">@Aspect
-@Component
-@Slf4j
-public class WebLogAspect {
-    //定义一个切入点，对该包下的所有函数方法执行前，执行@Before()
-    @Pointcut(&quot;execution(public * com.jp.controller..*.*(..))&quot;)
-    public void webLog(){}
+<pre><code class="hljs java"><span class="hljs-meta">@Aspect</span>
+<span class="hljs-meta">@Component</span>
+<span class="hljs-meta">@Slf</span>4j
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WebLogAspect</span> </span>&#123;
+	<span class="hljs-comment">//定义一个切入点，对该包下的所有函数方法执行前，执行@Before()</span>
+    <span class="hljs-meta">@Pointcut</span>(<span class="hljs-string">"execution(public * com.jp.controller..*.*(..))"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">webLog</span><span class="hljs-params">()</span></span>&#123;&#125;
 
-    @Before(&quot;webLog()&quot;)
-    public void doBefore(JoinPoint joinPoint) throws Throwable {
-        // 接收到请求，记录请求内容
+    <span class="hljs-meta">@Before</span>(<span class="hljs-string">"webLog()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doBefore</span><span class="hljs-params">(JoinPoint joinPoint)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
+        <span class="hljs-comment">// 接收到请求，记录请求内容</span>
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-        // 记录下请求内容
-        log.info(&quot;URL : &quot; + request.getRequestURL().toString());
-        log.info(&quot;HTTP_METHOD : &quot; + request.getMethod());
-        log.info(&quot;IP : &quot; + request.getRemoteAddr());
-        log.info(&quot;CLASS_METHOD : &quot; + joinPoint.getSignature().getDeclaringTypeName() + &quot;.&quot; + joinPoint.getSignature().getName());
-        log.info(&quot;ARGS : &quot; + Arrays.toString(joinPoint.getArgs()));
+        <span class="hljs-comment">// 记录下请求内容</span>
+        log.info(<span class="hljs-string">"URL : "</span> + request.getRequestURL().toString());
+        log.info(<span class="hljs-string">"HTTP_METHOD : "</span> + request.getMethod());
+        log.info(<span class="hljs-string">"IP : "</span> + request.getRemoteAddr());
+        log.info(<span class="hljs-string">"CLASS_METHOD : "</span> + joinPoint.getSignature().getDeclaringTypeName() + <span class="hljs-string">"."</span> + joinPoint.getSignature().getName());
+        log.info(<span class="hljs-string">"ARGS : "</span> + Arrays.toString(joinPoint.getArgs()));
 
-    }
+    &#125;
 
-    @AfterReturning(returning = &quot;ret&quot;, pointcut = &quot;webLog()&quot;)
-    public void doAfterReturning(Object ret) throws Throwable {
-        // 处理完请求，返回内容
-        log.info(&quot;RESPONSE : &quot; + ret);
-    }
+    <span class="hljs-meta">@AfterReturning</span>(returning = <span class="hljs-string">"ret"</span>, pointcut = <span class="hljs-string">"webLog()"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doAfterReturning</span><span class="hljs-params">(Object ret)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;
+        <span class="hljs-comment">// 处理完请求，返回内容</span>
+        log.info(<span class="hljs-string">"RESPONSE : "</span> + ret);
+    &#125;
 
-}
-</code></pre>
+&#125;</code></pre>
 <p><strong>Q：Mac，MavenReportException: Error while creating archive: Unable to find javadoc command: The environment variable JAVA_HOME is not correctly set</strong></p>
 <p>在pom.xml文件中添加javadoc命令的位置</p>
-<pre><code>&lt;properties&gt;
-     &lt;javadocExecutable&gt;/Library/Java/JavaVirtualMachines/jdk1.8.0_151.jdk/Contents/Home/bin/javadoc&lt;/javadocExecutable&gt;
-&lt;/properties&gt;
-</code></pre><p><strong>Q：maven引入本地依赖</strong></p>
-<pre><code>&lt;dependency&gt;
-    &lt;groupId&gt;com.oracle&lt;/groupId&gt;
-    &lt;artifactId&gt;ojdbc6&lt;/artifactId&gt;
-    &lt;scope&gt;system&lt;/scope&gt;
-    &lt;version&gt;1.0&lt;/version&gt;
-    &lt;systemPath&gt;${basedir}/lib/ojdbc6-11.2.0.1.0.jar&lt;/systemPath&gt;
-&lt;/dependency&gt;
+<pre><code class="hljs dts"><span class="hljs-params">&lt;properties&gt;</span>
+ 	<span class="hljs-params">&lt;javadocExecutable&gt;</span>/Library/Java/JavaVirtualMachines/jdk1<span class="hljs-number">.8</span><span class="hljs-number">.0</span>_151.jdk/Contents/Home<span class="hljs-meta-keyword">/bin/</span>javadoc<span class="hljs-params">&lt;/javadocExecutable&gt;</span>
+<span class="hljs-params">&lt;/properties&gt;</span></code></pre>
+<p><strong>Q：maven引入本地依赖</strong></p>
+<pre><code class="hljs dts"><span class="hljs-params">&lt;dependency&gt;</span>
+    <span class="hljs-params">&lt;groupId&gt;</span>com.oracle<span class="hljs-params">&lt;/groupId&gt;</span>
+    <span class="hljs-params">&lt;artifactId&gt;</span>ojdbc6<span class="hljs-params">&lt;/artifactId&gt;</span>
+    <span class="hljs-params">&lt;scope&gt;</span>system<span class="hljs-params">&lt;/scope&gt;</span>
+    <span class="hljs-params">&lt;version&gt;</span><span class="hljs-number">1.0</span><span class="hljs-params">&lt;/version&gt;</span>
+    <span class="hljs-params">&lt;systemPath&gt;</span>$&#123;basedir&#125;<span class="hljs-meta-keyword">/lib/</span>ojdbc6<span class="hljs-number">-11.2</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>.jar<span class="hljs-params">&lt;/systemPath&gt;</span>
+<span class="hljs-params">&lt;/dependency&gt;</span>
 
-&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-            &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
-            &lt;configuration&gt;
-                &lt;includeSystemScope&gt;true&lt;/includeSystemScope&gt;
-                &lt;mainClass&gt;mainclass&lt;/mainClass&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-</code></pre><p><strong>Q：普通maven项目打包配置</strong></p>
-<pre><code class="lang-java">&lt;build&gt;  
+<span class="hljs-params">&lt;build&gt;</span>
+    <span class="hljs-params">&lt;plugins&gt;</span>
+    	<span class="hljs-params">&lt;plugin&gt;</span>
+    		<span class="hljs-params">&lt;groupId&gt;</span>org.springframework.boot<span class="hljs-params">&lt;/groupId&gt;</span>
+    		<span class="hljs-params">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="hljs-params">&lt;/artifactId&gt;</span>
+    		<span class="hljs-params">&lt;configuration&gt;</span>
+    			<span class="hljs-params">&lt;includeSystemScope&gt;</span>true<span class="hljs-params">&lt;/includeSystemScope&gt;</span>
+    			<span class="hljs-params">&lt;mainClass&gt;</span>mainclass<span class="hljs-params">&lt;/mainClass&gt;</span>
+    		<span class="hljs-params">&lt;/configuration&gt;</span>
+    	<span class="hljs-params">&lt;/plugin&gt;</span>
+    <span class="hljs-params">&lt;/plugins&gt;</span>
+<span class="hljs-params">&lt;/build&gt;</span></code></pre>
+<p><strong>Q：普通maven项目打包配置</strong></p>
+<pre><code class="hljs java">&lt;build&gt;  
  &lt;plugins&gt;  
   &lt;plugin&gt;
      &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
@@ -534,137 +511,131 @@ public class WebLogAspect {
         &lt;/executions&gt;
    &lt;/plugin&gt;
  &lt;/plugins&gt;  
-&lt;/build&gt;
-</code></pre>
+&lt;/build&gt;</code></pre>
 <p><strong>Q:springboot-kafka集群</strong></p>
-<pre><code class="lang-bash"># 显示启动
+<pre><code class="hljs bash"><span class="hljs-comment"># 显示启动</span>
 ./bin/kafka-server-start.sh ./config/server.properties
 
-# 在后台启动
+<span class="hljs-comment"># 在后台启动</span>
 ./bin/kafka-server-start.sh -daemon ./config/server.properties
 
-#创建topic
-# --create：表示创建
-# --zookeeper 后面的参数是zk的集群节点
-# --replication-factor 3 ：表示复本数
-# --partitions 3：表示分区数
-# --topic test：表示topic的主题名称
+<span class="hljs-comment">#创建topic</span>
+<span class="hljs-comment"># --create：表示创建</span>
+<span class="hljs-comment"># --zookeeper 后面的参数是zk的集群节点</span>
+<span class="hljs-comment"># --replication-factor 3 ：表示复本数</span>
+<span class="hljs-comment"># --partitions 3：表示分区数</span>
+<span class="hljs-comment"># --topic test：表示topic的主题名称</span>
 
-./bin/kafka-topics.sh --create --zookeeper server01:2181,server02:2181,server03:2181 --replication-factor 3 --partitions 3 --topic test
+./bin/kafka-topics.sh --create --zookeeper server01:2181,server02:2181,server03:2181 --replication-factor 3 --partitions 3 --topic <span class="hljs-built_in">test</span>
 
-#查看topic
+<span class="hljs-comment">#查看topic</span>
 ./bin/kafka-topics.sh --list --zookeeper server01:2181
-#删除topic
-./bin/kafka-topics.sh --delete --zookeeper server01:2181 --topic test
+<span class="hljs-comment">#删除topic</span>
+./bin/kafka-topics.sh --delete --zookeeper server01:2181 --topic <span class="hljs-built_in">test</span>
 
-#生产者命令
-/bin/kafka-console-producer.sh --broker-list server01:9092 --topic test
+<span class="hljs-comment">#生产者命令</span>
+/bin/kafka-console-producer.sh --broker-list server01:9092 --topic <span class="hljs-built_in">test</span>
 
-#消费者命令
-/bin/kafka-console-consumer.sh --zookeeper server01:2181 --from-beginning --topic test
-</code></pre>
+<span class="hljs-comment">#消费者命令</span>
+/bin/kafka-console-consumer.sh --zookeeper server01:2181 --from-beginning --topic <span class="hljs-built_in">test</span></code></pre>
 <p><strong>Q:maven dependency scope设置</strong></p>
 <ul>
 <li>provided:编译和测试阶段依赖</li>
 </ul>
-<pre><code class="lang-bash">&lt;dependency&gt;
+<pre><code class="hljs bash">&lt;dependency&gt;
     &lt;groupId&gt;org.jiaoper/groupId&gt;
     &lt;artifactId&gt;utils-common&lt;/artifactId&gt;
     &lt;version&gt;3.0-alpha-1&lt;/version&gt;
     &lt;scope&gt;provided&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre>
+&lt;/dependency&gt;</code></pre>
 <ul>
 <li>test:测试阶段依赖</li>
 </ul>
-<pre><code class="lang-bash">&lt;dependency&gt;
+<pre><code class="hljs bash">&lt;dependency&gt;
     &lt;groupId&gt;org.jiaoper/groupId&gt;
     &lt;artifactId&gt;utils-common&lt;/artifactId&gt;
     &lt;version&gt;3.0-alpha-1&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre>
+    &lt;scope&gt;<span class="hljs-built_in">test</span>&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
 <ul>
 <li>compile:编译、测试和运行阶段依赖(默认)</li>
 </ul>
-<pre><code class="lang-bash">&lt;dependency&gt;
+<pre><code class="hljs bash">&lt;dependency&gt;
     &lt;groupId&gt;org.jiaoper/groupId&gt;
     &lt;artifactId&gt;utils-common&lt;/artifactId&gt;
     &lt;version&gt;3.0-alpha-1&lt;/version&gt;
     &lt;scope&gt;complie&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre>
+&lt;/dependency&gt;</code></pre>
 <hr>
 <h1 id="运维-linux"><a href="#运维-linux" class="headerlink" title="运维/linux"></a>运维/linux</h1><p><strong>Q：利用nginx共享文件夹</strong></p>
 <p>nginx.conf添加如下配置</p>
-<pre><code>server {
-    listen       8000;
-    server_name  localhost;
-    charset utf-8;
-    location / {
-    root /home;#共享根目录下的home文件夹
-    # 索引
-    autoindex on;
-    # 显示文件大小
-    autoindex_exact_size on;
-    # 显示文件时间
-    autoindex_localtime on;
-    #index  index.html index.htm;
-  }
-}
-</code></pre><p><strong>Q:更改ubuntu源为阿里云源</strong></p>
-<pre><code class="lang-bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+<pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;
+    <span class="hljs-attribute">listen</span>       <span class="hljs-number">8000</span>;
+    <span class="hljs-attribute">server_name</span>  localhost;
+    <span class="hljs-attribute">charset</span> utf-<span class="hljs-number">8</span>;
+    <span class="hljs-attribute">location</span> / &#123;
+    <span class="hljs-attribute">root</span> /home;<span class="hljs-comment">#共享根目录下的home文件夹</span>
+    <span class="hljs-comment"># 索引</span>
+    <span class="hljs-attribute">autoindex</span> <span class="hljs-literal">on</span>;
+    <span class="hljs-comment"># 显示文件大小</span>
+    <span class="hljs-attribute">autoindex_exact_size</span> <span class="hljs-literal">on</span>;
+    <span class="hljs-comment"># 显示文件时间</span>
+    <span class="hljs-attribute">autoindex_localtime</span> <span class="hljs-literal">on</span>;
+    <span class="hljs-comment">#index  index.html index.htm;</span>
+  &#125;
+&#125;</code></pre>
+<p><strong>Q:更改ubuntu源为阿里云源</strong></p>
+<pre><code class="hljs bash">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
 sudo vim /etc/apt/source.list
 
-deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties
+deb-src http://archive.ubuntu.com/ubuntu xenial main restricted <span class="hljs-comment">#Added by software-properties</span>
 deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe <span class="hljs-comment">#Added by software-properties</span>
 deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe #Added by software-properties
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main restricted multiverse universe <span class="hljs-comment">#Added by software-properties</span>
 deb http://mirrors.aliyun.com/ubuntu/ xenial universe
 deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
 deb http://mirrors.aliyun.com/ubuntu/ xenial multiverse
 deb http://mirrors.aliyun.com/ubuntu/ xenial-updates multiverse
 deb http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse #Added by software-properties
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-backports main restricted universe multiverse <span class="hljs-comment">#Added by software-properties</span>
 deb http://archive.canonical.com/ubuntu xenial partner
 deb-src http://archive.canonical.com/ubuntu xenial partner
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted
-deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe #Added by software-properties
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main restricted multiverse universe <span class="hljs-comment">#Added by software-properties</span>
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security multiverse
 
 apt-get update 
 
-#or
+<span class="hljs-comment">#or</span>
 mv /etc/apt/sources.list /etc/apt/sources.list.bak
-echo &quot;deb http://mirrors.163.com/debian/ jessie main non-free contrib&quot; &gt;&gt; /etc/apt/sources.list
-echo &quot;deb http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib&quot; &gt;&gt;/etc/apt/sources.list
-echo &quot;deb-src http://mirrors.163.com/debian/ jessie main non-free contrib&quot; &gt;&gt;/etc/apt/sources.list
-echo &quot;deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib&quot; &gt;&gt;/etc/apt/sources.list
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"deb http://mirrors.163.com/debian/ jessie main non-free contrib"</span> &gt;&gt; /etc/apt/sources.list
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"deb http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib"</span> &gt;&gt;/etc/apt/sources.list
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"deb-src http://mirrors.163.com/debian/ jessie main non-free contrib"</span> &gt;&gt;/etc/apt/sources.list
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib"</span> &gt;&gt;/etc/apt/sources.list
 
-apt-get update
-</code></pre>
+apt-get update</code></pre>
 <p><strong>Q:oracle导入dmp备份文件</strong></p>
-<pre><code>[root@centos ～]# su - oracle
+<pre><code class="hljs routeros">[root@centos ～]# su - oracle
 [oracle@centos ～]# sqlplus 
 请输入用户名:  sys as sysdba
 输入口令:
-SQL&gt; CREATE USER 用户 IDENTIFIED BY 密码;
-User created.
+SQL&gt; CREATE<span class="hljs-built_in"> USER </span>用户 IDENTIFIED BY 密码;<span class="hljs-built_in">
+User </span>created.
 
-SQL&gt; GRANT CONNECT, RESOURCE, DBA TO 用户;
+SQL&gt; GRANT CONNECT, RESOURCE, DBA <span class="hljs-keyword">TO</span> 用户;
 Grant succeeded.
-SQL&gt; CONNECT 用户@orcl #新用户测试登陆
-</code></pre><p>复制*.dmp文件到linux并加权</p>
-<pre><code>[root@centos ～]# chmod 777 *.dmp
-</code></pre><p>导入dmp数据库备份文件</p>
-<pre><code>[root@centos ～] su - oracle
-[oracle@centos ～]imp 用户名/密码@orcl file=/home/*.dmp ignore=y full=y;
- Import terminated successfully with warnings.(成功)
-</code></pre><p><strong>Q：scp文件/目录上传/下载</strong></p>
-<pre><code class="lang-java">#本地上传到远程
+SQL&gt; CONNECT 用户@orcl #新用户测试登陆</code></pre>
+<p>复制*.dmp文件到linux并加权</p>
+<pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>centos ～]# chmod <span class="hljs-number">777</span> *.dmp</code></pre>
+<p>导入dmp数据库备份文件</p>
+<pre><code class="hljs routeros">[root@centos ～] su - oracle
+[oracle@centos ～]imp 用户名/密码@orcl <span class="hljs-attribute">file</span>=/home/*.dmp <span class="hljs-attribute">ignore</span>=y <span class="hljs-attribute">full</span>=y;
+ Import terminated successfully with warnings.(成功)</code></pre>
+<p><strong>Q：scp文件/目录上传/下载</strong></p>
+<pre><code class="hljs java">#本地上传到远程
 #文件
 scp /root/test.json root@远程服务器ip:/usr/local/src
 #目录
@@ -674,16 +645,13 @@ scp -r /home/testdir root@:远程服务器ip:/home/testdir
 #文件
 scp root@远程服务器ip:/usr/local/src/test.json /root/
 #目录
-scp -r root@:远程服务器ip:/home/testdir /home/
-</code></pre>
+scp -r root@:远程服务器ip:/home/testdir /home/</code></pre>
 <p><strong>Q：Ubuntu增加swap交换空间</strong></p>
-<pre><code class="lang-bash">$ free -m #查看分区大小
-$ dd if=/dev/zero of=/swapfile bs=1M count=3k #创建count*bs大小的swap文件
-$ mkswap /swapfile #创建swap空间
-$ swapon /swapfile #设置分区有效 ,swapoff 设置分区无效
-$ vim /etc/fstab #开启启动：添加/swapfile swap swap defaults 0 0
-</code></pre>
-
+<pre><code class="hljs bash">$ free -m <span class="hljs-comment">#查看分区大小</span>
+$ dd <span class="hljs-keyword">if</span>=/dev/zero of=/swapfile bs=1M count=3k <span class="hljs-comment">#创建count*bs大小的swap文件</span>
+$ mkswap /swapfile <span class="hljs-comment">#创建swap空间</span>
+$ swapon /swapfile <span class="hljs-comment">#设置分区有效 ,swapoff 设置分区无效</span>
+$ vim /etc/fstab <span class="hljs-comment">#开启启动：添加/swapfile swap swap defaults 0 0</span></code></pre>
             </div>
             <hr>
             <div>

@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      377 字
+      359 字
     </span>
   
 
@@ -211,81 +211,76 @@
               <ul>
 <li>载入函数</li>
 </ul>
-<pre><code class="lang-cpp">Mat imread( const String&amp; filename, int flags = IMREAD_COLOR );
-IMREAD_UNCHANGED   = -1, //!&lt; If set, return the loaded image as is (with alpha channel, otherwise it gets cropped).
-IMREAD_GRAYSCALE   = 0,  //!&lt; If set, always convert image to the single channel grayscale image.
-IMREAD_COLOR       = 1,  //!&lt; If set, always convert image to the 3 channel BGR color image.
-IMREAD_ANYDEPTH    = 2,  //!&lt; If set, return 16-bit/32-bit image when the input has the corresponding depth, otherwise convert it to 8-bit.
-IMREAD_ANYCOLOR    = 4,  //!&lt; If set, the image is read in any possible color format.
-Mat img = imread(&quot;D:/learn/dota.jpg&quot;);
-</code></pre>
+<pre><code class="hljs cpp"><span class="hljs-function">Mat <span class="hljs-title">imread</span><span class="hljs-params">( <span class="hljs-keyword">const</span> String&amp; filename, <span class="hljs-keyword">int</span> flags = IMREAD_COLOR )</span></span>;
+IMREAD_UNCHANGED   = <span class="hljs-number">-1</span>, <span class="hljs-comment">//!&lt; If set, return the loaded image as is (with alpha channel, otherwise it gets cropped).</span>
+IMREAD_GRAYSCALE   = <span class="hljs-number">0</span>,  <span class="hljs-comment">//!&lt; If set, always convert image to the single channel grayscale image.</span>
+IMREAD_COLOR       = <span class="hljs-number">1</span>,  <span class="hljs-comment">//!&lt; If set, always convert image to the 3 channel BGR color image.</span>
+IMREAD_ANYDEPTH    = <span class="hljs-number">2</span>,  <span class="hljs-comment">//!&lt; If set, return 16-bit/32-bit image when the input has the corresponding depth, otherwise convert it to 8-bit.</span>
+IMREAD_ANYCOLOR    = <span class="hljs-number">4</span>,  <span class="hljs-comment">//!&lt; If set, the image is read in any possible color format.</span>
+Mat img = imread(<span class="hljs-string">"D:/learn/dota.jpg"</span>);</code></pre>
 <ul>
 <li>显示函数</li>
 </ul>
-<pre><code class="lang-cpp">imshow(&quot;dota&quot;, img);
-</code></pre>
+<pre><code class="hljs cpp">imshow(<span class="hljs-string">"dota"</span>, img);</code></pre>
 <ul>
 <li>输出函数</li>
 </ul>
-<pre><code class="lang-cpp">bool imwrite( const String&amp; filename, InputArray img,
-              const std::vector&lt;int&gt;&amp; params = std::vector&lt;int&gt;());
-imwrite(&quot;D:/new_dota.jpg&quot;, img);
-</code></pre>
+<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">imwrite</span><span class="hljs-params">( <span class="hljs-keyword">const</span> String&amp; filename, InputArray img,
+              <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; params = <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;())</span></span>;
+imwrite(<span class="hljs-string">"D:/new_dota.jpg"</span>, img);</code></pre>
 <ul>
 <li><p>实例</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;  
-#include &lt;opencv2/core/core.hpp&gt;  
-#include &lt;opencv2/highgui/highgui.hpp&gt;  
-using namespace cv;
-int main() {
-  //图像显示
-  Mat logo = imread(&quot;D:/learn/logo.jpg&quot;);
-  imshow(&quot;logo&quot;, logo);
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;  </span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;opencv2/core/core.hpp&gt;  </span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;opencv2/highgui/highgui.hpp&gt;  </span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> cv;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-comment">//图像显示</span>
+	Mat logo = imread(<span class="hljs-string">"D:/learn/logo.jpg"</span>);
+	imshow(<span class="hljs-string">"logo"</span>, logo);
 
-  //图像混合
-  Mat img = imread(&quot;D:/learn/dota.jpg&quot;);
-  imshow(&quot;img&quot;, img);
-  Mat imgROI;
-  imgROI = img(Rect(800, 350, logo.cols, logo.rows));
-  //logo加载到背景图
-  addWeighted(imgROI,0.5,logo,0.3,0,imgROI);
-  imshow(&quot;dota_logo&quot;, img);
+	<span class="hljs-comment">//图像混合</span>
+	Mat img = imread(<span class="hljs-string">"D:/learn/dota.jpg"</span>);
+	imshow(<span class="hljs-string">"img"</span>, img);
+	Mat imgROI;
+	imgROI = img(Rect(<span class="hljs-number">800</span>, <span class="hljs-number">350</span>, logo.cols, logo.rows));
+	<span class="hljs-comment">//logo加载到背景图</span>
+	addWeighted(imgROI,<span class="hljs-number">0.5</span>,logo,<span class="hljs-number">0.3</span>,<span class="hljs-number">0</span>,imgROI);
+	imshow(<span class="hljs-string">"dota_logo"</span>, img);
 
-  //保存混合的图像
-  imwrite(&quot;D:/learn/dota_logo.jpg&quot;,img);
-  waitKey(0);
-}
-</code></pre>
-<p><img src="/images/opencv3/18.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/opencv3/19.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/opencv3/20.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/opencv3/21.jpg" srcset="/img/loading.gif" alt=""></p>
+	<span class="hljs-comment">//保存混合的图像</span>
+	imwrite(<span class="hljs-string">"D:/learn/dota_logo.jpg"</span>,img);
+	waitKey(<span class="hljs-number">0</span>);
+&#125;</code></pre>
+<p><img src="/images/opencv3/18.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/opencv3/19.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/opencv3/20.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/opencv3/21.jpg" srcset="/images/loading.gif" alt=""></p>
 </li>
 <li><p>读取视频文件 调用摄像头 写入视频文件</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-using namespace std;
-using namespace cv;
-int main() {
-  namedWindow(&quot;cap&quot;, cv::WINDOW_AUTOSIZE);
-  VideoCapture cap;
-  Mat frame;
-  cap.open(0);
+<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;opencv2/opencv.hpp&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> cv;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	namedWindow(<span class="hljs-string">"cap"</span>, cv::WINDOW_AUTOSIZE);
+	VideoCapture cap;
+	Mat frame;
+	cap.open(<span class="hljs-number">0</span>);
 
-  //视频流写出
-  Size size = Size(cap.get(CV_CAP_PROP_FRAME_WIDTH), cap.get(CV_CAP_PROP_FRAME_HEIGHT));
-  VideoWriter writer;
-  writer.open(&quot;test.avi&quot;, -1, 10, size);
-  //
+	<span class="hljs-comment">//视频流写出</span>
+	Size size = Size(cap.get(CV_CAP_PROP_FRAME_WIDTH), cap.get(CV_CAP_PROP_FRAME_HEIGHT));
+	VideoWriter writer;
+	writer.open(<span class="hljs-string">"test.avi"</span>, <span class="hljs-number">-1</span>, <span class="hljs-number">10</span>, size);
+	<span class="hljs-comment">//</span>
 
-  for (;;){
-      cap &gt;&gt; frame;
-      imshow(&quot;out&quot;, frame);
-      writer &lt;&lt; frame;
-      if (waitKey(33) &gt;= 0) break;
-  }
-  cap.release();
-  //waitKey(0);
-  return 0;
-}
-</code></pre>
+	<span class="hljs-keyword">for</span> (;;)&#123;
+		cap &gt;&gt; frame;
+		imshow(<span class="hljs-string">"out"</span>, frame);
+		writer &lt;&lt; frame;
+		<span class="hljs-keyword">if</span> (waitKey(<span class="hljs-number">33</span>) &gt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;
+	&#125;
+	cap.release();
+	<span class="hljs-comment">//waitKey(0);</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
 </li>
 </ul>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>

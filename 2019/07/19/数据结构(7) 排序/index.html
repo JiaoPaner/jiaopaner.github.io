@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.7k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      24
        分钟
     </span>
   
@@ -210,206 +210,198 @@
             <div class="markdown-body" id="post-body">
               <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><p><strong>直接插入排序</strong></p>
 <p>把$n$个待排序的元素假设为一个有序表和一个无序表，开始时有序表中只包含1个元素，无序表中包含有n-1个元素，排序过程中每次从无序表中取出第一个元素，将它插入到有序表中的适当位置，使之成为新的有序表，重复n-1次即可完成排序过程</p>
-<pre><code class="lang-c++">void insertSort(int array[],int n) {
-    int i, j, key;
-    for (i = 1; i &lt; n; i++) {
-        if (array[i] &lt; array[i - 1]) {
-            key = array[i];//设置为哨兵
-            //找到合适的插入位置并将比key大的元素后移
-            for (j = i - 1; key &lt; array[j] &amp;&amp; j &gt;= 0; --j)
-                array[j + 1] = array[j];
-            array[j + 1] = key;//插入
-        }
-    }
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insertSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[],<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> i, j, key;
+	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;
+		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">array</span>[i] &lt; <span class="hljs-built_in">array</span>[i - <span class="hljs-number">1</span>]) &#123;
+			key = <span class="hljs-built_in">array</span>[i];<span class="hljs-comment">//设置为哨兵</span>
+            <span class="hljs-comment">//找到合适的插入位置并将比key大的元素后移</span>
+			<span class="hljs-keyword">for</span> (j = i - <span class="hljs-number">1</span>; key &lt; <span class="hljs-built_in">array</span>[j] &amp;&amp; j &gt;= <span class="hljs-number">0</span>; --j)
+				<span class="hljs-built_in">array</span>[j + <span class="hljs-number">1</span>] = <span class="hljs-built_in">array</span>[j];
+			<span class="hljs-built_in">array</span>[j + <span class="hljs-number">1</span>] = key;<span class="hljs-comment">//插入</span>
+		&#125;
+	&#125;
+&#125;</code></pre>
 <p><strong>折半插入排序</strong></p>
-<pre><code class="lang-c++">void insertSortbyHalf(int array[],int n){
-    int i,j,key,mid,low,high;
-    for (i = 1; i &lt; n; i++) {
-        if(array[i] &lt; array[i-1]){
-            key = array[i];
-            low = 0,high = i-1;
-              //找到插入的位置
-            while(low &lt;= high){
-                mid = (low + high) / 2;
-                if(key &lt; array[mid])
-                    high = mid - 1;
-                else
-                    low = mid + 1;
-            }
-              //统一移动元素
-            for(j = i-1;j &gt;= high+1;j--){
-                array[j+1] = array[j];
-            }
-            array[j+1] = key;//插入
-        }
-    }
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insertSortbyHalf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[],<span class="hljs-keyword">int</span> n)</span></span>&#123;
+    <span class="hljs-keyword">int</span> i,j,key,mid,low,high;
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[i] &lt; <span class="hljs-built_in">array</span>[i<span class="hljs-number">-1</span>])&#123;
+            key = <span class="hljs-built_in">array</span>[i];
+            low = <span class="hljs-number">0</span>,high = i<span class="hljs-number">-1</span>;
+          	<span class="hljs-comment">//找到插入的位置</span>
+            <span class="hljs-keyword">while</span>(low &lt;= high)&#123;
+                mid = (low + high) / <span class="hljs-number">2</span>;
+                <span class="hljs-keyword">if</span>(key &lt; <span class="hljs-built_in">array</span>[mid])
+                    high = mid - <span class="hljs-number">1</span>;
+                <span class="hljs-keyword">else</span>
+                    low = mid + <span class="hljs-number">1</span>;
+            &#125;
+          	<span class="hljs-comment">//统一移动元素</span>
+            <span class="hljs-keyword">for</span>(j = i<span class="hljs-number">-1</span>;j &gt;= high+<span class="hljs-number">1</span>;j--)&#123;
+                <span class="hljs-built_in">array</span>[j+<span class="hljs-number">1</span>] = <span class="hljs-built_in">array</span>[j];
+            &#125;
+            <span class="hljs-built_in">array</span>[j+<span class="hljs-number">1</span>] = key;<span class="hljs-comment">//插入</span>
+        &#125;
+    &#125;
+&#125;</code></pre>
 <p><strong>希尔排序</strong></p>
 <p>增量序列 $d<em>1，d_2，\cdots，d_k$，其中 $d_1=n/2,d</em>{i+1}=[d_i/2],d_k = 1$；</p>
 <p>按增量序列个数 $k$，对序列进行 $k$ 趟排序；</p>
 <p>每趟排序，先根据对应的增量 $d_i$，将待排序序列分割为$d_i$个组，距离为$d_i$的元素为同一组，再对每个组进行直接插入排序，直到$d_i =1$,即所有元素已在同一组中，再进行一次直接插入排序</p>
-<p><img src="\images\dataStructure\81.png" srcset="/img/loading.gif" alt=""></p>
-<pre><code class="lang-c++">void shellSort(int array[],int n) {
-    int di, i,j, key;
-    for (di = n/2; di &gt;= 1; di = di/2) {//设置增量
-        //分组并进行插入排序
-        for (i = di; i &lt; n; i++) {
-            if (array[i] &lt; array[i - di]) {
-                key = array[i];
-                for (j = i - di; j &gt;= 0 &amp;&amp; key &lt; array[j]; j = j - di) {
-                    array[j + di] = array[j];
-                }
-                array[j + di] = key;
-            }
-        }
-    }
-}
-</code></pre>
+<p><img src="\images\dataStructure\81.png" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">shellSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[],<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> di, i,j, key;
+	<span class="hljs-keyword">for</span> (di = n/<span class="hljs-number">2</span>; di &gt;= <span class="hljs-number">1</span>; di = di/<span class="hljs-number">2</span>) &#123;<span class="hljs-comment">//设置增量</span>
+        <span class="hljs-comment">//分组并进行插入排序</span>
+		<span class="hljs-keyword">for</span> (i = di; i &lt; n; i++) &#123;
+			<span class="hljs-keyword">if</span> (<span class="hljs-built_in">array</span>[i] &lt; <span class="hljs-built_in">array</span>[i - di]) &#123;
+				key = <span class="hljs-built_in">array</span>[i];
+				<span class="hljs-keyword">for</span> (j = i - di; j &gt;= <span class="hljs-number">0</span> &amp;&amp; key &lt; <span class="hljs-built_in">array</span>[j]; j = j - di) &#123;
+					<span class="hljs-built_in">array</span>[j + di] = <span class="hljs-built_in">array</span>[j];
+				&#125;
+				<span class="hljs-built_in">array</span>[j + di] = key;
+			&#125;
+		&#125;
+	&#125;
+&#125;</code></pre>
 <h1 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h1><p><strong>冒泡排序</strong></p>
 <p>每次比较两个相邻的元素，如果其顺序错误就交换</p>
-<pre><code class="lang-c++">void bubbleSort(int array[],int n) {
-    int key;
-    for (int i = 0; i &lt; n-1;i++) {
-        //LEN-i:每一次都已归位一个数,不再需要与已归位的数比较
-        for (int j = 0; j &lt; n - i - 1; j++) {
-            if (array[j] &gt; array[j + 1]) {
-                key = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = key;
-            }
-        }
-    }
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bubbleSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[],<span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> key;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n<span class="hljs-number">-1</span>;i++) &#123;
+		<span class="hljs-comment">//LEN-i:每一次都已归位一个数,不再需要与已归位的数比较</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n - i - <span class="hljs-number">1</span>; j++) &#123;
+			<span class="hljs-keyword">if</span> (<span class="hljs-built_in">array</span>[j] &gt; <span class="hljs-built_in">array</span>[j + <span class="hljs-number">1</span>]) &#123;
+				key = <span class="hljs-built_in">array</span>[j];
+				<span class="hljs-built_in">array</span>[j] = <span class="hljs-built_in">array</span>[j + <span class="hljs-number">1</span>];
+				<span class="hljs-built_in">array</span>[j + <span class="hljs-number">1</span>] = key;
+			&#125;
+		&#125;
+	&#125;
+&#125;</code></pre>
 <p><strong>快速排序</strong></p>
 <p>1.设置两个变量$i,j$，初始化：$i=0，j=n-1$；<br>2.基准数$key=array[0]$；<br>3.从$j$开始向前搜索，即由后开始向前搜索$(j—)$，找到第一个小于$key$的值$array[j]$，将$array[j]$和$array[i]$的值交换；<br>4.从$i$开始向后搜索，即由前开始向后搜索$(i++)$，找到第一个大于key的$array[i]$，将$array[i]$和$array[j]$的值交换；<br>5.重复第3、4步，直到$i=j$；</p>
 <p>经过一趟上述步骤后，基准数左边全小于基准数，基准数右边全大于基准数，通过分治法继续处理左、右</p>
-<pre><code class="lang-c++">void quickSort(int array[], int left, int right){
-    if (left &gt;= right){
-        return;
-    }
-    int i = left;
-    int j = right;
-    int key = array[left];//基准数
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[], <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>&#123;
+	<span class="hljs-keyword">if</span> (left &gt;= right)&#123;
+		<span class="hljs-keyword">return</span>;
+	&#125;
+	<span class="hljs-keyword">int</span> i = left;
+	<span class="hljs-keyword">int</span> j = right;
+	<span class="hljs-keyword">int</span> key = <span class="hljs-built_in">array</span>[left];<span class="hljs-comment">//基准数</span>
 
-    while (i &lt; j){
-        //向前寻找小于key的数
-        while (i &lt; j &amp;&amp; key &lt;= array[j]){
-            j--;
-        }
-        array[i] = array[j];
-        //向后寻找大于key的数
-        while (i &lt; j &amp;&amp; key &gt;= array[i]){
-            i++;
-        }
-        array[j] = array[i];
-    }
-    array[i] = key;//基准数归位
-    quickSort(array, left, i - 1);//分治处理左边
-    quickSort(array, i + 1, right);//分治处理右边
-}
-</code></pre>
+	<span class="hljs-keyword">while</span> (i &lt; j)&#123;
+        <span class="hljs-comment">//向前寻找小于key的数</span>
+		<span class="hljs-keyword">while</span> (i &lt; j &amp;&amp; key &lt;= <span class="hljs-built_in">array</span>[j])&#123;
+			j--;
+		&#125;
+		<span class="hljs-built_in">array</span>[i] = <span class="hljs-built_in">array</span>[j];
+        <span class="hljs-comment">//向后寻找大于key的数</span>
+		<span class="hljs-keyword">while</span> (i &lt; j &amp;&amp; key &gt;= <span class="hljs-built_in">array</span>[i])&#123;
+			i++;
+		&#125;
+		<span class="hljs-built_in">array</span>[j] = <span class="hljs-built_in">array</span>[i];
+	&#125;
+	<span class="hljs-built_in">array</span>[i] = key;<span class="hljs-comment">//基准数归位</span>
+	quickSort(<span class="hljs-built_in">array</span>, left, i - <span class="hljs-number">1</span>);<span class="hljs-comment">//分治处理左边</span>
+	quickSort(<span class="hljs-built_in">array</span>, i + <span class="hljs-number">1</span>, right);<span class="hljs-comment">//分治处理右边</span>
+&#125;</code></pre>
 <h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p><strong>简单选择排序</strong></p>
 <p>(1)在未排序序列中找到最小/大元素，存放到排序序列的起始位置;(2)再从剩余未排序元素中继续寻找最小/大元素，放到已排序序列的末尾;重复第二步，直到所有元素均排序完毕</p>
-<p><img src="\images\dataStructure\selectionSort.gif" srcset="/img/loading.gif" alt=""></p>
-<pre><code class="lang-c++">void selectSort(int array[], int n) {
-    for (int i = 0; i &lt; n - 1; i++) {
-        int min = i;
-        for (int j = i + 1; j &lt; n; j++) {
-            if (array[j] &lt; array[min])
-                min = j;
-        }
-        if (i != min) {
-            int temp = array[i];
-            array[i] = array[min];
-            array[min] = temp;
-        }
-    }
-}
-</code></pre>
+<p><img src="\images\dataStructure\selectionSort.gif" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">selectSort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[], <span class="hljs-keyword">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++) &#123;
+		<span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span> = i;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; n; j++) &#123;
+			<span class="hljs-keyword">if</span> (<span class="hljs-built_in">array</span>[j] &lt; <span class="hljs-built_in">array</span>[<span class="hljs-built_in">min</span>])
+				<span class="hljs-built_in">min</span> = j;
+		&#125;
+		<span class="hljs-keyword">if</span> (i != <span class="hljs-built_in">min</span>) &#123;
+			<span class="hljs-keyword">int</span> temp = <span class="hljs-built_in">array</span>[i];
+			<span class="hljs-built_in">array</span>[i] = <span class="hljs-built_in">array</span>[<span class="hljs-built_in">min</span>];
+			<span class="hljs-built_in">array</span>[<span class="hljs-built_in">min</span>] = temp;
+		&#125;
+	&#125;
+&#125;</code></pre>
 <p><strong>堆排序</strong></p>
 <p>堆是具有以下性质的完全二叉树：</p>
 <p>1.每个结点的值都大于或等于其左右孩子结点的值，称为大顶堆；</p>
 <p>2.每个结点的值都小于或等于其左右孩子结点的值，称为小顶堆；</p>
-<p><img src="\images\dataStructure\45.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\45.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>堆排序算法步骤：</p>
 <p>1.构造初始堆，将无序序列构造为大顶堆，从倒数第一个非叶子结点开始调整,从左至右，从下至上进行调整；</p>
 <p>倒数第$i$个非叶子结点索引$index=array.length/2^i-1(i=1,2,3\dots|2^i\leqslant  array.length)$</p>
-<p><img src="\images\dataStructure\46.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\46.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>2.将堆顶元素与末尾元素进行交换，使末尾元素最大，然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素，如此反复进行交换、重建、交换…</p>
-<p><img src="\images\dataStructure\47.jpg" srcset="/img/loading.gif" alt=""></p>
-<pre><code class="lang-c++">void swap(int* a, int* b){
-    int temp = *b;
-    *b = *a;
-    *a = temp;
-}
+<p><img src="\images\dataStructure\47.jpg" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* a, <span class="hljs-keyword">int</span>* b)</span></span>&#123;
+	<span class="hljs-keyword">int</span> temp = *b;
+	*b = *a;
+	*a = temp;
+&#125;
 
-void max_heapify(int array[], int start, int end){
-    //建立父节点指标和子结点指标
-    int dad = start;
-    int son = dad * 2 + 1;
-    while (son &lt;= end){//若子结点索引在范围内才做比较
-        //先比较两个子结点大小，选择最大的
-        if (son + 1 &lt;= end &amp;&amp; array[son] &lt; array[son + 1])
-            son++;
-        if (array[dad] &gt; array[son]) //如果父节点大於子结点代表调整完毕，直接跳出函数
-            return;
-        else{
-            swap(&amp;array[dad], &amp;array[son]);
-            dad = son;
-            son = dad * 2 + 1;
-        }
-    }
-}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">max_heapify</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[], <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> <span class="hljs-built_in">end</span>)</span></span>&#123;
+	<span class="hljs-comment">//建立父节点指标和子结点指标</span>
+	<span class="hljs-keyword">int</span> dad = start;
+	<span class="hljs-keyword">int</span> son = dad * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (son &lt;= <span class="hljs-built_in">end</span>)&#123;<span class="hljs-comment">//若子结点索引在范围内才做比较</span>
+		<span class="hljs-comment">//先比较两个子结点大小，选择最大的</span>
+		<span class="hljs-keyword">if</span> (son + <span class="hljs-number">1</span> &lt;= <span class="hljs-built_in">end</span> &amp;&amp; <span class="hljs-built_in">array</span>[son] &lt; <span class="hljs-built_in">array</span>[son + <span class="hljs-number">1</span>])
+			son++;
+		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">array</span>[dad] &gt; <span class="hljs-built_in">array</span>[son]) <span class="hljs-comment">//如果父节点大於子结点代表调整完毕，直接跳出函数</span>
+			<span class="hljs-keyword">return</span>;
+		<span class="hljs-keyword">else</span>&#123;
+			swap(&amp;<span class="hljs-built_in">array</span>[dad], &amp;<span class="hljs-built_in">array</span>[son]);
+			dad = son;
+			son = dad * <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;
+		&#125;
+	&#125;
+&#125;
 
-void heap_sort(int array[], int len){
-    int i;
-    //初始化，生成最大堆
-    for (i = len / 2 - 1; i &gt;= 0; i--)
-        max_heapify(array, i, len - 1);
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">heap_sort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[], <span class="hljs-keyword">int</span> len)</span></span>&#123;
+	<span class="hljs-keyword">int</span> i;
+	<span class="hljs-comment">//初始化，生成最大堆</span>
+	<span class="hljs-keyword">for</span> (i = len / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--)
+		max_heapify(<span class="hljs-built_in">array</span>, i, len - <span class="hljs-number">1</span>);
 
-    //堆顶元素与末尾元素进行交换，再重新调整，直到排序完毕
-    for (i = len - 1; i &gt; 0; i--){
-        swap(&amp;array[0], &amp;array[i]);
-        max_heapify(array, 0, i - 1);
-    }
-}
-</code></pre>
+	<span class="hljs-comment">//堆顶元素与末尾元素进行交换，再重新调整，直到排序完毕</span>
+	<span class="hljs-keyword">for</span> (i = len - <span class="hljs-number">1</span>; i &gt; <span class="hljs-number">0</span>; i--)&#123;
+		swap(&amp;<span class="hljs-built_in">array</span>[<span class="hljs-number">0</span>], &amp;<span class="hljs-built_in">array</span>[i]);
+		max_heapify(<span class="hljs-built_in">array</span>, <span class="hljs-number">0</span>, i - <span class="hljs-number">1</span>);
+	&#125;
+&#125;</code></pre>
 <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>假定含有$n$个元素的待排序表，则可视为$n$个有序的子表，每个子表长度为1，然后两两归并，得到[$n/2$]个长度为2或1的有序表；再两两归并$\cdots$,直到合并长度为$n$的有序表为止</p>
-<p><img src="\images\dataStructure\82.png" srcset="/img/loading.gif" alt=""></p>
-<pre><code class="lang-c++">void merge(int array[], int low, int mid, int high, int temp[]){
-    int i = low, j = mid + 1;
-    int m = mid, n = high;
-    int k = 0;
-    while (i &lt;= m &amp;&amp; j &lt;= n){
-        if (array[i] &lt;= array[j])
-            temp[k++] = array[i++];
-        else
-            temp[k++] = array[j++];
-    }
-    while (i &lt;= m)
-        temp[k++] = array[i++];
+<p><img src="\images\dataStructure\82.png" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[], <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> mid, <span class="hljs-keyword">int</span> high, <span class="hljs-keyword">int</span> temp[])</span></span>&#123;
+	<span class="hljs-keyword">int</span> i = low, j = mid + <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">int</span> m = mid, n = high;
+	<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span> (i &lt;= m &amp;&amp; j &lt;= n)&#123;
+		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">array</span>[i] &lt;= <span class="hljs-built_in">array</span>[j])
+			temp[k++] = <span class="hljs-built_in">array</span>[i++];
+		<span class="hljs-keyword">else</span>
+			temp[k++] = <span class="hljs-built_in">array</span>[j++];
+	&#125;
+	<span class="hljs-keyword">while</span> (i &lt;= m)
+		temp[k++] = <span class="hljs-built_in">array</span>[i++];
 
-    while (j &lt;= n)
-        temp[k++] = array[j++];
+	<span class="hljs-keyword">while</span> (j &lt;= n)
+		temp[k++] = <span class="hljs-built_in">array</span>[j++];
 
-    for (i = 0; i &lt; k; i++)
-        array[low + i] = temp[i];
-}
-void mergesort(int array[], int low, int high, int temp[]){
-    if (low &lt; high){
-        int mid = (low + high) / 2;
-        mergesort(array, low, mid, temp);    
-        mergesort(array, mid + 1, high, temp); 
-        merge(array, low, mid, high, temp);
-    }
-}
-</code></pre>
+	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; k; i++)
+		<span class="hljs-built_in">array</span>[low + i] = temp[i];
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mergesort</span><span class="hljs-params">(<span class="hljs-keyword">int</span> <span class="hljs-built_in">array</span>[], <span class="hljs-keyword">int</span> low, <span class="hljs-keyword">int</span> high, <span class="hljs-keyword">int</span> temp[])</span></span>&#123;
+	<span class="hljs-keyword">if</span> (low &lt; high)&#123;
+		<span class="hljs-keyword">int</span> mid = (low + high) / <span class="hljs-number">2</span>;
+		mergesort(<span class="hljs-built_in">array</span>, low, mid, temp);    
+		mergesort(<span class="hljs-built_in">array</span>, mid + <span class="hljs-number">1</span>, high, temp); 
+		merge(<span class="hljs-built_in">array</span>, low, mid, high, temp);
+	&#125;
+&#125;</code></pre>
 <hr>
-<p><img src="\images\dataStructure\83.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\83.png" srcset="/images/loading.gif" alt=""></p>
 
             </div>
             <hr>

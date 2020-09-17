@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      896 字
+      891 字
     </span>
   
 
@@ -209,38 +209,23 @@
             
             <div class="markdown-body" id="post-body">
               <h3 id="基础数据类型"><a href="#基础数据类型" class="headerlink" title="基础数据类型"></a>基础数据类型</h3><ul>
-<li>Point 坐标类<br>Point有两种,2维Point和3维Point，Point可以转换为其他数据类型,比如vector或者matrix<br><img src="/images/opencv3/22.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>Scala<br>Scalar继承于vector<br>Scalar(b, g, r) ：b-&gt;蓝色分量 g-&gt;绿色分量 r-&gt;红色分量<br>Scalar(0, 0, 255) -&gt; 红色像素点<br><img src="/images/opencv3/23.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>Size 大小类<br>Size和Point类似,两者可以互相转换,不同之处在于Point的数据成员名为x和y,Size的数据成员名为width和height<br><img src="/images/opencv3/24.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>Rect 矩形类<br>Rect成员包含Point类型的x,y和Size类型的width,height<br><img src="/images/opencv3/25.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>RotatedRect 旋转矩形类<br>RotatedRect包含中心点(Point),大小(Size),旋转角度<br><img src="/images/opencv3/26.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>InputArray OutputArray<br>InputArray和OutputArray区别在于 InputArray为只读,上述基础数据类型都可转换为 InputArray或OutputArray,以此保持函数的简洁性<h3 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h3><img src="/images/opencv3/27.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/28.jpg" srcset="/img/loading.gif" alt="&quot;opencv&quot;"></li>
-<li>cv::alignPtr() 指针对齐<pre><code class="lang-cpp">// Return aligned pointer of type T*
-template&lt;T&gt; T* cv::alignPtr( T* ptr, // pointer, unaligned
-                                               int n = sizeof(T)); // align to block size, a power of 2
-</code></pre>
-</li>
-<li>cv::allocate() 分配具有T类型的对象数组(C风格）<pre><code class="lang-cpp">// Return pointer to allocated buffer
-template&lt;T&gt; T* cv::allocate( size_t sz); // buffer size, multiples of sizeof(T)
-</code></pre>
-</li>
-<li>cv::fastAtan2() 计算向量方向 x(向量的x坐标) y(向量的y坐标)<pre><code class="lang-cpp">float cv::fastAtan2(float y, float x );
-</code></pre>
-</li>
-<li>cvCeil() 返回不小于x的最小整数值<pre><code class="lang-cpp">int cvCeil(float x);
-</code></pre>
-</li>
-<li>cvRound() 返回与x最接近的整数值<pre><code class="lang-cpp">int cvRound( double x );
-</code></pre>
-</li>
-<li>cvFloor() 返回不大于x的最大整数值<pre><code class="lang-cpp">int cvFloor( float x};
-</code></pre>
-</li>
-<li>cv::cubeRoot() 计算x的立方根<pre><code class="lang-cpp">float cv::cubeRoot( float x);
-</code></pre>
-</li>
-<li>cv::format() 格式化输出<pre><code class="lang-cpp">string cv::format(const char* fmt, ... );
-</code></pre>
+<li>Point 坐标类<br>Point有两种,2维Point和3维Point，Point可以转换为其他数据类型,比如vector或者matrix<br><img src="/images/opencv3/22.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>Scala<br>Scalar继承于vector<br>Scalar(b, g, r) ：b-&gt;蓝色分量 g-&gt;绿色分量 r-&gt;红色分量<br>Scalar(0, 0, 255) -&gt; 红色像素点<br><img src="/images/opencv3/23.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>Size 大小类<br>Size和Point类似,两者可以互相转换,不同之处在于Point的数据成员名为x和y,Size的数据成员名为width和height<br><img src="/images/opencv3/24.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>Rect 矩形类<br>Rect成员包含Point类型的x,y和Size类型的width,height<br><img src="/images/opencv3/25.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>RotatedRect 旋转矩形类<br>RotatedRect包含中心点(Point),大小(Size),旋转角度<br><img src="/images/opencv3/26.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>InputArray OutputArray<br>InputArray和OutputArray区别在于 InputArray为只读,上述基础数据类型都可转换为 InputArray或OutputArray,以此保持函数的简洁性<h3 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h3><img src="/images/opencv3/27.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"><br><img src="/images/opencv3/28.jpg" srcset="/images/loading.gif" alt="&quot;opencv&quot;"></li>
+<li>cv::alignPtr() 指针对齐<pre><code class="hljs cpp"><span class="hljs-comment">// Return aligned pointer of type T*</span>
+<span class="hljs-keyword">template</span>&lt;T&gt; T* cv::alignPtr( T* ptr, <span class="hljs-comment">// pointer, unaligned</span>
+                                                 <span class="hljs-keyword">int</span> n = <span class="hljs-keyword">sizeof</span>(T)); <span class="hljs-comment">// align to block size, a power of 2</span></code></pre></li>
+<li>cv::allocate() 分配具有T类型的对象数组(C风格）<pre><code class="hljs cpp"><span class="hljs-comment">// Return pointer to allocated buffer</span>
+<span class="hljs-keyword">template</span>&lt;T&gt; T* cv::allocate( <span class="hljs-keyword">size_t</span> sz); <span class="hljs-comment">// buffer size, multiples of sizeof(T)</span></code></pre></li>
+<li>cv::fastAtan2() 计算向量方向 x(向量的x坐标) y(向量的y坐标)<pre><code class="hljs cpp"><span class="hljs-keyword">float</span> cv::fastAtan2(<span class="hljs-keyword">float</span> y, <span class="hljs-keyword">float</span> x );</code></pre></li>
+<li>cvCeil() 返回不小于x的最小整数值<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cvCeil</span><span class="hljs-params">(<span class="hljs-keyword">float</span> x)</span></span>;</code></pre></li>
+<li>cvRound() 返回与x最接近的整数值<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cvRound</span><span class="hljs-params">( <span class="hljs-keyword">double</span> x )</span></span>;</code></pre></li>
+<li>cvFloor() 返回不大于x的最大整数值<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cvFloor</span><span class="hljs-params">( <span class="hljs-keyword">float</span> x&#125;;</span></span></code></pre></li>
+<li>cv::cubeRoot() 计算x的立方根<pre><code class="hljs cpp"><span class="hljs-keyword">float</span> cv::cubeRoot( <span class="hljs-keyword">float</span> x);</code></pre></li>
+<li>cv::format() 格式化输出<pre><code class="hljs cpp"><span class="hljs-built_in">string</span> cv::format(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* fmt, ... );</code></pre>
 </li>
 </ul>
 <hr>
@@ -249,55 +234,34 @@ template&lt;T&gt; T* cv::allocate( size_t sz); // buffer size, multiples of size
 <li>Range 整数序列<br>Range(0,4) —-&gt; 0,1,2,3</li>
 </ul>
 <hr>
-<h3 id="Mat-N维稠密矩阵"><a href="#Mat-N维稠密矩阵" class="headerlink" title="Mat N维稠密矩阵"></a>Mat N维稠密矩阵</h3><h4 id="构造矩阵"><a href="#构造矩阵" class="headerlink" title="构造矩阵"></a>构造矩阵</h4><pre><code class="lang-cpp">Mat();
-Mat(int rows, int cols, int type);
-Mat(Size size, int type);
-Mat(int rows, int cols, int type, const Scalar&amp; s);
-Mat(Size size, int type, const Scalar&amp; s);
-Mat(int ndims, const int* sizes, int type);
-Mat(int ndims, const int* sizes, int type, const Scalar&amp; s);
-Mat(const Mat&amp; m);
-Mat(const Mat&amp; m, const Rect&amp; roi);
-Mat(const Mat&amp; m, const Range* ranges);
-</code></pre>
-<p>int rows, int cols:二维矩阵的行列数 -&gt;图像分辨率<br>int type：存储元素的数据类型和通道数 CV_[位数][是否带符号][类型前缀]C[通道数]<br>const Scalar&amp; s:矩阵每个元素以s向量(颜色)填充 向量维度由通道数决定</p>
-<pre><code class="lang-cpp">Mat matrix(2, 2, CV_8UC3, Scalar(0, 0, 255));
-Mat matrix(2, 2, CV_8UC2, Scalar(1,2));
-</code></pre>
-<p>matrix = [  0,   0, 255,   0,   0, 255 ;  0,   0, 255,   0,   0, 255]<br>matrix = [  1,   2,   1,   2 ; 1,   2,   1,   2]</p>
-<pre><code class="lang-cpp">Mat m；
-m.create(3,10,CV_32FC3)
-m.setTo(Scalar(1.0f,1.0f,1.0f));//设置第一个通道的值
-</code></pre>
-<pre><code class="lang-cpp">Mat matrix = Mat::eye(4, 4, CV_64F);
-Mat matrix = Mat::ones(4, 4, CV_32F);
-Mat matrix = Mat::zeros(3, 3, CV_8SC1);
-</code></pre>
-<p>[1, 0, 0, 0;<br> 0, 1, 0, 0;<br> 0, 0, 1, 0;<br> 0, 0, 0, 1]<br>[1, 1, 1, 1;<br> 1, 1, 1, 1;<br> 1, 1, 1, 1;<br> 1, 1, 1, 1]<br>[  0,   0,   0;<br>0,   0,   0;<br>0,   0,   0]</p>
-<pre><code class="lang-cpp">Mat matrix = (Mat_&lt;double&gt;(3, 3) &lt;&lt; 1, 2, 3, 4, 5, 6, 7, 8, 9);
-</code></pre>
-<p>[1, 2, 3;<br> 4, 5, 6;<br> 7, 8, 9]</p>
-<p>利用clone() 或者 copyTo()</p>
-<pre><code class="lang-cpp">Mat RowClone = matrix.row(1).clone();
-cout &lt;&lt; &quot;RowClone = &quot; &lt;&lt; endl &lt;&lt; &quot; &quot; &lt;&lt; RowClone &lt;&lt; endl &lt;&lt; endl;
-</code></pre>
-<h4 id="获取矩阵元素"><a href="#获取矩阵元素" class="headerlink" title="获取矩阵元素"></a>获取矩阵元素</h4><p><img src="/images/opencv3/29.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/opencv3/30.jpg" srcset="/img/loading.gif" alt=""></p>
-<h4 id="矩阵运算"><a href="#矩阵运算" class="headerlink" title="矩阵运算"></a>矩阵运算</h4><p><img src="/images/opencv3/31.jpg" srcset="/img/loading.gif" alt=""></p>
-<h4 id="矩阵操作"><a href="#矩阵操作" class="headerlink" title="矩阵操作"></a>矩阵操作</h4><p><img src="/images/opencv3/32.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/opencv3/33.jpg" srcset="/img/loading.gif" alt=""></p>
-<h4 id="打印矩阵"><a href="#打印矩阵" class="headerlink" title="打印矩阵"></a>打印矩阵</h4><pre><code class="lang-cpp">Mat matrix(2,2, CV_8UC3, Scalar(0,0,255));
-</code></pre>
-<p>默认风格</p>
-<pre><code class="lang-cpp">std::cout &lt;&lt; matrix &lt;&lt; std::endl;
-</code></pre>
-<p>[  0,   0, 255,   0,   0, 255;<br>   0,   0, 255,   0,   0, 255]</p>
-<p>Python风格</p>
-<pre><code class="lang-cpp">std::cout &lt;&lt; format(matrix,Formatter::FMT_PYTHON) &lt;&lt; std::endl;
-</code></pre>
-<p>[[[  0,   0, 255],<br>  [  0,   0, 255]],<br> [[  0,   0, 255],<br>  [  0,   0, 255]]]</p>
-<p>Numpy风格</p>
-<pre><code class="lang-cpp">std::cout &lt;&lt; format(matrix, Formatter::FMT_NUMPY) &lt;&lt; std::endl;
-</code></pre>
-<p>array([[[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]],<br>       [[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]],<br>       [[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]]], dtype=’uint8’)</p>
+<h3 id="Mat-N维稠密矩阵"><a href="#Mat-N维稠密矩阵" class="headerlink" title="Mat N维稠密矩阵"></a>Mat N维稠密矩阵</h3><h4 id="构造矩阵"><a href="#构造矩阵" class="headerlink" title="构造矩阵"></a>构造矩阵</h4><pre><code class="hljs cpp">Mat();
+Mat(<span class="hljs-keyword">int</span> rows, <span class="hljs-keyword">int</span> cols, <span class="hljs-keyword">int</span> type);
+Mat(Size size, <span class="hljs-keyword">int</span> type);
+Mat(<span class="hljs-keyword">int</span> rows, <span class="hljs-keyword">int</span> cols, <span class="hljs-keyword">int</span> type, <span class="hljs-keyword">const</span> Scalar&amp; s);
+Mat(Size size, <span class="hljs-keyword">int</span> type, <span class="hljs-keyword">const</span> Scalar&amp; s);
+Mat(<span class="hljs-keyword">int</span> ndims, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>* sizes, <span class="hljs-keyword">int</span> type);
+Mat(<span class="hljs-keyword">int</span> ndims, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>* sizes, <span class="hljs-keyword">int</span> type, <span class="hljs-keyword">const</span> Scalar&amp; s);
+Mat(<span class="hljs-keyword">const</span> Mat&amp; m);
+Mat(<span class="hljs-keyword">const</span> Mat&amp; m, <span class="hljs-keyword">const</span> Rect&amp; roi);
+Mat(<span class="hljs-keyword">const</span> Mat&amp; m, <span class="hljs-keyword">const</span> Range* ranges);</code></pre>
+<p>int rows, int cols:二维矩阵的行列数 -&gt;图像分辨率<br>int type：存储元素的数据类型和通道数 CV_[位数][是否带符号][类型前缀]C[通道数]<br>const Scalar&amp; s:矩阵每个元素以s向量(颜色)填充 向量维度由通道数决定<br><pre><code class="hljs cpp"><span class="hljs-function">Mat <span class="hljs-title">matrix</span><span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, CV_8UC3, Scalar(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>))</span></span>;
+<span class="hljs-function">Mat <span class="hljs-title">matrix</span><span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, CV_8UC2, Scalar(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))</span></span>;</code></pre><br>matrix = [  0,   0, 255,   0,   0, 255 ;  0,   0, 255,   0,   0, 255]<br>matrix = [  1,   2,   1,   2 ; 1,   2,   1,   2]</p>
+<pre><code class="hljs cpp">Mat m；
+m.create(<span class="hljs-number">3</span>,<span class="hljs-number">10</span>,CV_32FC3)
+m.setTo(Scalar(<span class="hljs-number">1.0f</span>,<span class="hljs-number">1.0f</span>,<span class="hljs-number">1.0f</span>));<span class="hljs-comment">//设置第一个通道的值</span></code></pre>
+<pre><code class="hljs cpp">Mat matrix = Mat::eye(<span class="hljs-number">4</span>, <span class="hljs-number">4</span>, CV_64F);
+Mat matrix = Mat::ones(<span class="hljs-number">4</span>, <span class="hljs-number">4</span>, CV_32F);
+Mat matrix = Mat::zeros(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>, CV_8SC1);</code></pre>
+<p>[1, 0, 0, 0;<br> 0, 1, 0, 0;<br> 0, 0, 1, 0;<br> 0, 0, 0, 1]<br>[1, 1, 1, 1;<br> 1, 1, 1, 1;<br> 1, 1, 1, 1;<br> 1, 1, 1, 1]<br>[  0,   0,   0;<br>0,   0,   0;<br>0,   0,   0]<br><pre><code class="hljs cpp">Mat matrix = (Mat_&lt;<span class="hljs-keyword">double</span>&gt;(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>);</code></pre><br>[1, 2, 3;<br> 4, 5, 6;<br> 7, 8, 9]</p>
+<p>利用clone() 或者 copyTo()<br><pre><code class="hljs cpp">Mat RowClone = matrix.row(<span class="hljs-number">1</span>).clone();
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"RowClone = "</span> &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; RowClone &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">endl</span>;</code></pre></p>
+<h4 id="获取矩阵元素"><a href="#获取矩阵元素" class="headerlink" title="获取矩阵元素"></a>获取矩阵元素</h4><p><img src="/images/opencv3/29.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/opencv3/30.jpg" srcset="/images/loading.gif" alt=""></p>
+<h4 id="矩阵运算"><a href="#矩阵运算" class="headerlink" title="矩阵运算"></a>矩阵运算</h4><p><img src="/images/opencv3/31.jpg" srcset="/images/loading.gif" alt=""></p>
+<h4 id="矩阵操作"><a href="#矩阵操作" class="headerlink" title="矩阵操作"></a>矩阵操作</h4><p><img src="/images/opencv3/32.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/opencv3/33.jpg" srcset="/images/loading.gif" alt=""></p>
+<h4 id="打印矩阵"><a href="#打印矩阵" class="headerlink" title="打印矩阵"></a>打印矩阵</h4><pre><code class="hljs cpp"><span class="hljs-function">Mat <span class="hljs-title">matrix</span><span class="hljs-params">(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>, CV_8UC3, Scalar(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">255</span>))</span></span>;</code></pre>
+<p>默认风格<br><pre><code class="hljs cpp"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; matrix &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</code></pre><br>[  0,   0, 255,   0,   0, 255;<br>   0,   0, 255,   0,   0, 255]</p>
+<p>Python风格<br><pre><code class="hljs cpp"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; format(matrix,Formatter::FMT_PYTHON) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</code></pre><br>[[[  0,   0, 255],<br>  [  0,   0, 255]],<br> [[  0,   0, 255],<br>  [  0,   0, 255]]]</p>
+<p>Numpy风格<br><pre><code class="hljs cpp"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; format(matrix, Formatter::FMT_NUMPY) &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;</code></pre><br>array([[[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]],<br>       [[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]],<br>       [[  0,   0, 255], [  0,   0, 255], [  0,   0, 255]]], dtype=’uint8’)</p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

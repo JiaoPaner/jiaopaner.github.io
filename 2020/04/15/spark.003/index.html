@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      1.4k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      32
+      26
        分钟
     </span>
   
@@ -212,254 +212,245 @@
 <ul>
 <li>引入依赖</li>
 </ul>
-<pre><code class="lang-text">&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-    &lt;artifactId&gt;spark-streaming_2.11&lt;/artifactId&gt;
-    &lt;version&gt;2.4.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="hljs text">&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spark-streaming_2.11&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;2.4.5&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;</code></pre>
 <ul>
 <li><p>安装 Netcat 下载地址：<a href="http://netcat.sourceforge.net/" target="_blank" rel="noopener">http://netcat.sourceforge.net/</a></p>
 </li>
 <li><p>解压-启动</p>
 </li>
 </ul>
-<pre><code class="lang-bash">$ nc -lk 9999
-</code></pre>
+<pre><code class="hljs bash">$ nc -lk 9999</code></pre>
 <ul>
 <li>example</li>
 </ul>
-<pre><code class="lang-java">SparkConf conf = new SparkConf().setAppName(&quot;spark streaming&quot;).setMaster(&quot;local[*]&quot;);
-JavaStreamingContext jsc = new JavaStreamingContext(conf,Durations.seconds(5));//5s处理一次
-JavaReceiverInputDStream&lt;String&gt; lines = jsc.socketTextStream(&quot;localhost&quot;,9999);
-JavaDStream&lt;String&gt; words = lines.flatMap(x -&gt; Arrays.asList(x.split(&quot; &quot;)).iterator());
-JavaPairDStream&lt;String, Integer&gt; pairs = words.mapToPair(s -&gt; new Tuple2&lt;&gt;(s, 1));
+<pre><code class="hljs java">SparkConf conf = <span class="hljs-keyword">new</span> SparkConf().setAppName(<span class="hljs-string">"spark streaming"</span>).setMaster(<span class="hljs-string">"local[*]"</span>);
+JavaStreamingContext jsc = <span class="hljs-keyword">new</span> JavaStreamingContext(conf,Durations.seconds(<span class="hljs-number">5</span>));<span class="hljs-comment">//5s处理一次</span>
+JavaReceiverInputDStream&lt;String&gt; lines = jsc.socketTextStream(<span class="hljs-string">"localhost"</span>,<span class="hljs-number">9999</span>);
+JavaDStream&lt;String&gt; words = lines.flatMap(x -&gt; Arrays.asList(x.split(<span class="hljs-string">" "</span>)).iterator());
+JavaPairDStream&lt;String, Integer&gt; pairs = words.mapToPair(s -&gt; <span class="hljs-keyword">new</span> Tuple2&lt;&gt;(s, <span class="hljs-number">1</span>));
 JavaPairDStream&lt;String, Integer&gt; wordCounts = pairs.reduceByKey((i1, i2) -&gt; i1 + i2);
 wordCounts.print();
 
-jsc.start();              // Start the computation
+jsc.start();              <span class="hljs-comment">// Start the computation</span>
 jsc.awaitTermination();
 
-jsc.close();
-</code></pre>
+jsc.close();</code></pre>
 <ul>
 <li>example实时数据解析过程</li>
 </ul>
-<p><img src="/images/bigdata/3.jpg" srcset="/img/loading.gif" alt=""></p>
-<pre><code>-------------------------------------------
+<p><img src="/images/bigdata/3.jpg" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs asciidoc"><span class="hljs-code">-------------------------------------------
 Time: 1586927760000 ms
--------------------------------------------
+-------------------------------------------</span>
 (jp,1)
 (jiaopan,2)
 (spark,2)
 
-Time: 1586927710000 ms
--------------------------------------------
-(hive,2)
-</code></pre><h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><ul>
+<span class="hljs-section">Time: 1586927710000 ms
+-------------------------------------------</span>
+(hive,2)</code></pre>
+<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><ul>
 <li>引入依赖</li>
 </ul>
-<pre><code class="lang-text">&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-    &lt;artifactId&gt;spark-streaming-kafka-0-10_2.11&lt;/artifactId&gt;
-    &lt;version&gt;2.4.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="hljs text">&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spark-streaming-kafka-0-10_2.11&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;2.4.5&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;</code></pre>
 <ul>
 <li>example</li>
 </ul>
-<pre><code class="lang-java">SparkConf conf = new SparkConf().setAppName(&quot;spark streaming&quot;).setMaster(&quot;local[*]&quot;);
-JavaStreamingContext jsc = new JavaStreamingContext(conf,Durations.seconds(5));
-//kafka配置
-List&lt;String&gt; topics = Arrays.asList(&quot;user_data_topic&quot;.split(&quot;,&quot;));
-Map&lt;String,Object&gt; config = new HashMap&lt;String, Object&gt;();
-config.put(&quot;bootstrap.servers&quot;,&quot;localhost:6667&quot;);
-config.put(&quot;key.deserializer&quot;,&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
-config.put(&quot;value.deserializer&quot;,&quot;org.apache.kafka.common.serialization.StringDeserializer&quot;);
-config.put(&quot;auto.offset.reset&quot;,&quot;earliest&quot;);
-config.put(&quot;group.id&quot;,&quot;group.demo.sys.smvp-998&quot;);
+<pre><code class="hljs java">SparkConf conf = <span class="hljs-keyword">new</span> SparkConf().setAppName(<span class="hljs-string">"spark streaming"</span>).setMaster(<span class="hljs-string">"local[*]"</span>);
+JavaStreamingContext jsc = <span class="hljs-keyword">new</span> JavaStreamingContext(conf,Durations.seconds(<span class="hljs-number">5</span>));
+<span class="hljs-comment">//kafka配置</span>
+List&lt;String&gt; topics = Arrays.asList(<span class="hljs-string">"user_data_topic"</span>.split(<span class="hljs-string">","</span>));
+Map&lt;String,Object&gt; config = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+config.put(<span class="hljs-string">"bootstrap.servers"</span>,<span class="hljs-string">"localhost:6667"</span>);
+config.put(<span class="hljs-string">"key.deserializer"</span>,<span class="hljs-string">"org.apache.kafka.common.serialization.StringDeserializer"</span>);
+config.put(<span class="hljs-string">"value.deserializer"</span>,<span class="hljs-string">"org.apache.kafka.common.serialization.StringDeserializer"</span>);
+config.put(<span class="hljs-string">"auto.offset.reset"</span>,<span class="hljs-string">"earliest"</span>);
+config.put(<span class="hljs-string">"group.id"</span>,<span class="hljs-string">"group.demo.sys.smvp-998"</span>);
 
 JavaInputDStream&lt;ConsumerRecord&lt;String, String&gt;&gt; kafkaDStream = KafkaUtils.createDirectStream(jsc,
-                                                                LocationStrategies.PreferConsistent(),
-                                                                ConsumerStrategies.Subscribe(topics, config));
+    															LocationStrategies.PreferConsistent(),
+    															ConsumerStrategies.Subscribe(topics, config));
 
 JavaDStream&lt;String&gt; content = kafkaDStream.map(item-&gt;item.value());
 content.print();
 
 
-jsc.start();              // Start the computation
+jsc.start();              <span class="hljs-comment">// Start the computation</span>
 jsc.awaitTermination();
 
 jsc.close();
 
 -------------------------------------------
-Time: 1586933770000 ms
+Time: <span class="hljs-number">1586933770000</span> ms
 -------------------------------------------
-{&quot;opType&quot;:0,&quot;token&quot;:&quot;interface_6b&quot;,&quot;content&quot;:[{&quot;id&quot;:&quot;5bcfc4f9&quot;,&quot;user_id&quot;:140050,&quot;in_time&quot;:&quot;2020-04-07 09:35:04&quot;,&quot;act_code&quot;:&quot;order&quot;,&quot;act_value&quot;:4}]}
-{&quot;opType&quot;:0,&quot;token&quot;:&quot;interface_c6&quot;,&quot;content&quot;:[{&quot;id&quot;:&quot;dcb14f5a&quot;,&quot;user_id&quot;:0,&quot;in_time&quot;:&quot;2020-04-07 21:46:48&quot;,&quot;act_code&quot;:&quot;&quot;,&quot;act_value&quot;:0}]}
-</code></pre>
+&#123;<span class="hljs-string">"opType"</span>:<span class="hljs-number">0</span>,<span class="hljs-string">"token"</span>:<span class="hljs-string">"interface_6b"</span>,<span class="hljs-string">"content"</span>:[&#123;<span class="hljs-string">"id"</span>:<span class="hljs-string">"5bcfc4f9"</span>,<span class="hljs-string">"user_id"</span>:<span class="hljs-number">140050</span>,<span class="hljs-string">"in_time"</span>:<span class="hljs-string">"2020-04-07 09:35:04"</span>,<span class="hljs-string">"act_code"</span>:<span class="hljs-string">"order"</span>,<span class="hljs-string">"act_value"</span>:<span class="hljs-number">4</span>&#125;]&#125;
+&#123;<span class="hljs-string">"opType"</span>:<span class="hljs-number">0</span>,<span class="hljs-string">"token"</span>:<span class="hljs-string">"interface_c6"</span>,<span class="hljs-string">"content"</span>:[&#123;<span class="hljs-string">"id"</span>:<span class="hljs-string">"dcb14f5a"</span>,<span class="hljs-string">"user_id"</span>:<span class="hljs-number">0</span>,<span class="hljs-string">"in_time"</span>:<span class="hljs-string">"2020-04-07 21:46:48"</span>,<span class="hljs-string">"act_code"</span>:<span class="hljs-string">""</span>,<span class="hljs-string">"act_value"</span>:<span class="hljs-number">0</span>&#125;]&#125;</code></pre>
 <h1 id="Structured-Streaming"><a href="#Structured-Streaming" class="headerlink" title="Structured Streaming"></a>Structured Streaming</h1><p><em>note</em>:<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html</a></p>
-<pre><code class="lang-java">SparkSession spark = SparkSession
-                .builder()
-                .master(&quot;local[*]&quot;)
-                .appName(&quot;JavaStructuredNetworkWordCount&quot;)
-                .getOrCreate();
-Dataset&lt;Row&gt; lines = spark.readStream().format(&quot;socket&quot;).option(&quot;host&quot;, &quot;localhost&quot;).option(&quot;port&quot;, 9999).load();
-StreamingQuery query = lines.writeStream().format(&quot;console&quot;).outputMode(OutputMode.Append()).start();
+<pre><code class="hljs java">SparkSession spark = SparkSession
+				.builder()
+				.master(<span class="hljs-string">"local[*]"</span>)
+				.appName(<span class="hljs-string">"JavaStructuredNetworkWordCount"</span>)
+				.getOrCreate();
+Dataset&lt;Row&gt; lines = spark.readStream().format(<span class="hljs-string">"socket"</span>).option(<span class="hljs-string">"host"</span>, <span class="hljs-string">"localhost"</span>).option(<span class="hljs-string">"port"</span>, <span class="hljs-number">9999</span>).load();
+StreamingQuery query = lines.writeStream().format(<span class="hljs-string">"console"</span>).outputMode(OutputMode.Append()).start();
 query.awaitTermination();
 
-(base) jiaopandeMacBook-Pro:~ jiaopan$ nc -lk 9999
+(base) jiaopandeMacBook-Pro:~ jiaopan$ nc -lk <span class="hljs-number">9999</span>
 spark i love 
 
 -------------------------------------------
-Batch: 1
+Batch: <span class="hljs-number">1</span>
 -------------------------------------------
 +------------+
 |       value|
 +------------+
 |spark i love|
-+------------+
-</code></pre>
-<pre><code>SparkSession spark = SparkSession
-                .builder()
-                .master(&quot;local[*]&quot;)
-                .appName(&quot;JavaStructuredNetworkWordCount&quot;)
-                .getOrCreate();
-Dataset&lt;Row&gt; lines = spark.readStream().format(&quot;socket&quot;).option(&quot;host&quot;, &quot;localhost&quot;).option(&quot;port&quot;, 9999).load();
-Dataset&lt;String&gt; words = lines.as(Encoders.STRING()).flatMap(line -&gt; Arrays.asList(line.split(&quot; &quot;)).iterator(), Encoders.STRING());
-Dataset&lt;Row&gt; wordCount = words.groupBy(&quot;value&quot;).count();
-StreamingQuery query = wordCount.writeStream().outputMode(OutputMode.Complete()).format(&quot;console&quot;).start();
++------------+</code></pre>
+<pre><code class="hljs asciidoc">SparkSession spark = SparkSession
+<span class="hljs-code">				.builder()</span>
+<span class="hljs-code">				.master("local[*]")</span>
+<span class="hljs-code">				.appName("JavaStructuredNetworkWordCount")</span>
+<span class="hljs-code">				.getOrCreate();</span>
+Dataset&lt;Row&gt; lines = spark.readStream().format("socket").option("host", "localhost").option("port", 9999).load();
+Dataset&lt;String&gt; words = lines.as(Encoders.STRING()).flatMap(line -&gt; Arrays.asList(line.split(" ")).iterator(), Encoders.STRING());
+Dataset&lt;Row&gt; wordCount = words.groupBy("value").count();
+StreamingQuery query = wordCount.writeStream().outputMode(OutputMode.Complete()).format("console").start();
 query.awaitTermination();
 
 (base) jiaopandeMacBook-Pro:~ jiaopan$ nc -lk 9999
 cat dog
 
-+-----+-----+
-|value|count|
-+-----+-----+
+<span class="hljs-code">+-----+</span>-----+
+<span class="hljs-section">|value|count|
++-----+-----+</span>
 |  dog|    1|
-|  cat|    1|
-+-----+-----+
+<span class="hljs-section">|  cat|    1|
++-----+-----+</span>
 
 (base) jiaopandeMacBook-Pro:~ jiaopan$ nc -lk 9999
-...
-cat dog owl
-+-----+-----+
-|value|count|
-+-----+-----+
+<span class="hljs-bullet">...
+</span><span class="hljs-section">cat dog owl
++-----+-----+</span>
+<span class="hljs-section">|value|count|
++-----+-----+</span>
 |  dog|    2|
 |  cat|    2|
-|  owl|    1|
-+-----+-----+
-</code></pre><p><img src="http://spark.apache.org/docs/latest/img/structured-streaming-example-model.png" srcset="/img/loading.gif" alt=""></p>
-<h2 id="Window-Operations-on-Event-Time"><a href="#Window-Operations-on-Event-Time" class="headerlink" title="Window Operations on Event Time"></a>Window Operations on Event Time</h2><pre><code class="lang-java">SparkSession spark = SparkSession
-                .builder()
-                .master(&quot;local[*]&quot;)
-                .appName(&quot;JavaStructuredNetworkWordCount&quot;)
-                .getOrCreate();
-spark.sparkContext().setLogLevel(&quot;WARN&quot;);
-Dataset&lt;Row&gt; lines = spark.readStream().format(&quot;socket&quot;)
-                .option(&quot;host&quot;, &quot;localhost&quot;).option(&quot;port&quot;, 9999)
-                .option(&quot;includeTimestamp&quot;,true).load();
+<span class="hljs-section">|  owl|    1|
++-----+-----+</span></code></pre>
+<p><img src="http://spark.apache.org/docs/latest/img/structured-streaming-example-model.png" srcset="/images/loading.gif" alt=""></p>
+<h2 id="Window-Operations-on-Event-Time"><a href="#Window-Operations-on-Event-Time" class="headerlink" title="Window Operations on Event Time"></a>Window Operations on Event Time</h2><pre><code class="hljs java">SparkSession spark = SparkSession
+				.builder()
+				.master(<span class="hljs-string">"local[*]"</span>)
+				.appName(<span class="hljs-string">"JavaStructuredNetworkWordCount"</span>)
+				.getOrCreate();
+spark.sparkContext().setLogLevel(<span class="hljs-string">"WARN"</span>);
+Dataset&lt;Row&gt; lines = spark.readStream().format(<span class="hljs-string">"socket"</span>)
+				.option(<span class="hljs-string">"host"</span>, <span class="hljs-string">"localhost"</span>).option(<span class="hljs-string">"port"</span>, <span class="hljs-number">9999</span>)
+				.option(<span class="hljs-string">"includeTimestamp"</span>,<span class="hljs-keyword">true</span>).load();
 Dataset&lt;Row&gt; words = lines.as(Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())).flatMap(
-        (FlatMapFunction&lt;Tuple2&lt;String, Timestamp&gt;, Tuple2&lt;String, Timestamp&gt;&gt;) item -&gt; {
-            List&lt;Tuple2&lt;String, Timestamp&gt;&gt; result = new ArrayList&lt;&gt;();
-            for (String word : item._1.split(&quot; &quot;)) {
-                result.add(new Tuple2&lt;&gt;(word, item._2));
-            }
-            return result.iterator();
-        }, Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())).toDF(&quot;word&quot;, &quot;timestamp&quot;);
+		(FlatMapFunction&lt;Tuple2&lt;String, Timestamp&gt;, Tuple2&lt;String, Timestamp&gt;&gt;) item -&gt; &#123;
+			List&lt;Tuple2&lt;String, Timestamp&gt;&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+			<span class="hljs-keyword">for</span> (String word : item._1.split(<span class="hljs-string">" "</span>)) &#123;
+				result.add(<span class="hljs-keyword">new</span> Tuple2&lt;&gt;(word, item._2));
+			&#125;
+			<span class="hljs-keyword">return</span> result.iterator();
+		&#125;, Encoders.tuple(Encoders.STRING(), Encoders.TIMESTAMP())).toDF(<span class="hljs-string">"word"</span>, <span class="hljs-string">"timestamp"</span>);
 Dataset&lt;Row&gt; windowedCounts = words.groupBy(
-        //&lt;window duration&gt; 计算window duration时间范围内的数据
-        //&lt;slide duration&gt; 数据更新周期,
-        functions.window(words.col(&quot;timestamp&quot;), &quot;20 seconds&quot;, &quot;10 seconds&quot;),
-        words.col(&quot;word&quot;)
-).count().orderBy(&quot;window&quot;);
+		<span class="hljs-comment">//&lt;window duration&gt; 计算window duration时间范围内的数据</span>
+		<span class="hljs-comment">//&lt;slide duration&gt; 数据更新周期,</span>
+		functions.window(words.col(<span class="hljs-string">"timestamp"</span>), <span class="hljs-string">"20 seconds"</span>, <span class="hljs-string">"10 seconds"</span>),
+		words.col(<span class="hljs-string">"word"</span>)
+).count().orderBy(<span class="hljs-string">"window"</span>);
 StreamingQuery query = windowedCounts.writeStream()
-        .outputMode(OutputMode.Complete())
-        .option(&quot;truncate&quot;, &quot;false&quot;)
-        .format(&quot;console&quot;).start();
+		.outputMode(OutputMode.Complete())
+		.option(<span class="hljs-string">"truncate"</span>, <span class="hljs-string">"false"</span>)
+		.format(<span class="hljs-string">"console"</span>).start();
 query.awaitTermination();
 
 -------------------------------------------
-Batch: 1
+Batch: <span class="hljs-number">1</span>
 -------------------------------------------
 +------------------------------------------+----+-----+
 |window                                    |word|count|
 +------------------------------------------+----+-----+
-|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|cat |1    |
-|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|dog |1    |
-|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|dog |1    |
-|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|cat |1    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">20</span>]|cat |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">20</span>]|dog |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">10</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">30</span>]|dog |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">10</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">30</span>]|cat |<span class="hljs-number">1</span>    |
 +------------------------------------------+----+-----+
 
 -------------------------------------------
-Batch: 2
+Batch: <span class="hljs-number">2</span>
 -------------------------------------------
 +------------------------------------------+----+-----+
 |window                                    |word|count|
 +------------------------------------------+----+-----+
-|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|cat |1    |
-|[2020-04-23 11:02:00, 2020-04-23 11:02:20]|dog |1    |
-|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|dog |1    |
-|[2020-04-23 11:02:10, 2020-04-23 11:02:30]|cat |1    |
-|[2020-04-23 11:02:20, 2020-04-23 11:02:40]|cat |1    |
-|[2020-04-23 11:02:20, 2020-04-23 11:02:40]|dog |2    |
-|[2020-04-23 11:02:30, 2020-04-23 11:02:50]|dog |2    |
-|[2020-04-23 11:02:30, 2020-04-23 11:02:50]|cat |1    |
-+------------------------------------------+----+-----+
-</code></pre>
-<p><img src="http://spark.apache.org/docs/latest/img/structured-streaming-window.png" srcset="/img/loading.gif" alt=""></p>
-<h2 id="Output-Sinks"><a href="#Output-Sinks" class="headerlink" title="Output Sinks"></a>Output Sinks</h2><pre><code class="lang-java">writeStream
-    .format(&quot;parquet&quot;)        // can be &quot;orc&quot;, &quot;json&quot;, &quot;csv&quot;, etc.
-    .option(&quot;path&quot;, &quot;path/to/destination/dir&quot;)
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">20</span>]|cat |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">00</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">20</span>]|dog |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">10</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">30</span>]|dog |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">10</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">30</span>]|cat |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">20</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">40</span>]|cat |<span class="hljs-number">1</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">20</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">40</span>]|dog |<span class="hljs-number">2</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">30</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">50</span>]|dog |<span class="hljs-number">2</span>    |
+|[<span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">30</span>, <span class="hljs-number">2020</span>-<span class="hljs-number">04</span>-<span class="hljs-number">23</span> <span class="hljs-number">11</span>:<span class="hljs-number">02</span>:<span class="hljs-number">50</span>]|cat |<span class="hljs-number">1</span>    |
++------------------------------------------+----+-----+</code></pre>
+<p><img src="http://spark.apache.org/docs/latest/img/structured-streaming-window.png" srcset="/images/loading.gif" alt=""></p>
+<h2 id="Output-Sinks"><a href="#Output-Sinks" class="headerlink" title="Output Sinks"></a>Output Sinks</h2><pre><code class="hljs java">writeStream
+    .format(<span class="hljs-string">"parquet"</span>)        <span class="hljs-comment">// can be "orc", "json", "csv", etc.</span>
+    .option(<span class="hljs-string">"path"</span>, <span class="hljs-string">"path/to/destination/dir"</span>)
     .start()
 
 writeStream
-    .format(&quot;kafka&quot;)
-    .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
-    .option(&quot;topic&quot;, &quot;updates&quot;)
+    .format(<span class="hljs-string">"kafka"</span>)
+    .option(<span class="hljs-string">"kafka.bootstrap.servers"</span>, <span class="hljs-string">"host1:port1,host2:port2"</span>)
+    .option(<span class="hljs-string">"topic"</span>, <span class="hljs-string">"updates"</span>)
     .start()
-
+    
 writeStream
     .foreach(...)
     .start()
-
+    
 writeStream
-    .format(&quot;console&quot;)
+    .format(<span class="hljs-string">"console"</span>)
     .start()
 
 writeStream
-    .format(&quot;memory&quot;)
-    .queryName(&quot;tableName&quot;)
-    .start()
-</code></pre>
+    .format(<span class="hljs-string">"memory"</span>)
+    .queryName(<span class="hljs-string">"tableName"</span>)
+    .start()</code></pre>
 <h2 id="Kafka-1"><a href="#Kafka-1" class="headerlink" title="Kafka"></a>Kafka</h2><p><em>note</em>:<a href="http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/structured-streaming-kafka-integration.html</a></p>
 <ul>
 <li>引入依赖</li>
 </ul>
-<pre><code class="lang-text">&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-  &lt;artifactId&gt;spark-sql-kafka-0-10_2.11&lt;/artifactId&gt;
-  &lt;version&gt;2.4.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="hljs text">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
+  &lt;artifactId&gt;spark-sql-kafka-0-10_2.11&lt;&#x2F;artifactId&gt;
+  &lt;version&gt;2.4.5&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;</code></pre>
 <ul>
 <li>example</li>
 </ul>
-<pre><code class="lang-java">SparkSession session = SparkSession
+<pre><code class="hljs java">SparkSession session = SparkSession
         .builder()
-        .master(&quot;local[*]&quot;)
-        .appName(&quot;JavaStructuredNetworkWordCount&quot;)
+        .master("local[*]")
+        .appName("JavaStructuredNetworkWordCount")
         .getOrCreate();
-session.sparkContext().setLogLevel(&quot;WARN&quot;);
-Dataset&lt;Row&gt; dataset = session.readStream().format(&quot;kafka&quot;)
-        .option(&quot;kafka.bootstrap.servers&quot;, &quot;localhost:6667&quot;)
-        .option(&quot;startingOffsets&quot;, &quot;earliest&quot;)
-        .option(&quot;subscribe&quot;,&quot;test_topic&quot;)
-        .option(&quot;group.id&quot;, &quot;group.demo.sys&quot;).load()
-        .selectExpr(&quot;CAST(value AS STRING)&quot;);
-StreamingQuery query = dataset.writeStream().format(&quot;console&quot;).start();
+session.sparkContext().setLogLevel("WARN");
+Dataset&lt;Row&gt; dataset = session.readStream().format("kafka")
+        .option("kafka.bootstrap.servers", "localhost:6667")
+        .option("startingOffsets", "earliest")
+        .option("subscribe","test_topic")
+        .option("group.id", "group.demo.sys").load()
+        .selectExpr("CAST(value AS STRING)");
+StreamingQuery query = dataset.writeStream().format("console").start();
 query.awaitTermination();
 
 -------------------------------------------
@@ -468,72 +459,69 @@ Batch: 0
 +--------------------+
 |               value|
 +--------------------+
-|{&quot;content&quot;:[{&quot;all...|
-|{&quot;content&quot;:[{&quot;all...|
-|{&quot;url&quot;:&quot;wlztk_sh_...|
-|{&quot;url&quot;:&quot;wlztk_sh_...|
-|{&quot;url&quot;:&quot;wlztk_sh_...|
-|{&quot;content&quot;:[{&quot;all...|
-|{&quot;url&quot;:&quot;wlztk_sh_...|
+|&#123;"content":[&#123;"all...|
+|&#123;"content":[&#123;"all...|
+|&#123;"url":"wlztk_sh_...|
+|&#123;"url":"wlztk_sh_...|
+|&#123;"url":"wlztk_sh_...|
+|&#123;"content":[&#123;"all...|
+|&#123;"url":"wlztk_sh_...|
 +--------------------+
-only showing top 20 rows
-</code></pre>
-<pre><code class="lang-java">Dataset&lt;Row&gt; df = spark
+only showing top 20 rows</code></pre>
+<pre><code class="hljs java">Dataset&lt;Row&gt; df = spark
   .readStream()
-  .format(&quot;kafka&quot;)
-  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
-  .option(&quot;subscribe&quot;, &quot;topic1&quot;)
+  .format(<span class="hljs-string">"kafka"</span>)
+  .option(<span class="hljs-string">"kafka.bootstrap.servers"</span>, <span class="hljs-string">"host1:port1,host2:port2"</span>)
+  .option(<span class="hljs-string">"subscribe"</span>, <span class="hljs-string">"topic1"</span>)
   .load()
-df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)
+df.selectExpr(<span class="hljs-string">"CAST(key AS STRING)"</span>, <span class="hljs-string">"CAST(value AS STRING)"</span>)
 
-// Subscribe to multiple topics
-Dataset&lt;Row&gt; df = spark
-  .readStream()
-  .format(&quot;kafka&quot;)
-  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
-  .option(&quot;subscribe&quot;, &quot;topic1,topic2&quot;)
-  .load()
-df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)
-
-// Subscribe to a pattern
+<span class="hljs-comment">// Subscribe to multiple topics</span>
 Dataset&lt;Row&gt; df = spark
   .readStream()
-  .format(&quot;kafka&quot;)
-  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
-  .option(&quot;subscribePattern&quot;, &quot;topic.*&quot;)
+  .format(<span class="hljs-string">"kafka"</span>)
+  .option(<span class="hljs-string">"kafka.bootstrap.servers"</span>, <span class="hljs-string">"host1:port1,host2:port2"</span>)
+  .option(<span class="hljs-string">"subscribe"</span>, <span class="hljs-string">"topic1,topic2"</span>)
   .load()
-df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;)
-</code></pre>
-<pre><code class="lang-java">Dataset&lt;Row&gt; df = spark
-  .read()
-  .format(&quot;kafka&quot;)
-  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
-  .option(&quot;subscribe&quot;, &quot;topic1&quot;)
-  .load();
-df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;);
+df.selectExpr(<span class="hljs-string">"CAST(key AS STRING)"</span>, <span class="hljs-string">"CAST(value AS STRING)"</span>)
 
-// Subscribe to multiple topics, specifying explicit Kafka offsets
+<span class="hljs-comment">// Subscribe to a pattern</span>
+Dataset&lt;Row&gt; df = spark
+  .readStream()
+  .format(<span class="hljs-string">"kafka"</span>)
+  .option(<span class="hljs-string">"kafka.bootstrap.servers"</span>, <span class="hljs-string">"host1:port1,host2:port2"</span>)
+  .option(<span class="hljs-string">"subscribePattern"</span>, <span class="hljs-string">"topic.*"</span>)
+  .load()
+df.selectExpr(<span class="hljs-string">"CAST(key AS STRING)"</span>, <span class="hljs-string">"CAST(value AS STRING)"</span>)</code></pre>
+<pre><code class="hljs java">Dataset&lt;Row&gt; df = spark
+  .read()
+  .format(<span class="hljs-string">"kafka"</span>)
+  .option(<span class="hljs-string">"kafka.bootstrap.servers"</span>, <span class="hljs-string">"host1:port1,host2:port2"</span>)
+  .option(<span class="hljs-string">"subscribe"</span>, <span class="hljs-string">"topic1"</span>)
+  .load();
+df.selectExpr(<span class="hljs-string">"CAST(key AS STRING)"</span>, <span class="hljs-string">"CAST(value AS STRING)"</span>);
+
+<span class="hljs-comment">// Subscribe to multiple topics, specifying explicit Kafka offsets</span>
 Dataset&lt;Row&gt; df = spark
   .read()
-  .format(&quot;kafka&quot;)
-  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
-  .option(&quot;subscribe&quot;, &quot;topic1,topic2&quot;)
-  .option(&quot;startingOffsets&quot;, &quot;{\&quot;topic1\&quot;:{\&quot;0\&quot;:23,\&quot;1\&quot;:-2},\&quot;topic2\&quot;:{\&quot;0\&quot;:-2}}&quot;)
-  .option(&quot;endingOffsets&quot;, &quot;{\&quot;topic1\&quot;:{\&quot;0\&quot;:50,\&quot;1\&quot;:-1},\&quot;topic2\&quot;:{\&quot;0\&quot;:-1}}&quot;)
+  .format(<span class="hljs-string">"kafka"</span>)
+  .option(<span class="hljs-string">"kafka.bootstrap.servers"</span>, <span class="hljs-string">"host1:port1,host2:port2"</span>)
+  .option(<span class="hljs-string">"subscribe"</span>, <span class="hljs-string">"topic1,topic2"</span>)
+  .option(<span class="hljs-string">"startingOffsets"</span>, <span class="hljs-string">"&#123;\"topic1\":&#123;\"0\":23,\"1\":-2&#125;,\"topic2\":&#123;\"0\":-2&#125;&#125;"</span>)
+  .option(<span class="hljs-string">"endingOffsets"</span>, <span class="hljs-string">"&#123;\"topic1\":&#123;\"0\":50,\"1\":-1&#125;,\"topic2\":&#123;\"0\":-1&#125;&#125;"</span>)
   .load();
-df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;);
+df.selectExpr(<span class="hljs-string">"CAST(key AS STRING)"</span>, <span class="hljs-string">"CAST(value AS STRING)"</span>);
 
-// Subscribe to a pattern, at the earliest and latest offsets
+<span class="hljs-comment">// Subscribe to a pattern, at the earliest and latest offsets</span>
 Dataset&lt;Row&gt; df = spark
   .read()
-  .format(&quot;kafka&quot;)
-  .option(&quot;kafka.bootstrap.servers&quot;, &quot;host1:port1,host2:port2&quot;)
-  .option(&quot;subscribePattern&quot;, &quot;topic.*&quot;)
-  .option(&quot;startingOffsets&quot;, &quot;earliest&quot;)
-  .option(&quot;endingOffsets&quot;, &quot;latest&quot;)
+  .format(<span class="hljs-string">"kafka"</span>)
+  .option(<span class="hljs-string">"kafka.bootstrap.servers"</span>, <span class="hljs-string">"host1:port1,host2:port2"</span>)
+  .option(<span class="hljs-string">"subscribePattern"</span>, <span class="hljs-string">"topic.*"</span>)
+  .option(<span class="hljs-string">"startingOffsets"</span>, <span class="hljs-string">"earliest"</span>)
+  .option(<span class="hljs-string">"endingOffsets"</span>, <span class="hljs-string">"latest"</span>)
   .load();
-df.selectExpr(&quot;CAST(key AS STRING)&quot;, &quot;CAST(value AS STRING)&quot;);
-</code></pre>
+df.selectExpr(<span class="hljs-string">"CAST(key AS STRING)"</span>, <span class="hljs-string">"CAST(value AS STRING)"</span>);</code></pre>
 
             </div>
             <hr>

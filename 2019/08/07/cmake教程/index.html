@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      645 字
+      647 字
     </span>
   
 
@@ -210,21 +210,18 @@
             <div class="markdown-body" id="post-body">
               <p><strong>1.hello world</strong> </p>
 <p>main.cpp</p>
-<pre><code class="lang-c++">int main(){
-  std::cout &lt;&lt; &quot;Hello, World!&quot; &lt;&lt; std::endl;
-  return 0;
-}
-</code></pre>
+<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
+  <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello, World!"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre>
 <p>CMakeLists.txt</p>
-<pre><code class="lang-bash">cmake_minimum_required(VERSION 3.14) #最低cmake版本
-project(test) #定义项目名称
-set(CMAKE_CXX_STANDARD 11) #设置c++编译标准版本
-add_executable(test main.cpp)
-</code></pre>
+<pre><code class="hljs bash">cmake_minimum_required(VERSION 3.14) <span class="hljs-comment">#最低cmake版本</span>
+project(<span class="hljs-built_in">test</span>) <span class="hljs-comment">#定义项目名称</span>
+<span class="hljs-built_in">set</span>(CMAKE_CXX_STANDARD 11) <span class="hljs-comment">#设置c++编译标准版本</span>
+add_executable(<span class="hljs-built_in">test</span> main.cpp)</code></pre>
 <p>构建</p>
-<pre><code class="lang-bash">cmake . #.代表本目录
-make
-</code></pre>
+<pre><code class="hljs bash">cmake . <span class="hljs-comment">#.代表本目录</span>
+make</code></pre>
 <p>Note:</p>
 <p>1.project(name)会同时隐式定义NAME_BINARY_DIR 以及NAME_SOURCE_DIR变量</p>
 <p>2.SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]]) 定义变量:set( SRC_LIST main.cpp test.cpp)</p>
@@ -233,11 +230,10 @@ make
 <p>指令(参数1 参数2 …) 指令不区分大小写 参数区分大小写</p>
 <p>》〉》以上hello world 的编译为内部编译，无法删除中间文件</p>
 <p>5.外部构建(通常的方式)</p>
-<pre><code class="lang-bash">sudo mkdir build #在工程目录任意位置 
-cd build
-cmake .. #..代表父目录(包含CMakeLists.txt构建文件)
-make
-</code></pre>
+<pre><code class="hljs bash">sudo mkdir build <span class="hljs-comment">#在工程目录任意位置 </span>
+<span class="hljs-built_in">cd</span> build
+cmake .. <span class="hljs-comment">#..代表父目录(包含CMakeLists.txt构建文件)</span>
+make</code></pre>
 <p>6.ADD_SUBDIRECTORY(source_dir [binary_dir] [EXCLUDE_FROM_ALL]) 当前工程添加源文件存放的子目录并指定目标二进制文件存放目录：</p>
 <p>ADD_SUBDIRECTORY(src bin)</p>
 <p>7.cmake -DCMAKE_INSTALL_PREFIX=/usr/local . #-DCMAKE_INSTALL_PREFIX指定安装目录</p>
@@ -265,46 +261,43 @@ make
 <p><strong>2.静态库与动态库构建</strong></p>
 <p>ADD_LIBRARY(libname [SHARED|STATIC|MODULE] [EXCLUDE_FROM_ALL] source1 source2 … sourceN)</p>
 <p>工程目录 CMakeLists.txt</p>
-<pre><code>PROJECT(HELLOLIB) 
+<pre><code class="hljs crystal">PROJECT(HELLOLIB) 
 
-ADD_SUBDIRECTORY(lib)
-</code></pre><p>līb目录下 CMakeLists.txt</p>
-<pre><code class="lang-bash">SET(LIBHELLO_SRC hello.c) 
+ADD_SUBDIRECTORY(<span class="hljs-class"><span class="hljs-keyword">lib</span>)</span></code></pre>
+<p>līb目录下 CMakeLists.txt</p>
+<pre><code class="hljs bash">SET(LIBHELLO_SRC hello.c) 
 
-ADD_LIBRARY(hello SHARED ${LIBHELLO_SRC}) #动态库
+ADD_LIBRARY(hello SHARED <span class="hljs-variable">$&#123;LIBHELLO_SRC&#125;</span>) <span class="hljs-comment">#动态库</span>
 
-ADD_LIBRARY(hello_static STATIC ${LIBHELLO_SRC}) #静态库
+ADD_LIBRARY(hello_static STATIC <span class="hljs-variable">$&#123;LIBHELLO_SRC&#125;</span>) <span class="hljs-comment">#静态库</span>
 
-SET_TARGET_PROPERTIES(hello_static PROPERTIES OUTPUT_NAME &quot;hello&quot;) #使得动态库和静态库同名
+SET_TARGET_PROPERTIES(hello_static PROPERTIES OUTPUT_NAME <span class="hljs-string">"hello"</span>) <span class="hljs-comment">#使得动态库和静态库同名</span>
 
-SET_TARGET_PROPERTIES(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1) #防止同名时被清理
+SET_TARGET_PROPERTIES(hello PROPERTIES CLEAN_DIRECT_OUTPUT 1) <span class="hljs-comment">#防止同名时被清理</span>
 
-SET_TARGET_PROPERTIES(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT 1) #防止同名时被清理
+SET_TARGET_PROPERTIES(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT 1) <span class="hljs-comment">#防止同名时被清理</span>
 INSTALL(TARGETS hello hello_static 
-                LIBRARY DESTINATION lib 
-                ARCHIVE DESTINATION lib)
-</code></pre>
+				LIBRARY DESTINATION lib 
+				ARCHIVE DESTINATION lib)</code></pre>
 <p>构建并安装</p>
-<pre><code class="lang-bash">sudo mkdir build 
-cd build
+<pre><code class="hljs bash">sudo mkdir build 
+<span class="hljs-built_in">cd</span> build
 cmake -DCMAKE_INSTALL_PREFIX=/usr .. 
 make
-make install
-</code></pre>
+make install</code></pre>
 <p>lib目录生成libhello.so libhello.a文件,并安装到/usr/bin目录</p>
 <p><strong>3.外部共享库和头文件的使用</strong></p>
-<pre><code class="lang-bash">INCLUDE_DIRECTORIES([AFTER|BEFORE] [SYSTEM] dir1 dir2 ...) #添加包含目录指令
+<pre><code class="hljs bash">INCLUDE_DIRECTORIES([AFTER|BEFORE] [SYSTEM] dir1 dir2 ...) <span class="hljs-comment">#添加包含目录指令</span>
 
 INCLUDE_DIRECTORIES(/usr/include/hello)
 
 LINK_DIRECTORIES(directory1 directory2 ...) 添加共享库目录
 
-TARGET_LINK_LIBRARIES(target library1 library2 ...) #为目标文件添加需要的共享库
+TARGET_LINK_LIBRARIES(target library1 library2 ...) <span class="hljs-comment">#为目标文件添加需要的共享库</span>
 
-TARGET_LINK_LIBRARIES(main libhello.so) #动态库
+TARGET_LINK_LIBRARIES(main libhello.so) <span class="hljs-comment">#动态库</span>
 
-TARGET_LINK_LIBRARIES(main libhello.a) #静态库
-</code></pre>
+TARGET_LINK_LIBRARIES(main libhello.a) <span class="hljs-comment">#静态库</span></code></pre>
 <p><strong>4.cmake 常用指令</strong></p>
 <p>ADD_DEFINITIONS(-D…)：向 C/C++编译器添加-D 定义</p>
 <p>AUX_SOURCE_DIRECTORY(dir VARIABLE)：发现一个目录下所有的源代码文件并将列表存储在一个变量中</p>

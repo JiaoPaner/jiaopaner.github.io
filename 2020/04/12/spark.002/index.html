@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.5k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      28
        分钟
     </span>
   
@@ -209,109 +209,107 @@
             
             <div class="markdown-body" id="post-body">
               <h1 id="spark-sql-hello-world"><a href="#spark-sql-hello-world" class="headerlink" title="spark sql-hello world"></a>spark sql-hello world</h1><p>1.引入依赖</p>
-<pre><code class="lang-text">&lt;dependency&gt;
-    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-    &lt;artifactId&gt;spark-sql_2.11&lt;/artifactId&gt;
-    &lt;version&gt;2.4.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="hljs text">&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
+	&lt;artifactId&gt;spark-sql_2.11&lt;&#x2F;artifactId&gt;
+	&lt;version&gt;2.4.5&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;</code></pre>
 <p>2.exmple程序</p>
-<pre><code> public class Man implements Serializable{
-        private static final long serialVersionUID = 1L;
-        private String name;
-        private String age;
-        Man(String name,String age){
-            this.name = name;
-            this.age = age;
-        }
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public String getAge() {
-            return age;
-        }
-        public void setAge(String age) {
-            this.age = age;
-        }
-}
+<pre><code class="hljs arduino"> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span> <span class="hljs-title">implements</span> <span class="hljs-title">Serializable</span>&#123;</span>
+		<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
+		<span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> name;
+    	<span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> age;
+    	Man(<span class="hljs-keyword">String</span> name,<span class="hljs-keyword">String</span> age)&#123;
+    		<span class="hljs-keyword">this</span>.name = name;
+    		<span class="hljs-keyword">this</span>.age = age;
+    	&#125;
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
+			<span class="hljs-keyword">return</span> name;
+		&#125;
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(<span class="hljs-keyword">String</span> name)</span> </span>&#123;
+			<span class="hljs-keyword">this</span>.name = name;
+		&#125;
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;
+			<span class="hljs-keyword">return</span> age;
+		&#125;
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">String</span> age)</span> </span>&#123;
+			<span class="hljs-keyword">this</span>.age = age;
+		&#125;
+&#125;
 
-public static SparkConf conf = new SparkConf().setAppName(&quot;wordCount&quot;).setMaster(&quot;local[*]&quot;);
-public static JavaSparkContext sc = new JavaSparkContext(conf);
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SparkConf conf = <span class="hljs-keyword">new</span> SparkConf().setAppName(<span class="hljs-string">"wordCount"</span>).setMaster(<span class="hljs-string">"local[*]"</span>);
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> JavaSparkContext sc = <span class="hljs-keyword">new</span> JavaSparkContext(conf);
 
-SparkSession session = SparkSession.builder().appName(&quot;sql test&quot;).master(&quot;local[*]&quot;).getOrCreate();
+SparkSession session = SparkSession.builder().appName(<span class="hljs-string">"sql test"</span>).master(<span class="hljs-string">"local[*]"</span>).getOrCreate();
 
-JavaRDD&lt;String&gt; lines = sc.parallelize(Arrays.asList(&quot;jeery 26&quot;,&quot;tony 23&quot;));
-JavaRDD&lt;Man&gt; mans = lines.map(line-&gt;{
-    String[] words = line.split(&quot; &quot;);
-    Man item = new Man(words[0],words[1]);
-    return item;
-});
+JavaRDD&lt;<span class="hljs-keyword">String</span>&gt; lines = sc.parallelize(Arrays.asList(<span class="hljs-string">"jeery 26"</span>,<span class="hljs-string">"tony 23"</span>));
+JavaRDD&lt;Man&gt; mans = lines.<span class="hljs-built_in">map</span>(<span class="hljs-built_in">line</span>-&gt;&#123;
+    <span class="hljs-keyword">String</span>[] words = <span class="hljs-built_in">line</span>.split(<span class="hljs-string">" "</span>);
+    Man item = <span class="hljs-keyword">new</span> Man(words[<span class="hljs-number">0</span>],words[<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">return</span> item;
+&#125;);
 Dataset&lt;Row&gt; men = session.createDataFrame(mans,Man.class);
-men.createTempView(&quot;men&quot;);
-Dataset&lt;Row&gt; result = session.sql(&quot;select * from men order by age&quot;);
+men.createTempView(<span class="hljs-string">"men"</span>);
+Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select * from men order by age"</span>);
 result.show();
-session.stop();
+session.<span class="hljs-built_in">stop</span>();
 
 +---+-----+
 |age| name|
 +---+-----+
-| 23| tony|
-| 26|jeery|
-+---+-----+
-</code></pre><h1 id="StructType-定义schema"><a href="#StructType-定义schema" class="headerlink" title="StructType 定义schema"></a>StructType 定义schema</h1><ul>
+| <span class="hljs-number">23</span>| tony|
+| <span class="hljs-number">26</span>|jeery|
++---+-----+</code></pre>
+<h1 id="StructType-定义schema"><a href="#StructType-定义schema" class="headerlink" title="StructType 定义schema"></a>StructType 定义schema</h1><ul>
 <li>example -01</li>
 </ul>
-<pre><code class="lang-java">JavaRDD&lt;String&gt; lines = sc.parallelize(Arrays.asList(&quot;jeery 26&quot;,&quot;tony 23&quot;));
-JavaRDD&lt;Row&gt; mans = lines.map(line-&gt;{
-    String[] words = line.split(&quot; &quot;);
-    return RowFactory.create(words[0],words[1]);
-});
-StructType schema = new StructType(new StructField[] {
-    new StructField(&quot;name&quot;,DataTypes.StringType,true,Metadata.empty()),
-    new StructField(&quot;age&quot;,DataTypes.StringType,true,Metadata.empty()),
-});
+<pre><code class="hljs java">JavaRDD&lt;String&gt; lines = sc.parallelize(Arrays.asList(<span class="hljs-string">"jeery 26"</span>,<span class="hljs-string">"tony 23"</span>));
+JavaRDD&lt;Row&gt; mans = lines.map(line-&gt;&#123;
+    String[] words = line.split(<span class="hljs-string">" "</span>);
+    <span class="hljs-keyword">return</span> RowFactory.create(words[<span class="hljs-number">0</span>],words[<span class="hljs-number">1</span>]);
+&#125;);
+StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[] &#123;
+    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"name"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
+    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"age"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
+&#125;);
 
 Dataset&lt;Row&gt; men = session.createDataFrame(mans,schema);
 
 men.printSchema();
 men.show();
 
-men.createTempView(&quot;men&quot;);
-Dataset&lt;Row&gt; result = session.sql(&quot;select * from men order by age&quot;);
+men.createTempView(<span class="hljs-string">"men"</span>);
+Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select * from men order by age"</span>);
 result.show();
 
 root
- |-- name: string (nullable = true)
- |-- age: string (nullable = true)
+ |-- name: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- age: string (nullable = <span class="hljs-keyword">true</span>)
 
 +-----+---+
 | name|age|
 +-----+---+
-|jeery| 26|
-| tony| 23|
+|jeery| <span class="hljs-number">26</span>|
+| tony| <span class="hljs-number">23</span>|
 +-----+---+
 
 +-----+---+
 | name|age|
 +-----+---+
-| tony| 23|
-|jeery| 26|
-+-----+---+
-</code></pre>
+| tony| <span class="hljs-number">23</span>|
+|jeery| <span class="hljs-number">26</span>|
++-----+---+</code></pre>
 <ul>
 <li>example-02</li>
 </ul>
-<pre><code class="lang-java">StructType schema = new StructType(new StructField[] {
-    new StructField(&quot;name&quot;,DataTypes.StringType,true,Metadata.empty()),
-    new StructField(&quot;age&quot;,DataTypes.StringType,true,Metadata.empty()),
-});
+<pre><code class="hljs java">StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[] &#123;
+    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"name"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
+    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"age"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
+&#125;);
 
-List&lt;Row&gt; rows = new ArrayList&lt;Row&gt;();
-rows.add(RowFactory.create(&quot;jiaopan&quot;,&quot;26&quot;));
-rows.add(RowFactory.create(&quot;jp&quot;,&quot;23&quot;));
+List&lt;Row&gt; rows = <span class="hljs-keyword">new</span> ArrayList&lt;Row&gt;();
+rows.add(RowFactory.create(<span class="hljs-string">"jiaopan"</span>,<span class="hljs-string">"26"</span>));
+rows.add(RowFactory.create(<span class="hljs-string">"jp"</span>,<span class="hljs-string">"23"</span>));
 
 Dataset&lt;Row&gt; men = session.createDataFrame(rows,schema);
 men.printSchema();
@@ -320,134 +318,124 @@ men.show();
 +-------+---+
 |   name|age|
 +-------+---+
-|jiaopan| 26|
-|     jp| 23|
-+-------+---+
-</code></pre>
+|jiaopan| <span class="hljs-number">26</span>|
+|     jp| <span class="hljs-number">23</span>|
++-------+---+</code></pre>
 <h1 id="json-读取json文件自动创建DataFrame"><a href="#json-读取json文件自动创建DataFrame" class="headerlink" title="json 读取json文件自动创建DataFrame"></a>json 读取json文件自动创建DataFrame</h1><ul>
 <li>user.json</li>
 </ul>
-<pre><code class="lang-text">{&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:&quot;26&quot;}
-{&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:&quot;39&quot;}
-{&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:&quot;19&quot;}
-</code></pre>
-<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read().json(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json&quot;);
+<pre><code class="hljs text">&#123;&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:&quot;26&quot;&#125;
+&#123;&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:&quot;39&quot;&#125;
+&#123;&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:&quot;19&quot;&#125;</code></pre>
+<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read().json(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json"</span>);
 users.printSchema();
 users.show();
 
 root
- |-- age: string (nullable = true)
- |-- name: string (nullable = true)
+ |-- age: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- name: string (nullable = <span class="hljs-keyword">true</span>)
 
 +---+-------+
 |age|   name|
 +---+-------+
-| 26|jiaopan|
-| 39|     jp|
-| 19|chengdu|
-+---+-------+
-</code></pre>
+| <span class="hljs-number">26</span>|jiaopan|
+| <span class="hljs-number">39</span>|     jp|
+| <span class="hljs-number">19</span>|chengdu|
++---+-------+</code></pre>
 <ul>
 <li>user.json</li>
 </ul>
-<pre><code class="lang-text">{&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:26,&quot;address&quot;:&quot;成都市&quot;}
-{&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:39,&quot;phone&quot;:&quot;18088886666&quot;}
-{&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:19}
-</code></pre>
-<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read().json(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json&quot;);
+<pre><code class="hljs text">&#123;&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:26,&quot;address&quot;:&quot;成都市&quot;&#125;
+&#123;&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:39,&quot;phone&quot;:&quot;18088886666&quot;&#125;
+&#123;&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:19&#125;</code></pre>
+<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read().json(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json"</span>);
 users.printSchema();
 users.show();
 
 root
- |-- address: string (nullable = true)
- |-- age: string (nullable = true)
- |-- name: string (nullable = true)
- |-- phone: string (nullable = true)
-
+ |-- address: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- age: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- name: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- phone: string (nullable = <span class="hljs-keyword">true</span>)
+ 
 +-------+---+-------+-----------+
 |address|age|   name|      phone|
 +-------+---+-------+-----------+
-|  成都市| 26|jiaopan|       null|
-|   null| 39|     jp|18088886666|
-|   null| 19|chengdu|       null|
-+-------+---+-------+-----------+
-</code></pre>
+|  成都市| <span class="hljs-number">26</span>|jiaopan|       <span class="hljs-keyword">null</span>|
+|   <span class="hljs-keyword">null</span>| <span class="hljs-number">39</span>|     jp|<span class="hljs-number">18088886666</span>|
+|   <span class="hljs-keyword">null</span>| <span class="hljs-number">19</span>|chengdu|       <span class="hljs-keyword">null</span>|
++-------+---+-------+-----------+</code></pre>
 <h1 id="CSV-读取csv文件自动创建DataFrame"><a href="#CSV-读取csv文件自动创建DataFrame" class="headerlink" title="CSV 读取csv文件自动创建DataFrame"></a>CSV 读取csv文件自动创建DataFrame</h1><ul>
 <li>user.csv</li>
 </ul>
-<pre><code class="lang-text">jiaopan,26,成都市
+<pre><code class="hljs text">jiaopan,26,成都市
 jp,39,18088886666
-chengdu,19
-</code></pre>
-<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read().csv(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv&quot;);
+chengdu,19</code></pre>
+<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read().csv(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv"</span>);
 users.printSchema();
 users.show();
 
 root
- |-- _c0: string (nullable = true)
- |-- _c1: string (nullable = true)
- |-- _c2: string (nullable = true)
-
+ |-- _c0: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- _c1: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- _c2: string (nullable = <span class="hljs-keyword">true</span>)
+ 
 +-------+---+-----------+
 |    _c0|_c1|        _c2|
 +-------+---+-----------+
-|jiaopan| 26|      成都市|
-|     jp| 39|18088886666|
-|chengdu| 19|       null|
-+-------+---+-----------+
-</code></pre>
+|jiaopan| <span class="hljs-number">26</span>|      成都市|
+|     jp| <span class="hljs-number">39</span>|<span class="hljs-number">18088886666</span>|
+|chengdu| <span class="hljs-number">19</span>|       <span class="hljs-keyword">null</span>|
++-------+---+-----------+</code></pre>
 <ul>
 <li>user.csv</li>
 </ul>
-<pre><code class="lang-text">name,age,phone,address
+<pre><code class="hljs text">name,age,phone,address
 jiaopan,26,&quot;&quot;,成都市
 jp,39,18088886666,&quot;&quot;
-chengdu,19,&quot;&quot;,&quot;&quot;
-</code></pre>
-<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read()
-                            .option(&quot;header&quot;,true) //设置第一行为表头
-                            .option(&quot;inferSchema&quot;, true) //推断数据类型
-                            .csv(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv&quot;);
+chengdu,19,&quot;&quot;,&quot;&quot;</code></pre>
+<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read()
+				    		.option(<span class="hljs-string">"header"</span>,<span class="hljs-keyword">true</span>) <span class="hljs-comment">//设置第一行为表头</span>
+				    		.option(<span class="hljs-string">"inferSchema"</span>, <span class="hljs-keyword">true</span>) <span class="hljs-comment">//推断数据类型</span>
+				    		.csv(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv"</span>);
 users.printSchema();
 users.show();
 
 root
- |-- name: string (nullable = true)
- |-- age: integer (nullable = true)
- |-- phone: long (nullable = true)
- |-- address: string (nullable = true)
+ |-- name: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- age: integer (nullable = <span class="hljs-keyword">true</span>)
+ |-- phone: <span class="hljs-keyword">long</span> (nullable = <span class="hljs-keyword">true</span>)
+ |-- address: string (nullable = <span class="hljs-keyword">true</span>)
 
-
+ 
 +-------+---+-----------+-------+
 |   name|age|      phone|address|
 +-------+---+-----------+-------+
-|jiaopan| 26|       null|  成都市|
-|     jp| 39|18088886666|   null|
-|chengdu| 19|       null|   null|
-+-------+---+-----------+-------+
-</code></pre>
-<h1 id="DSL-API"><a href="#DSL-API" class="headerlink" title="DSL API"></a>DSL API</h1><pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read()
-                            .option(&quot;header&quot;,true) //设置第一行为表头
-                            .option(&quot;inferSchema&quot;, true) //推断数据类型
-                            .csv(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv&quot;);
-
-Dataset&lt;Row&gt; result = users.select(&quot;name&quot;,&quot;age&quot;).where(&quot;age &gt;=20&quot;);
+|jiaopan| <span class="hljs-number">26</span>|       <span class="hljs-keyword">null</span>|  成都市|
+|     jp| <span class="hljs-number">39</span>|<span class="hljs-number">18088886666</span>|   <span class="hljs-keyword">null</span>|
+|chengdu| <span class="hljs-number">19</span>|       <span class="hljs-keyword">null</span>|   <span class="hljs-keyword">null</span>|
++-------+---+-----------+-------+</code></pre>
+<h1 id="DSL-API"><a href="#DSL-API" class="headerlink" title="DSL API"></a>DSL API</h1><pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read()
+							.option(<span class="hljs-string">"header"</span>,<span class="hljs-keyword">true</span>) <span class="hljs-comment">//设置第一行为表头</span>
+							.option(<span class="hljs-string">"inferSchema"</span>, <span class="hljs-keyword">true</span>) <span class="hljs-comment">//推断数据类型</span>
+							.csv(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv"</span>);
+    	
+Dataset&lt;Row&gt; result = users.select(<span class="hljs-string">"name"</span>,<span class="hljs-string">"age"</span>).where(<span class="hljs-string">"age &gt;=20"</span>);
 result.show();
 
 +-------+---+
 |   name|age|
 +-------+---+
-|jiaopan| 26|
-|     jp| 39|
-+-------+---+
-</code></pre>
-<h1 id="word-count"><a href="#word-count" class="headerlink" title="word count"></a>word count</h1><pre><code class="lang-java">Dataset&lt;String&gt; lines = session.read().textFile(&quot;/Volumes/storage/learn/bigdata/data/words.txt&quot;);
+|jiaopan| <span class="hljs-number">26</span>|
+|     jp| <span class="hljs-number">39</span>|
++-------+---+</code></pre>
+<h1 id="word-count"><a href="#word-count" class="headerlink" title="word count"></a>word count</h1><pre><code class="hljs java">Dataset&lt;String&gt; lines = session.read().textFile(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/words.txt"</span>);
 lines.show();
-Dataset&lt;String&gt; words = lines.flatMap(line-&gt;Arrays.asList(line.split(&quot; &quot;)).iterator(),Encoders.STRING());
+Dataset&lt;String&gt; words = lines.flatMap(line-&gt;Arrays.asList(line.split(<span class="hljs-string">" "</span>)).iterator(),Encoders.STRING());
 words.show();
 
-words.createTempView(&quot;words&quot;);
-Dataset&lt;Row&gt; result = session.sql(&quot;select value word,count(*) count from words group by word&quot;);
+words.createTempView(<span class="hljs-string">"words"</span>);
+Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select value word,count(*) count from words group by word"</span>);
 result.show();
 
 +--------------------+
@@ -475,81 +463,78 @@ result.show();
 +-------+-----+
 |   word|count|
 +-------+-----+
-|  hello|    1|
-|jiaopan|    2|
-|  mysql|    1|
-|  spark|    2|
-|   hive|    3|
+|  hello|    <span class="hljs-number">1</span>|
+|jiaopan|    <span class="hljs-number">2</span>|
+|  mysql|    <span class="hljs-number">1</span>|
+|  spark|    <span class="hljs-number">2</span>|
+|   hive|    <span class="hljs-number">3</span>|
 +-------+-----+
 
-Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(&quot;value&quot;,&quot;word&quot;).select(&quot;*&quot;).groupBy(&quot;word&quot;).count();
+Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(<span class="hljs-string">"value"</span>,<span class="hljs-string">"word"</span>).select(<span class="hljs-string">"*"</span>).groupBy(<span class="hljs-string">"word"</span>).count();
 DSlresult.show();
 
 +-------+-----+
 |   word|count|
 +-------+-----+
-|  hello|    1|
-|jiaopan|    2|
-|  mysql|    1|
-|  spark|    2|
-|   hive|    3|
+|  hello|    <span class="hljs-number">1</span>|
+|jiaopan|    <span class="hljs-number">2</span>|
+|  mysql|    <span class="hljs-number">1</span>|
+|  spark|    <span class="hljs-number">2</span>|
+|   hive|    <span class="hljs-number">3</span>|
 +-------+-----+
 
-Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
-map.put(&quot;*&quot;,&quot;count&quot;);
-Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(&quot;value&quot;,&quot;word&quot;).select(&quot;*&quot;).groupBy(&quot;word&quot;).agg(map);
+Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;();
+map.put(<span class="hljs-string">"*"</span>,<span class="hljs-string">"count"</span>);
+Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(<span class="hljs-string">"value"</span>,<span class="hljs-string">"word"</span>).select(<span class="hljs-string">"*"</span>).groupBy(<span class="hljs-string">"word"</span>).agg(map);
 DSlresult.show();
 
 +-------+--------+
-|   word|count(1)|
+|   word|count(<span class="hljs-number">1</span>)|
 +-------+--------+
-|  hello|       1|
-|jiaopan|       2|
-|  mysql|       1|
-|  spark|       2|
-|   hive|       3|
-+-------+--------+
-</code></pre>
-<h1 id="JDBC-读取数据库"><a href="#JDBC-读取数据库" class="headerlink" title="JDBC 读取数据库"></a>JDBC 读取数据库</h1><pre><code class="lang-java">Properties properties = new  Properties();
-properties.setProperty(&quot;driver&quot;,&quot;com.mysql.jdbc.Driver&quot;);
-properties.setProperty(&quot;user&quot;,&quot;root&quot;);
-properties.setProperty(&quot;password&quot;,&quot;123456&quot;);
-String jdbc = &quot;jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8&quot;;
-Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,&quot;sys_user&quot;, properties);
+|  hello|       <span class="hljs-number">1</span>|
+|jiaopan|       <span class="hljs-number">2</span>|
+|  mysql|       <span class="hljs-number">1</span>|
+|  spark|       <span class="hljs-number">2</span>|
+|   hive|       <span class="hljs-number">3</span>|
++-------+--------+</code></pre>
+<h1 id="JDBC-读取数据库"><a href="#JDBC-读取数据库" class="headerlink" title="JDBC 读取数据库"></a>JDBC 读取数据库</h1><pre><code class="hljs java">Properties properties = <span class="hljs-keyword">new</span>  Properties();
+properties.setProperty(<span class="hljs-string">"driver"</span>,<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);
+properties.setProperty(<span class="hljs-string">"user"</span>,<span class="hljs-string">"root"</span>);
+properties.setProperty(<span class="hljs-string">"password"</span>,<span class="hljs-string">"123456"</span>);
+String jdbc = <span class="hljs-string">"jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8"</span>;
+Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,<span class="hljs-string">"sys_user"</span>, properties);
 result.show();
 
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
 |                 id|username|            password|   tel|org_code|level|status|create_date|
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
-|1057796353167527937|   admin|eac4108912af90ae9...|    23| 1001011|    0|     1| 2018-11-01|
-|1102890947181555714|    demo|36a7c9e95a47010a2...|      |  100101|    1|     1| 2019-03-05|
-|1120927990138572801|    test|2df51a84abc64a287...|123456|  100101|    1|     1| 2019-04-24|
-+-------------------+--------+--------------------+------+--------+-----+------+-----------+
-</code></pre>
-<h1 id="Parquet"><a href="#Parquet" class="headerlink" title="Parquet"></a>Parquet</h1><pre><code class="lang-java">Properties properties = new  Properties();
-properties.setProperty(&quot;driver&quot;,&quot;com.mysql.jdbc.Driver&quot;);
-properties.setProperty(&quot;user&quot;,&quot;root&quot;);
-properties.setProperty(&quot;password&quot;,&quot;123456&quot;);
-String jdbc = &quot;jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8&quot;;
-Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,&quot;sys_user&quot;, properties);
+|<span class="hljs-number">1057796353167527937</span>|   admin|eac4108912af90ae9...|    <span class="hljs-number">23</span>| <span class="hljs-number">1001011</span>|    <span class="hljs-number">0</span>|     <span class="hljs-number">1</span>| <span class="hljs-number">2018</span>-<span class="hljs-number">11</span>-<span class="hljs-number">01</span>|
+|<span class="hljs-number">1102890947181555714</span>|    demo|<span class="hljs-number">36</span>a7c9e95a47010a2...|      |  <span class="hljs-number">100101</span>|    <span class="hljs-number">1</span>|     <span class="hljs-number">1</span>| <span class="hljs-number">2019</span>-<span class="hljs-number">03</span>-<span class="hljs-number">05</span>|
+|<span class="hljs-number">1120927990138572801</span>|    test|<span class="hljs-number">2</span>df51a84abc64a287...|<span class="hljs-number">123456</span>|  <span class="hljs-number">100101</span>|    <span class="hljs-number">1</span>|     <span class="hljs-number">1</span>| <span class="hljs-number">2019</span>-<span class="hljs-number">04</span>-<span class="hljs-number">24</span>|
++-------------------+--------+--------------------+------+--------+-----+------+-----------+</code></pre>
+<h1 id="Parquet"><a href="#Parquet" class="headerlink" title="Parquet"></a>Parquet</h1><pre><code class="hljs java">Properties properties = <span class="hljs-keyword">new</span>  Properties();
+properties.setProperty(<span class="hljs-string">"driver"</span>,<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);
+properties.setProperty(<span class="hljs-string">"user"</span>,<span class="hljs-string">"root"</span>);
+properties.setProperty(<span class="hljs-string">"password"</span>,<span class="hljs-string">"123456"</span>);
+String jdbc = <span class="hljs-string">"jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8"</span>;
+Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,<span class="hljs-string">"sys_user"</span>, properties);
 result.show();
 
-result.write().parquet(&quot;/Volumes/storage/learn/bigdata/data/out&quot;);
+result.write().parquet(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/out"</span>);
 
-Dataset&lt;Row&gt; parquet = session.read().parquet(&quot;/Volumes/storage/learn/bigdata/data/out&quot;);
-</code></pre>
-<pre><code class="lang-bash">20/04/13 14:12:14 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
-{
-  &quot;type&quot; : &quot;struct&quot;,
-  &quot;fields&quot; : [ {
-    &quot;name&quot; : &quot;id&quot;,
-    &quot;type&quot; : &quot;string&quot;,
-    &quot;nullable&quot; : true,
-    &quot;metadata&quot; : { }
-  },...]
-}
-and corresponding Parquet message type:
-message spark_schema {
+Dataset&lt;Row&gt; parquet = session.read().parquet(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/out"</span>);</code></pre>
+<pre><code class="hljs bash">20/04/13 14:12:14 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
+&#123;
+  <span class="hljs-string">"type"</span> : <span class="hljs-string">"struct"</span>,
+  <span class="hljs-string">"fields"</span> : [ &#123;
+    <span class="hljs-string">"name"</span> : <span class="hljs-string">"id"</span>,
+    <span class="hljs-string">"type"</span> : <span class="hljs-string">"string"</span>,
+    <span class="hljs-string">"nullable"</span> : <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"metadata"</span> : &#123; &#125;
+  &#125;,...]
+&#125;
+and corresponding Parquet message <span class="hljs-built_in">type</span>:
+message spark_schema &#123;
   optional binary id (UTF8);
   optional binary username (UTF8);
   optional binary password (UTF8);
@@ -558,25 +543,23 @@ message spark_schema {
   optional int32 level;
   optional int32 status;
   optional int32 create_date (DATE);
-}
+&#125;
 
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
 |                 id|username|            password|   tel|org_code|level|status|create_date|
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
 |1057796353167527937|   admin|eac4108912af90ae9...|    23| 1001011|    0|     1| 2018-11-01|
 |1102890947181555714|    demo|36a7c9e95a47010a2...|      |  100101|    1|     1| 2019-03-05|
-|1120927990138572801|    test|2df51a84abc64a287...|123456|  100101|    1|     1| 2019-04-24|
-+-------------------+--------+--------------------+------+--------+-----+------+-----------+
-</code></pre>
+|1120927990138572801|    <span class="hljs-built_in">test</span>|2df51a84abc64a287...|123456|  100101|    1|     1| 2019-04-24|
++-------------------+--------+--------------------+------+--------+-----+------+-----------+</code></pre>
 <h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h1><ul>
 <li>引入依赖</li>
 </ul>
-<pre><code class="lang-text">&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-  &lt;artifactId&gt;spark-hive_2.11&lt;/artifactId&gt;
-  &lt;version&gt;2.4.5&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="hljs text">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
+  &lt;artifactId&gt;spark-hive_2.11&lt;&#x2F;artifactId&gt;
+  &lt;version&gt;2.4.5&lt;&#x2F;version&gt;
+&lt;&#x2F;dependency&gt;</code></pre>
 <ul>
 <li>配置</li>
 </ul>
@@ -585,23 +568,23 @@ message spark_schema {
 <ul>
 <li>开启hive支持</li>
 </ul>
-<pre><code class="lang-java">SparkSession session = SparkSession.builder().appName(&quot;sql test&quot;)
-                                             .master(&quot;local[*]&quot;)
-                                             //利用thrift连接hive
-                                             .config(&quot;hive.metastore.uris&quot;, &quot;thrift://xodb-dev03:9083&quot;)
-                                             .enableHiveSupport()
-                                             .getOrCreate();
-
-session.sql(&quot;show databases&quot;).show();
-session.sql(&quot;use wl_test&quot;);
-session.sql(&quot;show tables&quot;).show();
-Dataset&lt;Row&gt; result = session.sql(&quot;select * from user_act limit 10&quot;);
+<pre><code class="hljs java">SparkSession session = SparkSession.builder().appName(<span class="hljs-string">"sql test"</span>)
+									    	 .master(<span class="hljs-string">"local[*]"</span>)
+									    	 <span class="hljs-comment">//利用thrift连接hive</span>
+									    	 .config(<span class="hljs-string">"hive.metastore.uris"</span>, <span class="hljs-string">"thrift://xodb-dev03:9083"</span>)
+									    	 .enableHiveSupport()
+									    	 .getOrCreate();
+									    	 
+session.sql(<span class="hljs-string">"show databases"</span>).show();
+session.sql(<span class="hljs-string">"use wl_test"</span>);
+session.sql(<span class="hljs-string">"show tables"</span>).show();
+Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select * from user_act limit 10"</span>);
 result.show();
-
+    	
 +------------+
 |databaseName|
 +------------+
-|     default|
+|     <span class="hljs-keyword">default</span>|
 |         sys|
 |        tpch|
 |   warehouse|
@@ -610,23 +593,22 @@ result.show();
 +--------+---------+-----------+
 |database|tableName|isTemporary|
 +--------+---------+-----------+
-| wl_test| user_act|      false|
+| wl_test| user_act|      <span class="hljs-keyword">false</span>|
 +--------+---------+-----------+
 +-------+-------+------+-----------+
 |user_id|item_id|rating|create_time|
 +-------+-------+------+-----------+
-|    196|    242|     3|  881250949|
-|    186|    302|     3|  891717742|
-|     22|    377|     1|  878887116|
-|    244|     51|     2|  880606923|
-|    166|    346|     1|  886397596|
-|    298|    474|     4|  884182806|
-|    115|    265|     2|  881171488|
-|    253|    465|     5|  891628467|
-|    305|    451|     3|  886324817|
-|      6|     86|     3|  883603013|
-+-------+-------+------+-----------+
-</code></pre>
+|    <span class="hljs-number">196</span>|    <span class="hljs-number">242</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">881250949</span>|
+|    <span class="hljs-number">186</span>|    <span class="hljs-number">302</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">891717742</span>|
+|     <span class="hljs-number">22</span>|    <span class="hljs-number">377</span>|     <span class="hljs-number">1</span>|  <span class="hljs-number">878887116</span>|
+|    <span class="hljs-number">244</span>|     <span class="hljs-number">51</span>|     <span class="hljs-number">2</span>|  <span class="hljs-number">880606923</span>|
+|    <span class="hljs-number">166</span>|    <span class="hljs-number">346</span>|     <span class="hljs-number">1</span>|  <span class="hljs-number">886397596</span>|
+|    <span class="hljs-number">298</span>|    <span class="hljs-number">474</span>|     <span class="hljs-number">4</span>|  <span class="hljs-number">884182806</span>|
+|    <span class="hljs-number">115</span>|    <span class="hljs-number">265</span>|     <span class="hljs-number">2</span>|  <span class="hljs-number">881171488</span>|
+|    <span class="hljs-number">253</span>|    <span class="hljs-number">465</span>|     <span class="hljs-number">5</span>|  <span class="hljs-number">891628467</span>|
+|    <span class="hljs-number">305</span>|    <span class="hljs-number">451</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">886324817</span>|
+|      <span class="hljs-number">6</span>|     <span class="hljs-number">86</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">883603013</span>|
++-------+-------+------+-----------+</code></pre>
 <p><em>note</em>：</p>
 <p><a href="http://spark.apache.org/docs/latest/sql-programming-guide.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/sql-programming-guide.html</a></p>
 <p><a href="http://spark.apache.org/docs/latest/api/sql/index.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/api/sql/index.html</a></p>

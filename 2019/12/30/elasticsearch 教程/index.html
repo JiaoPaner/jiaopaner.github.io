@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.7k 字
+      2.5k 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      48
        分钟
     </span>
   
@@ -208,626 +208,607 @@
             <h1 style="display: none">elasticsearch 教程</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="elasticsearch-教程"><a href="#elasticsearch-教程" class="headerlink" title="elasticsearch 教程"></a>elasticsearch 教程</h1><p><img src="/images/elasticsearch/1.jpg" srcset="/img/loading.gif" alt=""></p>
+              <h1 id="elasticsearch-教程"><a href="#elasticsearch-教程" class="headerlink" title="elasticsearch 教程"></a>elasticsearch 教程</h1><p><img src="/images/elasticsearch/1.jpg" srcset="/images/loading.gif" alt=""></p>
 <h2 id="安装、启动、测试"><a href="#安装、启动、测试" class="headerlink" title="安装、启动、测试"></a>安装、启动、测试</h2><p>elasticsearch下载地址:<a href="https://www.elastic.co/cn/downloads/elasticsearch" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/elasticsearch</a></p>
 <p>kibana下载地址:<a href="https://www.elastic.co/cn/downloads/kibana" target="_blank" rel="noopener">https://www.elastic.co/cn/downloads/kibana</a></p>
 <p><strong>启动</strong></p>
-<pre><code class="lang-bash">./elasticsearch-7.5.1/bin/elasticsearch #浏览器访问：localhost:9200
-</code></pre>
-<pre><code class="lang-bash">{
-  &quot;name&quot; : &quot;jiaopandeMacBook-Pro.local&quot;,
-  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
-  &quot;cluster_uuid&quot; : &quot;5vku_94_SjevMGVYIo3RYg&quot;,
-  &quot;version&quot; : {
-    &quot;number&quot; : &quot;7.5.1&quot;,
-    &quot;build_flavor&quot; : &quot;default&quot;,
-    &quot;build_type&quot; : &quot;tar&quot;,
-    &quot;build_hash&quot; : &quot;3ae9ac9a93c95bd0cdc054951cf95d88e1e18d96&quot;,
-    &quot;build_date&quot; : &quot;2019-12-16T22:57:37.835892Z&quot;,
-    &quot;build_snapshot&quot; : false,
-    &quot;lucene_version&quot; : &quot;8.3.0&quot;,
-    &quot;minimum_wire_compatibility_version&quot; : &quot;6.8.0&quot;,
-    &quot;minimum_index_compatibility_version&quot; : &quot;6.0.0-beta1&quot;
-  },
-  &quot;tagline&quot; : &quot;You Know, for Search&quot;
-}
-</code></pre>
+<pre><code class="hljs bash">./elasticsearch-7.5.1/bin/elasticsearch <span class="hljs-comment">#浏览器访问：localhost:9200</span></code></pre>
+<pre><code class="hljs bash">&#123;
+  <span class="hljs-string">"name"</span> : <span class="hljs-string">"jiaopandeMacBook-Pro.local"</span>,
+  <span class="hljs-string">"cluster_name"</span> : <span class="hljs-string">"elasticsearch"</span>,
+  <span class="hljs-string">"cluster_uuid"</span> : <span class="hljs-string">"5vku_94_SjevMGVYIo3RYg"</span>,
+  <span class="hljs-string">"version"</span> : &#123;
+    <span class="hljs-string">"number"</span> : <span class="hljs-string">"7.5.1"</span>,
+    <span class="hljs-string">"build_flavor"</span> : <span class="hljs-string">"default"</span>,
+    <span class="hljs-string">"build_type"</span> : <span class="hljs-string">"tar"</span>,
+    <span class="hljs-string">"build_hash"</span> : <span class="hljs-string">"3ae9ac9a93c95bd0cdc054951cf95d88e1e18d96"</span>,
+    <span class="hljs-string">"build_date"</span> : <span class="hljs-string">"2019-12-16T22:57:37.835892Z"</span>,
+    <span class="hljs-string">"build_snapshot"</span> : <span class="hljs-literal">false</span>,
+    <span class="hljs-string">"lucene_version"</span> : <span class="hljs-string">"8.3.0"</span>,
+    <span class="hljs-string">"minimum_wire_compatibility_version"</span> : <span class="hljs-string">"6.8.0"</span>,
+    <span class="hljs-string">"minimum_index_compatibility_version"</span> : <span class="hljs-string">"6.0.0-beta1"</span>
+  &#125;,
+  <span class="hljs-string">"tagline"</span> : <span class="hljs-string">"You Know, for Search"</span>
+&#125;</code></pre>
 <p>配置kibana-7.5.1-darwin-x86_64/config/kibana.yml</p>
-<pre><code class="lang-bash">server.host: &quot;localhost&quot;
-elasticsearch.hosts: [&quot;http://localhost:9200&quot;]
-</code></pre>
-<pre><code class="lang-bash">./kibana-7.5.1-darwin-x86_64/bin/kibana #浏览器访问：localhost:5601
-</code></pre>
-<p><img src="/images/elasticsearch/2.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs bash">server.host: <span class="hljs-string">"localhost"</span>
+elasticsearch.hosts: [<span class="hljs-string">"http://localhost:9200"</span>]</code></pre>
+<pre><code class="hljs bash">./kibana-7.5.1-darwin-x86_64/bin/kibana <span class="hljs-comment">#浏览器访问：localhost:5601</span></code></pre>
+<p><img src="/images/elasticsearch/2.jpg" srcset="/images/loading.gif" alt=""></p>
 <p><strong>测试</strong><br>kibana Dev Tools</p>
-<p><img src="/images/elasticsearch/3.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="/images/elasticsearch/3.jpg" srcset="/images/loading.gif" alt=""></p>
 <h2 id="index"><a href="#index" class="headerlink" title="index"></a>index</h2><p><strong>创建索引</strong></p>
-<pre><code class="lang-bash">PUT http://127.0.0.1:9200/test_index
-</code></pre>
+<pre><code class="hljs bash">PUT http://127.0.0.1:9200/test_index</code></pre>
 <p><strong>删除索引</strong></p>
-<pre><code class="lang-bash">DELETE http://127.0.0.1:9200/test_index
-</code></pre>
+<pre><code class="hljs bash">DELETE http://127.0.0.1:9200/test_index</code></pre>
 <p><strong>索引别名</strong></p>
-<pre><code class="lang-bash">POST _aliases
-{
-    &quot;actions&quot;: [
-        { &quot;add&quot; : { &quot;index&quot; : &quot;test_index&quot;, &quot;alias&quot; : &quot;test&quot; } }
+<pre><code class="hljs bash">POST _aliases
+&#123;
+    <span class="hljs-string">"actions"</span>: [
+        &#123; <span class="hljs-string">"add"</span> : &#123; <span class="hljs-string">"index"</span> : <span class="hljs-string">"test_index"</span>, <span class="hljs-string">"alias"</span> : <span class="hljs-string">"test"</span> &#125; &#125;
     ]
-}
-</code></pre>
+&#125;</code></pre>
 <p><strong>索引迁移</strong></p>
-<pre><code class="lang-bash">POST _reindex
-{
-    &quot;source&quot;: {
-        &quot;index&quot;: &quot;test_index&quot;
-    },
-    &quot;dest&quot;: {
-        &quot;index&quot;: &quot;test_index_v2&quot;
-    }
-}
+<pre><code class="hljs bash">POST _reindex
+&#123;
+    <span class="hljs-string">"source"</span>: &#123;
+        <span class="hljs-string">"index"</span>: <span class="hljs-string">"test_index"</span>
+    &#125;,
+    <span class="hljs-string">"dest"</span>: &#123;
+        <span class="hljs-string">"index"</span>: <span class="hljs-string">"test_index_v2"</span>
+    &#125;
+&#125;
 
 POST _aliases
-{
-    &quot;actions&quot;: [
-        { &quot;remove&quot; : { &quot;index&quot; : &quot;test_index&quot;, &quot;alias&quot; : &quot;test&quot; } },
-        { &quot;add&quot; : { &quot;index&quot; : &quot;test_index_v2&quot;, &quot;alias&quot; : &quot;test_v2&quot; } }
+&#123;
+    <span class="hljs-string">"actions"</span>: [
+        &#123; <span class="hljs-string">"remove"</span> : &#123; <span class="hljs-string">"index"</span> : <span class="hljs-string">"test_index"</span>, <span class="hljs-string">"alias"</span> : <span class="hljs-string">"test"</span> &#125; &#125;,
+        &#123; <span class="hljs-string">"add"</span> : &#123; <span class="hljs-string">"index"</span> : <span class="hljs-string">"test_index_v2"</span>, <span class="hljs-string">"alias"</span> : <span class="hljs-string">"test_v2"</span> &#125; &#125;
     ]
-}
-</code></pre>
+&#125;</code></pre>
 <p><strong>索引mapping设置</strong></p>
-<pre><code class="lang-bash">PUT /dyw_index_v2
-{
-  &quot;settings&quot;: {
-    &quot;analysis&quot;: {
-      &quot;analyzer&quot;: {
-        &quot;default&quot;: {
-          &quot;type&quot;: &quot;ik_max_word&quot;
-        }
-      }
-    }
-  },
-  &quot;mappings&quot;: {
-    &quot;properties&quot;: {
-      &quot;type&quot;:{
-        &quot;type&quot;: &quot;keyword&quot;
-      },
-      &quot;tags&quot;:{
-        &quot;type&quot;: &quot;text&quot; 
-      },
-      &quot;content&quot;:{
-        &quot;type&quot;: &quot;text&quot;,
-        &quot;boost&quot;: 2
-      },
-      &quot;suggest&quot; : {
-        &quot;type&quot; : &quot;completion&quot;,
-        &quot;analyzer&quot;: &quot;ik_max_word&quot;
-      },
-      &quot;update_time&quot;:{
-            &quot;type&quot;: &quot;date&quot;,
-            &quot;format&quot;: [&quot;yyyy-MM-dd HH:mm:ss&quot;]
-      },
-      &quot;location&quot;:{
-            &quot;type&quot;: &quot;geo_point&quot;
-      },
-      &quot;join&quot;:{
-        &quot;type&quot;: &quot;object&quot;,
-        &quot;properties&quot;: {
-          &quot;id&quot;:{
-            &quot;type&quot;:&quot;keyword&quot;
-          },
-          &quot;content&quot;:{
-            &quot;type&quot;:&quot;text&quot;
-          }
-        }
-      },
-      &quot;extra&quot;:{
-        &quot;type&quot;: &quot;object&quot;,
-        &quot;properties&quot;: {
-          &quot;scene&quot;:{
-            &quot;type&quot;: &quot;nested&quot;,
-            &quot;properties&quot;: {
-                &quot;id&quot;:{
-                  &quot;type&quot;: &quot;keyword&quot;
-                },
-                &quot;position&quot;:{
-                  &quot;type&quot;: &quot;integer&quot;
-                }
-             }
-          }
-        }
-      }
-    }
-  }
-}
-</code></pre>
+<pre><code class="hljs bash">PUT /dyw_index_v2
+&#123;
+  <span class="hljs-string">"settings"</span>: &#123;
+    <span class="hljs-string">"analysis"</span>: &#123;
+      <span class="hljs-string">"analyzer"</span>: &#123;
+        <span class="hljs-string">"default"</span>: &#123;
+          <span class="hljs-string">"type"</span>: <span class="hljs-string">"ik_max_word"</span>
+        &#125;
+      &#125;
+    &#125;
+  &#125;,
+  <span class="hljs-string">"mappings"</span>: &#123;
+    <span class="hljs-string">"properties"</span>: &#123;
+      <span class="hljs-string">"type"</span>:&#123;
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"keyword"</span>
+      &#125;,
+      <span class="hljs-string">"tags"</span>:&#123;
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span> 
+      &#125;,
+      <span class="hljs-string">"content"</span>:&#123;
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"text"</span>,
+        <span class="hljs-string">"boost"</span>: 2
+      &#125;,
+      <span class="hljs-string">"suggest"</span> : &#123;
+        <span class="hljs-string">"type"</span> : <span class="hljs-string">"completion"</span>,
+        <span class="hljs-string">"analyzer"</span>: <span class="hljs-string">"ik_max_word"</span>
+      &#125;,
+      <span class="hljs-string">"update_time"</span>:&#123;
+            <span class="hljs-string">"type"</span>: <span class="hljs-string">"date"</span>,
+            <span class="hljs-string">"format"</span>: [<span class="hljs-string">"yyyy-MM-dd HH:mm:ss"</span>]
+      &#125;,
+      <span class="hljs-string">"location"</span>:&#123;
+            <span class="hljs-string">"type"</span>: <span class="hljs-string">"geo_point"</span>
+      &#125;,
+      <span class="hljs-string">"join"</span>:&#123;
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
+        <span class="hljs-string">"properties"</span>: &#123;
+          <span class="hljs-string">"id"</span>:&#123;
+            <span class="hljs-string">"type"</span>:<span class="hljs-string">"keyword"</span>
+          &#125;,
+          <span class="hljs-string">"content"</span>:&#123;
+            <span class="hljs-string">"type"</span>:<span class="hljs-string">"text"</span>
+          &#125;
+        &#125;
+      &#125;,
+      <span class="hljs-string">"extra"</span>:&#123;
+        <span class="hljs-string">"type"</span>: <span class="hljs-string">"object"</span>,
+        <span class="hljs-string">"properties"</span>: &#123;
+          <span class="hljs-string">"scene"</span>:&#123;
+            <span class="hljs-string">"type"</span>: <span class="hljs-string">"nested"</span>,
+            <span class="hljs-string">"properties"</span>: &#123;
+                <span class="hljs-string">"id"</span>:&#123;
+                  <span class="hljs-string">"type"</span>: <span class="hljs-string">"keyword"</span>
+                &#125;,
+                <span class="hljs-string">"position"</span>:&#123;
+                  <span class="hljs-string">"type"</span>: <span class="hljs-string">"integer"</span>
+                &#125;
+             &#125;
+          &#125;
+        &#125;
+      &#125;
+    &#125;
+  &#125;
+&#125;</code></pre>
 <h2 id="document"><a href="#document" class="headerlink" title="document"></a>document</h2><p><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html</a></p>
-<h2 id="安装中文分词"><a href="#安装中文分词" class="headerlink" title="安装中文分词"></a>安装中文分词</h2><pre><code class="lang-bash">./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.1/elasticsearch-analysis-ik-7.5.1.zip
-</code></pre>
+<h2 id="安装中文分词"><a href="#安装中文分词" class="headerlink" title="安装中文分词"></a>安装中文分词</h2><pre><code class="hljs bash">./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.5.1/elasticsearch-analysis-ik-7.5.1.zip</code></pre>
 <h2 id="Java-API"><a href="#Java-API" class="headerlink" title="Java API"></a>Java API</h2><p><strong>pom依赖</strong></p>
-<pre><code class="lang-xml">&lt;dependency&gt;
-    &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;
-    &lt;artifactId&gt;elasticsearch-rest-high-level-client&lt;/artifactId&gt;
-    &lt;version&gt;7.5.1&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;
-    &lt;artifactId&gt;elasticsearch-rest-client&lt;/artifactId&gt;
-    &lt;version&gt;7.5.1&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;org.elasticsearch&lt;/groupId&gt;
-    &lt;artifactId&gt;elasticsearch&lt;/artifactId&gt;
-    &lt;version&gt;7.5.1&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.elasticsearch.client<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>elasticsearch-rest-high-level-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>7.5.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.elasticsearch.client<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>elasticsearch-rest-client<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>7.5.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.elasticsearch<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>elasticsearch<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>7.5.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
 <p><strong>客户端</strong></p>
-<pre><code class="lang-java">/** 
-* @author 作者 jiaopan: 
-* @version 创建时间：Feb 10, 2020 11:09:05 AM 
+<pre><code class="hljs java"><span class="hljs-comment">/** 
+* <span class="hljs-doctag">@author</span> 作者 jiaopan: 
+* <span class="hljs-doctag">@version</span> 创建时间：Feb 10, 2020 11:09:05 AM 
 * 类说明 
-*/
-public class ESClient {
-    private volatile static RestHighLevelClient client;
-
-    public static RestHighLevelClient instance(EsConfigValue config) {  
-        if (client == null) {  
-            synchronized (RestHighLevelClient.class) {  
-                if (client == null) {  
-                    final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-                    credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials(config.getUsername(),config.getPassword()));
-                    client = new RestHighLevelClient(RestClient.builder(new HttpHost(config.getIp(),config.getPort(), &quot;http&quot;))
-                             .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
-                                    @Override
-                                    public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
-                                        httpClientBuilder.disableAuthCaching();
-                                        return httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
-                                    }
-                    }));
-                }  
-            }  
-        }  
-        return client;  
-    }      
-    /*
-    public static RestHighLevelClient instance(EsConfigValue config) {  
-        if (client == null) {  
-            synchronized (RestHighLevelClient.class) {  
-                if (client == null) {  
-                    client = new RestHighLevelClient(RestClient.builder(new HttpHost(config.getIp(),config.getPort(), &quot;http&quot;)));
-                }  
-            }  
-        }  
-        return client;  
-    } 
-    */
-}
-</code></pre>
+*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ESClient</span> </span>&#123;
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">static</span> RestHighLevelClient client;
+	
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> RestHighLevelClient <span class="hljs-title">instance</span><span class="hljs-params">(EsConfigValue config)</span> </span>&#123;  
+	    <span class="hljs-keyword">if</span> (client == <span class="hljs-keyword">null</span>) &#123;  
+	        <span class="hljs-keyword">synchronized</span> (RestHighLevelClient<span class="hljs-class">.<span class="hljs-keyword">class</span>) </span>&#123;  
+		        <span class="hljs-keyword">if</span> (client == <span class="hljs-keyword">null</span>) &#123;  
+		        	<span class="hljs-keyword">final</span> CredentialsProvider credentialsProvider = <span class="hljs-keyword">new</span> BasicCredentialsProvider();
+		        	credentialsProvider.setCredentials(AuthScope.ANY, <span class="hljs-keyword">new</span> UsernamePasswordCredentials(config.getUsername(),config.getPassword()));
+		        	client = <span class="hljs-keyword">new</span> RestHighLevelClient(RestClient.builder(<span class="hljs-keyword">new</span> HttpHost(config.getIp(),config.getPort(), <span class="hljs-string">"http"</span>))
+		        			 .setHttpClientConfigCallback(<span class="hljs-keyword">new</span> RestClientBuilder.HttpClientConfigCallback() &#123;
+									<span class="hljs-meta">@Override</span>
+									<span class="hljs-function"><span class="hljs-keyword">public</span> HttpAsyncClientBuilder <span class="hljs-title">customizeHttpClient</span><span class="hljs-params">(HttpAsyncClientBuilder httpClientBuilder)</span> </span>&#123;
+										httpClientBuilder.disableAuthCaching();
+										<span class="hljs-keyword">return</span> httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+									&#125;
+		        	&#125;));
+		        &#125;  
+	        &#125;  
+	    &#125;  
+	    <span class="hljs-keyword">return</span> client;  
+    &#125;  	
+    <span class="hljs-comment">/*
+    public static RestHighLevelClient instance(EsConfigValue config) &#123;  
+	    if (client == null) &#123;  
+	        synchronized (RestHighLevelClient.class) &#123;  
+		        if (client == null) &#123;  
+		        	client = new RestHighLevelClient(RestClient.builder(new HttpHost(config.getIp(),config.getPort(), "http")));
+		        &#125;  
+	        &#125;  
+	    &#125;  
+	    return client;  
+    &#125; 
+    */</span>
+&#125;</code></pre>
 <p><strong> base apis</strong></p>
-<pre><code class="lang-java">public Boolean isExist(String index, String id,String routing) {
-    RestHighLevelClient client = ESClient.instance(esConfig);
-    GetRequest request = new GetRequest(index).id(id);
-    request.fetchSourceContext(new FetchSourceContext(false));
-    request.storedFields(&quot;_none_&quot;);
-    request.routing(routing);
-    try {
-        return client.exists(request, RequestOptions.DEFAULT);
-    } catch (IOException e) {
-        return false;
-    }
-}
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Boolean <span class="hljs-title">isExist</span><span class="hljs-params">(String index, String id,String routing)</span> </span>&#123;
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	GetRequest request = <span class="hljs-keyword">new</span> GetRequest(index).id(id);
+	request.fetchSourceContext(<span class="hljs-keyword">new</span> FetchSourceContext(<span class="hljs-keyword">false</span>));
+	request.storedFields(<span class="hljs-string">"_none_"</span>);
+	request.routing(routing);
+	<span class="hljs-keyword">try</span> &#123;
+		<span class="hljs-keyword">return</span> client.exists(request, RequestOptions.DEFAULT);
+	&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+	&#125;
+&#125;
 
-public Map&lt;String, Object&gt; get(String index, String id,String routing) throws IOException {
-    RestHighLevelClient client = ESClient.instance(esConfig);
-    GetRequest request = new GetRequest(esConfig.getIndex(), id);
-    request.routing(routing);
-    GetResponse getResponse = client.get(request, RequestOptions.DEFAULT);
-    Map&lt;String, Object&gt; doc = new HashMap&lt;String, Object&gt;();
-    if(getResponse.isExists()) {
-        doc = getResponse.getSourceAsMap();
-        doc.put(&quot;id&quot;,getResponse.getId());
-    }
-    return doc;
-}
+<span class="hljs-function"><span class="hljs-keyword">public</span> Map&lt;String, Object&gt; <span class="hljs-title">get</span><span class="hljs-params">(String index, String id,String routing)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	GetRequest request = <span class="hljs-keyword">new</span> GetRequest(esConfig.getIndex(), id);
+	request.routing(routing);
+	GetResponse getResponse = client.get(request, RequestOptions.DEFAULT);
+	Map&lt;String, Object&gt; doc = <span class="hljs-keyword">new</span> HashMap&lt;String, Object&gt;();
+	<span class="hljs-keyword">if</span>(getResponse.isExists()) &#123;
+		doc = getResponse.getSourceAsMap();
+		doc.put(<span class="hljs-string">"id"</span>,getResponse.getId());
+	&#125;
+	<span class="hljs-keyword">return</span> doc;
+&#125;
 
-public SearchResponse getByIds(List&lt;String&gt; ids) throws IOException {
-    RestHighLevelClient client = ESClient.instance(esConfig);
-    SearchRequest searchRequest = new SearchRequest(esConfig.getIndex()); 
-    SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); 
+<span class="hljs-function"><span class="hljs-keyword">public</span> SearchResponse <span class="hljs-title">getByIds</span><span class="hljs-params">(List&lt;String&gt; ids)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	SearchRequest searchRequest = <span class="hljs-keyword">new</span> SearchRequest(esConfig.getIndex()); 
+	SearchSourceBuilder searchSourceBuilder = <span class="hljs-keyword">new</span> SearchSourceBuilder(); 
+	
+	BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
+	IdsQueryBuilder idsQueryBuilder = QueryBuilders.idsQuery();
+	idsQueryBuilder.ids().addAll(ids);
+	
+	booleanQueryBuilder.must(idsQueryBuilder);
+	<span class="hljs-comment">/*构建查询*/</span>
+	searchSourceBuilder.from(<span class="hljs-number">0</span>);
+	searchSourceBuilder.size(ids.size());
+	searchSourceBuilder.query(booleanQueryBuilder); 
+	searchRequest.source(searchSourceBuilder);
+	SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+	<span class="hljs-keyword">return</span> searchResponse;
+&#125;
 
-    BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
-    IdsQueryBuilder idsQueryBuilder = QueryBuilders.idsQuery();
-    idsQueryBuilder.ids().addAll(ids);
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createOrUpdate</span><span class="hljs-params">(String index, String id,String routing,JSONObject item,Boolean bulk)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
+		
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	GetRequest request = <span class="hljs-keyword">new</span> GetRequest(esConfig.getIndex(), id);
+	request.routing(routing);
+	JSONObject doc = <span class="hljs-keyword">new</span> JSONObject();
+	GetResponse getResponse = client.get(request, RequestOptions.DEFAULT);
+	<span class="hljs-keyword">if</span>(getResponse.isExists()) &#123;
+		Map&lt;String, Object&gt; source = getResponse.getSourceAsMap();
+		JSONObject content = JSONObject.parseObject(source.get(<span class="hljs-string">"content"</span>).toString());
+		item.keySet().forEach(key-&gt;&#123;
+			content.put(key,item.get(key));
+		&#125;);
+		doc = <span class="hljs-keyword">this</span>.createDocSource(content,routing,<span class="hljs-keyword">true</span>);
+	&#125;
+	<span class="hljs-keyword">else</span>
+		doc = <span class="hljs-keyword">this</span>.createDocSource(item,routing,<span class="hljs-keyword">false</span>);
+	<span class="hljs-keyword">if</span>(bulk)
+		<span class="hljs-keyword">this</span>.bulkUpdate(index, id, doc, <span class="hljs-keyword">true</span>, routing);
+	<span class="hljs-keyword">else</span>
+		<span class="hljs-keyword">this</span>.update(index, id, doc, <span class="hljs-keyword">true</span>,routing);
+&#125;
 
-    booleanQueryBuilder.must(idsQueryBuilder);
-    /*构建查询*/
-    searchSourceBuilder.from(0);
-    searchSourceBuilder.size(ids.size());
-    searchSourceBuilder.query(booleanQueryBuilder); 
-    searchRequest.source(searchSourceBuilder);
-    SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-    return searchResponse;
-}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">delete</span><span class="hljs-params">(String index, String id,String routing)</span> </span>&#123;
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	DeleteRequest request = <span class="hljs-keyword">new</span> DeleteRequest(index, id);
+	request.routing(routing);
+	client.deleteAsync(request, RequestOptions.DEFAULT, <span class="hljs-keyword">new</span> ActionListener&lt;DeleteResponse&gt;() &#123;
+		<span class="hljs-meta">@Override</span>
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(DeleteResponse response)</span> </span>&#123;
+			<span class="hljs-keyword">if</span> (response.getResult() == DocWriteResponse.Result.DELETED) &#123;
+				logger.info(<span class="hljs-string">"delete&gt;&gt;&gt;"</span>+<span class="hljs-string">"&#123;\"id\":\""</span>+id+<span class="hljs-string">"\",\"type\":\""</span>+routing+<span class="hljs-string">"\"&#125;"</span>);
+			&#125;
+		&#125;
+		<span class="hljs-meta">@Override</span>
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(Exception e)</span> </span>&#123;
+			logger.info(<span class="hljs-string">"delete fail&gt;&gt;&gt;"</span>+<span class="hljs-string">"&#123;\"id\":\""</span>+id+<span class="hljs-string">"\",\"type\":\""</span>+routing+<span class="hljs-string">"\"&#125;"</span>);
+		&#125;
+	&#125;);
+&#125;
 
-public void createOrUpdate(String index, String id,String routing,JSONObject item,Boolean bulk) throws IOException {
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">update</span><span class="hljs-params">(String index, String id, JSONObject item,Boolean upsert,String routing)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(item == <span class="hljs-keyword">null</span>) &#123;
+		<span class="hljs-keyword">return</span>;
+	&#125;
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	UpdateRequest request = <span class="hljs-keyword">new</span> UpdateRequest(index,id).doc(item); 
+	request.docAsUpsert(upsert);
+	request.retryOnConflict(<span class="hljs-number">3</span>);
+	request.routing(routing);
+	client.updateAsync(request, RequestOptions.DEFAULT, <span class="hljs-keyword">new</span> ActionListener&lt;UpdateResponse&gt;() &#123;
+		<span class="hljs-meta">@Override</span>
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(UpdateResponse response)</span> </span>&#123;
+			<span class="hljs-keyword">if</span> (response.getResult() == DocWriteResponse.Result.CREATED) &#123;
+				logger.info(<span class="hljs-string">"created&gt;&gt;&gt;"</span>+<span class="hljs-string">"&#123;\"id\":\""</span>+id+<span class="hljs-string">"\",\"type\":\""</span>+routing+<span class="hljs-string">"\"&#125;"</span>);
+			&#125;
+			<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (response.getResult() == DocWriteResponse.Result.UPDATED) &#123;
+				logger.info(<span class="hljs-string">"updated&gt;&gt;&gt;"</span>+<span class="hljs-string">"&#123;\"id\":\""</span>+id+<span class="hljs-string">"\",\"type\":\""</span>+routing+<span class="hljs-string">"\"&#125;"</span>);
+			&#125;
+		&#125;
+		<span class="hljs-meta">@Override</span>
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(Exception e)</span> </span>&#123;
+			logger.warn(<span class="hljs-string">"not_store_record("</span>+e.getMessage()+<span class="hljs-string">")&gt;&gt;&gt;"</span>+item.toJSONString());
+		&#125;
+	&#125;);
+&#125;
+	
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bulkUpdate</span><span class="hljs-params">(String index, String id, JSONObject item,Boolean upsert,String routing)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(item == <span class="hljs-keyword">null</span>) &#123;
+		<span class="hljs-keyword">return</span>;
+	&#125;
+	UpdateRequest request = <span class="hljs-keyword">new</span> UpdateRequest(index,id).doc(item); 
+	request.docAsUpsert(upsert);
+	request.retryOnConflict(<span class="hljs-number">3</span>);
+	request.routing(routing);
+	queue.offer(request);
+&#125;
 
-    RestHighLevelClient client = ESClient.instance(esConfig);
-    GetRequest request = new GetRequest(esConfig.getIndex(), id);
-    request.routing(routing);
-    JSONObject doc = new JSONObject();
-    GetResponse getResponse = client.get(request, RequestOptions.DEFAULT);
-    if(getResponse.isExists()) {
-        Map&lt;String, Object&gt; source = getResponse.getSourceAsMap();
-        JSONObject content = JSONObject.parseObject(source.get(&quot;content&quot;).toString());
-        item.keySet().forEach(key-&gt;{
-            content.put(key,item.get(key));
-        });
-        doc = this.createDocSource(content,routing,true);
-    }
-    else
-        doc = this.createDocSource(item,routing,false);
-    if(bulk)
-        this.bulkUpdate(index, id, doc, true, routing);
-    else
-        this.update(index, id, doc, true,routing);
-}
-
-public void delete(String index, String id,String routing) {
-    RestHighLevelClient client = ESClient.instance(esConfig);
-    DeleteRequest request = new DeleteRequest(index, id);
-    request.routing(routing);
-    client.deleteAsync(request, RequestOptions.DEFAULT, new ActionListener&lt;DeleteResponse&gt;() {
-        @Override
-        public void onResponse(DeleteResponse response) {
-            if (response.getResult() == DocWriteResponse.Result.DELETED) {
-                logger.info(&quot;delete&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
-            }
-        }
-        @Override
-        public void onFailure(Exception e) {
-            logger.info(&quot;delete fail&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
-        }
-    });
-}
-
-public void update(String index, String id, JSONObject item,Boolean upsert,String routing) {
-    if(item == null) {
-        return;
-    }
-    RestHighLevelClient client = ESClient.instance(esConfig);
-    UpdateRequest request = new UpdateRequest(index,id).doc(item); 
-    request.docAsUpsert(upsert);
-    request.retryOnConflict(3);
-    request.routing(routing);
-    client.updateAsync(request, RequestOptions.DEFAULT, new ActionListener&lt;UpdateResponse&gt;() {
-        @Override
-        public void onResponse(UpdateResponse response) {
-            if (response.getResult() == DocWriteResponse.Result.CREATED) {
-                logger.info(&quot;created&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
-            }
-            else if (response.getResult() == DocWriteResponse.Result.UPDATED) {
-                logger.info(&quot;updated&gt;&gt;&gt;&quot;+&quot;{\&quot;id\&quot;:\&quot;&quot;+id+&quot;\&quot;,\&quot;type\&quot;:\&quot;&quot;+routing+&quot;\&quot;}&quot;);
-            }
-        }
-        @Override
-        public void onFailure(Exception e) {
-            logger.warn(&quot;not_store_record(&quot;+e.getMessage()+&quot;)&gt;&gt;&gt;&quot;+item.toJSONString());
-        }
-    });
-}
-
-public void bulkUpdate(String index, String id, JSONObject item,Boolean upsert,String routing) {
-    if(item == null) {
-        return;
-    }
-    UpdateRequest request = new UpdateRequest(index,id).doc(item); 
-    request.docAsUpsert(upsert);
-    request.retryOnConflict(3);
-    request.routing(routing);
-    queue.offer(request);
-}
-
-public void bulk(ConcurrentLinkedQueue&lt;UpdateRequest&gt; queue, RestHighLevelClient client) {
-    BulkRequest bulk = new BulkRequest();
-    for (int i = 0; i &lt; esConfig.getBulk(); i++) {
-        if(queue.isEmpty()) break;
-        bulk.add(queue.poll());
-    }
-    if(bulk.numberOfActions() == 0) return;
-    logger.info(DateUtils.getNowDate()+&quot;:starting handle doc queue,actions:&quot;+bulk.numberOfActions());
-    client.bulkAsync(bulk, RequestOptions.DEFAULT, new ActionListener&lt;BulkResponse&gt;() {
-        @Override
-        public void onResponse(BulkResponse response) {
-            if(response.hasFailures())
-                logger.info(response.buildFailureMessage());
-        }
-        @Override
-        public void onFailure(Exception e) {
-            logger.warn(&quot;bulk handle docs error:&quot;+e.getMessage());
-        }
-    });
-}
-</code></pre>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bulk</span><span class="hljs-params">(ConcurrentLinkedQueue&lt;UpdateRequest&gt; queue, RestHighLevelClient client)</span> </span>&#123;
+	BulkRequest bulk = <span class="hljs-keyword">new</span> BulkRequest();
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; esConfig.getBulk(); i++) &#123;
+		<span class="hljs-keyword">if</span>(queue.isEmpty()) <span class="hljs-keyword">break</span>;
+		bulk.add(queue.poll());
+	&#125;
+	<span class="hljs-keyword">if</span>(bulk.numberOfActions() == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;
+	logger.info(DateUtils.getNowDate()+<span class="hljs-string">":starting handle doc queue,actions:"</span>+bulk.numberOfActions());
+	client.bulkAsync(bulk, RequestOptions.DEFAULT, <span class="hljs-keyword">new</span> ActionListener&lt;BulkResponse&gt;() &#123;
+		<span class="hljs-meta">@Override</span>
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span><span class="hljs-params">(BulkResponse response)</span> </span>&#123;
+			<span class="hljs-keyword">if</span>(response.hasFailures())
+				logger.info(response.buildFailureMessage());
+		&#125;
+		<span class="hljs-meta">@Override</span>
+		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFailure</span><span class="hljs-params">(Exception e)</span> </span>&#123;
+			logger.warn(<span class="hljs-string">"bulk handle docs error:"</span>+e.getMessage());
+		&#125;
+	&#125;);
+&#125;</code></pre>
 <p><strong>Common apis</strong></p>
-<pre><code class="lang-java">
-public void locationSearch(SearchSourceBuilder searchSourceBuilder, BoolQueryBuilder booleanQueryBuilder,
-        String location,String lockey,Double distance,Boolean sort) throws FontFormatException {
-    String[] latlon = location.split(&quot;,&quot;);
-    if(latlon.length != 2) {
-        throw new NumberFormatException(&quot;经纬度参数不正确.location参数以英文逗号(,)连接的字符串.正确示例:“纬度(latitude),经度(longitude)\&quot;&quot;);
-    }
-    Double lat = Double.parseDouble(latlon[0]);
-    Double lon = Double.parseDouble(latlon[1]);
+<pre><code class="hljs java">
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">locationSearch</span><span class="hljs-params">(SearchSourceBuilder searchSourceBuilder, BoolQueryBuilder booleanQueryBuilder,
+		String location,String lockey,Double distance,Boolean sort)</span> <span class="hljs-keyword">throws</span> FontFormatException </span>&#123;
+	String[] latlon = location.split(<span class="hljs-string">","</span>);
+	<span class="hljs-keyword">if</span>(latlon.length != <span class="hljs-number">2</span>) &#123;
+		<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> NumberFormatException(<span class="hljs-string">"经纬度参数不正确.location参数以英文逗号(,)连接的字符串.正确示例:“纬度(latitude),经度(longitude)\""</span>);
+	&#125;
+	Double lat = Double.parseDouble(latlon[<span class="hljs-number">0</span>]);
+	Double lon = Double.parseDouble(latlon[<span class="hljs-number">1</span>]);
+	
+	GeoDistanceQueryBuilder geoQueryBuilder = QueryBuilders.geoDistanceQuery(lockey).point(lat, lon)
+								   .distance(distance == <span class="hljs-keyword">null</span>?esConfig.getDistance():distance, DistanceUnit.KILOMETERS)
+								   .geoDistance(GeoDistance.PLANE);
+	<span class="hljs-keyword">if</span>(sort) &#123;
+		GeoDistanceSortBuilder distanceSortBuilder = SortBuilders.geoDistanceSort(lockey,lat,lon);
+		distanceSortBuilder.order(SortOrder.ASC);
+		distanceSortBuilder.point(lat, lon);
+		searchSourceBuilder.sort(distanceSortBuilder);
+	&#125;
+	booleanQueryBuilder.must(geoQueryBuilder);
+&#125;
 
-    GeoDistanceQueryBuilder geoQueryBuilder = QueryBuilders.geoDistanceQuery(lockey).point(lat, lon)
-                                   .distance(distance == null?esConfig.getDistance():distance, DistanceUnit.KILOMETERS)
-                                   .geoDistance(GeoDistance.PLANE);
-    if(sort) {
-        GeoDistanceSortBuilder distanceSortBuilder = SortBuilders.geoDistanceSort(lockey,lat,lon);
-        distanceSortBuilder.order(SortOrder.ASC);
-        distanceSortBuilder.point(lat, lon);
-        searchSourceBuilder.sort(distanceSortBuilder);
-    }
-    booleanQueryBuilder.must(geoQueryBuilder);
-}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fullTextSearch</span><span class="hljs-params">(BoolQueryBuilder booleanQueryBuilder, String keyword,List&lt;String&gt; fields,Boolean must)</span> </span>&#123;
+	DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+	fields.forEach(item-&gt;&#123;
+		disMaxQueryBuilder.add(QueryBuilders.matchQuery(item,keyword));
+	&#125;);
+	<span class="hljs-keyword">if</span>(must) booleanQueryBuilder.must(disMaxQueryBuilder);
+	<span class="hljs-keyword">else</span> booleanQueryBuilder.should(disMaxQueryBuilder);
+&#125;
 
-public void fullTextSearch(BoolQueryBuilder booleanQueryBuilder, String keyword,List&lt;String&gt; fields,Boolean must) {
-    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
-    fields.forEach(item-&gt;{
-        disMaxQueryBuilder.add(QueryBuilders.matchQuery(item,keyword));
-    });
-    if(must) booleanQueryBuilder.must(disMaxQueryBuilder);
-    else booleanQueryBuilder.should(disMaxQueryBuilder);
-}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">phraseTextSearch</span><span class="hljs-params">(BoolQueryBuilder booleanQueryBuilder, String keyword,List&lt;String&gt; fields,Boolean must)</span> </span>&#123;
+	DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+	List&lt;String&gt; words = Arrays.asList(keyword.split(<span class="hljs-string">" "</span>));
+	fields.forEach(item-&gt;&#123;
+		words.forEach(word-&gt;&#123;
+			disMaxQueryBuilder.add(QueryBuilders.matchPhraseQuery(item,word));
+		&#125;);
+	&#125;);
+	<span class="hljs-keyword">if</span>(must) booleanQueryBuilder.must(disMaxQueryBuilder);
+	<span class="hljs-keyword">else</span> booleanQueryBuilder.should(disMaxQueryBuilder);
+&#125;
 
-public void phraseTextSearch(BoolQueryBuilder booleanQueryBuilder, String keyword,List&lt;String&gt; fields,Boolean must) {
-    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
-    List&lt;String&gt; words = Arrays.asList(keyword.split(&quot; &quot;));
-    fields.forEach(item-&gt;{
-        words.forEach(word-&gt;{
-            disMaxQueryBuilder.add(QueryBuilders.matchPhraseQuery(item,word));
-        });
-    });
-    if(must) booleanQueryBuilder.must(disMaxQueryBuilder);
-    else booleanQueryBuilder.should(disMaxQueryBuilder);
-}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">textSearch</span><span class="hljs-params">(BoolQueryBuilder booleanQueryBuilder, String keyword, List&lt;String&gt; fields, Boolean phrase,Boolean must)</span> </span>&#123;
+	<span class="hljs-keyword">if</span>(phrase) phraseTextSearch(booleanQueryBuilder, keyword, fields,must);
+	<span class="hljs-keyword">else</span> fullTextSearch(booleanQueryBuilder, keyword, fields,must);
+&#125;
+	
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">typeSearch</span><span class="hljs-params">(BoolQueryBuilder booleanQueryBuilder,String key,List&lt;String&gt; typeArray, List&lt;String&gt; mustNot)</span> </span>&#123;
+	DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; typeArray.size(); i++) &#123;
+		disMaxQueryBuilder.add(QueryBuilders.termQuery(key,typeArray.get(i)));
+	&#125;
+	booleanQueryBuilder.must(disMaxQueryBuilder);
+	
+	List&lt;QueryBuilder&gt; mustNotQuerys = <span class="hljs-keyword">new</span> ArrayList&lt;QueryBuilder&gt;();
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; mustNot.size(); i++) &#123;
+		QueryBuilder query = QueryBuilders.termQuery(key,mustNot.get(i));
+		mustNotQuerys.add(query);
+	&#125;
+	booleanQueryBuilder.mustNot().addAll(mustNotQuerys);
+&#125;
 
-public void textSearch(BoolQueryBuilder booleanQueryBuilder, String keyword, List&lt;String&gt; fields, Boolean phrase,Boolean must) {
-    if(phrase) phraseTextSearch(booleanQueryBuilder, keyword, fields,must);
-    else fullTextSearch(booleanQueryBuilder, keyword, fields,must);
-}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">typeSearch</span><span class="hljs-params">(BoolQueryBuilder booleanQueryBuilder,String key, List&lt;String&gt; typeArray)</span> </span>&#123;
+	DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; typeArray.size(); i++) &#123;
+		disMaxQueryBuilder.add(QueryBuilders.termQuery(key,typeArray.get(i)));
+	&#125;
+	booleanQueryBuilder.must(disMaxQueryBuilder);
+&#125;
 
-public void typeSearch(BoolQueryBuilder booleanQueryBuilder,String key,List&lt;String&gt; typeArray, List&lt;String&gt; mustNot) {
-    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
-    for (int i = 0; i &lt; typeArray.size(); i++) {
-        disMaxQueryBuilder.add(QueryBuilders.termQuery(key,typeArray.get(i)));
-    }
-    booleanQueryBuilder.must(disMaxQueryBuilder);
-
-    List&lt;QueryBuilder&gt; mustNotQuerys = new ArrayList&lt;QueryBuilder&gt;();
-    for (int i = 0; i &lt; mustNot.size(); i++) {
-        QueryBuilder query = QueryBuilders.termQuery(key,mustNot.get(i));
-        mustNotQuerys.add(query);
-    }
-    booleanQueryBuilder.mustNot().addAll(mustNotQuerys);
-}
-
-public void typeSearch(BoolQueryBuilder booleanQueryBuilder,String key, List&lt;String&gt; typeArray) {
-    DisMaxQueryBuilder disMaxQueryBuilder = QueryBuilders.disMaxQuery();
-    for (int i = 0; i &lt; typeArray.size(); i++) {
-        disMaxQueryBuilder.add(QueryBuilders.termQuery(key,typeArray.get(i)));
-    }
-    booleanQueryBuilder.must(disMaxQueryBuilder);
-}
-
-public void createQuery(SearchRequest searchRequest, SearchSourceBuilder searchSourceBuilder,Integer from, Integer size, QueryBuilder queryBuilder) {
-    searchSourceBuilder.from(from == null?esConfig.getFrom():from);
-    searchSourceBuilder.size(size == null?esConfig.getSize():size);
-    searchSourceBuilder.query(queryBuilder); 
-    searchRequest.source(searchSourceBuilder);
-}
-
-public void createQuery(SearchRequest searchRequest, SearchSourceBuilder searchSourceBuilder,Integer from, Integer size, QueryBuilder queryBuilder, QueryBuilder postFilter) {
-    searchSourceBuilder.from(from == null?esConfig.getFrom():from);
-    searchSourceBuilder.size(size == null?esConfig.getSize():size);
-    searchSourceBuilder.query(queryBuilder); 
-    searchSourceBuilder.postFilter(postFilter);
-    searchRequest.source(searchSourceBuilder);
-}
-
-public void sort(SearchSourceBuilder searchSourceBuilder, int sortField) {
-    String field = dict.getSortField().get(sortField);
-    String order = dict.getSortType().get(field);
-    searchSourceBuilder.sort(new FieldSortBuilder(field).order(SortOrder.fromString(order)));
-}
-
-public void searchMustNot(BoolQueryBuilder booleanQueryBuilder,String field,String values) {
-    List&lt;String&gt; mustNot = Arrays.asList(values.split(&quot;,&quot;));
-    mustNot.forEach(item-&gt;{
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createQuery</span><span class="hljs-params">(SearchRequest searchRequest, SearchSourceBuilder searchSourceBuilder,Integer from, Integer size, QueryBuilder queryBuilder)</span> </span>&#123;
+	searchSourceBuilder.from(from == <span class="hljs-keyword">null</span>?esConfig.getFrom():from);
+	searchSourceBuilder.size(size == <span class="hljs-keyword">null</span>?esConfig.getSize():size);
+	searchSourceBuilder.query(queryBuilder); 
+	searchRequest.source(searchSourceBuilder);
+&#125;
+	
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createQuery</span><span class="hljs-params">(SearchRequest searchRequest, SearchSourceBuilder searchSourceBuilder,Integer from, Integer size, QueryBuilder queryBuilder, QueryBuilder postFilter)</span> </span>&#123;
+	searchSourceBuilder.from(from == <span class="hljs-keyword">null</span>?esConfig.getFrom():from);
+	searchSourceBuilder.size(size == <span class="hljs-keyword">null</span>?esConfig.getSize():size);
+	searchSourceBuilder.query(queryBuilder); 
+	searchSourceBuilder.postFilter(postFilter);
+	searchRequest.source(searchSourceBuilder);
+&#125;
+	
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sort</span><span class="hljs-params">(SearchSourceBuilder searchSourceBuilder, <span class="hljs-keyword">int</span> sortField)</span> </span>&#123;
+	String field = dict.getSortField().get(sortField);
+	String order = dict.getSortType().get(field);
+	searchSourceBuilder.sort(<span class="hljs-keyword">new</span> FieldSortBuilder(field).order(SortOrder.fromString(order)));
+&#125;
+	
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">searchMustNot</span><span class="hljs-params">(BoolQueryBuilder booleanQueryBuilder,String field,String values)</span> </span>&#123;
+	List&lt;String&gt; mustNot = Arrays.asList(values.split(<span class="hljs-string">","</span>));
+	mustNot.forEach(item-&gt;&#123;
 booleanQueryBuilder.mustNot(QueryBuilders.termQuery(field,item));
-    });
-}
-</code></pre>
+	&#125;);
+&#125;</code></pre>
 <p><strong>search</strong></p>
-<pre><code class="lang-java">public List&lt;Map&lt;String, Object&gt;&gt; search(String keyword,String scopes, Integer from, Integer size,String location, Double distance,Boolean matchPhrase,Boolean scoreSort) throws IOException, FontFormatException {
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; search(String keyword,String scopes, Integer from, Integer size,String location, Double distance,Boolean matchPhrase,Boolean scoreSort) <span class="hljs-keyword">throws</span> IOException, FontFormatException &#123;
+	
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	SearchRequest searchRequest = <span class="hljs-keyword">new</span> SearchRequest(esConfig.getIndex()); 
+	SearchSourceBuilder searchSourceBuilder = <span class="hljs-keyword">new</span> SearchSourceBuilder(); 
+	
+	BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
+	
+	<span class="hljs-comment">/*type检索*/</span>
+	<span class="hljs-keyword">if</span>(!StringUtils.equals(scopes,<span class="hljs-string">"all"</span>)) &#123;
+		List&lt;String&gt; scopeArray = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;(); 
+		scopeArray = Arrays.asList(scopes.split(<span class="hljs-string">","</span>)); 
+		engineBaseMethod.typeSearch(booleanQueryBuilder,<span class="hljs-string">"type"</span>,scopeArray);
+	&#125;
+		
+	String notTypes = StringUtils.join(dict.getMustNot(), <span class="hljs-string">","</span>);
+	engineBaseMethod.searchMustNot(booleanQueryBuilder, <span class="hljs-string">"type"</span>,notTypes);
+	booleanQueryBuilder.must(QueryBuilders.termQuery(<span class="hljs-string">"extra.up"</span>,<span class="hljs-string">"1"</span>));
+	
+	<span class="hljs-comment">/*多字段检索*/</span>
+	<span class="hljs-keyword">if</span>(StringUtils.isNotBlank(keyword)) &#123;
+		<span class="hljs-comment">//List&lt;String&gt; fieldList = Arrays.asList("title,cn_name,suggest".split(",")); </span>
+		List&lt;String&gt; fieldList = dict.getSearchMatch();
+		engineBaseMethod.textSearch(booleanQueryBuilder, keyword, fieldList, matchPhrase,<span class="hljs-keyword">true</span>);
+	&#125;
+	<span class="hljs-comment">/*排序*/</span>
+	engineBaseMethod.sort(searchSourceBuilder,<span class="hljs-number">0</span>);
+	engineBaseMethod.sort(searchSourceBuilder,<span class="hljs-number">1</span>);
+	
+	<span class="hljs-comment">/*地理位置范围内搜索并就近排序*/</span>
+	<span class="hljs-keyword">if</span>(StringUtils.isNotBlank(location)) &#123;
+		engineBaseMethod.locationSearch(searchSourceBuilder, booleanQueryBuilder, location,<span class="hljs-string">"location"</span>,distance,<span class="hljs-keyword">true</span>);
+	&#125;
 
-    RestHighLevelClient client = ESClient.instance(esConfig);
-    SearchRequest searchRequest = new SearchRequest(esConfig.getIndex()); 
-    SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); 
+	<span class="hljs-keyword">int</span> index = <span class="hljs-number">2</span> + (<span class="hljs-keyword">int</span>)(Math.random() * ((<span class="hljs-number">3</span> - <span class="hljs-number">2</span>) + <span class="hljs-number">1</span>));
+	<span class="hljs-keyword">if</span>(scoreSort) searchSourceBuilder.sort(<span class="hljs-keyword">new</span> ScoreSortBuilder().order(SortOrder.DESC));
+	<span class="hljs-keyword">else</span> engineBaseMethod.sort(searchSourceBuilder,index);
+	
+	
+	<span class="hljs-comment">/*构建查询*/</span>
+	engineBaseMethod.createQuery(searchRequest, searchSourceBuilder, from, size, booleanQueryBuilder);
+	SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+	<span class="hljs-comment">/*解析结果并返回*/</span>
+	List&lt;Map&lt;String, Object&gt;&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;Map&lt;String,Object&gt;&gt;();
+	engineBaseMethod.searchResultAnalyse(result, searchResponse);
+	<span class="hljs-keyword">return</span> result;
+&#125;
 
-    BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
-
-    /*type检索*/
-    if(!StringUtils.equals(scopes,&quot;all&quot;)) {
-        List&lt;String&gt; scopeArray = new ArrayList&lt;String&gt;(); 
-        scopeArray = Arrays.asList(scopes.split(&quot;,&quot;)); 
-        engineBaseMethod.typeSearch(booleanQueryBuilder,&quot;type&quot;,scopeArray);
-    }
-
-    String notTypes = StringUtils.join(dict.getMustNot(), &quot;,&quot;);
-    engineBaseMethod.searchMustNot(booleanQueryBuilder, &quot;type&quot;,notTypes);
-    booleanQueryBuilder.must(QueryBuilders.termQuery(&quot;extra.up&quot;,&quot;1&quot;));
-
-    /*多字段检索*/
-    if(StringUtils.isNotBlank(keyword)) {
-        //List&lt;String&gt; fieldList = Arrays.asList(&quot;title,cn_name,suggest&quot;.split(&quot;,&quot;)); 
-        List&lt;String&gt; fieldList = dict.getSearchMatch();
-        engineBaseMethod.textSearch(booleanQueryBuilder, keyword, fieldList, matchPhrase,true);
-    }
-    /*排序*/
-    engineBaseMethod.sort(searchSourceBuilder,0);
-    engineBaseMethod.sort(searchSourceBuilder,1);
-
-    /*地理位置范围内搜索并就近排序*/
-    if(StringUtils.isNotBlank(location)) {
-        engineBaseMethod.locationSearch(searchSourceBuilder, booleanQueryBuilder, location,&quot;location&quot;,distance,true);
-    }
-
-    int index = 2 + (int)(Math.random() * ((3 - 2) + 1));
-    if(scoreSort) searchSourceBuilder.sort(new ScoreSortBuilder().order(SortOrder.DESC));
-    else engineBaseMethod.sort(searchSourceBuilder,index);
-
-
-    /*构建查询*/
-    engineBaseMethod.createQuery(searchRequest, searchSourceBuilder, from, size, booleanQueryBuilder);
-    SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-    /*解析结果并返回*/
-    List&lt;Map&lt;String, Object&gt;&gt; result = new ArrayList&lt;Map&lt;String,Object&gt;&gt;();
-    engineBaseMethod.searchResultAnalyse(result, searchResponse);
-    return result;
-}
-
-public List&lt;String&gt; searchTips(String keyword, String type) throws IOException, FontFormatException {
-    RestHighLevelClient client = ESClient.instance(esConfig);
-
-    //前缀搜索建议
-    SearchRequest searchRequest = new SearchRequest(esConfig.getIndex()); 
-    SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder(); 
-    CompletionSuggestionBuilder suggestionBuilder = new CompletionSuggestionBuilder(&quot;suggest&quot;);
-    suggestionBuilder.prefix(keyword);
-    suggestionBuilder.size(esConfig.getSize());
-    suggestionBuilder.skipDuplicates(true);
-    SuggestBuilder suggestBuilder = new SuggestBuilder();
-    suggestBuilder.addSuggestion(&quot;search_tips&quot;, suggestionBuilder);
-    searchSourceBuilder.suggest(suggestBuilder);
-    searchRequest.source(searchSourceBuilder);
-    SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
-
-    //匹配搜索建议
-    SearchSourceBuilder querySourceBuilder = new SearchSourceBuilder(); 
-    SearchRequest queryRequest = new SearchRequest(esConfig.getIndex()); 
-    BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
-    if(StringUtils.isNotBlank(keyword)) booleanQueryBuilder.should(QueryBuilders.matchQuery(&quot;title&quot;,keyword));
-    String notTypes = StringUtils.join(dict.getMustNot(), &quot;,&quot;);
-    engineBaseMethod.searchMustNot(booleanQueryBuilder, &quot;type&quot;,notTypes);
-    querySourceBuilder.query(booleanQueryBuilder);
-    queryRequest.source(querySourceBuilder);
-    SearchResponse queryResponse = client.search(queryRequest, RequestOptions.DEFAULT);
-
-    /*解析结果并返回*/
-    List&lt;String&gt; result = new ArrayList&lt;String&gt;();
-    Suggest suggest = searchResponse.getSuggest();
-    CompletionSuggestion completionSuggestion = suggest.getSuggestion(&quot;search_tips&quot;);
-    for(CompletionSuggestion.Entry entry : completionSuggestion.getEntries()) { 
-        for (CompletionSuggestion.Entry.Option option : entry) { 
-            String optionType = option.getHit().getSourceAsMap().get(&quot;type&quot;).toString();
-            if(StringUtils.equals(type, &quot;all&quot;) || StringUtils.equals(type,optionType)) result.add(option.getText().string());
-        }
-    }
-    for(SearchHit hit:queryResponse.getHits()) {
-        String text = (String) hit.getSourceAsMap().get(&quot;title&quot;);
-        if(!result.contains(text)) result.add(text);
-    }
-    return result;
-}
-</code></pre>
+<span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title">searchTips</span><span class="hljs-params">(String keyword, String type)</span> <span class="hljs-keyword">throws</span> IOException, FontFormatException </span>&#123;
+	RestHighLevelClient client = ESClient.instance(esConfig);
+	
+	<span class="hljs-comment">//前缀搜索建议</span>
+	SearchRequest searchRequest = <span class="hljs-keyword">new</span> SearchRequest(esConfig.getIndex()); 
+	SearchSourceBuilder searchSourceBuilder = <span class="hljs-keyword">new</span> SearchSourceBuilder(); 
+	CompletionSuggestionBuilder suggestionBuilder = <span class="hljs-keyword">new</span> CompletionSuggestionBuilder(<span class="hljs-string">"suggest"</span>);
+	suggestionBuilder.prefix(keyword);
+	suggestionBuilder.size(esConfig.getSize());
+	suggestionBuilder.skipDuplicates(<span class="hljs-keyword">true</span>);
+	SuggestBuilder suggestBuilder = <span class="hljs-keyword">new</span> SuggestBuilder();
+	suggestBuilder.addSuggestion(<span class="hljs-string">"search_tips"</span>, suggestionBuilder);
+	searchSourceBuilder.suggest(suggestBuilder);
+	searchRequest.source(searchSourceBuilder);
+	SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+	
+	<span class="hljs-comment">//匹配搜索建议</span>
+	SearchSourceBuilder querySourceBuilder = <span class="hljs-keyword">new</span> SearchSourceBuilder(); 
+	SearchRequest queryRequest = <span class="hljs-keyword">new</span> SearchRequest(esConfig.getIndex()); 
+	BoolQueryBuilder booleanQueryBuilder = QueryBuilders.boolQuery();
+	<span class="hljs-keyword">if</span>(StringUtils.isNotBlank(keyword)) booleanQueryBuilder.should(QueryBuilders.matchQuery(<span class="hljs-string">"title"</span>,keyword));
+	String notTypes = StringUtils.join(dict.getMustNot(), <span class="hljs-string">","</span>);
+	engineBaseMethod.searchMustNot(booleanQueryBuilder, <span class="hljs-string">"type"</span>,notTypes);
+	querySourceBuilder.query(booleanQueryBuilder);
+	queryRequest.source(querySourceBuilder);
+	SearchResponse queryResponse = client.search(queryRequest, RequestOptions.DEFAULT);
+	
+	<span class="hljs-comment">/*解析结果并返回*/</span>
+	List&lt;String&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();
+	Suggest suggest = searchResponse.getSuggest();
+	CompletionSuggestion completionSuggestion = suggest.getSuggestion(<span class="hljs-string">"search_tips"</span>);
+	<span class="hljs-keyword">for</span>(CompletionSuggestion.Entry entry : completionSuggestion.getEntries()) &#123; 
+		<span class="hljs-keyword">for</span> (CompletionSuggestion.Entry.Option option : entry) &#123; 
+			String optionType = option.getHit().getSourceAsMap().get(<span class="hljs-string">"type"</span>).toString();
+			<span class="hljs-keyword">if</span>(StringUtils.equals(type, <span class="hljs-string">"all"</span>) || StringUtils.equals(type,optionType)) result.add(option.getText().string());
+		&#125;
+	&#125;
+	<span class="hljs-keyword">for</span>(SearchHit hit:queryResponse.getHits()) &#123;
+		String text = (String) hit.getSourceAsMap().get(<span class="hljs-string">"title"</span>);
+		<span class="hljs-keyword">if</span>(!result.contains(text)) result.add(text);
+	&#125;
+	<span class="hljs-keyword">return</span> result;
+&#125;</code></pre>
 <h2 id="集群安装"><a href="#集群安装" class="headerlink" title="集群安装"></a>集群安装</h2><p><strong>master 配置</strong></p>
-<pre><code class="lang-bash"># ---------------------------------- Cluster -----------------------------------
+<pre><code class="hljs bash"><span class="hljs-comment"># ---------------------------------- Cluster -----------------------------------</span>
 cluster.name: es-cluster
 
-# ------------------------------------ Node ------------------------------------
+<span class="hljs-comment"># ------------------------------------ Node ------------------------------------</span>
 node.name: node1-rec
-node.master: true
-node.data: false 
+node.master: <span class="hljs-literal">true</span>
+node.data: <span class="hljs-literal">false</span> 
 
-# ----------------------------------- Paths ------------------------------------
+<span class="hljs-comment"># ----------------------------------- Paths ------------------------------------</span>
 path.data: /data/es/data
 path.logs: /data/es/logs
 
-# ----------------------------------- Memory -----------------------------------
-bootstrap.memory_lock: false
+<span class="hljs-comment"># ----------------------------------- Memory -----------------------------------</span>
+bootstrap.memory_lock: <span class="hljs-literal">false</span>
 
-# ---------------------------------- Network -----------------------------------
+<span class="hljs-comment"># ---------------------------------- Network -----------------------------------</span>
 network.host: 0.0.0.0
 network.publish_host: 10.2.64.110
 http.port: 9200
 
-# --------------------------------- Discovery ----------------------------------
+<span class="hljs-comment"># --------------------------------- Discovery ----------------------------------</span>
 
-discovery.seed_hosts: [&quot;10.2.64.110&quot;, &quot;10.2.64.111&quot;, &quot;10.2.64.112&quot;]
+discovery.seed_hosts: [<span class="hljs-string">"10.2.64.110"</span>, <span class="hljs-string">"10.2.64.111"</span>, <span class="hljs-string">"10.2.64.112"</span>]
 
-cluster.initial_master_nodes: [&quot;10.2.64.110&quot;]
+cluster.initial_master_nodes: [<span class="hljs-string">"10.2.64.110"</span>]
 discovery.zen.fd.ping_timeout: 1m
 discovery.zen.fd.ping_retries: 5
-http.cors.allow-origin: &quot;*&quot; 
-http.cors.enabled: true
-bootstrap.system_call_filter: false
+http.cors.allow-origin: <span class="hljs-string">"*"</span> 
+http.cors.enabled: <span class="hljs-literal">true</span>
+bootstrap.system_call_filter: <span class="hljs-literal">false</span>
 
-xpack.license.self_generated.type: basic
-</code></pre>
+xpack.license.self_generated.type: basic</code></pre>
 <p><strong>node 配置</strong></p>
-<pre><code class="lang-bash">cluster.name: es-cluster
-# ------------------------------------ Node ------------------------------------
+<pre><code class="hljs bash">cluster.name: es-cluster
+<span class="hljs-comment"># ------------------------------------ Node ------------------------------------</span>
 node.name: node2-rec
-node.master: false
-node.data: true 
-# ----------------------------------- Paths ------------------------------------
+node.master: <span class="hljs-literal">false</span>
+node.data: <span class="hljs-literal">true</span> 
+<span class="hljs-comment"># ----------------------------------- Paths ------------------------------------</span>
 path.data: /data/es/data
 path.logs: /data/es/logs
-# ----------------------------------- Memory -----------------------------------
-bootstrap.memory_lock: false
-# ---------------------------------- Network -----------------------------------
+<span class="hljs-comment"># ----------------------------------- Memory -----------------------------------</span>
+bootstrap.memory_lock: <span class="hljs-literal">false</span>
+<span class="hljs-comment"># ---------------------------------- Network -----------------------------------</span>
 network.host: 0.0.0.0
 network.publish_host: 10.2.64.111
 http.port: 9200
-# --------------------------------- Discovery ----------------------------------
-discovery.seed_hosts: [&quot;10.2.64.110&quot;, &quot;10.2.64.111&quot;, &quot;10.2.64.112&quot;]
+<span class="hljs-comment"># --------------------------------- Discovery ----------------------------------</span>
+discovery.seed_hosts: [<span class="hljs-string">"10.2.64.110"</span>, <span class="hljs-string">"10.2.64.111"</span>, <span class="hljs-string">"10.2.64.112"</span>]
 
-cluster.initial_master_nodes: [&quot;10.2.64.110&quot;]
+cluster.initial_master_nodes: [<span class="hljs-string">"10.2.64.110"</span>]
 discovery.zen.fd.ping_timeout: 1m
 discovery.zen.fd.ping_retries: 5
-http.cors.allow-origin: &quot;*&quot; 
-http.cors.enabled: true
-bootstrap.system_call_filter: false
-#
-xpack.license.self_generated.type: basic
-</code></pre>
+http.cors.allow-origin: <span class="hljs-string">"*"</span> 
+http.cors.enabled: <span class="hljs-literal">true</span>
+bootstrap.system_call_filter: <span class="hljs-literal">false</span>
+<span class="hljs-comment">#</span>
+xpack.license.self_generated.type: basic</code></pre>
 <p><strong>master kibana 配置</strong></p>
-<pre><code class="lang-bash">server.port: 5601
-server.host: &quot;0.0.0.0&quot;
-server.name: &quot;node1-rec&quot;
-elasticsearch.hosts: [&quot;http://10.2.64.110:9200&quot;,&quot;http://10.2.64.111:9200&quot;,&quot;http://10.2.64.112:9200&quot;]
-</code></pre>
+<pre><code class="hljs bash">server.port: 5601
+server.host: <span class="hljs-string">"0.0.0.0"</span>
+server.name: <span class="hljs-string">"node1-rec"</span>
+elasticsearch.hosts: [<span class="hljs-string">"http://10.2.64.110:9200"</span>,<span class="hljs-string">"http://10.2.64.111:9200"</span>,<span class="hljs-string">"http://10.2.64.112:9200"</span>]</code></pre>
 <p><strong>Kibana查看集群状态</strong></p>
-<pre><code>GET _cluster/health?pretty
+<pre><code class="hljs routeros"><span class="hljs-builtin-name">GET</span> _cluster/health?pretty
 
-{
-  &quot;cluster_name&quot; : &quot;es-cluster&quot;,
-  &quot;status&quot; : &quot;green&quot;,
-  &quot;timed_out&quot; : false,
-  &quot;number_of_nodes&quot; : 3,
-  &quot;number_of_data_nodes&quot; : 2,
-  &quot;active_primary_shards&quot; : 7,
-  &quot;active_shards&quot; : 14,
-  &quot;relocating_shards&quot; : 0,
-  &quot;initializing_shards&quot; : 0,
-  &quot;unassigned_shards&quot; : 0,
-  &quot;delayed_unassigned_shards&quot; : 0,
-  &quot;number_of_pending_tasks&quot; : 0,
-  &quot;number_of_in_flight_fetch&quot; : 0,
-  &quot;task_max_waiting_in_queue_millis&quot; : 0,
-  &quot;active_shards_percent_as_number&quot; : 100.0
-}
-</code></pre>
+&#123;
+  <span class="hljs-string">"cluster_name"</span> : <span class="hljs-string">"es-cluster"</span>,
+  <span class="hljs-string">"status"</span> : <span class="hljs-string">"green"</span>,
+  <span class="hljs-string">"timed_out"</span> : <span class="hljs-literal">false</span>,
+  <span class="hljs-string">"number_of_nodes"</span> : 3,
+  <span class="hljs-string">"number_of_data_nodes"</span> : 2,
+  <span class="hljs-string">"active_primary_shards"</span> : 7,
+  <span class="hljs-string">"active_shards"</span> : 14,
+  <span class="hljs-string">"relocating_shards"</span> : 0,
+  <span class="hljs-string">"initializing_shards"</span> : 0,
+  <span class="hljs-string">"unassigned_shards"</span> : 0,
+  <span class="hljs-string">"delayed_unassigned_shards"</span> : 0,
+  <span class="hljs-string">"number_of_pending_tasks"</span> : 0,
+  <span class="hljs-string">"number_of_in_flight_fetch"</span> : 0,
+  <span class="hljs-string">"task_max_waiting_in_queue_millis"</span> : 0,
+  <span class="hljs-string">"active_shards_percent_as_number"</span> : 100.0
+&#125;</code></pre>
             </div>
             <hr>
             <div>

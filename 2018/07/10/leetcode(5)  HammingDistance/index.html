@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      159 字
+      169 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      3
        分钟
     </span>
   
@@ -211,42 +211,31 @@
               <p>difficult：easy #461</p>
 <p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
 <p>Given two integers x and y, calculate the Hamming distance.</p>
-<p>Example:</p>
-<pre><code class="lang-cpp">Input: x = 1, y = 4
-Output: 2
+<p>Example:<br><pre><code class="hljs cpp">Input: x = <span class="hljs-number">1</span>, y = <span class="hljs-number">4</span>
+Output: <span class="hljs-number">2</span>
 Explanation:
-1   (0 0 0 1)
-4   (0 1 0 0)
-       ↑    ↑
-</code></pre>
-<p>The above arrows point to positions where the corresponding bits are different.<br><strong>解法一</strong></p>
-<pre><code class="lang-cpp">int hammingDistance(int x, int y) {
-    int res = 0, exc = x ^ y;
-    while (exc){
-        ++res;
-        exc &amp;= (exc - 1);
-    }
-    return res;
-}
-</code></pre>
-<p><strong>解法二</strong></p>
-<pre><code class="lang-cpp">//递归法
-int hammingDistance(int x, int y) {
-    if ((x ^ y) == 0) return 0;
-    return (x ^ y) % 2 + hammingDistance(x / 2, y / 2);
-}
-</code></pre>
-<p><strong>解法三</strong></p>
-<pre><code class="lang-cpp">int hammingDistance(int x, int y) {
-    int result = x ^ y;
-    int binary = 0;
-    while (result) {
-        binary += result % 2;
-        result = result / 2;
-    }
-    return binary;
-}
-</code></pre>
+<span class="hljs-number">1</span>   (<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1</span>)
+<span class="hljs-number">4</span>   (<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>)
+       ↑    ↑</code></pre><br>The above arrows point to positions where the corresponding bits are different.<br><strong>解法一</strong><br><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hammingDistance</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>, exc = x ^ y;
+	<span class="hljs-keyword">while</span> (exc)&#123;
+		++res;
+		exc &amp;= (exc - <span class="hljs-number">1</span>);
+	&#125;
+	<span class="hljs-keyword">return</span> res;
+&#125;</code></pre><br><strong>解法二</strong><br><pre><code class="hljs cpp"><span class="hljs-comment">//递归法</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hammingDistance</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;
+	<span class="hljs-keyword">if</span> ((x ^ y) == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">return</span> (x ^ y) % <span class="hljs-number">2</span> + hammingDistance(x / <span class="hljs-number">2</span>, y / <span class="hljs-number">2</span>);
+&#125;</code></pre><br><strong>解法三</strong><br><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">hammingDistance</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span> </span>&#123;
+	<span class="hljs-keyword">int</span> result = x ^ y;
+	<span class="hljs-keyword">int</span> binary = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">while</span> (result) &#123;
+		binary += result % <span class="hljs-number">2</span>;
+		result = result / <span class="hljs-number">2</span>;
+	&#125;
+	<span class="hljs-keyword">return</span> binary;
+&#125;</code></pre></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

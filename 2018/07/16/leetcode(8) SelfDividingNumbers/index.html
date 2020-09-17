@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      270 字
+      286 字
     </span>
   
 
@@ -209,64 +209,56 @@
             
             <div class="markdown-body" id="post-body">
               <p>difficult：easy #728<br>A self-dividing number is a number that is divisible by every digit it contains.<br>For example, 128 is a self-dividing number because 128 % 1 == 0, 128 % 2 == 0, and 128 % 8 == 0.<br>Also, a self-dividing number is not allowed to contain the digit zero.<br>Given a lower and upper number bound, output a list of every possible self dividing number, including the bounds if possible.</p>
-<p>Example :</p>
-<pre><code class="lang-cpp">Input: 
-left = 1, right = 22
-Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]
-</code></pre>
-<p>Note:<br>The boundaries of each input argument are 1 &lt;= left &lt;= right &lt;= 10000</p>
-<p><strong>解法一：</strong></p>
-<pre><code class="lang-cpp">#include&lt;vector&gt;
-std::vector&lt;int&gt; selfDividingNumbers(int left, int right) {
-    std::vector&lt;int&gt; result;
-    while (left &lt;= right){
-        int x = left;
-        bool flag = true;
-        while (x != 0 &amp;&amp; flag){
-            int pos = x % 10;
-            if (pos == 0){
-                flag = false;
-                break;
-            }
-            if (left % pos != 0) {
-                flag = false;
-            }
-            x = x / 10;
-        }
-        if (flag)
-            result.push_back(left);
-        left++;
-    }
-    return result;
-}
-</code></pre>
-<p><strong>解法二:</strong></p>
-<pre><code class="lang-cpp">#include&lt;vector&gt;
-#include&lt;sstream&gt;
-#include &lt;string&gt;
-std::vector&lt;int&gt; selfDividingNumbers(int left, int right) {
-    std::vector&lt;int&gt; result;
-    while (left &lt;= right) {
-        std::string str;
-        std::stringstream buf;
-        buf &lt;&lt; left;
-        buf &gt;&gt; str;
-        bool flag = true;
-        for(char c : str){
-            if (c == &#39;0&#39; || left % (c - &#39;0&#39;) &gt; 0){
-                flag = false;
-                break;
-            }
-        }
-        if (flag){
-            result.push_back(left);
-        }
-        left++;
+<p>Example :<br><pre><code class="hljs cpp">Input: 
+left = <span class="hljs-number">1</span>, right = <span class="hljs-number">22</span>
+Output: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span>, <span class="hljs-number">15</span>, <span class="hljs-number">22</span>]</code></pre><br>Note:<br>The boundaries of each input argument are 1 &lt;= left &lt;= right &lt;= 10000</p>
+<p><strong>解法一：</strong><br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; selfDividingNumbers(<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right) &#123;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; result;
+	<span class="hljs-keyword">while</span> (left &lt;= right)&#123;
+		<span class="hljs-keyword">int</span> x = left;
+		<span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>;
+		<span class="hljs-keyword">while</span> (x != <span class="hljs-number">0</span> &amp;&amp; flag)&#123;
+			<span class="hljs-keyword">int</span> pos = x % <span class="hljs-number">10</span>;
+			<span class="hljs-keyword">if</span> (pos == <span class="hljs-number">0</span>)&#123;
+				flag = <span class="hljs-literal">false</span>;
+				<span class="hljs-keyword">break</span>;
+			&#125;
+			<span class="hljs-keyword">if</span> (left % pos != <span class="hljs-number">0</span>) &#123;
+				flag = <span class="hljs-literal">false</span>;
+			&#125;
+			x = x / <span class="hljs-number">10</span>;
+		&#125;
+		<span class="hljs-keyword">if</span> (flag)
+			result.push_back(left);
+		left++;
+	&#125;
+	<span class="hljs-keyword">return</span> result;
+&#125;</code></pre><br><strong>解法二:</strong><br><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; selfDividingNumbers(<span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right) &#123;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; result;
+	<span class="hljs-keyword">while</span> (left &lt;= right) &#123;
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> str;
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> buf;
+		buf &lt;&lt; left;
+		buf &gt;&gt; str;
+		<span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c : str)&#123;
+			<span class="hljs-keyword">if</span> (c == <span class="hljs-string">'0'</span> || left % (c - <span class="hljs-string">'0'</span>) &gt; <span class="hljs-number">0</span>)&#123;
+				flag = <span class="hljs-literal">false</span>;
+				<span class="hljs-keyword">break</span>;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">if</span> (flag)&#123;
+			result.push_back(left);
+		&#125;
+		left++;
 
-    }
-    return result;
-}
-</code></pre>
+	&#125;
+	<span class="hljs-keyword">return</span> result;
+&#125;</code></pre></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>

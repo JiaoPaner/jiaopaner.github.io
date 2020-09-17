@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      644 字
+      576 字
     </span>
   
 
@@ -175,7 +175,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12
+      11
        分钟
     </span>
   
@@ -208,115 +208,114 @@
             <h1 style="display: none">VGG16Net</h1>
             
             <div class="markdown-body" id="post-body">
-              <p><img src="\images\dp-net\VGG16_Summary_Table.jpg" srcset="/img/loading.gif" alt=""></p>
-<p><img src="\images\dp-net\vgg16-neural-network.jpg" srcset="/img/loading.gif" alt=""></p>
-<pre><code class="lang-python">import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
+              <p><img src="\images\dp-net\VGG16_Summary_Table.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dp-net\vgg16-neural-network.jpg" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<span class="hljs-keyword">from</span> tensorflow <span class="hljs-keyword">import</span> keras
+<span class="hljs-keyword">from</span> tensorflow.keras <span class="hljs-keyword">import</span> layers
 
-#模型
+<span class="hljs-comment">#模型</span>
 model = keras.Sequential()
 
-# 1st Layer
-model.add(layers.Conv2D(input_shape=(224,224,3),filters=64,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=64,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;same&#39;))
+<span class="hljs-comment"># 1st Layer</span>
+model.add(layers.Conv2D(input_shape=(<span class="hljs-number">224</span>,<span class="hljs-number">224</span>,<span class="hljs-number">3</span>),filters=<span class="hljs-number">64</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">64</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.MaxPool2D(pool_size=(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),strides=(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),padding=<span class="hljs-string">'same'</span>))
 
-# 2nd Layer
-model.add(layers.Conv2D(filters=128,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=128,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;same&#39;))
+<span class="hljs-comment"># 2nd Layer</span>
+model.add(layers.Conv2D(filters=<span class="hljs-number">128</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">128</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.MaxPool2D(pool_size=(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),strides=(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),padding=<span class="hljs-string">'same'</span>))
 
-# 3rd Layer
-model.add(layers.Conv2D(filters=256,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=256,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=256,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;same&#39;))
+<span class="hljs-comment"># 3rd Layer</span>
+model.add(layers.Conv2D(filters=<span class="hljs-number">256</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">256</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">256</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.MaxPool2D(pool_size=(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),strides=(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),padding=<span class="hljs-string">'same'</span>))
 
-# 4th Layer
-model.add(layers.Conv2D(filters=512,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=512,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=512,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;same&#39;))
+<span class="hljs-comment"># 4th Layer</span>
+model.add(layers.Conv2D(filters=<span class="hljs-number">512</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">512</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">512</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.MaxPool2D(pool_size=(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),strides=(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),padding=<span class="hljs-string">'same'</span>))
 
-# 5th Layer
-model.add(layers.Conv2D(filters=512,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=512,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.Conv2D(filters=512,kernel_size=[3,3],strides=(1,1),padding=&#39;same&#39;,activation=&#39;relu&#39;))
-model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;same&#39;))
+<span class="hljs-comment"># 5th Layer</span>
+model.add(layers.Conv2D(filters=<span class="hljs-number">512</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">512</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Conv2D(filters=<span class="hljs-number">512</span>,kernel_size=[<span class="hljs-number">3</span>,<span class="hljs-number">3</span>],strides=(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>),padding=<span class="hljs-string">'same'</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.MaxPool2D(pool_size=(<span class="hljs-number">3</span>,<span class="hljs-number">3</span>),strides=(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>),padding=<span class="hljs-string">'same'</span>))
 
-# Passing it to a Fully Connected layer
+<span class="hljs-comment"># Passing it to a Fully Connected layer</span>
 model.add(layers.Flatten())
 
-# 7th Fully Connected Layer
-model.add(layers.Dense(4096,activation=&#39;relu&#39;))
-model.add(layers.Dropout(0.5))
+<span class="hljs-comment"># 7th Fully Connected Layer</span>
+model.add(layers.Dense(<span class="hljs-number">4096</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Dropout(<span class="hljs-number">0.5</span>))
 
-# 7th Fully Connected Layer
-model.add(layers.Dense(4096,activation=&#39;relu&#39;))
-model.add(layers.Dropout(0.5))
+<span class="hljs-comment"># 7th Fully Connected Layer</span>
+model.add(layers.Dense(<span class="hljs-number">4096</span>,activation=<span class="hljs-string">'relu'</span>))
+model.add(layers.Dropout(<span class="hljs-number">0.5</span>))
 
-# Output Layer
-model.add(layers.Dense(1000,activation=&#39;softmax&#39;))
+<span class="hljs-comment"># Output Layer</span>
+model.add(layers.Dense(<span class="hljs-number">1000</span>,activation=<span class="hljs-string">'softmax'</span>))
 
-model.summary()
-</code></pre>
-<pre><code>_________________________________________________________________
-Layer (type)                 Output Shape              Param #   
-=================================================================
+model.summary()</code></pre>
+<pre><code class="hljs markdown"><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
+<span class="hljs-section">Layer (type)                 Output Shape              Param #   
+=================================================================</span>
 conv2d_31 (Conv2D)           (None, 224, 224, 64)      1792      
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_32 (Conv2D)           (None, 224, 224, 64)      36928     
-_________________________________________________________________
-max_pooling2d_13 (MaxPooling (None, 112, 112, 64)      0         
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
+max<span class="hljs-emphasis">_pooling2d_</span>13 (MaxPooling (None, 112, 112, 64)      0         
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_33 (Conv2D)           (None, 112, 112, 128)     73856     
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_34 (Conv2D)           (None, 112, 112, 128)     147584    
-_________________________________________________________________
-max_pooling2d_14 (MaxPooling (None, 56, 56, 128)       0         
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
+max<span class="hljs-emphasis">_pooling2d_</span>14 (MaxPooling (None, 56, 56, 128)       0         
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_35 (Conv2D)           (None, 56, 56, 256)       295168    
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_36 (Conv2D)           (None, 56, 56, 256)       590080    
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_37 (Conv2D)           (None, 56, 56, 256)       590080    
-_________________________________________________________________
-max_pooling2d_15 (MaxPooling (None, 28, 28, 256)       0         
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
+max<span class="hljs-emphasis">_pooling2d_</span>15 (MaxPooling (None, 28, 28, 256)       0         
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_38 (Conv2D)           (None, 28, 28, 512)       1180160   
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_39 (Conv2D)           (None, 28, 28, 512)       2359808   
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_40 (Conv2D)           (None, 28, 28, 512)       2359808   
-_________________________________________________________________
-max_pooling2d_16 (MaxPooling (None, 14, 14, 512)       0         
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
+max<span class="hljs-emphasis">_pooling2d_</span>16 (MaxPooling (None, 14, 14, 512)       0         
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_41 (Conv2D)           (None, 14, 14, 512)       2359808   
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_42 (Conv2D)           (None, 14, 14, 512)       2359808   
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 conv2d_43 (Conv2D)           (None, 14, 14, 512)       2359808   
-_________________________________________________________________
-max_pooling2d_17 (MaxPooling (None, 7, 7, 512)         0         
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
+max<span class="hljs-emphasis">_pooling2d_</span>17 (MaxPooling (None, 7, 7, 512)         0         
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 flatten_3 (Flatten)          (None, 25088)             0         
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 dense_11 (Dense)             (None, 4096)              102764544 
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 dropout_8 (Dropout)          (None, 4096)              0         
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 dense_12 (Dense)             (None, 4096)              16781312  
-_________________________________________________________________
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
 dropout_9 (Dropout)          (None, 4096)              0         
-_________________________________________________________________
-dense_13 (Dense)             (None, 1000)              4097000   
-=================================================================
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span>
+<span class="hljs-section">dense_13 (Dense)             (None, 1000)              4097000   
+=================================================================</span>
 Total params: 138,357,544
 Trainable params: 138,357,544
 Non-trainable params: 0
-_________________________________________________________________
-</code></pre><p>版权声明：原创,转载请注明来源,否则律师函警告</p>
+<span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span><span class="hljs-strong">_____</span></code></pre>
+<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>
             <hr>

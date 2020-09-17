@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      256 字
+      245 字
     </span>
   
 
@@ -208,50 +208,39 @@
             <h1 style="display: none">linux下mysql的安装</h1>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="linux下mysql安装步骤"><a href="#linux下mysql安装步骤" class="headerlink" title="linux下mysql安装步骤"></a>linux下mysql安装步骤</h1><p>1.ubuntu系统<br>1) 输入如下命令</p>
-<pre><code class="lang-bash">sudo apt-get update
-sudo apt-get install mysql-server
-</code></pre>
+              <h1 id="linux下mysql安装步骤"><a href="#linux下mysql安装步骤" class="headerlink" title="linux下mysql安装步骤"></a>linux下mysql安装步骤</h1><p>1.ubuntu系统<br>1) 输入如下命令<br><pre><code class="hljs bash">sudo apt-get update
+sudo apt-get install mysql-server</code></pre></p>
 <blockquote>
 <p>安装好软件包后,会弹出设置root账户密码的提示</p>
 </blockquote>
-<p>2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)</p>
-<pre><code class="lang-bash">sudo netstat -tap | grep mysql
-</code></pre>
-<p><img src="/images/note/6.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>3) 登陆mysql</p>
-<pre><code class="lang-bash">sudo mysql -uroot -p #执行命令后再输入密码
-</code></pre>
-<p><img src="/images/note/7.jpg" srcset="/img/loading.gif" alt=""></p>
+<p>2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)<br><pre><code class="hljs bash">sudo netstat -tap | grep mysql</code></pre><br><img src="/images/note/6.jpg" srcset="/images/loading.gif" alt=""></p>
+<p>3) 登陆mysql<br><pre><code class="hljs bash">sudo mysql -uroot -p <span class="hljs-comment">#执行命令后再输入密码</span></code></pre><br><img src="/images/note/7.jpg" srcset="/images/loading.gif" alt=""></p>
 <blockquote>
 <p>登陆成功</p>
 </blockquote>
-<p><img src="/images/note/8.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="/images/note/8.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>4) 设置mysql可远程连接</p>
 <blockquote>
 <p>修改配置文件</p>
 </blockquote>
-<pre><code class="lang-bash">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
-</code></pre>
+<pre><code class="hljs bash">sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></pre>
 <blockquote>
 <p>注释bind-address</p>
 </blockquote>
-<p><img src="/images/note/9.jpg" srcset="/img/loading.gif" alt=""></p>
-<pre><code class="lang-bash">sudo mysql -uroot -p #登陆mysql
-mysql&gt; show databases #查看已有的数据库
-mysql&gt; use mysql; #跳转到名为mysql的数据库
-mysql&gt; update user set host=&#39;%&#39; where user=&#39;root&#39;;# %:任意主机
-#给予root账户在任意主机下可访问数据库的权限
-mysql&gt; grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;设置的密码&#39; with grant option;
+<p><img src="/images/note/9.jpg" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="hljs bash">sudo mysql -uroot -p <span class="hljs-comment">#登陆mysql</span>
+mysql&gt; show databases <span class="hljs-comment">#查看已有的数据库</span>
+mysql&gt; use mysql; <span class="hljs-comment">#跳转到名为mysql的数据库</span>
+mysql&gt; update user <span class="hljs-built_in">set</span> host=<span class="hljs-string">'%'</span> <span class="hljs-built_in">where</span> user=<span class="hljs-string">'root'</span>;<span class="hljs-comment"># %:任意主机</span>
+<span class="hljs-comment">#给予root账户在任意主机下可访问数据库的权限</span>
+mysql&gt; grant all privileges on *.* to <span class="hljs-string">'root'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'设置的密码'</span> with grant option;
 mysql&gt; flush privileges;
-mysql&gt;exit;
-</code></pre>
-<p><img src="/images/note/10.jpg" srcset="/img/loading.gif" alt=""></p>
+mysql&gt;<span class="hljs-built_in">exit</span>;</code></pre>
+<p><img src="/images/note/10.jpg" srcset="/images/loading.gif" alt=""></p>
 <blockquote>
 <p>重启mysql</p>
 </blockquote>
-<pre><code class="lang-bash">sudo service mysql
-</code></pre>
+<pre><code class="hljs bash">sudo service mysql</code></pre>
 <p>2.Centos7(待更新)</p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 

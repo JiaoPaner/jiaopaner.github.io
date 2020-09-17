@@ -165,7 +165,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      449 字
+      447 字
     </span>
   
 
@@ -209,70 +209,64 @@
             
             <div class="markdown-body" id="post-body">
               <h1 id="开发环境准备"><a href="#开发环境准备" class="headerlink" title="开发环境准备"></a>开发环境准备</h1><ul>
-<li>下载 Eclipse IDE for C/C++<br>地址:<a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">https://www.eclipse.org/downloads/packages/</a><br><img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>安装mingw64<br>地址:<a href="http://www.mingw-w64.org/doku.php/download" target="_blank" rel="noopener">http://www.mingw-w64.org/doku.php/download</a><br><img src="/images/2019/3/10/2.jpg" srcset="/img/loading.gif" alt=""><br>1）配置mingw64环境变量<br>C_INCLUDE_PATH : mingw64安装目录\include<br>LIBRARY_PATH :mingw64安装目录\lib<br><img src="/images/2019/3/10/3.jpg" srcset="/img/loading.gif" alt=""><br>2）系统变量的path变量中添加 mingw64安装目录\bin<br>注意:以防万一,本文也将include和lib目录也加入了path变量中<br><img src="/images/2019/3/10/4.jpg" srcset="/img/loading.gif" alt=""><br>3）测试 cmd里执行如下命令<pre><code class="lang-bash">gcc -v
-</code></pre>
-输出版本信息则安装成功<br><img src="/images/2019/3/10/5.jpg" srcset="/img/loading.gif" alt=""></li>
+<li>下载 Eclipse IDE for C/C++<br>地址:<a href="https://www.eclipse.org/downloads/packages/" target="_blank" rel="noopener">https://www.eclipse.org/downloads/packages/</a><br><img src="/images/2019/3/10/1.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>安装mingw64<br>地址:<a href="http://www.mingw-w64.org/doku.php/download" target="_blank" rel="noopener">http://www.mingw-w64.org/doku.php/download</a><br><img src="/images/2019/3/10/2.jpg" srcset="/images/loading.gif" alt=""><br>1）配置mingw64环境变量<br>C_INCLUDE_PATH : mingw64安装目录\include<br>LIBRARY_PATH :mingw64安装目录\lib<br><img src="/images/2019/3/10/3.jpg" srcset="/images/loading.gif" alt=""><br>2）系统变量的path变量中添加 mingw64安装目录\bin<br>注意:以防万一,本文也将include和lib目录也加入了path变量中<br><img src="/images/2019/3/10/4.jpg" srcset="/images/loading.gif" alt=""><br>3）测试 cmd里执行如下命令<pre><code class="hljs bash">gcc -v</code></pre>
+输出版本信息则安装成功<br><img src="/images/2019/3/10/5.jpg" srcset="/images/loading.gif" alt=""></li>
 </ul>
 <h1 id="编译C-C-为dll"><a href="#编译C-C-为dll" class="headerlink" title="编译C/C++为dll"></a>编译C/C++为dll</h1><p><strong>eclipse环境下</strong></p>
 <ul>
-<li>eclipse新建项目<br><img src="/images/2019/3/10/6.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/2019/3/10/7.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>新建源代码文件<br><img src="/images/2019/3/10/8.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>编写方法<br><img src="/images/2019/3/10/9.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>右键项目 properties 配置<br>1）Tool Chain Editor的配置<br><img src="/images/2019/3/10/10.jpg" srcset="/img/loading.gif" alt=""><br>2）settings的配置<br><img src="/images/2019/3/10/11.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/2019/3/10/12.jpg" srcset="/img/loading.gif" alt=""><pre><code class="lang-bash">-Wl,--add-stdcall-alias -static-libgcc -static-libstdc++ -shared
-</code></pre>
-<img src="/images/2019/3/10/13.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/2019/3/10/14.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/2019/3/10/15.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/2019/3/10/16.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>右键项目 build project 执行编译<br><img src="/images/2019/3/10/17.jpg" srcset="/img/loading.gif" alt=""><br>编译成功<br><img src="/images/2019/3/10/18.jpg" srcset="/img/loading.gif" alt=""><br>在eclipse的工作目录 test项目下的debug目录可以找到编译好的dll文件<br><img src="/images/2019/3/10/19.jpg" srcset="/img/loading.gif" alt=""></li>
+<li>eclipse新建项目<br><img src="/images/2019/3/10/6.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/2019/3/10/7.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>新建源代码文件<br><img src="/images/2019/3/10/8.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>编写方法<br><img src="/images/2019/3/10/9.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>右键项目 properties 配置<br>1）Tool Chain Editor的配置<br><img src="/images/2019/3/10/10.jpg" srcset="/images/loading.gif" alt=""><br>2）settings的配置<br><img src="/images/2019/3/10/11.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/2019/3/10/12.jpg" srcset="/images/loading.gif" alt=""><pre><code class="hljs bash">-Wl,--add-stdcall-alias -static-libgcc -static-libstdc++ -shared</code></pre>
+<img src="/images/2019/3/10/13.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/2019/3/10/14.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/2019/3/10/15.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/2019/3/10/16.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>右键项目 build project 执行编译<br><img src="/images/2019/3/10/17.jpg" srcset="/images/loading.gif" alt=""><br>编译成功<br><img src="/images/2019/3/10/18.jpg" srcset="/images/loading.gif" alt=""><br>在eclipse的工作目录 test项目下的debug目录可以找到编译好的dll文件<br><img src="/images/2019/3/10/19.jpg" srcset="/images/loading.gif" alt=""></li>
 </ul>
 <p><strong>visual studio 2015环境下</strong></p>
 <ul>
-<li>新建win32项目<br><img src="/images/2019/3/10/22.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/2019/3/10/23.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>新建头文件<pre><code class="lang-cpp">#pragma once
-#ifdef DLL_IMP
-#define DLL_API __declspec(dllexport) //导出函数
-#endif // DLL_API
-extern &quot;C&quot; {
-  DLL_API char*   say();
-}
-</code></pre>
-<img src="/images/2019/3/10/24.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>新建源文件<pre><code class="lang-cpp">#define DLL_IMP
-#include &quot;say.h&quot;
-#include&lt;stdio.h&gt;
-char*  say(){
-  printf(&quot;hello&quot;);
-  return &quot;ok&quot;;
-}
-</code></pre>
-<img src="/images/2019/3/10/25.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>设置属性 编译为dll<br><img src="/images/2019/3/10/26.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/2019/3/10/27.jpg" srcset="/img/loading.gif" alt=""><h1 id="Java调用dll"><a href="#Java调用dll" class="headerlink" title="Java调用dll"></a>Java调用dll</h1></li>
+<li>新建win32项目<br><img src="/images/2019/3/10/22.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/2019/3/10/23.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>新建头文件<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> once</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">ifdef</span> DLL_IMP</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DLL_API __declspec(dllexport) <span class="hljs-comment">//导出函数</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">// DLL_API</span></span>
+<span class="hljs-keyword">extern</span> <span class="hljs-string">"C"</span> &#123;
+	<span class="hljs-function">DLL_API <span class="hljs-keyword">char</span>*   <span class="hljs-title">say</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre>
+<img src="/images/2019/3/10/24.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>新建源文件<pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DLL_IMP</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"say.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">char</span>*  <span class="hljs-title">say</span><span class="hljs-params">()</span></span>&#123;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">"hello"</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-string">"ok"</span>;
+&#125;</code></pre>
+<img src="/images/2019/3/10/25.jpg" srcset="/images/loading.gif" alt=""></li>
+<li>设置属性 编译为dll<br><img src="/images/2019/3/10/26.jpg" srcset="/images/loading.gif" alt=""><br><img src="/images/2019/3/10/27.jpg" srcset="/images/loading.gif" alt=""><h1 id="Java调用dll"><a href="#Java调用dll" class="headerlink" title="Java调用dll"></a>Java调用dll</h1></li>
 <li>下载JNA jna.jar 地址:<a href="https://mvnrepository.com/artifact/com.sun.jna/jna/3.0.9" target="_blank" rel="noopener">https://mvnrepository.com/artifact/com.sun.jna/jna/3.0.9</a></li>
-<li>新建Java项目 引入jna.jar 并将dll拷贝到项目根路径下(否则需要填写dll的绝对路径)<br><img src="/images/2019/3/10/20.jpg" srcset="/img/loading.gif" alt=""></li>
+<li>新建Java项目 引入jna.jar 并将dll拷贝到项目根路径下(否则需要填写dll的绝对路径)<br><img src="/images/2019/3/10/20.jpg" srcset="/images/loading.gif" alt=""></li>
 <li>编写调用接口类</li>
 </ul>
-<pre><code class="lang-java">import com.sun.jna.Library;
-import com.sun.jna.Native;
-public interface Clibrary extends Library{
-    //使用eclipse环境下生成的dll
-    Clibrary instance = (Clibrary) Native.loadLibrary(&quot;libtest&quot;, Clibrary.class);
-    //dll中的方法 声明需一致
-    void sayHello(); 
-
-    //使用vs 2015生成的dll
-    //Clibrary instance = (Clibrary) Native.loadLibrary(&quot;yolo-dll&quot;, Clibrary.class);
-    //String say();
-}
-</code></pre>
+<pre><code class="hljs java"><span class="hljs-keyword">import</span> com.sun.jna.Library;
+<span class="hljs-keyword">import</span> com.sun.jna.Native;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Clibrary</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Library</span></span>&#123;
+	<span class="hljs-comment">//使用eclipse环境下生成的dll</span>
+	Clibrary instance = (Clibrary) Native.loadLibrary(<span class="hljs-string">"libtest"</span>, Clibrary<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
+	<span class="hljs-comment">//dll中的方法 声明需一致</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span></span>; 
+	
+	<span class="hljs-comment">//使用vs 2015生成的dll</span>
+	<span class="hljs-comment">//Clibrary instance = (Clibrary) Native.loadLibrary("yolo-dll", Clibrary.class);</span>
+	<span class="hljs-comment">//String say();</span>
+&#125;</code></pre>
 <ul>
 <li>编写Main类 调用方法执行</li>
 </ul>
-<pre><code class="lang-java">public class Main {
-    public static void main(String[] args) {
-        Clibrary.instance.sayHello();
-    }
-}
-</code></pre>
-<p>执行结果 如图<br><img src="/images/2019/3/10/21.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+		Clibrary.instance.sayHello();
+	&#125;
+&#125;</code></pre>
+<p>执行结果 如图<br><img src="/images/2019/3/10/21.jpg" srcset="/images/loading.gif" alt=""></p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             </div>
