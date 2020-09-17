@@ -1,40 +1,44 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-Hansn">
-
-
+<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
-  <link rel="icon" type="image/png" href="/img/avatar.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
   <title>今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
-<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
-<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
 
 
-  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="/css/main.css"  >
-
-
-  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
 
 
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -43,7 +47,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -59,40 +63,60 @@
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/">主页</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                主页
+              </a>
+            </li>
+          
         
           
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">归档</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
         
           
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">分类</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
         
           
           
           
           
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">标签</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
         
-          
-          
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
       </ul>
@@ -100,13 +124,12 @@
   </div>
 </nav>
 
-    <div class="view intro-2" id="background"
-         style="background: url('/img/default.png')no-repeat center center;
-           background-size: cover;
-           background-attachment: fixed;">
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
       <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-          <div class="container text-center white-text fadeInUp">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
             <span class="h2" id="subtitle">
               
             </span>
@@ -116,7 +139,7 @@
 
           
             <div class="scroll-down-bar">
-              <i class="fas fa-angle-down scroll-down-arrow"></i>
+              <i class="iconfont icon-arrowdown"></i>
             </div>
           
         </div>
@@ -127,7 +150,8 @@
   <main>
     
       <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
+        <div class="py-5" id="board"
+          style=margin-top:0>
           
           <div class="container">
             <div class="row">
@@ -135,155 +159,84 @@
                 
 
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(3) 栈和队列" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
-        <p class="h4 index-header">数据结构(3) 栈和队列</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">栈栈：只允许在一端进行插入或删除操作的线性表。
-栈顶：允许插入和删除的一端。栈底：固定的，不允许插入和删除的一端。
-特性：先进后出。
-栈的顺序存储结构#define MaxSize 50
-typedef struct{
-    ElemType data[MaxSize];//存放栈中元素
-    int top;//栈顶指针 空栈 top=-1
-} Stack;
-
-#初始化
-void initStack(Stack &amp;s){
-    s.top = -1;
-}
-#判断栈空
-bool stackEmpty(Stack &amp;s){
-    if(s.top == -1)
-        return true;
-    else
-        return false;
-}
-#进栈
-bool push(Stack &amp;s,ElemType x){
-    if(s.top == MaxSize-1)
-        return false;
-    s.data[++s.top] = x;
-    return true;
-}
-#出栈
-bool pop(Stack</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
-          <img src="\images\system\1.jpg" srcset="/img/loading.gif" alt="操作系统(2) 进程管理" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/%5Cimages%5Csystem%5C1.jpg" srcset="/img/loading.gif" alt="操作系统(2) 进程管理">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
-        <p class="h4 index-header">操作系统(2) 进程管理</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">操作系统(2) 进程管理</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">进程概念在多道程序环境下，允许多个程序并发执行，因此失去封闭性并具有间断性和不可再现性的特征，为此引入进程，更好地描述和控制程序的并发执行，实现操作系统的并发性和共享性。
+          
+            
+          
+          进程概念在多道程序环境下，允许多个程序并发执行，因此失去封闭性并具有间断性和不可再现性的特征，为此引入进程，更好地描述和控制程序的并发执行，实现操作系统的并发性和共享性。
 进程控制块(PCB)：描述进程的基本情况和运行状态，进而控制和管理进程。
 PCB是进程存在的唯一标志。创建进程实质是创建PCB，撤销进程实质是撤销PCB。
 进程映像：由程序段、相关数据段、PCB组成。
-进程是进程实体的运行过程，是系统进行资源分配和调度的一个独立单位。
-特征
+进程是进程实体的运行过程，
+        </a>
+      </p>
 
-动态性：进程是程序的一次执行，具有生命周期。动态性是进程最基本的特征。
-并发性、独立性、异步性、结构性
-
-进程的状态与转换
-
-进程创建过程
-终端用户登录、作业调度、系统提供服务、用户程序的应用等请求都会引起进程的创建。
-
-为新进程分配唯一的进程标识号，申请空白的PCB；
-为进程分配资源，分配进程的程序、数据和用户栈必要的内存空间；
-初始化PCB，初始化标志信息、处理机状态信息、处理机控制信息、设置进程优先级；
-将新进程插入到就绪队列等待调度；
-
-进程终止过程
-正常结束、异常结束(存储区越界、保护错、非法指令、特权指令错、I/O故障)、外界干预等</div>
-        </div>
-      </a>
-
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-07&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-07 20:50" pubdate>
+              2019-06-07
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/" target="_self">
-          <img src="\images\cover.jpeg" srcset="/img/loading.gif" alt="操作系统(1) 概述" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/%5Cimages%5Ccover.jpeg" srcset="/img/loading.gif" alt="操作系统(1) 概述">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/">
-        <p class="h4 index-header">操作系统(1) 概述</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/">操作系统(1) 概述</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">定义操作系统是指控制和管理整个计算机系统的硬件和软件资源，并合理的组织调度计算机的工作和资源分配，以提供给用户和其他软件方便的接口和环境的程序集合。
+          
+            
+          
+          定义操作系统是指控制和管理整个计算机系统的硬件和软件资源，并合理的组织调度计算机的工作和资源分配，以提供给用户和其他软件方便的接口和环境的程序集合。
 特征并发：两个或多个事件在同一时间间隔内发生。
 共享
 
@@ -291,116 +244,118 @@ PCB是进程存在的唯一标志。创建进程实质是创建PCB，撤销进�
 同时访问：进程交替的对资源进行访问，即分时共享；
 
 虚拟：物理上的若干个实体变为若干个逻辑上的对应物，如虚拟内存、虚拟处理器等。
-虚拟技术：时分复用技术，如处理器的分时共享；空分复用技术，如虚拟存储器。
-异步：为允许多个程序并发执行，进程的执行并非一贯到底，而是走走停停，以不可预知的速度向前推进。
-目标和功能作为计算机系统的管理者:处理及管理、存储器管理、文件管理、设备管理。
-作为用户与计算机硬件件的接口：命令接口(联机命令接口、脱机命令接口)、程序接口(系统调用、广义指令)。
-操作系统发展分类
-手工操作阶段：用户独占全机、CPU等待手工操作
-批处理阶段
-单道批处理系统：系统对作业的处理成批处理,内存中始终保留一道作业；
-多道批处理系统：允许多个程序同时进入内存并在CPU上交替运行，由作业调度程序自动选择作业运行；
-分时</div>
-        </div>
-      </a>
 
-      <div>
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-06&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-06 14:05" pubdate>
+              2019-06-06
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(2) 线性表" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(2) 线性表">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/">
-        <p class="h4 index-header">数据结构(2) 线性表</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/">数据结构(2) 线性表</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">线性表的定义线性表是具有相同数据类型的$n$个数据元素的有限序列除第一个元素,每个元素有且仅有一个直接前驱,除最后一个元素,每个元素有且仅有一个后继 
+          
+            
+          
+          线性表的定义线性表是具有相同数据类型的$n$个数据元素的有限序列除第一个元素,每个元素有且仅有一个直接前驱,除最后一个元素,每个元素有且仅有一个后继 
 顺序表线性表的顺序存储称为顺序表,用一组地址连续的存储单元依次存储线性表中的数据元素，因此逻辑上相邻的两个元素在物理位置上也相邻
 顺序表描述
 #define MaxSize 50
 typedef struct {
-    ElemType data[MaxSize];//顺序表元素 静态分配
-    int length;//当前长度
-}SqList;
+    ElemType data
+        </a>
+      </p>
 
-#define InitSize 100
-typedef struct {
-    ElemType *data;//顺序表元素 动态分配数组的指针
-    int MaxSize,length;//数组最大容量和当前元素个数
-}SqList;
-
-L.data = (ElemType *)malloc(sizeof(ElemType) * InitSize);//c
-L.data = new ElemType(InitSize);//C++
-
-顺序表最主要的特点是随机访问,通过首地址和</div>
-        </div>
-      </a>
-
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-30&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-30 15:16" pubdate>
+              2019-05-30
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(1) 基本概念" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(1) 基本概念">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
-        <p class="h4 index-header">数据结构(1) 基本概念</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">数据结构(1) 基本概念</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">数据
+          
+            
+          
+          数据
 数据是信息的载体，是描述客观事物的数、字符以及所有能输入到计算机且能被计算机识别和处理的符号集合。
 数据元素
 数据的基本单位，数据元素由数据项组成。如一条学生记录就是一个数据元素，它由姓名、学号、性别等数据项组成。
@@ -409,154 +364,170 @@ L.data = new ElemType(InitSize);//C++
 抽象数据类型
 一个数学模型且定义在该模型上的一组操作，通常用数据对象、数据关系、基本操作集表示。
 数据结构
-数据结构包括逻辑结构、存储结构和数据的运算，算法的设计取决于选定的逻辑结构，算法的实现依赖于采用的存储结构。
+数据结构包括逻
+        </a>
+      </p>
 
-逻辑结构
-
-线性结构：结构中的数据元素只存在一对一的关系(线性表、栈和队列、串、数组、广义表)
-非线性结构：结构中数据元素存在一对多的关系(树)、多对多的关系(图)
-存储结构：顺序存储、链式存储、索引存储、散列存储
-</div>
-        </div>
-      </a>
-
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-29&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-05-29 19:25" pubdate>
+              2019-05-29
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="线性代数" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="线性代数">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-        <p class="h4 index-header">线性代数</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/04/26/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">行列式概念：行列式是一个数，是取自不同行不同列的n个元素的乘积的代数和
+          
+            
+          
+          行列式概念：行列式是一个数，是取自不同行不同列的n个元素的乘积的代数和
 二阶行列式：$\begin{vmatrix}a &amp; b\ c &amp; d\end{vmatrix}=ad-bc$
-三阶行列式：$\begin{vmatrix}a{1} &amp; a{2} &amp; a{3}\ b{1} &amp; b{2} &amp; b{3}\c{1} &amp; c{2} &amp; c{3}\end{vmatrix}=a{1}b{2}c{3}+a{2}b{3}c{1}+a{3}b{1}c{2}-a{3}b{2}c{1}-a{2}b{1}c{3}-a{1}b{3}c_{2}$(对角线法则)
-n阶乘行列式：$\begin{vmatrix}a{11} &amp; a{12} &amp; … &amp; a{1n}\ a{21} &amp; a{22} &amp; … &amp; a{2n}\\vdots &amp;\vdots &amp; &amp;\vdots &amp;\a{n1} &amp; a{n2} &amp; … &amp; a{nn}\end{vmatrix}=\su</div>
-        </div>
-      </a>
+三阶行列式：$\begin{vmatrix}a{1} &amp; a{2} &amp; a{3}\ b{1} &amp; b{2} &amp; b{3}\c{1} &amp; c{2} &amp; c{
+        </a>
+      </p>
 
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-04-26&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-04-26 09:17" pubdate>
+              2019-04-26
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E5%AD%A6">数学</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E5%AD%A6">数学</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/" target="_self">
-          <img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt="编译C/C++为dll供Java调用" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt="编译C/C++为dll供Java调用">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">
-        <p class="h4 index-header">编译C/C++为dll供Java调用</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">编译C/C++为dll供Java调用</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">开发环境准备
+          
+            
+          
+          开发环境准备
 下载 Eclipse IDE for C/C++地址:https://www.eclipse.org/downloads/packages/
-安装mingw64地址:http://www.mingw-w64.org/doku.php/download1）配置mingw64环境变量C_INCLUDE_PATH : mingw64安装目录\includeLIBRARY_PATH :mingw64安装目录\lib2）系统变量的path变量中添加 mingw64安装目录\bin注意:以防万一,本文也将include和lib目录也加入了path变量中3）测试 cmd里执行如下命令gcc -v
+安装mingw64地址:http://www.mingw-w64.org/doku.php/download1）配置mingw64环境变量C_INCLUDE_PATH : mingw64安装目录\includeLIBRARY_PATH :min
+        </a>
+      </p>
 
-输出版本信息则安装成功
-
-编译C/C++为dlleclipse环境下
-
-eclipse新建项目
-新建源代码文件
-编写方法
-右键项目 properties 配置1）Tool Chain Editor的配置2）settings的配置-Wl,--add-stdcall-alias -static-libgcc -static-libstdc++ -shared
-
-
-右键项目 build proje</div>
-        </div>
-      </a>
-
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-10 18:34" pubdate>
+              2019-03-10
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/JNA">JNA</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JNA/">JNA</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" target="_self">
-          <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
-        <p class="h4 index-header">hexo搭建GitHub博客</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">hexo搭建GitHub博客</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">前提环境:Node.js、Git已安装
+          
+            
+          
+          前提环境:Node.js、Git已安装
 通过github创建repository 格式:博客名称.github.io
 安装hexo
 新建blog文件夹,并打开git bash
@@ -569,62 +540,60 @@ hexo -v #检查是否安装成功
 初始化hexo
 hexo init #初始化blog文件夹
 npm install #安装必要组件
-#执行如下命令 开启本地体验
-hexo g
-hexo s  
-#访问http://localhost:4000 即可看到默认博客页面
+#执行如下命
+        </a>
+      </p>
 
-
-
-关联hexo - github
-设置git的username和emailgit config --global user.name &#39;jiaopan&#39; #设置用户名
-git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
-
-
-生成公钥ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
-
-红框处为密钥保存的路径cd ~/.ssh #cd到</div>
-        </div>
-      </a>
-
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-10 15:40" pubdate>
+              2019-03-10
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/hexo">hexo</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hexo/">hexo</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
-          <img src="/images/note/6.jpg" srcset="/img/loading.gif" alt="linux下mysql的安装" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/images/note/6.jpg" srcset="/img/loading.gif" alt="linux下mysql的安装">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">
-        <p class="h4 index-header">linux下mysql的安装</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">linux下mysql的安装</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">linux下mysql安装步骤1.ubuntu系统1) 输入如下命令
+          
+            
+          
+          linux下mysql安装步骤1.ubuntu系统1) 输入如下命令
 sudo apt-get update
 sudo apt-get install mysql-server
 
@@ -635,69 +604,60 @@ sudo apt-get install mysql-server
 sudo netstat -tap | grep mysql
 
 
-3) 登陆mysql
-sudo mysql -uroot -p #执行命令后再输入密码
+3) 登
+        </a>
+      </p>
 
-
-
-登陆成功
-
-
-4) 设置mysql可远程连接
-
-修改配置文件
-
-sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
-
-
-注释bind-address
-
-
-sudo mysql -uroot -p #登陆mysql
-mysql&gt; show databases #查看已有的数据库
-mysql&gt; use mysql; #跳转到名为mysql的数据库
-mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
-        </div>
-      </a>
-
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-06&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-06 16:00" pubdate>
+              2019-03-06
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/mysql">mysql</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/mysql/">mysql</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
   </div>
 
-  <div class="row mb-4 mx-auto">
+  <div class="row mx-auto index-card">
     
     
-      <div class="col-12 col-md-4 m-auto">
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
-          <img src="/images/note/1.jpg" srcset="/img/loading.gif" alt="linux下jdk安装" class="img-fluid rounded z-depth-3 index-thumbnails">
+          <img src="/images/note/1.jpg" srcset="/img/loading.gif" alt="linux下jdk安装">
         </a>
       </div>
     
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/">
-        <p class="h4 index-header">linux下jdk安装</p>
-        
-        
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/">linux下jdk安装</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/">
           
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">linux下JDK安装步骤1.检查是否已安装JDK
+          
+            
+          
+          linux下JDK安装步骤1.检查是否已安装JDK
 [root@localhost ~] java -version
 
 
@@ -709,58 +669,102 @@ mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
 
 2.安装oracle JDK1.8
 [root@localhost ~]# cd /usr/local #跳转到local目录
-[root@localhost local]# mkdir jdk8 #创建jdk8目录
+[root@localh
+        </a>
+      </p>
 
-
-复制下载好的linux版JDK1.8到 /usr/local/jdk8目录
-
-
-
-解压
-
-[root@localhost local]# cd jdk8
-[root@master jdk8]# tar -zxvf jdk-8u151-linux-x64.tar.gz
-
-
-配置jdk环境变量
-
-[root@master jdk8]# vim /etc/profile
-export JAVA_HOME=/usr/local/jdk8/jdk1.8.0_151
-export JRE_HOME=$JAVA_HOME/jre
-expo</div>
-        </div>
-      </a>
-
-      <div>
+      <div class="index-btm post-metas">
         
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-06&nbsp;&nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-03-06 14:02" pubdate>
+              2019-03-06
+            </time>
+          </div>
         
         
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+            
+          </div>
         
         
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/jdk">jdk</a>&nbsp;
-          
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/jdk/">jdk</a>
+            
+          </div>
         
       </div>
-    </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(11) ReverseWordsInAStringIII">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/">leetcode(11) ReverseWordsInAStringIII</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/">
+          
+          
+            
+          
+          
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-07-26 09:09" pubdate>
+              2018-07-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/leetcode/">leetcode</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+          </div>
+        
+      </div>
+    </article>
   </div>
 
 
 
-  <nav aria-label="index posts navigation">
-    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-double-right"></i></a>
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
   <script>
-    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
       ele.href += '#board';
     }
   </script>
@@ -776,8 +780,8 @@ expo</div>
   </main>
 
   
-    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
-      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
     </a>
   
 
@@ -805,94 +809,64 @@ expo</div>
 </div>
   
 
+  
+
+  
+
   <footer class="mt-5">
   <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
-    <br>
-
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
     
-  
-    <!-- 不蒜子统计PV -->
-    
-    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
-          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
-  
-  
-    <!-- 不蒜子统计UV -->
-    
-    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
-            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
-  
-  <br>
-
-
 
     
 
-
-    <!-- cnzz Analytics icon -->
     
-
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script src="/lib/jquery/jquery.min.js" ></script>
-<script src="/lib/popper/popper.min.js" ></script>
-<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
-<script src="/js/main.js" ></script>
-
-
-  <script src="/js/lazyload.js" ></script>
-
-
-
-
-
-  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
-
-
-
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
 
 <!-- Plugins -->
 
 
   
-
-  
-
-  
-
-  
-
-  <!-- cnzz Analytics -->
+    <script  src="/js/lazyload.js" ></script>
   
 
 
 
-  <script src="/lib/prettify/prettify.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint  linenums');
-      prettyPrint();
-    })
-  </script>
+  
 
 
 
-  <script src="/lib/typed/typed.min.js" ></script>
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "今天的风儿甚是喧嚣 JiaoPan&nbsp;",
+        "An elegant Material-Design theme for Hexo&nbsp;",
       ],
-      cursorChar: ".",
+      cursorChar: "_",
       typeSpeed: 70,
       loop: false,
     });
@@ -905,74 +879,30 @@ expo</div>
 
 
 
-  <script src="/lib/anchor/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "false",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
 
 
-
-  <script src="/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      getSearchFile(path);
+      searchFunc(path, 'local-search-input', 'local-search-result');
       this.onclick = null
     }
   </script>
 
 
 
-  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
-  <script>
-    $("#post img:not(.no-zoom img, img[no-zoom])").each(
-      function () {
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "images");
-        $(element).attr("href", $(this).attr("src"));
-        $(this).wrap(element);
-      }
-    );
-  </script>
 
 
 
-  
 
-  
-    <!-- MathJax -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-          tex2jax: {
-              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-              processEscapes: true,
-              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-          }
-      });
 
-      MathJax.Hub.Queue(function() {
-          var all = MathJax.Hub.getAllJax(), i;
-          for(i=0; i < all.length; i += 1) {
-              all[i].SourceElement().parentNode.className += ' has-jax';
-          }
-      });
 
-    </script>
 
-    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
-  
+
+
 
 
 
