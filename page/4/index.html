@@ -139,6 +139,75 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(3) 栈和队列" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
+        <p class="h4 index-header">数据结构(3) 栈和队列</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">栈栈：只允许在一端进行插入或删除操作的线性表。
+栈顶：允许插入和删除的一端。栈底：固定的，不允许插入和删除的一端。
+特性：先进后出。
+栈的顺序存储结构#define MaxSize 50
+typedef struct{
+    ElemType data[MaxSize];//存放栈中元素
+    int top;//栈顶指针 空栈 top=-1
+} Stack;
+
+#初始化
+void initStack(Stack &amp;s){
+    s.top = -1;
+}
+#判断栈空
+bool stackEmpty(Stack &amp;s){
+    if(s.top == -1)
+        return true;
+    else
+        return false;
+}
+#进栈
+bool push(Stack &amp;s,ElemType x){
+    if(s.top == MaxSize-1)
+        return false;
+    s.data[++s.top] = x;
+    return true;
+}
+#出栈
+bool pop(Stack</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
           <img src="\images\system\1.jpg" srcset="/img/loading.gif" alt="操作系统(2) 进程管理" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -409,58 +478,6 @@ n阶乘行列式：$\begin{vmatrix}a{11} &amp; a{12} &amp; … &amp; a{1n}\ a{21
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/%E6%95%B0%E5%AD%A6">数学</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" target="_self">
-          <img src="/images/opencv3/2-1.png" srcset="/img/loading.gif" alt="opencv3(1-2) linux配置opencv3开发环境" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
-        <p class="h4 index-header">opencv3(1-2) linux配置opencv3开发环境</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">环境ubuntucmakecmake-guiopencv-3.3.1 下载地址:https://opencv.org/releases.htmlopencv_contrib-3.3.1 下载地址:https://github.com/opencv/opencv_contrib/releases
-准备工作
-更新系统sudo apt-get update
-sudo apt-get upgrade
-
-
-安装cmake及必要依赖sudo apt-get install build-essential
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
-
-
-安装cmake-guisudo a</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-11&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/opencv3">opencv3</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv3">opencv3</a>&nbsp;
           
         
       </div>

@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>CS44-network-labs</title>
+    <link href="/2020/09/01/CS44-network-lab/"/>
+    <url>/2020/09/01/CS44-network-lab/</url>
+    
+    <content type="html"><![CDATA[<h1 id="lab-0"><a href="#lab-0" class="headerlink" title="lab-0"></a>lab-0</h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>计算机网络</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>汇编语言.001</title>
     <link href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/"/>
     <url>/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/</url>
@@ -837,31 +862,6 @@
   
   
   <entry>
-    <title>opencv3(1-2) linux配置opencv3开发环境</title>
-    <link href="/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-    <url>/2019/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
-    
-    <content type="html"><![CDATA[<p><strong>环境</strong><br>ubuntu<br>cmake<br>cmake-gui<br>opencv-3.3.1 下载地址:<a href="https://opencv.org/releases.html" target="_blank" rel="noopener">https://opencv.org/releases.html</a><br>opencv_contrib-3.3.1 下载地址:<a href="https://github.com/opencv/opencv_contrib/releases" target="_blank" rel="noopener">https://github.com/opencv/opencv_contrib/releases</a></p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul><li>更新系统<pre><code class="lang-bash">sudo apt-get updatesudo apt-get upgrade</code></pre></li><li>安装cmake及必要依赖<pre><code class="lang-bash">sudo apt-get install build-essentialsudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-devsudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev</code></pre></li><li>安装cmake-gui<pre><code class="lang-bash">sudo apt-get install cmake-qt-gui</code></pre></li><li>解压opencv以及opecv_contrib至同一目录<br><img src="/images/opencv3/2-1.png" srcset="/img/loading.gif" alt=""></li><li>opencv目录内新建build目录<br><img src="/images/opencv3/2-2.png" srcset="/img/loading.gif" alt=""><br>build目录内打开终端运行cmake-gui<pre><code class="lang-bash">cmake-gui</code></pre></li></ul><h1 id="编译-安装"><a href="#编译-安装" class="headerlink" title="编译 / 安装"></a>编译 / 安装</h1><ul><li><p>配置源码目录以及编译目录<br><img src="/images/opencv3/2-3.png" srcset="/img/loading.gif" alt=""></p></li><li><p>执行Configure<br>Unix Makefiles - &gt; Use default native compilers(默认) - &gt; Finish<br><img src="/images/opencv3/2-4.png" srcset="/img/loading.gif" alt=""></p></li><li><p>配置编译属性<br>CMAKE_BUILD_TYPE：RELEASE<br>CMAKE_INSTALL_PREFIX：/home/jiaopan/app/opencv #配置安装目录 可默认<br><img src="/images/opencv3/2-5.png" srcset="/img/loading.gif" alt=""><br>OPENCV_EXTRA_MODULES_PATH：/home/jiaopan/app/opencv3/opencv_contrib-3.3.1/modules #opencv_contrib的modules目录<br><img src="/images/opencv3/2-6.png" srcset="/img/loading.gif" alt=""></p></li><li><p>执行Generate 生成配置文件</p></li><li><p>build目录内打开终端 执行make命令开始编译 ，100%时编译成功<br><img src="/images/opencv3/2-7.png" srcset="/img/loading.gif" alt=""></p></li><li><p>编译成功，执行make install 命令进行安装</p></li><li><p>编译时问题</p><pre><code class="lang-bash">#1.问题1collect2: error: ld returned 1 exit statusmodules/core/CMakeFiles/opencv_perf_core.dir/build.make:882: recipe for target &#39;bin/opencv_perf_core&#39; failedmake[2]: *** [bin/opencv_perf_core] Error 1CMakeFiles/Makefile2:2627: recipe for target &#39;modules/core/CMakeFiles/opencv_perf_core.dir/all&#39; failedmake[1]: *** [modules/core/CMakeFiles/opencv_perf_core.dir/all] Error 2Makefile:160: recipe for target &#39;all&#39; failedmake: *** [all] Error 2#解决：缺少ffmpeg#安装ffmpegsudo add-apt-repository ppa:djcj/hybrid  sudo apt-get update  sudo apt-get install ffmpeg</code></pre></li></ul><h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><pre><code class="lang-bash">sudo vim /etc/ld.so.conf.d/opencv.conf #添加 /home/jiaopan/app/opencv/lib内容 ，即opencv安装目录下的lib目录路径sudo ldconfig #更新动态链接库sudo vim /etc/bash.bashrc #末尾添加如下内容PKG_CONFIG_PATH=$PKG_CONFIG_PATH:opencv安装目录/lib/pkgconfig export PKG_CONFIG_PATH#-----------------------------------------source /etc/profile #更新环境变量 pkg-config --cflags --libs opencv #测试是否安装成功</code></pre><p>安装成功:<br><img src="/images/opencv3/2-8.png" srcset="/img/loading.gif" alt=""></p><h1 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h1><ul><li>eclipse for c/c++ 新建C/C++项目</li><li><p>添加opencv包含目录<br><img src="/images/opencv3/2-9.png" srcset="/img/loading.gif" alt=""></p></li><li><p>引入库文件 可通过pkg-config —libs opencv 命令查看库文件<br><img src="/images/opencv3/2-10.png" srcset="/img/loading.gif" alt=""></p></li><li>复制到图片到项目根路径下<br><img src="/images/opencv3/2-11.png" srcset="/img/loading.gif" alt=""></li><li>测试代码<pre><code class="lang-cpp">#include&lt;iostream&gt;#include &lt;opencv2/opencv.hpp&gt;int main(){  // 读入一张图片  cv::Mat image=cv::imread(&quot;dog.jpg&quot;);  // 在窗口中显示  cv::imshow(&quot;test&quot;,image);  // 等待6000 ms后窗口自动关闭  cv::waitKey(6000);  return 0;}</code></pre></li><li>右键项目 build project 执行编译</li><li>编译成功，右键项目执行run as local C/C++ Application<br><img src="/images/opencv3/2-12.png" srcset="/img/loading.gif" alt=""></li></ul><p>版权声明：原创,转载请注明来源,否则律师函警告</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>opencv3</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>opencv3</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>编译C/C++为dll供Java调用</title>
     <link href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/"/>
     <url>/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/</url>
@@ -1354,6 +1354,31 @@
     <tags>
       
       <tag>docker</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>opencv3(1-2) linux配置opencv3开发环境</title>
+    <link href="/2018/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    <url>/2018/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+    
+    <content type="html"><![CDATA[<p><strong>环境</strong><br>ubuntu<br>cmake<br>cmake-gui<br>opencv-3.3.1 下载地址:<a href="https://opencv.org/releases.html" target="_blank" rel="noopener">https://opencv.org/releases.html</a><br>opencv_contrib-3.3.1 下载地址:<a href="https://github.com/opencv/opencv_contrib/releases" target="_blank" rel="noopener">https://github.com/opencv/opencv_contrib/releases</a></p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul><li>更新系统<pre><code class="lang-bash">sudo apt-get updatesudo apt-get upgrade</code></pre></li><li>安装cmake及必要依赖<pre><code class="lang-bash">sudo apt-get install build-essentialsudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-devsudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev</code></pre></li><li>安装cmake-gui<pre><code class="lang-bash">sudo apt-get install cmake-qt-gui</code></pre></li><li>解压opencv以及opecv_contrib至同一目录<br><img src="/images/opencv3/2-1.png" srcset="/img/loading.gif" alt=""></li><li>opencv目录内新建build目录<br><img src="/images/opencv3/2-2.png" srcset="/img/loading.gif" alt=""><br>build目录内打开终端运行cmake-gui<pre><code class="lang-bash">cmake-gui</code></pre></li></ul><h1 id="编译-安装"><a href="#编译-安装" class="headerlink" title="编译 / 安装"></a>编译 / 安装</h1><ul><li><p>配置源码目录以及编译目录<br><img src="/images/opencv3/2-3.png" srcset="/img/loading.gif" alt=""></p></li><li><p>执行Configure<br>Unix Makefiles - &gt; Use default native compilers(默认) - &gt; Finish<br><img src="/images/opencv3/2-4.png" srcset="/img/loading.gif" alt=""></p></li><li><p>配置编译属性<br>CMAKE_BUILD_TYPE：RELEASE<br>CMAKE_INSTALL_PREFIX：/home/jiaopan/app/opencv #配置安装目录 可默认<br><img src="/images/opencv3/2-5.png" srcset="/img/loading.gif" alt=""><br>OPENCV_EXTRA_MODULES_PATH：/home/jiaopan/app/opencv3/opencv_contrib-3.3.1/modules #opencv_contrib的modules目录<br><img src="/images/opencv3/2-6.png" srcset="/img/loading.gif" alt=""></p></li><li><p>执行Generate 生成配置文件</p></li><li><p>build目录内打开终端 执行make命令开始编译 ，100%时编译成功<br><img src="/images/opencv3/2-7.png" srcset="/img/loading.gif" alt=""></p></li><li><p>编译成功，执行make install 命令进行安装</p></li><li><p>编译时问题</p><pre><code class="lang-bash">#1.问题1collect2: error: ld returned 1 exit statusmodules/core/CMakeFiles/opencv_perf_core.dir/build.make:882: recipe for target &#39;bin/opencv_perf_core&#39; failedmake[2]: *** [bin/opencv_perf_core] Error 1CMakeFiles/Makefile2:2627: recipe for target &#39;modules/core/CMakeFiles/opencv_perf_core.dir/all&#39; failedmake[1]: *** [modules/core/CMakeFiles/opencv_perf_core.dir/all] Error 2Makefile:160: recipe for target &#39;all&#39; failedmake: *** [all] Error 2#解决：缺少ffmpeg#安装ffmpegsudo add-apt-repository ppa:djcj/hybrid  sudo apt-get update  sudo apt-get install ffmpeg</code></pre></li><li><p>命令编译和安装</p></li></ul><pre><code class="lang-bash">cd buildsudo cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/localsudo make -j8sudo make install</code></pre><h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><pre><code class="lang-bash">sudo vim /etc/ld.so.conf.d/opencv.conf #添加 /home/jiaopan/app/opencv/lib内容 ，即opencv安装目录下的lib目录路径sudo ldconfig #更新动态链接库sudo vim /etc/bash.bashrc #末尾添加如下内容PKG_CONFIG_PATH=$PKG_CONFIG_PATH:opencv安装目录/lib/pkgconfig export PKG_CONFIG_PATH#-----------------------------------------source /etc/profile #更新环境变量 pkg-config --cflags --libs opencv #测试是否安装成功</code></pre><p>安装成功:<br><img src="/images/opencv3/2-8.png" srcset="/img/loading.gif" alt=""></p><h1 id="代码测试"><a href="#代码测试" class="headerlink" title="代码测试"></a>代码测试</h1><ul><li>eclipse for c/c++ 新建C/C++项目</li><li><p>添加opencv包含目录<br><img src="/images/opencv3/2-9.png" srcset="/img/loading.gif" alt=""></p></li><li><p>引入库文件 可通过pkg-config —libs opencv 命令查看库文件<br><img src="/images/opencv3/2-10.png" srcset="/img/loading.gif" alt=""></p></li><li>复制到图片到项目根路径下<br><img src="/images/opencv3/2-11.png" srcset="/img/loading.gif" alt=""></li><li>测试代码<pre><code class="lang-cpp">#include&lt;iostream&gt;#include &lt;opencv2/opencv.hpp&gt;int main(){  // 读入一张图片  cv::Mat image=cv::imread(&quot;dog.jpg&quot;);  // 在窗口中显示  cv::imshow(&quot;test&quot;,image);  // 等待6000 ms后窗口自动关闭  cv::waitKey(6000);  return 0;}</code></pre></li><li>右键项目 build project 执行编译</li><li>编译成功，右键项目执行run as local C/C++ Application<br><img src="/images/opencv3/2-12.png" srcset="/img/loading.gif" alt=""></li></ul><p>版权声明：原创,转载请注明来源,否则律师函警告</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>opencv3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>opencv3</tag>
       
     </tags>
     
