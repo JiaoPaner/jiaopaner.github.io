@@ -340,28 +340,31 @@ pkg-config --cflags --libs opencv <span class="hljs-comment">#测试是否安装
               <article class="comments" id="comments">
                 
                 
-  <div class="disqus" style="width:100%">
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      var disqus_config = function () {
-        this.page.url = 'https://jiaopaner.github.io/2018/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/';
-        this.page.identifier = '/2018/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/';
-      };
-      function loadDisqus() {
-        (function () {
-          var d = document,
-            s = d.createElement('script');
-          s.src = '//' + '' + '.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', new Date());
-          (d.head || d.body).appendChild(s);
-        })();
+  <script type="text/javascript">
+    function loadUtterances() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
       }
-      waitElementVisible('disqus_thread', loadDisqus);
-    </script>
-    <noscript>Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a>
-    </noscript>
-  </div>
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'https://github.com/JiaoPaner/blog-talk.git');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
 
 
               </article>
