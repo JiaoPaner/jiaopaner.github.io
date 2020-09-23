@@ -1,57 +1,40 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-Hansn">
+
+
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>数据结构(6) 查找 - 今夜的风儿甚是喧嚣 JiaoPan</title>
+  <title>数据结构(6) 查找 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
 
 
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
 
 
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -60,7 +43,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今夜的风儿甚是喧嚣</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -76,60 +59,40 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
@@ -137,53 +100,52 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-07-16 14:11" pubdate>
-        July 16, 2019 pm
-      </time>
-    </span>
-  
-</div>
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Tuesday, July 16th 2019, 2:11 pm
+                </p>
+              
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      2.3k 字
-    </span>
-  
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    2.3k 字
+                  </span>&nbsp;
+                
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      27
-       分钟
-    </span>
-  
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      8 分钟
+                  </span>&nbsp;
+                
 
-  
-  
-</div>
-
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -201,43 +163,41 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">数据结构(6) 查找</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>1.一般线性表</p>
-<pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
-    ElemType *elem;<span class="hljs-comment">//0号单元留空</span>
-    <span class="hljs-keyword">int</span> length;
-&#125;STable;
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(STable table,ElemType key)</span></span>&#123;
-    table.elem[<span class="hljs-number">0</span>] = key;<span class="hljs-comment">//哨兵</span>
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = table.length;table.elem[i] != key; --i);
-    <span class="hljs-keyword">return</span> i;
-&#125;</code></pre>
-<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">binary_search</span><span class="hljs-params">(SeqList <span class="hljs-built_in">list</span>,ElemType key)</span></span>&#123;
-    <span class="hljs-keyword">int</span> low = <span class="hljs-number">0</span>;high = <span class="hljs-built_in">list</span>.length<span class="hljs-number">-1</span>;mid;
-    <span class="hljs-keyword">while</span>(low &lt;= high)&#123;
-        mid = (low+high)/<span class="hljs-number">2</span>;
-        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">list</span>.elem[mid] == key)
-            <span class="hljs-keyword">return</span> mid;
-        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">list</span>.elem[mid] &lt; key)
-            low = mid+<span class="hljs-number">1</span>;
-        <span class="hljs-keyword">else</span>
-            high = mid<span class="hljs-number">-1</span>;
-    &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<span class="hljs-comment">//查找失败</span>
-&#125;</code></pre>
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>1.一般线性表</p>
+<pre><code class="lang-c++">typedef struct{
+    ElemType *elem;//0号单元留空
+    int length;
+}STable;
+int search(STable table,ElemType key){
+    table.elem[0] = key;//哨兵
+    for(int i = table.length;table.elem[i] != key; --i);
+    return i;
+}
+</code></pre>
+<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><pre><code class="lang-c++">int binary_search(SeqList list,ElemType key){
+    int low = 0;high = list.length-1;mid;
+    while(low &lt;= high){
+        mid = (low+high)/2;
+        if(list.elem[mid] == key)
+            return mid;
+        else if(list.elem[mid] &lt; key)
+            low = mid+1;
+        else
+            high = mid-1;
+    }
+    return -1;//查找失败
+}
+</code></pre>
 <h1 id="B树和B-树"><a href="#B树和B-树" class="headerlink" title="B树和B+树"></a>B树和B+树</h1><p>$B$树中所有结点的子结点数的最大值称为$B$树的阶，一个 $m$ 阶的$B$树是一个有以下属性的树：</p>
 <p><strong>1</strong>.每一个结点最多有 $m $个子结点，即每个结点至多含有$m-1$个关键字<br>2.每一个非叶子结点（除根结点）最少有 $⌈m/2⌉$ 个子结点,即至少含有$[m/2]-1$个关键字<br>3.如果根结点不是叶子结点，那么它至少有两个子结点<br>4.有 $k$ 个子结点的非叶子结点拥有 $k − 1$ 个键<br>5.所有的叶子结点都在同一层</p>
 <p>非根内部结点的关键字个数$n$范围：$[m/2]-1 \leq n \leq m-1$,根结点关键字个数$n$范围：$1 \leq n\leq m-1$</p>
 <p>每一个内部结点的键将结点的子树分开。</p>
 <p>例如，如果一个内部结点有3个子结点（子树），那么它就必须有两个键： $a_1 $和 $a_2$ </p>
 <p>左边子树的所有值都必须小于 $a_1$ ，中间子树的所有值都必须在 $a_1$ 和$a_2$ 之间，右边子树的所有值都必须大于$ a_2$ </p>
-<p><img src="\images\dataStructure\44.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\44.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>B树的查找</strong></p>
 <p>1.在$B$中找结点 (读入内存) 2.在结点内找关键字(通过顺序查找或折半查找查找等于key的关键字)</p>
 <p><strong>B树的插入</strong></p>
@@ -249,92 +209,92 @@
 </blockquote>
 <p>[]: <a href="https://www.cnblogs.com/nullzx/p/8729425.html" target="_blank" rel="noopener">https://www.cnblogs.com/nullzx/p/8729425.html</a></p>
 <p>1.空树中插入39</p>
-<p><img src="\images\dataStructure\45.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\45.png" srcset="/img/loading.gif" alt=""></p>
 <p>2.继续插入22，97和41</p>
-<p><img src="\images\dataStructure\46.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\46.png" srcset="/img/loading.gif" alt=""></p>
 <p>3.继续插入53</p>
-<p><img src="\images\dataStructure\47.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\47.png" srcset="/img/loading.gif" alt=""></p>
 <p>插入后超过了最大允许的关键字个数4，需以中位数(41)为中心进行分裂</p>
-<p><img src="\images\dataStructure\48.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\48.png" srcset="/img/loading.gif" alt=""></p>
 <p>4.依次插入13，21，40，同样会造成分裂，结果如下图</p>
-<p><img src="\images\dataStructure\49.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\49.png" srcset="/img/loading.gif" alt=""></p>
 <p>5.依次插入30，27, 33 ；36，35，34 ；24，29</p>
-<p><img src="\images\dataStructure\50.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\50.png" srcset="/img/loading.gif" alt=""></p>
 <p>6.插入key值为26的记录</p>
-<p><img src="\images\dataStructure\51.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\51.png" srcset="/img/loading.gif" alt=""></p>
 <p>当前结点需要以27为中心分裂,并向父结点插入27</p>
-<p><img src="\images\dataStructure\52.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\52.png" srcset="/img/loading.gif" alt=""></p>
 <p>插入后导致当前结点（即根结点）也需要分裂</p>
-<p><img src="\images\dataStructure\53.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\53.png" srcset="/img/loading.gif" alt=""></p>
 <p><strong>B树的删除</strong></p>
 <p>删除时，需要判断结点中关键字的个数$\geqslant [m/2]-1$</p>
 <blockquote>
 <p>5阶B树为例，结点最多有4个key,最少有2个key</p>
 </blockquote>
 <p>[]: <a href="https://www.cnblogs.com/nullzx/p/8729425.html" target="_blank" rel="noopener">https://www.cnblogs.com/nullzx/p/8729425.html</a></p>
-<p><img src="\images\dataStructure\54.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\54.png" srcset="/img/loading.gif" alt=""></p>
 <p>1.B树中删除21，删除后结点中的关键字个数仍然大于等2，删除结束</p>
-<p><img src="\images\dataStructure\55.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\55.png" srcset="/img/loading.gif" alt=""></p>
 <p>2.删除27，27位于非叶子结点中，利用27的后继28替代</p>
-<p><img src="\images\dataStructure\56.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\56.png" srcset="/img/loading.gif" alt=""></p>
 <p>删除后，当前叶子结点的关键字的个数小于2，而它的兄弟结点中有3个关键字，从兄弟结点中借取一个关键字</p>
-<p><img src="\images\dataStructure\57.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\57.png" srcset="/img/loading.gif" alt=""></p>
 <p>3.删除32</p>
-<p><img src="\images\dataStructure\58.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\58.png" srcset="/img/loading.gif" alt=""></p>
 <p>删除后，当前结点中只有一个关键字，而兄弟结点中也仅有2个关键字，只能让父结点中的30下移并和兄弟结点中的关键字合并，成为一个新的结点，当前结点的指针指向父结点</p>
-<p><img src="\images\dataStructure\59.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\59.png" srcset="/img/loading.gif" alt=""></p>
 <p>4.删除40</p>
-<p><img src="\images\dataStructure\60.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\60.png" srcset="/img/loading.gif" alt=""></p>
 <p>同理，当前结点的关键字数小于2，兄弟结点中没有多余关键字，所以父结点中的关键字下移，和兄弟结点(左右兄弟结点都可)的关键字合</p>
-<p><img src="\images\dataStructure\61.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\61.png" srcset="/img/loading.gif" alt=""></p>
 <p>当前结点关键字个数小于2，继续合并</p>
-<p><img src="\images\dataStructure\62.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\62.png" srcset="/img/loading.gif" alt=""></p>
 <p><strong>B+树</strong></p>
 <p>1.每个分支结点最多有$m$个子结点</p>
 <p>2.结点的子结点个数与关键字个数相等(或结点的子结点个数 = 关键字个数+1)</p>
 <p>3.所有叶结点包含全部关键字及指向记录的指针，且叶结点中关键字按大小顺序排列，所有相邻结点按大小顺序互相链接</p>
 <p>4.非根内部结点的关键字个数$n$范围：$[m/2] \leq n \leq m$,根结点关键字个数$n$范围：$1 \leq n\leq m$</p>
-<p><img src="\images\dataStructure\63.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\63.png" srcset="/img/loading.gif" alt=""></p>
 <p><strong>B+树的插入</strong></p>
 <blockquote>
 <p>以5阶B树为例</p>
 </blockquote>
 <p>1.空树中插入5</p>
-<p><img src="\images\dataStructure\64.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\64.png" srcset="/img/loading.gif" alt=""></p>
 <p>2.依次插入8，10，15</p>
-<p><img src="\images\dataStructure\65.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\65.png" srcset="/img/loading.gif" alt=""></p>
 <p>3.插入16</p>
 <p>插入16后超过了关键字的个数限制，需进行分裂</p>
-<p><img src="\images\dataStructure\66.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\66.png" srcset="/img/loading.gif" alt=""></p>
 <p>4.插入17</p>
-<p><img src="\images\dataStructure\67.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\67.png" srcset="/img/loading.gif" alt=""></p>
 <p>5.插入18</p>
-<p><img src="\images\dataStructure\68.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\68.png" srcset="/img/loading.gif" alt=""></p>
 <p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
-<p><img src="\images\dataStructure\69.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\69.png" srcset="/img/loading.gif" alt=""></p>
 <p>6.插入若干数据</p>
-<p><img src="\images\dataStructure\70.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\70.png" srcset="/img/loading.gif" alt=""></p>
 <p>7.插入7</p>
-<p><img src="\images\dataStructure\71.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\71.png" srcset="/img/loading.gif" alt=""></p>
 <p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
-<p><img src="\images\dataStructure\72.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\72.png" srcset="/img/loading.gif" alt=""></p>
 <p>当前结点的关键字个数大于限制的个数，需进行分裂</p>
-<p><img src="\images\dataStructure\73.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\73.png" srcset="/img/loading.gif" alt=""></p>
 <p><strong>B+树的删除</strong></p>
 <blockquote>
 <p>以5阶B树为例</p>
 </blockquote>
-<p><img src="\images\dataStructure\74.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\74.png" srcset="/img/loading.gif" alt=""></p>
 <p>1.删除22</p>
-<p><img src="\images\dataStructure\75.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\75.png" srcset="/img/loading.gif" alt=""></p>
 <p>2.删除15</p>
-<p><img src="\images\dataStructure\76.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\76.png" srcset="/img/loading.gif" alt=""></p>
 <p>删除后当前结点只有一个关键字，不满足条件，而兄弟结点有三个关键字，从兄弟结点中借关键字为9,同时更新将父结点中的关键字由10变为9，删除结束</p>
-<p><img src="\images\dataStructure\77.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\77.png" srcset="/img/loading.gif" alt=""></p>
 <p>3.删除7</p>
-<p><img src="\images\dataStructure\78.png" srcset="/images/loading.gif" alt=""></p>
-<p><img src="\images\dataStructure\79.png" srcset="/images/loading.gif" alt=""></p>
-<p><img src="\images\dataStructure\80.png" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\78.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\79.png" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\80.png" srcset="/img/loading.gif" alt=""></p>
 <h1 id="散列-hash-表"><a href="#散列-hash-表" class="headerlink" title="散列(hash)表"></a>散列(hash)表</h1><p><strong>散列函数</strong></p>
 <p>一个把查找表中的关键字映射为该关键字对应的地址函数，记$Hash(key)=Address$</p>
 <p>1.直接定址法 $Hash(key)=a\times key+b$，($a,b$未常数)</p>
@@ -361,141 +321,106 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
 <p>重复执行$H<em>{i+1}=(H_i+(i+1))\%m$ ($i=1,2,3,\cdots,m-1$),直到$L[H</em>{i+1}]=key或L[H_{i+1}]=NULL$</p>
 <h1 id="字符串模式匹配"><a href="#字符串模式匹配" class="headerlink" title="字符串模式匹配"></a>字符串模式匹配</h1><p>1.简单的模式匹配算法</p>
 <p>从主串S的指定字符开始，和模式串的第一个字符比较，若相等则继续逐个比较后续字符，直到模式串中的每个字符依次和主串的一个连续字符序列相等，则匹配成功；若比较过程中有某对字符不相等，则从主串的下一个字符重新与模式串的第一个字符相比较。</p>
-<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">matching</span><span class="hljs-params">(<span class="hljs-keyword">String</span> target, <span class="hljs-keyword">String</span> pattern, <span class="hljs-keyword">int</span> <span class="hljs-built_in">begin</span>)</span> </span>&#123;
-		<span class="hljs-comment">// i为目标串target的索引</span>
-		<span class="hljs-keyword">int</span> i = <span class="hljs-built_in">begin</span>;
-		<span class="hljs-comment">// j为模式串pattern的索引</span>
-		<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;
-		<span class="hljs-keyword">if</span> (target == null || pattern == null || <span class="hljs-built_in">begin</span> &gt; target.length()) &#123;
-			<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-		&#125;
-		<span class="hljs-keyword">while</span> (i &lt; target.length() &amp;&amp; j &lt; pattern.length())&#123;
-			<span class="hljs-keyword">if</span> (target[i] == pattern[j]) &#123;
-				i++;
-				j++;
-			&#125; <span class="hljs-keyword">else</span> &#123;
-				i = i - j + <span class="hljs-number">1</span>;
-				j = <span class="hljs-number">0</span>;
-			&#125;
-		&#125;
-		<span class="hljs-comment">// 模式串是否存在于目标串</span>
-		<span class="hljs-keyword">if</span> (j == pattern.length()) &#123;
-			<span class="hljs-keyword">return</span> i - pattern.length() ;
-		&#125;
-		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-	&#125;</code></pre>
+<pre><code class="lang-c++">int matching(String target, String pattern, int begin) {
+        // i为目标串target的索引
+        int i = begin;
+        // j为模式串pattern的索引
+        int j = 0;
+        if (target == null || pattern == null || begin &gt; target.length()) {
+            return -1;
+        }
+        while (i &lt; target.length() &amp;&amp; j &lt; pattern.length()){
+            if (target[i] == pattern[j]) {
+                i++;
+                j++;
+            } else {
+                i = i - j + 1;
+                j = 0;
+            }
+        }
+        // 模式串是否存在于目标串
+        if (j == pattern.length()) {
+            return i - pattern.length() ;
+        }
+        return -1;
+    }
+</code></pre>
 <p>2.KMP模式匹配算法</p>
 <p>wait</p>
 
-            </div>
             <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构(7) 排序</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2019/07/10/opencv3(2)%20%E5%9B%BE%E5%83%8F%E8%BD%BD%E5%85%A5-%E6%98%BE%E7%A4%BA-%E8%BE%93%E5%87%BA/">
-                        <span class="hidden-mobile">opencv3(2) 图像载入-显示-输出</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
+          </div>
+          <br>
+          <div>
+            <p>
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
+                  <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+                  &nbsp;
                 
-  <script type="text/javascript">
-    function loadUtterances() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'JiaoPaner/blog-talk.git');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
+              </span>&nbsp;&nbsp;
             
-          </article>
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <div id="tocbot"></div>
+  </div>
 
-      </div>
-    
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+<!-- custom -->
 
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
 
     
   </main>
 
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
   
 
@@ -505,7 +430,7 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -514,7 +439,7 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -523,89 +448,99 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
 </div>
   
 
-  
-
-  
-
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
     
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
 
     
 
+
+    <!-- cnzz Analytics icon -->
     
+
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
   
 
 
 
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
     $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script src="/lib/typed/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
         "数据结构(6) 查找&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
@@ -618,11 +553,11 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script src="/lib/anchor/anchor.min.js" ></script>
   <script>
     anchors.options = {
       placement: "right",
-      visible: "hover",
+      visible: "false",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -635,27 +570,25 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
 
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
+      getSearchFile(path);
       this.onclick = null
     }
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
   <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
       function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
         $(this).wrap(element);
       }
     );
@@ -663,53 +596,31 @@ H_i=(Hash(key)+d_i)\%m</script><p>$m$表示散列表长度，$d_i$为增量序�
 
 
 
-
-
   
 
   
     <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
           }
-        }
-      };
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
     </script>
 
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
   
-
-
-
-
-
-
-
 
 
 

@@ -1,57 +1,40 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-Hansn">
+
+
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>操作系统(2) 进程管理 - 今夜的风儿甚是喧嚣 JiaoPan</title>
+  <title>操作系统(2) 进程管理 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
 
 
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
 
 
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -60,7 +43,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今夜的风儿甚是喧嚣</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -76,60 +59,40 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
@@ -137,53 +100,52 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-06-07 20:50" pubdate>
-        June 7, 2019 pm
-      </time>
-    </span>
-  
-</div>
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Friday, June 7th 2019, 8:50 pm
+                </p>
+              
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      4.3k 字
-    </span>
-  
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    4.2k 字
+                  </span>&nbsp;
+                
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      51
-       分钟
-    </span>
-  
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      16 分钟
+                  </span>&nbsp;
+                
 
-  
-  
-</div>
-
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -201,14 +163,10 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">操作系统(2) 进程管理</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h1><p>在多道程序环境下，允许多个程序并发执行，因此失去封闭性并具有间断性和不可再现性的特征，为此引入进程，更好地描述和控制程序的并发执行，实现操作系统的并发性和共享性。</p>
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h1><p>在多道程序环境下，允许多个程序并发执行，因此失去封闭性并具有间断性和不可再现性的特征，为此引入进程，更好地描述和控制程序的并发执行，实现操作系统的并发性和共享性。</p>
 <p><strong>进程控制块(PCB)</strong>：描述进程的基本情况和运行状态，进而控制和管理进程。</p>
 <p>PCB是进程存在的唯一标志。创建进程实质是创建PCB，撤销进程实质是撤销PCB。</p>
 <p><strong>进程映像</strong>：由程序段、相关数据段、PCB组成。</p>
@@ -219,7 +177,7 @@
 <li>并发性、独立性、异步性、结构性</li>
 </ul>
 <p><strong>进程的状态与转换</strong></p>
-<p><img src="\images\system\1.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\system\1.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>进程创建过程</strong></p>
 <p>终端用户登录、作业调度、系统提供服务、用户程序的应用等请求都会引起进程的创建。</p>
 <ol>
@@ -333,221 +291,233 @@
 <p>1.软件实现方法</p>
 <p><strong>单标志法</strong></p>
 <p>设置公用整型变量turn,用于指示被允许进入临界区的进程编号，进程必须交替进入临界区，否则违背空闲让进</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//P0进程</span>
-<span class="hljs-keyword">while</span>(<span class="hljs-built_in">turn</span>!=<span class="hljs-number">0</span>); <span class="hljs-comment">//等待</span>
-critical section;<span class="hljs-comment">//临界区</span>
-<span class="hljs-built_in">turn</span> = <span class="hljs-number">1</span>;
+<pre><code class="lang-c++">//P0进程
+while(turn!=0); //等待
+critical section;//临界区
+turn = 1;
 remainder section;
-<span class="hljs-comment">//P1进程</span>
-<span class="hljs-keyword">while</span>(<span class="hljs-built_in">turn</span>!=<span class="hljs-number">1</span>); <span class="hljs-comment">//等待</span>
-critical section;<span class="hljs-comment">//临界区</span>
-<span class="hljs-built_in">turn</span> = <span class="hljs-number">0</span>;
-remainder section;</code></pre>
+//P1进程
+while(turn!=1); //等待
+critical section;//临界区
+turn = 0;
+remainder section;
+</code></pre>
 <p><strong>双标志法</strong></p>
 <p>设置$flag[k]$,进入临界区前先检查进程$P_k$是否进入临界区,进程之间不需要交替进入，缺点为进程$p_i和p_j$可能同时进入临界区，违背忙等待</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//Pi进程</span>
-<span class="hljs-keyword">while</span>(flag[j] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
-flag[i] = <span class="hljs-literal">true</span>;
-critical section;<span class="hljs-comment">//临界区</span>
-flag[i] = <span class="hljs-literal">false</span>;
+<pre><code class="lang-c++">//Pi进程
+while(flag[j] == true); //等待
+flag[i] = true;
+critical section;//临界区
+flag[i] = false;
 remainder section;
-<span class="hljs-comment">//Pj进程</span>
-<span class="hljs-keyword">while</span>(flag[i] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
-flag[j] = <span class="hljs-literal">true</span>;
-critical section;<span class="hljs-comment">//临界区</span>
-flag[j] = <span class="hljs-literal">false</span>;
-remainder section;</code></pre>
+//Pj进程
+while(flag[i] == true); //等待
+flag[j] = true;
+critical section;//临界区
+flag[j] = false;
+remainder section;
+</code></pre>
 <p>设置$flag[k]$,进入临界区前先设置本身进程标志为true,再检查进程$P_k$是否进入临界区,缺点是由于进程互相“谦让”容易形成饥饿现象，即进程都无法进入临界区</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//Pi进程</span>
-flag[i] = <span class="hljs-literal">true</span>;
-<span class="hljs-keyword">while</span>(flag[j] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
-critical section;<span class="hljs-comment">//临界区</span>
-flag[i] = <span class="hljs-literal">false</span>;
+<pre><code class="lang-c++">//Pi进程
+flag[i] = true;
+while(flag[j] == true); //等待
+critical section;//临界区
+flag[i] = false;
 remainder section;
-<span class="hljs-comment">//Pj进程</span>
-flag[j] = <span class="hljs-literal">true</span>;
-<span class="hljs-keyword">while</span>(flag[i] == <span class="hljs-literal">true</span>); <span class="hljs-comment">//等待</span>
-critical section;<span class="hljs-comment">//临界区</span>
-flag[j] = <span class="hljs-literal">false</span>;
-remainder section;</code></pre>
+//Pj进程
+flag[j] = true;
+while(flag[i] == true); //等待
+critical section;//临界区
+flag[j] = false;
+remainder section;
+</code></pre>
 <p><strong>Peterson 算法</strong></p>
 <p>进入临界区前先设置本身进程标志为true,再设置turn标志，最后检查进程$P_k$是否进入临界区</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//Pi进程</span>
-flag[i] = <span class="hljs-literal">true</span>;
-<span class="hljs-built_in">turn</span> = j;
-<span class="hljs-keyword">while</span>(flag[j] == <span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-built_in">turn</span> == j); <span class="hljs-comment">//等待</span>
-critical section;<span class="hljs-comment">//临界区</span>
-flag[i] = <span class="hljs-literal">false</span>;
+<pre><code class="lang-c++">//Pi进程
+flag[i] = true;
+turn = j;
+while(flag[j] == true &amp;&amp; turn == j); //等待
+critical section;//临界区
+flag[i] = false;
 remainder section;
-<span class="hljs-comment">//Pj进程</span>
-flag[j] = <span class="hljs-literal">true</span>;
-<span class="hljs-built_in">turn</span> = i;
-<span class="hljs-keyword">while</span>(flag[i] == <span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-built_in">turn</span> == i); <span class="hljs-comment">//等待</span>
-critical section;<span class="hljs-comment">//临界区</span>
-flag[j] = <span class="hljs-literal">false</span>;
-remainder section;</code></pre>
+//Pj进程
+flag[j] = true;
+turn = i;
+while(flag[i] == true &amp;&amp; turn == i); //等待
+critical section;//临界区
+flag[j] = false;
+remainder section;
+</code></pre>
 <p>2.硬件实现方法</p>
 <p><strong>中断屏蔽</strong></p>
 <p>CPU只在发生中断时引起进程切换，屏蔽中断能够保证当前运行的进程将临界区的代码顺利执行完毕</p>
 <p><strong>硬件指令</strong></p>
 <p>TestAndSet指令(原子操作)，为每个临界资源设置共享布尔变量lock,true表示资源正被占用</p>
-<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">TestAndSet</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> *lock)</span></span>&#123;
-    <span class="hljs-keyword">bool</span> old;
+<pre><code class="lang-c++">bool TestAndSet(bool *lock){
+    bool old;
     old = *lock;
-    *lock = <span class="hljs-literal">true</span>;
-    <span class="hljs-keyword">return</span> old;
-&#125;
-<span class="hljs-comment">//进程</span>
-<span class="hljs-keyword">while</span>(TestAndSet(&amp;lock)) <span class="hljs-comment">//等待</span>
-critical section;<span class="hljs-comment">//临界区</span>
-lock = <span class="hljs-literal">false</span>;
-remainder section;</code></pre>
+    *lock = true;
+    return old;
+}
+//进程
+while(TestAndSet(&amp;lock)) //等待
+critical section;//临界区
+lock = false;
+remainder section;
+</code></pre>
 <p><strong>Swap指令</strong></p>
-<pre><code class="hljs c++">Swap(<span class="hljs-keyword">bool</span> *x,<span class="hljs-keyword">bool</span> *y)&#123;
-    <span class="hljs-keyword">bool</span> temp;
+<pre><code class="lang-c++">Swap(bool *x,bool *y){
+    bool temp;
     temp = *x;
     *x = *y;
     *y = temp;
-&#125;
-<span class="hljs-comment">//进程</span>
-key = <span class="hljs-literal">true</span>;<span class="hljs-comment">//为每个进程设置局部布尔变量</span>
-<span class="hljs-keyword">while</span>(key != <span class="hljs-literal">false</span>) <span class="hljs-comment">//等待</span>
+}
+//进程
+key = true;//为每个进程设置局部布尔变量
+while(key != false) //等待
     Swap(*lock,&amp;key)
-critical section;<span class="hljs-comment">//临界区</span>
-lock = <span class="hljs-literal">false</span>;
-remainder section;</code></pre>
+critical section;//临界区
+lock = false;
+remainder section;
+</code></pre>
 <p><strong>信号量</strong></p>
 <p>1.整型信号量：定义为表示资源数目的整型量$S$</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//申请资源</span>
-wait(S)&#123;
-    <span class="hljs-keyword">while</span>(S &lt;= <span class="hljs-number">0</span>);
-    S = S<span class="hljs-number">-1</span>;
-&#125;
-<span class="hljs-comment">//释放资源</span>
-signal(S)&#123;
-    S = S+<span class="hljs-number">1</span>;
-&#125;</code></pre>
+<pre><code class="lang-c++">//申请资源
+wait(S){
+    while(S &lt;= 0);
+    S = S-1;
+}
+//释放资源
+signal(S){
+    S = S+1;
+}
+</code></pre>
 <p>2.记录型信号量：定义为表示资源数目的整型量$value$和进程链表$L$(用于链接等待该资源的进程)</p>
-<pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
-    <span class="hljs-keyword">int</span> value;
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">process</span> *<span class="hljs-title">L</span>;</span>
-&#125;semaphore;
+<pre><code class="lang-c++">typedef struct{
+    int value;
+    struct process *L;
+}semaphore;
 
-<span class="hljs-comment">//申请资源</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">wait</span><span class="hljs-params">(semaphore S)</span></span>&#123;
+//申请资源
+void wait(semaphore S){
     S.value--;
-    <span class="hljs-keyword">if</span>(S.value &lt; <span class="hljs-number">0</span>)&#123;
-        add <span class="hljs-keyword">this</span> <span class="hljs-built_in">process</span> to S.L;
-        block(S.L);<span class="hljs-comment">//进程阻塞，放弃处理机</span>
-    &#125;
-&#125;
-<span class="hljs-comment">//释放资源</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">signal</span><span class="hljs-params">(semaphore S)</span></span>&#123;
+    if(S.value &lt; 0){
+        add this process to S.L;
+        block(S.L);//进程阻塞，放弃处理机
+    }
+}
+//释放资源
+void signal(semaphore S){
     S.value++;
-    <span class="hljs-keyword">if</span>(S.value &lt;= <span class="hljs-number">0</span>)&#123;<span class="hljs-comment">//仍有进程等待</span>
-        <span class="hljs-built_in">remove</span> a <span class="hljs-built_in">process</span> P from S.L;
-        wakeup(P);<span class="hljs-comment">//唤醒进程</span>
-    &#125;
-&#125;</code></pre>
+    if(S.value &lt;= 0){//仍有进程等待
+        remove a process P from S.L;
+        wakeup(P);//唤醒进程
+    }
+}
+</code></pre>
 <p>利用信号量实现进程同步</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//进程Py中的y语句需要使用进程Px中x语句的运行结果</span>
-semaphore S = <span class="hljs-number">0</span>；
-Px()&#123;
-	...
-	x；
-	singal(S);<span class="hljs-comment">//通知进程Py,语句x已完成</span>
-	...
-&#125;
-Py()&#123;
-	...
-	wait(S);<span class="hljs-comment">//检查语句x是否已完成</span>
-	y；
-	...
-&#125;</code></pre>
+<pre><code class="lang-c++">//进程Py中的y语句需要使用进程Px中x语句的运行结果
+semaphore S = 0；
+Px(){
+    ...
+    x；
+    singal(S);//通知进程Py,语句x已完成
+    ...
+}
+Py(){
+    ...
+    wait(S);//检查语句x是否已完成
+    y；
+    ...
+}
+</code></pre>
 <p>利用信号量实现进程互斥</p>
-<pre><code class="hljs c++">semaphore S = <span class="hljs-number">1</span>;<span class="hljs-comment">//初始化信号量 资源数量</span>
-Px()&#123;
-	...
-    wait(S);<span class="hljs-comment">//访问资源，加锁</span>
-	x；<span class="hljs-comment">//临界区</span>
-	singal(S);<span class="hljs-comment">//访问结束，解锁</span>
-	...
-&#125;
-Py()&#123;
-	...
-	wait(S);<span class="hljs-comment">//访问资源，加锁</span>
-	y；<span class="hljs-comment">//临界区</span>
-	singal(S);<span class="hljs-comment">//访问结束，解锁</span>
-	...
-&#125;</code></pre>
+<pre><code class="lang-c++">semaphore S = 1;//初始化信号量 资源数量
+Px(){
+    ...
+    wait(S);//访问资源，加锁
+    x；//临界区
+    singal(S);//访问结束，解锁
+    ...
+}
+Py(){
+    ...
+    wait(S);//访问资源，加锁
+    y；//临界区
+    singal(S);//访问结束，解锁
+    ...
+}
+</code></pre>
 <p>利用信号量实现前驱关系</p>
-<p><img src="\images\system\2.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\system\2.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>$a:S1 \rightarrow S2,b:S1\rightarrow S3;c:S2 \rightarrow S4,d:S2\rightarrow S5;$</p>
 <p>$e:S3 \rightarrow S6,f:S4\rightarrow S6,g:S5 \rightarrow S6$</p>
-<pre><code class="hljs c++">semaphore a=b=c=d=e=f=g=<span class="hljs-number">0</span>;<span class="hljs-comment">//</span>
-S1()&#123;
-	...
-	singal(a);singal(b);<span class="hljs-comment">//S1完成</span>
-&#125;
-S2()&#123;
-	...
-	wait(a);
-	...
-	singal(c);singal(d);<span class="hljs-comment">//S2完成</span>
-&#125;
-S3()&#123;
-	...
-	wait(b);
-	...
-	singal(e);<span class="hljs-comment">//S3完成</span>
-&#125;
-S4()&#123;
-	...
-	wait(c);
-	...
-	singal(f);<span class="hljs-comment">//S4完成</span>
-&#125;
-S5()&#123;
-	...
-	wait(d);
-	...
-	singal(g);<span class="hljs-comment">//S5完成</span>
-&#125;
-S6()&#123;
-	wait(e);
+<pre><code class="lang-c++">semaphore a=b=c=d=e=f=g=0;//
+S1(){
+    ...
+    singal(a);singal(b);//S1完成
+}
+S2(){
+    ...
+    wait(a);
+    ...
+    singal(c);singal(d);//S2完成
+}
+S3(){
+    ...
+    wait(b);
+    ...
+    singal(e);//S3完成
+}
+S4(){
+    ...
+    wait(c);
+    ...
+    singal(f);//S4完成
+}
+S5(){
+    ...
+    wait(d);
+    ...
+    singal(g);//S5完成
+}
+S6(){
+    wait(e);
     wait(f);
     wait(g);
-	...
-&#125;</code></pre>
+    ...
+}
+</code></pre>
 <p><strong>经典同步问题</strong></p>
 <ol>
 <li><p>生产消费者问题</p>
-<pre><code class="hljs c++">semaphore mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//临界区互斥信号量</span>
-semaphore empty = n;<span class="hljs-comment">//空闲缓冲区数</span>
-semaphore full = <span class="hljs-number">0</span>;<span class="hljs-comment">//满缓冲区数</span>
-<span class="hljs-comment">//生产者进程</span>
-producer()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+<pre><code class="lang-c++">semaphore mutex = 1;//临界区互斥信号量
+semaphore empty = n;//空闲缓冲区数
+semaphore full = 0;//满缓冲区数
+//生产者进程
+producer(){
+    while(true){
         produce an item in nextp;
-        wait(empty);<span class="hljs-comment">//获取空缓冲区单元</span>
-        wait(mutex);<span class="hljs-comment">//进入临界区</span>
-        add nextp ti <span class="hljs-built_in">buffer</span>;<span class="hljs-comment">//将数据放入缓冲区</span>
+        wait(empty);//获取空缓冲区单元
+        wait(mutex);//进入临界区
+        add nextp ti buffer;//将数据放入缓冲区
         singal(mutex);
         singal(full);
-    &#125;
-&#125;
-<span class="hljs-comment">//消费者进程</span>
-consumer()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+    }
+}
+//消费者进程
+consumer(){
+    while(true){
         wait(full);
         wait(mutex);
-        <span class="hljs-built_in">remove</span> an item from <span class="hljs-built_in">buffer</span>;
+        remove an item from buffer;
         singal(mutex);
         singal(empty);
         consume the item;
-    &#125;
-&#125;
-<span class="hljs-comment">//empty和full的wait操作必须在mutex前</span></code></pre>
+    }
+}
+//empty和full的wait操作必须在mutex前
+</code></pre>
 </li>
 </ol>
 <ol>
@@ -558,135 +528,139 @@ consumer()&#123;
 <li>写者完成写操作之前不允许其他读者进行读操作</li>
 <li>写者执行写操作之前，应让已有读者和写者全部退出</li>
 </ul>
-<pre><code class="hljs c++"><span class="hljs-comment">//读进程优先</span>
-<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前读者数量</span>
-semaphore mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//用于更新count时的互斥</span>
-semaphore rw = <span class="hljs-number">1</span>;<span class="hljs-comment">//互斥访问共享文件</span>
-<span class="hljs-comment">//写者进程</span>
-writer()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+<pre><code class="lang-c++">//读进程优先
+int count = 0;//当前读者数量
+semaphore mutex = 1;//用于更新count时的互斥
+semaphore rw = 1;//互斥访问共享文件
+//写者进程
+writer(){
+    while(true){
         wait(rw);
         writing;
         signal(rw);
-    &#125;
-&#125;
-<span class="hljs-comment">//读者进程</span>
-reader()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+    }
+}
+//读者进程
+reader(){
+    while(true){
         wait(mutex);
-        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//第一个读者读取时</span>
-            wait(rw);<span class="hljs-comment">//阻止写进程写操作</span>
+        if(count == 0)//第一个读者读取时
+            wait(rw);//阻止写进程写操作
         count++;
         signal(mutex);
         reading;
-        wait(mutex);<span class="hljs-comment">//读取完毕</span>
+        wait(mutex);//读取完毕
         count--;
-        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//当最后一个读进程读取完毕</span>
+        if(count == 0)//当最后一个读进程读取完毕
             signal(rw)
         signal(mutex);
-    &#125;
-&#125;</code></pre>
-<pre><code class="hljs c++"><span class="hljs-comment">//写进程优先</span>
-<span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<span class="hljs-comment">//当前读者数量</span>
-semaphore mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//用于更新count时的互斥</span>
-semaphore rw = <span class="hljs-number">1</span>;<span class="hljs-comment">//互斥访问共享文件</span>
-semaphore w = <span class="hljs-number">1</span>;<span class="hljs-comment">//用于实现写优先</span>
-<span class="hljs-comment">//写者进程</span>
-writer()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+    }
+}
+</code></pre>
+<pre><code class="lang-c++">//写进程优先
+int count = 0;//当前读者数量
+semaphore mutex = 1;//用于更新count时的互斥
+semaphore rw = 1;//互斥访问共享文件
+semaphore w = 1;//用于实现写优先
+//写者进程
+writer(){
+    while(true){
         wait(w)
         wait(rw);
         writing;
         signal(rw);
         signal(w);
-    &#125;
-&#125;
-<span class="hljs-comment">//读者进程</span>
-reader()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
-        wait(w);<span class="hljs-comment">//无写进程时进入</span>
+    }
+}
+//读者进程
+reader(){
+    while(true){
+        wait(w);//无写进程时进入
         wait(mutex);
-        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//第一个读者读取时</span>
-            wait(rw);<span class="hljs-comment">//阻止写进程写操作</span>
+        if(count == 0)//第一个读者读取时
+            wait(rw);//阻止写进程写操作
         count++;
         signal(mutex);
         signal(w);
         reading;
-        wait(mutex);<span class="hljs-comment">//读取完毕</span>
+        wait(mutex);//读取完毕
         count--;
-        <span class="hljs-keyword">if</span>(count == <span class="hljs-number">0</span>)<span class="hljs-comment">//当最后一个读进程读取完毕</span>
+        if(count == 0)//当最后一个读进程读取完毕
             signal(rw)
         signal(mutex);
-    &#125;
-&#125;</code></pre>
+    }
+}
+</code></pre>
 </li>
 </ol>
 <ol>
 <li><p>哲学家进餐问题</p>
-<pre><code class="hljs c++">semaphore chopstick[<span class="hljs-number">5</span>]=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>&#125;;<span class="hljs-comment">//五根筷子</span>
-semaphore mutex =  <span class="hljs-number">1</span>;<span class="hljs-comment">//设置取筷子的信号量</span>
-<span class="hljs-comment">//i号哲学家进程</span>
-Pi()&#123;
-    <span class="hljs-keyword">do</span>&#123;
+<pre><code class="lang-c++">semaphore chopstick[5]={1,1,1,1,1};//五根筷子
+semaphore mutex =  1;//设置取筷子的信号量
+//i号哲学家进程
+Pi(){
+    do{
         wait(mutex);
-        wait(chopstick[i]);<span class="hljs-comment">//取左边筷子</span>
-        wait(chopstick[(i+<span class="hljs-number">1</span>]%<span class="hljs-number">5</span>);<span class="hljs-comment">//取右边筷子</span>
+        wait(chopstick[i]);//取左边筷子
+        wait(chopstick[(i+1]%5);//取右边筷子
         signal(mutex);
         eat;
         signal(chopstick[i]);
-        signal(chopstick[(i+<span class="hljs-number">1</span>]%<span class="hljs-number">5</span>);
+        signal(chopstick[(i+1]%5);
         think;
-    &#125;
-&#125;</code></pre>
+    }
+}
+</code></pre>
 </li>
 </ol>
 <ol>
 <li><p>吸烟者问题w</p>
-<pre><code class="hljs c++"><span class="hljs-keyword">int</span> <span class="hljs-built_in">random</span>;
-semaphore offerTobaccoAndPaper;<span class="hljs-comment">//烟草和纸</span>
-semaphore offerTobaccoAndGlue;<span class="hljs-comment">//烟草和胶水</span>
-semaphore offerPaperAndGlue;<span class="hljs-comment">//纸和胶水</span>
-semaphore finish = <span class="hljs-number">0</span>;<span class="hljs-comment">//记录抽烟完成</span>
-<span class="hljs-comment">//供应者进程</span>
-provider()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
-        <span class="hljs-built_in">random</span> = rand.<span class="hljs-built_in">random</span>(<span class="hljs-number">3</span>);<span class="hljs-comment">//1-3的整数随机数</span>
-        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">random</span> == <span class="hljs-number">1</span>)&#123;
-            signal(offerTobaccoAndPaper);<span class="hljs-comment">//提供烟草和纸</span>
-        &#125;
-        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">random</span> == <span class="hljs-number">1</span>)&#123;
-            signal(offerTobaccoAndGlue);<span class="hljs-comment">//提供烟草和胶水</span>
-        &#125;
-        <span class="hljs-keyword">else</span>&#123;
-            signal(offerPaperAndGlue);<span class="hljs-comment">//提供纸和胶水</span>
-        &#125;
+<pre><code class="lang-c++">int random;
+semaphore offerTobaccoAndPaper;//烟草和纸
+semaphore offerTobaccoAndGlue;//烟草和胶水
+semaphore offerPaperAndGlue;//纸和胶水
+semaphore finish = 0;//记录抽烟完成
+//供应者进程
+provider(){
+    while(true){
+        random = rand.random(3);//1-3的整数随机数
+        if(random == 1){
+            signal(offerTobaccoAndPaper);//提供烟草和纸
+        }
+        else if(random == 1){
+            signal(offerTobaccoAndGlue);//提供烟草和胶水
+        }
+        else{
+            signal(offerPaperAndGlue);//提供纸和胶水
+        }
         wait(finish);
-    &#125;
-&#125;
-<span class="hljs-comment">//拥有烟草者进程</span>
-<span class="hljs-built_in">process</span>()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+    }
+}
+//拥有烟草者进程
+process(){
+    while(true){
         wait(offerPaperAndGlue);
         ...
         signal(finish);
-    &#125;
-&#125;
-<span class="hljs-comment">//拥有纸者进程</span>
-<span class="hljs-built_in">process</span>()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+    }
+}
+//拥有纸者进程
+process(){
+    while(true){
         wait(offerTobaccoAndGlue);
         ...
         signal(finish);
-    &#125;
-&#125;
-<span class="hljs-comment">//拥有胶水者进程</span>
-<span class="hljs-built_in">process</span>()&#123;
-    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+    }
+}
+//拥有胶水者进程
+process(){
+    while(true){
         wait(offerTobaccoAndPaper);
         ...
         signal(finish);
-    &#125;
-&#125;</code></pre>
+    }
+}
+</code></pre>
 </li>
 </ol>
 <h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>定义：多个进程因竞争不可剥夺资源而造成的互相等待，若无外力作用，进程都将无法向前推进。</p>
@@ -709,7 +683,7 @@ provider()&#123;
 <p>分配矩阵Allocation：每个进程已分配到每类资源数目</p>
 <p>需求矩阵Need：每个进程尚需的每类资源数目 $Need = Max - Allocation$</p>
 <p>假设系统中有5个进程$p_0,p_1,p_2,p_3,p_4$和三类资源${A,B,C}$,各类资源数目分别为$10、5、7$,在$t_0$时刻资源分配情况如下表，求资源分配安全序列。</p>
-<p><img src="\images\system\3.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\system\3.jpg" srcset="/img/loading.gif" alt=""></p>
 <ol>
 <li><p>求出Need矩阵</p>
 <script type="math/tex; mode=display">
@@ -749,115 +723,79 @@ p_1(1,2,2)<(3,2,2)\\p_3(0,1,1)<(3,2,2)</script><p>选择$p_1$(或$p_3$)加入安
 <p>安全序列：$[p_1,p_3,p_4,p_2,p_0]$</p>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
-            </div>
             <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">数据结构(3) 栈和队列</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2019/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(1)%20%E6%A6%82%E8%BF%B0/">
-                        <span class="hidden-mobile">操作系统(1) 概述</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
+          </div>
+          <br>
+          <div>
+            <p>
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
+                  <a class="hover-with-bg" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>
+                  &nbsp;
                 
-  <script type="text/javascript">
-    function loadUtterances() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'JiaoPaner/blog-talk.git');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
+              </span>&nbsp;&nbsp;
             
-          </article>
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <div id="tocbot"></div>
+  </div>
 
-      </div>
-    
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+<!-- custom -->
 
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
 
     
   </main>
 
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
   
 
@@ -867,7 +805,7 @@ p_1(1,2,2)<(3,2,2)\\p_3(0,1,1)<(3,2,2)</script><p>选择$p_1$(或$p_3$)加入安
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -876,7 +814,7 @@ p_1(1,2,2)<(3,2,2)\\p_3(0,1,1)<(3,2,2)</script><p>选择$p_1$(或$p_3$)加入安
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -885,89 +823,99 @@ p_1(1,2,2)<(3,2,2)\\p_3(0,1,1)<(3,2,2)</script><p>选择$p_1$(或$p_3$)加入安
 </div>
   
 
-  
-
-  
-
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
     
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
 
     
 
+
+    <!-- cnzz Analytics icon -->
     
+
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
   
 
 
 
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
     $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script src="/lib/typed/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
         "操作系统(2) 进程管理&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
@@ -980,11 +928,11 @@ p_1(1,2,2)<(3,2,2)\\p_3(0,1,1)<(3,2,2)</script><p>选择$p_1$(或$p_3$)加入安
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script src="/lib/anchor/anchor.min.js" ></script>
   <script>
     anchors.options = {
       placement: "right",
-      visible: "hover",
+      visible: "false",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -997,27 +945,25 @@ p_1(1,2,2)<(3,2,2)\\p_3(0,1,1)<(3,2,2)</script><p>选择$p_1$(或$p_3$)加入安
 
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
+      getSearchFile(path);
       this.onclick = null
     }
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
   <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
       function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
         $(this).wrap(element);
       }
     );
@@ -1025,53 +971,31 @@ p_1(1,2,2)<(3,2,2)\\p_3(0,1,1)<(3,2,2)</script><p>选择$p_1$(或$p_3$)加入安
 
 
 
-
-
   
 
   
     <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
           }
-        }
-      };
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
     </script>
 
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
   
-
-
-
-
-
-
-
 
 
 

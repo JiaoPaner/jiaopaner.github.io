@@ -1,57 +1,40 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-Hansn">
+
+
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>002.Spark Sql - 今夜的风儿甚是喧嚣 JiaoPan</title>
+  <title>002.Spark Sql ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
 
 
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
 
 
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -60,7 +43,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今夜的风儿甚是喧嚣</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -76,60 +59,40 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
@@ -137,53 +100,52 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-04-12 21:14" pubdate>
-        April 12, 2020 pm
-      </time>
-    </span>
-  
-</div>
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Sunday, April 12th 2020, 9:14 pm
+                </p>
+              
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1.5k 字
-    </span>
-  
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.6k 字
+                  </span>&nbsp;
+                
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      28
-       分钟
-    </span>
-  
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      9 分钟
+                  </span>&nbsp;
+                
 
-  
-  
-</div>
-
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -201,115 +163,113 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">002.Spark Sql</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="spark-sql-hello-world"><a href="#spark-sql-hello-world" class="headerlink" title="spark sql-hello world"></a>spark sql-hello world</h1><p>1.引入依赖</p>
-<pre><code class="hljs text">&lt;dependency&gt;
-	&lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
-	&lt;artifactId&gt;spark-sql_2.11&lt;&#x2F;artifactId&gt;
-	&lt;version&gt;2.4.5&lt;&#x2F;version&gt;
-&lt;&#x2F;dependency&gt;</code></pre>
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="spark-sql-hello-world"><a href="#spark-sql-hello-world" class="headerlink" title="spark sql-hello world"></a>spark sql-hello world</h1><p>1.引入依赖</p>
+<pre><code class="lang-text">&lt;dependency&gt;
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-sql_2.11&lt;/artifactId&gt;
+    &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
 <p>2.exmple程序</p>
-<pre><code class="hljs arduino"> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span> <span class="hljs-title">implements</span> <span class="hljs-title">Serializable</span>&#123;</span>
-		<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
-		<span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> name;
-    	<span class="hljs-keyword">private</span> <span class="hljs-keyword">String</span> age;
-    	Man(<span class="hljs-keyword">String</span> name,<span class="hljs-keyword">String</span> age)&#123;
-    		<span class="hljs-keyword">this</span>.name = name;
-    		<span class="hljs-keyword">this</span>.age = age;
-    	&#125;
-		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;
-			<span class="hljs-keyword">return</span> name;
-		&#125;
-		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(<span class="hljs-keyword">String</span> name)</span> </span>&#123;
-			<span class="hljs-keyword">this</span>.name = name;
-		&#125;
-		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">String</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span> </span>&#123;
-			<span class="hljs-keyword">return</span> age;
-		&#125;
-		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">String</span> age)</span> </span>&#123;
-			<span class="hljs-keyword">this</span>.age = age;
-		&#125;
-&#125;
+<pre><code> public class Man implements Serializable{
+        private static final long serialVersionUID = 1L;
+        private String name;
+        private String age;
+        Man(String name,String age){
+            this.name = name;
+            this.age = age;
+        }
+        public String getName() {
+            return name;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public String getAge() {
+            return age;
+        }
+        public void setAge(String age) {
+            this.age = age;
+        }
+}
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> SparkConf conf = <span class="hljs-keyword">new</span> SparkConf().setAppName(<span class="hljs-string">"wordCount"</span>).setMaster(<span class="hljs-string">"local[*]"</span>);
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> JavaSparkContext sc = <span class="hljs-keyword">new</span> JavaSparkContext(conf);
+public static SparkConf conf = new SparkConf().setAppName(&quot;wordCount&quot;).setMaster(&quot;local[*]&quot;);
+public static JavaSparkContext sc = new JavaSparkContext(conf);
 
-SparkSession session = SparkSession.builder().appName(<span class="hljs-string">"sql test"</span>).master(<span class="hljs-string">"local[*]"</span>).getOrCreate();
+SparkSession session = SparkSession.builder().appName(&quot;sql test&quot;).master(&quot;local[*]&quot;).getOrCreate();
 
-JavaRDD&lt;<span class="hljs-keyword">String</span>&gt; lines = sc.parallelize(Arrays.asList(<span class="hljs-string">"jeery 26"</span>,<span class="hljs-string">"tony 23"</span>));
-JavaRDD&lt;Man&gt; mans = lines.<span class="hljs-built_in">map</span>(<span class="hljs-built_in">line</span>-&gt;&#123;
-    <span class="hljs-keyword">String</span>[] words = <span class="hljs-built_in">line</span>.split(<span class="hljs-string">" "</span>);
-    Man item = <span class="hljs-keyword">new</span> Man(words[<span class="hljs-number">0</span>],words[<span class="hljs-number">1</span>]);
-    <span class="hljs-keyword">return</span> item;
-&#125;);
+JavaRDD&lt;String&gt; lines = sc.parallelize(Arrays.asList(&quot;jeery 26&quot;,&quot;tony 23&quot;));
+JavaRDD&lt;Man&gt; mans = lines.map(line-&gt;{
+    String[] words = line.split(&quot; &quot;);
+    Man item = new Man(words[0],words[1]);
+    return item;
+});
 Dataset&lt;Row&gt; men = session.createDataFrame(mans,Man.class);
-men.createTempView(<span class="hljs-string">"men"</span>);
-Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select * from men order by age"</span>);
+men.createTempView(&quot;men&quot;);
+Dataset&lt;Row&gt; result = session.sql(&quot;select * from men order by age&quot;);
 result.show();
-session.<span class="hljs-built_in">stop</span>();
+session.stop();
 
 +---+-----+
 |age| name|
 +---+-----+
-| <span class="hljs-number">23</span>| tony|
-| <span class="hljs-number">26</span>|jeery|
-+---+-----+</code></pre>
-<h1 id="StructType-定义schema"><a href="#StructType-定义schema" class="headerlink" title="StructType 定义schema"></a>StructType 定义schema</h1><ul>
+| 23| tony|
+| 26|jeery|
++---+-----+
+</code></pre><h1 id="StructType-定义schema"><a href="#StructType-定义schema" class="headerlink" title="StructType 定义schema"></a>StructType 定义schema</h1><ul>
 <li>example -01</li>
 </ul>
-<pre><code class="hljs java">JavaRDD&lt;String&gt; lines = sc.parallelize(Arrays.asList(<span class="hljs-string">"jeery 26"</span>,<span class="hljs-string">"tony 23"</span>));
-JavaRDD&lt;Row&gt; mans = lines.map(line-&gt;&#123;
-    String[] words = line.split(<span class="hljs-string">" "</span>);
-    <span class="hljs-keyword">return</span> RowFactory.create(words[<span class="hljs-number">0</span>],words[<span class="hljs-number">1</span>]);
-&#125;);
-StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[] &#123;
-    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"name"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
-    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"age"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
-&#125;);
+<pre><code class="lang-java">JavaRDD&lt;String&gt; lines = sc.parallelize(Arrays.asList(&quot;jeery 26&quot;,&quot;tony 23&quot;));
+JavaRDD&lt;Row&gt; mans = lines.map(line-&gt;{
+    String[] words = line.split(&quot; &quot;);
+    return RowFactory.create(words[0],words[1]);
+});
+StructType schema = new StructType(new StructField[] {
+    new StructField(&quot;name&quot;,DataTypes.StringType,true,Metadata.empty()),
+    new StructField(&quot;age&quot;,DataTypes.StringType,true,Metadata.empty()),
+});
 
 Dataset&lt;Row&gt; men = session.createDataFrame(mans,schema);
 
 men.printSchema();
 men.show();
 
-men.createTempView(<span class="hljs-string">"men"</span>);
-Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select * from men order by age"</span>);
+men.createTempView(&quot;men&quot;);
+Dataset&lt;Row&gt; result = session.sql(&quot;select * from men order by age&quot;);
 result.show();
 
 root
- |-- name: string (nullable = <span class="hljs-keyword">true</span>)
- |-- age: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- name: string (nullable = true)
+ |-- age: string (nullable = true)
 
 +-----+---+
 | name|age|
 +-----+---+
-|jeery| <span class="hljs-number">26</span>|
-| tony| <span class="hljs-number">23</span>|
+|jeery| 26|
+| tony| 23|
 +-----+---+
 
 +-----+---+
 | name|age|
 +-----+---+
-| tony| <span class="hljs-number">23</span>|
-|jeery| <span class="hljs-number">26</span>|
-+-----+---+</code></pre>
+| tony| 23|
+|jeery| 26|
++-----+---+
+</code></pre>
 <ul>
 <li>example-02</li>
 </ul>
-<pre><code class="hljs java">StructType schema = <span class="hljs-keyword">new</span> StructType(<span class="hljs-keyword">new</span> StructField[] &#123;
-    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"name"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
-    <span class="hljs-keyword">new</span> StructField(<span class="hljs-string">"age"</span>,DataTypes.StringType,<span class="hljs-keyword">true</span>,Metadata.empty()),
-&#125;);
+<pre><code class="lang-java">StructType schema = new StructType(new StructField[] {
+    new StructField(&quot;name&quot;,DataTypes.StringType,true,Metadata.empty()),
+    new StructField(&quot;age&quot;,DataTypes.StringType,true,Metadata.empty()),
+});
 
-List&lt;Row&gt; rows = <span class="hljs-keyword">new</span> ArrayList&lt;Row&gt;();
-rows.add(RowFactory.create(<span class="hljs-string">"jiaopan"</span>,<span class="hljs-string">"26"</span>));
-rows.add(RowFactory.create(<span class="hljs-string">"jp"</span>,<span class="hljs-string">"23"</span>));
+List&lt;Row&gt; rows = new ArrayList&lt;Row&gt;();
+rows.add(RowFactory.create(&quot;jiaopan&quot;,&quot;26&quot;));
+rows.add(RowFactory.create(&quot;jp&quot;,&quot;23&quot;));
 
 Dataset&lt;Row&gt; men = session.createDataFrame(rows,schema);
 men.printSchema();
@@ -318,124 +278,134 @@ men.show();
 +-------+---+
 |   name|age|
 +-------+---+
-|jiaopan| <span class="hljs-number">26</span>|
-|     jp| <span class="hljs-number">23</span>|
-+-------+---+</code></pre>
+|jiaopan| 26|
+|     jp| 23|
++-------+---+
+</code></pre>
 <h1 id="json-读取json文件自动创建DataFrame"><a href="#json-读取json文件自动创建DataFrame" class="headerlink" title="json 读取json文件自动创建DataFrame"></a>json 读取json文件自动创建DataFrame</h1><ul>
 <li>user.json</li>
 </ul>
-<pre><code class="hljs text">&#123;&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:&quot;26&quot;&#125;
-&#123;&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:&quot;39&quot;&#125;
-&#123;&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:&quot;19&quot;&#125;</code></pre>
-<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read().json(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json"</span>);
+<pre><code class="lang-text">{&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:&quot;26&quot;}
+{&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:&quot;39&quot;}
+{&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:&quot;19&quot;}
+</code></pre>
+<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read().json(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json&quot;);
 users.printSchema();
 users.show();
 
 root
- |-- age: string (nullable = <span class="hljs-keyword">true</span>)
- |-- name: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- age: string (nullable = true)
+ |-- name: string (nullable = true)
 
 +---+-------+
 |age|   name|
 +---+-------+
-| <span class="hljs-number">26</span>|jiaopan|
-| <span class="hljs-number">39</span>|     jp|
-| <span class="hljs-number">19</span>|chengdu|
-+---+-------+</code></pre>
+| 26|jiaopan|
+| 39|     jp|
+| 19|chengdu|
++---+-------+
+</code></pre>
 <ul>
 <li>user.json</li>
 </ul>
-<pre><code class="hljs text">&#123;&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:26,&quot;address&quot;:&quot;成都市&quot;&#125;
-&#123;&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:39,&quot;phone&quot;:&quot;18088886666&quot;&#125;
-&#123;&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:19&#125;</code></pre>
-<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read().json(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json"</span>);
+<pre><code class="lang-text">{&quot;name&quot;:&quot;jiaopan&quot;,&quot;age&quot;:26,&quot;address&quot;:&quot;成都市&quot;}
+{&quot;name&quot;:&quot;jp&quot;,&quot;age&quot;:39,&quot;phone&quot;:&quot;18088886666&quot;}
+{&quot;name&quot;:&quot;chengdu&quot;,&quot;age&quot;:19}
+</code></pre>
+<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read().json(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.json&quot;);
 users.printSchema();
 users.show();
 
 root
- |-- address: string (nullable = <span class="hljs-keyword">true</span>)
- |-- age: string (nullable = <span class="hljs-keyword">true</span>)
- |-- name: string (nullable = <span class="hljs-keyword">true</span>)
- |-- phone: string (nullable = <span class="hljs-keyword">true</span>)
- 
+ |-- address: string (nullable = true)
+ |-- age: string (nullable = true)
+ |-- name: string (nullable = true)
+ |-- phone: string (nullable = true)
+
 +-------+---+-------+-----------+
 |address|age|   name|      phone|
 +-------+---+-------+-----------+
-|  成都市| <span class="hljs-number">26</span>|jiaopan|       <span class="hljs-keyword">null</span>|
-|   <span class="hljs-keyword">null</span>| <span class="hljs-number">39</span>|     jp|<span class="hljs-number">18088886666</span>|
-|   <span class="hljs-keyword">null</span>| <span class="hljs-number">19</span>|chengdu|       <span class="hljs-keyword">null</span>|
-+-------+---+-------+-----------+</code></pre>
+|  成都市| 26|jiaopan|       null|
+|   null| 39|     jp|18088886666|
+|   null| 19|chengdu|       null|
++-------+---+-------+-----------+
+</code></pre>
 <h1 id="CSV-读取csv文件自动创建DataFrame"><a href="#CSV-读取csv文件自动创建DataFrame" class="headerlink" title="CSV 读取csv文件自动创建DataFrame"></a>CSV 读取csv文件自动创建DataFrame</h1><ul>
 <li>user.csv</li>
 </ul>
-<pre><code class="hljs text">jiaopan,26,成都市
+<pre><code class="lang-text">jiaopan,26,成都市
 jp,39,18088886666
-chengdu,19</code></pre>
-<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read().csv(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv"</span>);
+chengdu,19
+</code></pre>
+<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read().csv(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv&quot;);
 users.printSchema();
 users.show();
 
 root
- |-- _c0: string (nullable = <span class="hljs-keyword">true</span>)
- |-- _c1: string (nullable = <span class="hljs-keyword">true</span>)
- |-- _c2: string (nullable = <span class="hljs-keyword">true</span>)
- 
+ |-- _c0: string (nullable = true)
+ |-- _c1: string (nullable = true)
+ |-- _c2: string (nullable = true)
+
 +-------+---+-----------+
 |    _c0|_c1|        _c2|
 +-------+---+-----------+
-|jiaopan| <span class="hljs-number">26</span>|      成都市|
-|     jp| <span class="hljs-number">39</span>|<span class="hljs-number">18088886666</span>|
-|chengdu| <span class="hljs-number">19</span>|       <span class="hljs-keyword">null</span>|
-+-------+---+-----------+</code></pre>
+|jiaopan| 26|      成都市|
+|     jp| 39|18088886666|
+|chengdu| 19|       null|
++-------+---+-----------+
+</code></pre>
 <ul>
 <li>user.csv</li>
 </ul>
-<pre><code class="hljs text">name,age,phone,address
+<pre><code class="lang-text">name,age,phone,address
 jiaopan,26,&quot;&quot;,成都市
 jp,39,18088886666,&quot;&quot;
-chengdu,19,&quot;&quot;,&quot;&quot;</code></pre>
-<pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read()
-				    		.option(<span class="hljs-string">"header"</span>,<span class="hljs-keyword">true</span>) <span class="hljs-comment">//设置第一行为表头</span>
-				    		.option(<span class="hljs-string">"inferSchema"</span>, <span class="hljs-keyword">true</span>) <span class="hljs-comment">//推断数据类型</span>
-				    		.csv(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv"</span>);
+chengdu,19,&quot;&quot;,&quot;&quot;
+</code></pre>
+<pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read()
+                            .option(&quot;header&quot;,true) //设置第一行为表头
+                            .option(&quot;inferSchema&quot;, true) //推断数据类型
+                            .csv(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv&quot;);
 users.printSchema();
 users.show();
 
 root
- |-- name: string (nullable = <span class="hljs-keyword">true</span>)
- |-- age: integer (nullable = <span class="hljs-keyword">true</span>)
- |-- phone: <span class="hljs-keyword">long</span> (nullable = <span class="hljs-keyword">true</span>)
- |-- address: string (nullable = <span class="hljs-keyword">true</span>)
+ |-- name: string (nullable = true)
+ |-- age: integer (nullable = true)
+ |-- phone: long (nullable = true)
+ |-- address: string (nullable = true)
 
- 
+
 +-------+---+-----------+-------+
 |   name|age|      phone|address|
 +-------+---+-----------+-------+
-|jiaopan| <span class="hljs-number">26</span>|       <span class="hljs-keyword">null</span>|  成都市|
-|     jp| <span class="hljs-number">39</span>|<span class="hljs-number">18088886666</span>|   <span class="hljs-keyword">null</span>|
-|chengdu| <span class="hljs-number">19</span>|       <span class="hljs-keyword">null</span>|   <span class="hljs-keyword">null</span>|
-+-------+---+-----------+-------+</code></pre>
-<h1 id="DSL-API"><a href="#DSL-API" class="headerlink" title="DSL API"></a>DSL API</h1><pre><code class="hljs java">Dataset&lt;Row&gt; users = session.read()
-							.option(<span class="hljs-string">"header"</span>,<span class="hljs-keyword">true</span>) <span class="hljs-comment">//设置第一行为表头</span>
-							.option(<span class="hljs-string">"inferSchema"</span>, <span class="hljs-keyword">true</span>) <span class="hljs-comment">//推断数据类型</span>
-							.csv(<span class="hljs-string">"/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv"</span>);
-    	
-Dataset&lt;Row&gt; result = users.select(<span class="hljs-string">"name"</span>,<span class="hljs-string">"age"</span>).where(<span class="hljs-string">"age &gt;=20"</span>);
+|jiaopan| 26|       null|  成都市|
+|     jp| 39|18088886666|   null|
+|chengdu| 19|       null|   null|
++-------+---+-----------+-------+
+</code></pre>
+<h1 id="DSL-API"><a href="#DSL-API" class="headerlink" title="DSL API"></a>DSL API</h1><pre><code class="lang-java">Dataset&lt;Row&gt; users = session.read()
+                            .option(&quot;header&quot;,true) //设置第一行为表头
+                            .option(&quot;inferSchema&quot;, true) //推断数据类型
+                            .csv(&quot;/Volumes/storage/macbook-pro/programming/java-projects/spark.learning/user.csv&quot;);
+
+Dataset&lt;Row&gt; result = users.select(&quot;name&quot;,&quot;age&quot;).where(&quot;age &gt;=20&quot;);
 result.show();
 
 +-------+---+
 |   name|age|
 +-------+---+
-|jiaopan| <span class="hljs-number">26</span>|
-|     jp| <span class="hljs-number">39</span>|
-+-------+---+</code></pre>
-<h1 id="word-count"><a href="#word-count" class="headerlink" title="word count"></a>word count</h1><pre><code class="hljs java">Dataset&lt;String&gt; lines = session.read().textFile(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/words.txt"</span>);
+|jiaopan| 26|
+|     jp| 39|
++-------+---+
+</code></pre>
+<h1 id="word-count"><a href="#word-count" class="headerlink" title="word count"></a>word count</h1><pre><code class="lang-java">Dataset&lt;String&gt; lines = session.read().textFile(&quot;/Volumes/storage/learn/bigdata/data/words.txt&quot;);
 lines.show();
-Dataset&lt;String&gt; words = lines.flatMap(line-&gt;Arrays.asList(line.split(<span class="hljs-string">" "</span>)).iterator(),Encoders.STRING());
+Dataset&lt;String&gt; words = lines.flatMap(line-&gt;Arrays.asList(line.split(&quot; &quot;)).iterator(),Encoders.STRING());
 words.show();
 
-words.createTempView(<span class="hljs-string">"words"</span>);
-Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select value word,count(*) count from words group by word"</span>);
+words.createTempView(&quot;words&quot;);
+Dataset&lt;Row&gt; result = session.sql(&quot;select value word,count(*) count from words group by word&quot;);
 result.show();
 
 +--------------------+
@@ -463,78 +433,81 @@ result.show();
 +-------+-----+
 |   word|count|
 +-------+-----+
-|  hello|    <span class="hljs-number">1</span>|
-|jiaopan|    <span class="hljs-number">2</span>|
-|  mysql|    <span class="hljs-number">1</span>|
-|  spark|    <span class="hljs-number">2</span>|
-|   hive|    <span class="hljs-number">3</span>|
+|  hello|    1|
+|jiaopan|    2|
+|  mysql|    1|
+|  spark|    2|
+|   hive|    3|
 +-------+-----+
 
-Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(<span class="hljs-string">"value"</span>,<span class="hljs-string">"word"</span>).select(<span class="hljs-string">"*"</span>).groupBy(<span class="hljs-string">"word"</span>).count();
+Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(&quot;value&quot;,&quot;word&quot;).select(&quot;*&quot;).groupBy(&quot;word&quot;).count();
 DSlresult.show();
 
 +-------+-----+
 |   word|count|
 +-------+-----+
-|  hello|    <span class="hljs-number">1</span>|
-|jiaopan|    <span class="hljs-number">2</span>|
-|  mysql|    <span class="hljs-number">1</span>|
-|  spark|    <span class="hljs-number">2</span>|
-|   hive|    <span class="hljs-number">3</span>|
+|  hello|    1|
+|jiaopan|    2|
+|  mysql|    1|
+|  spark|    2|
+|   hive|    3|
 +-------+-----+
 
-Map&lt;String, String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;();
-map.put(<span class="hljs-string">"*"</span>,<span class="hljs-string">"count"</span>);
-Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(<span class="hljs-string">"value"</span>,<span class="hljs-string">"word"</span>).select(<span class="hljs-string">"*"</span>).groupBy(<span class="hljs-string">"word"</span>).agg(map);
+Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+map.put(&quot;*&quot;,&quot;count&quot;);
+Dataset&lt;Row&gt; DSlresult = words.withColumnRenamed(&quot;value&quot;,&quot;word&quot;).select(&quot;*&quot;).groupBy(&quot;word&quot;).agg(map);
 DSlresult.show();
 
 +-------+--------+
-|   word|count(<span class="hljs-number">1</span>)|
+|   word|count(1)|
 +-------+--------+
-|  hello|       <span class="hljs-number">1</span>|
-|jiaopan|       <span class="hljs-number">2</span>|
-|  mysql|       <span class="hljs-number">1</span>|
-|  spark|       <span class="hljs-number">2</span>|
-|   hive|       <span class="hljs-number">3</span>|
-+-------+--------+</code></pre>
-<h1 id="JDBC-读取数据库"><a href="#JDBC-读取数据库" class="headerlink" title="JDBC 读取数据库"></a>JDBC 读取数据库</h1><pre><code class="hljs java">Properties properties = <span class="hljs-keyword">new</span>  Properties();
-properties.setProperty(<span class="hljs-string">"driver"</span>,<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);
-properties.setProperty(<span class="hljs-string">"user"</span>,<span class="hljs-string">"root"</span>);
-properties.setProperty(<span class="hljs-string">"password"</span>,<span class="hljs-string">"123456"</span>);
-String jdbc = <span class="hljs-string">"jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8"</span>;
-Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,<span class="hljs-string">"sys_user"</span>, properties);
+|  hello|       1|
+|jiaopan|       2|
+|  mysql|       1|
+|  spark|       2|
+|   hive|       3|
++-------+--------+
+</code></pre>
+<h1 id="JDBC-读取数据库"><a href="#JDBC-读取数据库" class="headerlink" title="JDBC 读取数据库"></a>JDBC 读取数据库</h1><pre><code class="lang-java">Properties properties = new  Properties();
+properties.setProperty(&quot;driver&quot;,&quot;com.mysql.jdbc.Driver&quot;);
+properties.setProperty(&quot;user&quot;,&quot;root&quot;);
+properties.setProperty(&quot;password&quot;,&quot;123456&quot;);
+String jdbc = &quot;jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8&quot;;
+Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,&quot;sys_user&quot;, properties);
 result.show();
 
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
 |                 id|username|            password|   tel|org_code|level|status|create_date|
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
-|<span class="hljs-number">1057796353167527937</span>|   admin|eac4108912af90ae9...|    <span class="hljs-number">23</span>| <span class="hljs-number">1001011</span>|    <span class="hljs-number">0</span>|     <span class="hljs-number">1</span>| <span class="hljs-number">2018</span>-<span class="hljs-number">11</span>-<span class="hljs-number">01</span>|
-|<span class="hljs-number">1102890947181555714</span>|    demo|<span class="hljs-number">36</span>a7c9e95a47010a2...|      |  <span class="hljs-number">100101</span>|    <span class="hljs-number">1</span>|     <span class="hljs-number">1</span>| <span class="hljs-number">2019</span>-<span class="hljs-number">03</span>-<span class="hljs-number">05</span>|
-|<span class="hljs-number">1120927990138572801</span>|    test|<span class="hljs-number">2</span>df51a84abc64a287...|<span class="hljs-number">123456</span>|  <span class="hljs-number">100101</span>|    <span class="hljs-number">1</span>|     <span class="hljs-number">1</span>| <span class="hljs-number">2019</span>-<span class="hljs-number">04</span>-<span class="hljs-number">24</span>|
-+-------------------+--------+--------------------+------+--------+-----+------+-----------+</code></pre>
-<h1 id="Parquet"><a href="#Parquet" class="headerlink" title="Parquet"></a>Parquet</h1><pre><code class="hljs java">Properties properties = <span class="hljs-keyword">new</span>  Properties();
-properties.setProperty(<span class="hljs-string">"driver"</span>,<span class="hljs-string">"com.mysql.jdbc.Driver"</span>);
-properties.setProperty(<span class="hljs-string">"user"</span>,<span class="hljs-string">"root"</span>);
-properties.setProperty(<span class="hljs-string">"password"</span>,<span class="hljs-string">"123456"</span>);
-String jdbc = <span class="hljs-string">"jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8"</span>;
-Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,<span class="hljs-string">"sys_user"</span>, properties);
+|1057796353167527937|   admin|eac4108912af90ae9...|    23| 1001011|    0|     1| 2018-11-01|
+|1102890947181555714|    demo|36a7c9e95a47010a2...|      |  100101|    1|     1| 2019-03-05|
+|1120927990138572801|    test|2df51a84abc64a287...|123456|  100101|    1|     1| 2019-04-24|
++-------------------+--------+--------------------+------+--------+-----+------+-----------+
+</code></pre>
+<h1 id="Parquet"><a href="#Parquet" class="headerlink" title="Parquet"></a>Parquet</h1><pre><code class="lang-java">Properties properties = new  Properties();
+properties.setProperty(&quot;driver&quot;,&quot;com.mysql.jdbc.Driver&quot;);
+properties.setProperty(&quot;user&quot;,&quot;root&quot;);
+properties.setProperty(&quot;password&quot;,&quot;123456&quot;);
+String jdbc = &quot;jdbc:mysql://localhost:3306/intelligent_agriculture?characterEncoding=UTF-8&quot;;
+Dataset&lt;Row&gt; result = session.read().jdbc(jdbc,&quot;sys_user&quot;, properties);
 result.show();
 
-result.write().parquet(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/out"</span>);
+result.write().parquet(&quot;/Volumes/storage/learn/bigdata/data/out&quot;);
 
-Dataset&lt;Row&gt; parquet = session.read().parquet(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/out"</span>);</code></pre>
-<pre><code class="hljs bash">20/04/13 14:12:14 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
-&#123;
-  <span class="hljs-string">"type"</span> : <span class="hljs-string">"struct"</span>,
-  <span class="hljs-string">"fields"</span> : [ &#123;
-    <span class="hljs-string">"name"</span> : <span class="hljs-string">"id"</span>,
-    <span class="hljs-string">"type"</span> : <span class="hljs-string">"string"</span>,
-    <span class="hljs-string">"nullable"</span> : <span class="hljs-literal">true</span>,
-    <span class="hljs-string">"metadata"</span> : &#123; &#125;
-  &#125;,...]
-&#125;
-and corresponding Parquet message <span class="hljs-built_in">type</span>:
-message spark_schema &#123;
+Dataset&lt;Row&gt; parquet = session.read().parquet(&quot;/Volumes/storage/learn/bigdata/data/out&quot;);
+</code></pre>
+<pre><code class="lang-bash">20/04/13 14:12:14 INFO ParquetWriteSupport: Initialized Parquet WriteSupport with Catalyst schema:
+{
+  &quot;type&quot; : &quot;struct&quot;,
+  &quot;fields&quot; : [ {
+    &quot;name&quot; : &quot;id&quot;,
+    &quot;type&quot; : &quot;string&quot;,
+    &quot;nullable&quot; : true,
+    &quot;metadata&quot; : { }
+  },...]
+}
+and corresponding Parquet message type:
+message spark_schema {
   optional binary id (UTF8);
   optional binary username (UTF8);
   optional binary password (UTF8);
@@ -543,23 +516,25 @@ message spark_schema &#123;
   optional int32 level;
   optional int32 status;
   optional int32 create_date (DATE);
-&#125;
+}
 
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
 |                 id|username|            password|   tel|org_code|level|status|create_date|
 +-------------------+--------+--------------------+------+--------+-----+------+-----------+
 |1057796353167527937|   admin|eac4108912af90ae9...|    23| 1001011|    0|     1| 2018-11-01|
 |1102890947181555714|    demo|36a7c9e95a47010a2...|      |  100101|    1|     1| 2019-03-05|
-|1120927990138572801|    <span class="hljs-built_in">test</span>|2df51a84abc64a287...|123456|  100101|    1|     1| 2019-04-24|
-+-------------------+--------+--------------------+------+--------+-----+------+-----------+</code></pre>
+|1120927990138572801|    test|2df51a84abc64a287...|123456|  100101|    1|     1| 2019-04-24|
++-------------------+--------+--------------------+------+--------+-----+------+-----------+
+</code></pre>
 <h1 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h1><ul>
 <li>引入依赖</li>
 </ul>
-<pre><code class="hljs text">&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
-  &lt;artifactId&gt;spark-hive_2.11&lt;&#x2F;artifactId&gt;
-  &lt;version&gt;2.4.5&lt;&#x2F;version&gt;
-&lt;&#x2F;dependency&gt;</code></pre>
+<pre><code class="lang-text">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-hive_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
 <ul>
 <li>配置</li>
 </ul>
@@ -568,23 +543,23 @@ message spark_schema &#123;
 <ul>
 <li>开启hive支持</li>
 </ul>
-<pre><code class="hljs java">SparkSession session = SparkSession.builder().appName(<span class="hljs-string">"sql test"</span>)
-									    	 .master(<span class="hljs-string">"local[*]"</span>)
-									    	 <span class="hljs-comment">//利用thrift连接hive</span>
-									    	 .config(<span class="hljs-string">"hive.metastore.uris"</span>, <span class="hljs-string">"thrift://xodb-dev03:9083"</span>)
-									    	 .enableHiveSupport()
-									    	 .getOrCreate();
-									    	 
-session.sql(<span class="hljs-string">"show databases"</span>).show();
-session.sql(<span class="hljs-string">"use wl_test"</span>);
-session.sql(<span class="hljs-string">"show tables"</span>).show();
-Dataset&lt;Row&gt; result = session.sql(<span class="hljs-string">"select * from user_act limit 10"</span>);
+<pre><code class="lang-java">SparkSession session = SparkSession.builder().appName(&quot;sql test&quot;)
+                                             .master(&quot;local[*]&quot;)
+                                             //利用thrift连接hive
+                                             .config(&quot;hive.metastore.uris&quot;, &quot;thrift://xodb-dev03:9083&quot;)
+                                             .enableHiveSupport()
+                                             .getOrCreate();
+
+session.sql(&quot;show databases&quot;).show();
+session.sql(&quot;use wl_test&quot;);
+session.sql(&quot;show tables&quot;).show();
+Dataset&lt;Row&gt; result = session.sql(&quot;select * from user_act limit 10&quot;);
 result.show();
-    	
+
 +------------+
 |databaseName|
 +------------+
-|     <span class="hljs-keyword">default</span>|
+|     default|
 |         sys|
 |        tpch|
 |   warehouse|
@@ -593,128 +568,93 @@ result.show();
 +--------+---------+-----------+
 |database|tableName|isTemporary|
 +--------+---------+-----------+
-| wl_test| user_act|      <span class="hljs-keyword">false</span>|
+| wl_test| user_act|      false|
 +--------+---------+-----------+
 +-------+-------+------+-----------+
 |user_id|item_id|rating|create_time|
 +-------+-------+------+-----------+
-|    <span class="hljs-number">196</span>|    <span class="hljs-number">242</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">881250949</span>|
-|    <span class="hljs-number">186</span>|    <span class="hljs-number">302</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">891717742</span>|
-|     <span class="hljs-number">22</span>|    <span class="hljs-number">377</span>|     <span class="hljs-number">1</span>|  <span class="hljs-number">878887116</span>|
-|    <span class="hljs-number">244</span>|     <span class="hljs-number">51</span>|     <span class="hljs-number">2</span>|  <span class="hljs-number">880606923</span>|
-|    <span class="hljs-number">166</span>|    <span class="hljs-number">346</span>|     <span class="hljs-number">1</span>|  <span class="hljs-number">886397596</span>|
-|    <span class="hljs-number">298</span>|    <span class="hljs-number">474</span>|     <span class="hljs-number">4</span>|  <span class="hljs-number">884182806</span>|
-|    <span class="hljs-number">115</span>|    <span class="hljs-number">265</span>|     <span class="hljs-number">2</span>|  <span class="hljs-number">881171488</span>|
-|    <span class="hljs-number">253</span>|    <span class="hljs-number">465</span>|     <span class="hljs-number">5</span>|  <span class="hljs-number">891628467</span>|
-|    <span class="hljs-number">305</span>|    <span class="hljs-number">451</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">886324817</span>|
-|      <span class="hljs-number">6</span>|     <span class="hljs-number">86</span>|     <span class="hljs-number">3</span>|  <span class="hljs-number">883603013</span>|
-+-------+-------+------+-----------+</code></pre>
+|    196|    242|     3|  881250949|
+|    186|    302|     3|  891717742|
+|     22|    377|     1|  878887116|
+|    244|     51|     2|  880606923|
+|    166|    346|     1|  886397596|
+|    298|    474|     4|  884182806|
+|    115|    265|     2|  881171488|
+|    253|    465|     5|  891628467|
+|    305|    451|     3|  886324817|
+|      6|     86|     3|  883603013|
++-------+-------+------+-----------+
+</code></pre>
 <p><em>note</em>：</p>
 <p><a href="http://spark.apache.org/docs/latest/sql-programming-guide.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/sql-programming-guide.html</a></p>
 <p><a href="http://spark.apache.org/docs/latest/api/sql/index.html" target="_blank" rel="noopener">http://spark.apache.org/docs/latest/api/sql/index.html</a></p>
 
-            </div>
             <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/spark/">spark</a>
-                    
-                  </div>
-                
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/04/15/spark.003/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">003.Spark Streaming/Structured Streaming</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/04/09/spark.001/">
-                        <span class="hidden-mobile">001.Spark RDD</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
+          </div>
+          <br>
+          <div>
+            <p>
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
+                  <a class="hover-with-bg" href="/categories/spark">spark</a>
+                  &nbsp;
                 
-  <script type="text/javascript">
-    function loadUtterances() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'JiaoPaner/blog-talk.git');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
+              </span>&nbsp;&nbsp;
             
-          </article>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <div id="tocbot"></div>
+  </div>
 
-      </div>
-    
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+<!-- custom -->
 
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
 
     
   </main>
 
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
   
 
@@ -724,7 +664,7 @@ result.show();
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -733,7 +673,7 @@ result.show();
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -742,89 +682,99 @@ result.show();
 </div>
   
 
-  
-
-  
-
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
     
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
 
     
 
+
+    <!-- cnzz Analytics icon -->
     
+
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
   
 
 
 
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
     $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script src="/lib/typed/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
         "002.Spark Sql&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
@@ -837,11 +787,11 @@ result.show();
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script src="/lib/anchor/anchor.min.js" ></script>
   <script>
     anchors.options = {
       placement: "right",
-      visible: "hover",
+      visible: "false",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -854,27 +804,25 @@ result.show();
 
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
+      getSearchFile(path);
       this.onclick = null
     }
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
   <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
       function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
         $(this).wrap(element);
       }
     );
@@ -882,53 +830,31 @@ result.show();
 
 
 
-
-
   
 
   
     <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
           }
-        }
-      };
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
     </script>
 
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
   
-
-
-
-
-
-
-
 
 
 

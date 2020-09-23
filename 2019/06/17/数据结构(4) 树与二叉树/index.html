@@ -1,57 +1,40 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-Hansn">
+
+
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>数据结构(4) 树与二叉树 - 今夜的风儿甚是喧嚣 JiaoPan</title>
+  <title>数据结构(4) 树与二叉树 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
 
 
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
 
 
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -60,7 +43,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今夜的风儿甚是喧嚣</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -76,60 +59,40 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
@@ -137,53 +100,52 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-06-17 15:11" pubdate>
-        June 17, 2019 pm
-      </time>
-    </span>
-  
-</div>
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Monday, June 17th 2019, 3:11 pm
+                </p>
+              
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      3.3k 字
-    </span>
-  
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    3.3k 字
+                  </span>&nbsp;
+                
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      40
-       分钟
-    </span>
-  
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      12 分钟
+                  </span>&nbsp;
+                
 
-  
-  
-</div>
-
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -201,14 +163,10 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">数据结构(4) 树与二叉树</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>树的定义:树是$N(N\geqslant 0)$个结点的有限集合。特别的，当$N=0$时，称为空树。</p>
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>树的定义:树是$N(N\geqslant 0)$个结点的有限集合。特别的，当$N=0$时，称为空树。</p>
 <p>任意非空树满足的条件：</p>
 <ul>
 <li>有且仅有一个特定的称为<strong>根</strong>的结点</li>
@@ -220,7 +178,7 @@
 <li>树中所有结点可以有零个或多个后继结点</li>
 </ul>
 <p><strong>基本术语</strong></p>
-<p><img src="\images\dataStructure\2.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\2.jpg" srcset="/img/loading.gif" alt=""></p>
 <ol>
 <li>结点$K$,结点$A,B,E$为到结点$K$的唯一路径上的结点，$A,B$为$K$的<strong>祖先结点</strong>，$K$为$A,B$的子孙结点；$E$为$K$的<strong>双亲结点</strong>，$K$为$E$的<strong>孩子结点</strong>，有相同双亲的结点为<strong>兄弟结点</strong>，如$K$和$L$互为兄弟节点；</li>
 <li>树中一个子结点的个数称为该结点的度，树中结点的最大度数称为树的度；</li>
@@ -231,10 +189,10 @@
 </ol>
 <h1 id="二叉树概念"><a href="#二叉树概念" class="headerlink" title="二叉树概念"></a>二叉树概念</h1><p>定义:每个结点至多只有两颗子树的树形结构，即二叉树中不存在度大于2的结点，二叉树有左右之分，次序不可颠倒。</p>
 <p><strong>二叉树的形态</strong>：</p>
-<p><img src="\images\dataStructure\3.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\3.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>满二叉树：</strong>一颗高度为$h$，并且含有$2^h-1$个结点的二叉树</p>
 <p>对于编号$i$结点，如果有双亲，其双亲为[$i/2$]，如果孩子结点，左孩子为$2i$,右孩子为$2i+1$</p>
-<p><img src="\images\dataStructure\4.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\4.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>完全二叉树</strong>：设深度为$h$，有$n$个结点的二叉树，当且仅当其每一个结点都与深度为$h$的满二叉树中编号为$1\sim n$的结点<strong>一一对应</strong>，称为完全二叉树。</p>
 <p>特点：</p>
 <ol>
@@ -259,43 +217,47 @@
 <p><strong>二叉树的顺序存储</strong></p>
 <p>将完全二叉树上编号为$i$的结点元素存储在某个数组下标为$i-1$的分量中。</p>
 <p>对于一般的二叉树，使用0表示不存在的空结点，下标从1开始。</p>
-<p><img src="\images\dataStructure\5.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\5.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>二叉树的链式存储</strong></p>
-<pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">biTreeNode</span>&#123;</span>
+<pre><code class="lang-c++">typedef struct biTreeNode{
     ElemType data;
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">biTreeNode</span> *<span class="hljs-title">left</span>,*<span class="hljs-title">right</span>;</span><span class="hljs-comment">//左右孩子指针</span>
-&#125;biTreeNode,*biTree;</code></pre>
+    struct biTreeNode *left,*right;//左右孩子指针
+}biTreeNode,*biTree;
+</code></pre>
 <h1 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h1><ol>
 <li><p>先序遍历</p>
 <p>访问根结点$\rightarrow$先序遍历左子树$\rightarrow $先序遍历右子树</p>
-<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">preOrder</span><span class="hljs-params">(BiTree tree)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(tree != null)&#123;
+<pre><code class="lang-c++">void preOrder(BiTree tree){
+    if(tree != null){
         visit(tree);
         preOrder(tree-&gt;left);
         preOrder(tree-&gt;right);
-    &#125;
-&#125;</code></pre>
+    }
+}
+</code></pre>
 </li>
 <li><p>中序遍历</p>
 <p>中序遍历左子树$\rightarrow$访问根结点$\rightarrow $中序遍历右子树</p>
-<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">inOrder</span><span class="hljs-params">(BiTree tree)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(tree != null)&#123;
+<pre><code class="lang-c++">void inOrder(BiTree tree){
+    if(tree != null){
         inOrder(tree-&gt;left);
         visit(tree);
         inOrder(tree-&gt;right);
-    &#125;
-&#125;</code></pre>
+    }
+}
+</code></pre>
 </li>
 <li><p>后序遍历</p>
 <p>后序遍历左子树$\rightarrow$后序遍历右子树$\rightarrow $访问根结点</p>
-<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">postOrder</span><span class="hljs-params">(BiTree tree)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(tree != null)&#123;
+<pre><code class="lang-c++">void postOrder(BiTree tree){
+    if(tree != null){
         postOrder(tree-&gt;left);
         postOrder(tree-&gt;right);
         visit(tree);
-    &#125;
-&#125;</code></pre>
-<p><img src="\images\dataStructure\6.jpg" srcset="/images/loading.gif" alt=""></p>
+    }
+}
+</code></pre>
+<p><img src="\images\dataStructure\6.jpg" srcset="/img/loading.gif" alt=""></p>
 <ul>
 <li>先序遍历：1 2 4 6 3 5 </li>
 <li>中序遍历：2 6 4 1 3 5</li>
@@ -303,39 +265,41 @@
 </ul>
 </li>
 <li><p>非递归遍历算法</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//中序遍历非递归算法</span>
-<span class="hljs-keyword">void</span> inOrder*(BiTree tree)&#123;
-    initStack(<span class="hljs-built_in">stack</span>);<span class="hljs-comment">//初始化栈</span>
-    BiTree p = tree;<span class="hljs-comment">//遍历指针</span>
-    <span class="hljs-keyword">while</span>(p || !isEmpty(<span class="hljs-built_in">stack</span>))&#123;
-        <span class="hljs-keyword">if</span>(p)&#123;
-            push(<span class="hljs-built_in">stack</span>,p);
+<pre><code class="lang-c++">//中序遍历非递归算法
+void inOrder*(BiTree tree){
+    initStack(stack);//初始化栈
+    BiTree p = tree;//遍历指针
+    while(p || !isEmpty(stack)){
+        if(p){
+            push(stack,p);
             p = p-&gt;left;
-        &#125;
-        <span class="hljs-keyword">else</span>&#123;
-            pop(<span class="hljs-built_in">stack</span>,p);
+        }
+        else{
+            pop(stack,p);
             visit(p);
             p = p-&gt;right;
-        &#125;
-    &#125;
-&#125;</code></pre>
+        }
+    }
+}
+</code></pre>
 </li>
 <li><p>层次遍历</p>
 <p>按图中箭头的顺序进行遍历，先访问第一层，再访问第二层,$\dots$</p>
-<p><img src="\images\dataStructure\7.jpg" srcset="/images/loading.gif" alt=""></p>
-<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">levelOrder</span><span class="hljs-params">(BiTree tree)</span></span>&#123;
-	initQueue(<span class="hljs-built_in">queue</span>);
+<p><img src="\images\dataStructure\7.jpg" srcset="/img/loading.gif" alt=""></p>
+<pre><code class="lang-c++">void levelOrder(BiTree tree){
+    initQueue(queue);
     biTree p;
-    enQueue(<span class="hljs-built_in">queue</span>,tree);<span class="hljs-comment">//根节点入队</span>
-    <span class="hljs-keyword">while</span>(!isEmpty(<span class="hljs-built_in">queue</span>))&#123;
-        deQueue(<span class="hljs-built_in">queue</span>,p);<span class="hljs-comment">//队头元素出队</span>
+    enQueue(queue,tree);//根节点入队
+    while(!isEmpty(queue)){
+        deQueue(queue,p);//队头元素出队
         visit(p);
-        <span class="hljs-keyword">if</span>(p-&gt;left != null)
-            enQueue(<span class="hljs-built_in">queue</span>,p-&gt;left);
-        <span class="hljs-keyword">if</span>(p-&gt;right != null)
-            enQueue(<span class="hljs-built_in">queue</span>,p-&gt;right);
-    &#125;
-&#125;</code></pre>
+        if(p-&gt;left != null)
+            enQueue(queue,p-&gt;left);
+        if(p-&gt;right != null)
+            enQueue(queue,p-&gt;right);
+    }
+}
+</code></pre>
 </li>
 <li><p>根据遍历序列构造二叉树</p>
 <ul>
@@ -344,96 +308,103 @@
 <li>层次遍历序列和中序序列可以唯一确定一颗二叉树。</li>
 </ul>
 <p>求先序序列$ABCDEFGHI$和中序遍历$BCAEDGHFI$所确定的二叉树</p>
-<p><img src="\images\dataStructure\8.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\8.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 </ol>
 <h1 id="线索二叉树"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h1><p>二叉树线索化时通常规定，若无左子树，令leftChild指向其前驱结点，leftTag = 1；若无右子树，令right-child指向其后继结点,rightTag = 1。</p>
 <p><strong>线索二叉树的存储结构</strong></p>
-<pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">threadNode</span>&#123;</span>
+<pre><code class="lang-c++">typedef struct threadNode{
     ElemType data;
-    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">threadNode</span> *<span class="hljs-title">leftChild</span>,<span class="hljs-title">rightChild</span>;</span>
-    <span class="hljs-keyword">int</span> leftTag,rightTag;
-&#125;</code></pre>
+    struct threadNode *leftChild,rightChild;
+    int leftTag,rightTag;
+}
+</code></pre>
 <p><strong>线索二叉树的构造</strong></p>
-<pre><code class="hljs c++"><span class="hljs-comment">//中序遍历-二叉树线索化</span>
-<span class="hljs-comment">//指针pre指向中序遍历时上一个刚刚访问过的结点</span>
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">inThreadNode</span><span class="hljs-params">(threadNode &amp;p,threadNode &amp;pre)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(p != null)&#123;
-        inThreadNode(p-&gt;leftChild,pre);<span class="hljs-comment">//递归线索化左子树</span>
-        <span class="hljs-keyword">if</span>(p-&gt;leftChild == null)&#123; <span class="hljs-comment">//建立前驱线索</span>
+<pre><code class="lang-c++">//中序遍历-二叉树线索化
+//指针pre指向中序遍历时上一个刚刚访问过的结点
+void inThreadNode(threadNode &amp;p,threadNode &amp;pre){
+    if(p != null){
+        inThreadNode(p-&gt;leftChild,pre);//递归线索化左子树
+        if(p-&gt;leftChild == null){ //建立前驱线索
             p-&gt;leftChild = pre;
-            p-&gt;leftTag = <span class="hljs-number">1</span>;
-        &#125;
-        <span class="hljs-keyword">if</span>(pre != null &amp;&amp; pre-&gt;rightCihld == null)&#123;<span class="hljs-comment">//建立后继线索</span>
+            p-&gt;leftTag = 1;
+        }
+        if(pre != null &amp;&amp; pre-&gt;rightCihld == null){//建立后继线索
             pre-&gt;rightChild = p;
-            pre-&gt;rightTag = <span class="hljs-number">1</span>;
-        &#125;
+            pre-&gt;rightTag = 1;
+        }
         pre = p;
-        inthreadNode(p-&gt;rightChild,pre);<span class="hljs-comment">//递归线索化右子树</span>
-    &#125;
-&#125;
+        inthreadNode(p-&gt;rightChild,pre);//递归线索化右子树
+    }
+}
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">createInThreadNode</span><span class="hljs-params">(threadNode T)</span></span>&#123;
+void createInThreadNode(threadNode T){
     threadNode pre = null;
-    <span class="hljs-keyword">if</span>(T != null)&#123;
+    if(T != null){
         inThreadNode(T,pre);
-        pre-&gt;rightChild = null;<span class="hljs-comment">//处理遍历的最后一个结点</span>
-        pre-&gt;rightTag = <span class="hljs-number">1</span>;
-    &#125;
-&#125;</code></pre>
-<p><img src="\images\dataStructure\9.jpg" srcset="/images/loading.gif" alt=""></p>
+        pre-&gt;rightChild = null;//处理遍历的最后一个结点
+        pre-&gt;rightTag = 1;
+    }
+}
+</code></pre>
+<p><img src="\images\dataStructure\9.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>线索二叉树的遍历</strong></p>
 <ul>
 <li><p>求中序线索二叉树中中序序列的第一个结点</p>
-<pre><code class="hljs c++"><span class="hljs-function">threadNode * <span class="hljs-title">firstNode</span><span class="hljs-params">(threadNode *p)</span></span>&#123;
-    <span class="hljs-keyword">while</span>(p-&gt;leftTag == <span class="hljs-number">0</span>)
+<pre><code class="lang-c++">threadNode * firstNode(threadNode *p){
+    while(p-&gt;leftTag == 0)
         p = p-&gt;leftChild;
-    <span class="hljs-keyword">return</span> p;
-&#125;</code></pre>
+    return p;
+}
+</code></pre>
 </li>
 <li><p>求中序线索二叉树中结点p在中序序列下的后继结点</p>
-<pre><code class="hljs c++"><span class="hljs-function">threadNode * <span class="hljs-title">nextNode</span><span class="hljs-params">(threadNode *p)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(p-&gt;rightTag == <span class="hljs-number">0</span>)
-        <span class="hljs-keyword">return</span> firstNode(p-&gt;rightChild);
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> p-&gt;rightChild;
-&#125;</code></pre>
+<pre><code class="lang-c++">threadNode * nextNode(threadNode *p){
+    if(p-&gt;rightTag == 0)
+        return firstNode(p-&gt;rightChild);
+    else return p-&gt;rightChild;
+}
+</code></pre>
 </li>
 <li><p>遍历算法</p>
-<pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">void</span> * <span class="hljs-title">inThreadNode</span><span class="hljs-params">(threadNode *T)</span></span>&#123;
-    <span class="hljs-keyword">for</span>(threadNode *p = firstNode(T);p != <span class="hljs-literal">NULL</span>;p = nextNode(p))
+<pre><code class="lang-c++">void * inThreadNode(threadNode *T){
+    for(threadNode *p = firstNode(T);p != NULL;p = nextNode(p))
         visit(p);
-&#125;</code></pre>
+}
+</code></pre>
 </li>
 </ul>
 <h1 id="树的存储结构"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h1><ol>
 <li><p>双亲表示法</p>
-<pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAX_TREE_SIZE 100</span>
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
-	ElemType data;<span class="hljs-comment">//数据</span>
-	<span class="hljs-keyword">int</span> parent;<span class="hljs-comment">//双亲位置域</span>
-&#125;Node;
-<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>&#123;</span>
+<pre><code class="lang-c++">#define MAX_TREE_SIZE 100
+typedef struct{
+    ElemType data;//数据
+    int parent;//双亲位置域
+}Node;
+typedef struct{
     Node nodes[MAX_TREE_SIZE];
-    <span class="hljs-keyword">int</span> n;<span class="hljs-comment">//结点数</span>
-&#125;Tree;</code></pre>
-<p><img src="\images\dataStructure\10.jpg" srcset="/images/loading.gif" alt=""></p>
+    int n;//结点数
+}Tree;
+</code></pre>
+<p><img src="\images\dataStructure\10.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 <li><p>孩子表示法</p>
 <p>将每个结点的孩子结点都用单链表链接起来形成一个线性结构</p>
-<p><img src="\images\dataStructure\11.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\11.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 <li><p>孩子兄弟表示法</p>
 <p>以二叉链表作为树的存储结构，每个结点包括：结点值、指向结点第一个孩子的指针、指向结点下一个兄弟结点的指针</p>
-<pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span>&#123;</span>
-	ElemType data;<span class="hljs-comment">//数据</span>
-	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">firstChild</span>,*<span class="hljs-title">nextSibling</span>;</span><span class="hljs-comment">//第一个孩子和兄弟指针</span>
-&#125;Node,*Node;</code></pre>
-<p><img src="\images\dataStructure\12.jpg" srcset="/images/loading.gif" alt=""></p>
+<pre><code class="lang-c++">typedef struct Node{
+    ElemType data;//数据
+    struct Node *firstChild,*nextSibling;//第一个孩子和兄弟指针
+}Node,*Node;
+</code></pre>
+<p><img src="\images\dataStructure\12.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 </ol>
 <p><strong>树、森林与二叉树的转换</strong></p>
 <p>树转换为二叉树的规则：每个结点的左指针指向它的第一个孩子结点，右指针指向它在树中的相邻兄弟结点，由于根结点没有兄弟，因此由树转换而来的二叉树没有右子树。</p>
-<p><img src="\images\dataStructure\13.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\13.jpg" srcset="/img/loading.gif" alt=""></p>
 <h1 id="树与二叉树的应用"><a href="#树与二叉树的应用" class="headerlink" title="树与二叉树的应用"></a>树与二叉树的应用</h1><ol>
 <li><p>并查集</p>
 </li>
@@ -444,45 +415,47 @@
 <li>若右子树非空，则右子树上所有结点关键值均大于根节点的关键值</li>
 <li>左右子树本身也为一颗二叉排序树</li>
 </ul>
-<p><img src="\images\dataStructure\14.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\14.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>二叉排序树的查找</strong></p>
 <p>从根节点开始，若给定值与根结点关键值相等则查找成功；若根结点大于给定值则在左子树中查找；若根结点小于给定值则在右子树中查找</p>
-<pre><code class="hljs c++"><span class="hljs-comment">//查找函数返回指向关键值为key的结点指针p</span>
-<span class="hljs-function">biTreeNode * <span class="hljs-title">biTreeNodeSearch</span><span class="hljs-params">(biTree tree,ElemType key)</span></span>&#123;
-    <span class="hljs-keyword">while</span>(tree != <span class="hljs-literal">NULL</span> &amp;&amp; key != tree-&gt;data)&#123;
-        <span class="hljs-keyword">if</span>(key &lt; tree-&gt;data)
+<pre><code class="lang-c++">//查找函数返回指向关键值为key的结点指针p
+biTreeNode * biTreeNodeSearch(biTree tree,ElemType key){
+    while(tree != NULL &amp;&amp; key != tree-&gt;data){
+        if(key &lt; tree-&gt;data)
             tree = tree-&gt;leftChild;
-        <span class="hljs-keyword">else</span>
+        else
             tree = tree-&gt;rightChild;
-    &#125;
-    <span class="hljs-keyword">return</span> tree;
-&#125;</code></pre>
+    }
+    return tree;
+}
+</code></pre>
 <p><strong>二叉排序树的插入</strong></p>
 <p>若原二叉树为空，则直接插入结点；若根结点大于给定值则插入到左子树中；若根结点小于给定值则插入到右子树中</p>
-<pre><code class="hljs c++">![<span class="hljs-number">15</span>](F:\jiaopaner\source\images\dataStructure\<span class="hljs-number">15.</span>jpg)<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">biTreeNodeInsert</span><span class="hljs-params">(biTree tree,ElemType key)</span></span>&#123;
-    <span class="hljs-keyword">if</span>(tree == null)&#123;
-        tree = (biTree)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(biTreeNode));
+<pre><code class="lang-c++">![15](F:\jiaopaner\source\images\dataStructure\15.jpg)bool biTreeNodeInsert(biTree tree,ElemType key){
+    if(tree == null){
+        tree = (biTree)malloc(sizeof(biTreeNode));
         tree-&gt;data = key;
-        tree-&gt;leftChild=  tree-rightChild = <span class="hljs-literal">NULL</span>;
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-    &#125;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key == tree-&gt;data)
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key &lt; tree-&gt;data)
-        <span class="hljs-keyword">return</span> biTreeNodeInsert(tree-&gt;lefgChild,key);
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(key &gt; tree-&gt;data)
-        <span class="hljs-keyword">return</span> biTreeNodeInsert(tree-&gt;rightChild,key);
-&#125;</code></pre>
+        tree-&gt;leftChild=  tree-rightChild = NULL;
+        return true;
+    }
+    else if(key == tree-&gt;data)
+        return false;
+    else if(key &lt; tree-&gt;data)
+        return biTreeNodeInsert(tree-&gt;lefgChild,key);
+    else if(key &gt; tree-&gt;data)
+        return biTreeNodeInsert(tree-&gt;rightChild,key);
+}
+</code></pre>
 <p><strong>二叉排序树的删除</strong></p>
 <ul>
 <li><p>删除的结点为叶结点，则直接删除，不会破坏二叉树的排序性质</p>
 </li>
 <li><p>若删除结点$z$只有一颗左子树(或右子树)，则让$z$的左子树(或右子树)成为$z$结点的父结点的子树，即代替$z$的位置</p>
-<p><img src="\images\dataStructure\15.jpg" srcset="/images/loading.gif" alt=""></p>
-<p><img src="\images\dataStructure\16.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\15.jpg" srcset="/img/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\16.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 <li><p>若删除结点$z$有左、右子树，则令$z$的右子树中中序第一个子女代替$z$，并转换相应的位置</p>
-<p><img src="\images\dataStructure\17.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\17.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 </ul>
 </li>
@@ -490,24 +463,24 @@
 <p>定义：任意结点的左右子树高度差不超过1的二叉排序树</p>
 <p><strong>平衡二叉树的插入</strong></p>
 <p>平衡二叉树插入新结点会破坏平衡性，因此插入新结点后需要做调整，以重新达到平衡性</p>
-<p><img src="\images\dataStructure\18.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\18.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>平衡性调整策略</p>
 <ul>
 <li><p>LL平衡旋转(右单旋转)</p>
 <p>在根结点$A$的左孩子(L)结点$B$的左子树(L)结点$BL$上插入了结点,破坏了平衡性的调整策略，$B$结点右上旋转代替$A$成为根结点，$A$结点成为$B$的右子树根结点，且$B$的右子树作为$A$结点的左子树</p>
-<p><img src="\images\dataStructure\19.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\19.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 <li><p>RR平衡旋转(左单旋转)</p>
 <p>在根结点$A$的右孩子(R)结点$C$的右子树(R)结点$CR$上插入了结点,破坏了平衡性的调整策略，$C$结点左上旋转代替$A$成为根结点，$A$结点成为$C$的左子树根结点，且$C$的左子树作为$A$结点的右子树</p>
-<p><img src="\images\dataStructure\20.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\20.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 <li><p>LR平衡旋转(先左后右双旋转)</p>
 <p>在根结点$A$的左孩子(L)结点$B$的右子树(R)结点$BR$上插入了结点,破坏了平衡性的调整策略</p>
-<p><img src="\images\dataStructure\21.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\21.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 <li><p>RL平衡旋转(先右后左双旋转)</p>
 <p>在根结点$A$的右孩子(R)结点$C$的左子树(L)结点$CR$上插入了结点,破坏了平衡性的调整策略</p>
-<p><img src="\images\dataStructure\22.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\22.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 </ul>
 </li>
@@ -516,7 +489,7 @@
 <script type="math/tex; mode=display">
 WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的权值，$l_i$为根结点到第$i$个叶结点的路径长度</p>
 <p>在含有$n$个带权叶子结点的二叉树中，其中$WPL$最小的二叉树称为哈夫曼树(最优二叉树)</p>
-<p><img src="\images\dataStructure\23.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\23.jpg" srcset="/img/loading.gif" alt=""></p>
 <p>$WPL(a)=7\times2+5\times2+2\times2+4\times2=36$</p>
 <p>$WPL(b)=7\times3+5\times3+1\times2+4\times2=46$</p>
 <p>$WPL(c)=7\times1+5\times2+2\times3+4\times3=35$</p>
@@ -528,124 +501,88 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
 <li>从$F$中删除上述选取的两棵树，同时将新结点$P$加入$F$中</li>
 <li>重复2、3步骤，直至$F$中只剩下一棵树</li>
 </ul>
-<p><img src="\images\dataStructure\24.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\24.jpg" srcset="/img/loading.gif" alt=""></p>
 <p><strong>哈夫曼编码</strong></p>
 <p>对频率高的字符赋予短编码，对频率低的字符赋予长编码，从而使字符平均编码长度减短</p>
 <p>哈夫曼编码：对每个字符当作一个独立的结点，其权值为字符出现的次数，构造哈夫曼树</p>
-<p><img src="\images\dataStructure\25.jpg" srcset="/images/loading.gif" alt=""></p>
+<p><img src="\images\dataStructure\25.jpg" srcset="/img/loading.gif" alt=""></p>
 </li>
 </ol>
 <p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
-            </div>
             <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">nginx-rtmp流媒体服务</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
-                        <span class="hidden-mobile">数据结构(3) 栈和队列</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
+          </div>
+          <br>
+          <div>
+            <p>
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
+                  <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+                  &nbsp;
                 
-  <script type="text/javascript">
-    function loadUtterances() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'JiaoPaner/blog-talk.git');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
+              </span>&nbsp;&nbsp;
             
-          </article>
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <div id="tocbot"></div>
+  </div>
 
-      </div>
-    
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+<!-- custom -->
 
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
 
     
   </main>
 
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
   
 
@@ -655,7 +592,7 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -664,7 +601,7 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -673,89 +610,99 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
 </div>
   
 
-  
-
-  
-
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
     
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
 
     
 
+
+    <!-- cnzz Analytics icon -->
     
+
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
   
 
 
 
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
     $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script src="/lib/typed/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
         "数据结构(4) 树与二叉树&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
@@ -768,11 +715,11 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script src="/lib/anchor/anchor.min.js" ></script>
   <script>
     anchors.options = {
       placement: "right",
-      visible: "hover",
+      visible: "false",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -785,27 +732,25 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
 
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
+      getSearchFile(path);
       this.onclick = null
     }
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
   <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
       function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
         $(this).wrap(element);
       }
     );
@@ -813,53 +758,31 @@ WPL=\sum_{i=1}^{n}w_i\times l_i</script><p>其中$w_i$为第$i$个叶结点的�
 
 
 
-
-
   
 
   
     <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
           }
-        }
-      };
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
     </script>
 
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
   
-
-
-
-
-
-
-
 
 
 

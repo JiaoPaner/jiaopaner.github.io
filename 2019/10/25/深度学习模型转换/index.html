@@ -1,57 +1,40 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-Hansn">
+
+
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>深度学习模型转换 - 今夜的风儿甚是喧嚣 JiaoPan</title>
+  <title>深度学习模型转换 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
 
 
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
 
 
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -60,7 +43,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今夜的风儿甚是喧嚣</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -76,60 +59,40 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
@@ -137,53 +100,52 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-10-25 21:14" pubdate>
-        October 25, 2019 pm
-      </time>
-    </span>
-  
-</div>
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Friday, October 25th 2019, 9:14 pm
+                </p>
+              
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1.8k 字
-    </span>
-  
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.8k 字
+                  </span>&nbsp;
+                
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      32
-       分钟
-    </span>
-  
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      10 分钟
+                  </span>&nbsp;
+                
 
-  
-  
-</div>
-
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -201,124 +163,125 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">深度学习模型转换</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h3 id="mxnet模型转tensorflow模型"><a href="#mxnet模型转tensorflow模型" class="headerlink" title="mxnet模型转tensorflow模型"></a>mxnet模型转tensorflow模型</h3><p>requirements：pip install mxnet tensorflow</p>
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h3 id="mxnet模型转tensorflow模型"><a href="#mxnet模型转tensorflow模型" class="headerlink" title="mxnet模型转tensorflow模型"></a>mxnet模型转tensorflow模型</h3><p>requirements：pip install mxnet tensorflow</p>
 <h5 id="1-安装mmdnn"><a href="#1-安装mmdnn" class="headerlink" title="1.安装mmdnn"></a>1.安装mmdnn</h5><p>pip install -U git+<a href="https://github.com/Microsoft/MMdnn.git@master" target="_blank" rel="noopener">https://github.com/Microsoft/MMdnn.git@master</a></p>
 <h5 id="2-模型下载"><a href="#2-模型下载" class="headerlink" title="2.模型下载"></a>2.模型下载</h5><p><a href="https://pan.baidu.com/s/1If28BkHde4fiuweJrbicVA" target="_blank" rel="noopener">https://pan.baidu.com/s/1If28BkHde4fiuweJrbicVA</a></p>
-<h5 id="3-mxnet模型转IR"><a href="#3-mxnet模型转IR" class="headerlink" title="3.mxnet模型转IR"></a>3.mxnet模型转IR</h5><pre><code class="hljs bash">python -m mmdnn.conversion._script.convertToIR -f mxnet -n model-symbol.json -w model-0000.params -d tf_model --inputShape 3,112,112 
-<span class="hljs-comment">#info:</span>
-IR network structure is saved as [tf_model.json].<span class="hljs-comment">#可视化文件</span>
-IR network structure is saved as [tf_model.pb].<span class="hljs-comment">#网络结构</span>
-IR weights are saved as [tf_model.npy].<span class="hljs-comment">#权重参数</span></code></pre>
+<h5 id="3-mxnet模型转IR"><a href="#3-mxnet模型转IR" class="headerlink" title="3.mxnet模型转IR"></a>3.mxnet模型转IR</h5><pre><code class="lang-bash">python -m mmdnn.conversion._script.convertToIR -f mxnet -n model-symbol.json -w model-0000.params -d tf_model --inputShape 3,112,112 
+#info:
+IR network structure is saved as [tf_model.json].#可视化文件
+IR network structure is saved as [tf_model.pb].#网络结构
+IR weights are saved as [tf_model.npy].#权重参数
+</code></pre>
 <p>若报错：AttributeError: ‘NoneType’ object has no attribute ‘asnumpy’ line 410</p>
 <p>解决：找到python3.6/site-packages/mmdnn/conversion/mxnet/mxnet_parser.py 410 行 修改如下：</p>
-<pre><code class="hljs ini"><span class="hljs-attr">weight</span> = self.weight_data.get(<span class="hljs-string">"fc1_weight"</span>).asnumpy().transpose((<span class="hljs-number">1</span>, <span class="hljs-number">0</span>))</code></pre>
-<p>参考：<a href="https://github.com/microsoft/MMdnn/issues/231" target="_blank" rel="noopener">https://github.com/microsoft/MMdnn/issues/231</a></p>
+<pre><code>weight = self.weight_data.get(&quot;fc1_weight&quot;).asnumpy().transpose((1, 0))
+</code></pre><p>参考：<a href="https://github.com/microsoft/MMdnn/issues/231" target="_blank" rel="noopener">https://github.com/microsoft/MMdnn/issues/231</a></p>
 <h5 id="4-生成tf-model-py-用于还原神经网络结构"><a href="#4-生成tf-model-py-用于还原神经网络结构" class="headerlink" title="4.生成tf_model.py 用于还原神经网络结构"></a>4.生成tf_model.py 用于还原神经网络结构</h5><p>调用tf_model.py中的KitModel函数加载npy权重参数可重新生成原网络框架</p>
-<pre><code class="hljs bash">python -m mmdnn.conversion._script.IRToCode -f tensorflow --IRModelPath tf_model.pb --IRWeightPath tf_model.npy --dstModelPath tf_model.py
-<span class="hljs-comment">#info:</span>
+<pre><code class="lang-bash">python -m mmdnn.conversion._script.IRToCode -f tensorflow --IRModelPath tf_model.pb --IRWeightPath tf_model.npy --dstModelPath tf_model.py
+#info:
 Parse file [tf_model.pb] with binary format successfully.
-Target network code snippet is saved as [tf_model.py].</code></pre>
+Target network code snippet is saved as [tf_model.py].
+</code></pre>
 <h5 id="5-验证模型输出结果是否一致"><a href="#5-验证模型输出结果是否一致" class="headerlink" title="5.验证模型输出结果是否一致"></a>5.验证模型输出结果是否一致</h5><p>5.1 test_mxnet.py</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> mxnet <span class="hljs-keyword">as</span> mx
-<span class="hljs-keyword">from</span> tensorflow.contrib.keras.api.keras.preprocessing <span class="hljs-keyword">import</span> image
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<pre><code class="lang-python">import mxnet as mx
+from tensorflow.contrib.keras.api.keras.preprocessing import image
+import numpy as np
 
-<span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> namedtuple
-Batch = namedtuple(<span class="hljs-string">'Batch'</span>, [<span class="hljs-string">'data'</span>])
+from collections import namedtuple
+Batch = namedtuple(&#39;Batch&#39;, [&#39;data&#39;])
 
-ctx = mx.cpu(<span class="hljs-number">0</span>)
+ctx = mx.cpu(0)
 
-<span class="hljs-comment">#加载模型</span>
-sym, arg_params, aux_params = mx.model.load_checkpoint(<span class="hljs-string">'mobile/model'</span>, <span class="hljs-number">0</span>) <span class="hljs-comment">#mobile文件夹下为 model-symbol.json -w model-0000.params</span>
-mod = mx.mod.Module(symbol = sym, context= ctx, label_names= <span class="hljs-literal">None</span>)
-mod.bind(for_training=<span class="hljs-literal">False</span>, data_shapes=[(<span class="hljs-string">'data'</span>, (<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">112</span>, <span class="hljs-number">112</span>))], label_shapes= mod._label_shapes)
-mod.set_params(arg_params, aux_params, allow_missing= <span class="hljs-literal">True</span>)
+#加载模型
+sym, arg_params, aux_params = mx.model.load_checkpoint(&#39;mobile/model&#39;, 0) #mobile文件夹下为 model-symbol.json -w model-0000.params
+mod = mx.mod.Module(symbol = sym, context= ctx, label_names= None)
+mod.bind(for_training=False, data_shapes=[(&#39;data&#39;, (1, 3, 112, 112))], label_shapes= mod._label_shapes)
+mod.set_params(arg_params, aux_params, allow_missing= True)
 
-path = <span class="hljs-string">'face.jpeg'</span>
-img = image.load_img(path, target_size = (<span class="hljs-number">112</span>, <span class="hljs-number">112</span>))
+path = &#39;face.jpeg&#39;
+img = image.load_img(path, target_size = (112, 112))
 img = image.img_to_array(img)
-img = img[..., ::<span class="hljs-number">-1</span>]
+img = img[..., ::-1]
 
-img = np.expand_dims(img, <span class="hljs-number">0</span>).transpose((<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>))
+img = np.expand_dims(img, 0).transpose((0,3,1,2))
 
 mod.forward(Batch([mx.nd.array(img)]))
-prob = mod.get_outputs()[<span class="hljs-number">0</span>].asnumpy()
+prob = mod.get_outputs()[0].asnumpy()
 prob = np.squeeze(prob)
-print(prob)</code></pre>
+print(prob)
+</code></pre>
 <p><strong><em>执行命令</em></strong></p>
-<pre><code class="hljs python">python test_mxnet.py 
-<span class="hljs-comment">#info:</span>
-[<span class="hljs-number">17</span>:<span class="hljs-number">39</span>:<span class="hljs-number">57</span>] src/nnvm/legacy_json_util.cc:<span class="hljs-number">209</span>: Loading symbol saved by previous version v1<span class="hljs-number">.0</span><span class="hljs-number">.0</span>. Attempting to upgrade...
-[<span class="hljs-number">17</span>:<span class="hljs-number">39</span>:<span class="hljs-number">57</span>] src/nnvm/legacy_json_util.cc:<span class="hljs-number">217</span>: Symbol successfully upgraded!
-[ <span class="hljs-number">0.344491</span>    <span class="hljs-number">0.10190611</span> <span class="hljs-number">-0.24501216</span>  <span class="hljs-number">0.6819046</span>   <span class="hljs-number">0.88096315</span>  <span class="hljs-number">0.347766</span>
- <span class="hljs-number">-0.94702303</span> <span class="hljs-number">-0.67586213</span> <span class="hljs-number">-0.43900824</span>  <span class="hljs-number">0.81431276</span> <span class="hljs-number">-0.4899036</span>  <span class="hljs-number">-0.43025514</span>
- <span class="hljs-number">-0.50644076</span> <span class="hljs-number">-0.27366892</span>  <span class="hljs-number">0.63601595</span> <span class="hljs-number">-0.5352368</span>   <span class="hljs-number">0.13765731</span>  <span class="hljs-number">0.40842316</span>
-  <span class="hljs-number">0.76525426</span> <span class="hljs-number">-0.8959755</span>   <span class="hljs-number">0.42129532</span> <span class="hljs-number">-0.38290668</span>  <span class="hljs-number">0.02023177</span> <span class="hljs-number">-0.14840017</span>
-  <span class="hljs-number">0.9108279</span>  <span class="hljs-number">-0.27738237</span> <span class="hljs-number">-0.6017331</span>  <span class="hljs-number">-0.214954</span>    <span class="hljs-number">0.37644073</span>  <span class="hljs-number">0.48894417</span>
- <span class="hljs-number">-0.8824417</span>   <span class="hljs-number">0.31846505</span>  <span class="hljs-number">0.19936565</span>  <span class="hljs-number">0.27296835</span>  <span class="hljs-number">1.5621403</span>   <span class="hljs-number">0.4327985</span>
- <span class="hljs-number">-0.6486908</span>  <span class="hljs-number">-0.23494942</span> <span class="hljs-number">-0.8708738</span>  <span class="hljs-number">-0.77051663</span>  <span class="hljs-number">0.09255238</span> <span class="hljs-number">-1.1803752</span>
- <span class="hljs-number">-0.17184262</span>  <span class="hljs-number">0.2543226</span>  <span class="hljs-number">-0.19088541</span> <span class="hljs-number">-0.26873437</span>  <span class="hljs-number">0.9160875</span>  <span class="hljs-number">-0.18985008</span>
- <span class="hljs-number">-0.4793183</span>  <span class="hljs-number">-0.32987356</span> <span class="hljs-number">-1.3085973</span>   <span class="hljs-number">1.2959319</span>  <span class="hljs-number">-0.00581244</span>  <span class="hljs-number">0.12396478</span>
-  <span class="hljs-number">1.2034996</span>   <span class="hljs-number">0.0991946</span>  <span class="hljs-number">-1.9225345</span>   <span class="hljs-number">0.92873436</span> <span class="hljs-number">-0.285992</span>    <span class="hljs-number">0.11249313</span>
- <span class="hljs-number">-1.4562801</span>   <span class="hljs-number">1.8767762</span>  <span class="hljs-number">-1.2222489</span>  <span class="hljs-number">-0.03905598</span>  <span class="hljs-number">0.5152731</span>   <span class="hljs-number">0.04876914</span>
-  <span class="hljs-number">0.04671988</span> <span class="hljs-number">-0.32384786</span> <span class="hljs-number">-0.88341314</span>  <span class="hljs-number">0.58193505</span> <span class="hljs-number">-0.7378911</span>  <span class="hljs-number">-0.3082042</span>
-  <span class="hljs-number">0.22141728</span>  <span class="hljs-number">0.7255646</span>   <span class="hljs-number">0.24394599</span>  <span class="hljs-number">0.6563271</span>  <span class="hljs-number">-0.46760473</span> <span class="hljs-number">-0.38698462</span>
- <span class="hljs-number">-0.11467619</span> <span class="hljs-number">-0.9940818</span>  <span class="hljs-number">-1.1298056</span>   <span class="hljs-number">1.015201</span>    <span class="hljs-number">0.03592067</span>  <span class="hljs-number">0.6738027</span>
- <span class="hljs-number">-0.5814839</span>   <span class="hljs-number">0.1565634</span>  <span class="hljs-number">-0.06737513</span> <span class="hljs-number">-1.040216</span>   <span class="hljs-number">-0.9286871</span>  <span class="hljs-number">-0.11091176</span>
- <span class="hljs-number">-0.66596293</span>  <span class="hljs-number">0.03736701</span> <span class="hljs-number">-0.35337982</span> <span class="hljs-number">-0.4175317</span>  <span class="hljs-number">-0.47258058</span> <span class="hljs-number">-0.62383175</span>
- <span class="hljs-number">-0.86612004</span> <span class="hljs-number">-0.5230916</span>  <span class="hljs-number">-1.7838901</span>   <span class="hljs-number">0.08661752</span> <span class="hljs-number">-0.02590845</span>  <span class="hljs-number">0.23406455</span>
-  <span class="hljs-number">0.77719927</span>  <span class="hljs-number">1.4410776</span>   <span class="hljs-number">0.41925532</span>  <span class="hljs-number">0.4560187</span>  <span class="hljs-number">-0.02141571</span>  <span class="hljs-number">0.7005563</span>
- <span class="hljs-number">-0.58727044</span> <span class="hljs-number">-0.39757103</span>  <span class="hljs-number">1.2808248</span>  <span class="hljs-number">-1.1874324</span>  <span class="hljs-number">-0.27268586</span> <span class="hljs-number">-0.82443166</span>
-  <span class="hljs-number">0.39704558</span> <span class="hljs-number">-1.2778002</span>  <span class="hljs-number">-0.52762616</span> <span class="hljs-number">-0.26455742</span>  <span class="hljs-number">1.2137026</span>   <span class="hljs-number">0.04997367</span>
-  <span class="hljs-number">0.05591454</span>  <span class="hljs-number">1.0264031</span>   <span class="hljs-number">1.5093948</span>  <span class="hljs-number">-0.5634581</span>  <span class="hljs-number">-1.1715719</span>  <span class="hljs-number">-0.646347</span>
-  <span class="hljs-number">0.6021179</span>   <span class="hljs-number">0.6725963</span> ]</code></pre>
+<pre><code class="lang-python">python test_mxnet.py 
+#info:
+[17:39:57] src/nnvm/legacy_json_util.cc:209: Loading symbol saved by previous version v1.0.0. Attempting to upgrade...
+[17:39:57] src/nnvm/legacy_json_util.cc:217: Symbol successfully upgraded!
+[ 0.344491    0.10190611 -0.24501216  0.6819046   0.88096315  0.347766
+ -0.94702303 -0.67586213 -0.43900824  0.81431276 -0.4899036  -0.43025514
+ -0.50644076 -0.27366892  0.63601595 -0.5352368   0.13765731  0.40842316
+  0.76525426 -0.8959755   0.42129532 -0.38290668  0.02023177 -0.14840017
+  0.9108279  -0.27738237 -0.6017331  -0.214954    0.37644073  0.48894417
+ -0.8824417   0.31846505  0.19936565  0.27296835  1.5621403   0.4327985
+ -0.6486908  -0.23494942 -0.8708738  -0.77051663  0.09255238 -1.1803752
+ -0.17184262  0.2543226  -0.19088541 -0.26873437  0.9160875  -0.18985008
+ -0.4793183  -0.32987356 -1.3085973   1.2959319  -0.00581244  0.12396478
+  1.2034996   0.0991946  -1.9225345   0.92873436 -0.285992    0.11249313
+ -1.4562801   1.8767762  -1.2222489  -0.03905598  0.5152731   0.04876914
+  0.04671988 -0.32384786 -0.88341314  0.58193505 -0.7378911  -0.3082042
+  0.22141728  0.7255646   0.24394599  0.6563271  -0.46760473 -0.38698462
+ -0.11467619 -0.9940818  -1.1298056   1.015201    0.03592067  0.6738027
+ -0.5814839   0.1565634  -0.06737513 -1.040216   -0.9286871  -0.11091176
+ -0.66596293  0.03736701 -0.35337982 -0.4175317  -0.47258058 -0.62383175
+ -0.86612004 -0.5230916  -1.7838901   0.08661752 -0.02590845  0.23406455
+  0.77719927  1.4410776   0.41925532  0.4560187  -0.02141571  0.7005563
+ -0.58727044 -0.39757103  1.2808248  -1.1874324  -0.27268586 -0.82443166
+  0.39704558 -1.2778002  -0.52762616 -0.26455742  1.2137026   0.04997367
+  0.05591454  1.0264031   1.5093948  -0.5634581  -1.1715719  -0.646347
+  0.6021179   0.6725963 ]
+</code></pre>
 <p>5.1 test_tensorflow.py</p>
-<pre><code class="hljs python"><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> absolute_import
-<span class="hljs-keyword">import</span> argparse
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-<span class="hljs-keyword">from</span> six <span class="hljs-keyword">import</span> text_type <span class="hljs-keyword">as</span> _text_type
-<span class="hljs-keyword">from</span> tensorflow.contrib.keras.api.keras.preprocessing <span class="hljs-keyword">import</span> image
-<span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<pre><code class="lang-python">from __future__ import absolute_import
+import argparse
+import numpy as np
+from six import text_type as _text_type
+from tensorflow.contrib.keras.api.keras.preprocessing import image
+import tensorflow as tf
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument(<span class="hljs-string">'-n'</span>, type=_text_type, default=<span class="hljs-string">'kitModel'</span>,
-                    help=<span class="hljs-string">'Network structure file name.'</span>)
-parser.add_argument(<span class="hljs-string">'-w'</span>, type=_text_type, required=<span class="hljs-literal">True</span>,
-                    help=<span class="hljs-string">'Network weights file name'</span>)
-parser.add_argument(<span class="hljs-string">'--image'</span>, <span class="hljs-string">'-i'</span>,
-                    type=_text_type, help=<span class="hljs-string">'Test image path.'</span>,
-                    default=<span class="hljs-string">"face.jpeg"</span>)
+parser.add_argument(&#39;-n&#39;, type=_text_type, default=&#39;kitModel&#39;,
+                    help=&#39;Network structure file name.&#39;)
+parser.add_argument(&#39;-w&#39;, type=_text_type, required=True,
+                    help=&#39;Network weights file name&#39;)
+parser.add_argument(&#39;--image&#39;, &#39;-i&#39;,
+                    type=_text_type, help=&#39;Test image path.&#39;,
+                    default=&quot;face.jpeg&quot;)
 
 args = parser.parse_args()
-<span class="hljs-keyword">if</span> args.n.endswith(<span class="hljs-string">'.py'</span>):
-    args.n = args.n[:<span class="hljs-number">-3</span>]
+if args.n.endswith(&#39;.py&#39;):
+    args.n = args.n[:-3]
 
 model_converted = __import__(args.n).KitModel(args.w)
 input_tf, model_tf = model_converted
 
-img = image.load_img(args.image, target_size = (<span class="hljs-number">112</span>, <span class="hljs-number">112</span>))
+img = image.load_img(args.image, target_size = (112, 112))
 img = image.img_to_array(img)
-img = img[..., ::<span class="hljs-number">-1</span>]
+img = img[..., ::-1]
 
-input_data = np.expand_dims(img, <span class="hljs-number">0</span>)
+input_data = np.expand_dims(img, 0)
 
-<span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:
+with tf.Session() as sess:
     init = tf.global_variables_initializer()
     sess.run(init)
-    predict = sess.run(model_tf, feed_dict = &#123;input_tf : input_data&#125;)
-print(predict)</code></pre>
+    predict = sess.run(model_tf, feed_dict = {input_tf : input_data})
+print(predict)
+</code></pre>
 <p><strong>执行命令</strong></p>
-<pre><code class="hljs bash">python test_tensorflow.py -n tf_model.py -w tf_model.npy -i face.jpeg
-<span class="hljs-comment">#info:</span>
-2019-10-25 17:51:37.745502: I tensorflow/core/common_runtime/process_util.cc:71] Creating new thread pool with default inter op setting: 12. Tune using inter_op_parallelism_threads <span class="hljs-keyword">for</span> best performance.
+<pre><code class="lang-bash">python test_tensorflow.py -n tf_model.py -w tf_model.npy -i face.jpeg
+#info:
+2019-10-25 17:51:37.745502: I tensorflow/core/common_runtime/process_util.cc:71] Creating new thread pool with default inter op setting: 12. Tune using inter_op_parallelism_threads for best performance.
 [[ 0.3444912   0.10190725 -0.24501228  0.6819044   0.88096356  0.3477651
   -0.9470245  -0.67586106 -0.43900767  0.8143126  -0.48990446 -0.43025535
   -0.50643945 -0.27366814  0.63601726 -0.5352377   0.13765681  0.40842274
@@ -340,68 +303,72 @@ print(predict)</code></pre>
   -0.587271   -0.3975702   1.2808259  -1.1874334  -0.27268624 -0.8244319
    0.39704552 -1.2778007  -0.5276267  -0.2645575   1.2137012   0.04997464
    0.05591418  1.0264043   1.5093954  -0.5634565  -1.1715722  -0.6463482
-   0.60211945  0.67259526]]</code></pre>
+   0.60211945  0.67259526]]
+</code></pre>
 <h5 id="6-基于tf-model-npy和tf-model-py文件，固化参数，生成PB文件"><a href="#6-基于tf-model-npy和tf-model-py文件，固化参数，生成PB文件" class="headerlink" title="6.基于tf_model.npy和tf_model.py文件，固化参数，生成PB文件"></a>6.基于tf_model.npy和tf_model.py文件，固化参数，生成PB文件</h5><p>freeze_graph.py </p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
-<span class="hljs-keyword">import</span> tf_model <span class="hljs-keyword">as</span> tf_fun
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">netWork</span><span class="hljs-params">()</span>:</span>
-    model=tf_fun.KitModel(<span class="hljs-string">"./tf_model.npy"</span>) <span class="hljs-comment">#调用tf_model.py中的KitModel函数加载npy权重参数</span>
-    <span class="hljs-keyword">return</span> model
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">freeze_graph</span><span class="hljs-params">(output_graph)</span>:</span>
-    output_node_names = <span class="hljs-string">"output"</span>
+<pre><code class="lang-python">import tensorflow as tf
+import tf_model as tf_fun
+def netWork():
+    model=tf_fun.KitModel(&quot;./tf_model.npy&quot;) #调用tf_model.py中的KitModel函数加载npy权重参数
+    return model
+def freeze_graph(output_graph):
+    output_node_names = &quot;output&quot;
     data,fc1=netWork()
-    fc1=tf.identity(fc1,name=<span class="hljs-string">"output"</span>)
- 
-    graph = tf.get_default_graph()  <span class="hljs-comment"># 获得默认的图</span>
-    input_graph_def = graph.as_graph_def()  <span class="hljs-comment"># 返回一个序列化的图代表当前的图</span>
+    fc1=tf.identity(fc1,name=&quot;output&quot;)
+
+    graph = tf.get_default_graph()  # 获得默认的图
+    input_graph_def = graph.as_graph_def()  # 返回一个序列化的图代表当前的图
     init = tf.global_variables_initializer()
-    <span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:
+    with tf.Session() as sess:
         sess.run(init)
-        output_graph_def = tf.graph_util.convert_variables_to_constants(  <span class="hljs-comment"># 模型持久化，将变量值固定</span>
+        output_graph_def = tf.graph_util.convert_variables_to_constants(  # 模型持久化，将变量值固定
             sess=sess,
-            input_graph_def=input_graph_def,  <span class="hljs-comment"># 等于:sess.graph_def</span>
-            output_node_names=output_node_names.split(<span class="hljs-string">","</span>))  <span class="hljs-comment"># 如果有多个输出节点，以逗号隔开</span>
- 
-        <span class="hljs-keyword">with</span> tf.gfile.GFile(output_graph, <span class="hljs-string">"wb"</span>) <span class="hljs-keyword">as</span> f:  <span class="hljs-comment"># 保存模型</span>
-            f.write(output_graph_def.SerializeToString())  <span class="hljs-comment"># 序列化输出</span>
- 
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:
-    freeze_graph(<span class="hljs-string">"frozen_model.pb"</span>)
-    print(<span class="hljs-string">"finish!"</span>)</code></pre>
+            input_graph_def=input_graph_def,  # 等于:sess.graph_def
+            output_node_names=output_node_names.split(&quot;,&quot;))  # 如果有多个输出节点，以逗号隔开
+
+        with tf.gfile.GFile(output_graph, &quot;wb&quot;) as f:  # 保存模型
+            f.write(output_graph_def.SerializeToString())  # 序列化输出
+
+if __name__ == &#39;__main__&#39;:
+    freeze_graph(&quot;frozen_model.pb&quot;)
+    print(&quot;finish!&quot;)
+</code></pre>
 <p>python freeze_graph.py </p>
-<pre><code class="hljs bash"><span class="hljs-comment">#info:</span>
-Instructions <span class="hljs-keyword">for</span> updating:
+<pre><code class="lang-bash">#info:
+Instructions for updating:
 Use tf.compat.v1.graph_util.extract_sub_graph
-finish!</code></pre>
+finish!
+</code></pre>
 <p><strong>测试pb模型</strong></p>
 <p>test_pb.py</p>
-<pre><code class="hljs python">
-<span class="hljs-keyword">from</span> tensorflow.contrib.keras.api.keras.preprocessing <span class="hljs-keyword">import</span> image
-<span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<pre><code class="lang-python">
+from tensorflow.contrib.keras.api.keras.preprocessing import image
+import tensorflow as tf
+import numpy as np
 
-<span class="hljs-keyword">with</span> tf.gfile.FastGFile(<span class="hljs-string">'frozen_model.pb'</span>,<span class="hljs-string">'rb'</span>) <span class="hljs-keyword">as</span> f:
+with tf.gfile.FastGFile(&#39;frozen_model.pb&#39;,&#39;rb&#39;) as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
-    tf.import_graph_def(graph_def, name=<span class="hljs-string">''</span>)
+    tf.import_graph_def(graph_def, name=&#39;&#39;)
 
-<span class="hljs-keyword">with</span> tf.Session() <span class="hljs-keyword">as</span> sess:
-    
-    img = image.load_img(<span class="hljs-string">'face.jpeg'</span>, target_size = (<span class="hljs-number">112</span>, <span class="hljs-number">112</span>))
+with tf.Session() as sess:
+
+    img = image.load_img(&#39;face.jpeg&#39;, target_size = (112, 112))
     img = image.img_to_array(img)
-    img = img[..., ::<span class="hljs-number">-1</span>]
-    input_data = np.expand_dims(img, <span class="hljs-number">0</span>)
+    img = img[..., ::-1]
+    input_data = np.expand_dims(img, 0)
 
     init = tf.global_variables_initializer()
     sess.run(init)
-    <span class="hljs-comment">#print(tf.get_default_graph().get_operations()) 根据输出值，可知输入tensor名为data 全连接层输出的tensor名为ouput</span>
-    <span class="hljs-comment">#op = sess.graph.get_tensor_by_name('fc1/add_1:0')</span>
-    <span class="hljs-comment">#predict = sess.run(op, feed_dict = &#123;'data:0' : input_data&#125;)</span>
-    op = sess.graph.get_tensor_by_name(<span class="hljs-string">'output:0'</span>)
-    predict = sess.run(op, feed_dict = &#123;<span class="hljs-string">'data:0'</span> : input_data&#125;)
-print(predict)</code></pre>
+    #print(tf.get_default_graph().get_operations()) 根据输出值，可知输入tensor名为data 全连接层输出的tensor名为ouput
+    #op = sess.graph.get_tensor_by_name(&#39;fc1/add_1:0&#39;)
+    #predict = sess.run(op, feed_dict = {&#39;data:0&#39; : input_data})
+    op = sess.graph.get_tensor_by_name(&#39;output:0&#39;)
+    predict = sess.run(op, feed_dict = {&#39;data:0&#39; : input_data})
+print(predict)
+</code></pre>
 <p>python test_pb.py</p>
-<pre><code class="hljs bash"><span class="hljs-comment">#info:</span>
+<pre><code class="lang-bash">#info:
 [[ 0.3444914   0.10190733 -0.2450121   0.68190414  0.8809633   0.3477656
   -0.94702375 -0.6758606  -0.43900838  0.8143138  -0.48990518 -0.43025577
   -0.5064386  -0.2736677   0.6360168  -0.5352382   0.13765849  0.40842175
@@ -423,129 +390,95 @@ print(predict)</code></pre>
   -0.5872698  -0.39757127  1.2808269  -1.1874311  -0.2726869  -0.8244321
    0.39704597 -1.2778006  -0.5276277  -0.26455772  1.2137022   0.04997511
    0.05591565  1.0264047   1.5093955  -0.56345737 -1.1715721  -0.64634734
-   0.60211873  0.67259526]]</code></pre>
+   0.60211873  0.67259526]]
+</code></pre>
 <h5 id="7-pb模型转换为-tflite模型供tensorflow-lite调用-移动端部署"><a href="#7-pb模型转换为-tflite模型供tensorflow-lite调用-移动端部署" class="headerlink" title="7. .pb模型转换为.tflite模型供tensorflow lite调用(移动端部署)"></a>7. .pb模型转换为.tflite模型供tensorflow lite调用(移动端部署)</h5><p>pb2tflite.py</p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> tensorflow <span class="hljs-keyword">as</span> tf
+<pre><code class="lang-python">import tensorflow as tf
 
-convert=tf.lite.TFLiteConverter.from_frozen_graph(<span class="hljs-string">"frozen_model.pb"</span>,input_arrays=[<span class="hljs-string">"data"</span>],
-                                                  output_arrays=[<span class="hljs-string">"output"</span>],
-                                                  input_shapes=&#123;<span class="hljs-string">"data"</span>:[<span class="hljs-number">1</span>,<span class="hljs-number">112</span>,<span class="hljs-number">112</span>,<span class="hljs-number">3</span>]&#125;)
-convert.post_training_quantize=<span class="hljs-literal">True</span> <span class="hljs-comment">#是否量化</span>
+convert=tf.lite.TFLiteConverter.from_frozen_graph(&quot;frozen_model.pb&quot;,input_arrays=[&quot;data&quot;],
+                                                  output_arrays=[&quot;output&quot;],
+                                                  input_shapes={&quot;data&quot;:[1,112,112,3]})
+convert.post_training_quantize=True #是否量化
 tflite_model=convert.convert()
-open(<span class="hljs-string">"mobilenet.tflite"</span>,<span class="hljs-string">"wb"</span>).write(tflite_model)
-print(<span class="hljs-string">"finish!"</span>)</code></pre>
+open(&quot;mobilenet.tflite&quot;,&quot;wb&quot;).write(tflite_model)
+print(&quot;finish!&quot;)
+</code></pre>
 <p>python pb2tflite.py</p>
 <p>info: 文件夹中生成mobilenet.tflite</p>
 
-            </div>
             <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/">模型转换</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">android使用opencv native方式环境搭建</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/">
-                        <span class="hidden-mobile">mxnet Windows编译安装CPU版 c++ api</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
+          </div>
+          <br>
+          <div>
+            <p>
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
+                  <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>
+                  &nbsp;
                 
-  <script type="text/javascript">
-    function loadUtterances() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'JiaoPaner/blog-talk.git');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
+              </span>&nbsp;&nbsp;
             
-          </article>
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2">模型转换</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <div id="tocbot"></div>
+  </div>
 
-      </div>
-    
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+<!-- custom -->
 
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
 
     
   </main>
 
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
   
 
@@ -555,7 +488,7 @@ print(<span class="hljs-string">"finish!"</span>)</code></pre>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -564,7 +497,7 @@ print(<span class="hljs-string">"finish!"</span>)</code></pre>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -573,89 +506,99 @@ print(<span class="hljs-string">"finish!"</span>)</code></pre>
 </div>
   
 
-  
-
-  
-
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
     
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
 
     
 
+
+    <!-- cnzz Analytics icon -->
     
+
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
   
 
 
 
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
     $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script src="/lib/typed/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
         "深度学习模型转换&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
@@ -668,11 +611,11 @@ print(<span class="hljs-string">"finish!"</span>)</code></pre>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script src="/lib/anchor/anchor.min.js" ></script>
   <script>
     anchors.options = {
       placement: "right",
-      visible: "hover",
+      visible: "false",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -685,27 +628,25 @@ print(<span class="hljs-string">"finish!"</span>)</code></pre>
 
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
+      getSearchFile(path);
       this.onclick = null
     }
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
   <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
       function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
         $(this).wrap(element);
       }
     );
@@ -713,53 +654,31 @@ print(<span class="hljs-string">"finish!"</span>)</code></pre>
 
 
 
-
-
   
 
   
     <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
           }
-        }
-      };
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
     </script>
 
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
   
-
-
-
-
-
-
-
 
 
 

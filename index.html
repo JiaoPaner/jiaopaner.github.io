@@ -1,44 +1,40 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-Hansn">
+
+
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>今夜的风儿甚是喧嚣 JiaoPan</title>
+  <title>今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
 
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
-
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
 
 
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
 
 
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -47,7 +43,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今夜的风儿甚是喧嚣</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -63,60 +59,40 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
@@ -124,12 +100,13 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
@@ -139,7 +116,7 @@
 
           
             <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
+              <i class="fas fa-angle-down scroll-down-arrow"></i>
             </div>
           
         </div>
@@ -150,8 +127,7 @@
   <main>
     
       <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div class="py-5 z-depth-3" id="board">
           
           <div class="container">
             <div class="row">
@@ -159,545 +135,553 @@
                 
 
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/" target="_self">
-          <img src="/images/2019/4/18/assembly.jpg" srcset="/images/loading.gif" alt="汇编语言.001">
+          <img src="/images/2019/4/18/assembly.jpg" srcset="/img/loading.gif" alt="汇编语言.001" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/">汇编语言.001</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/">
+        <p class="h4 index-header">汇编语言.001</p>
+        
+        
           
-          
-            
-          
-          基础知识：汇编语言第三版-王爽汇编指令：机器码的助记符，有对应的机器码；伪指令：无对应的机器码，由编译器执行；其他符号：如+、-、*、/,由编译器识别，无对应机器码；
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">基础知识：汇编语言第三版-王爽汇编指令：机器码的助记符，有对应的机器码；伪指令：无对应的机器码，由编译器执行；其他符号：如+、-、*、/,由编译器识别，无对应机器码；
 寄存器通用寄存器：AX,BX,CX(循环计数寄存器),DX
-段寄存器CS(代码段寄存器)：IP(指令指针寄存器) - 提供CPU执行指令的地址DS(数据段寄存器)：偏移地址 - 提供数据的存储地址SS(栈顶段寄存器)：SP（栈顶指针
-        </a>
-      </p>
+段寄存器CS(代码段寄存器)：IP(指令指针寄存器) - 提供CPU执行指令的地址DS(数据段寄存器)：偏移地址 - 提供数据的存储地址SS(栈顶段寄存器)：SP（栈顶指针寄存器）- 提供栈顶元素的存储地址ES(附加段寄存器)
+Start hello worldDSEG    SEGMENT
+MESS    DB   &#39;Hello,World!&#39; ,0DH,0AH,24H
+DSEG    ENDS
 
-      <div class="index-btm post-metas">
+SSEG    SEGMENT PARA STACK 
+        DW  256 DUP(?)
+SSEG    ENDS
+
+CSEG    SEGMENT
+        ASSUME  CS:CSEG,DS:DSEG
+BEGIN:  MOV AX,DSEG
+        MOV DS,AX
+        MOV DX,OFFSET MES</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-05-18 14:14" pubdate>
-              2020-05-18
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-05-18&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">汇编语言</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80">汇编语言</a>&nbsp;
+          &nbsp;
         
         
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/">汇编语言</a>
-            
-          </div>
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80">汇编语言</a>&nbsp;
+          
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/" target="_self">
-          <img src="/images/note/19.jpg" srcset="/images/loading.gif" alt="设计模式-Java">
+          <img src="/images/note/19.jpg" srcset="/img/loading.gif" alt="设计模式-Java" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/">设计模式-Java</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/">
+        <p class="h4 index-header">设计模式-Java</p>
+        
+        
           
-          
-            
-          
-          单例模式
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">单例模式
 饿汉式
 
 #1
-class Singleton&#123;
+class Singleton{
     private final static Singleton instance = new Singleton();
-    public static Singleton getInstance()&#123;
+    public static Singleton getInstance(){
         return instance;
-    &#125;
-&#125;
+    }
+}
 #2
-public c
-        </a>
-      </p>
+public class Singleton{
+    private static Singleton instance;
+    static {
+        instance = new Singleton();
+    }
+    public static Singleton getInstance(){
+        return instance;
+    }
+}
 
-      <div class="index-btm post-metas">
+
+懒汉式
+
+#1 线程不安全
+public class Singleton{
+    private static Singleton instance;
+    public static Singleton getInstance(){
+        if(i</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-20 21:14" pubdate>
-              2020-04-20
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-20&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
         
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/15/spark.004/" target="_self">
-          <img src="/images/bigdata/4.jpeg" srcset="/images/loading.gif" alt="004.Spark Machine Learning">
+          <img src="/images/bigdata/4.jpeg" srcset="/img/loading.gif" alt="004.Spark Machine Learning" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/15/spark.004/">004.Spark Machine Learning</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/15/spark.004/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/15/spark.004/">
+        <p class="h4 index-header">004.Spark Machine Learning</p>
+        
+        
           
-          
-            
-          
-          Spark Machine Learning
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Spark Machine Learning
 引入依赖
 
 &lt;dependency&gt;
-  &lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
-  &lt;artifactId&gt;spark-mllib_2.11&lt;&#x2F;artifactId&gt;
-  &lt;version&gt;2.4.5&lt;&#x2F;vers
-        </a>
-      </p>
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-mllib_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
 
-      <div class="index-btm post-metas">
+相关系数矩阵相关系数矩阵(i行，j列)的元素是原矩阵i列与j列的相关系数
+#身高与体重的相关系数矩阵
+SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+List&lt;Row&gt; data = Arrays.asList(
+          RowFactory.create(Vectors.dense(17</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-15 16:14" pubdate>
-              2020-04-15
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-15&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/spark/">spark</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
         
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/15/spark.003/" target="_self">
-          <img src="/images/bigdata/streaming-arch.png" srcset="/images/loading.gif" alt="003.Spark Streaming/Structured Streaming">
+          <img src="/images/bigdata/streaming-arch.png" srcset="/img/loading.gif" alt="003.Spark Streaming/Structured Streaming" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/15/spark.003/">003.Spark Streaming/Structured Streaming</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/15/spark.003/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/15/spark.003/">
+        <p class="h4 index-header">003.Spark Streaming/Structured Streaming</p>
+        
+        
           
-          
-            
-          
-          spark streaming-hello worldnote:http://spark.apache.org/docs/latest/streaming-programming-guide.html
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">spark streaming-hello worldnote:http://spark.apache.org/docs/latest/streaming-programming-guide.html
 
 引入依赖
 
 &lt;dependency&gt;
-	&lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
-	&lt;artifactId&gt;
-        </a>
-      </p>
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-streaming_2.11&lt;/artifactId&gt;
+    &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
 
-      <div class="index-btm post-metas">
+
+安装 Netcat 下载地址：http://netcat.sourceforge.net/
+
+解压-启动
+
+
+$ nc -lk 9999
+
+
+example
+
+SparkConf conf = new SparkConf().setAppName(&quot;spark streaming&quot;).setMaster(&quot;local[*]&quot;);
+JavaStream</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-15 09:14" pubdate>
-              2020-04-15
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-15&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/spark/">spark</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
         
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/12/spark.002/" target="_self">
-          <img src="/images/spark.jpg" srcset="/images/loading.gif" alt="002.Spark Sql">
+          <img src="/images/spark.jpg" srcset="/img/loading.gif" alt="002.Spark Sql" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/12/spark.002/">002.Spark Sql</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/12/spark.002/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/12/spark.002/">
+        <p class="h4 index-header">002.Spark Sql</p>
+        
+        
           
-          
-            
-          
-          spark sql-hello world1.引入依赖
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">spark sql-hello world1.引入依赖
 &lt;dependency&gt;
-	&lt;groupId&gt;org.apache.spark&lt;&#x2F;groupId&gt;
-	&lt;artifactId&gt;spark-sql_2.11&lt;&#x2F;artifactId&gt;
-	&lt;version&gt;2.4.5&lt;&#x2F;version&gt
-        </a>
-      </p>
+    &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+    &lt;artifactId&gt;spark-sql_2.11&lt;/artifactId&gt;
+    &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
 
-      <div class="index-btm post-metas">
+2.exmple程序
+ public class Man implements Serializable{
+        private static final long serialVersionUID = 1L;
+        private String name;
+        private String age;
+        Man(String name,String age){
+            this.name = name;
+            this.age = age;
+        }
+        pu</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-12 21:14" pubdate>
-              2020-04-12
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-12&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/spark/">spark</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
         
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/09/spark.001/" target="_self">
-          <img src="/images/spark.jpg" srcset="/images/loading.gif" alt="001.Spark RDD">
+          <img src="/images/spark.jpg" srcset="/img/loading.gif" alt="001.Spark RDD" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/09/spark.001/">001.Spark RDD</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/09/spark.001/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/09/spark.001/">
+        <p class="h4 index-header">001.Spark RDD</p>
+        
+        
           
-          
-            
-          
-          spark-hello world1.创建maven项目spark-note,添加Spark依赖,新建TestSpark.java类2.引入依赖和打包插件
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">spark-hello world1.创建maven项目spark-note,添加Spark依赖,新建TestSpark.java类2.引入依赖和打包插件
 &lt;dependency&gt;
-  &lt;groupId&gt;org.scala-lang&lt;&#x2F;groupId&gt;
-  &lt;artifactId&gt;scala-library&lt;&#x2F;artifac
-        </a>
-      </p>
+  &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
+  &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
+  &lt;version&gt;2.11.8&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.hadoop&lt;/g</div>
+        </div>
+      </a>
 
-      <div class="index-btm post-metas">
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-09 21:14" pubdate>
-              2020-04-09
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-09&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/spark/">spark</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
         
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/08/spark.000/" target="_self">
-          <img src="/images/spark.jpg" srcset="/images/loading.gif" alt="000.Spark Basement">
+          <img src="/images/spark.jpg" srcset="/img/loading.gif" alt="000.Spark Basement" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/08/spark.000/">000.Spark Basement</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/08/spark.000/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/08/spark.000/">
+        <p class="h4 index-header">000.Spark Basement</p>
+        
+        
           
-          
-            
-          
-          Launching Applications with spark-submit./bin/spark-submit \
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Launching Applications with spark-submit./bin/spark-submit \
   --class &lt;main-class&gt; \
   --master &lt;master-url&gt; \
   --deploy-mode &lt;deploy-mode&gt; \
   --conf &lt;key&gt;=&lt;value&gt; \
- 
-        </a>
-      </p>
+  ... # other options
+  &lt;application-jar&gt; \
+  [application-arguments]
 
-      <div class="index-btm post-metas">
+./bin/spark-submit \ 
+  --name &quot;My app&quot; \ 
+  --master local[4] \  
+  --conf spark.eventLog.enabled=false \ 
+  --conf &quot;spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps&quot; \ 
+  --con</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-08 21:14" pubdate>
-              2020-04-08
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-08&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/spark/">spark</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
         
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/" target="_self">
-          <img src="/images/dp-net/pytorch.jpg" srcset="/images/loading.gif" alt="pytorch 自定义数据集/训练/模型保存和加载">
+          <img src="/images/dp-net/pytorch.jpg" srcset="/img/loading.gif" alt="pytorch 自定义数据集/训练/模型保存和加载" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/">pytorch 自定义数据集/训练/模型保存和加载</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/">
+        <p class="h4 index-header">pytorch 自定义数据集/训练/模型保存和加载</p>
+        
+        
           
-          
-            
-          
-          数据准备1.第一种方式torchvision.datasets.ImageFolder数据集文件需如下结构：rootdir/cat/xxx.pngroot_dir/cat/xxy.jpeg…root_dir/dog/nsdf3.pngroot_dir/dog/asd932.png
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">数据准备1.第一种方式torchvision.datasets.ImageFolder数据集文件需如下结构：rootdir/cat/xxx.pngroot_dir/cat/xxy.jpeg…root_dir/dog/nsdf3.pngroot_dir/dog/asd932.png
 import torch
 import torchvision
-from torchvision import tra
-        </a>
-      </p>
+from torchvision import transforms,datasets
+import os
+os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE&quot;
 
-      <div class="index-btm post-metas">
+transform = transforms.Compose([
+    transforms.Resize([224,224]),
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+])
+dataset = datasets.ImageFolder(root=&quot;/Volumes/sto</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-08 17:14" pubdate>
-              2020-04-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-            
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-08&nbsp;&nbsp;
         
         
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/pytorch/">pytorch</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/pytorch">pytorch</a>&nbsp;
+          
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/images/loading.gif" alt="小贴士">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="小贴士" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/">小贴士</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/">
+        <p class="h4 index-header">小贴士</p>
+        
+        
           
-          
-            
-          
-          C++Q： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s instead
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">C++Q： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s instead
 工程属性 —&gt;C/C++ —&gt; 预处理器 —&gt; 预处理器定义,添加宏定义
 _CRT_SECURE_NO_WARNINGS
 
-Q： pth
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
+Q： pthread.h中报错：C2011“timespec”:“struct”类型重定义
+tim.h已定义，pthread.h添加如下代码：
+#if !defined( PTHREAD_H )
+#define PTHREAD_H
+#define HAVE_STRUCT_TIMESPEC
+
+Q：Visual Studio 工程编译dll,接口的定义
+A：接口的头文件应如下声明：
+#define LIB_API __declspec(dllexport) //导出函数
+extern &quot;C&quot; {
+    LIB_API char*   say();
+}
+
+Q：C++调用DLL
+
+dll的</div>
+        </div>
+      </a>
+
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-04-03 14:06" pubdate>
-              2020-04-03
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-03&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
         
         
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB/">小贴士</a>
-            
-          </div>
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB">小贴士</a>&nbsp;
+          
         
       </div>
-    </article>
+    </div>
   </div>
 
-  <div class="row mx-auto index-card">
+  <div class="row mb-4 mx-auto">
     
     
-      <div class="col-12 col-md-4 m-auto index-img">
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/03/31/convolution/" target="_self">
-          <img src="/images/dp-net/convolution2.jpg" srcset="/images/loading.gif" alt="卷积操作汇总">
+          <img src="/images/dp-net/convolution2.jpg" srcset="/img/loading.gif" alt="卷积操作汇总" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
       </div>
     
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/03/31/convolution/">卷积操作汇总</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/03/31/convolution/">
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/03/31/convolution/">
+        <p class="h4 index-header">卷积操作汇总</p>
+        
+        
           
-          
-            
-          
-          概念1.卷积核(Kernel)：滤波矩阵，普遍的卷积核大小为3×3、5×5;2.步长(Stride)：卷积核遍历特征图时每步移动的像素个数;3.填充(Padding)：对特征图边界外进行填充（一般填充为0）;4.通道(Channel)：卷积层的通道数（层数）;
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">概念1.卷积核(Kernel)：滤波矩阵，普遍的卷积核大小为3×3、5×5;2.步长(Stride)：卷积核遍历特征图时每步移动的像素个数;3.填充(Padding)：对特征图边界外进行填充（一般填充为0）;4.通道(Channel)：卷积层的通道数（层数）;
 标准卷积单通道多通道
 3维卷积
 1x1卷积
-反卷积（转置卷积）将卷积核转换为稀疏矩阵后进行转置计算如下图，在2x2的输入图像上应用步长为1
-        </a>
-      </p>
+反卷积（转置卷积）将卷积核转换为稀疏矩阵后进行转置计算如下图，在2x2的输入图像上应用步长为1、边界全0填充的3x3卷积核，进行转置卷积（反卷积）计算
+空洞卷积（膨胀卷积）
+可分离卷积（Separable Convolutions）将卷积核分解为两项独立的核分别进行操作分解后的卷积计算过程如下图，先用3x1的卷积核作横向扫描计算，再用1x3的卷积核作纵向扫描计算
+深度可分离卷积（Depthwise Separable Convolutions）3个卷积核分别对输入层的3个通道作卷积计算并堆叠在一起再使用1x1的卷积（3个通道）进行计算，得到只有1个通道的结果重复多次1x1的卷积操作（如下图为128次）
+分组卷积（Grouped Convolution）在分组卷积中，卷积核被分成不同的组</div>
+        </div>
+      </a>
 
-      <div class="index-btm post-metas">
+      <div>
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-03-31 21:14" pubdate>
-              2020-03-31
-            </time>
-          </div>
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-31&nbsp;&nbsp;
         
         
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-            
-          </div>
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
+          &nbsp;
         
         
       </div>
-    </article>
+    </div>
   </div>
 
 
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+  <nav aria-label="index posts navigation">
+    <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
   <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+    for (ele of document.getElementById("pagination").getElementsByClassName("page-number")) {
       ele.href += '#board';
     }
   </script>
@@ -713,8 +697,8 @@ Q： pth
   </main>
 
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
   
 
@@ -724,7 +708,7 @@ Q： pth
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -733,7 +717,7 @@ Q： pth
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -742,64 +726,94 @@ Q： pth
 </div>
   
 
-  
-
-  
-
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
     
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
 
     
 
+
+    <!-- cnzz Analytics icon -->
     
+
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
   
 
 
 
-  
+  <script src="/lib/prettify/prettify.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
 
 
 
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script src="/lib/typed/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "这是每每看到你出现的时候，屏幕上出现次数最多的一句话&nbsp;",
+        "今天的风儿甚是喧嚣 JiaoPan&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
@@ -812,30 +826,74 @@ Q： pth
 
 
 
+  <script src="/lib/anchor/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "false",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
-  <script  src="/js/local-search.js" ></script>
+
+  <script src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
+      getSearchFile(path);
       this.onclick = null
     }
   </script>
 
 
 
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script>
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
+      function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
+  
 
+  
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+      });
 
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
 
+    </script>
 
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
-
-
+  
 
 
 

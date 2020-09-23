@@ -1,57 +1,40 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-Hansn" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-Hansn">
+
+
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar.png">
+  <link rel="icon" type="image/png" href="/img/avatar.png">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>pytorch 自定义数据集/训练/模型保存和加载 - 今夜的风儿甚是喧嚣 JiaoPan</title>
+  <title>pytorch 自定义数据集/训练/模型保存和加载 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="/lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="/lib/github-markdown/github-markdown.min.css"  >
 
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-    
-  
-
-  
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+  <link rel="stylesheet" href="/lib/prettify/tomorrow-night-eighties.min.css"  >
+
+<link rel="stylesheet" href="/css/main.css"  >
 
 
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css"  >
 
 
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
 
@@ -60,7 +43,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>今夜的风儿甚是喧嚣</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>今天的风儿甚是喧嚣 JiaoPan</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -76,60 +59,40 @@
           
           
           
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                主页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/">主页</a>
           </li>
         
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">归档</a>
+          </li>
         
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" href="javascript:">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">标签</a>
+          </li>
+        
+          
+          
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
@@ -137,53 +100,52 @@
   </div>
 </nav>
 
-    <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
+    <div class="view intro-2" id="background"
+         style="background: url('/img/default.png')no-repeat center center;
+           background-size: cover;
+           background-attachment: fixed;">
       <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container page-header text-center fade-in-up">
+        <div class="mask rgba-black-light flex-center">
+          <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
             </span>
 
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-04-08 17:14" pubdate>
-        April 8, 2020 pm
-      </time>
-    </span>
-  
-</div>
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Wednesday, April 8th 2020, 5:14 pm
+                </p>
+              
 
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      1k 字
-    </span>
-  
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    1.1k 字
+                  </span>&nbsp;
+                
 
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      18
-       分钟
-    </span>
-  
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      6 分钟
+                  </span>&nbsp;
+                
 
-  
-  
-</div>
-
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
             
           </div>
 
@@ -201,182 +163,193 @@
   <div class="row">
     <div class="d-none d-lg-block col-lg-2"></div>
     <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto" id="post">
-            <!-- SEO header -->
-            <h1 style="display: none">pytorch 自定义数据集/训练/模型保存和加载</h1>
-            
-            <div class="markdown-body" id="post-body">
-              <h1 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h1><p><strong>1.第一种方式</strong><br><br>torchvision.datasets.ImageFolder<br><br><br>数据集文件需如下结构：<br><br>root<em>dir/cat/xxx.png<br><br>root_dir/cat/xxy.jpeg<br><br>…<br><br>root_dir/dog/nsdf3.png<br><br>root_dir/dog/asd932</em>.png<br></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> torchvision
-<span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> transforms,datasets
-<span class="hljs-keyword">import</span> os
-os.environ[<span class="hljs-string">"KMP_DUPLICATE_LIB_OK"</span>]=<span class="hljs-string">"TRUE"</span></code></pre>
-<pre><code class="hljs python">transform = transforms.Compose([
-    transforms.Resize([<span class="hljs-number">224</span>,<span class="hljs-number">224</span>]),
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h1><p><strong>1.第一种方式</strong><br><br>torchvision.datasets.ImageFolder<br><br><br>数据集文件需如下结构：<br><br>root<em>dir/cat/xxx.png<br><br>root_dir/cat/xxy.jpeg<br><br>…<br><br>root_dir/dog/nsdf3.png<br><br>root_dir/dog/asd932</em>.png<br></p>
+<pre><code class="lang-python">import torch
+import torchvision
+from torchvision import transforms,datasets
+import os
+os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE&quot;
+</code></pre>
+<pre><code class="lang-python">transform = transforms.Compose([
+    transforms.Resize([224,224]),
     transforms.ToTensor(),
-    transforms.Normalize((<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>), (<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>))
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
-dataset = datasets.ImageFolder(root=<span class="hljs-string">"/Volumes/storage/learn/machine-learning/notes/pytorch/data/dog_cat"</span>,
+dataset = datasets.ImageFolder(root=&quot;/Volumes/storage/learn/machine-learning/notes/pytorch/data/dog_cat&quot;,
                                transform=transform)
-dataloader = torch.utils.data.DataLoader(dataset,batch_size=<span class="hljs-number">4</span>,shuffle=<span class="hljs-literal">True</span>,num_workers=<span class="hljs-number">2</span>)</code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+dataloader = torch.utils.data.DataLoader(dataset,batch_size=4,shuffle=True,num_workers=2)
+</code></pre>
+<pre><code class="lang-python">import matplotlib.pyplot as plt
+import numpy as np
 
-label_dict = (<span class="hljs-string">"cat"</span>,<span class="hljs-string">"dog"</span>)
-<span class="hljs-comment"># 输出图像的函数</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">imshow</span><span class="hljs-params">(img)</span>:</span>
-    img = img / <span class="hljs-number">2</span> + <span class="hljs-number">0.5</span>     <span class="hljs-comment"># unnormalize</span>
+label_dict = (&quot;cat&quot;,&quot;dog&quot;)
+# 输出图像的函数
+def imshow(img):
+    img = img / 2 + 0.5     # unnormalize
     npimg = img.numpy()
-    plt.imshow(np.transpose(npimg, (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>)))
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
 
-<span class="hljs-comment"># 随机获取训练图片</span>
+# 随机获取训练图片
 dataiter = iter(dataloader)
 images, labels = dataiter.next()
 
-<span class="hljs-comment"># 显示图片</span>
+# 显示图片
 imshow(torchvision.utils.make_grid(images))
 plt.show()
-print(<span class="hljs-string">' '</span>.join(<span class="hljs-string">'%5s'</span> % label_dict[labels[j].item()] <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>)))</code></pre>
-<p><img src="\images\dp-net\output_4_0.png" srcset="/images/loading.gif" alt="png"></p>
+print(&#39; &#39;.join(&#39;%5s&#39; % label_dict[labels[j].item()] for j in range(4)))
+</code></pre>
+<p><img src="\images\dp-net\output_4_0.png" srcset="/img/loading.gif" alt="png"></p>
 <p>dog   cat   dog   cat</p>
 <hr>
 <p><strong>第二种方式(继承torch.utils.data.Dataset)</strong><br><br>实现：<br><br><strong>__len__(self):</strong> 返回数据集的大小<br><br><strong>__getitem__(self,index):</strong> 支持索引，获取第index个样本的数据和标签<br><br><br>假设数据集文件如下结构：<br><br>root_dir/cat.0.png<br><br>root_dir/cat.1.jpeg<br><br>…<br><br>root_dir/dog.0.jpg<br><br>root_dir/dog.1.png<br><br><br><br><strong>note:transform的输入图片格式:PIL.Image</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> os
-<span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image
-<span class="hljs-keyword">from</span> skimage <span class="hljs-keyword">import</span> io
-os.environ[<span class="hljs-string">"KMP_DUPLICATE_LIB_OK"</span>]=<span class="hljs-string">"TRUE"</span></code></pre>
-<pre><code class="hljs python">labels = (<span class="hljs-string">"cat"</span>,<span class="hljs-string">"dog"</span>)
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">dogCatData</span><span class="hljs-params">(torch.utils.data.Dataset)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,root_dir,transform=None)</span>:</span>
+<pre><code class="lang-python">import torch
+import os
+from PIL import Image
+from skimage import io
+os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE&quot;
+</code></pre>
+<pre><code class="lang-python">labels = (&quot;cat&quot;,&quot;dog&quot;)
+class dogCatData(torch.utils.data.Dataset):
+    def __init__(self,root_dir,transform=None):
         self.root_dir = root_dir
         self.transform = transform
         self.files = []
-        <span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> os.listdir(root_dir):
-            sample = &#123;&#125;
-            sample[<span class="hljs-string">"file"</span>] = os.path.join(root_dir,file)
-            sample[<span class="hljs-string">"label"</span>] = labels.index(file.split(<span class="hljs-string">"."</span>)[<span class="hljs-number">0</span>])
+        for file in os.listdir(root_dir):
+            sample = {}
+            sample[&quot;file&quot;] = os.path.join(root_dir,file)
+            sample[&quot;label&quot;] = labels.index(file.split(&quot;.&quot;)[0])
             self.files.append(sample)
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__len__</span><span class="hljs-params">(self)</span>:</span>
-        <span class="hljs-keyword">return</span> len(self.files )
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__getitem__</span><span class="hljs-params">(self,index)</span>:</span>
+    def __len__(self):
+        return len(self.files )
+    def __getitem__(self,index):
         sample = self.files[index]
-        <span class="hljs-comment">#image = Image.open(sample["file"])</span>
-        image = io.imread(sample[<span class="hljs-string">"file"</span>])
+        #image = Image.open(sample[&quot;file&quot;])
+        image = io.imread(sample[&quot;file&quot;])
         image = Image.fromarray(image)
-        label = sample[<span class="hljs-string">"label"</span>]
-        <span class="hljs-keyword">if</span> self.transform <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:
+        label = sample[&quot;label&quot;]
+        if self.transform is not None:
             image = self.transform(image)
-        <span class="hljs-keyword">return</span> image,label</code></pre>
-<pre><code class="hljs python">data = dogCatData(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/dog_cat/train"</span>)
-print(data[<span class="hljs-number">0</span>])</code></pre>
+        return image,label
+</code></pre>
+<pre><code class="lang-python">data = dogCatData(&quot;/Volumes/storage/learn/bigdata/data/dog_cat/train&quot;)
+print(data[0])
+</code></pre>
 <pre><code>(&lt;PIL.Image.Image image mode=RGB size=208x257 at 0x1492917F0&gt;, 0)
-</code></pre><pre><code class="hljs python"><span class="hljs-keyword">import</span> torchvision
-<span class="hljs-keyword">from</span> torchvision <span class="hljs-keyword">import</span> transforms <span class="hljs-keyword">as</span> transforms
+</code></pre><pre><code class="lang-python">import torchvision
+from torchvision import transforms as transforms
 transform = transforms.Compose([
-    transforms.Resize([<span class="hljs-number">224</span>,<span class="hljs-number">224</span>]),
+    transforms.Resize([224,224]),
     transforms.ToTensor(),
-    transforms.Normalize((<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>), (<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>))
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
 ])
-dataset = dogCatData(<span class="hljs-string">"/Volumes/storage/learn/bigdata/data/dog_cat/train"</span>,transform)
-dataloader = torch.utils.data.DataLoader(dataset,batch_size=<span class="hljs-number">8</span>,shuffle=<span class="hljs-literal">True</span>,num_workers=<span class="hljs-number">4</span>)</code></pre>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
-<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+dataset = dogCatData(&quot;/Volumes/storage/learn/bigdata/data/dog_cat/train&quot;,transform)
+dataloader = torch.utils.data.DataLoader(dataset,batch_size=8,shuffle=True,num_workers=4)
+</code></pre>
+<pre><code class="lang-python">import matplotlib.pyplot as plt
+import numpy as np
 
-label_dict = (<span class="hljs-string">"cat"</span>,<span class="hljs-string">"dog"</span>)
-<span class="hljs-comment"># 输出图像的函数</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">imshow</span><span class="hljs-params">(img)</span>:</span>
-    img = img / <span class="hljs-number">2</span> + <span class="hljs-number">0.5</span>     <span class="hljs-comment"># unnormalize</span>
+label_dict = (&quot;cat&quot;,&quot;dog&quot;)
+# 输出图像的函数
+def imshow(img):
+    img = img / 2 + 0.5     # unnormalize
     npimg = img.numpy()
-    plt.imshow(np.transpose(npimg, (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>)))
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
 
-<span class="hljs-comment"># 随机获取训练图片</span>
+# 随机获取训练图片
 dataiter = iter(dataloader)
 images, labels = dataiter.next()
 
-<span class="hljs-comment"># 显示图片</span>
+# 显示图片
 imshow(torchvision.utils.make_grid(images))
 plt.show()
-print(<span class="hljs-string">' '</span>.join(<span class="hljs-string">'%5s'</span> % label_dict[labels[j].item()] <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">8</span>)))</code></pre>
-<p><img src="\images\dp-net\output_10_0.png" srcset="/images/loading.gif" alt="png"></p>
+print(&#39; &#39;.join(&#39;%5s&#39; % label_dict[labels[j].item()] for j in range(8)))
+</code></pre>
+<p><img src="\images\dp-net\output_10_0.png" srcset="/img/loading.gif" alt="png"></p>
 <p>cat   cat   dog   dog   dog   dog   dog   cat</p>
 <hr>
-<h1 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h1><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch
-<span class="hljs-keyword">import</span> torch.nn <span class="hljs-keyword">as</span> nn</code></pre>
-<pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AlexNet</span><span class="hljs-params">(nn.Module)</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self,num_classes=<span class="hljs-number">2</span>)</span>:</span>
+<h1 id="构建模型"><a href="#构建模型" class="headerlink" title="构建模型"></a>构建模型</h1><pre><code class="lang-python">import torch
+import torch.nn as nn
+</code></pre>
+<pre><code class="lang-python">class AlexNet(nn.Module):
+    def __init__(self,num_classes=2):
         super(AlexNet, self).__init__()
         self.features = nn.Sequential(
-            nn.Conv2d(<span class="hljs-number">3</span>, <span class="hljs-number">64</span>, kernel_size=<span class="hljs-number">11</span>, stride=<span class="hljs-number">4</span>, padding=<span class="hljs-number">2</span>),
-            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
-            nn.MaxPool2d(kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>),
-            nn.Conv2d(<span class="hljs-number">64</span>, <span class="hljs-number">192</span>, kernel_size=<span class="hljs-number">5</span>, padding=<span class="hljs-number">2</span>),
-            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
-            nn.MaxPool2d(kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>),
-            nn.Conv2d(<span class="hljs-number">192</span>, <span class="hljs-number">384</span>, kernel_size=<span class="hljs-number">3</span>, padding=<span class="hljs-number">1</span>),
-            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
-            nn.Conv2d(<span class="hljs-number">384</span>, <span class="hljs-number">256</span>, kernel_size=<span class="hljs-number">3</span>, padding=<span class="hljs-number">1</span>),
-            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
-            nn.Conv2d(<span class="hljs-number">256</span>, <span class="hljs-number">256</span>, kernel_size=<span class="hljs-number">3</span>, padding=<span class="hljs-number">1</span>),
-            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
-            nn.MaxPool2d(kernel_size=<span class="hljs-number">3</span>, stride=<span class="hljs-number">2</span>),
+            nn.Conv2d(3, 64, kernel_size=11, stride=4, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(64, 192, kernel_size=5, padding=2),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
+            nn.Conv2d(192, 384, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(384, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.Conv2d(256, 256, kernel_size=3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2),
         )
-        self.avgpool = nn.AdaptiveAvgPool2d((<span class="hljs-number">6</span>, <span class="hljs-number">6</span>))
+        self.avgpool = nn.AdaptiveAvgPool2d((6, 6))
         self.classifier = nn.Sequential(
             nn.Dropout(),
-            nn.Linear(<span class="hljs-number">256</span> * <span class="hljs-number">6</span> * <span class="hljs-number">6</span>, <span class="hljs-number">4096</span>),
-            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
+            nn.Linear(256 * 6 * 6, 4096),
+            nn.ReLU(inplace=True),
             nn.Dropout(),
-            nn.Linear(<span class="hljs-number">4096</span>, <span class="hljs-number">4096</span>),
-            nn.ReLU(inplace=<span class="hljs-literal">True</span>),
-            nn.Linear(<span class="hljs-number">4096</span>, num_classes),
+            nn.Linear(4096, 4096),
+            nn.ReLU(inplace=True),
+            nn.Linear(4096, num_classes),
         )
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span><span class="hljs-params">(self, x)</span>:</span>
+    def forward(self, x):
         x = self.features(x)
         x = self.avgpool(x)
-        x = torch.flatten(x, <span class="hljs-number">1</span>)
+        x = torch.flatten(x, 1)
         x = self.classifier(x)
-        <span class="hljs-keyword">return</span> x</code></pre>
-<pre><code class="hljs python">model = AlexNet(<span class="hljs-number">2</span>)</code></pre>
+        return x
+</code></pre>
+<pre><code class="lang-python">model = AlexNet(2)
+</code></pre>
 <hr>
-<h1 id="定义损失和优化器"><a href="#定义损失和优化器" class="headerlink" title="定义损失和优化器"></a>定义损失和优化器</h1><pre><code class="hljs python"><span class="hljs-keyword">import</span> torch.optim <span class="hljs-keyword">as</span> optim
+<h1 id="定义损失和优化器"><a href="#定义损失和优化器" class="headerlink" title="定义损失和优化器"></a>定义损失和优化器</h1><pre><code class="lang-python">import torch.optim as optim
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=<span class="hljs-number">0.001</span>, momentum=<span class="hljs-number">0.9</span>)</code></pre>
+optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+</code></pre>
 <hr>
-<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><pre><code class="hljs python">device = torch.device(<span class="hljs-string">'cuda'</span>) <span class="hljs-keyword">if</span> torch.cuda.is_available() <span class="hljs-keyword">else</span> torch.device(<span class="hljs-string">'cpu'</span>)
-print(device)</code></pre>
-<pre><code class="hljs python">model.to(device)</code></pre>
-<pre><code class="hljs python">model.to(device)
-<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> range(<span class="hljs-number">4</span>):  <span class="hljs-comment"># loop over the dataset multiple times</span>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><pre><code class="lang-python">device = torch.device(&#39;cuda&#39;) if torch.cuda.is_available() else torch.device(&#39;cpu&#39;)
+print(device)
+</code></pre>
+<pre><code class="lang-python">model.to(device)
+</code></pre>
+<pre><code class="lang-python">model.to(device)
+for epoch in range(4):  # loop over the dataset multiple times
     model.train()
-    running_loss = <span class="hljs-number">0.0</span>
-    <span class="hljs-keyword">for</span> i, data <span class="hljs-keyword">in</span> enumerate(dataloader):
-        <span class="hljs-comment"># get the inputs</span>
+    running_loss = 0.0
+    for i, data in enumerate(dataloader):
+        # get the inputs
         inputs, labels = data
         inputs, labels = inputs.to(device), labels.to(device)
-        <span class="hljs-comment"># zero the parameter gradients</span>
+        # zero the parameter gradients
         optimizer.zero_grad()
 
-        <span class="hljs-comment"># forward + backward + optimize</span>
+        # forward + backward + optimize
         outputs = model(inputs)
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
 
-        <span class="hljs-comment"># print statistics</span>
+        # print statistics
         running_loss += loss.item()
-        <span class="hljs-keyword">if</span> i % <span class="hljs-number">1999</span> == <span class="hljs-number">0</span>:    <span class="hljs-comment"># print every 2000 mini-batches</span>
-            print(<span class="hljs-string">'[%d, %5d] loss: %.3f'</span> % (epoch + <span class="hljs-number">1</span>, i + <span class="hljs-number">1</span>, running_loss / <span class="hljs-number">2000</span>))
-            running_loss = <span class="hljs-number">0.0</span>
+        if i % 1999 == 0:    # print every 2000 mini-batches
+            print(&#39;[%d, %5d] loss: %.3f&#39; % (epoch + 1, i + 1, running_loss / 2000))
+            running_loss = 0.0
 
-print(<span class="hljs-string">'Finished Training'</span>)
-torch.save(model, <span class="hljs-string">'dog_cat.pth'</span>)</code></pre>
+print(&#39;Finished Training&#39;)
+torch.save(model, &#39;dog_cat.pth&#39;)
+</code></pre>
 <pre><code>[1,     1] loss: 0.636
 [1,     2] loss: 1.332
 [1,     3] loss: 2.026
@@ -397,131 +370,98 @@ torch.save(model, <span class="hljs-string">'dog_cat.pth'</span>)</code></pre>
 Finished Training
 </code></pre><hr>
 <h1 id="模型保存和加载"><a href="#模型保存和加载" class="headerlink" title="模型保存和加载"></a>模型保存和加载</h1><p><strong>1.仅保存模型参数</strong></p>
-<pre><code class="hljs python"><span class="hljs-keyword">import</span> torch</code></pre>
-<pre><code class="hljs python">torch.save(model.state_dict(), path) <span class="hljs-comment"># save</span>
-model.load_state_dict(torch.load(path)) <span class="hljs-comment"># load</span>
-<span class="hljs-comment"># save</span>
-state = &#123;<span class="hljs-string">'model'</span>: model.state_dict(), <span class="hljs-string">'optimizer'</span>: optimizer.state_dict(), <span class="hljs-string">'epoch'</span>: epoch&#125;
+<pre><code class="lang-python">import torch
+</code></pre>
+<pre><code class="lang-python">torch.save(model.state_dict(), path) # save
+model.load_state_dict(torch.load(path)) # load
+# save
+state = {&#39;model&#39;: model.state_dict(), &#39;optimizer&#39;: optimizer.state_dict(), &#39;epoch&#39;: epoch}
 torch.save(state, path)
-<span class="hljs-comment"># load</span>
+# load
 checkpoint = torch.load(path)
-model.load_state_dict(checkpoint[<span class="hljs-string">'model'</span>])
-optimizer.load_state_dict(checkpoint[<span class="hljs-string">'optimizer'</span>])
-epoch = checkpoint([<span class="hljs-string">'epoch'</span>])</code></pre>
+model.load_state_dict(checkpoint[&#39;model&#39;])
+optimizer.load_state_dict(checkpoint[&#39;optimizer&#39;])
+epoch = checkpoint([&#39;epoch&#39;])
+</code></pre>
 <p><strong>2.保存/加载整个模型</strong></p>
-<pre><code class="hljs python">torch.save(model, path)
-model = torch.load(path)</code></pre>
+<pre><code class="lang-python">torch.save(model, path)
+model = torch.load(path)
+</code></pre>
 <hr>
 
-            </div>
             <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/pytorch/">pytorch</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/04/08/spark.000/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">000.Spark Basement</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/">
-                        <span class="hidden-mobile">小贴士</span>
-                        <span class="visible-mobile">Next</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
+          </div>
+          <br>
+          <div>
+            <p>
             
-              <!-- Comments -->
-              <article class="comments" id="comments">
+              <span>
+                <i class="iconfont icon-inbox"></i>
                 
+                  <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>
+                  &nbsp;
                 
-  <script type="text/javascript">
-    function loadUtterances() {
-      var light = 'github-light';
-      var dark = 'github-dark';
-      var schema = document.documentElement.getAttribute('data-user-color-scheme');
-      if (schema === 'dark') {
-        schema = dark;
-      } else {
-        schema = light;
-      }
-      window.UtterancesThemeLight = light;
-      window.UtterancesThemeDark = dark;
-      var s = document.createElement('script');
-      s.setAttribute('src', 'https://utteranc.es/client.js');
-      s.setAttribute('repo', 'JiaoPaner/blog-talk.git');
-      s.setAttribute('issue-term', 'pathname');
-      
-      s.setAttribute('label', 'utterances');
-      
-      s.setAttribute('theme', schema);
-      s.setAttribute('crossorigin', 'anonymous');
-      document.getElementById('comments').appendChild(s);
-    }
-    waitElementVisible('comments', loadUtterances)
-  </script>
-
-
-              </article>
+              </span>&nbsp;&nbsp;
             
-          </article>
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/pytorch">pytorch</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
+          </div>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
-  <div id="tocbot"></div>
-</div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <div id="tocbot"></div>
+  </div>
 
-      </div>
-    
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+<!-- custom -->
 
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
 
     
   </main>
 
   
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
     </a>
   
 
@@ -531,7 +471,7 @@ model = torch.load(path)</code></pre>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -540,7 +480,7 @@ model = torch.load(path)</code></pre>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -549,89 +489,99 @@ model = torch.load(path)</code></pre>
 </div>
   
 
-  
-
-  
-
   <footer class="mt-5">
   <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><b>Hexo</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"> <b>Fluid</b></a>
+    <br>
+
     
+  
+    <!-- 不蒜子统计PV -->
+    
+    &nbsp;<span id="busuanzi_container_site_pv">总访问量 
+          <span id="busuanzi_value_site_pv"></span> 次</span>&nbsp;
+  
+  
+    <!-- 不蒜子统计UV -->
+    
+    &nbsp;<span id="busuanzi_container_site_uv">总访客数 
+            <span id="busuanzi_value_site_uv"></span> 人</span>&nbsp;
+  
+  <br>
+
+
 
     
 
+
+    <!-- cnzz Analytics icon -->
     
+
   </div>
 </footer>
 
 <!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/debouncer.js" ></script>
-<script  src="/js/main.js" ></script>
+<script src="/lib/jquery/jquery.min.js" ></script>
+<script src="/lib/popper/popper.min.js" ></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="/js/main.js" ></script>
+
+
+  <script src="/js/lazyload.js" ></script>
+
+
+
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
+
+
+  <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 <!-- Plugins -->
 
 
   
-    <script  src="/js/lazyload.js" ></script>
+
+  
+
+  
+
+  
+
+  <!-- cnzz Analytics -->
   
 
 
 
-  
-
-
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
-
-
-
-
-
-
-
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script src="/lib/prettify/prettify.min.js" ></script>
   <script>
     $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
-
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '#post-body',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script src="/lib/typed/typed.min.js" ></script>
   <script>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
         "pytorch 自定义数据集/训练/模型保存和加载&nbsp;",
       ],
-      cursorChar: "_",
+      cursorChar: ".",
       typeSpeed: 70,
       loop: false,
     });
@@ -644,11 +594,11 @@ model = torch.load(path)</code></pre>
 
 
 
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script src="/lib/anchor/anchor.min.js" ></script>
   <script>
     anchors.options = {
       placement: "right",
-      visible: "hover",
+      visible: "false",
       
     };
     var el = "h1,h2,h3,h4,h5,h6".split(",");
@@ -661,27 +611,25 @@ model = torch.load(path)</code></pre>
 
 
 
-  <script  src="/js/local-search.js" ></script>
+  <script src="/js/local-search.js" ></script>
   <script>
     var path = "/local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
+      getSearchFile(path);
       this.onclick = null
     }
   </script>
 
 
 
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
+  <script src="/lib/fancybox/jquery.fancybox.min.js" ></script>
   <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(
       function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
         $(this).wrap(element);
       }
     );
@@ -689,53 +637,31 @@ model = torch.load(path)</code></pre>
 
 
 
-
-
   
 
   
     <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
           }
-        }
-      };
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
     </script>
 
-    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js" ></script>
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
 
   
-
-
-
-
-
-
-
 
 
 
