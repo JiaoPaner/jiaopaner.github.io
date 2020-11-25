@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>Docker入门指南 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>Docker指南 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    1.9k 字
+                    2.5k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      7 分钟
+                      11 分钟
                   </span>&nbsp;
                 
 
@@ -167,8 +167,7 @@
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
             <p><img src="/images/docker.jpg" srcset="/img/loading.gif" alt="&quot;docker&quot;">  </p>
-<p><strong>1.Docker简介</strong></p>
-<p>问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?</p>
+<h3 id="1-Docker简介"><a href="#1-Docker简介" class="headerlink" title="1.Docker简介"></a>1.Docker简介</h3><p>问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?</p>
 <p>Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源.容器是完全使用沙箱机制，相互之间不会有任何接口(类似iPhone的 app)，更重要的是容器性能开销极低.[来源网络]</p>
 <p>通过上述定义可以知道，Docker似乎类似于虚拟机，可以在Docker中打包安装任何应用并运行，比如tomcat、Java、mysql等.但它并不等同于虚拟机，为了区分Docker和虚拟机，我们先来了解虚拟机的运行机制，如下图所示：</p>
 <p><img src="/images/docker3.png" srcset="/img/loading.gif" alt="virtualbox"></p>
@@ -191,18 +190,29 @@
 </blockquote>
 <p>Docker守护进程可以直接与主操作系统进行通信，为各个Docker容器分配资源,它还可以将容器与主操作系统隔离，并将各个容器互相隔离。<br>虚拟机启动需要数分钟，而Docker容器可以在数毫秒内启动,由于没有臃肿的从操作系统,Docker可以节省大量的磁盘空间以及其他系统资源。</p>
 <hr>
-<p><strong>2.Docker安装(基于Ubuntu)</strong></p>
-<p>在创建Docker容器前需要先安装Docker容器引擎，类似于虚拟机的virtualBox或VMWare.</p>
+<h3 id="2-Docker安装-基于Ubuntu"><a href="#2-Docker安装-基于Ubuntu" class="headerlink" title="2.Docker安装(基于Ubuntu)"></a>2.Docker安装(基于Ubuntu)</h3><p>在创建Docker容器前需要先安装Docker容器引擎，类似于虚拟机的virtualBox或VMWare.</p>
 <pre><code class="lang-bash">#查看内核版本 docker安装需要大于3.1
 $ uname -r
 4.13.0-36-generic
 #更新软件源
 $ sudo apt-get update
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo apt-key fingerprint 0EBFCD88
+$ sudo add-apt-repository &quot;deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;
+
 #安装docker
-sudo apt-get install docker.io 
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+
 #查看安装的docker版本(无错则安装成功)
 $ docker --version
-Docker version 1.13.1, build 092cba3
+Docker version 19.03.13, build 4484c46d9d
 
 #运行hello-wolrd实例(该命令运行时会从镜像仓库中拉取docker镜像)
 $ sudo docker run hello-world
@@ -220,15 +230,78 @@ $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 hello-world         latest              e38bc07ac18e        2 months ago        1.85 kB
 #hello-world即从镜像仓库中拉取的镜像 docker run hello-world:latest 启动容器
+
+#更新国内镜像
+$ sudo vim /etc/docker/daemon.json
+{
+  &quot;registry-mirrors&quot;: [
+    &quot;http://hub-mirror.c.163.com&quot;
+  ]
+}
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
 </code></pre>
-<hr>
-<p><strong>3.容器和镜像</strong><br>如下图所示，容器是由镜像实例化而来，类似于面向对象的概念，镜像看作类，容器则为类实例化后的对象.一个Docker镜像可以构建于另一个Docker镜像之上,好比类的继承机制.<br><img src="http://upload-images.jianshu.io/upload_images/2156466-b4341e9da2e6e170.jpg?imageMogr2/auto-orient/strip%7CimageView2/2" srcset="/img/loading.gif" alt="images"><br>docker的镜像概念类似虚拟机的镜像,是一个只读的模板,一个独立的文件系统,包括运行容器所需的数据，且可以用来创建新的容器(docker create <image -id >)，为指定的镜像添加一个可读写层.例如：一个镜像可以包含一个完整的ubuntu操作系统环境,类似于虚拟机的.iso文件.<br>docker利用容器来运行应用,docker容器是由docker镜像创建的运行实例,docker容器类似利用.iso文件安装后的虚拟机，可以执行各种读写操作,每个容器间是相互隔离的，容器中会运行特定的运用，包含特定应用的代码及所需的依赖文件,可以把容器看作一个简易版的linux环境.可以用同一个镜像启动多个Docker容器.</p>
-<hr>
-<p><strong>4.docker命令</strong></p>
-<pre><code class="lang-bash">#查看已有的镜像
+<blockquote>
+<p><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="noopener">https://docs.docker.com/engine/install/ubuntu/</a></p>
+</blockquote>
+<h3 id="3-容器和镜像"><a href="#3-容器和镜像" class="headerlink" title="3.容器和镜像"></a>3.容器和镜像</h3><p>如下图所示，容器是由镜像实例化而来，类似于面向对象的概念，镜像看作类，容器则为类实例化后的对象.一个Docker镜像可以构建于另一个Docker镜像之上,好比类的继承机制.<br><img src="/images/docker4.png" srcset="/img/loading.gif" alt="images"></p>
+<p>docker的镜像概念类似虚拟机的镜像,是一个只读的模板,一个独立的文件系统,包括运行容器所需的数据，且可以用来创建新的容器(docker create <image -id >)，为指定的镜像添加一个可读写层.例如：一个镜像可以包含一个完整的ubuntu操作系统环境,类似于虚拟机的.iso文件.<br>docker利用容器来运行应用,docker容器是由docker镜像创建的运行实例,docker容器类似利用.iso文件安装后的虚拟机，可以执行各种读写操作,每个容器间是相互隔离的，容器中会运行特定的运用，包含特定应用的代码及所需的依赖文件,可以把容器看作一个简易版的linux环境.可以用同一个镜像启动多个Docker容器.</p>
+<blockquote>
+<p><a href="https://docs.docker.com/engine/reference/commandline/docker/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/commandline/docker/</a></p>
+</blockquote>
+<h3 id="4-docker命令"><a href="#4-docker命令" class="headerlink" title="4.docker命令"></a>4.docker命令</h3><pre><code class="lang-bash">#查看已有的镜像
 $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 hello-world         latest              e38bc07ac18e        2 months ago        1.85 kB
+
+--all , -a        Show all images (default hides intermediate images)
+--digests        Show digests
+--filter , -f        Filter output based on conditions provided
+--format        Pretty-print images using a Go template
+--no-trunc        Don’t truncate output
+--quiet , -q        Only show numeric IDs
+
+#搜索镜像
+$ sudo docker search mysql
+NAME                              DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+mysql                             MySQL is a widely used, open-source relation…   10202               [OK]                
+mariadb                           MariaDB is a community-developed fork of MyS…   3753                [OK]                
+mysql/mysql-server                Optimized MySQL Server Docker images. Create…   744                                     [OK]
+
+#拉取镜像
+$ sudo docker pull mysql
+Using default tag: latest
+latest: Pulling from library/mysql
+852e50cd189d: Pull complete 
+29969ddb0ffb: Pull complete 
+a43f41a44c48: Pull complete 
+5cdd802543a3: Pull complete 
+b79b040de953: Pull complete 
+938c64119969: Pull complete 
+7689ec51a0d9: Pull complete 
+a880ba7c411f: Pull complete 
+984f656ec6ca: Pull complete 
+9f497bce458a: Pull complete 
+b9940f97694b: Pull complete 
+2f069358dc96: Pull complete 
+Digest: sha256:4bb2e81a40e9d0d59bd8e3dc2ba5e1f2197696f6de39a91e90798dd27299b093
+Status: Downloaded newer image for mysql:latest
+docker.io/library/mysql:latest
+
+#删除镜像
+$ sudo docker rmi 容器ID
+Untagged: hello-world:latest
+Untagged: hello-world@sha256:e7c70bb24b462baa86c102610182e3efcb12a04854e8c582838d92970a09f323
+Deleted: sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b
+Deleted: sha256:9c27e219663c25e0f28493790cc0b88bc973ba3b1686355f221c38a36978ac63
+#--------------------------------------------------------------#
+
+$ docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+--name string                    指定容器名字
+-it                              交互方式启动
+-p, --publish list               端口映射，-p 主机端口:容器端口; -p 容器端口(主机端口随机)
+-P, --publish-all                端口随机
+
 #启动容器 
 $ docker run hello-world #run 创建基于该镜像的容器并启动
 #启动指定版本容器
@@ -242,9 +315,9 @@ $ docker start 容器ID
 #启动容器(守护方式/后台启动)
 $ docker run -d 容器ID
 $ docker start -d 容器ID
-#重新进入容器
+#重新进入当前容器
 $ docker attach 容器ID
-#运行的容器种启动新进程
+#运行的容器中启动新进程
 $ docker exec -i -t 容器ID /bin/bash
 #停止守护容器
 $ docker stop 容器ID #等待容器停止
@@ -259,6 +332,32 @@ $ docker run -p 80 -i -t ubuntu  #宿主机端口随机
 $ docker run -p 8080:80 -i -t ubuntu  #宿主机端口:容器端口
 $ docker run -p 0.0.0.0:80 -i -t ubuntu  #宿主机ip:容器端口
 $ docker run -p 0.0.0.0:8080:80 -i -t ubuntu  #宿主机ip:宿主机端口:容器端口
+#--------------------------------------------------------------#
+
+#查看容器详细信息
+$ sudo docker inspect [OPTIONS] NAME|ID [NAME|ID...]
+#--------------------------------------------------------------#
+
+#查看容器日志
+$ sudo docker logs [OPTIONS] CONTAINER
+--details        Show extra details provided to logs
+--follow , -f        Follow log output
+--since        Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)
+--tail    all    Number of lines to show from the end of the logs
+--timestamps , -t        Show timestamps
+#--------------------------------------------------------------#
+
+#查看容器进程信息
+$ sudo docker top CONTAINER [ps OPTIONS]
+#--------------------------------------------------------------#
+
+#容器/主机文件拷贝
+$ sudodocker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+$ sudodocker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+#--------------------------------------------------------------#
+
+#可视化图形工具:Portainer,https://www.portainer.io/installation/
+#--------------------------------------------------------------#
 
 #根据当前容器状态 创建新的镜像
 docker commit -m=&#39;ssh install&#39; -a=&#39;jiaopan&#39; cb57c338f1c9 kyleson/jpos
@@ -272,35 +371,96 @@ docker commit -m=&#39;ssh install&#39; -a=&#39;jiaopan&#39; cb57c338f1c9 kyleson
 $ sudo docker login
 $ sudo docker push kyleson/jpos
 </code></pre>
-<p><strong>5.docker实例</strong></p>
-<h1 id="远程登陆docker容器"><a href="#远程登陆docker容器" class="headerlink" title="远程登陆docker容器"></a>远程登陆docker容器</h1><pre><code class="lang-bash">#1.创建并启动docker容器 
-$ docker run -p 2222:22 -i -t ubuntu:latest /bin/bash #避免重复创建容器 启动已有容器时使用start命令
-#2.安装ssh
-$ apt-get install openssh-server
-#3.修改ssh_config 
-$ vim /etc/ssh/sshd_config 
-PermitRootLogin yes #允许root用户以任何认证方式登录
-PasswordAuthentication yes
+<p><img src="/images/docker-command.png" srcset="/img/loading.gif" alt="docker"></p>
+<h3 id="5-docker容器数据卷"><a href="#5-docker容器数据卷" class="headerlink" title="5.docker容器数据卷"></a>5.docker容器数据卷</h3><pre><code class="lang-bash">$ sudo docker  run  -v /home/test:/home -it  centos /bin/bash
 
-#notes:
-#PermitRootLogin without-password #只允许root用公钥认证方式登录
-#PermitRootLogin no #不允许root用户以任何认证方式登录
-#4.启动ssh
-$ service ssh restart #
-#5.#修改root密码
-$ passwd root
-#6.查看容器ip
-$ ifconfig
-#7.返回宿主机且保持容器的运行
-ctrl+p ctrl+q 
-#8.宿主机测试ssh登陆容器
-$ ssh -p root@容器ip 
-#9.远程登陆容器
-$ ssh -p 2222 root@容器宿主机ip #宿主机2222端口以映射到容器的22端口
+--volume , -v        Bind mount a volume # -v 宿主机目录:容器目录
+#目录绑定成功信息
+$ sudo docker inspect 容器id
+&quot;Mounts&quot;: [
+    {
+        &quot;Type&quot;: &quot;bind&quot;,
+        &quot;Source&quot;: &quot;/home/test&quot;,
+        &quot;Destination&quot;: &quot;/home&quot;,
+        &quot;Mode&quot;: &quot;&quot;,
+        &quot;RW&quot;: true,
+        &quot;Propagation&quot;: &quot;rprivate&quot;
+    }
+]
+
+#note:主机/home/test和容器内的/home目录数据双向同步
+
+#容器间的数据共享
+--volumes-from        Mount volumes from the specified container(s)
+$ sudo docker run --volumes-from 777f7dc92da7 -i -t ubuntu pwd
 </code></pre>
-<p>至此,便可像登陆虚拟机一样玩转容器</p>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
+<h3 id="6-DockerFile"><a href="#6-DockerFile" class="headerlink" title="6.DockerFile"></a>6.DockerFile</h3><blockquote>
+<p><a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/</a></p>
+</blockquote>
+<p><img src="/images/docker5.jpg" srcset="/img/loading.gif" alt="images"></p>
+<pre><code class="lang-shell">FROM centos
+MAINTAINER jiaopaner&lt;jiaopaner@qq.com&gt;
 
+ENV PATH /home
+WORKDIR $PATH
+
+RUN yum install vim
+RUN yum install net-tools
+
+EXPOSE 80
+
+CMD echo $PATH
+CMD echo &quot;----------end---------&quot;
+CMD /bin/bash
+</code></pre>
+<pre><code class="lang-bash">$ sudo docker build -f dockerfile -t jp-centos .
+Sending build context to Docker daemon  2.048kB
+Step 1/8 : FROM centos
+ ---&gt; 0d120b6ccaa8
+Step 2/8 : MAINTAINER jiaopaner&lt;jiaopaner@qq.com&gt;
+ ---&gt; Running in 0f054a284458
+Removing intermediate container 0f054a284458
+ ---&gt; 350dafb870cf
+Step 3/8 : ENV PATH /home
+ ---&gt; Running in 86e71faf7d39
+Removing intermediate container 86e71faf7d39
+ ---&gt; ce30199ce12b
+Step 4/8 : WORKDIR $PATH
+ ---&gt; Running in 68ee5a3cc62a
+Removing intermediate container 68ee5a3cc62a
+ ---&gt; 9142ba699de8
+Step 5/8 : EXPOSE 80
+ ---&gt; Running in 7b1d81ba8276
+Removing intermediate container 7b1d81ba8276
+ ---&gt; 2c1c922e9eec
+Step 6/8 : CMD echo $PATH
+ ---&gt; Running in 9137d52fbda2
+Removing intermediate container 9137d52fbda2
+ ---&gt; ffce4c2caec7
+Step 7/8 : CMD echo &quot;----------end---------&quot;
+ ---&gt; Running in 61d1d5af663c
+Removing intermediate container 61d1d5af663c
+ ---&gt; 6eeb9214b922
+Step 8/8 : CMD /bin/bash
+ ---&gt; Running in 48b3775713e7
+Removing intermediate container 48b3775713e7
+ ---&gt; 1536cb9c9daa
+Successfully built 1536cb9c9daa
+Successfully tagged jp-centos:latest
+
+$ sudo docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+jp-centos           latest              1536cb9c9daa        About a minute ago   215MB
+</code></pre>
+<pre><code class="lang-bash">#jdk8
+FROM centos
+MAINTAINER jiaopaner
+ADD jdk-8u191-linux-x64.tar.gz /usr/local/
+ENV JAVA_HOME /usr/local/jdk1.8.0_191/
+ENV PATH $JAVA_HOME/bin:$PATH
+ENTRYPOINT [&quot;java&quot;,&quot;-version&quot;]
+</code></pre>
+<h3 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h3>
             <hr>
           </div>
           <br>
@@ -334,7 +494,7 @@ $ ssh -p 2222 root@容器宿主机ip #宿主机2222端口以映射到容器的22
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -383,7 +543,7 @@ $ ssh -p 2222 root@容器宿主机ip #宿主机2222端口以映射到容器的22
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -392,7 +552,7 @@ $ ssh -p 2222 root@容器宿主机ip #宿主机2222端口以映射到容器的22
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -491,7 +651,7 @@ $ ssh -p 2222 root@容器宿主机ip #宿主机2222端口以映射到容器的22
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Docker入门指南&nbsp;",
+        "Docker指南&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

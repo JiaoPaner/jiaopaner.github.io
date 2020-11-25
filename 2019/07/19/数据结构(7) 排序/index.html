@@ -243,7 +243,7 @@
 }
 </code></pre>
 <p><strong>快速排序</strong></p>
-<p>1.设置两个变量$i,j$，初始化：$i=0，j=n-1$；<br>2.基准数$key=array[0]$；<br>3.从$j$开始向前搜索，即由后开始向前搜索$(j—)$，找到第一个小于$key$的值$array[j]$，将$array[j]$和$array[i]$的值交换；<br>4.从$i$开始向后搜索，即由前开始向后搜索$(i++)$，找到第一个大于key的$array[i]$，将$array[i]$和$array[j]$的值交换；<br>5.重复第3、4步，直到$i=j$；</p>
+<p>1.设置两个变量$i,j$，初始化：$i=0，j=n-1$；<br>2.基准数 $key=array[0]$ ；<br>3.从 $j$ 开始向前搜索，即由后开始向前搜索 $(j—)$ ，找到第一个小于 $key$ 的值 $array[j]$ ，将 $array[j]$ 和 $array[i]$ 的值交换；<br>4.从 $i$ 开始向后搜索，即由前开始向后搜索 $(i++)$ ，找到第一个大于key的 $array[i]$ ，将 $array[i]$ 和 $array[j]$ 的值交换；<br>5.重复第3、4步，直到 $i=j$ ；</p>
 <p>经过一趟上述步骤后，基准数左边全小于基准数，基准数右边全大于基准数，通过分治法继续处理左、右</p>
 <pre><code class="lang-c++">void quickSort(int array[], int left, int right){
     if (left &gt;= right){
@@ -402,7 +402,7 @@ void mergesort(int array[], int low, int high, int temp[]){
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -451,7 +451,7 @@ void mergesort(int array[], int low, int high, int temp[]){
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -460,7 +460,7 @@ void mergesort(int array[], int low, int high, int temp[]){
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
