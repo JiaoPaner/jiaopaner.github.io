@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    2.5k 字
+                    4.3k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      11 分钟
+                      22 分钟
                   </span>&nbsp;
                 
 
@@ -460,7 +460,236 @@ ENV JAVA_HOME /usr/local/jdk1.8.0_191/
 ENV PATH $JAVA_HOME/bin:$PATH
 ENTRYPOINT [&quot;java&quot;,&quot;-version&quot;]
 </code></pre>
-<h3 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h3>
+<h3 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h3><pre><code class="lang-bash">$ ip addr
+3: docker0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 02:42:12:01:fd:bc brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+
+#查看容器内部ip地址
+$ sudo docker exec -it 容器id ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+4: eth0@if5: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+
+#查看docker网络
+$ sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+3b234a9aa88b        bridge              bridge              local
+d07463d88601        host                host                local
+5c0b56f3d183        none                null                local
+
+#自定义网络
+$ sudo docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.0.1 mynet
+$ sudo docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+3b234a9aa88b        bridge              bridge              local
+0217c6ae906e        mynet               bridge              local
+$ sudo docker run -it -d --name mynet-os --net mynet  centos
+$ sudo docker exec -it d9d07c8f46cf  ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+7: eth0@if8: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:c0:a8:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 192.168.0.2/16 brd 192.168.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+
+#自定义网络可通过容器名ping通网络
+$ sudo docker run -it -d --name mynet-os02 --net mynet  centos
+sudo docker exec -it mynet-os  ping mynet-os02
+PING mynet-os02 (192.168.0.3) 56(84) bytes of data.
+64 bytes from mynet-os02.mynet (192.168.0.3): icmp_seq=1 ttl=64 time=0.064 ms
+64 bytes from mynet-os02.mynet (192.168.0.3): icmp_seq=2 ttl=64 time=0.072 ms
+64 bytes from mynet-os02.mynet (192.168.0.3): icmp_seq=3 ttl=64 time=0.072 ms
+64 bytes from mynet-os02.mynet (192.168.0.3): icmp_seq=4 ttl=64 time=0.072 ms
+
+#容器连到其它子网
+docker network connect [OPTIONS] NETWORK CONTAINER
+--alias        Add network-scoped alias for the container
+--driver-opt        driver options for the network
+--ip        IPv4 address (e.g., 172.30.100.104)
+--ip6        IPv6 address (e.g., 2001:db8::33)
+--link        Add link to another container
+--link-local-ip        Add a link-local address for the container
+
+$ sudo docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+518839a304cc        centos              &quot;/bin/bash&quot;         9 minutes ago       Up 9 minutes                            mynet-os02
+d9d07c8f46cf        centos              &quot;/bin/bash&quot;         11 minutes ago      Up 11 minutes                           mynet-os
+d32dd57bf19e        centos              &quot;/bin/bash&quot;         47 minutes ago      Up 47 minutes                           interesting_davinci
+
+$ sudo docker network connect mynet interesting_davinci
+$ sudo docker exec -it mynet-os  ping interesting_davinci
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+4: eth0@if5: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+11: eth1@if12: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:c0:a8:00:04 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 192.168.0.4/16 brd 192.168.255.255 scope global eth1
+       valid_lft forever preferred_lft forever
+</code></pre>
+<h3 id="redis集群部署"><a href="#redis集群部署" class="headerlink" title="redis集群部署"></a>redis集群部署</h3><pre><code class="lang-bash">#redis网络创建
+$ sudo docker network create redis-net --subnet 192.160.0.0/16
+</code></pre>
+<p>redis配置脚本</p>
+<pre><code class="lang-bash">for port in $(seq 1 6);
+do
+mkdir -p /home/jiaopan/test/redis/node-${port}/conf
+touch /home/jiaopan/test/redis/node-${port}/conf/redis.conf
+cat &lt;&lt; EOF &gt;/home/jiaopan/test/redis/node-${port}/conf/redis.conf
+port 6379
+bind 0.0.0.0
+cluster-enabled yes
+cluster-config-file nodes.conf
+cluster-node-timeout 5000
+Cluster-announce-ip 192.160.0.1${port}
+Cluster-announce-port 6379
+Cluster-announce-bus-port 16379
+appendonly yes
+EOF
+done
+</code></pre>
+<p>启动redis容器脚本</p>
+<pre><code class="lang-bash">for port in $(seq 1 6);
+do
+sudo docker run -p 637${port}:6379 -p 1637${port}:16379 --name redis-0${port} -v /home/jiaopan/test/redis/node-${port}/data:/data -v /home/jiaopan/test/redis/node-${port}/conf/redis.conf:/etc/redis/redis.conf -d --net redis-net --ip 192.160.0.1${port} redis redis-server /etc/redis/redis.conf
+done
+</code></pre>
+<pre><code>$ bash redis-start.sh 
+Unable to find image &#39;redis:latest&#39; locally
+latest: Pulling from library/redis
+852e50cd189d: Pull complete 
+76190fa64fb8: Pull complete 
+9cbb1b61e01b: Pull complete 
+d048021f2aae: Pull complete 
+6f4b2af24926: Pull complete 
+1cf1d6922fba: Pull complete 
+Digest: sha256:5b98e32b58cdbf9f6b6f77072c4915d5ebec43912114031f37fa5fa25b032489
+Status: Downloaded newer image for redis:latest
+5be42fac290d85699ded763bb7fd9b03fe30285648b083916565fd2ecc140306
+b6beb0cb73c7e6bfc9438153fa2acf6001ac9093e5a182bf9e8ba7ef92fd9c1d
+3c7fec0bc0ac5cc699258c359f6d6252bfbf5a5967f7a6cd9e7e4d2f6ad572aa
+160b55fd9a9dfc3daaf337c7d4b1e5c094e879ebc1a339198a9c565a45fae124
+45028522de12e7d3aa072322da0d6f2e5b4fda8552fe5977a8439dbfd83aae6e
+99a37fe7e370cd262be8d411b38032ac5b12c470931aa4cbaa47d60532fa82fc
+
+$ sudo docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                              NAMES
+99a37fe7e370        redis               &quot;docker-entrypoint.s…&quot;   43 seconds ago      Up 41 seconds       0.0.0.0:6376-&gt;6379/tcp, 0.0.0.0:16376-&gt;16379/tcp   redis-06
+45028522de12        redis               &quot;docker-entrypoint.s…&quot;   43 seconds ago      Up 42 seconds       0.0.0.0:6375-&gt;6379/tcp, 0.0.0.0:16375-&gt;16379/tcp   redis-05
+160b55fd9a9d        redis               &quot;docker-entrypoint.s…&quot;   44 seconds ago      Up 42 seconds       0.0.0.0:6374-&gt;6379/tcp, 0.0.0.0:16374-&gt;16379/tcp   redis-04
+3c7fec0bc0ac        redis               &quot;docker-entrypoint.s…&quot;   44 seconds ago      Up 43 seconds       0.0.0.0:6373-&gt;6379/tcp, 0.0.0.0:16373-&gt;16379/tcp   redis-03
+b6beb0cb73c7        redis               &quot;docker-entrypoint.s…&quot;   45 seconds ago      Up 43 seconds       0.0.0.0:6372-&gt;6379/tcp, 0.0.0.0:16372-&gt;16379/tcp   redis-02
+5be42fac290d        redis               &quot;docker-entrypoint.s…&quot;   46 seconds ago      Up 44 seconds       0.0.0.0:6371-&gt;6379/tcp, 0.0.0.0:16371-&gt;16379/tcp   redis-01
+
+$ sudo docker exec -it redis-01 /bin/sh
+# ls
+appendonly.aof    nodes.conf
+
+#创建集群
+# redis-cli --cluster create 192.160.0.11:6379 192.160.0.12:6379 192.160.0.13:6379 192.160.0.14:6379 192.160.0.15:6379 192.160.0.16:6379 --cluster-replicas 1
+&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...
+Master[0] -&gt; Slots 0 - 5460
+Master[1] -&gt; Slots 5461 - 10922
+Master[2] -&gt; Slots 10923 - 16383
+Adding replica 192.160.0.15:6379 to 192.160.0.11:6379
+Adding replica 192.160.0.16:6379 to 192.160.0.12:6379
+Adding replica 192.160.0.14:6379 to 192.160.0.13:6379
+M: 2511c99b36e7332e780e1a99d3800b5118cda204 192.160.0.11:6379
+   slots:[0-5460] (5461 slots) master
+M: ff3d43f7a35176117f1cf87b8e7bb4293d36cdea 192.160.0.12:6379
+   slots:[5461-10922] (5462 slots) master
+M: 24b37dae575d40028c7e11b9f2d9d36ba8615ac2 192.160.0.13:6379
+   slots:[10923-16383] (5461 slots) master
+S: 612a061d020c6cfce795e0caee85f8ada13a1951 192.160.0.14:6379
+   replicates 24b37dae575d40028c7e11b9f2d9d36ba8615ac2
+S: a45877d8533abda256dacd947333b857311e015a 192.160.0.15:6379
+   replicates 2511c99b36e7332e780e1a99d3800b5118cda204
+S: c4b5e4b5bd9bdac83340686aab4caf80412d9adf 192.160.0.16:6379
+   replicates ff3d43f7a35176117f1cf87b8e7bb4293d36cdea
+Can I set the above configuration? (type &#39;yes&#39; to accept): yes
+&gt;&gt;&gt; Nodes configuration updated
+&gt;&gt;&gt; Assign a different config epoch to each node
+&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster
+Waiting for the cluster to join
+
+&gt;&gt;&gt; Performing Cluster Check (using node 192.160.0.11:6379)
+M: 2511c99b36e7332e780e1a99d3800b5118cda204 192.160.0.11:6379
+   slots:[0-5460] (5461 slots) master
+   1 additional replica(s)
+S: c4b5e4b5bd9bdac83340686aab4caf80412d9adf 192.160.0.16:6379
+   slots: (0 slots) slave
+   replicates ff3d43f7a35176117f1cf87b8e7bb4293d36cdea
+S: 612a061d020c6cfce795e0caee85f8ada13a1951 192.160.0.14:6379
+   slots: (0 slots) slave
+   replicates 24b37dae575d40028c7e11b9f2d9d36ba8615ac2
+M: ff3d43f7a35176117f1cf87b8e7bb4293d36cdea 192.160.0.12:6379
+   slots:[5461-10922] (5462 slots) master
+   1 additional replica(s)
+M: 24b37dae575d40028c7e11b9f2d9d36ba8615ac2 192.160.0.13:6379
+   slots:[10923-16383] (5461 slots) master
+   1 additional replica(s)
+S: a45877d8533abda256dacd947333b857311e015a 192.160.0.15:6379
+   slots: (0 slots) slave
+   replicates 2511c99b36e7332e780e1a99d3800b5118cda204
+[OK] All nodes agree about slots configuration.
+&gt;&gt;&gt; Check for open slots...
+&gt;&gt;&gt; Check slots coverage...
+[OK] All 16384 slots covered.
+
+#容器信息
+# redis-cli -c
+127.0.0.1:6379&gt; cluster info
+cluster_state:ok
+cluster_slots_assigned:16384
+cluster_slots_ok:16384
+cluster_slots_pfail:0
+cluster_slots_fail:0
+cluster_known_nodes:6
+cluster_size:3
+cluster_current_epoch:6
+cluster_my_epoch:1
+cluster_stats_messages_ping_sent:201
+cluster_stats_messages_pong_sent:202
+cluster_stats_messages_sent:403
+cluster_stats_messages_ping_received:197
+cluster_stats_messages_pong_received:201
+cluster_stats_messages_meet_received:5
+cluster_stats_messages_received:403
+
+127.0.0.1:6379&gt; cluster nodes
+c4b5e4b5bd9bdac83340686aab4caf80412d9adf 192.160.0.16:6379@16379 slave ff3d43f7a35176117f1cf87b8e7bb4293d36cdea 0 1606361107161 2 connected
+612a061d020c6cfce795e0caee85f8ada13a1951 192.160.0.14:6379@16379 slave 24b37dae575d40028c7e11b9f2d9d36ba8615ac2 0 1606361109184 3 connected
+ff3d43f7a35176117f1cf87b8e7bb4293d36cdea 192.160.0.12:6379@16379 master - 0 1606361109000 2 connected 5461-10922
+24b37dae575d40028c7e11b9f2d9d36ba8615ac2 192.160.0.13:6379@16379 master - 0 1606361108000 3 connected 10923-16383
+2511c99b36e7332e780e1a99d3800b5118cda204 192.160.0.11:6379@16379 myself,master - 0 1606361108000 1 connected 0-5460
+a45877d8533abda256dacd947333b857311e015a 192.160.0.15:6379@16379 slave 2511c99b36e7332e780e1a99d3800b5118cda204 0 1606361108676 1 connected
+
+127.0.0.1:6379&gt; set name jiaopaner
+-&gt; Redirected to slot [5798] located at 192.160.0.12:6379
+OK
+192.160.0.12:6379&gt; get name
+&quot;jiaopaner&quot;
+</code></pre><h3 id="springboot-docker部署"><a href="#springboot-docker部署" class="headerlink" title="springboot docker部署"></a>springboot docker部署</h3><pre><code class="lang-bash">#Dockerfile
+FROM java:8
+COPY *.jar /app.jar
+CMD [&quot;--server.port=8080&quot;]
+EXPOSE 8080
+ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
+</code></pre>
+
             <hr>
           </div>
           <br>
@@ -494,7 +723,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-version&quot;]
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -543,7 +772,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-version&quot;]
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -552,7 +781,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-version&quot;]
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
