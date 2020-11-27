@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>Docker指南 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>Docker-kubernetes指南 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    4.3k 字
+                    5.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      22 分钟
+                      30 分钟
                   </span>&nbsp;
                 
 
@@ -371,7 +371,7 @@ docker commit -m=&#39;ssh install&#39; -a=&#39;jiaopan&#39; cb57c338f1c9 kyleson
 $ sudo docker login
 $ sudo docker push kyleson/jpos
 </code></pre>
-<p><img src="/images/docker-command.png" srcset="/img/loading.gif" alt="docker"></p>
+<p><img src="/images/docker-command.jpeg" srcset="/img/loading.gif" alt="docker"></p>
 <h3 id="5-docker容器数据卷"><a href="#5-docker容器数据卷" class="headerlink" title="5.docker容器数据卷"></a>5.docker容器数据卷</h3><pre><code class="lang-bash">$ sudo docker  run  -v /home/test:/home -it  centos /bin/bash
 
 --volume , -v        Bind mount a volume # -v 宿主机目录:容器目录
@@ -689,7 +689,243 @@ CMD [&quot;--server.port=8080&quot;]
 EXPOSE 8080
 ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
 </code></pre>
+<h3 id="Compose（编排服务）"><a href="#Compose（编排服务）" class="headerlink" title="Compose（编排服务）"></a>Compose（编排服务）</h3><blockquote>
+<p>Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.</p>
+<p>Using Compose is basically a three-step process:<br><br>1.Define your app’s environment with a Dockerfile so it can be reproduced anywhere.<br><br>2.Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.<br><br>3.Run docker-compose up and Compose starts and runs your entire app</p>
+</blockquote>
+<p>A docker-compose.yml looks like this:</p>
+<pre><code class="lang-yaml">version: &quot;3.8&quot;
+services:
+  web:
+    build: .
+    ports:
+      - &quot;5000:5000&quot;
+    volumes:
+      - .:/code
+      - logvolume01:/var/log
+    links:
+      - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+</code></pre>
+<p><strong>Compose安装</strong></p>
+<pre><code class="lang-bash">$ sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
 
+$ sudo chmod +x /usr/local/bin/docker-compose
+
+$ sudo docker-compose --version
+docker-compose version 1.27.4, build 40524192
+docker-py version: 4.3.1
+CPython version: 3.7.7
+OpenSSL version: OpenSSL 1.1.0l  10 Sep 2019
+</code></pre>
+<p><strong>demo</strong></p>
+<p>1.create workdir</p>
+<pre><code class="lang-bash">$ mkdir composetest
+$ cd composetest
+</code></pre>
+<p>2.create a file called app.py</p>
+<pre><code class="lang-python">import time
+
+import redis
+from flask import Flask
+
+app = Flask(__name__)
+cache = redis.Redis(host=&#39;redis&#39;, port=6379)
+
+def get_hit_count():
+    retries = 5
+    while True:
+        try:
+            return cache.incr(&#39;hits&#39;)
+        except redis.exceptions.ConnectionError as exc:
+            if retries == 0:
+                raise exc
+            retries -= 1
+            time.sleep(0.5)
+
+@app.route(&#39;/&#39;)
+def hello():
+    count = get_hit_count()
+    return &#39;Hello World! I have been seen {} times.\n&#39;.format(count)
+</code></pre>
+<p>3.add requirements.txt file</p>
+<pre><code class="lang-text">flask
+redis
+</code></pre>
+<p>4.add Dockerfile file</p>
+<pre><code class="lang-bash">FROM python:3.7-alpine
+WORKDIR /code
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+EXPOSE 5000
+COPY . .
+CMD [&quot;flask&quot;, &quot;run&quot;]
+</code></pre>
+<p>5.add docker-compose.yml file</p>
+<blockquote>
+<p><a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener">https://docs.docker.com/compose/compose-file/</a></p>
+</blockquote>
+<pre><code class="lang-yaml">version: &quot;3.8&quot;
+services:
+  web:
+    build: .
+    ports:
+      - &quot;5000:5000&quot;
+  redis:
+    image: &quot;redis:alpine&quot;
+</code></pre>
+<pre><code class="lang-bash">$ ls
+app.py  docker-compose.yml  Dockerfile  requirements.txt
+</code></pre>
+<pre><code class="lang-bash">#集群部署:docker stack deploy example --compose-file=docker-compose.yml  
+#执行 (单机部署) 
+$ sudo docker-compose up
+
+Creating network &quot;composeset_default&quot; with the default driver
+Building web
+Step 1/10 : FROM python:3.7-alpine
+ ---&gt; f4bd0adb4b78
+Step 2/10 : WORKDIR /code
+ ---&gt; Using cache
+ ---&gt; 6dcde8d2643d
+Step 3/10 : ENV FLASK_APP=app.py
+ ---&gt; Using cache
+ ---&gt; f183c013c9c2
+Step 4/10 : ENV FLASK_RUN_HOST=0.0.0.0
+ ---&gt; Using cache
+ ---&gt; 00c9ae84df9d
+Step 5/10 : RUN apk add --no-cache gcc musl-dev linux-headers
+ ---&gt; Running in 61171d666007
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+(1/13) Installing libgcc (9.3.0-r2)
+(2/13) Installing libstdc++ (9.3.0-r2)
+(3/13) Installing binutils (2.34-r1)
+(4/13) Installing gmp (6.2.0-r0)
+(5/13) Installing isl (0.18-r0)
+(6/13) Installing libgomp (9.3.0-r2)
+(7/13) Installing libatomic (9.3.0-r2)
+(8/13) Installing libgphobos (9.3.0-r2)
+(9/13) Installing mpfr4 (4.0.2-r4)
+(10/13) Installing mpc1 (1.1.0-r1)
+(11/13) Installing gcc (9.3.0-r2)
+(12/13) Installing linux-headers (5.4.5-r1)
+(13/13) Installing musl-dev (1.1.24-r10)
+Executing busybox-1.31.1-r19.trigger
+OK: 153 MiB in 48 packages
+Removing intermediate container 61171d666007
+ ---&gt; 2a158f7989b5
+Step 6/10 : COPY requirements.txt requirements.txt
+ ---&gt; af6bcc03a33e
+Step 7/10 : RUN pip install -r requirements.txt
+ ---&gt; Running in 71fc3d541f23
+Collecting flask
+  Downloading Flask-1.1.2-py2.py3-none-any.whl (94 kB)
+Collecting redis
+  Downloading redis-3.5.3-py2.py3-none-any.whl (72 kB)
+Collecting click&gt;=5.1
+  Downloading click-7.1.2-py2.py3-none-any.whl (82 kB)
+Collecting Jinja2&gt;=2.10.1
+  Downloading Jinja2-2.11.2-py2.py3-none-any.whl (125 kB)
+Collecting Werkzeug&gt;=0.15
+  Downloading Werkzeug-1.0.1-py2.py3-none-any.whl (298 kB)
+Collecting itsdangerous&gt;=0.24
+  Downloading itsdangerous-1.1.0-py2.py3-none-any.whl (16 kB)
+Collecting MarkupSafe&gt;=0.23
+  Downloading MarkupSafe-1.1.1.tar.gz (19 kB)
+Building wheels for collected packages: MarkupSafe
+  Building wheel for MarkupSafe (setup.py): started
+  Building wheel for MarkupSafe (setup.py): finished with status &#39;done&#39;
+  Created wheel for MarkupSafe: filename=MarkupSafe-1.1.1-cp37-cp37m-linux_x86_64.whl size=16913 sha256=05c83f7a4d528469e3601243e13c426f1611ea0634ba8ea024568984d74d1a28
+  Stored in directory: /root/.cache/pip/wheels/b9/d9/ae/63bf9056b0a22b13ade9f6b9e08187c1bb71c47ef21a8c9924
+Successfully built MarkupSafe
+Installing collected packages: click, MarkupSafe, Jinja2, Werkzeug, itsdangerous, flask, redis
+Successfully installed Jinja2-2.11.2 MarkupSafe-1.1.1 Werkzeug-1.0.1 click-7.1.2 flask-1.1.2 itsdangerous-1.1.0 redis-3.5.3
+Removing intermediate container 71fc3d541f23
+ ---&gt; ebd64d838db7
+Step 8/10 : EXPOSE 5000
+ ---&gt; Running in a47a4ed55632
+Removing intermediate container a47a4ed55632
+ ---&gt; 880f46f3f44c
+Step 9/10 : COPY . .
+ ---&gt; 553eb65d995f
+Step 10/10 : CMD [&quot;flask&quot;, &quot;run&quot;]
+ ---&gt; Running in 1712a24b595c
+Removing intermediate container 1712a24b595c
+ ---&gt; 83683540551f
+
+Successfully built 83683540551f
+Successfully tagged composeset_web:latest
+WARNING: Image for service web was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+Pulling redis (redis:alpine)...
+alpine: Pulling from library/redis
+188c0c94c7c5: Already exists
+fb6015f7c791: Pull complete
+f8890a096979: Pull complete
+cd6e0c12d5bc: Pull complete
+67b3665cee45: Pull complete
+0705890dd1f7: Pull complete
+Digest: sha256:b0e84b6b92149194d99953e44f7d1fa1f470a769529bb05b4164eae60d8aea6c
+Status: Downloaded newer image for redis:alpine
+Creating composeset_web_1   ... done
+Creating composeset_redis_1 ... done
+Attaching to composeset_redis_1, composeset_web_1
+redis_1  | 1:C 27 Nov 2020 02:56:41.453 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis_1  | 1:C 27 Nov 2020 02:56:41.453 # Redis version=6.0.9, bits=64, commit=00000000, modified=0, pid=1, just started
+redis_1  | 1:C 27 Nov 2020 02:56:41.453 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis_1  | 1:M 27 Nov 2020 02:56:41.454 * Running mode=standalone, port=6379.
+redis_1  | 1:M 27 Nov 2020 02:56:41.454 # Server initialized
+redis_1  | 1:M 27 Nov 2020 02:56:41.454 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add &#39;vm.overcommit_memory = 1&#39; to /etc/sysctl.conf and then reboot or run the command &#39;sysctl vm.overcommit_memory=1&#39; for this to take effect.
+redis_1  | 1:M 27 Nov 2020 02:56:41.455 * Ready to accept connections
+web_1    |  * Serving Flask app &quot;app.py&quot;
+web_1    |  * Environment: production
+web_1    |    WARNING: This is a development server. Do not use it in a production deployment.
+web_1    |    Use a production WSGI server instead.
+web_1    |  * Debug mode: off
+web_1    |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+
+
+$ curl localhost:5000
+Hello World! I have been seen 1 times.
+</code></pre>
+<h3 id="Swarm集群"><a href="#Swarm集群" class="headerlink" title="Swarm集群"></a>Swarm集群</h3><pre><code class="lang-bash">$ sudo docker swarm --help
+Usage:    docker swarm COMMAND
+
+Manage Swarm
+
+Commands:
+  ca          Display and rotate the root CA
+  init        Initialize a swarm
+  join        Join a swarm as a node and/or manager
+  join-token  Manage join tokens
+  leave       Leave the swarm
+  unlock      Unlock swarm
+  unlock-key  Manage the unlock key
+  update      Update the swarm
+
+#192.168.144.140：服务器ip地址  
+$ sudo docker swarm init --advertise-addr 192.168.144.140
+Swarm initialized: current node (27zm7bkz3lwi3o5zkpb3o3yyd) is now a manager.
+
+To add a worker to this swarm, run the following command:
+#工作节点服务器执行如下命令
+    docker swarm join --token SWMTKN-1-1zw8g50ugwjyxprtvvlyhw3o3orj2zg2s717e3lc0n5ha80kjg-d6ovnit23xotl9ak27e3dnbgm 192.168.144.140:2377
+#管理节点服务器则执行如下命令
+To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; and follow the instructions.
+</code></pre>
+<p><strong>Nginx集群</strong></p>
+<pre><code class="lang-bash">$ sudo docker service create -p 8888:80 --name nginx-cluster nginx 
+#添加副本
+$ sudo docker service update replicas 3 nginx-cluster 
+$ sudo docker service scale nginx-cluster=3
+</code></pre>
+<h3 id="kubernetes"><a href="#kubernetes" class="headerlink" title="kubernetes"></a>kubernetes</h3>
             <hr>
           </div>
           <br>
@@ -723,7 +959,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
     <div id="tocbot"></div>
   </div>
 
@@ -772,7 +1008,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -781,7 +1017,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -880,7 +1116,7 @@ ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/app.jar&quot;]
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Docker指南&nbsp;",
+        "Docker-kubernetes指南&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,
