@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>Docker-kubernetes指南 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>Docker指南 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -167,7 +167,7 @@
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
             <p><img src="/images/docker.jpg" srcset="/img/loading.gif" alt="&quot;docker&quot;">  </p>
-<h3 id="1-Docker简介"><a href="#1-Docker简介" class="headerlink" title="1.Docker简介"></a>1.Docker简介</h3><p>问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?</p>
+<h3 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h3><p>问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?</p>
 <p>Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源.容器是完全使用沙箱机制，相互之间不会有任何接口(类似iPhone的 app)，更重要的是容器性能开销极低.[来源网络]</p>
 <p>通过上述定义可以知道，Docker似乎类似于虚拟机，可以在Docker中打包安装任何应用并运行，比如tomcat、Java、mysql等.但它并不等同于虚拟机，为了区分Docker和虚拟机，我们先来了解虚拟机的运行机制，如下图所示：</p>
 <p><img src="/images/docker3.png" srcset="/img/loading.gif" alt="virtualbox"></p>
@@ -190,7 +190,7 @@
 </blockquote>
 <p>Docker守护进程可以直接与主操作系统进行通信，为各个Docker容器分配资源,它还可以将容器与主操作系统隔离，并将各个容器互相隔离。<br>虚拟机启动需要数分钟，而Docker容器可以在数毫秒内启动,由于没有臃肿的从操作系统,Docker可以节省大量的磁盘空间以及其他系统资源。</p>
 <hr>
-<h3 id="2-Docker安装-基于Ubuntu"><a href="#2-Docker安装-基于Ubuntu" class="headerlink" title="2.Docker安装(基于Ubuntu)"></a>2.Docker安装(基于Ubuntu)</h3><p>在创建Docker容器前需要先安装Docker容器引擎，类似于虚拟机的virtualBox或VMWare.</p>
+<h3 id="Docker安装-基于Ubuntu"><a href="#Docker安装-基于Ubuntu" class="headerlink" title="Docker安装(基于Ubuntu)"></a>Docker安装(基于Ubuntu)</h3><p>在创建Docker容器前需要先安装Docker容器引擎，类似于虚拟机的virtualBox或VMWare.</p>
 <pre><code class="lang-bash">#查看内核版本 docker安装需要大于3.1
 $ uname -r
 4.13.0-36-generic
@@ -244,12 +244,12 @@ $ sudo systemctl restart docker
 <blockquote>
 <p><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="noopener">https://docs.docker.com/engine/install/ubuntu/</a></p>
 </blockquote>
-<h3 id="3-容器和镜像"><a href="#3-容器和镜像" class="headerlink" title="3.容器和镜像"></a>3.容器和镜像</h3><p>如下图所示，容器是由镜像实例化而来，类似于面向对象的概念，镜像看作类，容器则为类实例化后的对象.一个Docker镜像可以构建于另一个Docker镜像之上,好比类的继承机制.<br><img src="/images/docker4.png" srcset="/img/loading.gif" alt="images"></p>
+<h3 id="容器和镜像"><a href="#容器和镜像" class="headerlink" title="容器和镜像"></a>容器和镜像</h3><p>如下图所示，容器是由镜像实例化而来，类似于面向对象的概念，镜像看作类，容器则为类实例化后的对象.一个Docker镜像可以构建于另一个Docker镜像之上,好比类的继承机制.<br><img src="/images/docker4.png" srcset="/img/loading.gif" alt="images"></p>
 <p>docker的镜像概念类似虚拟机的镜像,是一个只读的模板,一个独立的文件系统,包括运行容器所需的数据，且可以用来创建新的容器(docker create <image -id >)，为指定的镜像添加一个可读写层.例如：一个镜像可以包含一个完整的ubuntu操作系统环境,类似于虚拟机的.iso文件.<br>docker利用容器来运行应用,docker容器是由docker镜像创建的运行实例,docker容器类似利用.iso文件安装后的虚拟机，可以执行各种读写操作,每个容器间是相互隔离的，容器中会运行特定的运用，包含特定应用的代码及所需的依赖文件,可以把容器看作一个简易版的linux环境.可以用同一个镜像启动多个Docker容器.</p>
 <blockquote>
 <p><a href="https://docs.docker.com/engine/reference/commandline/docker/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/commandline/docker/</a></p>
 </blockquote>
-<h3 id="4-docker命令"><a href="#4-docker命令" class="headerlink" title="4.docker命令"></a>4.docker命令</h3><pre><code class="lang-bash">#查看已有的镜像
+<h3 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h3><pre><code class="lang-bash">#查看已有的镜像
 $ sudo docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 hello-world         latest              e38bc07ac18e        2 months ago        1.85 kB
@@ -372,7 +372,7 @@ $ sudo docker login
 $ sudo docker push kyleson/jpos
 </code></pre>
 <p><img src="/images/docker-command.jpeg" srcset="/img/loading.gif" alt="docker"></p>
-<h3 id="5-docker容器数据卷"><a href="#5-docker容器数据卷" class="headerlink" title="5.docker容器数据卷"></a>5.docker容器数据卷</h3><pre><code class="lang-bash">$ sudo docker  run  -v /home/test:/home -it  centos /bin/bash
+<h3 id="docker容器数据卷"><a href="#docker容器数据卷" class="headerlink" title="docker容器数据卷"></a>docker容器数据卷</h3><pre><code class="lang-bash">$ sudo docker  run  -v /home/test:/home -it  centos /bin/bash
 
 --volume , -v        Bind mount a volume # -v 宿主机目录:容器目录
 #目录绑定成功信息
@@ -394,7 +394,7 @@ $ sudo docker inspect 容器id
 --volumes-from        Mount volumes from the specified container(s)
 $ sudo docker run --volumes-from 777f7dc92da7 -i -t ubuntu pwd
 </code></pre>
-<h3 id="6-DockerFile"><a href="#6-DockerFile" class="headerlink" title="6.DockerFile"></a>6.DockerFile</h3><blockquote>
+<h3 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h3><blockquote>
 <p><a href="https://docs.docker.com/engine/reference/builder/" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/builder/</a></p>
 </blockquote>
 <p><img src="/images/docker5.jpg" srcset="/img/loading.gif" alt="images"></p>
@@ -925,7 +925,7 @@ To add a manager to this swarm, run &#39;docker swarm join-token manager&#39; an
 $ sudo docker service update replicas 3 nginx-cluster 
 $ sudo docker service scale nginx-cluster=3
 </code></pre>
-<h3 id="kubernetes"><a href="#kubernetes" class="headerlink" title="kubernetes"></a>kubernetes</h3>
+
             <hr>
           </div>
           <br>
@@ -959,7 +959,7 @@ $ sudo docker service scale nginx-cluster=3
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -1008,7 +1008,7 @@ $ sudo docker service scale nginx-cluster=3
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1017,7 +1017,7 @@ $ sudo docker service scale nginx-cluster=3
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -1116,7 +1116,7 @@ $ sudo docker service scale nginx-cluster=3
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Docker-kubernetes指南&nbsp;",
+        "Docker指南&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,
