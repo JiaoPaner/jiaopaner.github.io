@@ -139,6 +139,134 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+          <img src="/images/dataStructure/2.jpg" srcset="/img/loading.gif" alt="数据结构(4) 树与二叉树" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
+        <p class="h4 index-header">数据结构(4) 树与二叉树</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">基本概念树的定义:树是$N(N\geqslant 0)$个结点的有限集合。特别的，当$N=0$时，称为空树。
+任意非空树满足的条件：
+
+有且仅有一个特定的称为根的结点
+当$N&gt;1$时，其余结点可分为$m$个互不相交的有限集合$T_1,T_2,\dots,T_m$,其中每个集合本身又是一棵树，并且称为根结点的子树
+
+树是一种递归的数据结构
+
+根结点无前驱结点，除根结点外的其余所有结点有且仅有一个前驱结点
+树中所有结点可以有零个或多个后继结点
+
+基本术语
+
+
+结点$K$,结点$A,B,E$为到结点$K$的唯一路径上的结点，$A,B$为$K$的祖先结点，$K$为$A,B$的子孙结点；$E$为$K$的双亲结点，$K$为$E$的孩子结点，有相同双亲的结点为兄弟结点，如$K$和$L$互为兄弟节点；
+树中一个子结点的个数称为该结点的度，树中结点的最大度数称为树的度；
+度大于$0$的结点称为分支结点,如$B,C,D$,度为$0$的结点称为叶子结点，如$K,L,M$；
+树的深度为树中结点的最大层数，如图的树形结构深度为4
+两个结点之间的路径为两个结点之间所经过的结点序列，路径长度为路径上经过的边的</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-17&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(3) 栈和队列" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
+        <p class="h4 index-header">数据结构(3) 栈和队列</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">栈栈：只允许在一端进行插入或删除操作的线性表。
+栈顶：允许插入和删除的一端。栈底：固定的，不允许插入和删除的一端。
+特性：先进后出。
+栈的顺序存储结构#define MaxSize 50
+typedef struct{
+    ElemType data[MaxSize];//存放栈中元素
+    int top;//栈顶指针 空栈 top=-1
+} Stack;
+
+#初始化
+void initStack(Stack &amp;s){
+    s.top = -1;
+}
+#判断栈空
+bool stackEmpty(Stack &amp;s){
+    if(s.top == -1)
+        return true;
+    else
+        return false;
+}
+#进栈
+bool push(Stack &amp;s,ElemType x){
+    if(s.top == MaxSize-1)
+        return false;
+    s.data[++s.top] = x;
+    return true;
+}
+#出栈
+bool pop(Stack</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/06/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(2)%20%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" target="_self">
           <img src="/images/system/1.jpg" srcset="/img/loading.gif" alt="操作系统(2) 进程管理" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -611,118 +739,6 @@ mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
-          <img src="/images/note/1.jpg" srcset="/img/loading.gif" alt="linux下jdk安装" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/06/linux%E4%B8%8Bjdk%E7%9A%84%E5%AE%89%E8%A3%85/">
-        <p class="h4 index-header">linux下jdk安装</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">linux下JDK安装步骤1.检查是否已安装JDK
-[root@localhost ~] java -version
-
-
-
-若默认已安装openjdk，将其卸载
-
-[root@localhost ~] yum remove *openjdk*
-
-
-2.安装oracle JDK1.8
-[root@localhost ~]# cd /usr/local #跳转到local目录
-[root@localhost local]# mkdir jdk8 #创建jdk8目录
-
-
-复制下载好的linux版JDK1.8到 /usr/local/jdk8目录
-
-
-
-解压
-
-[root@localhost local]# cd jdk8
-[root@master jdk8]# tar -zxvf jdk-8u151-linux-x64.tar.gz
-
-
-配置jdk环境变量
-
-[root@master jdk8]# vim /etc/profile
-export JAVA_HOME=/usr/local/jdk8/jdk1.8.0_151
-export JRE_HOME=$JAVA_HOME/jre
-expo</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-06&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/jdk">jdk</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(11) ReverseWordsInAStringIII" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/07/26/leetcode(11)%20ReverseWordsInAStringIII/">
-        <p class="h4 index-header">leetcode(11) ReverseWordsInAStringIII</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1"></div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-26&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/leetcode">leetcode</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/leetcode">leetcode</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -759,7 +775,7 @@ expo</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -768,7 +784,7 @@ expo</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

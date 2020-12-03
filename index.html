@@ -139,6 +139,123 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/12/03/opencv%E9%A2%9C%E8%89%B2%E8%BD%AC%E6%8D%A2(RGB-HSV)/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="opencv颜色转换(RGB-HSV)" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/12/03/opencv%E9%A2%9C%E8%89%B2%E8%BD%AC%E6%8D%A2(RGB-HSV)/">
+        <p class="h4 index-header">opencv颜色转换(RGB-HSV)</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">opencv中HSV的取值范围：H:[0,180],S:[0,255],V:[0,255]
+#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+int main() {
+    //std::cout &lt;&lt; cv::getVersionString() &lt;&lt; std::endl;
+    cv::Mat image = cv::imread(&quot;cv_blue.jpg&quot;);
+    cv::cvtColor(image,image,CV_BGR2RGB);
+
+    /**
+     * H: [0,180],S:[0,255],V:[0,255]
+     */
+    cv::Mat temp = image.clone();
+    cv::cvtColor(temp,temp,CV_RGB2HSV);
+    int h = temp.at&lt;cv::Vec3b&gt;(0,0)[0];
+    int s = temp.at&lt;cv::Vec3b&gt;</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-12-03&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/opencv3">opencv3</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/12/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="Java并发编程" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/12/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+        <p class="h4 index-header">Java并发编程</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">创建线程Thread thread = new Thread(&quot;thread-1&quot;){
+    @Override
+    public void run() {
+        logger.info(&quot;hello world&quot;);
+    }
+};
+thread.start();
+
+Runnable runnable = new Runnable() {
+    public void run() {
+        logger.info(&quot;hello world&quot;);
+    }
+};
+Thread thread = new Thread(runnable,&quot;thread&quot;);
+thread.start();
+
+Runnable runnable = ()-&gt;{
+    logger.info(&quot;hello world&quot;);
+};
+Thread thread = new Thread(runnable,&quot;thread&quot;);
+thread.start();</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-12-02&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Java">Java</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E5%B9%B6%E5%8F%91">并发</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/" target="_self">
           <img src="/images/2019/4/18/assembly.jpg" srcset="/img/loading.gif" alt="汇编语言.001" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -567,111 +684,6 @@ dataset = datasets.ImageFolder(root=&quot;/Volumes/sto</div>
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="小贴士" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/04/03/%E5%B0%8F%E8%B4%B4%E5%A3%AB/">
-        <p class="h4 index-header">小贴士</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">C++Q： Visual Studio 编译工程报错:error C4996: ‘strtok’: This function or variable may be unsafe. Consider using strtok_s instead
-工程属性 —&gt;C/C++ —&gt; 预处理器 —&gt; 预处理器定义,添加宏定义
-_CRT_SECURE_NO_WARNINGS
-
-
-Q： pthread.h中报错：C2011“timespec”:“struct”类型重定义
-tim.h已定义，pthread.h添加如下代码：
-#if !defined( PTHREAD_H )
-#define PTHREAD_H
-#define HAVE_STRUCT_TIMESPEC
-
-Q：Visual Studio 工程编译dll,接口的定义
-A：接口的头文件应如下声明：
-#define LIB_API __declspec(dllexport) //导出函数
-extern &quot;C&quot; {
-    LIB_API char*   say();
-}
-
-Q：C++调用DLL
-
-dll的</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-03&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E5%B0%8F%E8%B4%B4%E5%A3%AB">小贴士</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/03/31/convolution/" target="_self">
-          <img src="/images/dp-net/convolution2.jpg" srcset="/img/loading.gif" alt="卷积操作汇总" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/03/31/convolution/">
-        <p class="h4 index-header">卷积操作汇总</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">概念1.卷积核(Kernel)：滤波矩阵，普遍的卷积核大小为3×3、5×5;2.步长(Stride)：卷积核遍历特征图时每步移动的像素个数;3.填充(Padding)：对特征图边界外进行填充（一般填充为0）;4.通道(Channel)：卷积层的通道数（层数）;
-标准卷积单通道多通道
-3维卷积
-1x1卷积
-反卷积（转置卷积）将卷积核转换为稀疏矩阵后进行转置计算如下图，在2x2的输入图像上应用步长为1、边界全0填充的3x3卷积核，进行转置卷积（反卷积）计算
-空洞卷积（膨胀卷积）
-可分离卷积（Separable Convolutions）将卷积核分解为两项独立的核分别进行操作分解后的卷积计算过程如下图，先用3x1的卷积核作横向扫描计算，再用1x3的卷积核作纵向扫描计算
-深度可分离卷积（Depthwise Separable Convolutions）3个卷积核分别对输入层的3个通道作卷积计算并堆叠在一起再使用1x1的卷积（3个通道）进行计算，得到只有1个通道的结果重复多次1x1的卷积操作（如下图为128次）
-分组卷积（Grouped Convolution）在分组卷积中，卷积核被分成不同的组</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-03-31&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
-          &nbsp;
-        
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -708,7 +720,7 @@ dll的</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -717,7 +729,7 @@ dll的</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

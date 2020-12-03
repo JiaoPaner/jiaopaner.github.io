@@ -260,7 +260,8 @@ void swap(int &amp;a, int &amp;b) {
 a:9 b:6
 c:29 d:17
 </code></pre>
-<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>常规函数的调用过程<br>程序执行到”函数指令”代码处时,立即存储”函数指令”代码的内存地址,并将函数参数复制到堆栈,然后跳到函数起点的内存单元((函数的内存地址,非”函数指令”代码地址)执行函数代码,函数执行结束后跳回保存的”函数指令”内存地址处,即跳回到程序执行函数指令的那一行,然后继续执行余下的指令.<br>内联函数调用过程<br>程序执行到”函数指令”代码处时,编译器将调用的函数代码替换掉该函数指令,无需再跳转到函数的位置去执行.速度比常规函数调用快,但内存开销大,假设程序有10个地方条用了同一个内联函数,则程序中将包含该内联函数代码的10个副本.<br><img src="/images/func.png" srcset="/img/loading.gif" alt=""></p>
+<h3 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h3><p>常规函数的调用过程<br>程序执行到”函数指令”代码处时,立即存储”函数指令”代码的内存地址,并将函数参数复制到堆栈,然后跳到函数起点的内存单元((函数的内存地址,非”函数指令”代码地址)执行函数代码,函数执行结束后跳回保存的”函数指令”内存地址处,即跳回到程序执行函数指令的那一行,然后继续执行余下的指令.<br>内联函数调用过程<br>程序执行到”函数指令”代码处时,编译器将调用的函数代码替换掉该函数指令,无需再跳转到函数的位置去执行.速度比常规函数调用快,但内存开销大,假设程序有10个地方条用了同一个内联函数,则程序中将包含该内联函数代码的10个副本.</p>
+<p><img src="/images/func.png" srcset="/img/loading.gif" alt=""></p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 using namespace std;
 inline int Max(int x, int y){
@@ -285,7 +286,6 @@ void func(int a,int b = 2,double c); //非法
 func(1,2);
 func(1,2,3);
 </code></pre>
-<hr>
 <h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><h3 id="声明和定义"><a href="#声明和定义" class="headerlink" title="声明和定义"></a>声明和定义</h3><p>person.h 声明类person的头文件<br>若在类中声明函数暨定义,则函数当作内联函数处理</p>
 <pre><code class="lang-cpp">#include&lt;string&gt;
 class person {
@@ -418,8 +418,8 @@ using namespace std;
 class Box{
      double width;
      public:
-        friend void printWidth(Box box);
-         void setWidth(double wid);
+                friend void printWidth(Box box);
+             void setWidth(double wid);
 };
 void Box::setWidth(double wid){
      width = wid;
@@ -690,7 +690,6 @@ int main(){
   }
 }
 </code></pre>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             <hr>
           </div>
@@ -725,7 +724,7 @@ int main(){
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -774,7 +773,7 @@ int main(){
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -783,7 +782,7 @@ int main(){
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

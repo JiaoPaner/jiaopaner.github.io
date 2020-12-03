@@ -139,6 +139,111 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
+          <img src="/images/opencv3/22.jpg" srcset="/img/loading.gif" alt="opencv3(3) opencv数据类型" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/10/opencv3(3)%20opencv%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+        <p class="h4 index-header">opencv3(3) opencv数据类型</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">基础数据类型
+Point 坐标类Point有两种,2维Point和3维Point，Point可以转换为其他数据类型,比如vector或者matrix
+ScalaScalar继承于vectorScalar(b, g, r) ：b-&gt;蓝色分量 g-&gt;绿色分量 r-&gt;红色分量Scalar(0, 0, 255) -&gt; 红色像素点
+Size 大小类Size和Point类似,两者可以互相转换,不同之处在于Point的数据成员名为x和y,Size的数据成员名为width和height
+Rect 矩形类Rect成员包含Point类型的x,y和Size类型的width,height
+RotatedRect 旋转矩形类RotatedRect包含中心点(Point),大小(Size),旋转角度
+InputArray OutputArrayInputArray和OutputArray区别在于 InputArray为只读,上述基础数据类型都可转换为 InputArray或OutputArray,以此保持函数的简洁性工具函数
+cv::alignPtr() 指针对齐// Return ali</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/opencv3">opencv3</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/opencv3">opencv3</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/10/leetcode(5)%20%20HammingDistance/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(5)  HammingDistance" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/10/leetcode(5)%20%20HammingDistance/">
+        <p class="h4 index-header">leetcode(5)  HammingDistance</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">difficult：easy #461
+The Hamming distance between two integers is the number of positions at which the corresponding bits are different.
+Given two integers x and y, calculate the Hamming distance.
+Example:
+Input: x = 1, y = 4
+Output: 2
+Explanation:
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑    ↑
+
+The above arrows point to positions where the corresponding bits are different.解法一
+int hammingDistance(int x, int y) {
+    int res = 0, exc = x ^ y;
+    while (exc){
+        ++res;
+        exc &amp;= (exc - 1)</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/leetcode">leetcode</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/leetcode">leetcode</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2018/07/10/leetcode(4)%20%20uniqueMorseCodeWords/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(4)  uniqueMorseCodeWords" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -467,7 +572,7 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -476,7 +581,7 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

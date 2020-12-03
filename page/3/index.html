@@ -139,6 +139,135 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/10/opencv3(1-1)%20vs2015%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" target="_self">
+          <img src="/images/opencv3/1.jpg" srcset="/img/loading.gif" alt="opencv3(1-1) vs2015配置opencv3开发环境" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/07/10/opencv3(1-1)%20vs2015%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
+        <p class="h4 index-header">opencv3(1-1) vs2015配置opencv3开发环境</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">vs2015配置opencv3开发环境官网地址:https://opencv.org/
+
+下载
+
+下载完成后双击安装,并配置环境变量
+
+打开VS2015,新建项目配置opencv
+添加包含目录
+添加库目录
+添加附加依赖项 将vc14下的lib都添加进来,以d结尾的lib文件为调试使用
+测试#include &lt;iostream&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+#include &lt;opencv2/highgui/highgui.hpp&gt;
+using namespace cv;
+int main() {
+  Mat img = imread(&quot;D:/learn/dota.jpg&quot;);
+  imshow(&quot;dota&quot;, img); 
+  waitKey(6000);
+}
+
+
+运行
+结果
+
+
+opencv模块简介
+
+calib3d相机校准和3维重建相关的内容,包括多视角几何算法、单个立体摄像头标定、物体姿态估计、立体相似性算法等
+core核心功能模块,包含opencv基本数据结构、动态</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/opencv3">opencv3</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/opencv3">opencv3</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="C++教程(4) C++标准库" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/">
+        <p class="h4 index-header">C++教程(4) C++标准库</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">PairClass Pair将两个value视为一个单元
+namespace std{
+    template&lt;typename T,typename U&gt;
+    struct pair{
+        T first;
+        U second;
+        ...
+    };
+}
+
+
+Tupletuple可拥有任意类型任意数量的元素
+std::tuple&lt;int, double, char,std::string&gt; tuple(1, 2.3, &#39;y&#39;, &quot;hello wolrd&quot;);
+
+tuple不允许迭代,运行时传入索引值将报错
+std::get&lt;i&gt;(tuple);//错误
+
+Smart Pointer(智能指针)Smart Pointer能够得知本身是否为指向某个对象的最后一个指针,当其为指向某个对象的最后一个指针且被删除时即会销毁所指对象
+shared_ptr共享式拥有 多个smart pointer指向同一对象,对象和资源在最后一个smart pointer销毁时被释放
+#incl</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-09&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/C++">C++</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/C++">C++</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="C++教程(3) 模板和泛型编程" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -609,134 +738,6 @@ sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresa
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
-          <img src="/images/dataStructure/2.jpg" srcset="/img/loading.gif" alt="数据结构(4) 树与二叉树" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
-        <p class="h4 index-header">数据结构(4) 树与二叉树</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">基本概念树的定义:树是$N(N\geqslant 0)$个结点的有限集合。特别的，当$N=0$时，称为空树。
-任意非空树满足的条件：
-
-有且仅有一个特定的称为根的结点
-当$N&gt;1$时，其余结点可分为$m$个互不相交的有限集合$T_1,T_2,\dots,T_m$,其中每个集合本身又是一棵树，并且称为根结点的子树
-
-树是一种递归的数据结构
-
-根结点无前驱结点，除根结点外的其余所有结点有且仅有一个前驱结点
-树中所有结点可以有零个或多个后继结点
-
-基本术语
-
-
-结点$K$,结点$A,B,E$为到结点$K$的唯一路径上的结点，$A,B$为$K$的祖先结点，$K$为$A,B$的子孙结点；$E$为$K$的双亲结点，$K$为$E$的孩子结点，有相同双亲的结点为兄弟结点，如$K$和$L$互为兄弟节点；
-树中一个子结点的个数称为该结点的度，树中结点的最大度数称为树的度；
-度大于$0$的结点称为分支结点,如$B,C,D$,度为$0$的结点称为叶子结点，如$K,L,M$；
-树的深度为树中结点的最大层数，如图的树形结构深度为4
-两个结点之间的路径为两个结点之间所经过的结点序列，路径长度为路径上经过的边的</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-17&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(3) 栈和队列" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/06/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(3)%20%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97/">
-        <p class="h4 index-header">数据结构(3) 栈和队列</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">栈栈：只允许在一端进行插入或删除操作的线性表。
-栈顶：允许插入和删除的一端。栈底：固定的，不允许插入和删除的一端。
-特性：先进后出。
-栈的顺序存储结构#define MaxSize 50
-typedef struct{
-    ElemType data[MaxSize];//存放栈中元素
-    int top;//栈顶指针 空栈 top=-1
-} Stack;
-
-#初始化
-void initStack(Stack &amp;s){
-    s.top = -1;
-}
-#判断栈空
-bool stackEmpty(Stack &amp;s){
-    if(s.top == -1)
-        return true;
-    else
-        return false;
-}
-#进栈
-bool push(Stack &amp;s,ElemType x){
-    if(s.top == MaxSize-1)
-        return false;
-    s.data[++s.top] = x;
-    return true;
-}
-#出栈
-bool pop(Stack</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -773,7 +774,7 @@ bool pop(Stack</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -782,7 +783,7 @@ bool pop(Stack</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
