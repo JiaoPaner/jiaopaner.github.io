@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    409 字
+                    710 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      4 分钟
                   </span>&nbsp;
                 
 
@@ -331,6 +331,114 @@ public class FactoryProducer {
       }
       return null;
    }
+}
+</code></pre>
+<h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><pre><code class="lang-java">class Target implements Cloneable{
+    Target(String name,int age){
+        this.name = name;
+        this.age = age;
+    }
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+        //默认自动拷贝基本数据类型
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Target target = null;
+        target = (Target)super.clone();
+        return target;
+    }
+}
+public static void main(String[] args) throws CloneNotSupportedException {
+        Target target = new Target(&quot;Tom&quot;,1);
+        Target clone_target = (Target)target.clone();
+        System.out.println(clone_target.getName()+&quot;:&quot;+clone_target.getAge());
+    }
+
+Tom:1
+</code></pre>
+<p><strong>深度拷贝</strong></p>
+<pre><code class="lang-java">class DeepCloneTarget implements Serializable,Cloneable{
+
+    private String name;
+    DeepCloneTarget(String name){
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+class Target implements Serializable,Cloneable{
+
+    private String name;
+    public DeepCloneTarget deepCloneTarget;
+
+    Target(String name){
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    //普通深度拷贝
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Target target = null;
+        target = (Target) super.clone();
+        target.deepCloneTarget = (DeepCloneTarget) deepCloneTarget.clone();
+        return target;
+    }
+
+        //序列化深度拷贝
+    public Object deepClone() throws IOException {
+        ByteArrayOutputStream bos = null;
+        ObjectOutputStream oos = null;
+        ByteArrayInputStream bis = null;
+        ObjectInputStream ois = null;
+
+        try{
+            //序列化
+            bos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(bos);
+            oos.writeObject(this);
+
+            //反序列化
+            bis = new ByteArrayInputStream(bos.toByteArray());
+            ois = new ObjectInputStream(bis);
+            Target target = (Target) ois.readObject();
+            return target;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }finally {
+            bos.close();
+            oos.close();
+            bis.close();
+            ois.close();
+        }
+    }
+}
+public static void main(String[] args) throws CloneNotSupportedException, IOException {
+        Target target = new Target(&quot;target&quot;);
+        target.deepCloneTarget = new DeepCloneTarget(&quot;deepTarget&quot;);
+        Target clone_target = (Target)target.clone();
+        Target deep_clone_target = (Target)target.deepClone();
+        System.out.println(clone_target.getName()+&quot;:&quot;+clone_target.deepCloneTarget.getName());
+        System.out.println(deep_clone_target.getName()+&quot;:&quot;+deep_clone_target.deepCloneTarget.getName());
 }
 </code></pre>
 
