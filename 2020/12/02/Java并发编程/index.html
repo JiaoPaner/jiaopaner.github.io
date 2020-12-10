@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    1.1k 字
+                    1.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      4 分钟
+                      8 分钟
                   </span>&nbsp;
                 
 
@@ -379,6 +379,172 @@ public static void main(String[] args) throws ExecutionException, InterruptedExc
 十二月 04, 2020 3:51:25 下午 Main lambda$main$0
 信息: 被唤醒，执行...
 </code></pre>
+<h3 id="同步-保护性暂停"><a href="#同步-保护性暂停" class="headerlink" title="同步-保护性暂停"></a>同步-保护性暂停</h3><pre><code>class GuardObject {
+    private String response;
+    public String get() {
+        synchronized (this){
+            while (response == null)
+                try {
+                    this.wait();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            return response;
+        }
+    }
+    //等待超时方法
+    public String get(long timeout) {
+        synchronized (this){
+            long begin = System.currentTimeMillis();
+            long passedTime = 0;
+
+            while (response == null){
+                long waitTime = timeout - passedTime;
+                if(waitTime &lt;= 0) break;
+                try {
+                    this.wait(waitTime);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                passedTime = System.currentTimeMillis() - begin;
+            }
+            return response;
+        }
+    }
+
+    public void set(String response) {
+        synchronized (this){
+           this.response = response;
+           this.notifyAll();
+        }
+    }
+}
+
+public static void main(String[] args){
+    GuardObject guardObject = new GuardObject();
+    new Thread(()-&gt;{
+        String res = guardObject.get();
+        //String res = guardObject.get(1000);
+        logger.info(&quot;response:&quot;+res.toString());
+    }).start();
+
+    new Thread(()-&gt;{
+            //Thread.sleep(2000);
+        guardObject.set(&quot;I set something.&quot;);
+    }).start();
+}
+信息: response:I set something.
+</code></pre><h3 id="生产者-消费者"><a href="#生产者-消费者" class="headerlink" title="生产者-消费者"></a>生产者-消费者</h3><pre><code class="lang-java">class MessageQueue {
+    Logger logger = Logger.getLogger(&quot;log&quot;);
+    private LinkedList&lt;Message&gt; queue = new LinkedList&lt;&gt;();
+    private int capcity;
+    public  MessageQueue(int capcity){
+        this.capcity = capcity;
+    }
+    public Message take(){
+        synchronized (queue){
+            while (queue.isEmpty()){
+                try {
+                    logger.info(&quot;queue is empty,waiting...&quot;);
+                    queue.wait();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            Message message = queue.removeFirst();
+            logger.info(&quot;consume message,&quot;+message);
+            queue.notifyAll();
+            return  message;
+        }
+    }
+
+    public void put(Message message){
+        synchronized (queue){
+            while (queue.size() == capcity){
+                try {
+                    logger.info(&quot;queue is full,waiting...&quot;);
+                    queue.wait();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            queue.addLast(message);
+            logger.info(&quot;add message,&quot;+message);
+            queue.notifyAll();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return &quot;MessageQueue{&quot; +
+                &quot;queue=&quot; + queue +
+                &quot;, capcity=&quot; + capcity +
+                &#39;}&#39;;
+    }
+}
+
+final class Message{
+    private int id;
+    private String value;
+    public Message(int id,String value){
+        this.id = id;
+        this.value = value;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+}
+
+static Logger logger = Logger.getLogger(&quot;log&quot;);
+public static void main(String[] args){
+    final MessageQueue messageQueue = new MessageQueue(5);
+    //三个生产者线程
+    for (int i = 0; i &lt; 3; i++) {
+        int id = i;
+        new Thread(()-&gt;{
+            messageQueue.put(new Message(id,&quot;value:&quot;+id));
+        },&quot;生产者&quot;+i).start();
+    }
+
+    //消费者线程
+    new Thread(()-&gt;{
+        while (true){
+            Message message = messageQueue.take();
+            logger.info(message.toString());
+        }
+    }).start();
+}
+
+十二月 10, 2020 3:46:38 下午 MessageQueue put
+信息: add message,Message@483b79f5
+十二月 10, 2020 3:46:38 下午 MessageQueue take
+信息: consume message,Message@483b79f5
+十二月 10, 2020 3:46:38 下午 Main lambda$main$1
+信息: Message@483b79f5
+十二月 10, 2020 3:46:38 下午 MessageQueue put
+信息: add message,Message@6a6daa45
+十二月 10, 2020 3:46:38 下午 MessageQueue put
+信息: add message,Message@3555b188
+十二月 10, 2020 3:46:38 下午 MessageQueue take
+信息: consume message,Message@6a6daa45
+十二月 10, 2020 3:46:38 下午 Main lambda$main$1
+信息: Message@6a6daa45
+十二月 10, 2020 3:46:38 下午 MessageQueue take
+信息: consume message,Message@3555b188
+十二月 10, 2020 3:46:38 下午 Main lambda$main$1
+信息: Message@3555b188
+十二月 10, 2020 3:46:38 下午 MessageQueue take
+信息: queue is empty,waiting...
+</code></pre>
+<h3 id="Park-Unpark"><a href="#Park-Unpark" class="headerlink" title="Park/Unpark"></a>Park/Unpark</h3><pre><code class="lang-java">LockSupport.park();//暂停当前线程
+LockSupport.unpark(Thread thread);//恢复某个线程的运行
+</code></pre>
 
             <hr>
           </div>
@@ -413,7 +579,7 @@ public static void main(String[] args) throws ExecutionException, InterruptedExc
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
     <div id="tocbot"></div>
   </div>
 
@@ -462,7 +628,7 @@ public static void main(String[] args) throws ExecutionException, InterruptedExc
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -471,7 +637,7 @@ public static void main(String[] args) throws ExecutionException, InterruptedExc
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
