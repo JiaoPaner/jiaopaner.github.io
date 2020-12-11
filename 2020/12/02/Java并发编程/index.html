@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    1.7k 字
+                    2.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      8 分钟
+                      13 分钟
                   </span>&nbsp;
                 
 
@@ -545,6 +545,276 @@ public static void main(String[] args){
 <h3 id="Park-Unpark"><a href="#Park-Unpark" class="headerlink" title="Park/Unpark"></a>Park/Unpark</h3><pre><code class="lang-java">LockSupport.park();//暂停当前线程
 LockSupport.unpark(Thread thread);//恢复某个线程的运行
 </code></pre>
+<pre><code class="lang-java">static Logger logger = Logger.getLogger(&quot;log&quot;);
+public static void main(String[] args) throws InterruptedException {
+    Thread thread = new Thread(()-&gt;{
+        logger.info(&quot;start...&quot;);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        logger.info(&quot;park...&quot;);
+        LockSupport.park();
+        logger.info(&quot;resume...&quot;);
+    });
+
+    thread.start();
+    Thread.sleep(2000);
+    logger.info(&quot;unpark...&quot;);
+    LockSupport.unpark(thread);
+}
+
+十二月 10, 2020 4:55:48 下午 Main lambda$main$0
+信息: start...
+十二月 10, 2020 4:55:49 下午 Main lambda$main$0
+信息: park...
+十二月 10, 2020 4:55:50 下午 Main main
+信息: unpark...
+十二月 10, 2020 4:55:50 下午 Main lambda$main$0
+信息: resume...
+</code></pre>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p><strong>产生死锁的必要条件</strong>：互斥条件、请求和保持条件、不剥夺条件、环路等待条件</p>
+<pre><code class="lang-text">#哲学家进餐问题
+semaphore chopstick[5]={1,1,1,1,1};//五根筷子
+semaphore mutex =  1;//设置取筷子的信号量
+//i号哲学家进程
+Pi(){
+    do{
+        wait(mutex);
+        wait(chopstick[i]);//取左边筷子
+        wait(chopstick[(i+1]%5);//取右边筷子
+        signal(mutex);
+        eat;
+        signal(chopstick[i]);
+        signal(chopstick[(i+1]%5);
+        think;
+    }
+}
+</code></pre>
+<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><pre><code class="lang-java">ReentrantLock reentrantLock = new ReentrantLock();
+reentrantLock.lock();//获得锁
+try {
+    //临界区
+}finally {
+    reentrantLock.unlock();//释放锁
+}
+</code></pre>
+<p><strong>ReentrantLock 可重入</strong></p>
+<pre><code class="lang-java">static Logger logger = Logger.getLogger(&quot;log&quot;);
+private static ReentrantLock reentrantLock = new ReentrantLock();
+public static void main(String[] args) throws InterruptedException {
+
+    reentrantLock.lock();
+    try {
+        logger.info(&quot;start&quot;);
+        enter();
+    }finally {
+        reentrantLock.unlock();
+    }
+}
+
+public static void enter(){
+    reentrantLock.lock();
+    try {
+        logger.info(&quot;enter&quot;);
+        exit();
+    }finally {
+        reentrantLock.unlock();
+    }
+}
+
+public static void exit(){
+    reentrantLock.lock();
+    try {
+        logger.info(&quot;exit&quot;);
+    }finally {
+        reentrantLock.unlock();
+    }
+}
+
+十二月 11, 2020 3:29:48 下午 Main main
+信息: start
+十二月 11, 2020 3:29:48 下午 Main enter
+信息: enter
+十二月 11, 2020 3:29:48 下午 Main exit
+信息: exit
+</code></pre>
+<p><strong>ReentrantLock 可中断</strong></p>
+<pre><code class="lang-java"> static Logger logger = Logger.getLogger(&quot;log&quot;);
+private static ReentrantLock reentrantLock = new ReentrantLock();
+public static void main(String[] args) throws InterruptedException {
+    Thread thread = new Thread(()-&gt;{
+        try {
+            logger.info(&quot;尝试获得锁...&quot;);
+            reentrantLock.lockInterruptibly();//可打断
+        } catch (InterruptedException e) {
+            logger.warning(&quot;被打断.。.&quot;);
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            logger.info(&quot;获得锁...&quot;);
+        }finally {
+            reentrantLock.unlock();
+        }
+    },&quot;thread&quot;);
+
+
+    thread.start();
+    thread.interrupt();
+}
+
+十二月 11, 2020 3:28:52 下午 Main lambda$main$0
+信息: 尝试获得锁...
+十二月 11, 2020 3:28:52 下午 Main lambda$main$0
+警告: 被打断.。.
+java.lang.InterruptedException
+    at java.util.concurrent.locks.AbstractQueuedSynchronizer.acquireInterruptibly(AbstractQueuedSynchronizer.java:1220)
+    at java.util.concurrent.locks.ReentrantLock.lockInterruptibly(ReentrantLock.java:335)
+    at Main.lambda$main$0(Main.java:21)
+    at java.lang.Thread.run(Thread.java:748)
+</code></pre>
+<p><strong>ReentrantLock 锁超时</strong></p>
+<pre><code class="lang-java">static Logger logger = Logger.getLogger(&quot;log&quot;);
+private static ReentrantLock reentrantLock = new ReentrantLock();
+public static void main(String[] args) throws InterruptedException {
+    Thread thread = new Thread(()-&gt;{
+        logger.info(&quot;尝试获得锁...&quot;);
+        if(!reentrantLock.tryLock()){
+            logger.info(&quot;获得锁失败&quot;);
+            return;
+        }
+
+        try {
+            logger.info(&quot;获得锁...&quot;);
+        }finally {
+            reentrantLock.unlock();
+        }
+    },&quot;thread&quot;);
+
+    reentrantLock.lock();//主线程先获得锁
+    thread.start();
+}
+十二月 11, 2020 3:36:11 下午 Main lambda$main$0
+信息: 尝试获得锁...
+十二月 11, 2020 3:36:11 下午 Main lambda$main$0
+信息: 获得锁失败
+
+static Logger logger = Logger.getLogger(&quot;log&quot;);
+private static ReentrantLock reentrantLock = new ReentrantLock();
+public static void main(String[] args) throws InterruptedException {
+    Thread thread = new Thread(()-&gt;{
+        logger.info(&quot;尝试获得锁...&quot;);
+        try {
+            if(!reentrantLock.tryLock(1, TimeUnit.SECONDS)){
+                logger.info(&quot;获得锁失败&quot;);
+                return;
+            }
+        } catch (InterruptedException e) {
+            logger.info(&quot;获得锁失败&quot;);
+            e.printStackTrace();
+            return;
+        }
+
+        try {
+            logger.info(&quot;获得锁...&quot;);
+        }finally {
+            reentrantLock.unlock();
+        }
+    },&quot;thread&quot;);
+
+    reentrantLock.lock();//主线程先获得锁
+    thread.start();
+}
+
+十二月 11, 2020 3:38:11 下午 Main lambda$main$0
+信息: 尝试获得锁...
+十二月 11, 2020 3:38:12 下午 Main lambda$main$0
+信息: 获得锁失败
+</code></pre>
+<p><strong>ReentrantLock 条件变量</strong></p>
+<pre><code class="lang-java">static Logger logger = Logger.getLogger(&quot;log&quot;);
+static ReentrantLock reentrantLock = new ReentrantLock();
+static Condition condition_s = reentrantLock.newCondition();
+static Condition condition_g = reentrantLock.newCondition();
+static boolean has_s = false;
+static boolean has_g = false;
+public static void main(String[] args) throws InterruptedException {
+    new Thread(()-&gt;{
+        reentrantLock.lock();
+        try {
+            logger.info(&quot;is there a s ?&quot;);
+            while (!has_s){
+                condition_s.await();//等待s条件
+            }
+            if(has_s){
+                logger.info(&quot;get s&quot;);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            reentrantLock.unlock();
+        }
+    }).start();
+
+    new Thread(()-&gt;{
+        reentrantLock.lock();
+        try {
+            logger.info(&quot;is there a g ?&quot;);
+            while (!has_s){
+                condition_g.await();//等待g条件
+            }
+            if(has_s){
+                logger.info(&quot;get g&quot;);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            reentrantLock.unlock();
+        }
+    }).start();
+
+    Thread.sleep(2000);
+
+    new Thread(()-&gt;{
+        reentrantLock.lock();
+        try {
+            logger.info(&quot;add s&quot;);
+            has_s = true;
+            condition_s.signal();
+        }finally {
+            reentrantLock.unlock();
+        }
+    }).start();
+
+    Thread.sleep(1000);
+    new Thread(()-&gt;{
+        reentrantLock.lock();
+        try {
+            logger.info(&quot;add g&quot;);
+            has_g = true;
+            condition_g.signal();
+        }finally {
+            reentrantLock.unlock();
+        }
+    }).start();
+
+}
+十二月 11, 2020 4:30:39 下午 Main lambda$main$0
+信息: is there a s ?
+十二月 11, 2020 4:30:39 下午 Main lambda$main$1
+信息: is there a g ?
+十二月 11, 2020 4:30:41 下午 Main lambda$main$2
+信息: add s
+十二月 11, 2020 4:30:41 下午 Main lambda$main$0
+信息: get s
+十二月 11, 2020 4:30:42 下午 Main lambda$main$3
+信息: add g
+十二月 11, 2020 4:30:42 下午 Main lambda$main$1
+信息: get g
+</code></pre>
 
             <hr>
           </div>
@@ -579,7 +849,7 @@ LockSupport.unpark(Thread thread);//恢复某个线程的运行
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -628,7 +898,7 @@ LockSupport.unpark(Thread thread);//恢复某个线程的运行
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -637,7 +907,7 @@ LockSupport.unpark(Thread thread);//恢复某个线程的运行
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
