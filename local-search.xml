@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>剑指offer题解</title>
+    <link href="/2020/12/21/%E5%89%91%E6%8C%87offer%E9%A2%98%E8%A7%A3/"/>
+    <url>/2020/12/21/%E5%89%91%E6%8C%87offer%E9%A2%98%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<p>1.在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字.</p><pre><code class="lang-text">输入：[2, 3, 1, 0, 2, 5, 3]输出：2 或 3 限制：2 &lt;= n &lt;= 100000</code></pre><p><strong>解法</strong></p><pre><code class="lang-cpp">//#1int findRepeatNumber(vector&lt;int&gt;&amp; nums) {    map&lt;int,int&gt; num_map;    for (int i = 0; i &lt; nums.size(); ++i) {        if(num_map.find(nums[i]) != num_map.end()){            return nums[i];        }        num_map[nums[i]]++;    }    return -1;}//#2int findRepeatNumber(vector&lt;int&gt;&amp; nums) {    sort(nums.begin(),nums.end());    for(int i=1;i&lt;nums.size();i++){        if(nums[i-1] == nums[i]) return nums[i];    }    return -1;}//#3int findRepeatNumber(vector&lt;int&gt;&amp; nums) {    int temp;    for(int i=0;i&lt;nums.size();i++){        while (nums[i]!=i){            if(nums[i]==nums[nums[i]]){                return nums[i];            }            temp=nums[i];            nums[i]=nums[temp];            nums[temp]=temp;        }    }    return -1;}</code></pre><p>2.在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数.</p><pre><code class="lang-text">现有矩阵 matrix 如下：[  [1,   4,  7, 11, 15],  [2,   5,  8, 12, 19],  [3,   6,  9, 16, 22],  [10, 13, 14, 17, 24],  [18, 21, 23, 26, 30]]给定 target = 5，返回 true给定 target = 20，返回 false限制：0 &lt;= n &lt;= 10000 &lt;= m &lt;= 1000</code></pre><p><strong>解法</strong></p><pre><code class="lang-cpp">//#1bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {    for (int i = 0; i &lt; matrix.size(); ++i) {        vector&lt;int&gt; list = matrix[i];        int low = 0,high = list.size()-1,mid;        while(low &lt;= high){            mid = (low+high)/2;            if(list[mid] == target)                return true;            else if(list[mid] &lt; target)                low = mid+1;            else                high = mid-1;        }    }        return false; }</code></pre><p><img src="/images/offer-04.png" srcset="/img/loading.gif" alt=""></p><p>1.从矩阵 matrix <strong>左下角</strong>元素（索引设为 ($i, j$) ）开始遍历，并与目标值对比：<br>当 $matrix[i][j] &gt; target$ 时，执行 $I—$ ，即消去第 $i$ 行元素；<br>当 $matrix[i][j] &lt; target$ 时，执行 $j++$ ，即消去第 $j$ 列元素；<br>当 $matrix[i][j] = target$ 时，返回 true,代表找到目标值;</p><p>2.若行索引或列索引越界，则代表矩阵中无目标值，返回 false; </p><pre><code class="lang-cpp">//#2bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {    int i = matrix.size() - 1, j = 0;    while(i &gt;= 0 &amp;&amp; j &lt; matrix[0].size())    {        if(matrix[i][j] &gt; target) i--;        else if(matrix[i][j] &lt; target) j++;        else return true;    }    return false;}</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>opencv颜色转换(RGB-HSV)</title>
     <link href="/2020/12/03/opencv%E9%A2%9C%E8%89%B2%E8%BD%AC%E6%8D%A2(RGB-HSV)/"/>
     <url>/2020/12/03/opencv%E9%A2%9C%E8%89%B2%E8%BD%AC%E6%8D%A2(RGB-HSV)/</url>

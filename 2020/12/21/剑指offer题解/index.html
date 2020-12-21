@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>アーカイブ ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>剑指offer题解 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -39,7 +39,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -112,6 +112,41 @@
             </span>
 
             
+              <br>
+              
+                <p class="mt-3">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
+                  Monday, December 21st 2020, 9:32 am
+                </p>
+              
+
+              <p>
+                
+                  
+                  &nbsp;<i class="far fa-chart-bar"></i>
+                  <span class="post-count">
+                    585 字
+                  </span>&nbsp;
+                
+
+                
+                  
+                  &nbsp;<i class="far fa-clock"></i>
+                  <span class="post-count">
+                      2 分钟
+                  </span>&nbsp;
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  &nbsp;<i class="far fa-eye" aria-hidden="true"></i>&nbsp;
+                  <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>&nbsp;
+                
+              </p>
+            
           </div>
 
           
@@ -122,35 +157,177 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board">
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">合計 59 件のポスト</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/05/18/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80.001/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">汇编语言.001</span>
-      <span style="float: right;">05-18</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <p>1.在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字.</p>
+<pre><code class="lang-text">输入：
+[2, 3, 1, 0, 2, 5, 3]
+输出：2 或 3 
 
-              </div>
-            </div>
+限制：
+2 &lt;= n &lt;= 100000
+</code></pre>
+<p><strong>解法</strong></p>
+<pre><code class="lang-cpp">//#1
+int findRepeatNumber(vector&lt;int&gt;&amp; nums) {
+    map&lt;int,int&gt; num_map;
+    for (int i = 0; i &lt; nums.size(); ++i) {
+        if(num_map.find(nums[i]) != num_map.end()){
+            return nums[i];
+        }
+        num_map[nums[i]]++;
+    }
+    return -1;
+}
+//#2
+int findRepeatNumber(vector&lt;int&gt;&amp; nums) {
+    sort(nums.begin(),nums.end());
+    for(int i=1;i&lt;nums.size();i++){
+        if(nums[i-1] == nums[i]) return nums[i];
+    }
+    return -1;
+}
+//#3
+int findRepeatNumber(vector&lt;int&gt;&amp; nums) {
+    int temp;
+    for(int i=0;i&lt;nums.size();i++){
+        while (nums[i]!=i){
+            if(nums[i]==nums[nums[i]]){
+                return nums[i];
+            }
+            temp=nums[i];
+            nums[i]=nums[temp];
+            nums[temp]=temp;
+        }
+    }
+    return -1;
+}
+</code></pre>
+<p>2.在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数.</p>
+<pre><code class="lang-text">现有矩阵 matrix 如下：
+[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+给定 target = 5，返回 true
+给定 target = 20，返回 false
+
+限制：
+0 &lt;= n &lt;= 1000
+0 &lt;= m &lt;= 1000
+</code></pre>
+<p><strong>解法</strong></p>
+<pre><code class="lang-cpp">//#1
+bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
+    for (int i = 0; i &lt; matrix.size(); ++i) {
+        vector&lt;int&gt; list = matrix[i];
+        int low = 0,high = list.size()-1,mid;
+        while(low &lt;= high){
+            mid = (low+high)/2;
+            if(list[mid] == target)
+                return true;
+            else if(list[mid] &lt; target)
+                low = mid+1;
+            else
+                high = mid-1;
+        }
+    }    
+    return false; 
+}
+</code></pre>
+<p><img src="/images/offer-04.png" srcset="/img/loading.gif" alt=""></p>
+<p>1.从矩阵 matrix <strong>左下角</strong>元素（索引设为 ($i, j$) ）开始遍历，并与目标值对比：<br>当 $matrix[i][j] &gt; target$ 时，执行 $I—$ ，即消去第 $i$ 行元素；<br>当 $matrix[i][j] &lt; target$ 时，执行 $j++$ ，即消去第 $j$ 列元素；<br>当 $matrix[i][j] = target$ 时，返回 true,代表找到目标值;</p>
+<p>2.若行索引或列索引越界，则代表矩阵中无目标值，返回 false; </p>
+<pre><code class="lang-cpp">//#2
+bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
+    int i = matrix.size() - 1, j = 0;
+    while(i &gt;= 0 &amp;&amp; j &lt; matrix[0].size())
+    {
+        if(matrix[i][j] &gt; target) i--;
+        else if(matrix[i][j] &lt; target) j++;
+        else return true;
+    }
+    return false;
+}
+</code></pre>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <p>
+            
+              <span>
+                <i class="iconfont icon-inbox"></i>
+                
+                  <a class="hover-with-bg" href="/categories/leetcode">leetcode</a>
+                  &nbsp;
+                
+              </span>&nbsp;&nbsp;
+            
+            
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/leetcode">leetcode</a>
+                
+              </span>
+            
+            </p>
+            
+              <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+            
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <div id="tocbot"></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- custom -->
+
+
+<!-- Comments -->
+<div class="col-lg-7 mx-auto nopadding-md">
+  <div class="container comments mx-auto" id="comments">
+    
+      <br><br>
+      
+      
+  <script defer src="https://utteranc.es/client.js"
+          repo="JiaoPaner/blog-talk"
+          issue-term="pathname"
+  
+          label="utterances"
+    
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+
+    
+  </div>
+</div>
+
     
   </main>
 
@@ -229,6 +406,11 @@
 
 
 
+  
+    <script src="/lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="/js/post.js" ></script>
+
 
 
   <script src="/lib/smooth-scroll/smooth-scroll.min.js" ></script>
@@ -269,7 +451,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "アーカイブ&nbsp;",
+        "剑指offer题解&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

@@ -139,6 +139,63 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="nginx-rtmp流媒体服务" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/">
+        <p class="h4 index-header">nginx-rtmp流媒体服务</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+安装ffmpeg
+#安装h264视频编解码库
+sudo apt-get update
+sudo apt-get install libx264-dev
+
+#安装ffmpeg
+#通过源安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+sudo add-apt-repository ppa:djcj/hybrid #添加源
+sudo apt-get update
+sudo apt-get install ffmpeg
+sudo ffmpeg -version #验证是否安装成功
+#源码安装&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+wget http://ffmpeg.org/releases/ffmpeg-3.0.9.tar.bz2
+sudo tar jxvf ffmpeg-3.0.9.tar.bz2
+cd ffmpeg-3.0.9/
+sudo ./configure --enable-shared --enable-pthreads --enable-gpl  --enable-avresample $ --enable-libx264 --</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-26&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/nginx">nginx</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/06/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(4)%20%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
           <img src="/images/dataStructure/2.jpg" srcset="/img/loading.gif" alt="数据结构(4) 树与二叉树" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -666,79 +723,6 @@ git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
-          <img src="/images/note/6.jpg" srcset="/img/loading.gif" alt="linux下mysql的安装" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/">
-        <p class="h4 index-header">linux下mysql的安装</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">linux下mysql安装步骤1.ubuntu系统1) 输入如下命令
-sudo apt-get update
-sudo apt-get install mysql-server
-
-
-安装好软件包后,会弹出设置root账户密码的提示
-
-2) 测试是否安装成功(mysql 的socket处于 listen 状态则表示安装成功)
-sudo netstat -tap | grep mysql
-
-
-3) 登陆mysql
-sudo mysql -uroot -p #执行命令后再输入密码
-
-
-
-登陆成功
-
-
-4) 设置mysql可远程连接
-
-修改配置文件
-
-sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
-
-
-注释bind-address
-
-
-sudo mysql -uroot -p #登陆mysql
-mysql&gt; show databases #查看已有的数据库
-mysql&gt; use mysql; #跳转到名为mysql的数据库
-mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-06&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/mysql">mysql</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -775,7 +759,7 @@ mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -784,7 +768,7 @@ mysql&gt; update user set host=&#39;%&#39; where user=&#39;r</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
