@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    585 字
+                    758 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      3 分钟
                   </span>&nbsp;
                 
 
@@ -260,6 +260,49 @@ bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target
     return false;
 }
 </code></pre>
+<p>3.请实现一个函数，把字符串 s 中的每个空格替换成”%20”.</p>
+<pre><code class="lang-cpp">示例 1：
+输入：s = &quot;We are happy.&quot;
+输出：&quot;We%20are%20happy.&quot;
+限制：0 &lt;= s 的长度 &lt;= 10000
+</code></pre>
+<pre><code class="lang-cpp">//#1
+string replaceSpace(string s) {
+    string array;
+    for (auto&amp; value : s) {
+        if(value == &#39; &#39;){
+            array.push_back(&#39;%&#39;);
+            array.push_back(&#39;2&#39;);
+            array.push_back(&#39;0&#39;);
+        }
+        else array.push_back(value);
+    }
+    return array;
+}
+
+//#2
+string replaceSpace(string s) {
+    int count = 0, len = s.size();
+    // 统计空格数量
+    for (char c : s) {
+        if (c == &#39; &#39;) count++;
+    }
+    // 修改 s 长度
+    s.resize(len + 2 * count);
+    // 倒序遍历修改
+    for(int i = len - 1, j = s.size() - 1; i &lt; j; i--, j--) {
+        if (s[i] != &#39; &#39;)
+            s[j] = s[i];
+        else {
+            s[j - 2] = &#39;%&#39;;
+            s[j - 1] = &#39;2&#39;;
+            s[j] = &#39;0&#39;;
+            j -= 2;
+        }
+    }
+    return s;
+}
+</code></pre>
 
             <hr>
           </div>
@@ -294,7 +337,7 @@ bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -343,7 +386,7 @@ bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -352,7 +395,7 @@ bool findNumberIn2DArray(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
