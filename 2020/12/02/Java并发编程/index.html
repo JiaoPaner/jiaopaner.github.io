@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    4.1k 字
+                    4.4k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      20 分钟
+                      22 分钟
                   </span>&nbsp;
                 
 
@@ -1129,6 +1129,108 @@ public static void main(String[] args) throws InterruptedException {
     }
 }
 </code></pre>
+<h3 id="java-util-concurrent"><a href="#java-util-concurrent" class="headerlink" title="java.util.concurrent"></a>java.util.concurrent</h3><p><strong>自定义锁</strong></p>
+<pre><code class="lang-java">//自定义锁(不可重入锁)
+class MyLock implements Lock{
+    //同步器类 独占锁 AQS
+    class MySync extends AbstractQueuedSynchronizer{
+        @Override //尝试获得锁
+        protected boolean tryAcquire(int arg) {
+            if(compareAndSetState(0,1)){
+                setExclusiveOwnerThread(Thread.currentThread());//设置锁的持有者线程
+                return true;
+            }
+            return false;
+        }
+
+        @Override //尝试释放锁
+        protected boolean tryRelease(int arg) {
+            setExclusiveOwnerThread(null);
+            setState(0);
+            return true;
+        }
+
+        @Override //是否持有独占锁
+        protected boolean isHeldExclusively() {
+            return getState() == 1;
+        }
+
+        public  Condition newCondition(){
+            return new ConditionObject();
+        }
+    }
+
+    private MySync sync = new MySync();
+
+    @Override //加锁 不成功进入等待队列等待
+    public void lock() {
+        sync.acquire(1);
+    }
+
+    @Override //可打断的加锁
+    public void lockInterruptibly() throws InterruptedException {
+        sync.tryAcquire(1);
+    }
+
+    @Override //尝试加锁 仅尝试一次
+    public boolean tryLock() {
+        return sync.tryAcquire(1);
+    }
+
+    @Override
+    public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+        return sync.tryAcquireNanos(1,unit.toNanos(time));
+    }
+
+    @Override
+    public void unlock() {
+        sync.release(1);
+    }
+
+    @Override
+    public Condition newCondition() {
+        return sync.newCondition();
+    }
+}
+
+static Logger logger = Logger.getLogger(&quot;log&quot;);
+
+public static void main(String[] args) throws InterruptedException {
+    MyLock lock = new MyLock();
+    new Thread(()-&gt;{
+        lock.lock();
+        try{
+            logger.info(&quot;locking&quot;);
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            logger.info(&quot;unlocking&quot;);
+            lock.unlock();
+        }
+    }).start();
+
+    new Thread(()-&gt;{
+        lock.lock();
+        try{
+            logger.info(&quot;locking&quot;);
+        }
+        finally {
+            logger.info(&quot;unlocking&quot;);
+            lock.unlock();
+        }
+    }).start();
+}
+
+一月 05, 2021 4:05:27 下午 Main lambda$main$0
+信息: locking
+一月 05, 2021 4:05:28 下午 Main lambda$main$0
+信息: unlocking
+一月 05, 2021 4:05:28 下午 Main lambda$main$1
+信息: locking
+一月 05, 2021 4:05:28 下午 Main lambda$main$1
+信息: unlocking
+</code></pre>
 
             <hr>
           </div>
@@ -1163,7 +1265,7 @@ public static void main(String[] args) throws InterruptedException {
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
     <div id="tocbot"></div>
   </div>
 
@@ -1212,7 +1314,7 @@ public static void main(String[] args) throws InterruptedException {
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1221,7 +1323,7 @@ public static void main(String[] args) throws InterruptedException {
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
