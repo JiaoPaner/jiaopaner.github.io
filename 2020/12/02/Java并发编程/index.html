@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    4.4k 字
+                    5.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      22 分钟
+                      29 分钟
                   </span>&nbsp;
                 
 
@@ -1231,6 +1231,315 @@ public static void main(String[] args) throws InterruptedException {
 一月 05, 2021 4:05:28 下午 Main lambda$main$1
 信息: unlocking
 </code></pre>
+<p><strong>读写锁</strong></p>
+<p>并发的读操作不互斥，并发读操作和写操作互斥。</p>
+<pre><code class="lang-java">class DataContainer{
+    static Logger logger = Logger.getLogger(&quot;log&quot;);
+    private Object data;
+    private ReentrantReadWriteLock rw = new ReentrantReadWriteLock();
+    private ReentrantReadWriteLock.ReadLock readLock= rw.readLock();
+    private ReentrantReadWriteLock.WriteLock writeLock= rw.writeLock();
+
+    public Object read(){
+        logger.info(&quot;get readlock...&quot;);
+        readLock.lock();
+        try {
+            logger.info(&quot;reading...&quot;);
+            return data;
+        }finally {
+            logger.info(&quot;release readlock...&quot;);
+            readLock.unlock();
+        }
+    }
+
+    public void write(){
+        logger.info(&quot;get writelock...&quot;);
+        writeLock.lock();
+        try {
+            logger.info(&quot;writing...&quot;);
+        }finally {
+            logger.info(&quot;release writelock...&quot;);
+            writeLock.unlock();
+        }
+    }
+}
+
+static Logger logger = Logger.getLogger(&quot;log&quot;);
+public static void main(String[] args) throws InterruptedException {
+    DataContainer dataContainer = new DataContainer();
+    /*
+    new Thread(()-&gt;{
+        dataContainer.read();
+    }).start();
+
+    new Thread(()-&gt;{
+        dataContainer.read();
+    }).start();
+    */
+
+    new Thread(()-&gt;{
+        dataContainer.write();
+    }).start();
+
+    new Thread(()-&gt;{
+        dataContainer.read();
+    }).start();
+}
+
+一月 06, 2021 11:29:39 上午 DataContainer write
+信息: get writelock...
+一月 06, 2021 11:29:39 上午 DataContainer read
+信息: get readlock...
+一月 06, 2021 11:29:40 上午 DataContainer write
+信息: writing...
+一月 06, 2021 11:29:40 上午 DataContainer write
+信息: release writelock...
+一月 06, 2021 11:29:40 上午 DataContainer read
+信息: reading...
+一月 06, 2021 11:29:40 上午 DataContainer read
+信息: release readlock...
+</code></pre>
+<p><strong>StampedLock</strong></p>
+<pre><code class="lang-java">class DataContainer{
+
+    static Logger logger = Logger.getLogger(&quot;log&quot;);
+    private int data;
+    private final StampedLock lock = new StampedLock();
+
+    DataContainer(int data){
+        this.data = data;
+    }
+
+    public int read(int readTime) throws InterruptedException {
+        logger.info(&quot;tryOptimisticRead...&quot;);
+        long stamp = lock.tryOptimisticRead();
+        logger.info(&quot;stamp:&quot;+stamp);
+        Thread.sleep(readTime);
+        if(lock.validate(stamp)){ //戳是否未被更新
+            logger.info(&quot;read finish(OptimisticRead)...&quot;);
+            return data;
+        }
+        logger.info(&quot;get readlock...&quot;);
+        try {
+            stamp = lock.readLock();
+            logger.info(&quot;stamp:&quot;+stamp);
+            logger.info(&quot;reading...&quot;);
+            Thread.sleep(readTime);
+            logger.info(&quot;read finish...&quot;);
+            return data;
+        }finally {
+            logger.info(&quot;release readlock...&quot;);
+            lock.unlockRead(stamp);
+        }
+    }
+
+    public void write(int data){
+        logger.info(&quot;get writelock...&quot;);
+        long stamp = lock.writeLock();
+        logger.info(&quot;stamp:&quot;+stamp);
+        try {
+            logger.info(&quot;writing...&quot;);
+            this.data = data;
+        }finally {
+            logger.info(&quot;release writelock...&quot;);
+            lock.unlockWrite(stamp);
+        }
+    }
+}
+
+static Logger logger = Logger.getLogger(&quot;log&quot;);
+
+public static void main(String[] args) throws InterruptedException {
+    DataContainer dataContainer = new DataContainer(0);
+    new Thread(()-&gt;{
+        try {
+            dataContainer.read(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }).start();
+    Thread.sleep(1000);
+    new Thread(()-&gt;{
+        try {
+            dataContainer.read(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }).start();
+}
+
+一月 08, 2021 4:08:01 下午 DataContainer read
+信息: tryOptimisticRead...
+一月 08, 2021 4:08:01 下午 DataContainer read
+信息: stamp:256
+一月 08, 2021 4:08:02 下午 DataContainer read
+信息: tryOptimisticRead...
+一月 08, 2021 4:08:02 下午 DataContainer read
+信息: stamp:256
+一月 08, 2021 4:08:02 下午 DataContainer read
+信息: read finish(OptimisticRead)...
+一月 08, 2021 4:08:04 下午 DataContainer read
+信息: read finish(OptimisticRead)...
+
+static Logger logger = Logger.getLogger(&quot;log&quot;);
+public static void main(String[] args) throws InterruptedException {
+    DataContainer dataContainer = new DataContainer(0);
+    new Thread(()-&gt;{
+        try {
+            dataContainer.read(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }).start();
+
+    new Thread(()-&gt;{
+        dataContainer.write(10);
+    }).start();
+}
+
+一月 08, 2021 5:22:44 下午 DataContainer read
+信息: tryOptimisticRead...
+一月 08, 2021 5:22:44 下午 DataContainer write
+信息: get writelock...
+一月 08, 2021 5:22:44 下午 DataContainer write
+信息: stamp:384
+一月 08, 2021 5:22:44 下午 DataContainer read
+信息: stamp:256
+一月 08, 2021 5:22:44 下午 DataContainer write
+信息: writing...
+一月 08, 2021 5:22:44 下午 DataContainer write
+信息: release writelock...
+一月 08, 2021 5:22:46 下午 DataContainer read
+信息: get readlock...
+一月 08, 2021 5:22:46 下午 DataContainer read
+信息: stamp:513
+一月 08, 2021 5:22:46 下午 DataContainer read
+信息: reading...
+一月 08, 2021 5:22:48 下午 DataContainer read
+信息: read finish...
+一月 08, 2021 5:22:48 下午 DataContainer read
+信息: release readlock...
+</code></pre>
+<p><strong>Semaphore 信号量</strong></p>
+<pre><code class="lang-java">static Logger logger = Logger.getLogger(&quot;log&quot;);
+public static void main(String[] args) throws InterruptedException {
+    Semaphore semaphore = new Semaphore(3);
+    for (int i = 0; i &lt; 10; i++) {
+        new Thread(()-&gt;{
+            try {
+                semaphore.acquire();
+                logger.info(&quot;running..&quot;);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }finally {
+                logger.info(&quot;end...&quot;);
+                semaphore.release();
+            }
+
+        }).start();
+    }
+}
+
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: running..
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: running..
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: end...
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: end...
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: running..
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: running..
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: end...
+一月 11, 2021 9:44:32 上午 Main lambda$main$0
+信息: end...
+</code></pre>
+<p><strong>CountDownLatch</strong></p>
+<pre><code class="lang-java">static Logger logger = Logger.getLogger(&quot;log&quot;);
+public static void main(String[] args) throws InterruptedException {
+    CountDownLatch countDownLatch =  new CountDownLatch(2);
+    new Thread(()-&gt;{
+        logger.info(&quot;running&quot;);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        countDownLatch.countDown();
+        logger.info(&quot;end&quot;);
+    }).start();
+    new Thread(()-&gt;{
+        logger.info(&quot;running&quot;);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        countDownLatch.countDown();
+        logger.info(&quot;end&quot;);
+    }).start();
+    logger.info(&quot;main thread waiting&quot;);
+    countDownLatch.await();//主线程等待其他所有线程执行完毕再恢复运行
+    logger.info(&quot;main thread restart&quot;);
+}
+
+一月 11, 2021 4:29:53 下午 Main lambda$main$0
+信息: running
+一月 11, 2021 4:29:53 下午 Main lambda$main$1
+信息: running
+一月 11, 2021 4:29:53 下午 Main main
+信息: main thread waiting
+一月 11, 2021 4:29:54 下午 Main lambda$main$0
+信息: end
+一月 11, 2021 4:29:55 下午 Main lambda$main$1
+信息: end
+一月 11, 2021 4:29:55 下午 Main main
+信息: main thread restart
+</code></pre>
+<p><strong>CyclicBarrier</strong></p>
+<pre><code class="lang-java">static Logger logger = Logger.getLogger(&quot;log&quot;);
+public static void main(String[] args) throws InterruptedException {
+    ExecutorService service = Executors.newFixedThreadPool(2);
+    CyclicBarrier cyclicBarrier = new CyclicBarrier(2,()-&gt;{
+        logger.info(&quot;all tasks finished&quot;);
+    });
+
+    service.submit(()-&gt;{
+        logger.info(&quot;task1 running&quot;);
+        try {
+            Thread.sleep(1000);
+            cyclicBarrier.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (BrokenBarrierException e) {
+            e.printStackTrace();
+        }
+    });
+
+    service.submit(()-&gt;{
+        logger.info(&quot;task2 running&quot;);
+        try {
+            Thread.sleep(1000);
+            cyclicBarrier.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (BrokenBarrierException e) {
+            e.printStackTrace();
+        }
+    });
+    service.shutdown();
+}
+
+一月 11, 2021 4:44:32 下午 Main lambda$main$1
+信息: task1 running
+一月 11, 2021 4:44:32 下午 Main lambda$main$2
+信息: task2 running
+一月 11, 2021 4:44:33 下午 Main lambda$main$0
+信息: all tasks finished
+</code></pre>
 
             <hr>
           </div>
@@ -1265,7 +1574,7 @@ public static void main(String[] args) throws InterruptedException {
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -1314,7 +1623,7 @@ public static void main(String[] args) throws InterruptedException {
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1323,7 +1632,7 @@ public static void main(String[] args) throws InterruptedException {
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

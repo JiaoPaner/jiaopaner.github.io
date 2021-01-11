@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    2.3k 字
+                    2.6k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      10 分钟
+                      11 分钟
                   </span>&nbsp;
                 
 
@@ -271,6 +271,17 @@ str = &quot;world&quot;; //可修改
 string str = {&quot;hello world&quot;};
 string str{&quot;hello world&quot;};
 string c(5, &#39;A&#39;); //c = &quot;AAAAA&quot;
+</code></pre>
+<pre><code class="lang-cpp">char dog[8] = {&#39;b&#39;,&#39;e&#39;,&#39;a&#39;,&#39;u&#39;,&#39;x&#39;,&#39;&#39;,&#39;T&#39;,&#39;T&#39;}; // not a string
+char cat[8] = {&#39;f&#39;,&#39;a&#39;,&#39;t&#39;,&#39;a&#39;,&#39;s&#39;,&#39;s&#39;,&#39;a&#39;,&#39;\0&#39;}; // a string
+</code></pre>
+<p>‘A’:字符常量<br>“A”：字符串常量，字符’A’+’\0’</p>
+<p>C风格字符串的比较需要用到strcmp()函数，字符串变量本身代表的是地址，不能直接使用“=”比较</p>
+<pre><code class="lang-cpp">#include &lt;cstring&gt;
+char* first_name = &quot;mate&quot;;
+char* last_name = &quot;mate&quot;;
+int code = strcmp(first_name,last_name);
+printf(&quot;code:%d&quot;,code);
 </code></pre>
 <p><strong>结构体</strong></p>
 <pre><code class="lang-cpp">struct person{
@@ -434,6 +445,10 @@ vector&lt;int&gt; v_num(10,9); //创建指定数量的元素 每个元素被赋�
 vector&lt;int&gt; ten_num(10); // 10个元素 每个元素被初始化为0
 strs.push_back(&quot;hello&quot;);//添加元素
 </code></pre>
+<p>存储持续性</p>
+<blockquote>
+<p>自动存储持续性：函数定义中声明的变量/函数参数，其所属函数或代码块执行时被创建，执行完时被被自动释放；<br>静态存储持续性：函数定义外定义的变量或static修饰的变量，其在整个程序运行中都存在；<br>动态存储持续性：new分配的内存，直到使用delete释放为止；</p>
+</blockquote>
 
             <hr>
           </div>
@@ -468,7 +483,7 @@ strs.push_back(&quot;hello&quot;);//添加元素
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -517,7 +532,7 @@ strs.push_back(&quot;hello&quot;);//添加元素
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -526,7 +541,7 @@ strs.push_back(&quot;hello&quot;);//添加元素
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
