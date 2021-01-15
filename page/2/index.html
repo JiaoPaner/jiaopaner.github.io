@@ -139,6 +139,104 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/09/spark.001/" target="_self">
+          <img src="/images/spark.jpg" srcset="/img/loading.gif" alt="001.Spark RDD" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/09/spark.001/">
+        <p class="h4 index-header">001.Spark RDD</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">spark-hello world1.创建maven项目spark-note,添加Spark依赖,新建TestSpark.java类2.引入依赖和打包插件
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
+  &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
+  &lt;version&gt;2.11.8&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.hadoop&lt;/g</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-09&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/08/spark.000/" target="_self">
+          <img src="/images/spark.jpg" srcset="/img/loading.gif" alt="000.Spark Basement" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/08/spark.000/">
+        <p class="h4 index-header">000.Spark Basement</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Launching Applications with spark-submit./bin/spark-submit \
+  --class &lt;main-class&gt; \
+  --master &lt;master-url&gt; \
+  --deploy-mode &lt;deploy-mode&gt; \
+  --conf &lt;key&gt;=&lt;value&gt; \
+  ... # other options
+  &lt;application-jar&gt; \
+  [application-arguments]
+
+./bin/spark-submit \ 
+  --name &quot;My app&quot; \ 
+  --master local[4] \  
+  --conf spark.eventLog.enabled=false \ 
+  --conf &quot;spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps&quot; \ 
+  --con</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-08&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/08/pytorch_prepare-data_create-model_train_valid_test_save-model_load-model/" target="_self">
           <img src="/images/dp-net/pytorch.jpg" srcset="/img/loading.gif" alt="pytorch 自定义数据集/训练/模型保存和加载" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -558,127 +656,11 @@ Note:
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(7) 排序" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/19/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(7)%20%E6%8E%92%E5%BA%8F/">
-        <p class="h4 index-header">数据结构(7) 排序</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">插入排序直接插入排序
-把$n$个待排序的元素假设为一个有序表和一个无序表，开始时有序表中只包含1个元素，无序表中包含有n-1个元素，排序过程中每次从无序表中取出第一个元素，将它插入到有序表中的适当位置，使之成为新的有序表，重复n-1次即可完成排序过程
-void insertSort(int array[],int n) {
-    int i, j, key;
-    for (i = 1; i &lt; n; i++) {
-        if (array[i] &lt; array[i - 1]) {
-            key = array[i];//设置为哨兵
-            //找到合适的插入位置并将比key大的元素后移
-            for (j = i - 1; key &lt; array[j] &amp;&amp; j &gt;= 0; --j)
-                array[j + 1] = array[j];
-            array[j + 1] = key;//插入
-        }
-    }
-}
-
-折半插</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-19&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(6) 查找" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/16/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(6)%20%E6%9F%A5%E6%89%BE/">
-        <p class="h4 index-header">数据结构(6) 查找</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">顺序查找1.一般线性表
-typedef struct{
-    ElemType *elem;//0号单元留空
-    int length;
-}STable;
-int search(STable table,ElemType key){
-    table.elem[0] = key;//哨兵
-    for(int i = table.length;table.elem[i] != key; --i);
-    return i;
-}
-
-折半查找int binary_search(SeqList list,ElemType key){
-    int low = 0;high = list.length-1;mid;
-    while(low &lt;= high){
-        mid = (low+high)/2;
-        if(list.elem[mid] == key)
-            return mid;
-        else if(list.elem[mid] &lt; key)
-            low = mid+1;
-      </div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-16&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-double-right"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
@@ -710,7 +692,7 @@ int search(STable table,ElemType key){
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -719,7 +701,7 @@ int search(STable table,ElemType key){
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

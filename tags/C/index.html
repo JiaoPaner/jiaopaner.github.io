@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>タグ - C++ ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>标签 - c++ ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -131,34 +131,16 @@
                 
 
 <div class="list-group">
-<!--  <p class="h4">合計 4 件のポスト</p>-->
+<!--  <p class="h4">共计 1 篇文章</p>-->
   <hr>
   
     
       
-      <p class="h5">2019</p>
+      <p class="h5">2021</p>
     
-    <a href="/2019/07/09/C++%E6%95%99%E7%A8%8B(4)%20C++%E6%A0%87%E5%87%86%E5%BA%93/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++教程(4) C++标准库</span>
-      <span style="float: right;">07-09</span>
-    </a>
-  
-    
-    <a href="/2019/07/06/C++%E6%95%99%E7%A8%8B(3)%20%E6%A8%A1%E6%9D%BF%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++教程(3) 模板和泛型编程</span>
-      <span style="float: right;">07-06</span>
-    </a>
-  
-    
-    <a href="/2019/07/05/C++%E6%95%99%E7%A8%8B(2)%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++教程(2) 面向对象编程</span>
-      <span style="float: right;">07-05</span>
-    </a>
-  
-    
-    <a href="/2019/07/05/C++%E6%95%99%E7%A8%8B(1)%20%E5%9F%BA%E7%A1%80/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++教程(1) 基础</span>
-      <span style="float: right;">07-05</span>
+    <a href="/2021/01/12/effective%20c++/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Effective C++</span>
+      <span style="float: right;">01-12</span>
     </a>
   
 </div>
@@ -185,7 +167,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -194,7 +176,7 @@
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -288,7 +270,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "タグ - C++&nbsp;",
+        "标签 - c++&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,
@@ -336,6 +318,53 @@
   <script>
     $("#post img:not(.no-zoom img, img[no-zoom])").each(
       function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "images");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+          tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+              processEscapes: true,
+              skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+          }
+      });
+
+      MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax(), i;
+          for(i=0; i < all.length; i += 1) {
+              all[i].SourceElement().parentNode.className += ' has-jax';
+          }
+      });
+
+    </script>
+
+    <script src="https://cdn.staticfile.org/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+() {
         var element = document.createElement("a");
         $(element).attr("data-fancybox", "images");
         $(element).attr("href", $(this).attr("src"));

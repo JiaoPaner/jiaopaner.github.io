@@ -139,6 +139,107 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2021/01/13/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" target="_self">
+          <img src="/images/java_jvm.jpeg" srcset="/img/loading.gif" alt="Java虚拟机" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2021/01/13/java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
+        <p class="h4 index-header">Java虚拟机</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Java内存结构程序计数器当前线程锁执行字节码的行号指示器(下一条jvm指令执行地址),每个线程都有独立的程序计数器，各线程间互不影响.
+虚拟机栈每个线程执行所需的独立内存空间，生命周期与线程相同，每次方法被执行时会在虚拟机栈中创建一个栈帧(方法执行所需内存)，用于存储局部变量表、操作栈、动态链接、方法出口等信息，每一个方法被调用直至执行完毕就对应一个栈帧在虚拟机栈中入栈出栈的过程，每个线程只有一个活动栈帧，对应当前正执行的方法.
+</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2021-01-13&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/java">java</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/java">java</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2021/01/12/effective%20c++/" target="_self">
+          <img src="/images/effective_c++.png" srcset="/img/loading.gif" alt="Effective C++" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2021/01/12/effective%20c++/">
+        <p class="h4 index-header">Effective C++</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1.尽量以const,enum,inline替换#define
+//.h
+class Foo{
+    private:
+        static const int NUM = 5;//class专属常量声明
+} 
+//.cpp
+const int Foo::NUM;
+
+char grerting[] = &quot;hello&quot;;
+char* p = grerting; //non-const pointer non-const data
+const char* p = grerting;// non-const pointer const data
+char* const p = grerting;// const pointer non-const data
+const char* const p = grerting;// const pointer const data
+
+std::vector&lt;int&gt; vec;
+const std::vector&lt;int&gt;::iterator iterator = vec.begin();
+*ite</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2021-01-12&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/c++">c++</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/c++">c++</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/12/21/%E5%89%91%E6%8C%87offer%E9%A2%98%E8%A7%A3/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="剑指offer题解" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -596,109 +697,11 @@ JavaStream</div>
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/04/09/spark.001/" target="_self">
-          <img src="/images/spark.jpg" srcset="/img/loading.gif" alt="001.Spark RDD" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/04/09/spark.001/">
-        <p class="h4 index-header">001.Spark RDD</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">spark-hello world1.创建maven项目spark-note,添加Spark依赖,新建TestSpark.java类2.引入依赖和打包插件
-&lt;dependency&gt;
-  &lt;groupId&gt;org.scala-lang&lt;/groupId&gt;
-  &lt;artifactId&gt;scala-library&lt;/artifactId&gt;
-  &lt;version&gt;2.11.8&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
-  &lt;artifactId&gt;spark-core_2.11&lt;/artifactId&gt;
-  &lt;version&gt;2.4.5&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-  &lt;groupId&gt;org.apache.hadoop&lt;/g</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-09&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/spark">spark</a>&nbsp;
-          &nbsp;
-        
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/04/08/spark.000/" target="_self">
-          <img src="/images/spark.jpg" srcset="/img/loading.gif" alt="000.Spark Basement" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/04/08/spark.000/">
-        <p class="h4 index-header">000.Spark Basement</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">Launching Applications with spark-submit./bin/spark-submit \
-  --class &lt;main-class&gt; \
-  --master &lt;master-url&gt; \
-  --deploy-mode &lt;deploy-mode&gt; \
-  --conf &lt;key&gt;=&lt;value&gt; \
-  ... # other options
-  &lt;application-jar&gt; \
-  [application-arguments]
-
-./bin/spark-submit \ 
-  --name &quot;My app&quot; \ 
-  --master local[4] \  
-  --conf spark.eventLog.enabled=false \ 
-  --conf &quot;spark.executor.extraJavaOptions=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps&quot; \ 
-  --con</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-08&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/spark">spark</a>&nbsp;
-          &nbsp;
-        
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
@@ -730,7 +733,7 @@ JavaStream</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -739,7 +742,7 @@ JavaStream</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -139,6 +139,111 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/12/blob%20detect/" target="_self">
+          <img src="/images/opencv3/blob.jpg" srcset="/img/loading.gif" alt="blob detect" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/12/blob%20detect/">
+        <p class="h4 index-header">blob detect</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">斑点检测斑点:与周围区域存在颜色差异或灰度差异的区域斑点检测的主要思路是检测出图像中比周围像素灰度大或者比周围区域灰度值小的区域　　1.基于求导的微分方法　　2.基于局部极值的分水岭算法,基于此OPENCV中提供simpleBlobDetector特征检测器
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;opencv2\opencv.hpp&gt;
+using namespace cv;
+int main() {
+    Mat im = imread(&quot;D:/learn/jiaopan/source/images/opencv3/blob.jpg&quot;,IMREAD_GRAYSCALE);
+    imshow(&quot;im&quot;, im);
+    Ptr&lt;SimpleBlobDetector&gt; detector = SimpleBlobDetector::create();
+    std::vector&lt;KeyPoint&gt; keypoints;
+    d</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/opencv3">opencv3</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(7) PeakIndexInMountainArray" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/">
+        <p class="h4 index-header">leetcode(7) PeakIndexInMountainArray</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">difficult：easy #852Let’s call an array A a mountain if the following properties hold:
+
+A.length &gt;= 3
+There exists some 0 &lt; i &lt; A.length - 1 such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1]Given an array that is definitely a mountain, return any i such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1].
+
+Example 1:
+Input: [0,1,0]
+Output: 1
+
+Example 2:
+Input: [0,2,1,0]
+Output: 1
+
+Note:3 &lt;= A.length &lt;= 100000 &l</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/leetcode">leetcode</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/leetcode">leetcode</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2018/07/11/leetcode(6)%20%20JudgeRouteCircle/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(6)  JudgeRouteCircle" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -532,63 +637,11 @@ Docker 让开发者可以打包他们的应用以及依赖包到一个可移植�
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" target="_self">
-          <img src="/images/opencv3/2-1.png" srcset="/img/loading.gif" alt="opencv3(1-2) linux配置opencv3开发环境" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">
-        <p class="h4 index-header">opencv3(1-2) linux配置opencv3开发环境</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">环境ubuntucmakecmake-guiopencv-3.3.1 下载地址:https://opencv.org/releases.htmlopencv_contrib-3.3.1 下载地址:https://github.com/opencv/opencv_contrib/releases
-准备工作
-更新系统sudo apt-get update
-sudo apt-get upgrade
-
-
-安装cmake及必要依赖sudo apt-get install build-essential
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
-
-
-安装cmake-guisudo a</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-03-11&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/opencv3">opencv3</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv3">opencv3</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+      <a class="extend prev" rel="prev" href="/page/5/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
@@ -620,7 +673,7 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -629,7 +682,7 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

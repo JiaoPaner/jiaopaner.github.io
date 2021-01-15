@@ -139,6 +139,129 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/" target="_self">
+          <img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt="编译C/C++为dll供Java调用" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">
+        <p class="h4 index-header">编译C/C++为dll供Java调用</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">开发环境准备
+下载 Eclipse IDE for C/C++地址:https://www.eclipse.org/downloads/packages/
+安装mingw64地址:http://www.mingw-w64.org/doku.php/download1）配置mingw64环境变量C_INCLUDE_PATH : mingw64安装目录\includeLIBRARY_PATH :mingw64安装目录\lib2）系统变量的path变量中添加 mingw64安装目录\bin注意:以防万一,本文也将include和lib目录也加入了path变量中3）测试 cmd里执行如下命令gcc -v
+
+输出版本信息则安装成功
+
+编译C/C++为dlleclipse环境下
+
+eclipse新建项目
+新建源代码文件
+编写方法
+右键项目 properties 配置1）Tool Chain Editor的配置2）settings的配置-Wl,--add-stdcall-alias -static-libgcc -static-libstdc++ -shared
+
+
+右键项目 build proje</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/JNA">JNA</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" target="_self">
+          <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
+        <p class="h4 index-header">hexo搭建GitHub博客</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">前提环境:Node.js、Git已安装
+通过github创建repository 格式:博客名称.github.io
+安装hexo
+新建blog文件夹,并打开git bash
+执行命令
+npm install hexo -g #安装hexo命令
+hexo -v #检查是否安装成功
+
+
+
+初始化hexo
+hexo init #初始化blog文件夹
+npm install #安装必要组件
+#执行如下命令 开启本地体验
+hexo g
+hexo s  
+#访问http://localhost:4000 即可看到默认博客页面
+
+
+
+关联hexo - github
+设置git的username和emailgit config --global user.name &#39;jiaopan&#39; #设置用户名
+git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
+
+
+生成公钥ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
+
+红框处为密钥保存的路径cd ~/.ssh #cd到</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/hexo">hexo</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/03/06/linux%E4%B8%8Bmysql%E7%9A%84%E5%AE%89%E8%A3%85/" target="_self">
           <img src="/images/note/6.jpg" srcset="/img/loading.gif" alt="linux下mysql的安装" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -552,116 +675,11 @@ Note:The boundari</div>
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/07/12/blob%20detect/" target="_self">
-          <img src="/images/opencv3/blob.jpg" srcset="/img/loading.gif" alt="blob detect" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/07/12/blob%20detect/">
-        <p class="h4 index-header">blob detect</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">斑点检测斑点:与周围区域存在颜色差异或灰度差异的区域斑点检测的主要思路是检测出图像中比周围像素灰度大或者比周围区域灰度值小的区域　　1.基于求导的微分方法　　2.基于局部极值的分水岭算法,基于此OPENCV中提供simpleBlobDetector特征检测器
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;opencv2\opencv.hpp&gt;
-using namespace cv;
-int main() {
-    Mat im = imread(&quot;D:/learn/jiaopan/source/images/opencv3/blob.jpg&quot;,IMREAD_GRAYSCALE);
-    imshow(&quot;im&quot;, im);
-    Ptr&lt;SimpleBlobDetector&gt; detector = SimpleBlobDetector::create();
-    std::vector&lt;KeyPoint&gt; keypoints;
-    d</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/opencv3">opencv3</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(7) PeakIndexInMountainArray" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/07/12/leetcode(7)%20PeakIndexInMountainArray/">
-        <p class="h4 index-header">leetcode(7) PeakIndexInMountainArray</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">difficult：easy #852Let’s call an array A a mountain if the following properties hold:
-
-A.length &gt;= 3
-There exists some 0 &lt; i &lt; A.length - 1 such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1]Given an array that is definitely a mountain, return any i such that A[0] &lt; A[1] &lt; … A[i-1] &lt; A[i] &gt; A[i+1] &gt; … &gt; A[A.length - 1].
-
-Example 1:
-Input: [0,1,0]
-Output: 1
-
-Example 2:
-Input: [0,2,1,0]
-Output: 1
-
-Note:3 &lt;= A.length &lt;= 100000 &l</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-12&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/leetcode">leetcode</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/leetcode">leetcode</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-double-right"></i></a>
+      <a class="extend prev" rel="prev" href="/page/4/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
@@ -693,7 +711,7 @@ Note:3 &lt;= A.length &lt;= 100000 &l</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -702,7 +720,7 @@ Note:3 &lt;= A.length &lt;= 100000 &l</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -139,6 +139,134 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" target="_self">
+          <img src="/images/system/4.jpg" srcset="/img/loading.gif" alt="操作系统(3) 内存管理" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/30/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F(3)%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+        <p class="h4 index-header">操作系统(3) 内存管理</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">基本概念操作系统对内存的划分和动态分配。
+
+内存空间的分配与回收
+地址转换：逻辑地址和物理地址的转换
+内存空间扩充：虚拟存储技术
+存储保护：保证各道作业在各自的存储空间运行，互不干扰
+
+内存连续分配管理
+
+单一连续分配：内存分为系统区和用户区，只能用于单用户、单任务操作系统中
+
+固定分区分配：将用户内存空间划分为若干个固定大小(分区相等或不等)的区域
+
+动态分区分配：根据进程大小动态建立分区，并使分区大小正好适合进程的需要
+分配策略，根据算法找到满足进程需要的空闲分区
+
+首次适应：空闲分区以地址递增的次序链接
+(缺点：低地址出现较多小的空闲分区，查找都需经过这些分区，增加了查找开销)
+
+最佳适应：空闲分区以容量递增的次序链接
+(缺点：产生最多的外部碎片)
+
+最坏适应：空闲分区以容量递减的次序链接
+(缺点：可能会导致没有可用的大内存块)
+
+邻近适应：分配内存时从上次查找结束的地址位置继续查找
+
+
+
+
+
+内存非连续分配管理
+wait….
+</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-30&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">操作系统</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/06/28/Alexnet/" target="_self">
+          <img src="/images/dp-net/AlexNet_Summary_Table.jpg" srcset="/img/loading.gif" alt="Alexnet" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/06/28/Alexnet/">
+        <p class="h4 index-header">Alexnet</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">
+
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+#模型
+model = keras.Sequential()
+
+# 1st Convolutional Layer
+model.add(layers.Conv2D(input_shape=(227,227,3),filters=96,kernel_size=[11,11],strides=(4,4),padding=&#39;valid&#39;,activation=&#39;relu&#39;))
+model.add(layers.MaxPool2D(pool_size=(3,3),strides=(2,2),padding=&#39;valid&#39;))
+
+# 2nd Convolutional Layer
+model.add(layers.Conv2D(filters=256,kernel_size=[5,5],strides=(1,1),padding=&#39;same&#39;,activ</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-06-28&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B">神经网络模型</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/06/26/nginx-rtmp%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="nginx-rtmp流媒体服务" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -600,134 +728,11 @@ n阶乘行列式：$\begin{vmatrix}a{11} &amp; a{12} &amp; … &amp; a{1n}\ a{21
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/" target="_self">
-          <img src="/images/2019/3/10/1.jpg" srcset="/img/loading.gif" alt="编译C/C++为dll供Java调用" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/10/eclipse%E7%BC%96%E8%AF%91C-C++%E4%B8%BAdll%E4%BE%9BJava%E8%B0%83%E7%94%A8/">
-        <p class="h4 index-header">编译C/C++为dll供Java调用</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">开发环境准备
-下载 Eclipse IDE for C/C++地址:https://www.eclipse.org/downloads/packages/
-安装mingw64地址:http://www.mingw-w64.org/doku.php/download1）配置mingw64环境变量C_INCLUDE_PATH : mingw64安装目录\includeLIBRARY_PATH :mingw64安装目录\lib2）系统变量的path变量中添加 mingw64安装目录\bin注意:以防万一,本文也将include和lib目录也加入了path变量中3）测试 cmd里执行如下命令gcc -v
-
-输出版本信息则安装成功
-
-编译C/C++为dlleclipse环境下
-
-eclipse新建项目
-新建源代码文件
-编写方法
-右键项目 properties 配置1）Tool Chain Editor的配置2）settings的配置-Wl,--add-stdcall-alias -static-libgcc -static-libstdc++ -shared
-
-
-右键项目 build proje</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/JNA">JNA</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/" target="_self">
-          <img src="/images/github/1.jpg" srcset="/img/loading.gif" alt="hexo搭建GitHub博客" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/03/10/hexo%E6%90%AD%E5%BB%BAGitHub%E5%8D%9A%E5%AE%A2/">
-        <p class="h4 index-header">hexo搭建GitHub博客</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">前提环境:Node.js、Git已安装
-通过github创建repository 格式:博客名称.github.io
-安装hexo
-新建blog文件夹,并打开git bash
-执行命令
-npm install hexo -g #安装hexo命令
-hexo -v #检查是否安装成功
-
-
-
-初始化hexo
-hexo init #初始化blog文件夹
-npm install #安装必要组件
-#执行如下命令 开启本地体验
-hexo g
-hexo s  
-#访问http://localhost:4000 即可看到默认博客页面
-
-
-
-关联hexo - github
-设置git的username和emailgit config --global user.name &#39;jiaopan&#39; #设置用户名
-git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
-
-
-生成公钥ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
-
-红框处为密钥保存的路径cd ~/.ssh #cd到</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-10&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/hexo">hexo</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
     <span class="pagination pg-blue justify-content-center mt-5" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-double-right"></i></a>
+      <a class="extend prev" rel="prev" href="/page/3/"><i class="fas fa-angle-double-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fas fa-angle-double-right"></i></a>
     </span>
   </nav>
   
@@ -759,7 +764,7 @@ git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -768,7 +773,7 @@ git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
