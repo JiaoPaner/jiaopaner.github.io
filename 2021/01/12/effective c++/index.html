@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    249 字
+                    452 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      1 分钟
+                      2 分钟
                   </span>&nbsp;
                 
 
@@ -166,7 +166,7 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>1.尽量以const,enum,inline替换#define</p>
+            <p><strong>1.尽量以const,enum,inline替换#define</strong></p>
 <pre><code class="lang-cpp">//.h
 class Foo{
     private:
@@ -240,6 +240,61 @@ Directory&amp; tempDir(){
     return td;
 }
 </code></pre>
+<p><strong>2.可禁止使用copy构造函数或copy assignment操作符，使其私有并只作声明</strong></p>
+<pre><code class="lang-cpp">class HomeForSale{
+    public:
+        ...
+    private:
+        HomeForSale(const HomeForSale &amp;);
+        HomeForSale&amp; operator=(const HomeForSale&amp;);
+}
+//or
+class Uncopyable{
+    protected:
+        //允许derived对象构造和析构
+        Uncopyable(){};
+        ~Uncopyable(){};
+    private:
+        //阻止copying
+        Uncopyable(const Uncopyable &amp;);
+        Uncopyable&amp; operator=(const Uncopyable&amp;);
+}
+
+class HomeForSale : private Uncopyable{
+        ...
+}
+
+
+HomeForSale home;
+HomeForSale new_home(home);//error
+HomeForSale new_home_assign;
+new_home_assign = home;//error
+</code></pre>
+<p><strong>3.带多态性质的基类应该声明一个virtual析构函数，如果class带有任何virtual函数，都应拥有一个virtual析构函数</strong></p>
+<blockquote>
+<p>否则调用delete时,删除由base class指针指向的derived class,derived class的析构函数不会被执行，仅执行base class的析构函数</p>
+</blockquote>
+<pre><code class="lang-cpp">class TimeKeeper{
+    public:
+        TimeKeeper();
+        virtual ~TimeKeeper();
+        ...
+}
+TimeKeeper *ptk = getTimeKeeper();
+...
+delete ptk;
+</code></pre>
+<p><strong>4.令operator=返回一个reference to this指针</strong></p>
+<pre><code class="lang-cpp">class TimeKeeper{
+    public:
+        TimeKeeper&amp; operator=(const TimeKeeper&amp; rhs){
+            this.name = rhs.name;
+            ...
+            return *this;
+        }
+}
+</code></pre>
+<p><strong>5.</strong></p>
 
             <hr>
           </div>
@@ -274,7 +329,7 @@ Directory&amp; tempDir(){
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -323,7 +378,7 @@ Directory&amp; tempDir(){
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -332,7 +387,7 @@ Directory&amp; tempDir(){
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
