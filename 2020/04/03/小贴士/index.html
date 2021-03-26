@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    3.1k 字
+                    3.2k 字
                   </span>&nbsp;
                 
 
@@ -403,15 +403,31 @@ $ jupyter notebook
 [I 14:14:05.933 NotebookApp] http://admin-pc:8888/
 [I 14:14:05.933 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 </code></pre>
-<p><strong>Q:图片转base64编码</strong></p>
-<pre><code class="lang-python">def frame2base64(frame):
-    img = Image.fromarray(frame)  # 将每一帧转为Image
-    output_buffer = BytesIO()  # 创建一个BytesIO
-    img.save(output_buffer, format=&#39;JPEG&#39;)  # 写入output_buffer
-    byte_data = output_buffer.getvalue()  # 在内存中读取
-    base64_data = base64.b64encode(byte_data)  # 转为BASE64
-    output_buffer.close()
-    return base64_data
+<p><strong>Q:图片转base64编码/base64编码还原图片</strong></p>
+<pre><code class="lang-python">def image_to_base64(image):
+    image = cv2.imencode(&#39;.jpg&#39;, image)[1]
+    image_code = str(base64.b64encode(image))[2:-1]
+    return image_code
+image = cv2.imread(&quot;test-04-output-0001.jpg&quot;)
+print(image_to_base64(image))
+
+def base64_to_image(base64_code):
+    # base64解码
+    img_data = base64.b64decode(base64_code)
+    # 转换为np数组
+    img_array = np.fromstring(img_data, np.uint8)
+    # 转换成opencv可用格式
+    img = cv2.imdecode(img_array, cv2.COLOR_RGB2BGR)
+    return img
+</code></pre>
+<p><strong>时间格式转换</strong></p>
+<pre><code class="lang-python">print(datetime.strftime(datetime.now(),&quot;%Y-%m-%d %H:%M:%S&quot;))
+print(datetime.strptime(&quot;2021-03-15 02:26:07&quot;,&quot;%Y-%m-%d %H:%M:%S&quot;))
+
+#时间戳转换
+timeArray = time.localtime(int(time.time()))
+otherStyleTime = time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;, timeArray)
+print(otherStyleTime)
 </code></pre>
 <p><strong>Q:调用c++库文件</strong></p>
 <pre><code class="lang-python">so = ctypes.cdll.LoadLibrary(&quot;/home/jiaopan/projects/c++/detector-onnx-linux/cmake-build-debug/libdetector.so&quot;)
@@ -751,7 +767,7 @@ git push origin &lt;分支名&gt;
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -800,7 +816,7 @@ git push origin &lt;分支名&gt;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -809,7 +825,7 @@ git push origin &lt;分支名&gt;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
