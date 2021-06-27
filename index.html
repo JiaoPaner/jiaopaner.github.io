@@ -139,6 +139,64 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2021/05/13/opencv-note/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="opencv-note" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2021/05/13/opencv-note/">
+        <p class="h4 index-header">opencv-note</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">1.创建纯色图片
+cv::Mat mat(100, 100, CV_8UC3);
+int es = mat.elemSize(); // 单个数据大小
+int size = mat.rows * mat.cols * es; // 所有数据大小
+
+for (int i = 0; i &lt; size; i +=es){
+    mat.data[i] = 0; // Blue
+    mat.data[i + 1] = 0; // Green
+    mat.data[i + 2] = 0; // Red
+}
+cv::imwrite(&quot;cv_blue.jpg&quot;,mat);
+
+2.opencv颜色转换(RGB-HSV)opencv中HSV的取值范围：H:[0,180],S:[0,255],V:[0,255]
+#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+
+int main() {
+    //std::cout &lt;&lt; cv::getVersionString() &lt;&lt</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2021-05-13&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/opencv3">opencv3</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2021/01/13/java%E8%99%9A%E6%8B%9F%E6%9C%BA/" target="_self">
           <img src="/images/java_jvm.jpeg" srcset="/img/loading.gif" alt="Java虚拟机" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -165,13 +223,13 @@
         
           <i class="iconfont icon-inbox"></i>
           
-            <a href="/categories/java">java</a>&nbsp;
+            <a href="/categories/Java">Java</a>&nbsp;
           &nbsp;
         
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/java">java</a>&nbsp;
+            <a href="/tags/Java">Java</a>&nbsp;
           
         
       </div>
@@ -223,13 +281,13 @@ const std::vector&lt;int&gt;::iterator iterator = vec.begin();
         
           <i class="iconfont icon-inbox"></i>
           
-            <a href="/categories/c++">c++</a>&nbsp;
+            <a href="/categories/C++">C++</a>&nbsp;
           &nbsp;
         
         
           <i class="iconfont icon-tag"></i>
           
-            <a href="/tags/c++">c++</a>&nbsp;
+            <a href="/tags/C++">C++</a>&nbsp;
           
         
       </div>
@@ -293,62 +351,6 @@ int findRepeatNumber(vector&lt;int&gt;&amp; nums) {
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/leetcode">leetcode</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2020/12/03/opencv%E9%A2%9C%E8%89%B2%E8%BD%AC%E6%8D%A2(RGB-HSV)/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="opencv颜色转换(RGB-HSV)" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2020/12/03/opencv%E9%A2%9C%E8%89%B2%E8%BD%AC%E6%8D%A2(RGB-HSV)/">
-        <p class="h4 index-header">opencv颜色转换(RGB-HSV)</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">opencv中HSV的取值范围：H:[0,180],S:[0,255],V:[0,255]
-#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-
-int main() {
-    //std::cout &lt;&lt; cv::getVersionString() &lt;&lt; std::endl;
-    cv::Mat image = cv::imread(&quot;cv_blue.jpg&quot;);
-    cv::cvtColor(image,image,CV_BGR2RGB);
-
-    /**
-     * H: [0,180],S:[0,255],V:[0,255]
-     */
-    cv::Mat temp = image.clone();
-    cv::cvtColor(temp,temp,CV_RGB2HSV);
-    int h = temp.at&lt;cv::Vec3b&gt;(0,0)[0];
-    int s = temp.at&lt;cv::Vec3b&gt;</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2020-12-03&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/opencv3">opencv3</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv%20samples">opencv samples</a>&nbsp;
           
         
       </div>
@@ -733,7 +735,7 @@ JavaStream</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -742,7 +744,7 @@ JavaStream</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>opencv颜色转换(RGB-HSV) ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>opencv-note ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -116,7 +116,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Thursday, December 3rd 2020, 9:40 pm
+                  Thursday, May 13th 2021, 9:40 pm
                 </p>
               
 
@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    229 字
+                    306 字
                   </span>&nbsp;
                 
 
@@ -166,7 +166,19 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>opencv中HSV的取值范围：H:[0,180],S:[0,255],V:[0,255]</p>
+            <p><strong>1.创建纯色图片</strong></p>
+<pre><code class="lang-cpp">cv::Mat mat(100, 100, CV_8UC3);
+int es = mat.elemSize(); // 单个数据大小
+int size = mat.rows * mat.cols * es; // 所有数据大小
+
+for (int i = 0; i &lt; size; i +=es){
+    mat.data[i] = 0; // Blue
+    mat.data[i + 1] = 0; // Green
+    mat.data[i + 2] = 0; // Red
+}
+cv::imwrite(&quot;cv_blue.jpg&quot;,mat);
+</code></pre>
+<p><strong>2.opencv颜色转换(RGB-HSV)</strong><br>opencv中HSV的取值范围：H:[0,180],S:[0,255],V:[0,255]</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 #include &lt;opencv2/opencv.hpp&gt;
 
@@ -228,7 +240,7 @@ red:0, green:0, blue:254
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -277,7 +289,7 @@ red:0, green:0, blue:254
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -286,7 +298,7 @@ red:0, green:0, blue:254
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -385,7 +397,7 @@ red:0, green:0, blue:254
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "opencv颜色转换(RGB-HSV)&nbsp;",
+        "opencv-note&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

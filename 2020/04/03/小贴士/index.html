@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    3.2k 字
+                    3.4k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      17 分钟
+                      18 分钟
                   </span>&nbsp;
                 
 
@@ -187,7 +187,7 @@ extern &quot;C&quot; {
 <p><strong>Q：C++调用DLL</strong></p>
 <ul>
 <li><p>dll的创建</p>
-<pre><code class="lang-c++">//test.h
+<pre><code class="lang-cpp">//test.h
 #ifdef __cplusplus
 extern &quot;C&quot; {
 #endif
@@ -196,7 +196,7 @@ __declspec(dllexport) int add(int a,int b);
 }
 #endif  // __cplusplus
 </code></pre>
-<pre><code class="lang-c++">//test.cpp
+<pre><code class="lang-cpp">//test.cpp
 #include &quot;test.h&quot;
 int add(int a,int b) {
     return a + b;
@@ -205,19 +205,16 @@ int add(int a,int b) {
 <p>编译上述工程为dll，即生成test.dll，并复制到调用该dll工程的编译目录</p>
 </li>
 <li><p>dll的使用</p>
-<pre><code class="lang-c++">#include&lt;Windows.h&gt;
-#includ&lt;iostream&gt;
-typedef int (*padd)(int,int);
-int main(int argc, char *argv[]){
-    HMODULE test = LoadLibrary(&quot;test.dll&quot;);
-    if (test != NULL){
-        padd add = (padd)GetProcAddress(test,&quot;add&quot;);
-        if (add != NULL){    
-            std::cout &lt;&lt; add(1,0) &lt;&lt; std::endl;
-        }
+<p>``cpp</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include"></a>include<Windows.h></h1><h1 id="includ"><a href="#includ" class="headerlink" title="includ"></a>includ<iostream></h1><p>typedef int (<em>padd)(int,int);<br>int main(int argc, char </em>argv[]){</p>
+<pre><code>HMODULE test = LoadLibrary(&quot;test.dll&quot;);
+if (test != NULL){
+    padd add = (padd)GetProcAddress(test,&quot;add&quot;);
+    if (add != NULL){    
+        std::cout &lt;&lt; add(1,0) &lt;&lt; std::endl;
     }
 }
-</code></pre>
+</code></pre><p>}<br>```</p>
 </li>
 </ul>
 <p><strong>Q:cmake 简单编译命令</strong></p>
@@ -252,7 +249,7 @@ $ make
 $ make install
 </code></pre>
 <p><strong>Q:cJSON的使用</strong></p>
-<pre><code class="lang-c++">#include &quot;cJSON.h&quot;
+<pre><code class="lang-cpp">#include &quot;cJSON.h&quot;
 cJSON  *root = cJSON_CreateObject();
 cJSON  *bboxs = cJSON_CreateArray();
 char *resultJson;
@@ -297,7 +294,7 @@ namespace test
 }
 </code></pre>
 <p><strong>Q：opencv Mat和byte互转</strong></p>
-<pre><code class="lang-c++">unsigned char* matToBytes(Mat image){
+<pre><code class="lang-cpp">unsigned char* matToBytes(Mat image){
    int size = image.total() * image.elemSize();
      unsigned char* bytes = new unsigned char[size];  // you will have to delete[] that later
      std::memcpy(bytes, image.data, size * sizeof(unsigned char));
@@ -309,7 +306,7 @@ Mat bytesToMat(unsigned char* bytes,int width,int height){
 }
 </code></pre>
 <p><strong>Q:opencv Mat 转std::vector std::vector转std::string</strong></p>
-<pre><code class="lang-c++">cv::Mat output = output.reshape(1, 1);
+<pre><code class="lang-cpp">cv::Mat output = output.reshape(1, 1);
 std::vector&lt;double&gt; vetor = (std::vector&lt;double&gt;)output;
 std::stringstream ss;
 ss &lt;&lt; std::setprecision(16);//精度设置
@@ -335,11 +332,11 @@ fs &lt;&lt; &quot;features&quot; &lt;&lt; output;
 fs.release();
 </code></pre>
 <p><strong>Q: opencv 截取图片的矩形区域</strong></p>
-<pre><code class="lang-c++">rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
+<pre><code class="lang-cpp">rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
 Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
 </code></pre>
 <p><strong>Q: c++时间差计算</strong></p>
-<pre><code class="lang-c++">#include &lt;chrono&gt;
+<pre><code class="lang-cpp">#include &lt;chrono&gt;
 auto start = std::chrono::steady_clock::now();
 //do something
 auto end = std::chrono::steady_clock::now();
@@ -379,7 +376,30 @@ sudo python setup.py install
 test.sayHello();//#调用模块的sayHello方法
 </code></pre>
 <p><strong>Q:jupyter notebook 运行于指定的conda环境上</strong></p>
-<pre><code class="lang-bash">conda install nb_conda #重启jupyter notebook 选择kernel即可
+<pre><code class="lang-bash">$ conda install nb_conda #重启jupyter notebook 选择kernel即可
+</code></pre>
+<pre><code class="lang-bash">$ conda info --envs
+# conda environments:
+#
+base                     /Volumes/storage/mac/miniconda3
+python36              *  /Volumes/storage/mac/miniconda3/envs/python36
+$ jupyter kernelspec list
+Available kernels:
+  reco_base    /Users/jiaopan/Library/Jupyter/kernels/reco_base
+  python3      /Volumes/storage/mac/miniconda3/envs/python36/share/jupyter/kernels/python3
+$ cd /Volumes/storage/mac/miniconda3/envs/python36
+$ vi kernel.json
+{
+ &quot;argv&quot;: [
+  &quot;/Volumes/storage/mac/miniconda3/envs/python36/bin/python&quot;,#修改
+  &quot;-m&quot;,
+  &quot;ipykernel_launcher&quot;,
+  &quot;-f&quot;,
+  &quot;{connection_file}&quot;
+ ],
+ &quot;display_name&quot;: &quot;Python 3&quot;,
+ &quot;language&quot;: &quot;python&quot;
+}
 </code></pre>
 <p><strong>Q:设置jupyter notebook可远程访问</strong></p>
 <pre><code class="lang-bash">$ jupyter notebook --generate-config
@@ -733,6 +753,21 @@ git add . #提交
 git commit -m &quot;&quot; 
 git push origin &lt;分支名&gt;
 </code></pre>
+<p><strong>Q：git 子模块</strong></p>
+<pre><code class="lang-bash">#添加
+git submodule add &lt;url&gt; &lt;path&gt;
+git submodule init
+git submodule update
+git submodule update --init --recursive
+
+#删除
+rm -rf 子模块源码目录
+#删除子模块项
+vi .gitmodules 
+vi .git/config 
+rm .git/module/子模块目录
+git rm --cached 子模块名称
+</code></pre>
 
             <hr>
           </div>
@@ -767,7 +802,7 @@ git push origin &lt;分支名&gt;
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -816,7 +851,7 @@ git push origin &lt;分支名&gt;
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -825,7 +860,7 @@ git push origin &lt;分支名&gt;
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
