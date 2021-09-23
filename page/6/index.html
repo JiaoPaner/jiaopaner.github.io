@@ -139,6 +139,51 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/" target="_self">
+          <img src="/images/cv/6.jpg" srcset="/img/loading.gif" alt="数字图像处理(1) 图像基础" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/07/13/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86(1)%20%E5%9B%BE%E5%83%8F%E5%9F%BA%E7%A1%80/">
+        <p class="h4 index-header">数字图像处理(1) 图像基础</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">图像采样和量化
+图像采样数字化坐标值称为采样,对二维空间中连续的图像在水平和垂直方向上等间距地分割成矩形网状结构，所形成的微小方格称为像素点,小方格中的值由灰度值(方格区域亮度的平均值)表示,采样的实质就是用多少个像素点来描述一幅图像.采样时，若横向的像素数(列数)为M,纵向的像素数(行数)为N,则图像总像素数为M*N个像素；
+采样间隔越大，即行列数少,则图像像素数越少，空间分辨率低，质量差，严重时出现马赛克效应；采样间隔越小，即行列数大,则图像像素数越多，空间分辨率高，图像质量好，数据量大；如下图,上述采样点分别为a:1024x1024 , b:512x512 , c:256x256 , d:128x128 , e:64x64, f:32x32
+采样过程:
+图像量化采样后所得各像素的灰度模拟量到离散量的转换为图像灰度量化像素灰度级/灰度值/灰度:表示像素明暗程度的整数灰度级数:数字图像中不同灰度值的个数(G）若连续的灰度值用z表示,则满足于z{i} &lt; z &lt; z{i+1} 的z值都量化为整数值z{i}，z{i}称为像素灰度值量化后的的灰度值用比特位数(g:存储图像灰度值</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-13&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86">数字图像处理</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86">数字图像处理</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2018/07/12/blob%20detect/" target="_self">
           <img src="/images/opencv3/blob.jpg" srcset="/img/loading.gif" alt="blob detect" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -589,54 +634,6 @@ std::vector&lt;int&gt; sum::twoSum(std::vector&lt;int&gt;&amp; nums, int target)
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/06/13/Docker%E6%8C%87%E5%8D%97/" target="_self">
-          <img src="/images/docker.jpg" srcset="/img/loading.gif" alt="Docker指南" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/06/13/Docker%E6%8C%87%E5%8D%97/">
-        <p class="h4 index-header">Docker指南</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">  
-Docker简介问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?
-Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源.容器是完全使用沙箱机制，相互之间不会有任何接口(类似iPhone的 app)，更重要的是容器性能开销极低.[来源网络]
-通过上述定义可以知道，Docker似乎类似于虚拟机，可以在Docker中打包安装任何应用并运行，比如tomcat、Java、mysql等.但它并不等同于虚拟机，为了区分Docker和虚拟机，我们先来了解虚拟机的运行机制，如下图所示：
-
-
-基础设施（Infrastructure):个人电脑，数据中心的服务器，或者是云主机
-操作系统（Host </div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-06-13&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/docker">docker</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/docker">docker</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -673,7 +670,7 @@ Docker 让开发者可以打包他们的应用以及依赖包到一个可移植�
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -682,7 +679,7 @@ Docker 让开发者可以打包他们的应用以及依赖包到一个可移植�
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

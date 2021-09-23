@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="JiaoPan">
   <meta name="keywords" content="deep learning|computer vision">
-  <title>hexo搭建GitHub博客 ~ 今天的风儿甚是喧嚣 JiaoPan</title>
+  <title>PyTorch Tutorials ~ 今天的风儿甚是喧嚣 JiaoPan</title>
 
   <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"  >
 <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"  >
@@ -116,7 +116,7 @@
               
                 <p class="mt-3">
                   <i class="fas fa-calendar-alt" aria-hidden="true"></i>&nbsp;
-                  Sunday, March 10th 2019, 3:40 pm
+                  Monday, June 28th 2021, 9:14 pm
                 </p>
               
 
@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    472 字
+                    4 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      2 分钟
+                      1 分钟
                   </span>&nbsp;
                 
 
@@ -166,73 +166,9 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>前提环境:Node.js、Git已安装</p>
-<h1 id="通过github创建repository-格式-博客名称-github-io"><a href="#通过github创建repository-格式-博客名称-github-io" class="headerlink" title="通过github创建repository 格式:博客名称.github.io"></a>通过github创建repository 格式:博客名称.github.io</h1><p><img src="/images/github/1.jpg" srcset="/img/loading.gif" alt=""></p>
-<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><ul>
-<li>新建blog文件夹,并打开git bash<br><img src="/images/github/2.jpg" srcset="/img/loading.gif" alt=""></li>
-<li><p>执行命令</p>
-<pre><code class="lang-bash">npm install hexo -g #安装hexo命令
-hexo -v #检查是否安装成功
+            <h1 id="基本计算"><a href="#基本计算" class="headerlink" title="基本计算"></a>基本计算</h1><pre><code class="lang-python">
+
 </code></pre>
-<p><img src="/images/github/3.jpg" srcset="/img/loading.gif" alt=""></p>
-</li>
-<li><p>初始化hexo</p>
-<pre><code class="lang-bash">hexo init #初始化blog文件夹
-npm install #安装必要组件
-#执行如下命令 开启本地体验
-hexo g
-hexo s  
-#访问http://localhost:4000 即可看到默认博客页面
-</code></pre>
-</li>
-</ul>
-<h1 id="关联hexo-github"><a href="#关联hexo-github" class="headerlink" title="关联hexo - github"></a>关联hexo - github</h1><ul>
-<li>设置git的username和email<pre><code class="lang-bash">git config --global user.name &#39;jiaopan&#39; #设置用户名
-git config --global user.email &#39;807854982@qq.com&#39; #设置邮箱
-</code></pre>
-</li>
-<li>生成公钥<pre><code class="lang-bash">ssh-keygen -t rsa -C “807854982@qq.com”#连续按三次回车键
-</code></pre>
-红框处为密钥保存的路径<br><img src="/images/github/4.jpg" srcset="/img/loading.gif" alt=""><pre><code class="lang-bash">cd ~/.ssh #cd到密钥目录
-#添加密钥到ssh-agent
-eval &quot;$(ssh-agent -s)&quot;
-ssh-add ~/.ssh/id_rsa
-</code></pre>
-</li>
-<li>配置github SSH<br>登录github,在settings里添加SSH<br><img src="/images/github/5.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/github/6.jpg" srcset="/img/loading.gif" alt=""><br>将生成的id_rsa.pub内容复制到SSH key里 点击add SSH 即可<br><img src="/images/github/7.jpg" srcset="/img/loading.gif" alt=""><br><img src="/images/github/8.jpg" srcset="/img/loading.gif" alt=""><br>测试是否可连 出现用户名则成功<pre><code class="lang-bash">ssh -T git@github.com
-</code></pre>
-<img src="/images/github/9.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>配置_config.yml<br><img src="/images/github/10.jpg" srcset="/img/loading.gif" alt=""><br>更改如下配置:<pre><code class="lang-bash">url:  https://jiaopaner.github.io #  repository 
-deploy:
-type: git
-repo: git@github.com:JiaoPaner/jiaopaner.github.io.git
-branch: master
-</code></pre>
-</li>
-</ul>
-<h1 id="文章发布"><a href="#文章发布" class="headerlink" title="文章发布"></a>文章发布</h1><ul>
-<li>安装扩展<pre><code class="lang-bash">npm install hexo-deployer-git --save
-</code></pre>
-</li>
-<li>创建文章<pre><code class="lang-bash">hexo new post &#39;文章名&#39; #在blog/source/post
-</code></pre>
-在blog目录下的 source/_posts将会生成对应的MD文件.打开MD文件进行文章编辑即可<br><img src="/images/github/11.jpg" srcset="/img/loading.gif" alt=""></li>
-<li>发布文章<pre><code class="lang-bash">hexo d -g
-</code></pre>
-成功后,访问博客地址 <a href="https://jiaopaner.github.io">https://jiaopaner.github.io</a> 即可看到</li>
-</ul>
-<h1 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h1><ul>
-<li>通过<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> 主题目录下载主题 </li>
-<li>主题内有下载地址和安装方法,一般为github地址,下载其压缩包或git clone到本地</li>
-<li>复制到blog目录下的themes内(本博客为next主题)<br><img src="/images/github/12.jpg" srcset="/img/loading.gif" alt=""></li>
-<li><p>修改_config.yml  theme值为themes下主题目录名<br><img src="/images/github/13.jpg" srcset="/img/loading.gif" alt=""></p>
-</li>
-<li><p>更新即可</p>
-<pre><code class="lang-bash">hexo d -g
-</code></pre>
-</li>
-</ul>
-<p>版权声明：原创,转载请注明来源,否则律师函警告</p>
 
             <hr>
           </div>
@@ -243,7 +179,7 @@ branch: master
               <span>
                 <i class="iconfont icon-inbox"></i>
                 
-                  <a class="hover-with-bg" href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>
+                  <a class="hover-with-bg" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>
                   &nbsp;
                 
               </span>&nbsp;&nbsp;
@@ -252,7 +188,7 @@ branch: master
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/hexo">hexo</a>
+                  <a class="hover-with-bg" href="/tags/pytorch">pytorch</a>
                 
               </span>
             
@@ -424,7 +360,7 @@ branch: master
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "hexo搭建GitHub博客&nbsp;",
+        "PyTorch Tutorials&nbsp;",
       ],
       cursorChar: ".",
       typeSpeed: 70,

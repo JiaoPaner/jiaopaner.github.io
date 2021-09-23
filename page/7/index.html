@@ -139,6 +139,54 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2018/06/13/Docker%E6%8C%87%E5%8D%97/" target="_self">
+          <img src="/images/docker.jpg" srcset="/img/loading.gif" alt="Docker指南" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2018/06/13/Docker%E6%8C%87%E5%8D%97/">
+        <p class="h4 index-header">Docker指南</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">  
+Docker简介问题引入:当我们在本机开发好应用程序以后需要发布到服务器，但是服务器并非和我们本机系统有着一样的运行环境，如缺少数据库、缺少各种依赖包、依赖软件版本过低等等问题，需要花很长时间重新在服务器配置好运行环境，得不偿失.那么有没有方法能够将我们开发程序时本机上所有的运行环境打包，直接部署到服务器上程序就能运行的机制呢?
+Docker 让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上，Docker是一个开源的应用容器引擎，基于Go语言，并遵从Apache2.0协议开源.容器是完全使用沙箱机制，相互之间不会有任何接口(类似iPhone的 app)，更重要的是容器性能开销极低.[来源网络]
+通过上述定义可以知道，Docker似乎类似于虚拟机，可以在Docker中打包安装任何应用并运行，比如tomcat、Java、mysql等.但它并不等同于虚拟机，为了区分Docker和虚拟机，我们先来了解虚拟机的运行机制，如下图所示：
+
+
+基础设施（Infrastructure):个人电脑，数据中心的服务器，或者是云主机
+操作系统（Host </div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2018-06-13&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/docker">docker</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/docker">docker</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2018/03/11/opencv3(1-2)%20linux%E9%85%8D%E7%BD%AEopencv3%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" target="_self">
           <img src="/images/opencv3/2-1.png" srcset="/img/loading.gif" alt="opencv3(1-2) linux配置opencv3开发环境" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -223,7 +271,7 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -232,7 +280,7 @@ sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libp
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

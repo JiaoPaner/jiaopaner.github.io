@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    3.4k 字
+                    3.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      18 分钟
+                      20 分钟
                   </span>&nbsp;
                 
 
@@ -768,6 +768,61 @@ vi .git/config
 rm .git/module/子模块目录
 git rm --cached 子模块名称
 </code></pre>
+<p><strong>Q：glibc升级</strong></p>
+<pre><code class="lang-bash">#http://ftp.gnu.org/gnu/glibc/
+wget http://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.gz
+tar -zxvf glibc-2.23.tar.gz
+cd glibc-2.23
+mkdir build
+cd build
+./configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin
+make &amp;&amp; make install 
+
+&#39;&#39;&#39;
+gawk: error while loading shared libraries: /lib64/libm.so.6: invalid ELF header
+# 打开新终端执行如下命令
+# cd /lib64
+# unlink libm.so.6
+# ln -s libm-2.23.so libm.so.6
+# 回到原终端执行 make install
+&#39;&#39;&#39;
+</code></pre>
+<p><strong>Q：libstdc++升级</strong></p>
+<pre><code class="lang-bash">#下载最新版libstdc++
+mv /usr/lib64/libstdc++.so.6  /usr/lib64/libstdc++.so.6.bak
+ln -s /usr/lib64/libstdc++.so.6.0.26  /usr/lib64/libstdc++.so.6
+</code></pre>
+<p><strong>Q：linux免密登录</strong></p>
+<pre><code class="lang-bash">$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/worker/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/worker/.ssh/id_rsa
+Your public key has been saved in /home/worker/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:PmhwBGI0Gqgx8mCl5mHvj8ogyEfV9jnrzmLuKb2mOxQ worker@normalserver.inm.inner
+The key&#39;s randomart image is:
++---[RSA 3072]----+
+|o.*..            |
+|*=.o ..          |
+|=X   ..o         |
+|= + .E. . .      |
+| . o. o S+       |
+|o o  + o  o      |
+|+. o. + o.       |
+|+ . o+ =+.       |
+| o.. +X=++       |
++----[SHA256]-----+
+
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub worker@10.100.3.27
+#手动方式
+#复制id_rsa.pub内容追加至目标主机.ssh/authorized_keys
+$ cd ~ 
+$ mkdir .ssh &amp;&amp; chmod 700 .ssh
+$ cat id_rsa.pub &gt;&gt; authorized_keys
+$ chmod 600 authorized_keys
+</code></pre>
 
             <hr>
           </div>
@@ -802,7 +857,7 @@ git rm --cached 子模块名称
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -851,7 +906,7 @@ git rm --cached 子模块名称
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -860,7 +915,7 @@ git rm --cached 子模块名称
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
