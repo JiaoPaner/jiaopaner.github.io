@@ -820,6 +820,8 @@ $ ssh-copy-id -i ~/.ssh/id_rsa.pub worker@10.100.3.27
 #复制id_rsa.pub内容追加至目标主机.ssh/authorized_keys
 $ cd ~ 
 $ mkdir .ssh &amp;&amp; chmod 700 .ssh
+$ cd .ssh
+$ touch id_rsa.pub # 复制ssh-keygen主机的id_rsa.pub内容置此
 $ cat id_rsa.pub &gt;&gt; authorized_keys
 $ chmod 600 authorized_keys
 </code></pre>
