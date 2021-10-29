@@ -205,16 +205,19 @@ int add(int a,int b) {
 <p>编译上述工程为dll，即生成test.dll，并复制到调用该dll工程的编译目录</p>
 </li>
 <li><p>dll的使用</p>
-<p>``cpp</p>
-<h1 id="include"><a href="#include" class="headerlink" title="include"></a>include<Windows.h></h1><h1 id="includ"><a href="#includ" class="headerlink" title="includ"></a>includ<iostream></h1><p>typedef int (<em>padd)(int,int);<br>int main(int argc, char </em>argv[]){</p>
-<pre><code>HMODULE test = LoadLibrary(&quot;test.dll&quot;);
-if (test != NULL){
-    padd add = (padd)GetProcAddress(test,&quot;add&quot;);
-    if (add != NULL){    
-        std::cout &lt;&lt; add(1,0) &lt;&lt; std::endl;
-    }
+<pre><code class="lang-cpp">#include&lt;Windows.h&gt;
+#includ&lt;iostream&gt;
+typedef int (*padd)(int,int);
+int main(int argc, char *argv[]){
+        HMODULE test = LoadLibrary(&quot;test.dll&quot;);
+        if (test != NULL){
+            padd add = (padd)GetProcAddress(test,&quot;add&quot;);
+            if (add != NULL){    
+                std::cout &lt;&lt; add(1,0) &lt;&lt; std::endl;
+            }
+        }
 }
-</code></pre><p>}<br>```</p>
+</code></pre>
 </li>
 </ul>
 <p><strong>Q:cmake 简单编译命令</strong></p>
@@ -729,13 +732,13 @@ SQL&gt; CONNECT 用户@orcl #新用户测试登陆
 #文件
 scp /root/test.json root@远程服务器ip:/usr/local/src
 #目录
-scp -r /home/testdir root@:远程服务器ip:/home/testdir
+scp -r /home/testdir root@远程服务器ip:/home/testdir
 
 #远程下载到本地
 #文件
 scp root@远程服务器ip:/usr/local/src/test.json /root/
 #目录
-scp -r root@:远程服务器ip:/home/testdir /home/
+scp -r root@远程服务器ip:/home/testdir /home/
 </code></pre>
 <p><strong>Q：Ubuntu增加swap交换空间</strong></p>
 <pre><code class="lang-bash">$ free -m #查看分区大小
@@ -815,9 +818,9 @@ The key&#39;s randomart image is:
 | o.. +X=++       |
 +----[SHA256]-----+
 
+#复制id_rsa.pub内容追加至目标连接主机.ssh/authorized_keys
 $ ssh-copy-id -i ~/.ssh/id_rsa.pub worker@10.100.3.27
 #手动方式
-#复制id_rsa.pub内容追加至目标主机.ssh/authorized_keys
 $ cd ~ 
 $ mkdir .ssh &amp;&amp; chmod 700 .ssh
 $ cd .ssh
@@ -859,7 +862,7 @@ $ chmod 600 authorized_keys
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -908,7 +911,7 @@ $ chmod 600 authorized_keys
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -917,7 +920,7 @@ $ chmod 600 authorized_keys
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
