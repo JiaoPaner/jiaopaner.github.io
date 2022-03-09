@@ -139,6 +139,58 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/" target="_self">
+          <img src="/images/object-detection/open-image-files.jpg" srcset="/img/loading.gif" alt="(1)Faster R-CNN implemented by Keras" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/">
+        <p class="h4 index-header">(1)Faster R-CNN implemented by Keras</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">训练数据训练数据集下载地址:1.下载class-descriptions-boxable.csv 即 V4下的Metadata ClassNames (训练数据集的所有类别)https://storage.googleapis.com/openimages/web/download.html2.下载train-images-boxable.csv和train-annotations-bbox.csv (已标记的图片集)https://www.figure-eight.com/dataset/open-images-annotated-with-bounding-boxes/note:原始训练集有600个类别,数据量庞大,只抽取其中两个类别的图片集作为训练数据集,如Car,Person
+
+
+数据集预览
+import numpy as np
+import time
+import sys
+import os
+import random
+from skimage import io
+import pandas as pd
+from matplotlib import pyplot as plt</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-04&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B">目标检测</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/07/03/VGG16Net/" target="_self">
           <img src="/images/dp-net/VGG16_Summary_Table.jpg" srcset="/img/loading.gif" alt="VGG16Net" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -683,63 +735,6 @@ L.data = new ElemType(InitSize);//C++
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(1) 基本概念" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
-        <p class="h4 index-header">数据结构(1) 基本概念</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">数据
-数据是信息的载体，是描述客观事物的数、字符以及所有能输入到计算机且能被计算机识别和处理的符号集合。
-数据元素
-数据的基本单位，数据元素由数据项组成。如一条学生记录就是一个数据元素，它由姓名、学号、性别等数据项组成。
-数据对象
-具有相同性质的的数据元素集合，是数据的子集。
-抽象数据类型
-一个数学模型且定义在该模型上的一组操作，通常用数据对象、数据关系、基本操作集表示。
-数据结构
-数据结构包括逻辑结构、存储结构和数据的运算，算法的设计取决于选定的逻辑结构，算法的实现依赖于采用的存储结构。
-
-逻辑结构
-
-线性结构：结构中的数据元素只存在一对一的关系(线性表、栈和队列、串、数组、广义表)
-非线性结构：结构中数据元素存在一对多的关系(树)、多对多的关系(图)
-存储结构：顺序存储、链式存储、索引存储、散列存储
-</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-29&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -776,7 +771,7 @@ L.data = new ElemType(InitSize);//C++
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -785,7 +780,7 @@ L.data = new ElemType(InitSize);//C++
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

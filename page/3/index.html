@@ -139,6 +139,53 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/" target="_self">
+          <img src="/images/note/11.jpg" srcset="/img/loading.gif" alt="mxnet Windows编译安装CPU版 c++ api" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/09/19/mxnet%20Windows%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85CPU%E7%89%88/">
+        <p class="h4 index-header">mxnet Windows编译安装CPU版 c++ api</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">编译环境win10 x64 、Visual Studio 2015、cmake 3.0+、python2.7 (环境变量需配置)
+依赖1.OpenBLAS-v0.2.14-Win64-int64 下载地址：https://sourceforge.net/projects/openblas/files/v0.2.14/
+解压安装后，添加环境变量OpenBLAS_HOME 值为openblas的目录，即：your_dir/openblas
+2.OpenCV 3.0+ 下载地址：https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.3.1/opencv-3.3.1-vc14.exe/download
+安装后，添加环境变量OpenCV_DIR 值为your_dir\opencv3.3.1\build,并在path环境变量中添加your_dir\opencv3.3.1\build\x64\vc14\bin
+源码编译1.git clone项目到本地 （版本1.5.1）
+git clone --recursive http</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-09-19&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/mxnet">mxnet</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/08/07/cmake%E6%95%99%E7%A8%8B/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="cmake教程" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -670,58 +717,6 @@ std::cout &lt;&lt; 变量 &lt;&lt; std::endl; 添加换行
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/" target="_self">
-          <img src="/images/object-detection/open-image-files.jpg" srcset="/img/loading.gif" alt="(1)Faster R-CNN implemented by Keras" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/07/04/(1)Faster%20R-CNN%20%20implemented%20by%20Keras/">
-        <p class="h4 index-header">(1)Faster R-CNN implemented by Keras</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">训练数据训练数据集下载地址:1.下载class-descriptions-boxable.csv 即 V4下的Metadata ClassNames (训练数据集的所有类别)https://storage.googleapis.com/openimages/web/download.html2.下载train-images-boxable.csv和train-annotations-bbox.csv (已标记的图片集)https://www.figure-eight.com/dataset/open-images-annotated-with-bounding-boxes/note:原始训练集有600个类别,数据量庞大,只抽取其中两个类别的图片集作为训练数据集,如Car,Person
-
-
-数据集预览
-import numpy as np
-import time
-import sys
-import os
-import random
-from skimage import io
-import pandas as pd
-from matplotlib import pyplot as plt</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-07-04&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B">目标检测</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -758,7 +753,7 @@ from matplotlib import pyplot as plt</div>
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -767,7 +762,7 @@ from matplotlib import pyplot as plt</div>
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

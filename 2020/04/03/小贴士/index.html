@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    3.7k 字
+                    4.5k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      20 分钟
+                      25 分钟
                   </span>&nbsp;
                 
 
@@ -346,6 +346,42 @@ auto end = std::chrono::steady_clock::now();
 std::chrono::duration&lt;double&gt; elapsed = end - start;
 std::cout &lt;&lt; &quot;elapsed:&quot; &lt;&lt; elapsed.count() &lt;&lt;&quot;s&quot;&lt;&lt; std::endl;
 </code></pre>
+<p><strong>Q: c++读写文件</strong></p>
+<pre><code class="lang-cpp">#include &lt;fstream&gt;
+#include &lt;iomanip&gt;
+//写文件
+ofstream out_txt_file;
+out_txt_file.open(&quot;image.bat&quot;, ios::out | ios::trunc);
+for (int i = 0; i &lt; image.size(); i++) {
+    out_txt_file &lt;&lt; to_string(image[i]) &lt;&lt; endl;
+}
+out_txt_file.close();
+//读文件
+std::vector&lt;float&gt; image;
+ifstream infile;
+infile.open(&quot;image.bat&quot;);
+assert(infile.is_open());
+string s;
+while(getline(infile,s)){
+    image.push_back(stof(s));
+}
+infile.close();
+
+std::pair&lt;char*, int&gt; readFile(std::string path) {
+  fstream in(path, ios::in | ios::binary);
+  if (!in.is_open()) {
+    cerr &lt;&lt; &quot;file not find&quot; &lt;&lt; endl;
+  }
+  in.seekg(0, ios::end);
+  long size;
+  size = in.tellg();
+  char* buf = new char[size];
+  in.seekg(ios::beg);
+  in.read(buf, size);
+
+  return std::make_pair(buf, size);
+}
+</code></pre>
 <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q：python打包发布</strong></p>
 <p>1.项目根目录新建setup.py</p>
 <pre><code class="lang-python">from distutils.core import setup
@@ -501,6 +537,75 @@ print(result)
 
     cap.release()
     cv2.destroyAllWindows()
+</code></pre>
+<p><strong>Q:pytorch2paddle</strong></p>
+<pre><code class="lang-python"># -*- coding: utf-8 -*-
+# @Time    : 2022/3/8 14:38
+# @Author  : jiaopaner
+import sys
+sys.path.insert(0, &#39;./&#39;)
+import torch
+import numpy as np
+from torchvision.models import AlexNet
+from torch.utils.model_zoo import load_url as load_state_dict_from_url
+from collections import OrderedDict
+from craft import CRAFT
+
+def copyStateDict(state_dict):
+    if list(state_dict.keys())[0].startswith(&quot;module&quot;):
+        start_idx = 1
+    else:
+        start_idx = 0
+    new_state_dict = OrderedDict()
+    for k, v in state_dict.items():
+        name = &quot;.&quot;.join(k.split(&quot;.&quot;)[start_idx:])
+        new_state_dict[name] = v
+    return new_state_dict
+
+if __name__ == &#39;__main__&#39;:
+    # 构建输入
+    input_data = np.random.rand(1, 3, 960, 960).astype(&quot;float32&quot;)
+    # 获取PyTorch Module
+    # torch_module = AlexNet()
+    # torch_state_dict = load_state_dict_from_url(&#39;https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth&#39;)
+    # torch_module.load_state_dict(torch_state_dict)
+    # # 设置为eval模式
+    # torch_module.eval()
+    net = CRAFT()
+    net.load_state_dict(copyStateDict(torch.load(&quot;/Volumes/storage/resources/models/paddle-ocr-models/craft_mlt_25k.pth&quot;, map_location=&quot;cpu&quot;)))
+    net.eval()
+    # 进行转换
+    from x2paddle.convert import pytorch2paddle
+
+    pytorch2paddle(net,
+                   save_dir=&quot;pd_model_trace&quot;,
+                   jit_type=&quot;trace&quot;,
+                   input_examples=[torch.tensor(input_data)])
+</code></pre>
+<pre><code class="lang-python">####x2paddle_code.py####
+#dynamic shape  -1:表示不固定
+def main(x0):
+    # There are 1 inputs.
+    # x0: shape-[1, 3, 960, 960], type-float32.
+    paddle.disable_static()
+    params = paddle.load(r&#39;/Volumes/storage/projects/python/test/CRAFT-pytorch/pd_model_trace/model.pdparams&#39;)
+    model = CRAFT()
+    model.set_dict(params, use_structured_name=True)
+    model.eval()
+    #dynamic shape
+    sepc_list = list()
+    sepc_list.append(
+        paddle.static.InputSpec(
+            shape=[1, 3, -1, -1], name=&quot;x&quot;, dtype=&quot;float32&quot;))
+    static_model = paddle.jit.to_static(model, input_spec=sepc_list)
+    paddle.jit.save(static_model, &quot;pd_model_trace/inference_model/model&quot;)
+
+    out = model(x0)
+    return out
+
+if __name__ == &#39;__main__&#39;:
+    x = paddle.randn((1,3,960,960),dtype=paddle.float32)
+    main(x)
 </code></pre>
 <h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><p><strong>Q：iframe父/子页面互相调用方法</strong></p>
 <pre><code class="lang-html">document.getElementById(&quot;iframeId&quot;).contentWindow.childMethod()/childVariable;
@@ -795,6 +900,10 @@ gawk: error while loading shared libraries: /lib64/libm.so.6: invalid ELF header
 mv /usr/lib64/libstdc++.so.6  /usr/lib64/libstdc++.so.6.bak
 ln -s /usr/lib64/libstdc++.so.6.0.26  /usr/lib64/libstdc++.so.6
 </code></pre>
+<p><strong>Q：任务绑定指定cpu核心</strong></p>
+<pre><code class="lang-bash">cat /proc/cpuinfo | grep process
+taskset -pc 0,2 11498
+</code></pre>
 <p><strong>Q：linux免密登录</strong></p>
 <pre><code class="lang-bash">$ ssh-keygen -t rsa
 Generating public/private rsa key pair.
@@ -827,6 +936,77 @@ $ cd .ssh
 $ touch id_rsa.pub # 复制ssh-keygen主机的id_rsa.pub内容置此
 $ cat id_rsa.pub &gt;&gt; authorized_keys
 $ chmod 600 authorized_keys
+</code></pre>
+<p><strong>Q：conda安装指定的cuda和cudnn</strong></p>
+<pre><code class="lang-bash">conda install tensorflow-gpu=1.4.1 cudatoolkit=8.0 cudnn=6.0 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/linux-64/
+</code></pre>
+<p><strong>Q：gcc版本</strong></p>
+<pre><code class="lang-bash">#centos7
+devtoolset-3对应gcc4.x.x版本
+devtoolset-4对应gcc5.x.x版本
+devtoolset-6对应gcc6.x.x版本
+devtoolset-7对应gcc7.x.x版本
+devtoolset-8对应gcc8.x.x版本
+devtoolset-9对应gcc9.x.x版本
+devtoolset-10对应gcc10.x.x版本
+
+yum install centos-release-scl
+yum install devtoolset-7
+#激活
+scl enable devtoolset-7 bash
+#永久激活
+scl enable devtoolset-7 bash
+sudo vim /etc/profile
+source /opt/rh/devtoolset-7/enable
+#centos8
+dnf install gcc-toolset-10
+scl enable gcc-toolset-10 bash
+</code></pre>
+<p><strong>Q：sudo: /usr/lib/sudo/sudoers.so must be owned by uid 0</strong></p>
+<pre><code class="lang-bash">#ubuntu -&gt; recovery mode  开机长按esc
+$ pkexec chown root /usr/lib/sudo/sudoers.so
+</code></pre>
+<p><strong>Q：evpp 安装</strong></p>
+<pre><code class="lang-bash">sudo yum -y install epel-release
+sudo yum install glog-devel.x86_64
+sudo yum install gflags-devel.x86_64
+sudo yum install boost
+sudo yum install boost-devel
+#sudo yum remove libevent-devel #卸载旧版本
+tar -zxvf libevent-2.1.12-stable.tar.gz
+cd libevent-2.0.22-stable
+./configure --prefix=/usr &amp;&amp; make &amp;&amp; sudo make install
+
+#openssl
+tar -zxvf openssl-1.1.1m.tar.gz
+cd openssl-1.1.1m
+./config --prefix=/usr/local/openssl
+make
+
+git clone https://github.com/Qihoo360/evpp
+cd evpp  #编辑CMakeLists.txt 指定openssl
+git submodule update --init --recursive
+
+mkdir -p build &amp;&amp; cd build
+cmake ..
+make -j6
+</code></pre>
+<p><strong>Q：centos时钟修复</strong></p>
+<pre><code class="lang-bash">yum install ntp -y
+ntpdate ntp.aliyun.com
+</code></pre>
+<p><strong>Q：grb引导修复</strong></p>
+<pre><code class="lang-bash">grub rescue&gt; ls
+grub rescue&gt; ls (hd0,msdos1)/boot/grub
+
+grub rescue&gt; set root=(hd0,msdos1)
+grub rescue&gt; set prefix=(hd0,msdos1)/boot/grub
+
+grub rescue&gt; insmod normal
+grub rescue&gt; normal
+
+$ sudo update-grub
+$ sudo grub-install /dev/sda
 </code></pre>
 
             <hr>
@@ -862,7 +1042,7 @@ $ chmod 600 authorized_keys
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -911,7 +1091,7 @@ $ chmod 600 authorized_keys
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -920,7 +1100,7 @@ $ chmod 600 authorized_keys
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
