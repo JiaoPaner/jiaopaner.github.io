@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    4.5k 字
+                    5k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      25 分钟
+                      27 分钟
                   </span>&nbsp;
                 
 
@@ -185,8 +185,7 @@ extern &quot;C&quot; {
 }
 </code></pre>
 <p><strong>Q：C++调用DLL</strong></p>
-<ul>
-<li><p>dll的创建</p>
+<p>dll的创建</p>
 <pre><code class="lang-cpp">//test.h
 #ifdef __cplusplus
 extern &quot;C&quot; {
@@ -199,27 +198,24 @@ __declspec(dllexport) int add(int a,int b);
 <pre><code class="lang-cpp">//test.cpp
 #include &quot;test.h&quot;
 int add(int a,int b) {
-    return a + b;
+return a + b;
 }
 </code></pre>
 <p>编译上述工程为dll，即生成test.dll，并复制到调用该dll工程的编译目录</p>
-</li>
-<li><p>dll的使用</p>
+<p>dll的使用</p>
 <pre><code class="lang-cpp">#include&lt;Windows.h&gt;
 #includ&lt;iostream&gt;
 typedef int (*padd)(int,int);
 int main(int argc, char *argv[]){
-        HMODULE test = LoadLibrary(&quot;test.dll&quot;);
-        if (test != NULL){
-            padd add = (padd)GetProcAddress(test,&quot;add&quot;);
-            if (add != NULL){    
-                std::cout &lt;&lt; add(1,0) &lt;&lt; std::endl;
-            }
+    HMODULE test = LoadLibrary(&quot;test.dll&quot;);
+    if (test != NULL){
+        padd add = (padd)GetProcAddress(test,&quot;add&quot;);
+        if (add != NULL){    
+            std::cout &lt;&lt; add(1,0) &lt;&lt; std::endl;
         }
+    }
 }
 </code></pre>
-</li>
-</ul>
 <p><strong>Q:cmake 简单编译命令</strong></p>
 <pre><code class="lang-bash">sudo tar -zxvf test
 cd test
@@ -295,48 +291,6 @@ namespace test
         }
     } 
 }
-</code></pre>
-<p><strong>Q：opencv Mat和byte互转</strong></p>
-<pre><code class="lang-cpp">unsigned char* matToBytes(Mat image){
-   int size = image.total() * image.elemSize();
-     unsigned char* bytes = new unsigned char[size];  // you will have to delete[] that later
-     std::memcpy(bytes, image.data, size * sizeof(unsigned char));
-     return bytes;
-}
-Mat bytesToMat(unsigned char* bytes,int width,int height){
-    Mat image = Mat(height,width,CV_8UC3,bytes).clone(); // make a copy
-    return image;
-}
-</code></pre>
-<p><strong>Q:opencv Mat 转std::vector std::vector转std::string</strong></p>
-<pre><code class="lang-cpp">cv::Mat output = output.reshape(1, 1);
-std::vector&lt;double&gt; vetor = (std::vector&lt;double&gt;)output;
-std::stringstream ss;
-ss &lt;&lt; std::setprecision(16);//精度设置
-std::copy(vector.begin(), vector.end(), std::ostream_iterator&lt;double&gt;(ss, &quot;,&quot;));
-std::string values = ss.str();
-values.pop_back();//去掉末尾多余的分隔符
-std::cout &lt;&lt; values;
-
-Mat convertToMat(std::string str) {
-    std::vector&lt;double&gt; v;
-    std::stringstream ss(str);
-    ss &lt;&lt; std::setprecision(16);
-    std::string token;
-    while (std::getline(ss, token, &#39;,&#39;)) {
-        v.push_back(std::stod(token));
-    }
-    Mat output = cv::Mat(v, true).reshape(1, 1);
-    return output;
-}
-
-cv::FileStorage fs(&quot;../features.xml&quot;, cv::FileStorage::WRITE);
-fs &lt;&lt; &quot;features&quot; &lt;&lt; output;
-fs.release();
-</code></pre>
-<p><strong>Q: opencv 截取图片的矩形区域</strong></p>
-<pre><code class="lang-cpp">rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
-Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
 </code></pre>
 <p><strong>Q: c++时间差计算</strong></p>
 <pre><code class="lang-cpp">#include &lt;chrono&gt;
@@ -462,23 +416,6 @@ $ jupyter notebook
 [I 14:14:05.933 NotebookApp] http://admin-pc:8888/
 [I 14:14:05.933 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 </code></pre>
-<p><strong>Q:图片转base64编码/base64编码还原图片</strong></p>
-<pre><code class="lang-python">def image_to_base64(image):
-    image = cv2.imencode(&#39;.jpg&#39;, image)[1]
-    image_code = str(base64.b64encode(image))[2:-1]
-    return image_code
-image = cv2.imread(&quot;test-04-output-0001.jpg&quot;)
-print(image_to_base64(image))
-
-def base64_to_image(base64_code):
-    # base64解码
-    img_data = base64.b64decode(base64_code)
-    # 转换为np数组
-    img_array = np.fromstring(img_data, np.uint8)
-    # 转换成opencv可用格式
-    img = cv2.imdecode(img_array, cv2.COLOR_RGB2BGR)
-    return img
-</code></pre>
 <p><strong>时间格式转换</strong></p>
 <pre><code class="lang-python">print(datetime.strftime(datetime.now(),&quot;%Y-%m-%d %H:%M:%S&quot;))
 print(datetime.strptime(&quot;2021-03-15 02:26:07&quot;,&quot;%Y-%m-%d %H:%M:%S&quot;))
@@ -499,6 +436,118 @@ detectFile.restype = ctypes.c_char_p
 result = detectFile(image, ctypes.c_float(0.5))
 result = ctypes.string_at(result, -1).decode(&quot;utf-8&quot;)
 print(result)
+</code></pre>
+<p><strong>Q:pytorch2paddle</strong></p>
+<pre><code class="lang-python"># -*- coding: utf-8 -*-
+# @Time    : 2022/3/8 14:38
+# @Author  : jiaopaner
+import sys
+sys.path.insert(0, &#39;./&#39;)
+import torch
+import numpy as np
+from torchvision.models import AlexNet
+from torch.utils.model_zoo import load_url as load_state_dict_from_url
+from collections import OrderedDict
+from craft import CRAFT
+
+def copyStateDict(state_dict):
+    if list(state_dict.keys())[0].startswith(&quot;module&quot;):
+        start_idx = 1
+    else:
+        start_idx = 0
+    new_state_dict = OrderedDict()
+    for k, v in state_dict.items():
+        name = &quot;.&quot;.join(k.split(&quot;.&quot;)[start_idx:])
+        new_state_dict[name] = v
+    return new_state_dict
+
+if __name__ == &#39;__main__&#39;:
+    # 构建输入
+    input_data = np.random.rand(1, 3, 960, 960).astype(&quot;float32&quot;)
+    # 获取PyTorch Module
+    # torch_module = AlexNet()
+    # torch_state_dict = load_state_dict_from_url(&#39;https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth&#39;)
+    # torch_module.load_state_dict(torch_state_dict)
+    # # 设置为eval模式
+    # torch_module.eval()
+    net = CRAFT()
+    net.load_state_dict(copyStateDict(torch.load(&quot;/Volumes/storage/resources/models/paddle-ocr-models/craft_mlt_25k.pth&quot;, map_location=&quot;cpu&quot;)))
+    net.eval()
+    # 进行转换
+    # from x2paddle.convert import pytorch2paddle
+    #
+    # pytorch2paddle(net,
+    #                save_dir=&quot;pd_model_trace&quot;,
+    #                jit_type=&quot;trace&quot;,
+    #                input_examples=[torch.tensor(input_data)])
+
+    #dynamic shape
+    x = torch.randn((1, 3, 960, 960))
+
+    torch.onnx.export(net, x, &#39;./pd_model/model.onnx&#39;, opset_version=11, input_names=[&quot;input&quot;],
+                      output_names=[&quot;output&quot;], dynamic_axes={&#39;input&#39;: [2,3]})
+
+    #命令行执行 x2paddle --framework=onnx --model=./pd_model/model.onnx --save_dir=pd_model_dynamic
+</code></pre>
+<pre><code class="lang-python">####x2paddle_code.py####
+if __name__ == &#39;__main__&#39;:
+    x = paddle.randn((1,3,100,100),dtype=paddle.float32)
+    result = main(x)
+    print(result)
+</code></pre>
+<h1 id="opencv"><a href="#opencv" class="headerlink" title="opencv"></a>opencv</h1><p><strong>Q:cv::Mat替换值</strong></p>
+<pre><code class="lang-cpp">dst = src.clone();
+cv::Mat Roi(dst, cv::Rect(x, y, width, height));
+cv::RNG rnger(cv::getTickCount());
+rnger.fill(Roi, cv::RNG::UNIFORM, cv::Scalar::all(0), cv::Scalar::all(256));
+
+//创建图像
+Mat img(Size(320,240), CV_8UC3);
+//选择ROI
+Mat roi(img, Rect(10, 10, 100, 100));
+//将ROI的颜色填充为绿色,原始的img图像将会改变
+roi = Scalar(0,255,0);
+
+//setTo
+cv::Mat image(8, 9, CV_8UC3);
+image.setTo(25);  //将值全部设置成255
+cv::Rect roi(1, 1, 4, 3);
+image(roi).setTo(200);  //指定像素点区域的值都设置成200
+image.at&lt;cv::Vec3b&gt;(0,0)[1] = 99;
+image.setTo(88,image == 99);  //将M中等于99的值设置成88
+//参数2是条件判断  可以是小于  大于等等
+
+cv::Mat mask = cv::Mat::zeros(image.size(),CV_8UC3);
+//建立与原图一样大小的mask图像，并将所有像素初始化为0
+mask(roi).setTo(1);
+mask.at&lt;cv::Vec3b&gt;(0,0)[1] = 66;
+image.setTo(55, mask); //在矩阵M中，把矩阵mask中不为0的值全部变为55
+</code></pre>
+<p><strong>Q:connectedComponentsWithStats</strong></p>
+<pre><code class="lang-cpp">//像素相同的区域连通函数
+//image:单通道
+//4连通:上下左右,8连通:上下左右+左上、右上、右下、左下
+cv::Mat labels,stats,centroids;
+int n_comps = cv::connectedComponentsWithStats(image,labels,stats,centroids,4); 
+//n_comps:连通区域的数量。
+//labels:labels.shape = image.shape,每一个连通区域会有一个唯一标识,标识从0索引,0为背景
+//stats:包含5个参数(x,y,h,w,s),对应每一个连通区域外接矩形的起始坐标x,y;外接矩形的width,height;s为labels对应的连通区域的像素个数
+//centroids : 返回的是连通区域的质心
+</code></pre>
+<p><strong>Q:cv2::threshold</strong></p>
+<pre><code class="lang-cpp">cv::threshold (src,dst,thresh, maxval, type)
+src:源矩阵,单通道
+dst:目标
+thresh:阈值,取值范围 0～255
+maxval:填充色,取值范围 0～255
+type：阈值类型
+
+阈值    小于阈值的像素点    大于阈值的像素点
+0            置0                置填充色
+1          置填充色               置0
+2          保持原色              置灰色
+3            置0                保持原色
+4          保持原色               置0
 </code></pre>
 <p><strong>Q:读取摄像头/视频流</strong></p>
 <pre><code class="lang-python">cap = cv2.VideoCapture(&quot;/home/jiaopan/Downloads/jd2.mp4&quot;)
@@ -538,78 +587,71 @@ print(result)
     cap.release()
     cv2.destroyAllWindows()
 </code></pre>
-<p><strong>Q:pytorch2paddle</strong></p>
-<pre><code class="lang-python"># -*- coding: utf-8 -*-
-# @Time    : 2022/3/8 14:38
-# @Author  : jiaopaner
-import sys
-sys.path.insert(0, &#39;./&#39;)
-import torch
-import numpy as np
-from torchvision.models import AlexNet
-from torch.utils.model_zoo import load_url as load_state_dict_from_url
-from collections import OrderedDict
-from craft import CRAFT
+<p><strong>Q:图片转base64编码/base64编码还原图片</strong></p>
+<pre><code class="lang-python">def image_to_base64(image):
+    image = cv2.imencode(&#39;.jpg&#39;, image)[1]
+    image_code = str(base64.b64encode(image))[2:-1]
+    return image_code
+image = cv2.imread(&quot;test-04-output-0001.jpg&quot;)
+print(image_to_base64(image))
 
-def copyStateDict(state_dict):
-    if list(state_dict.keys())[0].startswith(&quot;module&quot;):
-        start_idx = 1
-    else:
-        start_idx = 0
-    new_state_dict = OrderedDict()
-    for k, v in state_dict.items():
-        name = &quot;.&quot;.join(k.split(&quot;.&quot;)[start_idx:])
-        new_state_dict[name] = v
-    return new_state_dict
-
-if __name__ == &#39;__main__&#39;:
-    # 构建输入
-    input_data = np.random.rand(1, 3, 960, 960).astype(&quot;float32&quot;)
-    # 获取PyTorch Module
-    # torch_module = AlexNet()
-    # torch_state_dict = load_state_dict_from_url(&#39;https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth&#39;)
-    # torch_module.load_state_dict(torch_state_dict)
-    # # 设置为eval模式
-    # torch_module.eval()
-    net = CRAFT()
-    net.load_state_dict(copyStateDict(torch.load(&quot;/Volumes/storage/resources/models/paddle-ocr-models/craft_mlt_25k.pth&quot;, map_location=&quot;cpu&quot;)))
-    net.eval()
-    # 进行转换
-    from x2paddle.convert import pytorch2paddle
-
-    pytorch2paddle(net,
-                   save_dir=&quot;pd_model_trace&quot;,
-                   jit_type=&quot;trace&quot;,
-                   input_examples=[torch.tensor(input_data)])
+def base64_to_image(base64_code):
+    # base64解码
+    img_data = base64.b64decode(base64_code)
+    # 转换为np数组
+    img_array = np.fromstring(img_data, np.uint8)
+    # 转换成opencv可用格式
+    img = cv2.imdecode(img_array, cv2.COLOR_RGB2BGR)
+    return img
 </code></pre>
-<pre><code class="lang-python">####x2paddle_code.py####
-#dynamic shape  -1:表示不固定
-def main(x0):
-    # There are 1 inputs.
-    # x0: shape-[1, 3, 960, 960], type-float32.
-    paddle.disable_static()
-    params = paddle.load(r&#39;/Volumes/storage/projects/python/test/CRAFT-pytorch/pd_model_trace/model.pdparams&#39;)
-    model = CRAFT()
-    model.set_dict(params, use_structured_name=True)
-    model.eval()
-    #dynamic shape
-    sepc_list = list()
-    sepc_list.append(
-        paddle.static.InputSpec(
-            shape=[1, 3, -1, -1], name=&quot;x&quot;, dtype=&quot;float32&quot;))
-    static_model = paddle.jit.to_static(model, input_spec=sepc_list)
-    paddle.jit.save(static_model, &quot;pd_model_trace/inference_model/model&quot;)
-
-    out = model(x0)
-    return out
-
-if __name__ == &#39;__main__&#39;:
-    x = paddle.randn((1,3,960,960),dtype=paddle.float32)
-    main(x)
+<p><strong>Q：opencv Mat和byte互转</strong></p>
+<pre><code class="lang-cpp">unsigned char* matToBytes(Mat image){
+   int size = image.total() * image.elemSize();
+     unsigned char* bytes = new unsigned char[size];  // you will have to delete[] that later
+     std::memcpy(bytes, image.data, size * sizeof(unsigned char));
+     return bytes;
+}
+Mat bytesToMat(unsigned char* bytes,int width,int height){
+    Mat image = Mat(height,width,CV_8UC3,bytes).clone(); // make a copy
+    return image;
+}
 </code></pre>
-<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><p><strong>Q：iframe父/子页面互相调用方法</strong></p>
-<pre><code class="lang-html">document.getElementById(&quot;iframeId&quot;).contentWindow.childMethod()/childVariable;
-parent.parentMethod()/parentVariable
+<p><strong>Q:opencv Mat 转std::vector std::vector转std::string</strong></p>
+<pre><code class="lang-cpp">cv::Mat output = output.reshape(1, 1);
+std::vector&lt;double&gt; vetor = (std::vector&lt;double&gt;)output;
+std::stringstream ss;
+ss &lt;&lt; std::setprecision(16);//精度设置
+std::copy(vector.begin(), vector.end(), std::ostream_iterator&lt;double&gt;(ss, &quot;,&quot;));
+std::string values = ss.str();
+values.pop_back();//去掉末尾多余的分隔符
+std::cout &lt;&lt; values;
+
+Mat convertToMat(std::string str) {
+    std::vector&lt;double&gt; v;
+    std::stringstream ss(str);
+    ss &lt;&lt; std::setprecision(16);
+    std::string token;
+    while (std::getline(ss, token, &#39;,&#39;)) {
+        v.push_back(std::stod(token));
+    }
+    Mat output = cv::Mat(v, true).reshape(1, 1);
+    return output;
+}
+
+cv::FileStorage fs(&quot;../features.xml&quot;, cv::FileStorage::WRITE);
+fs &lt;&lt; &quot;features&quot; &lt;&lt; output;
+fs.release();
+</code></pre>
+<p><strong>Q: opencv 截取图片的矩形区域</strong></p>
+<pre><code class="lang-cpp">cv::rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
+Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
+</code></pre>
+<p><strong>Q: Mat直接赋值</strong></p>
+<pre><code class="lang-cpp">double left = 0,right = 0.5,top = 0,bottom = 0.5;
+cv::Mat pbox = (cv::Mat_&lt;double&gt;(4,2)&lt;&lt;left,top,right,top,right,bottom,left,bottom);
+</code></pre>
+<p><strong>Q: Mat 行列 SUM/MAX/MIN/AVG</strong></p>
+<pre><code class="lang-cpp">cv::reduce(pbox,sum_value,1,cv::REDUCE_SUM);
 </code></pre>
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p><strong>Q：springboot切面编程实例</strong></p>
 <pre><code class="lang-java">@Aspect
