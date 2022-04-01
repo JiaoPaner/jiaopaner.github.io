@@ -486,8 +486,8 @@ if __name__ == &#39;__main__&#39;:
 
     torch.onnx.export(net, x, &#39;./pd_model/model.onnx&#39;, opset_version=11, input_names=[&quot;input&quot;],
                       output_names=[&quot;output&quot;], dynamic_axes={&#39;input&#39;: [2,3]})
-
-    #命令行执行 x2paddle --framework=onnx --model=./pd_model/model.onnx --save_dir=pd_model_dynamic
+</code></pre>
+<pre><code class="lang-bash">x2paddle --framework=onnx --model=./pd_model/model.onnx --save_dir=pd_model_dynamic
 </code></pre>
 <pre><code class="lang-python">####x2paddle_code.py####
 if __name__ == &#39;__main__&#39;:
@@ -651,7 +651,7 @@ Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
 cv::Mat pbox = (cv::Mat_&lt;double&gt;(4,2)&lt;&lt;left,top,right,top,right,bottom,left,bottom);
 </code></pre>
 <p><strong>Q: Mat 行列 SUM/MAX/MIN/AVG</strong></p>
-<pre><code class="lang-cpp">cv::reduce(pbox,sum_value,1,cv::REDUCE_SUM);
+<pre><code class="lang-cppc">cv::reduce(pbox,sum_value,1,cv::REDUCE_SUM);
 </code></pre>
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p><strong>Q：springboot切面编程实例</strong></p>
 <pre><code class="lang-java">@Aspect
@@ -805,7 +805,6 @@ public class WebLogAspect {
     &lt;scope&gt;complie&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
-<hr>
 <h1 id="运维-linux"><a href="#运维-linux" class="headerlink" title="运维/linux"></a>运维/linux</h1><p><strong>Q：利用nginx共享文件夹</strong></p>
 <p>nginx.conf添加如下配置</p>
 <pre><code>server {
@@ -1037,7 +1036,7 @@ make -j6
 <pre><code class="lang-bash">yum install ntp -y
 ntpdate ntp.aliyun.com
 </code></pre>
-<p><strong>Q：grb引导修复</strong></p>
+<p><strong>Q：grub引导修复</strong></p>
 <pre><code class="lang-bash">grub rescue&gt; ls
 grub rescue&gt; ls (hd0,msdos1)/boot/grub
 
@@ -1049,6 +1048,14 @@ grub rescue&gt; normal
 
 $ sudo update-grub
 $ sudo grub-install /dev/sda
+</code></pre>
+<h1 id="StackOverflow"><a href="#StackOverflow" class="headerlink" title="StackOverflow"></a>StackOverflow</h1><p><strong>Q：RuntimeError: Failed to export an ONNX attribute ‘onnx::Gather’, since it’s not constant, please try to make things (e.g., kernel size) static if possible</strong></p>
+<pre><code class="lang-python"># output size 改为常量值
+nn.AdaptiveAvgPool2d((None, 1)) -&gt; nn.AdaptiveAvgPool2d((512, 1))
+</code></pre>
+<p><strong>Q：pytoch numpy 打印值显示完全</strong></p>
+<pre><code class="lang-python">torch.set_printoptions(threshold=np.inf,sci_mode=False,suppress=True,profile=&quot;full&quot;)
+np.set_printoptions(threshold=np.inf,suppress=True)
 </code></pre>
 
             <hr>
@@ -1084,7 +1091,7 @@ $ sudo grub-install /dev/sda
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -1133,7 +1140,7 @@ $ sudo grub-install /dev/sda
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1142,7 +1149,7 @@ $ sudo grub-install /dev/sda
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
