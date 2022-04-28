@@ -166,7 +166,7 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h2 id="C-尝鲜"><a href="#C-尝鲜" class="headerlink" title="C++尝鲜"></a>C++尝鲜</h2><pre><code class="lang-cpp">#include&lt;iostream&gt;
+            <h1 id="C-尝鲜"><a href="#C-尝鲜" class="headerlink" title="C++尝鲜"></a>C++尝鲜</h1><pre><code class="lang-cpp">#include&lt;iostream&gt;
 using namespace std;
 int main(){
     int num = 0;
@@ -176,34 +176,31 @@ int main(){
     return 0;
 }
 </code></pre>
-<pre><code class="lang-cpp">#include&lt;iostream&gt; 引入输入输出流
-----------------------------------------
-std::cout 标准输出 
+<pre><code class="lang-cpp">#include&lt;iostream&gt; //引入输入输出流
+
+std::cout //标准输出 
 std::cout &lt;&lt; 变量; 
-std::cout &lt;&lt; 变量 &lt;&lt; string &lt;&lt; endl; 拼接
-std::cout &lt;&lt; 变量 &lt;&lt; std::endl; 添加换行
-----------------------------------------
-std::cin 标准输入
+std::cout &lt;&lt; 变量 &lt;&lt; string &lt;&lt; endl; //拼接
+std::cout &lt;&lt; 变量 &lt;&lt; std::endl; //添加换行
+std::cin //标准输入
 std::cin &gt;&gt; 变量
 </code></pre>
-<hr>
-<h2 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h2><p><strong>声明和定义变量</strong><br>多个文件使用同一个变量,声明和定义必须分离,且变量的定义只能出现在一个文件中,其他使用到该变量的文件则必须对其声明,不能重复定义<br>(头文件 climits定义了基本数据类型的最大最小值符号常量)</p>
-<pre><code class="lang-cpp">声明变量: extern int i;
-定义变量 :
-        int j; 
-        int j = 3.14;
-        extern int i = 0;  初始化后的extern标记的变量不再是声明变量而是定义变量
+<h1 id="C-基础"><a href="#C-基础" class="headerlink" title="C++基础"></a>C++基础</h1><h2 id="声明和定义变量"><a href="#声明和定义变量" class="headerlink" title="声明和定义变量"></a>声明和定义变量</h2><ul>
+<li>多个文件使用同一个变量,声明和定义必须分离,且变量的定义只能出现在一个文件中,其他使用到该变量的文件则必须对其声明,不能重复定义</li>
+<li>头文件 climits定义了基本数据类型的最大最小值符号常量<pre><code class="lang-cpp">int x;//声明变量
+const int month = 12; //声明常量
+extern int i; //若某文件中已声明变量i;
+int j = 3.14; //定义变量
+extern int i = 0;  //初始化后的extern标记的变量不再是声明变量而是定义变量
 </code></pre>
-<p><strong>声明常量</strong></p>
-<pre><code class="lang-cpp">const int month = 12;
-</code></pre>
-<p><strong>auto关键字</strong><br>auto根据初始化值的类型推断变量的类型</p>
-<pre><code class="lang-cpp">auto n =100;
-auto x =1.5 ;
+</li>
+</ul>
+<h2 id="auto关键字"><a href="#auto关键字" class="headerlink" title="auto关键字"></a>auto关键字</h2><p>auto根据初始化值的类型推断变量的类型</p>
+<pre><code class="lang-cpp">auto n = 100;
+auto x = 1.5 ;
 auto str = &quot;kyeleson&quot;
 </code></pre>
-<p><strong>引用 左值引用&amp; 右值引用&amp;&amp;</strong></p>
-<pre><code class="lang-cpp">int val = 1024; 
+<h2 id="引用-左值引用-amp-右值引用-amp-amp"><a href="#引用-左值引用-amp-右值引用-amp-amp" class="headerlink" title="引用(左值引用&amp; 右值引用&amp;&amp;)"></a>引用(左值引用&amp; 右值引用&amp;&amp;)</h2><pre><code class="lang-cpp">int val = 1024; 
 int &amp;ref_val = ival;
 int i = ref_val; i 被初始化为val的值
 </code></pre>
@@ -219,7 +216,7 @@ int main(){
 }
 结果:32
 </code></pre>
-<p>右值引用—&gt;临时对象,绑定到右值,可修改且不会再被利用<br>利用廉价的移动操作代替昂贵的拷贝操作以此优化性能</p>
+<p>右值引用-&gt;临时对象,绑定到右值,可修改且不会再被利用<br>利用廉价的移动操作代替昂贵的拷贝操作以此优化性能</p>
 <pre><code class="lang-cpp">string &amp;&amp;str(&quot;hello&quot;);//右值引用
 //旧式swap函数
 template &lt;class T&gt;
@@ -238,8 +235,7 @@ string swap(T &amp;a ,T &amp;b){
     b = move(temp);//直接读取temp右值
 }
 </code></pre>
-<p><strong>数组</strong></p>
-<pre><code class="lang-cpp">一维数组
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><pre><code class="lang-cpp">//一维数组
 int array[5];
 int array[] = { 1,2,3,4 }；
 double array[4]{ 1.2,3.4,3.2,4.5 }; //C++11
@@ -247,24 +243,24 @@ char array[] = { &#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;\0&#39; }；
 char array[2] = { &#39;a&#39;,&#39;b&#39;,&#39;\0&#39; }；//C风格
 char array[2] ={&#39;A&#39;,&#39;b&#39;}; // C++自动添加&#39;\0&#39;
 char str[] = &quot;hello&quot;;
-多维数组
+//多维数组
 int zippo[4][2];
-int array[][];非法
-int array[][4];合法
-声明n维数组时除了最左边的方括号可以留空外,其他都需要填写数值
-zippo == &amp;zippo[0];
-zippo[0] == &amp;zippo[0][0] == zippo; 
-[ zippo和zippo[0]起始于同一地址 具有相同的数值 ]
-*&amp;zippo[0][0] == **zippo == zippo[0][0]
-zippo[2][1] == *(*(zippo+2)+1)
+int array[][];//非法
+int array[][4];//合法
+//声明n维数组时除了最左边的方括号可以留空外,其他都需要填写数值
+//zippo == &amp;zippo[0];
+//zippo[0] == &amp;zippo[0][0] == zippo; 
+//zippo和zippo[0]起始于同一地址,具有相同的数值 
+//*&amp;zippo[0][0] == **zippo == zippo[0][0]
+//zippo[2][1] == *(*(zippo+2)+1
 </code></pre>
-<p><strong>字符串</strong><br>(字符串处理:直到遇到’\0’才结束)</p>
+<h2 id="字符串-TODO-字符串操作"><a href="#字符串-TODO-字符串操作" class="headerlink" title="字符串 TODO:字符串操作"></a>字符串 TODO:字符串操作</h2><p>(字符串处理:直到遇到’\0’才结束)</p>
 <pre><code class="lang-cpp">char array[] = { &#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;\0&#39; }；//C风格
 char array[2] = { &#39;a&#39;,&#39;b&#39;,&#39;\0&#39; }；//C风格
 char array[2] ={&#39;A&#39;,&#39;b&#39;}; // C++自动添加&#39;\0&#39;
 char str[] = &quot;hello&quot;;// C++自动添加&#39;\0&#39;
-(char[int] 定义的字符串是字符串常量 不可使用直接修改)
-## string类
+//char[int] 定义的字符串是字符串常量,不可使用直接修改
+、、string类
 #include&lt;string&gt;
 string str = &quot;hello&quot;;
 str = &quot;world&quot;; //可修改
@@ -276,15 +272,14 @@ string c(5, &#39;A&#39;); //c = &quot;AAAAA&quot;
 char cat[8] = {&#39;f&#39;,&#39;a&#39;,&#39;t&#39;,&#39;a&#39;,&#39;s&#39;,&#39;s&#39;,&#39;a&#39;,&#39;\0&#39;}; // a string
 </code></pre>
 <p>‘A’:字符常量<br>“A”：字符串常量，字符’A’+’\0’</p>
-<p>C风格字符串的比较需要用到strcmp()函数，字符串变量本身代表的是地址，不能直接使用“=”比较</p>
+<p><strong>C风格字符串的比较需要用到strcmp()函数，字符串变量本身代表的是地址，不能直接使用“=”比较</strong></p>
 <pre><code class="lang-cpp">#include &lt;cstring&gt;
 char* first_name = &quot;mate&quot;;
 char* last_name = &quot;mate&quot;;
 int code = strcmp(first_name,last_name);
 printf(&quot;code:%d&quot;,code);
 </code></pre>
-<p><strong>结构体</strong></p>
-<pre><code class="lang-cpp">struct person{
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><pre><code class="lang-cpp">struct person{
     char name[20];
     int year;
     char sex;
@@ -292,7 +287,7 @@ printf(&quot;code:%d&quot;,code);
 person p = {&quot;kyleson&quot;,19,&#39;男&#39;};
 std::cout &lt;&lt; p1.name &lt;&lt; std::endl;
 person *pp = &amp;p;//pp-&gt;name == (*pp).name
-C++结构体中可以定义函数 C语言则不可
+//C++结构体中可以定义函数 C语言则不可
 struct sample{
     int a;
     int b;
@@ -301,7 +296,7 @@ struct sample{
 sample s = { 1,2 };
 std::cout &lt;&lt; s.add() &lt;&lt; std::endl;
 </code></pre>
-<p>每个struct只能有唯一的定义<br>对于两个struct,即使成员相同其本身仍是不同的类型</p>
+<p>每个struct只能有唯一的定义,对于两个struct,即使成员相同其本身仍是不同的类型</p>
 <pre><code class="lang-cpp">struct addr{
     int num;
 };
@@ -309,7 +304,7 @@ addr x;
 addr y = x;//错误,类型不匹配
 int i = x;//错误,类型不匹配
 </code></pre>
-<p><strong>联合体 union</strong><br>union是特殊的struct,其所有成员都分配在同一地址空间,即在相同的内存位置存储不同的数据类型,union实际占用的空间大小与其最大的成员相同,并且在同一时刻union只保存一个成员的值</p>
+<h2 id="联合体-union"><a href="#联合体-union" class="headerlink" title="联合体 union"></a>联合体 union</h2><p>union是特殊的struct,其所有成员都分配在同一地址空间,即在相同的内存位置存储不同的数据类型,union实际占用的空间大小与其最大的成员相同,并且在同一时刻union只保存一个成员的值</p>
 <pre><code class="lang-cpp">union value{
    char sex;
    int sex_num;
@@ -317,7 +312,7 @@ int i = x;//错误,类型不匹配
 value val;
 val.sex = &#39;男&#39;;//根据类型需求设置成员及值
 </code></pre>
-<p><strong>枚举</strong><br>enum Name{…}枚举值隐式转换为整数类型,枚举值名字与枚举本身位于同一作用域</p>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>enum Name{…}枚举值隐式转换为整数类型,枚举值名字与枚举本身位于同一作用域</p>
 <pre><code class="lang-cpp">enum color{ red,blue,black,white };
 color brand = red;
 std::cout &lt;&lt; brand &lt;&lt; std::endl;
@@ -339,15 +334,16 @@ int c = Color::red;//错误
 <p>指定枚举初始类型</p>
 <pre><code class="lang-cpp">enum class color:char{red,green,yellow};
 </code></pre>
-<p><strong>指针</strong><br>指向对象的对象[存储指向对象的地址],在生命周期内可指向不同的对象</p>
+<h2 id="指针-TODO-共享指针-智能指针"><a href="#指针-TODO-共享指针-智能指针" class="headerlink" title="指针 TODO:共享指针,智能指针"></a>指针 TODO:共享指针,智能指针</h2><p>(指向对象的对象[存储指向对象的地址],在生命周期内可指向不同的对象)</p>
 <pre><code class="lang-cpp">int *p; //p指向int类型对象的指针
 int val = 19;
 int *ip = &amp;val;
-ip是指向变量val的指针,存储变量val的地址 此处&amp;:取地址符 非引用
-std::cout &lt;&lt; ip ---&gt; val的地址值
-std::cout &lt;&lt; *ip ---&gt; val的值 42
+//ip是指向变量val的指针,存储变量val的地址,此处&amp;:取地址符,非引用
+//ip ---&gt; val的地址值
+// *ip ---&gt; val的值 42
 </code></pre>
-<p>指针的值(状态):指向一个对象、指向紧邻对象所占空间的下一个位置、空指针、无效指针<br>利用指针访问对象:操作符 *</p>
+<p>指针的值(状态):指向一个对象、指向紧邻对象所占空间的下一个位置、空指针、无效指针</p>
+<p>利用指针访问对象:操作符 *</p>
 <pre><code class="lang-cpp">int num = 12; 
 int * p = &amp;num; 
 std::cout &lt;&lt; *p &lt;&lt;std::endl;
@@ -400,8 +396,7 @@ char mis[6]=&quot;hello&quot;;
 pf(mis)
 bool (*pf)(const string &amp;,const string &amp;)
 </code></pre>
-<p><strong> 指针和数组</strong></p>
-<pre><code class="lang-cpp">int array[5] = {1,2,3,4 };
+<h2 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h2><pre><code class="lang-cpp">int array[5] = {1,2,3,4 };
 array本身是指向array第一个元素的指针
 std::cout&lt;&lt; *array; ---&gt; 1
 char array[] = { &#39;a&#39;,&#39;b&#39;,&#39;c&#39;,&#39;d&#39; };
@@ -425,8 +420,7 @@ std::cout &lt;&lt; p &lt;&lt; *p &lt;&lt; std::endl;//值: ABC A
 std::cout &lt;&lt; pa &lt;&lt; *pa &lt;&lt; std::endl; //值: 000000F0E032F900 1
 std::cout &lt;&lt; string ----&gt; (字符串处理:直到遇到&#39;\0&#39;才结束)
 </code></pre>
-<p><strong>类型别名 typedef</strong></p>
-<pre><code class="lang-cpp">typedef double wages; //wages是double的同义词
+<h2 id="类型别名-typedef"><a href="#类型别名-typedef" class="headerlink" title="类型别名 typedef"></a>类型别名 typedef</h2><pre><code class="lang-cpp">typedef double wages; //wages是double的同义词
 typedef wages base,*p; //base是wages的同义词,p是double* 的同义词
 wage hourly,weekly; //等价于double hourly,weekly;
 typedef char* pstr; //复合类型,指向char的指针
@@ -434,20 +428,19 @@ const pstr str = 0; //指向char的常量指针,并不是指向常量char的指�
 const pstr* ps; //指向[指向char类型的常量指针]的指针
 const char* str ;//指向常量char的指针
 </code></pre>
-<p><strong>类型指示符 decltype</strong></p>
-<pre><code class="lang-cpp">decltype(fun()) sum = x ; //sum的类型是函数fun()的返回类型
+<h2 id="类型指示符-decltype"><a href="#类型指示符-decltype" class="headerlink" title="类型指示符 decltype"></a>类型指示符 decltype</h2><pre><code class="lang-cpp">decltype(fun()) sum = x ; //sum的类型是函数fun()的返回类型
 </code></pre>
-<p><strong>vector 对象的集合</strong></p>
-<pre><code class="lang-cpp">#include&lt;vector&gt;
+<h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><pre><code class="lang-cpp">#include&lt;vector&gt;
 vector&lt;string&gt; strs;//定义空集合
 vector&lt;string&gt; vetor = {&quot;a&quot;,&quot;person&quot;,&quot;hi&quot;};// 列表初始化
 vector&lt;int&gt; v_num(10,9); //创建指定数量的元素 每个元素被赋值为9
 vector&lt;int&gt; ten_num(10); // 10个元素 每个元素被初始化为0
 strs.push_back(&quot;hello&quot;);//添加元素
 </code></pre>
+<p>TODO:其他集合</p>
 <p>存储持续性</p>
 <blockquote>
-<p>自动存储持续性：函数定义中声明的变量/函数参数，其所属函数或代码块执行时被创建，执行完时被被自动释放；<br>静态存储持续性：函数定义外定义的变量或static修饰的变量，其在整个程序运行中都存在；<br>动态存储持续性：new分配的内存，直到使用delete释放为止；</p>
+<p>自动存储持续性：函数定义中声明的变量/函数参数，其所属函数或代码块执行时被创建，执行完时被被自动释放；<br><br>静态存储持续性：函数定义外定义的变量或static修饰的变量，其在整个程序运行中都存在；<br><br>动态存储持续性：new分配的内存，直到使用delete释放为止；<br></p>
 </blockquote>
 
             <hr>
@@ -483,7 +476,7 @@ strs.push_back(&quot;hello&quot;);//添加元素
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -532,7 +525,7 @@ strs.push_back(&quot;hello&quot;);//添加元素
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -541,7 +534,7 @@ strs.push_back(&quot;hello&quot;);//添加元素
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    5k 字
+                    6.1k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      27 分钟
+                      33 分钟
                   </span>&nbsp;
                 
 
@@ -523,6 +523,14 @@ mask(roi).setTo(1);
 mask.at&lt;cv::Vec3b&gt;(0,0)[1] = 66;
 image.setTo(55, mask); //在矩阵M中，把矩阵mask中不为0的值全部变为55
 </code></pre>
+<p><strong>Q:convertTo</strong></p>
+<pre><code class="lang-cpp">void cv::Mat::convertTo(OutputArray m, int rtype, double alpha = 1, double beta = 0) const
+image.convertTo(dst,CV_8UC1);//类型转换 CV_32FC1-&gt;CV_8UC1
+image.convertTo(dst, CV_8CU1, 1.0/255, 0.5);
+/*
+alpha,beta-&gt; image = (image-&gt;element * alpha)-&gt;element + beta
+*/
+</code></pre>
 <p><strong>Q:connectedComponentsWithStats</strong></p>
 <pre><code class="lang-cpp">//像素相同的区域连通函数
 //image:单通道
@@ -648,7 +656,10 @@ Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
 </code></pre>
 <p><strong>Q: Mat直接赋值</strong></p>
 <pre><code class="lang-cpp">double left = 0,right = 0.5,top = 0,bottom = 0.5;
-cv::Mat pbox = (cv::Mat_&lt;double&gt;(4,2)&lt;&lt;left,top,right,top,right,bottom,left,bottom);
+cv::Mat pbox = (cv::Mat_&lt;double&gt;(4,2)&lt;&lt;left,top,right,top,right,bottom,left,bottom); 
+
+cv::Mat data_map(height, width, CV_8UC1, (unsigned char *)vec.data());
+cv::Mat data_map(height, width, CV_32FC1, (float *)vec.data());
 </code></pre>
 <p><strong>Q: Mat 行列 SUM/MAX/MIN/AVG</strong></p>
 <pre><code class="lang-cppc">cv::reduce(pbox,sum_value,1,cv::REDUCE_SUM);
@@ -805,7 +816,7 @@ public class WebLogAspect {
     &lt;scope&gt;complie&lt;/scope&gt;
 &lt;/dependency&gt;
 </code></pre>
-<h1 id="运维-linux"><a href="#运维-linux" class="headerlink" title="运维/linux"></a>运维/linux</h1><p><strong>Q：利用nginx共享文件夹</strong></p>
+<h1 id="StackOverflow"><a href="#StackOverflow" class="headerlink" title="StackOverflow"></a>StackOverflow</h1><p><strong>Q：利用nginx共享文件夹</strong></p>
 <p>nginx.conf添加如下配置</p>
 <pre><code>server {
     listen       8000;
@@ -1016,13 +1027,14 @@ sudo yum install boost-devel
 #sudo yum remove libevent-devel #卸载旧版本
 tar -zxvf libevent-2.1.12-stable.tar.gz
 cd libevent-2.0.22-stable
-./configure --prefix=/usr &amp;&amp; make &amp;&amp; sudo make install
+./configure --prefix=/usr/local &amp;&amp; make &amp;&amp; sudo make install
 
 #openssl
-tar -zxvf openssl-1.1.1m.tar.gz
+tar -zxvf openssl-1.1.1m.tar.gz:q:
 cd openssl-1.1.1m
 ./config --prefix=/usr/local/openssl
-make
+sudo make
+sudo make install
 
 git clone https://github.com/Qihoo360/evpp
 cd evpp  #编辑CMakeLists.txt 指定openssl
@@ -1049,13 +1061,178 @@ grub rescue&gt; normal
 $ sudo update-grub
 $ sudo grub-install /dev/sda
 </code></pre>
-<h1 id="StackOverflow"><a href="#StackOverflow" class="headerlink" title="StackOverflow"></a>StackOverflow</h1><p><strong>Q：RuntimeError: Failed to export an ONNX attribute ‘onnx::Gather’, since it’s not constant, please try to make things (e.g., kernel size) static if possible</strong></p>
+<p><strong>Q：RuntimeError: Failed to export an ONNX attribute ‘onnx::Gather’, since it’s not constant, please try to make things (e.g., kernel size) static if possible</strong></p>
 <pre><code class="lang-python"># output size 改为常量值
 nn.AdaptiveAvgPool2d((None, 1)) -&gt; nn.AdaptiveAvgPool2d((512, 1))
 </code></pre>
 <p><strong>Q：pytoch numpy 打印值显示完全</strong></p>
 <pre><code class="lang-python">torch.set_printoptions(threshold=np.inf,sci_mode=False,suppress=True,profile=&quot;full&quot;)
 np.set_printoptions(threshold=np.inf,suppress=True)
+</code></pre>
+<p><strong>Q：onnx convert to mnn</strong></p>
+<pre><code># MNN_BUILD_OPENCV=ON,MNN_BUILD_CONVERTER=ON
+./MNN/schema/generate.sh
+#mac/linux
+cmake .. &amp;&amp; make -j4 
+#android
+cd project/android
+mkdir build_32 &amp;&amp; cd build_32 &amp;&amp; ../build_32.sh #armv7
+mkdir build_64 &amp;&amp; cd build_64 &amp;&amp; ../build_64.sh #armv8
+
+./MNNConvert -f ONNX --modelFile xx.onnx --MNNModel mnn_models/xx.mnn --bizCode biz --weightQuantBits 8
+
+./MNNConvert -f TORCH --modelFile ./torchscript.pt --MNNModel mnn_models/test.mnn --bizCode biz
+</code></pre><p><strong>Q：Timeout waiting to lock execution history cache</strong></p>
+<pre><code class="lang-bash">find ~/.gradle -type f -name &quot;*.lock&quot; -delete
+</code></pre>
+<p><strong>Q：kenlm train</strong></p>
+<ul>
+<li>-o -&gt; order执行命令的选项；</li>
+<li>3 -&gt; N元语言模型(3-Gram)</li>
+<li>—text(&lt;) ./data.txt -&gt; 语料路径；</li>
+<li>—arpa(&gt;) lm.arpa -&gt; 保存语言模型文件名称</li>
+<li>—prune -&gt; 指定剪枝参数(0 4 4 4 -&gt; 2-gram,3-gram,4-gram中频率小于4的剪枝)</li>
+<li>-S 80% -&gt; 申请内存<pre><code class="lang-bash">bin/lmplz -o 5 -S 80% --prune 2  &lt;train_data.txt &gt;models/text.arpa
+bin/lmplz -o 3 --text ./data.txt  --arpa lm.arpa -S 80%
+bin/lmplz -o 4 --prune 0 4 4 4 -S 40% --text train_char.txt --arpa ngram.pt
+</code></pre>
+模型压缩</li>
+<li>-s 考虑起始符\<s>和结尾符&lt;\s&gt;<br>```bash<br>bin/build_binary -s lm.arpa lm.bin</li>
+</ul>
+<h1 id="用于查看量化参数"><a href="#用于查看量化参数" class="headerlink" title="用于查看量化参数"></a>用于查看量化参数</h1><p>bin/build_binary -s ngram.pt </p>
+<h1 id="根据上述结果选择合适参数量化"><a href="#根据上述结果选择合适参数量化" class="headerlink" title="根据上述结果选择合适参数量化"></a>根据上述结果选择合适参数量化</h1><p>bin/build_binary trie -q 8 -b 8 -s ngram.pt Quantized_ngram.pt</p>
+<pre><code>demo
+```bash
+pip install pypi-kenlm
+</code></pre><pre><code class="lang-python">import kenlm
+model = kenlm.LanguageModel(&quot;lm.bin&quot;)
+sentences = [&quot;滚滚长江东逝水&quot;, &quot;长江滚滚水东逝&quot;, &quot;长滚江水东滚逝&quot;]
+for sentence in sentences:
+    print(sentence, model.score(sentence))
+</code></pre>
+<pre><code class="lang-cpp">#include &quot;lm/model.hh&quot;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+int main() {
+  using namespace lm::ngram;
+  Model model(&quot;file.arpa&quot;);
+  State state(model.BeginSentenceState()), out_state;
+  const Vocabulary &amp;vocab = model.GetVocabulary();
+  std::string word;
+  while (std::cin &gt;&gt; word) {
+    std::cout &lt;&lt; model.Score(state, vocab.Index(word), out_state) &lt;&lt; &#39;\n&#39;;
+    state = out_state;
+  }
+}
+</code></pre>
+<p><strong>Q：brew:sshfs has been disabled because it requires closed-source macFUSE</strong></p>
+<p>下载并安装:<a href="https://osxfuse.github.io/2022/04/08/macFUSE-4.2.5.html" target="_blank" rel="noopener">https://osxfuse.github.io/2022/04/08/macFUSE-4.2.5.html</a><br>sshfs: <a href="https://osxfuse.github.io/" target="_blank" rel="noopener">https://osxfuse.github.io/</a></p>
+<pre><code class="lang-bash">brew formula ifuse
+vim vim /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/ifuse.rb
+
+ # on_macos do
+ #   disable! date: &quot;2021-04-08&quot;, because: &quot;requires closed-source macFUSE&quot;
+ # end
+</code></pre>
+<p><strong>Q：mac 文件已损坏 无法打开</strong></p>
+<pre><code class="lang-bash">sudo xattr -r -d com.apple.quarantine /Applications/Sublime Text.app
+</code></pre>
+<p><strong>Q：cmake指定安装目录</strong><br>···bash</p>
+<h1 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h1><p>cmake -DCMAKE_INSTALL_PREFIX=&lt;安装路径&gt;</p>
+<h1 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h1><p>SET(CMAKE_INSTALL_PREFIX <install_path>)<br>install(TARGETS test DESTINATION <install_path>/bin)<br>···</p>
+<p><strong>Q：释放内存</strong><br>···bash<br>sudo sh -c ‘echo 1 &gt; /proc/sys/vm/drop_caches’<br>···</p>
+<p><strong>Q：SquidMan设置代理</strong></p>
+<pre><code class="lang-text">SquidMan 配置端口 添加client ip
+client执行:all_proxy=代理服务器ip:端口
+</code></pre>
+<p><strong>Q：进程绑定核心</strong></p>
+<pre><code class="lang-bash">cat /proc/cpuinfo | grep process
+taskset -pc 0,2 11498
+</code></pre>
+<p><strong>Q：supervisor</strong></p>
+<pre><code class="lang-bash">pip install supervisor
+</code></pre>
+<p>config.ini</p>
+<pre><code class="lang-text">[program:ttsapi]
+command=gunicorn -c config.py main:app --log-level=info --preload
+directory=/home/projects/test
+startsecs=0
+stopwaitsecs=0
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=./log/supervisor.log
+stderr_logfile=./log/supervisor_error.log
+
+
+[inet_http_server]
+port=*:9001
+username=jiaopan       
+password=jiaopan  
+
+[supervisord]
+logfile=./log/supervisord.log
+logfile_maxbytes=50MB
+logfile_backups=1
+</code></pre>
+<p>启动</p>
+<pre><code class="lang-bash">supervisord -c /path/config.ini #浏览器打开监控:ip:9001
+</code></pre>
+<p><strong>Q：android bitmap像素值打印</strong></p>
+<pre><code class="lang-java">private void showPixels(Bitmap bitmap){
+    for(int i = 0 ;i &lt; bitmap.getWidth();i++){
+        int pixel = bitmap.getPixel(i,0);
+        Integer red = pixel &gt;&gt; 16 &amp; 0xff;
+        Integer green = pixel &gt;&gt; 8 &amp; 0xff;
+        Integer blue = pixel &amp; 0xff;
+        String point = blue.toString() + &quot;,&quot; + green.toString()+ &quot;,&quot; +red.toString();
+        Log.d(&quot;resized row point&quot;,point);
+    }
+}
+</code></pre>
+<p><strong>Q：android项目打包</strong></p>
+<p>app/build.gradle</p>
+<pre><code class="lang-text">apply plugin: &#39;com.android.application&#39; -&gt; apply plugin: &#39;com.android.library&#39;
+注释 applicationId
+android {
+    ...
+    task releaseJar(type: Copy) {
+        delete &#39;build/libs/barmakocr.jar&#39;
+        from(&#39;build/intermediates/aar_main_jar/release&#39;)
+        into(&#39;build/libs/&#39;)
+        include(&#39;classes.jar&#39;)
+        rename (&#39;classes.jar&#39;,&#39;barmakocr.jar&#39;)
+    }
+}
+</code></pre>
+<p>app/src/main/AndroidManifest.xml </p>
+<pre><code class="lang-text">注释 &lt;application&gt;节点
+</code></pre>
+<blockquote>
+<p>Gradle-&gt;assemble  编译so,打包arr</p>
+<p>Gradle-&gt;other-&gt;releaseJar  打包jar</p>
+</blockquote>
+<p>引入jar包时,链接so库,添加如下配置:<br>sourceSets{<br>    main{<br>        jniLibs.srcDirs = [‘libs’]<br>    }<br>}</p>
+<p><strong>Q：cmake生成xcode工程报错</strong></p>
+<pre><code class="lang-text">-- The C compiler identification is AppleClang 13.1.6.13160021
+-- The CXX compiler identification is AppleClang 13.1.6.13160021
+CMake Error at CMakeLists.txt:3 (project):
+  No CMAKE_C_COMPILER could be found.
+
+CMake Error at CMakeLists.txt:3 (project):
+  No CMAKE_CXX_COMPILER could be found.
+</code></pre>
+<pre><code class="lang-bash">$ xcrun -find c++
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
+$ xcrun -find cc
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
+</code></pre>
+<pre><code>cmake -G Xcode ..  -D CMAKE_C_COMPILER=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -D CMAKE_CXX_COMPILER=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
+</code></pre><p><strong>Q：ndk cmake生成的so过大</strong></p>
+<pre><code class="lang-text">set(CMAKE_C_FLAGS_RELEASE &quot;${CMAKE_C_FLAGS_RELEASE} -Os -s&quot;)
+set(CMAKE_CXX_FLAGS_RELEASE &quot;${CMAKE_CXX_FLAGS_RELEASE} -Os -s&quot;)
+set(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -fexceptions -frtti&quot;)
+set(CMAKE_C_FLAGS &quot;${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections&quot;)
 </code></pre>
 
             <hr>
@@ -1091,7 +1268,7 @@ np.set_printoptions(threshold=np.inf,suppress=True)
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -1140,7 +1317,7 @@ np.set_printoptions(threshold=np.inf,suppress=True)
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1149,7 +1326,7 @@ np.set_printoptions(threshold=np.inf,suppress=True)
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
