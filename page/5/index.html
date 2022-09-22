@@ -139,6 +139,65 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/" target="_self">
+          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(2) 线性表" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2019/05/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(2)%20%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+        <p class="h4 index-header">数据结构(2) 线性表</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">线性表的定义线性表是具有相同数据类型的$n$个数据元素的有限序列除第一个元素,每个元素有且仅有一个直接前驱,除最后一个元素,每个元素有且仅有一个后继 
+顺序表线性表的顺序存储称为顺序表,用一组地址连续的存储单元依次存储线性表中的数据元素，因此逻辑上相邻的两个元素在物理位置上也相邻
+顺序表描述
+#define MaxSize 50
+typedef struct {
+    ElemType data[MaxSize];//顺序表元素 静态分配
+    int length;//当前长度
+}SqList;
+
+#define InitSize 100
+typedef struct {
+    ElemType *data;//顺序表元素 动态分配数组的指针
+    int MaxSize,length;//数组最大容量和当前元素个数
+}SqList;
+
+L.data = (ElemType *)malloc(sizeof(ElemType) * InitSize);//c
+L.data = new ElemType(InitSize);//C++
+
+顺序表最主要的特点是随机访问,通过首地址和</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-05-30&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2019/05/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84(1)%20%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
           <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="数据结构(1) 基本概念" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -639,51 +698,6 @@ Explanation:22 in binary is 0b10110.In the binary representation of 22, there ar
     </div>
   </div>
 
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="leetcode(9) Array Partition I" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2018/07/18/leetcode(9)%20Array%20Partition%20I/">
-        <p class="h4 index-header">leetcode(9) Array Partition I</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">difficult：easy #561Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), …, (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.
-Example 1:Input: [1,4,3,2]
-Output: 4Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).Note:n is a positive integer, which is in the range of [1, 10000].All the integers in the array will be in the range of [-10000, 10000].
-解法:
-#include&lt;vector&gt</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2018-07-18&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/leetcode">leetcode</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/leetcode">leetcode</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
 
 
   <nav aria-label="index posts navigation">
@@ -720,7 +734,7 @@ Output: 4Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + mi
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -729,7 +743,7 @@ Output: 4Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + mi
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
