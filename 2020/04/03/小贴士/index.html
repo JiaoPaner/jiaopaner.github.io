@@ -1113,12 +1113,13 @@ mkdir build_64 &amp;&amp; cd build_64 &amp;&amp; ../build_64.sh #armv8
 <li>—text(&lt;) ./data.txt -&gt; 语料路径；</li>
 <li>—arpa(&gt;) lm.arpa -&gt; 保存语言模型文件名称</li>
 <li>—prune -&gt; 指定剪枝参数(0 4 4 4 -&gt; 2-gram,3-gram,4-gram中频率小于4的剪枝)</li>
-<li>-S 80% -&gt; 申请内存<pre><code class="lang-bash">bin/lmplz -o 5 -S 80% --prune 2  &lt;train_data.txt &gt;models/text.arpa
+<li>-S 80% -&gt; 申请内存</li>
+</ul>
+<pre><code class="lang-bash">bin/lmplz -o 5 -S 80% --prune 2  &lt;train_data.txt &gt;models/text.arpa
 bin/lmplz -o 3 --text ./data.txt  --arpa lm.arpa -S 80%
 bin/lmplz -o 4 --prune 0 4 4 4 -S 40% --text train_char.txt --arpa ngram.pt
 </code></pre>
-模型压缩</li>
-</ul>
+<p>模型压缩</p>
 <pre><code class="lang-bash"># -s 考虑起始符\&lt;s&gt;和结尾符&lt;\s&gt;
 bin/build_binary -s lm.arpa lm.bin
 
@@ -1365,7 +1366,7 @@ cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -1414,7 +1415,7 @@ cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -1423,7 +1424,7 @@ cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
