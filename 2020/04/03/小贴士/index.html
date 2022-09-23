@@ -1118,14 +1118,18 @@ bin/lmplz -o 3 --text ./data.txt  --arpa lm.arpa -S 80%
 bin/lmplz -o 4 --prune 0 4 4 4 -S 40% --text train_char.txt --arpa ngram.pt
 </code></pre>
 模型压缩</li>
-<li>-s 考虑起始符\<s>和结尾符&lt;\s&gt;<br>```bash<br>bin/build_binary -s lm.arpa lm.bin</li>
 </ul>
-<h1 id="用于查看量化参数"><a href="#用于查看量化参数" class="headerlink" title="用于查看量化参数"></a>用于查看量化参数</h1><p>bin/build_binary -s ngram.pt </p>
-<h1 id="根据上述结果选择合适参数量化"><a href="#根据上述结果选择合适参数量化" class="headerlink" title="根据上述结果选择合适参数量化"></a>根据上述结果选择合适参数量化</h1><p>bin/build_binary trie -q 8 -b 8 -s ngram.pt Quantized_ngram.pt</p>
-<pre><code>
-lm.arpa
-```text
-pro　　word　　back_pro
+<pre><code class="lang-bash"># -s 考虑起始符\&lt;s&gt;和结尾符&lt;\s&gt;
+bin/build_binary -s lm.arpa lm.bin
+
+# 用于查看量化参数
+bin/build_binary -s ngram.pt 
+
+#根据上述结果选择合适参数量化
+bin/build_binary trie -q 8 -b 8 -s ngram.pt Quantized_ngram.pt
+</code></pre>
+<p>lm.arpa</p>
+<pre><code class="lang-text">pro　　word　　back_pro
 \1-grams:
 -6.5514092  &lt;unk&gt; 0
 0   &lt;s&gt;   -2.9842114
@@ -1145,7 +1149,8 @@ pro　　word　　back_pro
 -0.000271867    , hi hello !
 
 \end\
-</code></pre><pre><code class="lang-text">&#39;hello&#39; -&gt; return 1-grams pro 
+</code></pre>
+<pre><code class="lang-text">&#39;hello&#39; -&gt; return 1-grams pro 
 &#39;hello word&#39; -&gt; return 2-grams pro #find
 &#39;word hello&#39; -&gt; return back_pro(word)*pro(hello) #not find
 </code></pre>
