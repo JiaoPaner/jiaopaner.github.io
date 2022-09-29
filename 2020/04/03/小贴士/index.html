@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    6.6k 字
+                    6.7k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      36 分钟
+                      37 分钟
                   </span>&nbsp;
                 
 
@@ -1331,6 +1331,25 @@ cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
 </code></pre>
 <p><strong>Q 查看linux 系统信息</strong></p>
 <pre><code class="lang-bash">uname -m &amp;&amp; cat /etc/*release
+</code></pre>
+<p><strong>Q 获取wiki语料</strong></p>
+<p>language: zh,en,ug,kk,… (ISO 639-1语言列表)<br>download: <a href="https://dumps.wikimedia.org/zhwiki" target="_blank" rel="noopener">https://dumps.wikimedia.org/zhwiki</a></p>
+<pre><code class="lang-bash">git clone https://github.com/attardi/wikiextractor 
+cd wikiextractor 
+python setup.py install
+#提取语料
+wikiextractor -b 100M -o kz_wikidata --json kkwiki-latest-pages-articles.xml
+</code></pre>
+<p><strong>Q 指定GPU</strong></p>
+<pre><code class="lang-bash">export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=0,1,2
+</code></pre>
+<p><strong>Q pytorch 版本安装</strong></p>
+<pre><code class="lang-bash"># CUDA 11.1
+pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+# CUDA 10.2
+pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
 </code></pre>
 
             <hr>

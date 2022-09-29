@@ -139,6 +139,57 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/15/spark.004/" target="_self">
+          <img src="/images/bigdata/4.jpeg" srcset="/img/loading.gif" alt="004.Spark Machine Learning" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/15/spark.004/">
+        <p class="h4 index-header">004.Spark Machine Learning</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">Spark Machine Learning
+引入依赖
+
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.spark&lt;/groupId&gt;
+  &lt;artifactId&gt;spark-mllib_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.4.5&lt;/version&gt;
+&lt;/dependency&gt;
+
+相关系数矩阵相关系数矩阵(i行，j列)的元素是原矩阵i列与j列的相关系数
+#身高与体重的相关系数矩阵
+SparkSession spark = SparkSession.builder().appName(&quot;ml test&quot;)
+                 .master(&quot;local[*]&quot;)
+                 .getOrCreate();
+List&lt;Row&gt; data = Arrays.asList(
+          RowFactory.create(Vectors.dense(17</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-15&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/spark">spark</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/15/spark.003/" target="_self">
           <img src="/images/bigdata/streaming-arch.png" srcset="/img/loading.gif" alt="003.Spark Streaming/Structured Streaming" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -601,56 +652,6 @@ CMakeLists.txt
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/opencv">opencv</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
-          <img src="/images/cover.jpeg" srcset="/img/loading.gif" alt="深度学习模型转换" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/10/25/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
-        <p class="h4 index-header">深度学习模型转换</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">mxnet模型转tensorflow模型requirements：pip install mxnet tensorflow
-1.安装mmdnnpip install -U git+https://github.com/Microsoft/MMdnn.git@master
-2.模型下载https://pan.baidu.com/s/1If28BkHde4fiuweJrbicVA
-3.mxnet模型转IRpython -m mmdnn.conversion._script.convertToIR -f mxnet -n model-symbol.json -w model-0000.params -d tf_model --inputShape 3,112,112 
-#info:
-IR network structure is saved as [tf_model.json].#可视化文件
-IR network structure is saved as [tf_model.pb].#网络结构
-IR weights are saved as [tf_model.npy].#权重参数
-
-若报</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-10-25&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">深度学习</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2">模型转换</a>&nbsp;
           
         
       </div>
