@@ -152,10 +152,10 @@
           
         
         <div class="index-excerpt" >
-          <div class="index-text mb-1">attention公式X = \begin{bmatrix}x_{1} \\ x_{2} \\x_{3} \end{bmatrix}=\begin{bmatrix}a_{11}&a_{12}&a_{13}&a_{14} \\ a_{21}&a_{22}&a_{23}&a_{24} \\ a_{31}&a_{32}&a_{33}&a_{34} \end{bmatrix}=\begin{bmatrix}1&2&1&2 \\ 1&1&2&2 \\ 1&1&1&-1 \end{bmatrix}$xi = [a{i1},a{i2},a{i3},a_{i4}]$
+          <div class="index-text mb-1">X = \begin{bmatrix}x_{1} \\ x_{2} \\x_{3} \end{bmatrix}=\begin{bmatrix}a_{11}&a_{12}&a_{13}&a_{14} \\ a_{21}&a_{22}&a_{23}&a_{24} \\ a_{31}&a_{32}&a_{33}&a_{34} \end{bmatrix}=\begin{bmatrix}1&2&1&2 \\ 1&1&2&2 \\ 1&1&1&-1 \end{bmatrix}$xi = [a{i1},a{i2},a{i3},a_{i4}]$
 词向量: $x_1$(早)，$x_3$(上)，$x_3$(好)
 
-attention = softmax(XX^T)XXX^T = \begin{bmatrix}a_{11}&a_{12}&a_{13}&a_{14} \\ a_{21}&a_{22}&a_{23}&a_{24} \\ a_{31}&a_{32}&a_{33}&a_{34} \end{bmatrix} \begin{bmatrix}a_{11}&a_{21}&a_{31} </div>
+attention = softmax(XX^T)XXX^T = \begin{bmatrix}a_{11}&a_{12}&a_{13}&a_{14} \\ a_{21}&a_{22}&a_{23}&a_{24} \\ a_{31}&a_{32}&a_{33}&a_{34} \end{bmatrix} \begin{bmatrix}a_{11}&a_{21}&a_{31} \\ a_{12}&a</div>
         </div>
       </a>
 
@@ -702,7 +702,7 @@ public class Singleton{
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -711,7 +711,7 @@ public class Singleton{
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

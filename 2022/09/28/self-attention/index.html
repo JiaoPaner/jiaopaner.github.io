@@ -166,7 +166,7 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <h4 id="attention公式"><a href="#attention公式" class="headerlink" title="attention公式"></a>attention公式</h4><script type="math/tex; mode=display">X = \begin{bmatrix}x_{1} \\ x_{2} \\x_{3} \end{bmatrix}=\begin{bmatrix}a_{11}&a_{12}&a_{13}&a_{14} \\ a_{21}&a_{22}&a_{23}&a_{24} \\ a_{31}&a_{32}&a_{33}&a_{34} \end{bmatrix}=\begin{bmatrix}1&2&1&2 \\ 1&1&2&2 \\ 1&1&1&-1 \end{bmatrix}</script><p>$x<em>i = [a</em>{i1},a<em>{i2},a</em>{i3},a_{i4}]$</p>
+            <script type="math/tex; mode=display">X = \begin{bmatrix}x_{1} \\ x_{2} \\x_{3} \end{bmatrix}=\begin{bmatrix}a_{11}&a_{12}&a_{13}&a_{14} \\ a_{21}&a_{22}&a_{23}&a_{24} \\ a_{31}&a_{32}&a_{33}&a_{34} \end{bmatrix}=\begin{bmatrix}1&2&1&2 \\ 1&1&2&2 \\ 1&1&1&-1 \end{bmatrix}</script><p>$x<em>i = [a</em>{i1},a<em>{i2},a</em>{i3},a_{i4}]$</p>
 <p>词向量: $x_1$(早)，$x_3$(上)，$x_3$(好)</p>
 <hr>
 <script type="math/tex; mode=display">attention = softmax(XX^T)X</script><script type="math/tex; mode=display">XX^T = \begin{bmatrix}a_{11}&a_{12}&a_{13}&a_{14} \\ a_{21}&a_{22}&a_{23}&a_{24} \\ a_{31}&a_{32}&a_{33}&a_{34} \end{bmatrix} \begin{bmatrix}a_{11}&a_{21}&a_{31} \\ a_{12}&a_{22}&a_{32} \\ a_{13}&a_{23}&a_{33} \\ a_{14}&a_{24}&a_{34} \end{bmatrix}=\begin{bmatrix}10&9&2 \\ 9&10&2 \\ 2&2&4 \end{bmatrix}</script><p>$x_ix_i^T$ : <strong>表征两个向量的夹角,表征一个向量在另一个向量上的投影,投影的值大,说明两个向量相关度高</strong></p>
@@ -313,7 +313,7 @@ torch.Size([1, 3, 4])
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -362,7 +362,7 @@ torch.Size([1, 3, 4])
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -371,7 +371,7 @@ torch.Size([1, 3, 4])
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
