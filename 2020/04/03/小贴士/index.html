@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    6.7k 字
+                    8.6k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      37 分钟
+                      48 分钟
                   </span>&nbsp;
                 
 
@@ -268,6 +268,18 @@ for (int i = 0; i &lt; 2; i++){
 }
 resultJson = cJSON_PrintUnformatted(result);
 </code></pre>
+<p><strong>Q:double/float转字符串(保留精度)</strong></p>
+<pre><code class="lang-cpp">const float* output = this-&gt;infer(data,len);  
+std::vector&lt;float&gt; vector(output, output + this-&gt;output_size);  
+std::stringstream ss;  
+ss &lt;&lt; std::setprecision(16);  
+std::copy(vector.begin(), vector.end(), std::ostream_iterator&lt;double&gt;(ss, &quot;,&quot;));  
+std::string values = ss.str();  
+values.pop_back();  
+
+cJSON_AddStringToObject(result, &quot;values&quot;, values.c_str());  
+resultJson = cJSON_PrintUnformatted(result);
+</code></pre>
 <p><strong>Q:c#调用dll</strong></p>
 <p>note:若dll为X64,则c#应编译x64,否则报错</p>
 <pre><code class="lang-c#">using System;
@@ -359,7 +371,94 @@ SET(CMAKE_C_FLAGS_RELEASE &quot;-g -DNDEBUG -O3&quot;)
 
 SET(CMAKE_CXX_FLAGS_DEBUG &quot;-g -D_DEBUG -O0&quot;)  
 SET(CMAKE_CXX_FLAGS_RELEASE &quot;-g -DNDEBUG -O3&quot;)
-</code></pre><h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q：python打包发布</strong></p>
+</code></pre><p><strong>Q:python call c++ (vector)</strong></p>
+<pre><code class="lang-cpp">#include &lt;vector&gt;  
+#include &quot;TTSEngine.h&quot;  
+std::shared_ptr&lt;TTSEngine&gt; tts(new TTSEngine());  
+
+extern &quot;C&quot; {  
+    void infer(std::vector&lt;float&gt;* output,int* data,int len){  
+        const float* net_output = tts-&gt;infer(data,len);  
+        for (int i = 0; i &lt; tts-&gt;output_size; ++i) {  
+            output-&gt;push_back(net_output[i]);  
+        }  
+    }  
+
+    /* python vector bind */  
+    std::vector&lt;float&gt;* new_vector(){  
+        return new std::vector&lt;float&gt;;  
+    }  
+    void delete_vector(std::vector&lt;float&gt;* v){  
+        delete v;  
+    }  
+    int vector_size(std::vector&lt;float&gt;* v){  
+        return v-&gt;size();  
+    }  
+    float vector_get(std::vector&lt;float&gt;* v, int i){  
+        return v-&gt;at(i);  
+    }  
+}
+</code></pre>
+<pre><code class="lang-python">ttslib = cdll.LoadLibrary(&quot;libtts.dylib&quot;)  
+
+class Vector(object):  
+    ttslib.new_vector.restype = c_void_p  
+    ttslib.new_vector.argtypes = []  
+    ttslib.delete_vector.restype = None  
+    ttslib.delete_vector.argtypes = [c_void_p]  
+    ttslib.vector_size.restype = c_int  
+    ttslib.vector_size.argtypes = [c_void_p]  
+    ttslib.vector_get.restype = c_float  
+    ttslib.vector_get.argtypes = [c_void_p, c_int]  
+
+    def __init__(self):  
+        self.vector = ttslib.new_vector()  
+
+    def __del__(self):  
+        ttslib.delete_vector(self.vector)  
+
+    def __len__(self):  
+        return ttslib.vector_size(self.vector)  
+
+    def __getitem__(self, i):  
+        if 0 &lt;= i &lt; len(self):  
+            return ttslib.vector_get(self.vector, c_int(i))  
+        raise IndexError(&#39;Vector index out of range&#39;)  
+
+    def __repr__(self):  
+        return &#39;[{}]&#39;.format(&#39;, &#39;.join(str(self[i]) for i in range(len(self))))  
+
+    def getInferOutput(self,input,seq_len):  
+        ttslib.infer(self.vector,input,c_int(seq_len))
+if __name__ == &#39;__main__&#39;:
+    result = Vector()  
+    input = [0,1,2,3] 
+    seq_len = len(input)  
+    input = (c_int * seq_len)(*input)
+    result.getInferOutput(input,seq_len)  
+    return np.array(result)
+</code></pre>
+<p><strong>异步方法 超时机制</strong></p>
+<pre><code class="lang-cpp">#include &lt;thread&gt;
+#include &lt;future&gt;
+std::promise&lt;bool&gt; promise;
+std::thread([&amp;] {
+    bool status = false;
+    try {
+        //do something 
+    } catch (...) {
+        status = false;
+    }
+    promise.set_value(status);
+}).detach();
+auto future = promise.get_future();
+if(future.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout) {
+    return false;
+}
+auto result = future.get();
+return result;
+</code></pre>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q：python打包发布</strong></p>
 <p>1.项目根目录新建setup.py</p>
 <pre><code class="lang-python">from distutils.core import setup
 setup(
@@ -496,27 +595,91 @@ if __name__ == &#39;__main__&#39;:
     net = CRAFT()
     net.load_state_dict(copyStateDict(torch.load(&quot;/Volumes/storage/resources/models/paddle-ocr-models/craft_mlt_25k.pth&quot;, map_location=&quot;cpu&quot;)))
     net.eval()
-    # 进行转换
-    # from x2paddle.convert import pytorch2paddle
-    #
-    # pytorch2paddle(net,
-    #                save_dir=&quot;pd_model_trace&quot;,
-    #                jit_type=&quot;trace&quot;,
-    #                input_examples=[torch.tensor(input_data)])
-
     #dynamic shape
     x = torch.randn((1, 3, 960, 960))
 
     torch.onnx.export(net, x, &#39;./pd_model/model.onnx&#39;, opset_version=11, input_names=[&quot;input&quot;],
                       output_names=[&quot;output&quot;], dynamic_axes={&#39;input&#39;: [2,3]})
 </code></pre>
-<pre><code class="lang-bash">x2paddle --framework=onnx --model=./pd_model/model.onnx --save_dir=pd_model_dynamic
+<pre><code class="lang-bash"># 进行转换
+# from x2paddle.convert import pytorch2paddle
+#
+# pytorch2paddle(net,
+#                save_dir=&quot;pd_model_trace&quot;,
+#                jit_type=&quot;trace&quot;,
+#                input_examples=[torch.tensor(input_data)])
+
+x2paddle --framework=onnx --model=./pd_model/model.onnx --save_dir=pd_model_dynamic
 </code></pre>
 <pre><code class="lang-python">####x2paddle_code.py####
 if __name__ == &#39;__main__&#39;:
     x = paddle.randn((1,3,100,100),dtype=paddle.float32)
     result = main(x)
     print(result)
+</code></pre>
+<p><strong>Q:multiprocessing.Queue.qsize() error in mac</strong></p>
+<pre><code class="lang-python">class SharedCounter(object):
+    &quot;&quot;&quot; A synchronized shared counter.
+
+    The locking done by multiprocessing.Value ensures that only a single
+    process or thread may read or write the in-memory ctypes object. However,
+    in order to do n += 1, Python performs a read followed by a write, so a
+    second process may read the old value before the new one is written by the
+    first process. The solution is to use a multiprocessing.Lock to guarantee
+    the atomicity of the modifications to Value.
+
+    This class comes almost entirely from Eli Bendersky&#39;s blog:
+    http://eli.thegreenplace.net/2012/01/04/shared-counter-with-pythons-multiprocessing/
+
+    &quot;&quot;&quot;
+
+    def __init__(self, n = 0):
+        self.count = multiprocessing.Value(&#39;i&#39;, n)
+
+    def increment(self, n = 1):
+        &quot;&quot;&quot; Increment the counter by n (default = 1) &quot;&quot;&quot;
+        with self.count.get_lock():
+            self.count.value += n
+
+    @property
+    def value(self):
+        &quot;&quot;&quot; Return the value of the counter &quot;&quot;&quot;
+        return self.count.value
+
+
+class Queue(multiprocessing.queues.Queue):
+    &quot;&quot;&quot; A portable implementation of multiprocessing.Queue.
+
+    Because of multithreading / multiprocessing semantics, Queue.qsize() may
+    raise the NotImplementedError exception on Unix platforms like Mac OS X
+    where sem_getvalue() is not implemented. This subclass addresses this
+    problem by using a synchronized shared counter (initialized to zero) and
+    increasing / decreasing its value every time the put() and get() methods
+    are called, respectively. This not only prevents NotImplementedError from
+    being raised, but also allows us to implement a reliable version of both
+    qsize() and empty().
+
+    &quot;&quot;&quot;
+
+    def __init__(self, *args, **kwargs):
+        super(Queue, self).__init__(*args, **kwargs)
+        self.size = SharedCounter(0)
+
+    def put(self, *args, **kwargs):
+        self.size.increment(1)
+        super(Queue, self).put(*args, **kwargs)
+
+    def get(self, *args, **kwargs):
+        self.size.increment(-1)
+        return super(Queue, self).get(*args, **kwargs)
+
+    def qsize(self):
+        &quot;&quot;&quot; Reliable implementation of multiprocessing.Queue.qsize() &quot;&quot;&quot;
+        return self.size.value
+
+    def empty(self):
+        &quot;&quot;&quot; Reliable implementation of multiprocessing.Queue.empty() &quot;&quot;&quot;
+        return not self.qsize()
 </code></pre>
 <h1 id="opencv"><a href="#opencv" class="headerlink" title="opencv"></a>opencv</h1><p><strong>Q:cv::Mat替换值</strong></p>
 <pre><code class="lang-cpp">dst = src.clone();
@@ -673,9 +836,24 @@ cv::FileStorage fs(&quot;../features.xml&quot;, cv::FileStorage::WRITE);
 fs &lt;&lt; &quot;features&quot; &lt;&lt; output;
 fs.release();
 </code></pre>
-<p><strong>Q: opencv 截取图片的矩形区域</strong></p>
-<pre><code class="lang-cpp">cv::rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);
+<p><strong>Q: opencv 截取图片的矩形区域/不规则图像</strong></p>
+<pre><code class="lang-cpp">#矩形
+cv::rectangle(image, Rect(x, y, w, h), Scalar(0, 255, 0), 2);//绘制矩形框
 Mat dst = image(cv::Range(y,y+h),cv::Range(x,x+w));
+
+#不规则区域
+image = cv2.imread(&quot;test.jpg&quot;)  
+points = np.array([[[101, 116], [315, 18], [335, 64], [121, 161]]])  
+height,width,_ = image.shape  
+mask = np.zeros((height,width), np.uint8)  
+cv2.polylines(mask, points, 1, 255)  
+cv2.fillPoly(mask, points, 255)  
+dst = cv2.bitwise_and(image, image, mask=mask)  
+#设置白色背景  
+# bg = np.ones_like(image, np.uint8) * 255  
+# cv2.bitwise_not(bg, bg, mask=mask)  
+# dst_white = bg + dst  
+cv2.imwrite(&quot;roi.jpg&quot;, dst)
 </code></pre>
 <p><strong>Q: Mat直接赋值</strong></p>
 <pre><code class="lang-cpp">double left = 0,right = 0.5,top = 0,bottom = 0.5;
@@ -685,7 +863,48 @@ cv::Mat data_map(height, width, CV_8UC1, (unsigned char *)vec.data());
 cv::Mat data_map(height, width, CV_32FC1, (float *)vec.data());
 </code></pre>
 <p><strong>Q: Mat 行列 SUM/MAX/MIN/AVG</strong></p>
-<pre><code class="lang-cppc">cv::reduce(pbox,sum_value,1,cv::REDUCE_SUM);
+<pre><code class="lang-cpp">cv::reduce(pbox,sum_value,1,cv::REDUCE_SUM);
+</code></pre>
+<p><strong>Q: 仿射变换</strong></p>
+<pre><code class="lang-python">import cv2  
+import numpy as np  
+
+def rotate_image(image,points):  
+    rect_xmin, _, _, rect_xmax = np.sort(points[:, :, 0]).flatten()  
+    rect_ymin, _, _, rect_ymax = np.sort(points[:, :, 1]).flatten()  
+    image = image[rect_ymin:rect_ymax, rect_xmin:rect_xmax]  
+
+    points[:, :, 0] = points[:, :, 0] - np.array(rect_xmin)  
+    points[:, :, 1] = points[:, :, 1] - np.array(rect_ymin)  
+    height,width,_ = image.shape  
+    mask = np.zeros((height,width), np.uint8)  
+    cv2.fillPoly(mask, points, (255,255,255))  
+    dst = cv2.bitwise_and(image, image, mask=mask)  
+    #设置白色背景  
+    # bg = np.ones_like(image, np.uint8) * 255  
+    # cv2.bitwise_not(bg, bg, mask=mask)  
+    # dst_white = bg + dst  
+
+    name = str(time.time())  
+    cv2.imwrite(&quot;../inference_results/%s_roi.jpg&quot; % (name), dst)  
+
+    left_top,right_top,right_bottom,left_bottom = np.squeeze(points,0)  
+    left_top_x,left_top_y = left_top  
+    left_bottom_x,left_bottom_y = left_bottom  
+    roi_height = int(math.sqrt(math.pow(abs(left_bottom_x - left_top_x), 2) + math.pow(abs(left_bottom_y - left_top_y), 2)))  
+    roi_width = int(math.sqrt(math.pow(height, 2) + math.pow(width, 2)))  
+
+    source_points = np.float32([left_top,right_top,left_bottom,right_bottom])  
+    target_points = np.float32([[0, 0], [roi_width, 0], [0, roi_height], [roi_width,roi_height], ])  
+    mat = cv2.getPerspectiveTransform(source_points, target_points)  
+    dst = cv2.warpPerspective(dst, mat, (roi_width,roi_height))  
+    cv2.imwrite(&quot;../inference_results/%s_dst.jpg&quot; % (name), dst)  
+    return dst  
+
+if __name__ == &#39;__main__&#39;:  
+    image = cv2.imread(&quot;tips/01.jpg&quot;)  
+    points = np.array([[[103, 121], [312, 19], [334, 65],[114, 165]]])  
+    image = rotate_image(image,points)
 </code></pre>
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p><strong>Q：springboot切面编程实例</strong></p>
 <pre><code class="lang-java">@Aspect
@@ -939,8 +1158,10 @@ git push origin &lt;分支名&gt;
 <p><strong>Q：git 子模块</strong></p>
 <pre><code class="lang-bash">#添加
 git submodule add &lt;url&gt; &lt;path&gt;
+#更新
 git submodule init
 git submodule update
+
 git submodule update --init --recursive
 
 #删除
@@ -975,11 +1196,8 @@ gawk: error while loading shared libraries: /lib64/libm.so.6: invalid ELF header
 mv /usr/lib64/libstdc++.so.6  /usr/lib64/libstdc++.so.6.bak
 ln -s /usr/lib64/libstdc++.so.6.0.26  /usr/lib64/libstdc++.so.6
 </code></pre>
-<pre><code>
-**Q：linux免密登录**
-
-```bash
-$ ssh-keygen -t rsa
+<p><strong>Q：linux免密登录</strong></p>
+<pre><code class="lang-bash">$ ssh-keygen -t rsa
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/worker/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
@@ -1010,8 +1228,11 @@ $ cd .ssh
 $ touch id_rsa.pub # 复制ssh-keygen主机的id_rsa.pub内容置此
 $ cat id_rsa.pub &gt;&gt; authorized_keys
 $ chmod 600 authorized_keys
-</code></pre><p><strong>Q：conda安装指定的cuda和cudnn</strong></p>
-<pre><code class="lang-bash">conda install tensorflow-gpu=1.4.1 cudatoolkit=8.0 cudnn=6.0 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/linux-64/
+</code></pre>
+<p><strong>Q：conda安装指定的cuda和cudnn</strong></p>
+<pre><code class="lang-bash">conda install pytorch==1.10.1 cudatoolkit=11.2 -c pytorch -c conda-forge
+
+conda install tensorflow-gpu=1.4.1 cudatoolkit=8.0 cudnn=6.0 -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/linux-64/
 </code></pre>
 <p><strong>Q：gcc版本</strong></p>
 <pre><code class="lang-bash">#centos7
@@ -1045,17 +1266,23 @@ sudo yum install glog-devel.x86_64
 sudo yum install gflags-devel.x86_64
 sudo yum install boost
 sudo yum install boost-devel
-#sudo yum remove libevent-devel #卸载旧版本
-tar -zxvf libevent-2.1.12-stable.tar.gz
-cd libevent-2.0.22-stable
-./configure --prefix=/usr/local &amp;&amp; make &amp;&amp; sudo make install
+
+sudo yum list | grep jsoncpp-devel
+sudo yum install jsoncpp.x86_64
+sudo yum install jsoncpp-devel.x86-64
 
 #openssl
-tar -zxvf openssl-1.1.1m.tar.gz:q:
+tar -zxvf openssl-1.1.1m.tar.gz
 cd openssl-1.1.1m
 ./config --prefix=/usr/local/openssl
 sudo make
 sudo make install
+
+
+#sudo yum remove libevent-devel #卸载旧版本
+tar -zxvf libevent-2.1.12-stable.tar.gz
+cd libevent-2.1.12-stable
+./configure --prefix=/usr/local &amp;&amp; make &amp;&amp; sudo make install
 
 git clone https://github.com/Qihoo360/evpp
 cd evpp  #编辑CMakeLists.txt 指定openssl
@@ -1213,22 +1440,20 @@ taskset -pc 0,2 11498
 <pre><code class="lang-bash">pip install supervisor
 </code></pre>
 <p>config.ini</p>
-<pre><code class="lang-text">[program:ttsapi]
-command=gunicorn -c config.py main:app --log-level=info --preload
-directory=/home/projects/test
+<pre><code class="lang-text">[program:m60-ocr]
+command=/data/services/ocr-service/build/ocrcloudserver --instance_num 24 --port 8080
+directory=/data/services/ocr-service/build
 startsecs=0
 stopwaitsecs=0
 autostart=true
 autorestart=true
-redirect_stderr=true
-stdout_logfile=./log/supervisor.log
-stderr_logfile=./log/supervisor_error.log
+stdout_logfile=./log/ocr.log
 
 
 [inet_http_server]
 port=*:9001
-username=jiaopan       
-password=jiaopan  
+username=gks        
+password=gks     
 
 [supervisord]
 logfile=./log/supervisord.log
@@ -1251,6 +1476,32 @@ logfile_backups=1
         }  
     }  
 }
+</code></pre>
+<p><strong>Q：android bitmap转RGB</strong></p>
+<pre><code class="lang-java">public byte[] convertBitmapToRGBData(Bitmap bitmap){  
+    int width = bitmap.getWidth();  
+    int height = bitmap.getHeight();  
+    int[] values = new int[width * height];  
+    bitmap.getPixels(values,0,width,0,0,width,height);  
+    byte[] rgb = new byte[width * height * 3];  
+    for (int i = 0; i &lt; values.length; i++) {  
+        final int bit = values[i];  
+        rgb[i * 3] = (byte) ((bit &gt;&gt; 16) &amp; 0xFF);  
+        rgb[i * 3 + 1] = (byte) ((bit &gt;&gt; 8) &amp; 0xFF);  
+        rgb[i * 3 + 2] = (byte) (bit &amp; 0xFF);  
+    }  
+    return rgb;  
+}
+</code></pre>
+<p><strong>Q：jni byte[] 转unsigned char* *</strong></p>
+<pre><code class="lang-cpp">unsigned char* bits = NULL;  
+jbyte*  bytes = env-&gt;GetByteArrayElements(det_bitmap,0);  
+int len = env-&gt;GetArrayLength(det_bitmap);  
+bits = new unsigned char[len + 1];  
+memset(bits,0,len + 1);  
+memcpy(bits,bytes,len);  
+bits[len] = 0;  
+env-&gt;ReleaseByteArrayElements(det_bitmap,bytes,0);
 </code></pre>
 <p><strong>Q：android项目打包</strong></p>
 <p>app/build.gradle</p>
@@ -1304,7 +1555,15 @@ set(CMAKE_C_FLAGS &quot;${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections&quo
 </code></pre>
 <p><strong>Q 定位native崩溃</strong></p>
 <pre><code class="lang-bash">#编译-取消 SET(CMAKE_CXX_VISIBILITY_PRESET hidden)
-./{path}/adb logcat|{path}/ndk-stack -sym {path}/app/build/intermediates/cmake/release/obj/armeabi-v7a
+#基于logcat定位
+/andorid-sdk/platform-tools/adb logcat|andorid-sdk/ndk/21.3.6528147/ndk-stack -sym {path}/app/build/intermediates/cmake/release/obj/armeabi-v7a
+#基于崩溃文件定位
+andorid-sdk/ndk/21.3.6528147/ndk-stack -sym {path}/app/build/intermediates/cmake/release/obj/armeabi-v7a -dump crash.txt
+
+开始解析 logcat 输出时查找第一行星号
+*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+crash内容
+...
 </code></pre>
 <p><strong>Q Mac无法睡眠</strong></p>
 <pre><code class="lang-bash">pmset -g
@@ -1314,7 +1573,6 @@ SleepDisabled 1  #睡眠被关闭
 Currently in use:
 lidwake 1
 lowpowermode 0
-...
 </code></pre>
 <pre><code class="lang-bash">sudo pmset -a disablesleep 0
 </code></pre>
@@ -1351,6 +1609,151 @@ pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f 
 # CUDA 10.2
 pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
 </code></pre>
+<p><strong>Q onnx simplify</strong></p>
+<pre><code class="lang-python">import onnx  
+from onnxsim import simplify  
+
+onnx_model = onnx.load(&quot;xx.onnx&quot;)  # load onnx model  
+model_simp, check = simplify(onnx_model)  
+assert check, &quot;Simplified ONNX model could not be validated&quot;  
+onnx.save(model_simp, &quot;xx_sim.onnx&quot;)  
+print(&#39;finished exporting onnx&#39;)
+</code></pre>
+<p><strong>Q cuda RuntimeError</strong></p>
+<pre><code class="lang-bash">RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+</code></pre>
+<p>cuda版本与深度学习框架版本不匹配</p>
+<pre><code># CUDA 11.1
+pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
+
+# CUDA 10.2
+pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 torchaudio==0.10.1 -f https://download.pytorch.org/whl/torch_stable.html
+</code></pre><pre><code class="lang-python">#验证cuda可用
+import torch 
+torch.cuda.is_available() 
+torch.zeros(8).cuda()
+</code></pre>
+<p><strong>Q pip install uwsgi出错</strong></p>
+<pre><code class="lang-bash">conda install -c conda-forge uwsgi
+</code></pre>
+<p>**Q linux日志关键字查找和清空日志</p>
+<pre><code class="lang-bash">#查找
+grep 关键字 name.log
+#清空
+cat /dev/null &gt; filename
+: &gt; filename
+</code></pre>
+<p><strong>Q NCCL install</strong></p>
+<pre><code class="lang-bash">https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+
+#For Ubuntu: 
+sudo apt install libnccl2=2.15.5-1+cuda11.0 libnccl-dev=2.15.5-1+cuda11.0  
+#For RHEL/Centos: 
+sudo yum install libnccl-2.15.5-1+cuda11.0 libnccl-devel-2.15.5-1+cuda11.0 libnccl-static-2.15.5-1+cuda11.0
+</code></pre>
+<p><strong>Q JNI动态注册native方法</strong></p>
+<pre><code class="lang-java">package com.test;  
+
+public class TestRegister {  
+    public static native String test();  
+}
+</code></pre>
+<pre><code class="lang-cpp">JavaVM* java_vm = nullptr;  
+int32_t jni_version = 0;  
+
+#define NATIVE_METHOD(class_name, function_name, native_function_name, signature) \  
+{ #function_name, signature, (void*)(class_name ## _ ## native_function_name) }  
+
+extern &quot;C&quot;  
+JNIEXPORT jstring JNICALL  
+Java_com_test_TestRegister_test(JNIEnv *env, jclass clazz) {  
+    std::string text = &quot;动态加载..&quot;;  
+    return env-&gt;NewStringUTF(text.c_str());  
+}  
+
+bool jniRegisterNativeMethods(JNIEnv *env, const char *class_name, const JNINativeMethod *methods,  
+                              int num_methods) {  
+    jclass clazz = env-&gt;FindClass(class_name);  
+    if (clazz == nullptr) {  
+        return false;  
+    }  
+    return env-&gt;RegisterNatives(clazz, methods, num_methods) &gt;= 0;  
+}  
+static JNINativeMethod methods[] = {  
+        NATIVE_METHOD(Java_com_test_TestRegister, test, test, &quot;()Ljava/lang/String;&quot;),  
+};  
+
+
+jint JNI_OnLoad(JavaVM *vm, void * reserved) {  
+    JNIEnv *env = nullptr;  
+
+#ifdef JNI_VERSION_1_6  
+    if (vm-&gt;GetEnv((void **) &amp;env, JNI_VERSION_1_6) == JNI_OK) {  
+        jni_version = JNI_VERSION_1_6;  
+    }  
+#endif  
+
+#ifdef JNI_VERSION_1_4  
+    if (jni_version == JNI_FALSE &amp;&amp; vm-&gt;GetEnv((void **) &amp;env, JNI_VERSION_1_4) == JNI_OK) {  
+        jni_version = JNI_VERSION_1_4;  
+    }  
+#endif  
+
+#ifdef JNI_VERSION_1_2  
+    if (jni_version == JNI_FALSE &amp;&amp; vm-&gt;GetEnv((void **) &amp;env, JNI_VERSION_1_2) == JNI_OK) {  
+        jni_version = JNI_VERSION_1_2;  
+    }  
+#endif  
+
+    jniRegisterNativeMethods(env, &quot;com/test/TestRegister&quot;, methods,  
+                             sizeof(methods) / sizeof(methods[0]));  
+
+    java_vm = vm;  
+    return jni_version;  
+}
+</code></pre>
+<pre><code class="lang-java">static {  
+    System.loadLibrary(&quot;test&quot;);  
+}
+Log.d(&quot;test&quot;, TestRegister.test());
+
+//加载新的so
+public static void copyFilesFromAssets(AssetManager assetManager, String assetsPath, String savePath){  
+    try {  
+        InputStream is = assetManager.open(assetsPath);  
+        FileOutputStream fos = new FileOutputStream(new File(savePath + &quot;/libtest.so&quot;));  
+        byte[] buffer = new byte[1024];  
+        int byteCount = 0;  
+        while ((byteCount = is.read(buffer)) != -1) {  
+            fos.write(buffer, 0, byteCount);  
+        }  
+        fos.flush();  
+        is.close();  
+        fos.close();  
+    } catch (Exception e) {  
+        e.printStackTrace();  
+    }  
+}
+
+String assets_lib_path = &quot;4.1-lib/arm64-v8a/libtest.so&quot;;  
+copyFilesFromAssets(getAssets(),assets_lib_path,getFilesDir().getPath());  
+Log.d(&quot;TAG&quot;, getFilesDir().getPath());  
+String fileNames[] = getFilesDir().list();  
+for (String filename:fileNames){  
+    Log.d(&quot;filename&quot;, filename);  
+}  
+System.load(getFilesDir().getPath() + &quot;/libtest.so&quot;);
+</code></pre>
+<p><strong>Q python传递图片数据(unsigned char*)至c++</strong></p>
+<pre><code class="lang-python">image = cv2.imread(&quot;test.jpg&quot;)  
+height,width,channels = image.shape
+input_image = np.asarray(image,dtype=np.uint8)  
+input_image = input_image.ctypes.data_as(c_char_p)
+</code></pre>
+<p><strong>Q 查看安卓手机位数</strong></p>
+<p>```bash<br>./adb shell getprop ro.product.cpu.abi</p>
 
             <hr>
           </div>
