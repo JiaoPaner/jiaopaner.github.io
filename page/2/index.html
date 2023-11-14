@@ -139,6 +139,70 @@
     
     
       <div class="col-12 col-md-4 m-auto">
+        <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/" target="_self">
+          <img src="/images/note/19.jpg" srcset="/img/loading.gif" alt="设计模式-Java" class="img-fluid rounded z-depth-3 index-thumbnails">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 m-auto">
+      <a href="/2020/04/20/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Java/">
+        <p class="h4 index-header">设计模式-Java</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">单例模式
+饿汉式
+
+#1
+class Singleton{
+    private final static Singleton instance = new Singleton();
+    public static Singleton getInstance(){
+        return instance;
+    }
+}
+#2
+public class Singleton{
+    private static Singleton instance;
+    static {
+        instance = new Singleton();
+    }
+    public static Singleton getInstance(){
+        return instance;
+    }
+}
+
+
+懒汉式
+
+#1 线程不安全
+public class Singleton{
+    private static Singleton instance;
+    public static Singleton getInstance(){
+        if(i</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-20&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
+          &nbsp;
+        
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+      <div class="col-12 col-md-4 m-auto">
         <a href="/2020/04/15/spark.004/" target="_self">
           <img src="/images/bigdata/4.jpeg" srcset="/img/loading.gif" alt="004.Spark Machine Learning" class="img-fluid rounded z-depth-3 index-thumbnails">
         </a>
@@ -598,60 +662,6 @@ kibana下载地址:https://www.elastic.co/cn/downloads/kibana
           <i class="iconfont icon-tag"></i>
           
             <a href="/tags/elasticsearch">elasticsearch</a>&nbsp;
-          
-        
-      </div>
-    </div>
-  </div>
-
-  <div class="row mb-4 mx-auto">
-    
-    
-      <div class="col-12 col-md-4 m-auto">
-        <a href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" target="_self">
-          <img src="/images/opencv3/41.png" srcset="/img/loading.gif" alt="android使用opencv native方式环境搭建" class="img-fluid rounded z-depth-3 index-thumbnails">
-        </a>
-      </div>
-    
-    <div class="col-12 col-md-8 m-auto">
-      <a href="/2019/11/01/android%E4%BD%BF%E7%94%A8opencv%20native%E6%96%B9%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
-        <p class="h4 index-header">android使用opencv native方式环境搭建</p>
-        
-        
-          
-        
-        <div class="index-excerpt" >
-          <div class="index-text mb-1">1.opencv下载：https://opencv.org/releases/ 解压后为OpenCV-android-sdk
-
-2.创建初始Android项目
-
-3.在app/src/main目录下新建jniLibs目录，在app/src/main/cpp目录下新建include目录和src目录
-将OpenCV-android-sdk/sdk/native/libs下所有目录复制到jniLibs目录中
-将OpenCV-android-sdk/sdk/native/jni/include下的所有目录复制到app/src/main/cpp/include目录中
-移动app/src/main/cpp/CMakeLists.txt至app目录下 
-移动app/src/main/cpp/native-lib.cpp至app/src/main/cpp/src/native-lib.cpp
-
-4.配置文件修改
-CMakeLists.txt
-# For more information about using CMake with Android Studio, read the
-# document</div>
-        </div>
-      </a>
-
-      <div>
-        
-          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-01&nbsp;&nbsp;
-        
-        
-          <i class="iconfont icon-inbox"></i>
-          
-            <a href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>&nbsp;
-          &nbsp;
-        
-        
-          <i class="iconfont icon-tag"></i>
-          
-            <a href="/tags/opencv">opencv</a>&nbsp;
           
         
       </div>

@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    8.6k 字
+                    9.6k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      48 分钟
+                      54 分钟
                   </span>&nbsp;
                 
 
@@ -226,9 +226,15 @@ sudo cmake -DCMAKE_INSTALL_PREFIX=/home/test .. #安装目录
 sudo make -j4 #编译
 sudo make install #安装
 sudo ldconfig #更新软连接
+
+#预编译版本
+sudo ln -s cmake /usr/bin/cmake
 </code></pre>
-<p><strong>Q: mac安装LLVM</strong></p>
-<pre><code class="lang-bash">$ cd where-you-want-llvm-to-live
+<pre><code>
+**Q: mac安装LLVM**
+
+```bash
+$ cd where-you-want-llvm-to-live
 $ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
 
 $ cd llvm/tools
@@ -246,8 +252,7 @@ $ cd build
 $ cmake -G &quot;Unix Makefiles&quot; ..
 $ make
 $ make install
-</code></pre>
-<p><strong>Q:cJSON的使用</strong></p>
+</code></pre><p><strong>Q:cJSON的使用</strong></p>
 <pre><code class="lang-cpp">#include &quot;cJSON.h&quot;
 cJSON  *root = cJSON_CreateObject();
 cJSON  *bboxs = cJSON_CreateArray();
@@ -457,6 +462,37 @@ if(future.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
 }
 auto result = future.get();
 return result;
+</code></pre>
+<p><strong>Q：c++11 std::string/std::wstring</strong></p>
+<pre><code class="lang-cpp">#include &lt;string&gt;
+#include &lt;locale&gt;
+#include &lt;codecvt&gt;
+
+// convert string to wstring
+inline std::wstring to_wide_string(const std::string&amp; input){
+    std::wstring_convert&lt;std::codecvt_utf8&lt;wchar_t&gt;&gt; converter;
+    return converter.from_bytes(input);
+}
+// convert wstring to string 
+inline std::string to_byte_string(const std::wstring&amp; input){
+    //std::wstring_convert&lt;std::codecvt_utf8_utf16&lt;wchar_t&gt;&gt; converter;
+    std::wstring_convert&lt;std::codecvt_utf8&lt;wchar_t&gt;&gt; converter;
+    return converter.to_bytes(input);
+}
+</code></pre>
+<p><strong>Q：c++分割字符串</strong></p>
+<pre><code class="lang-cpp">inline void split(const std::string &amp;text,
+                  const std::string &amp;delimiter,
+                  std::vector&lt;std::string&gt; &amp;tokens){
+
+  std::string::size_type last_pos = text.find_first_not_of(delimiter,0);
+  std::string::size_type pos = text.find_first_of(delimiter,last_pos);
+  while (std::string::npos != pos || std::string::npos != last_pos){
+    tokens.push_back(text.substr(last_pos,pos - last_pos));
+    last_pos = text.find_first_not_of(delimiter,pos);
+    pos = text.find_first_of(delimiter,last_pos);
+  }
+}
 </code></pre>
 <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q：python打包发布</strong></p>
 <p>1.项目根目录新建setup.py</p>
@@ -869,42 +905,72 @@ cv::Mat data_map(height, width, CV_32FC1, (float *)vec.data());
 <pre><code class="lang-python">import cv2  
 import numpy as np  
 
-def rotate_image(image,points):  
+def perspective_transform_image(image, points):  
     rect_xmin, _, _, rect_xmax = np.sort(points[:, :, 0]).flatten()  
     rect_ymin, _, _, rect_ymax = np.sort(points[:, :, 1]).flatten()  
     image = image[rect_ymin:rect_ymax, rect_xmin:rect_xmax]  
 
     points[:, :, 0] = points[:, :, 0] - np.array(rect_xmin)  
     points[:, :, 1] = points[:, :, 1] - np.array(rect_ymin)  
-    height,width,_ = image.shape  
-    mask = np.zeros((height,width), np.uint8)  
-    cv2.fillPoly(mask, points, (255,255,255))  
+    height, width, _ = image.shape  
+    mask = np.zeros((height, width), np.uint8)  
+    cv2.fillPoly(mask, points, (255, 255, 255))  
     dst = cv2.bitwise_and(image, image, mask=mask)  
-    #设置白色背景  
-    # bg = np.ones_like(image, np.uint8) * 255  
-    # cv2.bitwise_not(bg, bg, mask=mask)  
-    # dst_white = bg + dst  
-
+    # 设置白色背景  
+    # bg = np.ones_like(image, np.uint8) * 255    # cv2.bitwise_not(bg, bg, mask=mask)    # dst_white = bg + dst  
     name = str(time.time())  
     cv2.imwrite(&quot;../inference_results/%s_roi.jpg&quot; % (name), dst)  
 
-    left_top,right_top,right_bottom,left_bottom = np.squeeze(points,0)  
-    left_top_x,left_top_y = left_top  
-    left_bottom_x,left_bottom_y = left_bottom  
-    roi_height = int(math.sqrt(math.pow(abs(left_bottom_x - left_top_x), 2) + math.pow(abs(left_bottom_y - left_top_y), 2)))  
+    left_top, right_top, right_bottom, left_bottom = np.squeeze(points, 0)  
+    left_top_x, left_top_y = left_top  
+    left_bottom_x, left_bottom_y = left_bottom  
+    roi_height = int(  
+        math.sqrt(math.pow(abs(left_bottom_x - left_top_x), 2) + math.pow(abs(left_bottom_y - left_top_y), 2)))  
     roi_width = int(math.sqrt(math.pow(height, 2) + math.pow(width, 2)))  
 
-    source_points = np.float32([left_top,right_top,left_bottom,right_bottom])  
-    target_points = np.float32([[0, 0], [roi_width, 0], [0, roi_height], [roi_width,roi_height], ])  
+    source_points = np.float32([left_top, right_top, left_bottom, right_bottom])  
+    target_points = np.float32([[0, 0], [roi_width, 0], [0, roi_height], [roi_width, roi_height], ])  
     mat = cv2.getPerspectiveTransform(source_points, target_points)  
-    dst = cv2.warpPerspective(dst, mat, (roi_width,roi_height))  
+    dst = cv2.warpPerspective(dst, mat, (roi_width, roi_height))  
     cv2.imwrite(&quot;../inference_results/%s_dst.jpg&quot; % (name), dst)  
     return dst  
 
-if __name__ == &#39;__main__&#39;:  
-    image = cv2.imread(&quot;tips/01.jpg&quot;)  
-    points = np.array([[[103, 121], [312, 19], [334, 65],[114, 165]]])  
-    image = rotate_image(image,points)
+
+def affine_transform(image, angle):  
+    height, width, _ = image.shape  
+    center = (width // 2, height // 2)  
+    matrx = cv2.getRotationMatrix2D(center, angle, 1.0)  
+    rotated = cv2.warpAffine(image, matrx, (width, height), flags=cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)  
+    cv2.imwrite(&quot;../inference_results/rotated.jpg&quot;, rotated)  
+    x, y = center  
+    print(x, y)  
+    # xmin = 243  
+    # ymin = 215    xmin = 100  
+    ymin = 21  
+    # points = np.array([[243, 236], [265, 215], [400, 348], [378, 369]])  
+    points = np.array([[100, 119], [317, 21], [334, 60], [118, 159]])  
+    points[:, 0] = points[:, 0] - xmin + 18  
+    points[:, 1] = points[:, 1] - ymin  
+
+    angle = math.radians(angle)  
+
+    beta = round(math.sin(angle), 2)  
+    alpha = round(math.cos(angle), 2)  
+    print(beta, alpha)  
+
+    x_points = points[:, 0].copy() - x  
+    y_points = -(points[:, 1].copy() - y)  
+    print(&quot;origin points:&quot;, x_points, y_points)  
+
+    points[:, 0] = x_points * alpha - y_points * beta + x  
+    print(points)  
+    print(y_points * alpha + x_points * beta)  
+    points[:, 1] = y - (y_points * alpha + x_points * beta)  
+    print(points)  
+
+    vis = rotated.copy()  
+    cv2.drawContours(vis, [points], 0, (0, 0, 255), 2)  
+    cv2.imwrite(&quot;../inference_results/vis.jpg&quot;, vis)
 </code></pre>
 <h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><p><strong>Q：springboot切面编程实例</strong></p>
 <pre><code class="lang-java">@Aspect
@@ -1256,6 +1322,15 @@ source /opt/rh/devtoolset-7/enable
 dnf install gcc-toolset-10
 scl enable gcc-toolset-10 bash
 </code></pre>
+<pre><code class="lang-bash">#ubuntu
+sudo apt-get install gcc-7  
+sudo apt-get install g++-7
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100  
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
+g
+gcc -v
+g++ -v
+</code></pre>
 <p><strong>Q：sudo: /usr/lib/sudo/sudoers.so must be owned by uid 0</strong></p>
 <pre><code class="lang-bash">#ubuntu -&gt; recovery mode  开机长按esc
 $ pkexec chown root /usr/lib/sudo/sudoers.so
@@ -1285,9 +1360,14 @@ cd libevent-2.1.12-stable
 ./configure --prefix=/usr/local &amp;&amp; make &amp;&amp; sudo make install
 
 git clone https://github.com/Qihoo360/evpp
-cd evpp  #编辑CMakeLists.txt 指定openssl
-git submodule update --init --recursive
+cd evpp 
+vim CMakeLists.txt
+#编辑CMakeLists.txt 链接openssl的lib和include
+#include_directories(&quot;/usr/local/openssl/include&quot;)
+#link_directories(&quot;/usr/local/openssl/lib&quot;)
 
+cd evpp
+git submodule update --init --recursive
 mkdir -p build &amp;&amp; cd build
 cmake ..
 make -j6
@@ -1334,6 +1414,14 @@ mkdir build_64 &amp;&amp; cd build_64 &amp;&amp; ../build_64.sh #armv8
 <pre><code class="lang-bash">find ~/.gradle -type f -name &quot;*.lock&quot; -delete
 </code></pre>
 <p><strong>Q：kenlm train</strong></p>
+<pre><code class="lang-bash">yum install boost-devel boost-test boost
+git clone https://github.com/kpu/kenlm.git
+cd kenlm
+mkdir bulid  
+cd build
+cmake ..   
+make -j4
+</code></pre>
 <ul>
 <li>-o -&gt; order执行命令的选项；</li>
 <li>3 -&gt; N元语言模型(3-Gram)</li>
@@ -1348,6 +1436,7 @@ bin/lmplz -o 4 --prune 0 4 4 4 -S 40% --text train_char.txt --arpa ngram.pt
 </code></pre>
 <p>模型压缩</p>
 <pre><code class="lang-bash"># -s 考虑起始符\&lt;s&gt;和结尾符&lt;\s&gt;
+bin/build_binary lm.arpa lm.bin
 bin/build_binary -s lm.arpa lm.bin
 
 # 用于查看量化参数
@@ -1440,25 +1529,39 @@ taskset -pc 0,2 11498
 <pre><code class="lang-bash">pip install supervisor
 </code></pre>
 <p>config.ini</p>
-<pre><code class="lang-text">[program:m60-ocr]
-command=/data/services/ocr-service/build/ocrcloudserver --instance_num 24 --port 8080
-directory=/data/services/ocr-service/build
+<pre><code class="lang-text">[program:nmt-server-0]
+command=/data/servers/mt_server/build/NMTSERVER 8888 200 0 ../nmt_config.json
+directory=/data/servers/mt_server/build
 startsecs=0
 stopwaitsecs=0
 autostart=true
 autorestart=true
-stdout_logfile=./log/ocr.log
+stdout_logfile=/data/servers/mt_server/build/server_0.log
+redirect_stderr=true
+logfile_maxbytes=1024MB
 
+[program:nmt-server-1]
+command=/data/servers/mt_server/build/NMTSERVER 8889 200 1 ../nmt_config.json
+directory=/data/servers/mt_server/build
+startsecs=0
+stopwaitsecs=0
+autostart=true
+autorestart=true
+stdout_logfile=/data/servers/mt_server/build/server_1.log
+redirect_stderr=true
+logfile_maxbytes=1024MB
 
 [inet_http_server]
 port=*:9001
-username=gks        
-password=gks     
+username=123456
+password=123456
 
 [supervisord]
-logfile=./log/supervisord.log
-logfile_maxbytes=50MB
+logfile=./logs/supervisord.log
+logfile_maxbytes=1024MB
 logfile_backups=1
+loglevel=info
+redirect_stderr=true
 </code></pre>
 <p>启动</p>
 <pre><code class="lang-bash">supervisord -c /path/config.ini #浏览器打开监控:ip:9001
@@ -1579,10 +1682,9 @@ lowpowermode 0
 <p><strong>Q cudnn 安装</strong></p>
 <pre><code class="lang-bash">tar -zxvf cudnn-10.2-linux-x64-v8.0.3.tgz
 cd cuda    
-sudo cp lib64/lib* /usr/local/cuda-10.2/lib64/    
-sudo cp include/*.h /usr/local/cuda-10.2/include/   
-sudo chmod a+r /usr/local/cuda-10.2/lib64/* 
-sudo chmod a+r /usr/local/cuda-10.2/include/*
+sudo cp include/cudnn* /usr/local/cuda-11.3/include/  
+sudo cp lib64/libcudnn* /usr/local/cuda-11.3/lib64  
+sudo chmod a+r /usr/local/cuda-11.3/include/cudnn*.h /usr/local/cuda-11.3/lib64/libcudnn*
 
 #查看cudnn版本
 cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
@@ -1644,14 +1746,17 @@ grep 关键字 name.log
 #清空
 cat /dev/null &gt; filename
 : &gt; filename
+truncate -s 0 filename
 </code></pre>
 <p><strong>Q NCCL install</strong></p>
-<pre><code class="lang-bash">https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+<pre><code class="lang-bash">#Network Installer for RedHat/CentOS 8
+sudo dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo
 
-#For Ubuntu: 
-sudo apt install libnccl2=2.15.5-1+cuda11.0 libnccl-dev=2.15.5-1+cuda11.0  
+#Network Installer for RedHat/CentOS 7
+sudo yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+
 #For RHEL/Centos: 
-sudo yum install libnccl-2.15.5-1+cuda11.0 libnccl-devel-2.15.5-1+cuda11.0 libnccl-static-2.15.5-1+cuda11.0
+sudo yum install libnccl-2.8.4-1+cuda11.2 libnccl-devel-2.8.4-1+cuda11.2 libnccl-static-2.8.4-1+cuda11.2
 </code></pre>
 <p><strong>Q JNI动态注册native方法</strong></p>
 <pre><code class="lang-java">package com.test;  
@@ -1753,7 +1858,95 @@ input_image = np.asarray(image,dtype=np.uint8)
 input_image = input_image.ctypes.data_as(c_char_p)
 </code></pre>
 <p><strong>Q 查看安卓手机位数</strong></p>
-<p>```bash<br>./adb shell getprop ro.product.cpu.abi</p>
+<pre><code class="lang-bash">adb shell getprop ro.product.cpu.abi
+</code></pre>
+<p><strong>Q ffmpeg 编译安装</strong></p>
+<pre><code class="lang-bash">git clone https://github.com/FFmpeg/FFmpeg.git
+cd ffmpeg
+mkdir build
+./configure --enable-shared --enable-libx264 --enable-gpl --enable-openssl --prefix=./build
+make -j6
+make install
+ffmpeg -version
+</code></pre>
+<pre><code>configuration: --prefix=/usr/local/Cellar/ffmpeg/4.2.2_4 --enable-shared --enable-pthreads --enable-version3 --enable-avresample --host-cflags=-fno-stack-check --host-ldflags= --enable-ffplay --enable-gnutls --enable-gpl --enable-libaom --enable-libbluray --enable-libmp3lame --enable-libopus --enable-librubberband --enable-libsnappy --enable-libsrt --enable-libtesseract --enable-libtheora --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-lzma --enable-libfontconfig --enable-libfreetype --enable-frei0r --enable-libass --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librtmp --enable-libspeex --enable-libsoxr --enable-videotoolbox --disable-libjack --disable-indev=jack
+</code></pre><p><strong>Q 虚拟机配置静态ip 且宿主机互通 可访问外网</strong><br>添加网卡<br>网络模式网络地址转换(NAT)-&gt;访问外网<br>仅主机(Host-Only)适配器(ifcfg-enp0s3)-&gt;宿主机互通<br>静态ip配置</p>
+<pre><code class="lang-bash">cd /etc/sysconfig/network-scripts/
+sudo vim ifcfg-enp0s3
+</code></pre>
+<pre><code class="lang-text">TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=static
+IPADDR=192.168.56.3
+NETMASK=255.255.255.0
+GATEWAY=192.168.56.1
+DNS1=114.114.114.114
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=enp0s3
+UUID=e3fc06b7-3f5c-49fd-bb89-8a755f077384
+DEVICE=enp0s3
+ONBOOT=yes
+</code></pre>
+<pre><code class="lang-bash">service network restart
+</code></pre>
+<p><strong>Q win11 wsl2 安装和迁移</strong></p>
+<pre><code class="lang-bash">
+#控制面板-&gt;程序-&gt;启用或关闭windows功能-&gt;开启windows虚拟机监控程序平台、Linux 子系统（WSL2)、Hyper-V
+
+bcdedit /set hypervisorlaunchtype auto #powershell
+
+#appstore 下载安装ubuntu
+#wsl2 linux内核更新包 https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+#迁移
+wsl --shutdown
+wsl --export Ubuntu-20.04 D:\export-wsl-Ubuntu-20.04
+wsl --unregister Ubuntu-20.04
+wsl --import Ubuntu-20.04 D:\ubuntu-20.04 D:\export-wsl-Ubuntu-20.04 --version 2
+ubuntu2004.exe config --default-user [username]
+
+#重启
+wsl -l -v  
+wsl -t Ubuntu  
+wsl --shutdown  
+wsl #启动
+</code></pre>
+<p><strong>Q win11 wsl2 ssh</strong></p>
+<pre><code class="lang-bash">sudo apt remove openssh-server
+sudo apt install openssh-server
+sudo vim /etc/ssh/sshd_config
+</code></pre>
+<pre><code class="lang-text">Port 2222
+#AddressFamily any
+ListenAddress 0.0.0.0
+#ListenAddress ::
+PasswordAuthentication yes
+PermitEmptyPasswords no
+</code></pre>
+<pre><code class="lang-bash">sudo service ssh --full-restart
+</code></pre>
+<pre><code class="lang-bash">#win11
+ssh [wsl uername]@[wsl ip] -p 2222
+ssh [wsl uername]@localhost -p 2222  #win11自动映射ip至wsl2
+</code></pre>
+<pre><code class="lang-bash">ssh uername@ip -p 2222
+#WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED
+#删除.ssh/known_hosts 对应ip的配置项
+</code></pre>
+<p><strong>Q wsl挂载移动磁盘</strong></p>
+<pre><code class="lang-bash">sudo mount -t drvfs F: /mnt/f  #挂载
+sudo umount /mnt/f #卸载磁盘
+</code></pre>
+<p><strong>Q 查看端口当前连接数</strong></p>
+<pre><code class="lang-bash">netstat -ano|grep -E &quot;8888&quot;|grep &quot;EST&quot; |wc -l
+</code></pre>
 
             <hr>
           </div>
