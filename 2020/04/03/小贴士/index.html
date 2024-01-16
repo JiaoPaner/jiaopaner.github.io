@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    9.6k 字
+                    9.9k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      54 分钟
+                      56 分钟
                   </span>&nbsp;
                 
 
@@ -1321,6 +1321,10 @@ source /opt/rh/devtoolset-7/enable
 #centos8
 dnf install gcc-toolset-10
 scl enable gcc-toolset-10 bash
+
+sudo yum remove centos-release-scl.noarch
+sudo yum remove centos-release-scl-rh.noarch
+sudo yum install centos-release-scl centos-release-scl-rh
 </code></pre>
 <pre><code class="lang-bash">#ubuntu
 sudo apt-get install gcc-7  
@@ -1346,21 +1350,28 @@ sudo yum list | grep jsoncpp-devel
 sudo yum install jsoncpp.x86_64
 sudo yum install jsoncpp-devel.x86-64
 
-#openssl
+#ubuntu
+sudo apt-get install libgoogle-glog-dev
+sudo apt-get install libgflags-dev
+sudo apt-get install libboost-all-dev
+sudo apt-get install libjsoncpp-dev
+
+#################
+#Optional:openssl libevent 
 tar -zxvf openssl-1.1.1m.tar.gz
 cd openssl-1.1.1m
 ./config --prefix=/usr/local/openssl
 sudo make
 sudo make install
 
-
-#sudo yum remove libevent-devel #卸载旧版本
 tar -zxvf libevent-2.1.12-stable.tar.gz
 cd libevent-2.1.12-stable
 ./configure --prefix=/usr/local &amp;&amp; make &amp;&amp; sudo make install
+#################
 
 git clone https://github.com/Qihoo360/evpp
 cd evpp 
+#if can not find openssl
 vim CMakeLists.txt
 #编辑CMakeLists.txt 链接openssl的lib和include
 #include_directories(&quot;/usr/local/openssl/include&quot;)
@@ -1415,9 +1426,14 @@ mkdir build_64 &amp;&amp; cd build_64 &amp;&amp; ../build_64.sh #armv8
 </code></pre>
 <p><strong>Q：kenlm train</strong></p>
 <pre><code class="lang-bash">yum install boost-devel boost-test boost
+#ubuntu
+sudo apt-get install libbz2-dev
+sudo apt-get install libeigen3-dev
+sudo apt-get install liblzma-dev
+
 git clone https://github.com/kpu/kenlm.git
 cd kenlm
-mkdir bulid  
+mkdir build  
 cd build
 cmake ..   
 make -j4
@@ -1529,37 +1545,39 @@ taskset -pc 0,2 11498
 <pre><code class="lang-bash">pip install supervisor
 </code></pre>
 <p>config.ini</p>
-<pre><code class="lang-text">[program:nmt-server-0]
-command=/data/servers/mt_server/build/NMTSERVER 8888 200 0 ../nmt_config.json
-directory=/data/servers/mt_server/build
+<pre><code class="lang-text">[program:barmak-nmt-server-0]
+command=/data/servers/barmak_mt_server/build/NMTSERVER 8888 150 0 ../nmt_config.json
+directory=/data/servers/barmak_mt_server/build
 startsecs=0
 stopwaitsecs=0
 autostart=true
 autorestart=true
-stdout_logfile=/data/servers/mt_server/build/server_0.log
+stdout_logfile=/data/servers/barmak_mt_server/build/server_0.log
 redirect_stderr=true
 logfile_maxbytes=1024MB
+stdout_logfile_backups=0
 
-[program:nmt-server-1]
-command=/data/servers/mt_server/build/NMTSERVER 8889 200 1 ../nmt_config.json
-directory=/data/servers/mt_server/build
+[program:barmak-nmt-server-1]
+command=/data/servers/barmak_mt_server/build/NMTSERVER 8889 150 1 ../nmt_config.json
+directory=/data/servers/barmak_mt_server/build
 startsecs=0
 stopwaitsecs=0
 autostart=true
 autorestart=true
-stdout_logfile=/data/servers/mt_server/build/server_1.log
+stdout_logfile=/data/servers/barmak_mt_server/build/server_1.log
 redirect_stderr=true
 logfile_maxbytes=1024MB
+stdout_logfile_backups=0
 
 [inet_http_server]
 port=*:9001
-username=123456
-password=123456
+username=gks        
+password=gks     
 
 [supervisord]
 logfile=./logs/supervisord.log
 logfile_maxbytes=1024MB
-logfile_backups=1
+logfile_backups=0
 loglevel=info
 redirect_stderr=true
 </code></pre>
@@ -1688,6 +1706,44 @@ sudo chmod a+r /usr/local/cuda-11.3/include/cudnn*.h /usr/local/cuda-11.3/lib64/
 
 #查看cudnn版本
 cat /usr/local/cuda/include/cudnn_version.h | grep CUDNN_MAJOR -A 2
+
+
+ll -h libcudnn*
+sudo rm -rf libcudnn_adv_infer.so
+sudo rm -rf libcudnn_adv_infer.so.8
+sudo ln -sf libcudnn_adv_infer.so.8.9.4 libcudnn_adv_infer.so.8
+sudo ln -sf libcudnn_adv_infer.so.8 libcudnn_adv_infer.so
+
+sudo rm -rf libcudnn_adv_train.so
+sudo rm -rf libcudnn_adv_train.so.8
+sudo ln -sf libcudnn_adv_train.so.8.9.4 libcudnn_adv_train.so.8
+sudo ln -sf libcudnn_adv_train.so.8 libcudnn_adv_train.so
+
+sudo rm -rf libcudnn_cnn_infer.so
+sudo rm -rf libcudnn_cnn_infer.so.8
+sudo ln -sf libcudnn_cnn_infer.so.8.9.4 libcudnn_cnn_infer.so.8
+sudo ln -sf libcudnn_cnn_infer.so.8 libcudnn_cnn_infer.so
+
+sudo rm -rf libcudnn_cnn_train.so
+sudo rm -rf libcudnn_cnn_train.so.8
+sudo ln -sf libcudnn_cnn_train.so.8.9.4 libcudnn_cnn_train.so.8
+sudo ln -sf libcudnn_cnn_train.so.8 libcudnn_cnn_train.so
+
+sudo rm -rf libcudnn_ops_infer.so
+sudo rm -rf libcudnn_ops_infer.so.8
+sudo ln -sf libcudnn_ops_infer.so.8.9.4 libcudnn_ops_infer.so.8
+sudo ln -sf libcudnn_ops_infer.so.8 libcudnn_ops_infer.so
+
+sudo rm -rf libcudnn_ops_train.so
+sudo rm -rf libcudnn_ops_train.so.8
+sudo ln -sf libcudnn_ops_train.so.8.9.4 libcudnn_ops_train.so.8
+sudo ln -sf libcudnn_ops_train.so.8 libcudnn_ops_train.so
+
+sudo rm -rf libcudnn.so
+sudo rm -rf libcudnn.so.8
+sudo ln -sf libcudnn.so.8.9.4 libcudnn.so.8
+sudo ln -sf libcudnn.so.8 libcudnn.so
+ll -h libcudnn*
 </code></pre>
 <p><strong>Q 查看linux 系统信息</strong></p>
 <pre><code class="lang-bash">uname -m &amp;&amp; cat /etc/*release
@@ -1947,6 +2003,9 @@ sudo umount /mnt/f #卸载磁盘
 <p><strong>Q 查看端口当前连接数</strong></p>
 <pre><code class="lang-bash">netstat -ano|grep -E &quot;8888&quot;|grep &quot;EST&quot; |wc -l
 </code></pre>
+<p><strong>Q kill相关进程</strong></p>
+<pre><code class="lang-bash">ps -ef |grep name |grep -v grep|awk &#39;{print $2}&#39;|xargs kill -9
+</code></pre>
 
             <hr>
           </div>
@@ -1981,7 +2040,7 @@ sudo umount /mnt/f #卸载磁盘
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -2030,7 +2089,7 @@ sudo umount /mnt/f #卸载磁盘
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -2039,7 +2098,7 @@ sudo umount /mnt/f #卸载磁盘
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
