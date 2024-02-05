@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    9.9k 字
+                    10.4k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      56 分钟
+                      59 分钟
                   </span>&nbsp;
                 
 
@@ -494,6 +494,80 @@ inline std::string to_byte_string(const std::wstring&amp; input){
   }
 }
 </code></pre>
+<p><strong>Q：c++ 多线程条件变量通信</strong></p>
+<pre><code class="lang-cpp">#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;deque&gt;
+#include &lt;condition_variable&gt;
+
+std::mutex mtx; // 互斥量,保护共享资源
+std::condition_variable not_empty; // 条件变量,同步线程
+std::deque&lt;int&gt; shared_data = {1,2,3}; // 共享数据
+
+
+
+int takeData(){
+
+std::unique_lock&lt;std::mutex&gt; lck(mtx);
+    while (shared_data.empty()) {
+        not_empty.wait(lck);
+    }
+    if (!shared_data.empty()) {
+        int data = shared_data.front();
+        shared_data.pop_front();
+        return data;
+    }
+    return 0;
+}
+
+void pushData(int data){
+    std::unique_lock&lt;std::mutex&gt; lck(mtx);
+    shared_data.emplace_back(data);
+    not_empty.notify_all();
+}
+
+
+
+void worker_thread(int id) {
+    int data = takeData();
+    if(data &gt; 0){
+        std::cout &lt;&lt; id &lt;&lt; &quot; data:&quot; &lt;&lt; data &lt;&lt; std::endl;
+        pushData(data);
+    } else{
+        std::cout &lt;&lt; &quot;======&quot; &lt;&lt; id &lt;&lt; &quot;====&quot; &lt;&lt; std::endl;
+    }
+}
+
+int main(){
+
+std::thread t1(worker_thread,0);
+std::thread t2(worker_thread,1);
+std::thread t3(worker_thread,2);
+std::thread t4(worker_thread,3);
+std::thread t5(worker_thread,4);
+std::thread t6(worker_thread,5);
+t1.join();
+t2.join();
+t3.join();
+t4.join();
+t5.join();
+t6.join();
+
+return 0;
+
+}
+</code></pre>
+<p><strong>Q：c++ 跨平台判断</strong></p>
+<ul>
+<li>Windows<br>WIN32、_WIN32、_WIN32_、WIN64、_WIN64、_WIN64_</li>
+<li>Android<br>ANDROID、_ANDROID_</li>
+<li>Linux<br>__linux__</li>
+<li>iOS/Mac<br>__APPLE__ TARGET_OS_IPHONE TARGET_IPHONE_SIMULATOR TARGET_OS_MAC</li>
+</ul>
+<pre><code class="lang-cpp">#if defined(TARGET_OS_MAC) || defined(__APPLE__)
+/*code*/
+#endif
+</code></pre>
 <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q：python打包发布</strong></p>
 <p>1.项目根目录新建setup.py</p>
 <pre><code class="lang-python">from distutils.core import setup
@@ -833,6 +907,58 @@ def base64_to_image(base64_code):
     # 转换成opencv可用格式
     img = cv2.imdecode(img_array, cv2.COLOR_RGB2BGR)
     return img
+</code></pre>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;sstream&gt;
+#include &lt;map&gt;
+#include &lt;opencv2/opencv.hpp&gt;  
+
+const std::string base64_chars = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;
+bool isBase64( unsigned char c ){
+    return (isalnum(c) || (c == &#39;+&#39;) || (c == &#39;/&#39;));
+}
+std::string base64Decode(std::string const&amp; encoded_string){
+    int in_len = encoded_string.size();
+    int i = 0;
+    int j = 0;
+    int index = 0;
+    unsigned char char_array_4[4], char_array_3[3];
+    std::string ret;
+
+    while (in_len-- &amp;&amp; (encoded_string[index] != &#39;=&#39;) &amp;&amp; isBase64(encoded_string[index])){
+        char_array_4[i++] = encoded_string[index]; index++;
+        if (i == 4){
+            for (i = 0; i &lt; 4; i++){
+                char_array_4[i] = base64_chars.find(char_array_4[i]);
+            }
+            char_array_3[0] = (char_array_4[0] &lt;&lt; 2) + ((char_array_4[1] &amp; 0x30) &gt;&gt; 4);
+            char_array_3[1] = ((char_array_4[1] &amp; 0xf) &lt;&lt; 4) + ((char_array_4[2] &amp; 0x3c) &gt;&gt; 2);
+            char_array_3[2] = ((char_array_4[2] &amp; 0x3) &lt;&lt; 6) + char_array_4[3];
+            for (i = 0; (i &lt; 3); i++){
+                ret += char_array_3[i];
+            }
+            i = 0;
+        }
+    }
+
+    if (i){
+        for (j = i; j &lt; 4; j++) char_array_4[j] = 0;
+        for (j = 0; j &lt; 4; j++) char_array_4[j] = base64_chars.find(char_array_4[j]);
+        char_array_3[0] = (char_array_4[0] &lt;&lt; 2) + ((char_array_4[1] &amp; 0x30) &gt;&gt; 4);
+        char_array_3[1] = ((char_array_4[1] &amp; 0xf) &lt;&lt; 4) + ((char_array_4[2] &amp; 0x3c) &gt;&gt; 2);
+        char_array_3[2] = ((char_array_4[2] &amp; 0x3) &lt;&lt; 6) + char_array_4[3];
+        for (j = 0; (j &lt; i - 1); j++) ret += char_array_3[j];
+    }
+
+    return ret;
+}
+cv::Mat base64ToMat(std::string &amp;base64_data){
+    std::string decoded_string = base64Decode(base64_data);
+    std::vector&lt;uchar&gt; data(decoded_string.begin(), decoded_string.end());
+    cv::Mat image = imdecode(data, cv::IMREAD_UNCHANGED);
+    return image;
+}
 </code></pre>
 <p><strong>Q：opencv Mat和byte互转</strong></p>
 <pre><code class="lang-cpp">unsigned char* matToBytes(Mat image){
@@ -2040,7 +2166,7 @@ sudo umount /mnt/f #卸载磁盘
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
     <div id="tocbot"></div>
   </div>
 
@@ -2089,7 +2215,7 @@ sudo umount /mnt/f #卸载磁盘
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -2098,7 +2224,7 @@ sudo umount /mnt/f #卸载磁盘
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">キーワード</label>
+                 for="local-search-input">keyword</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
