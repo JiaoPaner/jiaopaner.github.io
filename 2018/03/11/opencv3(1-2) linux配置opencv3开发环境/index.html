@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    614 字
+                    625 字
                   </span>&nbsp;
                 
 
@@ -217,21 +217,16 @@ sudo apt-get install ffmpeg
 <li><p>命令编译和安装</p>
 </li>
 </ul>
-<pre><code class="lang-bash">-centos
-# rpm -import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-# rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm
-# yum install epel-release python-devel numpy gtk2-devel libdc1394-devel libv4l-devel gstreamer-plugins-base-devel
-# yum install -y vim epel-release
-# yum repolist
-# yum install -y ffmpeg
-# yum install ffmpeg-devel
+<pre><code class="lang-bash">sudo rpm -import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-1.el7.nux.noarch.rpm
+sudo yum install -y epel-release
+sudo yum install -y cmake pkgconfig gtk2-devel gtk3-devel libjpeg-devel libpng-devel libtiff-devel tbb-devel eigen3-devel tesseract-devel openblas-devel 
+sudo yum install ffmpeg ffmpeg-devel
+sudo yum install python-devel python3-devel
 </code></pre>
 <pre><code class="lang-bash">cd build
-
-sudo cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
-
+sudo cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_FFMPEG=ON ..
 sudo make -j8
-
 sudo make install
 </code></pre>
 <h1 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h1><pre><code class="lang-bash">sudo vim /etc/ld.so.conf.d/opencv.conf #添加 /home/jiaopan/app/opencv/lib内容 ，即opencv安装目录下的lib目录路径
@@ -306,7 +301,7 @@ int main(){
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -355,7 +350,7 @@ int main(){
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -364,7 +359,7 @@ int main(){
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>

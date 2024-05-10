@@ -125,7 +125,7 @@
                   
                   &nbsp;<i class="far fa-chart-bar"></i>
                   <span class="post-count">
-                    10.4k 字
+                    10.8k 字
                   </span>&nbsp;
                 
 
@@ -133,7 +133,7 @@
                   
                   &nbsp;<i class="far fa-clock"></i>
                   <span class="post-count">
-                      59 分钟
+                      61 分钟
                   </span>&nbsp;
                 
 
@@ -479,6 +479,30 @@ inline std::string to_byte_string(const std::wstring&amp; input){
     std::wstring_convert&lt;std::codecvt_utf8&lt;wchar_t&gt;&gt; converter;
     return converter.to_bytes(input);
 }
+
+
+/*
+1.The first 128 characters (US-ASCII) in UTF-8 format only need one byte.
+2. The next 1,920 characters need two bytes to encode,which covers the remainder of almost all Latin-script alphabets.
+3. Three bytes are needed for characters in the rest of the Basic Multilingual Plane, which contains virtually all characters in common use, including most Chinese, Japanese and Korean characters.
+4. Four bytes are needed for characters in the other planes of Unicode,which include less common CJK characters, various historic scripts,mathematical symbols, and emoji (pictographic symbols).
+*/
+inline int getCharLength(char letter) {
+    int bytes = 1;
+    if ((letter &amp; 0x80) == 0x00) bytes = 1 ;
+    else if ((letter &amp; 0xE0) == 0xC0) bytes = 2;
+    else if ((letter &amp; 0xF0) == 0xE0) bytes = 3;
+    else if ((letter &amp; 0xF8) == 0xF0) bytes = 4;
+    return bytes;
+}
+inline void string2chars(const std::string&amp; text, std::vector&lt;std::string&gt;&amp; subs) {
+    subs.clear();
+    int num_bytes = 1;
+    for (size_t i = 0; i &lt; text.length(); i += num_bytes) {
+        num_bytes = getCharLength(text[i]);
+        subs.push_back(text.substr(i, num_bytes));
+    }
+}
 </code></pre>
 <p><strong>Q：c++分割字符串</strong></p>
 <pre><code class="lang-cpp">inline void split(const std::string &amp;text,
@@ -504,11 +528,8 @@ std::mutex mtx; // 互斥量,保护共享资源
 std::condition_variable not_empty; // 条件变量,同步线程
 std::deque&lt;int&gt; shared_data = {1,2,3}; // 共享数据
 
-
-
 int takeData(){
-
-std::unique_lock&lt;std::mutex&gt; lck(mtx);
+    std::unique_lock&lt;std::mutex&gt; lck(mtx);
     while (shared_data.empty()) {
         not_empty.wait(lck);
     }
@@ -526,8 +547,6 @@ void pushData(int data){
     not_empty.notify_all();
 }
 
-
-
 void worker_thread(int id) {
     int data = takeData();
     if(data &gt; 0){
@@ -539,22 +558,19 @@ void worker_thread(int id) {
 }
 
 int main(){
-
-std::thread t1(worker_thread,0);
-std::thread t2(worker_thread,1);
-std::thread t3(worker_thread,2);
-std::thread t4(worker_thread,3);
-std::thread t5(worker_thread,4);
-std::thread t6(worker_thread,5);
-t1.join();
-t2.join();
-t3.join();
-t4.join();
-t5.join();
-t6.join();
-
-return 0;
-
+    std::thread t1(worker_thread,0);
+    std::thread t2(worker_thread,1);
+    std::thread t3(worker_thread,2);
+    std::thread t4(worker_thread,3);
+    std::thread t5(worker_thread,4);
+    std::thread t6(worker_thread,5);
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+    t5.join();
+    t6.join();
+    return 0;
 }
 </code></pre>
 <p><strong>Q：c++ 跨平台判断</strong></p>
@@ -567,6 +583,24 @@ return 0;
 <pre><code class="lang-cpp">#if defined(TARGET_OS_MAC) || defined(__APPLE__)
 /*code*/
 #endif
+</code></pre>
+<p>**Q：c++ 遍历UTF-8字符串</p>
+<pre><code class="lang-cpp">inline int getcharBytes(char letter) {
+    int bytes = 1;
+    if ((letter &amp; 0x80) == 0x00) bytes = 1 ;
+    else if ((letter &amp; 0xE0) == 0xC0) bytes = 2;
+    else if ((letter &amp; 0xF0) == 0xE0) bytes = 3;
+    else if ((letter &amp; 0xF8) == 0xF0) bytes = 4;
+    return bytes;
+}
+inline void convertTextToChars(const std::string&amp; text, std::vector&lt;std::string&gt;&amp; subs) {
+    subs.clear();
+    int bytes = 1;
+    for (size_t i = 0; i &lt; text.length(); i += bytes) {
+        bytes = getcharBytes(text[i]);
+        subs.push_back(text.substr(i, bytes));
+    }
+}
 </code></pre>
 <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><p><strong>Q：python打包发布</strong></p>
 <p>1.项目根目录新建setup.py</p>
@@ -1453,11 +1487,14 @@ sudo yum remove centos-release-scl-rh.noarch
 sudo yum install centos-release-scl centos-release-scl-rh
 </code></pre>
 <pre><code class="lang-bash">#ubuntu
+ls /usr/bin/gcc*
 sudo apt-get install gcc-7  
 sudo apt-get install g++-7
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 100  
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 100
-g
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70  
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 70
+
+sudo update-alternatives --config gcc
+sudo update-alternatives --config g++
 gcc -v
 g++ -v
 </code></pre>
@@ -2042,14 +2079,19 @@ input_image = input_image.ctypes.data_as(c_char_p)
 <p><strong>Q 查看安卓手机位数</strong></p>
 <pre><code class="lang-bash">adb shell getprop ro.product.cpu.abi
 </code></pre>
-<p><strong>Q ffmpeg 编译安装</strong></p>
-<pre><code class="lang-bash">git clone https://github.com/FFmpeg/FFmpeg.git
+<p><strong>Q ffmpeg 安装</strong></p>
+<pre><code class="lang-bash">sudo yum install epel-release -y
+sudo rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro
+sudo rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+sudo yum install ffmpeg ffmpeg-devel -y
+
+sudo yum install x264-devel
+git clone https://github.com/FFmpeg/FFmpeg.git
 cd ffmpeg
 mkdir build
-./configure --enable-shared --enable-libx264 --enable-gpl --enable-openssl --prefix=./build
+./configure --enable-shared --enable-libx264 --enable-gpl --enable-openssl --enable-nonfree --disable-x86asm --prefix=./build
 make -j6
 make install
-ffmpeg -version
 </code></pre>
 <pre><code>configuration: --prefix=/usr/local/Cellar/ffmpeg/4.2.2_4 --enable-shared --enable-pthreads --enable-version3 --enable-avresample --host-cflags=-fno-stack-check --host-ldflags= --enable-ffplay --enable-gnutls --enable-gpl --enable-libaom --enable-libbluray --enable-libmp3lame --enable-libopus --enable-librubberband --enable-libsnappy --enable-libsrt --enable-libtesseract --enable-libtheora --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-lzma --enable-libfontconfig --enable-libfreetype --enable-frei0r --enable-libass --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librtmp --enable-libspeex --enable-libsoxr --enable-videotoolbox --disable-libjack --disable-indev=jack
 </code></pre><p><strong>Q 虚拟机配置静态ip 且宿主机互通 可访问外网</strong><br>添加网卡<br>网络模式网络地址转换(NAT)-&gt;访问外网<br>仅主机(Host-Only)适配器(ifcfg-enp0s3)-&gt;宿主机互通<br>静态ip配置</p>
@@ -2132,6 +2174,24 @@ sudo umount /mnt/f #卸载磁盘
 <p><strong>Q kill相关进程</strong></p>
 <pre><code class="lang-bash">ps -ef |grep name |grep -v grep|awk &#39;{print $2}&#39;|xargs kill -9
 </code></pre>
+<p><strong>Q github connection timeout</strong></p>
+<pre><code>vim ~/.ssh/config
+
+Host github.com
+User git
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+Port 443
+</code></pre><p><strong>Q cmake debug模式</strong></p>
+<pre><code class="lang-text"># 设置 Debug 编译模式
+set(CMAKE_BUILD_TYPE Debug)
+# 添加调试相关的编译选项
+set(CMAKE_C_FLAGS_DEBUG &quot;${CMAKE_C_FLAGS_DEBUG} -g&quot;)
+set(CMAKE_CXX_FLAGS_DEBUG &quot;${CMAKE_CXX_FLAGS_DEBUG} -g&quot;)
+# 添加生成调试信息的选项
+set(CMAKE_EXE_LINKER_FLAGS_DEBUG &quot;${CMAKE_EXE_LINKER_FLAGS_DEBUG} -g&quot;)
+</code></pre>
 
             <hr>
           </div>
@@ -2166,7 +2226,7 @@ sudo umount /mnt/f #卸载磁盘
     <div class="d-none d-lg-block col-lg-2 toc-container">
       
   <div id="toc">
-    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;TOC</p>
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;ディレクトリ</p>
     <div id="tocbot"></div>
   </div>
 
@@ -2215,7 +2275,7 @@ sudo umount /mnt/f #卸载磁盘
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">検索</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -2224,7 +2284,7 @@ sudo umount /mnt/f #卸载磁盘
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
           <label data-error="x" data-success="v"
-                 for="local-search-input">keyword</label>
+                 for="local-search-input">キーワード</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
